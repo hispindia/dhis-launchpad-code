@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"
+    >
+
+<hibernate-mapping package="org.hisp.dhis.dxf2.sm.api">
+  <class name="DataElementSynchStatus" table="desynchstatus">
+
+    <composite-id>
+      <key-many-to-one name="dataElement" class="org.hisp.dhis.dataelement.DataElement" column="dataelementid" foreign-key="fk_desynchstatus_dataelementid" />
+      <key-many-to-one name="instance" class="org.hisp.dhis.dxf2.sm.api.SynchInstance" column="instanceid" foreign-key="fk_desynchstatus_instanceid" />      
+    </composite-id>
+    
+
+    <property name="rememberApproveStatus" column="isapproveneeded"  />
+
+    <property name="lastUpdated" column="lastupdated" />
+
+    <property name="approveStatus" column="approvestatus" />
+
+    <property name="approvedDate" column="approveddate" />
+
+    <property name="acceptStatus" column="acceptstatus" />
+    
+    <property name="acceptedDate" column="accepteddate" />
+    
+    <property name="status" column="status" />
+    
+    <property name="deStatus" column="destatus" /><!-- either new or update -->
+	
+	<!-- 
+	<property name="deccLastupdated" column="decclastupdated" />
+	
+	<property name="osLastupdated" column="oslastupdated" />
+	-->
+  </class>
+</hibernate-mapping>

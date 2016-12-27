@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+  <!-- Store definitions -->
+
+   <bean id="org.hisp.dhis.sm.api.MetaDataSynchLogStore" class="org.hisp.dhis.sm.impl.HibernateMetaDataSynchLogStore">
+       <property name="sessionFactory" ref="sessionFactory" />
+   </bean>
+
+  <bean id="org.hisp.dhis.sm.api.SynchInstanceStore" class="org.hisp.dhis.sm.impl.HibernateSynchInstanceStore">
+    <property name="sessionFactory" ref="sessionFactory" />
+    <property name="clazz" value="org.hisp.dhis.dxf2.sm.api.SynchInstance" />
+  </bean>
+
+   <bean id="org.hisp.dhis.sm.api.DataElementSynchStatusStore" class="org.hisp.dhis.sm.impl.HibernateDataElementSynchStatusStore">
+       <property name="sessionFactory" ref="sessionFactory" />
+   </bean>
+
+  <bean id="org.hisp.dhis.sm.api.InstanceBusinessRulesStore" class="org.hisp.dhis.sm.impl.HibernateInstanceBusinessRulesStore">
+    <property name="sessionFactory" ref="sessionFactory" />
+    <property name="clazz" value="org.hisp.dhis.dxf2.sm.api.InstanceBusinessRules" />
+  </bean>
+
+   <!--  IndicatorSynchStatus -->
+   <bean id="org.hisp.dhis.sm.api.IndicatorSynchStatusStore" class="org.hisp.dhis.sm.impl.HibernateIndicatorSynchStatusStore">
+       <property name="sessionFactory" ref="sessionFactory" />
+   </bean>
+
+   <!--  OrganisationUnitSynchStatus -->
+   <bean id="org.hisp.dhis.sm.api.OrganisationUnitSynchStatusStore" class="org.hisp.dhis.sm.impl.HibernateOrganisationUnitSynchStatusStore">
+       <property name="sessionFactory" ref="sessionFactory" />
+   </bean>
+
+   <!--  ValidationRuleSynchStatus -->
+   <bean id="org.hisp.dhis.sm.api.ValidationRuleSynchStatusStore" class="org.hisp.dhis.sm.impl.HibernateValidationRuleSynchStatusStore">
+       <property name="sessionFactory" ref="sessionFactory" />
+   </bean>
+
+
+   <!--  DependencySynchStatus -->
+   <bean id="org.hisp.dhis.sm.api.DependencySynchStatusStore" class="org.hisp.dhis.sm.impl.HibernateDependencySynchStatusStore">
+       <property name="sessionFactory" ref="sessionFactory" />
+   </bean>
+
+
+  <!-- Service definitions -->
+
+  <bean id="org.hisp.dhis.sm.api.MetaDataSynchLogService" class="org.hisp.dhis.sm.impl.DefaultMetaDataSynchLogService">
+    <property name="metaDataSynchLogStore" ref="org.hisp.dhis.sm.api.MetaDataSynchLogStore" />
+  </bean>
+
+  <bean id="org.hisp.dhis.sm.api.SynchInstanceService" class="org.hisp.dhis.sm.impl.DefaultSynchInstanceService">
+    <property name="synchInstanceStore" ref="org.hisp.dhis.sm.api.SynchInstanceStore" />
+  </bean>
+
+  <bean id="org.hisp.dhis.sm.api.InstanceBusinessRulesService" class="org.hisp.dhis.sm.impl.DefaultInstanceBusinessRulesService">
+    <property name="instanceBusinessRulesStore" ref="org.hisp.dhis.sm.api.InstanceBusinessRulesStore" />
+  </bean>
+
+  <bean id="org.hisp.dhis.sm.api.SynchManager" class="org.hisp.dhis.sm.impl.SynchManager">
+  </bean>
+
+
+  <bean id="org.hisp.dhis.sm.api.DataElementSynchStatusService" class="org.hisp.dhis.sm.impl.DefaultDataElementSynchStatusService">
+    <property name="dataElementSynchStatusStore" ref="org.hisp.dhis.sm.api.DataElementSynchStatusStore" />
+  </bean>
+
+  <!--  IndicatorSynchStatus -->
+  <bean id="org.hisp.dhis.sm.api.IndicatorSynchStatusService" class="org.hisp.dhis.sm.impl.DefaultIndicatorSynchStatusService">
+    <property name="indicatorSynchStatusStore" ref="org.hisp.dhis.sm.api.IndicatorSynchStatusStore" />
+  </bean>	
+
+  <!--  OrganisationUnitSynchStatus -->
+  <bean id="org.hisp.dhis.sm.api.OrganisationUnitSynchStatusService" class="org.hisp.dhis.sm.impl.DefaultOrganisationUnitSynchStatusService">
+    <property name="organisationUnitSynchStatusStore" ref="org.hisp.dhis.sm.api.OrganisationUnitSynchStatusStore" />
+  </bean>
+
+  <!--  ValidationRuleSynchStatus -->
+  <bean id="org.hisp.dhis.sm.api.ValidationRuleSynchStatusService" class="org.hisp.dhis.sm.impl.DefaultValidationRuleSynchStatusService">
+    <property name="validationRuleSynchStatusStore" ref="org.hisp.dhis.sm.api.ValidationRuleSynchStatusStore" />
+    <property name="validationRuleService" ref="org.hisp.dhis.validation.ValidationRuleService" />
+    <property name="jdbcTemplate" ref="jdbcTemplate" />
+  </bean>
+
+  <bean id="org.hisp.dhis.sm.util.MetaDataValidationCheck" class="org.hisp.dhis.sm.util.MetaDataValidationCheck">
+  </bean>
+
+  <!--  DependencySynchStatus -->
+  <bean id="org.hisp.dhis.sm.api.DependencySynchStatusService" class="org.hisp.dhis.sm.impl.DefaultDependencySynchStatusService">
+    <property name="dependencySynchStatusStore" ref="org.hisp.dhis.sm.api.DependencySynchStatusStore" />
+  </bean>
+
+
+
+</beans>

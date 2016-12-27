@@ -1,0 +1,49 @@
+
+#if( $update )
+<h3>$i18n.getString( "edit_data_synch_instance" )</h3>
+#else
+<h3>$i18n.getString( "create_new_data_synch_instance" )</h3>
+#end
+
+<form id="addDataSynchInstanceForm" action="addDataSynchInstance.action" method="post" class="inputForm">
+
+#if( $update )
+    <input type="hidden" id="dataSynchInstanceId" name="dataSynchInstanceId" value="$!dataSynchInstance.id"/>
+#end
+
+<input type="hidden" id="synchType" name="synchType" value="$!synchType"/>
+<table>
+    <tr>
+        <th colspan="2">$i18n.getString( "details" )</th>
+    </tr>
+    <tr>
+        <td><label for="name">$i18n.getString( "name" ) <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+        <td><input type="text" id="name" name="name" value="$!encoder.htmlEncode( $!dataSynchInstance.name )"  class="{validate:{required:true}}"></td>
+    </tr>
+    <tr>
+        <td><label for="url">$i18n.getString( "url" )  <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+        <td><input type="text" id="url" name="url" value="$!encoder.htmlEncode( $!dataSynchInstance.url )" class="{validate:{required:true}}"></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td><label for="message" style="color:gray"> (ex: http://192.168.0.194:8090/dhis/api )  </label></td>
+    </tr>
+    <tr>
+        <td><label for="userid">$i18n.getString( "userid" )  <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+        <td><input type="text" id="userId" name="userId" value="$!encoder.htmlEncode( $!dataSynchInstance.userId )" class="{validate:{required:true}}"></td>
+    </tr>
+    <tr>
+        <td><label for="password">$i18n.getString( "password" )  <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+        <td><input type="password" id="password" name="password" class="{validate:{required:true}}"></td>
+    </tr>
+</table>    
+
+<p>
+    #if( $update )
+    <input type="submit" value="$i18n.getString( 'save' )" style="width:10em" />
+    #else
+    <input type="submit" value="$i18n.getString( 'add' )" style="width:10em" />
+    #end
+    <input type="button" value="$i18n.getString( 'cancel' )" onclick="window.location.href='dataSynchInstanceList.action?synchType=data'" style="width:10em" />
+    </p>
+</form>

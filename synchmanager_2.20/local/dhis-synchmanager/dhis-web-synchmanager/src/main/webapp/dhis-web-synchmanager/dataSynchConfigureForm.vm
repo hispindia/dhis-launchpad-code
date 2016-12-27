@@ -1,0 +1,124 @@
+
+<h3>$i18n.getString( "configuration_data_synch" )</h3>
+	
+<form id="dataSyncConfigurationForm" name="dataSyncConfigurationForm"  method="post" >
+	<table class="formSection" border="1">
+    	<tr bgcolor="#CBDDEB">
+    		<th style="text-align: center;">$i18n.getString( "data_type" )</th>
+			<th style="text-align: center;">$i18n.getString( "aggregation_level" )</th>
+			<th style="text-align: center;">$i18n.getString( "aggregation_frequency" )</th>
+			<th style="text-align: center;">$i18n.getString( "national_de" )</th>
+    		<th style="text-align: left;">$i18n.getString( "instance_de" )</th>
+			<th style="text-align: left;">$i18n.getString( "recombination_frequency" )</th>
+			<th style="text-align: left;">$i18n.getString( "last_synchronization_date" )</th>
+    	</tr>		
+		
+		<tr>
+    		<td>
+    			<select id="dataType" name="dataType">
+    				<option value="">[$i18n.getString( "please_select" )]</option>
+					<option value="dataelement">$i18n.getString( "dataelement" )</option>
+					<option value="indicator">$i18n.getString( "indicator" )</option>
+    			</select>
+			</td>
+			<td>
+    			<select id="aggregationLevel" name="aggregationLevel">
+    				<option value="">[$i18n.getString( "please_select" )]</option>
+						<!--
+						#foreach ( $instance in $instances )
+							<option value="$instance.id">$encoder.htmlEncode( $!instance.name )</option>
+						#end
+						-->				
+    			</select>
+			</td>
+    		<td>
+    			<select id="aggregationFrequency" name="aggregationFrequency">
+    				<option value="">[$i18n.getString( "please_select" )]</option>
+						#foreach ( $type in $periodTypes )
+							<option value="$type.name">$type.name</option>
+						#end
+    			</select>
+			</td>
+			<td>
+    			<select id="nationalDe" name="nationalDe">
+    				<option value="">[$i18n.getString( "please_select" )]</option>
+						<!--
+						#foreach ( $instance in $instances )
+							<option value="$instance.id">$encoder.htmlEncode( $!instance.name )</option>
+						#end
+						-->				
+    			</select>
+			</td>			
+    		<td>
+    			<select id="instanceDe" name="instanceDe">
+    				<option value="">[$i18n.getString( "please_select" )]</option>
+						<!--
+						#foreach ( $instance in $instances )
+							<option value="$instance.id">$encoder.htmlEncode( $!instance.name )</option>
+						#end
+						-->				
+    			</select>
+			</td>
+			<td>
+    			<select id="recombinationFrequency" name="recombinationFrequency">
+    				<option value="">[$i18n.getString( "please_select" )]</option>
+						#foreach ($type in $periodTypes )
+							<option value="$type.name">$type.name</option>
+						#end
+    			</select>
+			</td>
+			
+    		<td ><input type="text" id="lastSynchronizationDate" name="lastSynchronizationDate" />
+    			<script type="text/javascript">
+    				datePickerValid( 'lastSynchronizationDate', true );
+    			</script>
+    		</td>			
+    			
+		</tr>		
+		
+    	<tr>
+    		<td>&nbsp;</td>
+    		<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			
+    	</tr>
+		
+    	<tr>
+    		<td>&nbsp;</td>
+    		<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			
+    	</tr>		
+		
+    	<tr>
+    		<td>&nbsp;</td>
+    		<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			
+    	</tr>		
+		
+		
+		<tr>
+    		<td colspan="7" style="text-align: center;" ><input type="button" id="saveButton" value="$i18n.getString( 'save' )"  style="width:120px"  /></td>
+    	</tr>		
+		
+		
+    </table>	
+	
+	
+	
+	
+	
+</form>

@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"    
+    >
+
+<hibernate-mapping package="org.hisp.dhis.dxf2.sm.api">
+  <class name="MetaDataSynchLog" table="metadatasynchlog">
+
+    <id name="id" column="metadatasynchlogid">
+      <generator class="native" />
+    </id>
+
+    <many-to-one name="synchInstance" lazy="false" class="org.hisp.dhis.dxf2.sm.api.SynchInstance" column="instanceid"
+      not-null="true" foreign-key="fk_metadatasynchlog_instanceid" />
+
+    <property name="synchDate" column="logdate" not-null="true" />
+    
+    <property name="metaDataType" column="metadatatype" not-null="true" length="256"/>
+    
+    <property name="status" column="status" not-null="true" />
+    
+    <property name="remarks" column="logdetails" type="text" />
+
+  </class>
+</hibernate-mapping>
