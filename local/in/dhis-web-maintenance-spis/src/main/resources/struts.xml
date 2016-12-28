@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	
+	<include file="dhis-web-commons.xml"/>
+	
+	<package name="dhis-web-maintenance-spis" extends="dhis-web-commons" namespace="/dhis-web-maintenance-spis">
+	
+		<!-- Home page -->
+		<action name="index" class="org.hisp.dhis.spis.action.ShowCriteriaFormAction">
+			<result name="success" type="velocity">/main.vm</result>
+			<param name="page">/dhis-web-maintenance-spis/showCriteriaForm.vm</param>
+			<param name="menu">/dhis-web-maintenance-spis/menu.vm</param>
+			<param name="javascripts">javascript/criteria.js</param>
+			<param name="stylesheets">css/spis.css</param>
+		</action>
+		
+		<!--  Show Add Criteria Form -->
+		<action name="showAddCriteria" class="org.hisp.dhis.spis.action.ShowAddCriteriaFormAction">
+			<result name="success" type="velocity">/main.vm</result>
+			<param name="page">/dhis-web-maintenance-spis/showaddCriteriaForm.vm</param>
+			<param name="menu">/dhis-web-maintenance-spis/menu.vm</param>
+			<!--<param name="javascripts">/dhis-web-maintenance-spis/javascript/criteria.js</param>-->
+			<param name="stylesheets">css/spis.css</param>
+			
+		</action>
+		<!-- Edit Criteria -->
+		<action name="showEditCriteria" class="org.hisp.dhis.spis.action.ShowEditCriteriaFormAction">
+			<result name="success" type="velocity">/main.vm</result>
+			<param name="page">/dhis-web-maintenance-spis/showEditCriteriaForm.vm</param>
+			<param name="menu">/dhis-web-maintenance-spis/menu.vm</param>
+			<!--<param name="javascripts">/dhis-web-maintenance-spis/javascript/criteria.js</param>-->
+			<param name="stylesheets">css/spis.css</param>
+			
+		</action>
+		
+		<!-- Add  Criteria -->
+		<action name="addCriteria" class="org.hisp.dhis.spis.action.AddCriteriaAction">
+			<result name="success" type="redirect">index.action</result>
+		</action>
+
+		<!-- Edit  Criteria -->
+		<action name="editCriteria" class="org.hisp.dhis.spis.action.EditCriteriaAction">
+			<result name="success" type="redirect">index.action</result>
+		</action>
+
+
+		<!-- Delete Criteria --> 
+	    <action name="removeCriteria" class="org.hisp.dhis.spis.action.RemoveCriteriaAction">
+	      <result name="success" type="velocity-json">/dhis-web-commons/ajax/jsonResponseSuccess.vm</result>
+	      <result name="error" type="velocity-json">/dhis-web-commons/ajax/jsonResponseError.vm</result>
+	      <param name="onExceptionReturn">plainTextError</param>
+	      <param name="requiredAuthorities">F_DATASET_DELETE</param>
+	    </action>
+
+
+	    <!-- Show Criteria Details -->   
+	 	<action name="getCriteria" class="org.hisp.dhis.spis.action.GetCriteriaAction">
+	      <!--<result name="success" type="velocity-json"> /dhis-web-maintenance-spis/jsonCriteria.vm</result>-->
+	      <result name="success" type="velocity">/content.vm</result>
+          <param name="page">/dhis-web-maintenance-spis/showCriteriaDetails.vm</param>
+	      <param name="onExceptionReturn">plainTextError</param>
+	    </action>
+
+		<!--  Scheme Info List -->
+		<action name="schemeInfoList" class="org.hisp.dhis.spis.action.scheme.GetSchemeInfoListAction">
+			<result name="success" type="velocity">/main.vm</result>
+			<param name="page">/dhis-web-maintenance-spis/schemeInfoList.vm</param>
+			<param name="menu">/dhis-web-maintenance-spis/menu.vm</param>
+			<param name="javascripts">javascript/schemeInfo.js</param>
+		</action>
+
+		<!--  Show Add/Update Scheme Form -->
+		
+		<action name="showUpdateSchemeInfoForm" class="org.hisp.dhis.spis.action.scheme.ShowUpdateSchemeFormAction">
+			<result name="success" type="velocity">/main.vm</result>
+			<param name="page">/dhis-web-maintenance-spis/showUpdateSchemeForm.vm</param>
+			<param name="menu">/dhis-web-maintenance-spis/menu.vm</param>
+			<param name="javascripts">javascript/schemeInfo.js</param>
+		</action>
+		
+		<!--
+		<action name="addUpdateSchemeForm" class="org.hisp.dhis.spis.action.scheme.ShowAddUpdateSchemeFormAction">
+			<result name="success" type="velocity">/main.vm</result>
+			<param name="page">/dhis-web-maintenance-spis/showAddUpdateSchemeForm.vm</param>
+			<param name="menu">/dhis-web-maintenance-spis/menu.vm</param>
+			<param name="javascripts">javascript/schemeInfo.js</param>
+		</action>
+		-->
+
+		<!-- Load Scheme Information Entry Form -->
+		<action name="loadSchemeDetailsEntryForm" class="org.hisp.dhis.spis.action.scheme.LoadSchemeInfoEntryFormAction">
+			<result name="success" type="velocity">/content.vm</result>
+			<param name="page">/dhis-web-maintenance-spis/loadScemeInfoEntryForm.vm</param>
+			<param name="stylesheets">css/basic.css</param>
+		</action>	
+	
+		<!-- Update Scheme Information -->
+	    <action name="updateSchemeInformation" class="org.hisp.dhis.spis.action.scheme.UpdateSchemeInfoAction">
+	      <!--><result name="success" type="redirect">addUpdateSchemeForm.action</result>-->
+	      <result name="success" type="redirect">schemeInfoList.action</result>
+	    </action>
+
+
+	</package>
+</struts>

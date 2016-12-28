@@ -1,0 +1,8 @@
+{ "lookup": 
+  {
+    "id": "$!{criteria.id}",
+    "name": "$!encoder.jsonEncode( ${criteria.name} )",
+    "code": "$!encoder.jsonEncode( ${criteria.code} )",
+    "description": "$!encoder.jsonEncode( ${criteria.description} )"    
+  }
+}

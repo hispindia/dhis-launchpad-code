@@ -1,0 +1,61 @@
+
+<table width="100%">
+	
+	<tr>
+        <td colspan="3"><h2>$i18n.getString( "criteria_details" )</h2></td>
+	</tr>
+
+	<tr>
+        <th>$i18n.getString( "name" )</th>
+		<th>$i18n.getString( "code" )</th>
+		<th>$i18n.getString( "description" )</th>
+	</tr>
+	
+	<tr>
+		<td>$encoder.htmlEncode( $!criteria.name )</td>
+		<td>$encoder.htmlEncode( $!criteria.code )</td>
+		<td>$encoder.htmlEncode( $!criteria.description )</td>
+	</tr>	
+	
+	<tr>
+        <td colspan="3"><h2>$i18n.getString( "criteria_parameters_details" )</h2></td>
+	</tr>
+
+	<tr>
+        <th>$i18n.getString( "parameter" )</th>
+		<th>$i18n.getString( "operator" )</th>
+		<th>$i18n.getString( "value" )</th>
+	</tr>
+	
+	#foreach($criteriaValue in $criteriaValues)
+		<tr>
+			<td>$encoder.htmlEncode( $!criteriaValue.getTea().getName() )</td>
+			<td>$encoder.htmlEncode( $!criteriaValue.getOperator() )</td>
+			<td>$encoder.htmlEncode( $!criteriaValue.getValidationValue() )</td>
+		</tr>
+	#end
+	
+	<tr>
+        <td colspan="3"><h2>$i18n.getString( "criteria_program_details" )</h2></td>
+	</tr>
+	
+	<!--
+	<tr>
+        <td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	-->
+	#foreach($programCriteria in $programCriterias)
+		<tr>
+			<td>$encoder.htmlEncode( $!programCriteria.getProgram().getName() )</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+	#end
+	
+</table>
+	
+<p align="left">
+	<input type="button"  value="$i18n.getString( 'close' )" style="width:100px" onclick="closeWindow();"/>
+</p>

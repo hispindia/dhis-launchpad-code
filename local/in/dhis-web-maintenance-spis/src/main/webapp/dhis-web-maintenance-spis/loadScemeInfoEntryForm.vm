@@ -1,0 +1,4 @@
+
+<br />
+#tblDynamicAttributes( { "attributes": $attributes, "attributeValues": $attributeValues } )
+<br />

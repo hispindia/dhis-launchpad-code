@@ -1,0 +1,321 @@
+=== modified file 'dhis-2/dhis-api/src/main/java/org/hisp/dhis/sms/config/SmsConfiguration.java'
+--- dhis-2/dhis-api/src/main/java/org/hisp/dhis/sms/config/SmsConfiguration.java	2015-01-17 07:41:26 +0000
++++ dhis-2/dhis-api/src/main/java/org/hisp/dhis/sms/config/SmsConfiguration.java	2015-03-18 07:42:51 +0000
+@@ -97,7 +97,9 @@
+     @XmlElements( { @XmlElement( name = "bulksms", type = BulkSmsGatewayConfig.class ),
+         @XmlElement( name = "clickatell", type = ClickatellGatewayConfig.class ),
+         @XmlElement( name = "http", type = GenericHttpGatewayConfig.class ),
+-        @XmlElement( name = "modem", type = ModemGatewayConfig.class ) } )
++        @XmlElement( name = "modem", type = ModemGatewayConfig.class ),
++        @XmlElement( name = "smscountry", type = SmscountryGateWayConfig.class )} )
++         
+     public List<SmsGatewayConfig> getGateways()
+     {
+         return gateways;
+
+=== modified file 'dhis-2/dhis-services/dhis-service-core/pom.xml'
+--- dhis-2/dhis-services/dhis-service-core/pom.xml	2015-03-06 11:35:01 +0000
++++ dhis-2/dhis-services/dhis-service-core/pom.xml	2015-03-17 09:16:25 +0000
+@@ -91,6 +91,8 @@
+     <dependency>
+       <groupId>org.smslib</groupId>
+       <artifactId>smslib</artifactId>
++      <scope>system</scope>
++      <systemPath>/home/hisp2/source_code/smslib/3.5.x/smslib-v3/dist/lib/smslib-3.5.5.jar</systemPath>
+     </dependency>
+     <dependency>
+       <groupId>com.googlecode.jsmpp</groupId>
+
+=== modified file 'dhis-2/dhis-services/dhis-service-core/src/main/java/org/hisp/dhis/sms/config/GateWayFactory.java'
+--- dhis-2/dhis-services/dhis-service-core/src/main/java/org/hisp/dhis/sms/config/GateWayFactory.java	2015-01-17 07:41:26 +0000
++++ dhis-2/dhis-services/dhis-service-core/src/main/java/org/hisp/dhis/sms/config/GateWayFactory.java	2015-03-18 09:25:07 +0000
+@@ -68,12 +68,22 @@
+         else if ( config instanceof SMPPGatewayConfig )
+         {
+             return createSMPPGatewayConfig( (SMPPGatewayConfig) config );
++        }else if (config instanceof SmscountryGateWayConfig){
++        	return createmscountryGateWayConfig((SmscountryGateWayConfig)config);
+         }
+ 
+         throw new SmsServiceException( "Gateway config of unknown type: " + config.getClass().getName() );
+     }
+ 
+-    public AGateway createSMPPGatewayConfig( SMPPGatewayConfig config )
++    private AGateway createmscountryGateWayConfig(SmscountryGateWayConfig c) {
++    	 SmscountryGateWay gateway = new SmscountryGateWay( c.getName(), c.getUrlTemplate(),
++    	            c.getParameters() );
++    	        gateway.setOutbound( true );
++    	        gateway.setInbound( false );
++    	        return gateway;
++	}
++
++	public AGateway createSMPPGatewayConfig( SMPPGatewayConfig config )
+     {
+         AGateway gateway = new JSMPPGateway( config.getName(), config.getAddress(), config.getPort(),
+             new BindAttributes( config.getUsername(), config.getPassword(), "cp", BindType.TRANSCEIVER ) );
+
+=== modified file 'dhis-2/dhis-services/dhis-service-core/src/main/java/org/hisp/dhis/sms/outbound/DefaultOutboundSmsTransportService.java'
+--- dhis-2/dhis-services/dhis-service-core/src/main/java/org/hisp/dhis/sms/outbound/DefaultOutboundSmsTransportService.java	2015-02-22 20:02:00 +0000
++++ dhis-2/dhis-services/dhis-service-core/src/main/java/org/hisp/dhis/sms/outbound/DefaultOutboundSmsTransportService.java	2015-03-18 10:23:40 +0000
+@@ -33,6 +33,7 @@
+ import java.util.HashMap;
+ import java.util.Map;
+ import java.util.Set;
++
+ import org.apache.commons.logging.Log;
+ import org.apache.commons.logging.LogFactory;
+ import org.hisp.dhis.sms.SmsPublisher;
+@@ -44,6 +45,7 @@
+ import org.hisp.dhis.sms.config.SMPPGatewayConfig;
+ import org.hisp.dhis.sms.config.SmsConfiguration;
+ import org.hisp.dhis.sms.config.SmsGatewayConfig;
++import org.hisp.dhis.sms.config.SmscountryGateWayConfig;
+ import org.hisp.dhis.sms.outbound.OutboundSmsTransportService;
+ import org.smslib.AGateway;
+ import org.smslib.GatewayException;
+@@ -65,6 +67,7 @@
+     private static final String HTTP_GATEWAY = "generic_http_gw";
+     private static final String MODEM_GATEWAY = "modem_gw";
+     private static final String SMPP_GATEWAY = "smpp_gw";
++    private static final String SMSCOUNTRY_GATEWAY="smscountry_gw";
+     
+     public static final Map<String, String> gatewayMap = new HashMap<>(); //TODO fix, poor solution
+ 
+@@ -222,6 +225,8 @@
+                         gatewayMap.put( SMPP_GATEWAY, gateway.getGatewayId() );
+                         // Service.getInstance().setInboundMessageNotification(
+                         // new InboundNotification() );
++                    }else if(gatewayConfig instanceof SmscountryGateWayConfig ){
++                    	gatewayMap.put(SMSCOUNTRY_GATEWAY,gateway.getGatewayId());
+                     }
+                     else
+                     {
+@@ -307,6 +312,10 @@
+         {
+             gatewayId = gatewayMap.get( SMPP_GATEWAY );
+         }
++        else if(gatewayConfig instanceof SmscountryGateWayConfig){
++
++            gatewayId = gatewayMap.get( SMSCOUNTRY_GATEWAY );
++        }
+         else
+         {
+             gatewayId = gatewayMap.get( MODEM_GATEWAY );
+@@ -417,13 +426,15 @@
+         try
+         {
+             log.info( "Sending message " + sms );
+-
++            System.out.println(gatewayId);
+             if ( gatewayId == null || gatewayId.isEmpty() )
+             {
+                 sent = getService().sendMessage( outboundMessage );
+             }
+             else
+             {
++                System.out.println("inside 2 para");
++
+                 sent = getService().sendMessage( outboundMessage, gatewayId );
+             }
+         }
+
+=== modified file 'dhis-2/dhis-web/dhis-web-apps/src/main/webapp/dhis-web-tracker-capture/components/dataentry/dataentry-controller.js'
+--- dhis-2/dhis-web/dhis-web-apps/src/main/webapp/dhis-web-tracker-capture/components/dataentry/dataentry-controller.js	2015-03-11 15:02:58 +0000
++++ dhis-2/dhis-web/dhis-web-apps/src/main/webapp/dhis-web-tracker-capture/components/dataentry/dataentry-controller.js	2015-03-18 05:02:21 +0000
+@@ -570,7 +570,11 @@
+                 setStatusColor();
+                 
+                 if($scope.currentEvent.status === 'COMPLETED' && $scope.currentStage.allowGenerateNextVisit){
+-                    $scope.showCreateEvent($scope.currentStage);
++                	 if ($scope.currentEvent.krCkrYWQeR1== "Application approved"){
++                         var programStagesSorted = $scope.programStages;
++                         programStagesSorted= orderByFilter(programStagesSorted, '-sortOrder').reverse();
++                         $scope.showCreateEvent(programStagesSorted[$scope.currentStage.sortOrder ]);
++                       }else{$scope.showCreateEvent($scope.currentStage);}
+                 }
+             });
+         });
+
+=== modified file 'dhis-2/dhis-web/dhis-web-maintenance/dhis-web-maintenance-mobile/src/main/java/org/hisp/dhis/mobile/action/GetSmsConfigurationAction.java'
+--- dhis-2/dhis-web/dhis-web-maintenance/dhis-web-maintenance-mobile/src/main/java/org/hisp/dhis/mobile/action/GetSmsConfigurationAction.java	2015-01-17 07:41:26 +0000
++++ dhis-2/dhis-web/dhis-web-maintenance/dhis-web-maintenance-mobile/src/main/java/org/hisp/dhis/mobile/action/GetSmsConfigurationAction.java	2015-03-18 09:42:42 +0000
+@@ -38,6 +38,7 @@
+ import org.hisp.dhis.sms.config.SmsConfiguration;
+ import org.hisp.dhis.sms.config.SmsConfigurationManager;
+ import org.hisp.dhis.sms.config.SmsGatewayConfig;
++import org.hisp.dhis.sms.config.SmscountryGateWayConfig;
+ import org.hisp.dhis.sms.outbound.OutboundSmsTransportService;
+ import org.springframework.beans.factory.annotation.Autowired;
+ 
+@@ -132,12 +133,19 @@
+     {
+         return smppIndex;
+     }
+-
++    
++    public Integer smscountryIndex;
++    
++    public Integer getSmscountry() {
++		return smscountryIndex;
++	}
+     // -------------------------------------------------------------------------
+     // Action implementation
+     // -------------------------------------------------------------------------
+ 
+-    @Override
++   
++
++	@Override
+     public String execute()
+         throws Exception
+     {
+@@ -171,6 +179,8 @@
+                 else if ( gw instanceof SMPPGatewayConfig )
+                 {
+                     smppIndex = index;
++                }else if (gw instanceof SmscountryGateWayConfig){
++                	smscountryIndex = index;
+                 }
+                 else
+                 {
+
+=== modified file 'dhis-2/dhis-web/dhis-web-maintenance/dhis-web-maintenance-mobile/src/main/resources/struts.xml'
+--- dhis-2/dhis-web/dhis-web-maintenance/dhis-web-maintenance-mobile/src/main/resources/struts.xml	2014-10-23 16:38:54 +0000
++++ dhis-2/dhis-web/dhis-web-maintenance/dhis-web-maintenance-mobile/src/main/resources/struts.xml	2015-03-18 07:48:39 +0000
+@@ -130,6 +130,12 @@
+       <param name="requiredAuthorities">F_MOBILE_SETTINGS</param>
+     </action>
+ 
++	<action name="saveSmscountryConfig" class="org.hisp.dhis.mobile.action.UpdateSmscountryGateWayConfigAction">
++      <result name="success" type="velocity-json">../dhis-web-commons/ajax/jsonResponseSuccess.vm</result>
++      <param name="onExceptionReturn">plainTextError</param>
++      <param name="requiredAuthorities">F_MOBILE_SETTINGS</param>
++    </action>
++    
+     <action name="updateDefaultGateway" class="org.hisp.dhis.mobile.action.UpdateDefaultGatewayAction">
+       <result name="success" type="velocity-json">../dhis-web-commons/ajax/jsonResponseSuccess.vm</result>
+       <param name="onExceptionReturn">plainTextError</param>
+
+=== modified file 'dhis-2/dhis-web/dhis-web-maintenance/dhis-web-maintenance-mobile/src/main/webapp/dhis-web-maintenance-mobile/javascript/gateway.js'
+--- dhis-2/dhis-web/dhis-web-maintenance/dhis-web-maintenance-mobile/src/main/webapp/dhis-web-maintenance-mobile/javascript/gateway.js	2013-05-20 09:32:19 +0000
++++ dhis-2/dhis-web/dhis-web-maintenance/dhis-web-maintenance-mobile/src/main/webapp/dhis-web-maintenance-mobile/javascript/gateway.js	2015-03-18 08:05:18 +0000
+@@ -10,7 +10,10 @@
+     	showById( "clickatellFields" );
+     } else if ( value == "smpp_gw"){
+     	showById( "smppFields" );
+-    } else {
++    } else if (value == "smscountry"){
++    	showById( "smscountryFields" );
++
++    }else {
+ 	    showById( "genericHTTPFields" );
+ 	}
+ 	currentType = value;
+@@ -23,6 +26,8 @@
+ 	 hideById( "smppFields" );
+ 	 hideById( "clickatellFields" );
+ 	 hideById( "genericHTTPFields" );
++	 hideById( "smscountryFields" );
++
+ 	 
+ }
+ 
+@@ -60,12 +65,19 @@
+ 			'clickatellFields input[id=password]' : { 'required' : true },
+ 			'clickatellFields input[id=apiId]' : { 'required' : true }
+ 		};
+-	} else {
+-		rules = {
+-			'genericHTTPFields input[id=name]' : { 'required' : true },
+-			'genericHTTPFields input[id=username]' : { 'required' : true },
+-			'genericHTTPFields input[id=password]' : { 'required' : true },
+-			'genericHTTPFields input[id=urlTemplate]' : { 'required' : true }
++	} else if (currentType == 'smscountry'){
++		rules = {
++				'smscountryFields input[id=name]' : { 'required' : true },
++				'smscountryFields input[id=username]' : { 'required' : true },
++				'smscountryFields input[id=password]' : { 'required' : true },
++				'smscountryFields input[id=urlTemplate]' : { 'required' : true }
++			};
++	}else {
++		rules = {
++			'smscountryFields input[id=name]' : { 'required' : true },
++			'smscountryFields input[id=username]' : { 'required' : true },
++			'smscountryFields input[id=password]' : { 'required' : true },
++			'smscountryFields input[id=urlTemplate]' : { 'required' : true }
+ 		};
+ 	}
+ 
+@@ -184,7 +196,30 @@
+ 			} );
+ 		}
+ 	}
+-	else
++	else if ( currentType == 'smscountry' )
++	{
++		var username = getFieldValue( 'smscountryFields input[id=username]' );
++		var password = getFieldValue( 'smscountryFields input[id=password]' );
++		var URL = getFieldValue( 'smscountryFields input[id=urlTemplate]' );
++		if( username == "" || password == "" || URL == "" )
++		{	
++			showErrorMessage( i18n_required_data_error );
++		}
++		else
++		{
++			lockScreen();
++			jQuery.postJSON( "saveSmscountryConfig.action", {
++				gatewayType: getFieldValue( 'gatewayType' ),
++				name: getFieldValue( 'smscountryFields input[id=name]' ),
++				username: getFieldValue( 'smscountryFields input[id=username]' ),
++				password: getFieldValue( 'smscountryFields input[id=password]' ),
++				urlTemplate: getFieldValue( 'smscountryFields input[id=urlTemplate]' )
++			}, function ( json ) {
++				unLockScreen();
++				showMessage( json );
++			} );
++		}
++	}else
+ 	{
+ 		var username = getFieldValue( 'genericHTTPFields input[id=username]' );
+ 		var password = getFieldValue( 'genericHTTPFields input[id=password]' );
+
+=== modified file 'dhis-2/dhis-web/dhis-web-maintenance/dhis-web-maintenance-mobile/src/main/webapp/dhis-web-maintenance-mobile/updateGateway.vm'
+--- dhis-2/dhis-web/dhis-web-maintenance/dhis-web-maintenance-mobile/src/main/webapp/dhis-web-maintenance-mobile/updateGateway.vm	2012-09-19 07:48:54 +0000
++++ dhis-2/dhis-web/dhis-web-maintenance/dhis-web-maintenance-mobile/src/main/webapp/dhis-web-maintenance-mobile/updateGateway.vm	2015-03-18 07:58:31 +0000
+@@ -26,6 +26,7 @@
+ 					<option value="bulksms" #if ( $!index == $!bulkIndex ) selected='selected' #end>$i18n.getString( "bulk_gw" )</option>
+ 					<option value="clickatell" #if ( $!index == $!clickatellIndex ) selected='selected' #end>$i18n.getString( "clickatell_gw" )</option>
+ 					<option value="http" #if ( $!index == $!httpIndex ) selected='selected' #end>$i18n.getString( "generic_http_gw" )</option>
++					<option value="smscountry" #if ( $!index == $!smscountryIndex ) selected='selected' #end>$i18n.getString( "smscountry" )</option>					
+ 					<option value="modem" #if ( $!index == $!modemIndex ) selected='selected' #end>$i18n.getString( "modem_gw" )</option>
+ 					<option value="smpp_gw" #if ( $!index == $!smppIndex ) selected='selected' #end>$i18n.getString( "smpp_gw" )</option>					
+ 				</select>
+@@ -173,6 +174,27 @@
+ 				<td><input type="text" name="urlTemplate" id="urlTemplate" style="width: 28em" value="$!encoder.htmlEncode( $!httpGateway.urlTemplate )"/></td>
+ 			</tr>
+ 		</tbody>
++		#set( $smscountryGateway = $!gatewayConfigMap.get( $smscountryIndex ) )
++		#set( $params = $!smscountryGateway.getParameters() )
++		<tbody id="smscountryFields">
++			<tr>
++				<td>$i18n.getString( "gateway_name" ):</td>
++				<td><input type="text" name="name" id="name" style="width: 28em" value="$!encoder.htmlEncode( $!smscountryGateway.name )"/></td>
++			</tr>
++			<tr>
++				<td>$i18n.getString( "username" ) <em title="$i18n.getString( 'required' )" class="required">*</em>:</td>
++				<td><input type="text" name="username" id="username" style="width: 28em" value="$!params.get( 'username' )"/></td>
++			</tr>
++			<tr>
++				<td>$i18n.getString( "password" ) <em title="$i18n.getString( 'required' )" class="required">*</em>:</td>
++				<td><input type="password" name="password" id="password" style="width: 28em" value="$!params.get( 'password' )"/></td>
++			</tr>
++			<tr>
++				<td>$i18n.getString( "url_template" ) <em title="$i18n.getString( 'required' )" class="required">*</em>:</td>
++				<td><input type="text" name="urlTemplate" id="urlTemplate" style="width: 28em" value="$!encoder.htmlEncode( $!smscountryGateway.urlTemplate )"/></td>
++			</tr>
++		</tbody>
++		
+ 		<tr>
+ 			<td colspan="2" align="right"><input type="submit" value="$i18n.getString( 'save_settings' )" style="width:8em"/>
+ 			<input type="button" value="$i18n.getString( 'back' )" onclick="window.location.href='showSMSConfigureForm.action'" style="width:8em"/></td>
+

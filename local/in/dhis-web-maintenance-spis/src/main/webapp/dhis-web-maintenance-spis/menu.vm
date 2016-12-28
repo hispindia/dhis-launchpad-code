@@ -1,0 +1,5 @@
+<h2>$i18n.getString( "spis_setup" )</h2>
+<ul>	
+	<li><a href="index.action">$i18n.getString( "list_criteria" )</a></li>
+	<li><a href="schemeInfoList.action">$i18n.getString( "scheme_info" )</a></li>
+</ul>		

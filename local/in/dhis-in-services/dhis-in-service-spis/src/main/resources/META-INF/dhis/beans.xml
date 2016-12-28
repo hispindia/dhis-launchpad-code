@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+		
+	<!-- Store definitions -->
+	
+	<bean id="org.hisp.dhis.spis.CriteriaStore" class="org.hisp.dhis.spis.hibernate.HibernateCriteriaStore">
+        <property name="clazz" value="org.hisp.dhis.spis.Criteria"/>
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    
+     <bean id="org.hisp.dhis.spis.CriteriaValueStore" class="org.hisp.dhis.spis.hibernate.HibernateCriteriaValueStore">
+        <property name="clazz" value="org.hisp.dhis.spis.CriteriaValue"/>
+        <property name="sessionFactory" ref="sessionFactory" />
+        <property name="jdbcTemplate" ref="jdbcTemplate" />
+         <property name="criteriaService" ref="org.hisp.dhis.spis.CriteriaService" />
+                  <property name="programCriteriasService" ref="org.hisp.dhis.spis.ProgramCriteriasService" />
+         
+    </bean>
+    
+     <bean id="org.hisp.dhis.spis.ProgramCriteriasStore" class="org.hisp.dhis.spis.hibernate.HibernateProgramCriteriasStore">
+        <property name="sessionFactory" ref="sessionFactory" />
+        <property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+    </bean>
+	
+    <!-- Service definitions -->
+    <bean id="org.hisp.dhis.spis.CriteriaService" class="org.hisp.dhis.spis.DefaultCriteriaService">
+        <property name="criteriaStore" ref="org.hisp.dhis.spis.CriteriaStore" />
+		<!-- <property name="jdbcTemplate" ref="jdbcTemplate"/> -->
+    </bean>
+        
+    <bean id="org.hisp.dhis.spis.CriteriaValueService" class="org.hisp.dhis.spis.DefaultCriteriaValueService">
+        <property name="criteriaValueStore" ref="org.hisp.dhis.spis.CriteriaValueStore" />
+    </bean>
+	
+	<bean id="org.hisp.dhis.spis.ProgramCriteriasService" class="org.hisp.dhis.spis.DefaultProgramCriteriasService">
+	    <property name="programCriteriasStore" ref="org.hisp.dhis.spis.ProgramCriteriasStore" />
+	 </bean>	
+	
+</beans>

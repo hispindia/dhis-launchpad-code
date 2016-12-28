@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"
+>
+<hibernate-mapping>
+  <class name="org.hisp.dhis.spis.CriteriaValue" table="criteriavalue">
+
+    <id name="id" column="id">
+    	<generator class="native" />
+    </id>   
+	    	      
+	<many-to-one name="criteria" class="org.hisp.dhis.spis.Criteria" column="criteriaid" foreign-key="fk_criteria_critriavalue"/>
+	
+	<many-to-one name="tea" column="teaid" class="org.hisp.dhis.trackedentity.TrackedEntityAttribute" foreign-key="fk_criteriavalue_tea"/>
+	
+    <property name="operator" column="operator" not-null="true" />
+    
+    <property name="validationValue" column="validationvalue" not-null="true" />
+
+
+
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,112 @@
+
+#sharingDialog()
+
+<script type="text/javascript">
+	jQuery(document).ready(function(){	
+        tableSorter( 'criteriaList' );
+
+    dhis2.contextmenu.makeContextMenu({
+      menuId: 'contextMenu',
+      menuItemActiveClass: 'contextMenuItemActive'
+    });
+	});
+
+	var i18n_confirm_delete = '$encoder.jsEscape( $i18n.getString( "confirm_delete_criteria" ) , "$criteria.name" )';
+</script>
+
+<h2>$i18n.getString( "list_criteria" )
+	
+<div id="contextMenu" class="contextMenu" style="width: 240px;">
+  <ul id="contextMenuItems" class="contextMenuItems">
+    <li><a data-target-fn="editCriteriaForm"><i class="fa fa-edit"></i>&nbsp;&nbsp;$i18n.getString( "edit" )</a></li>
+	<li data-enabled="canDelete"><a data-target-fn="removeCriteria"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;$i18n.getString( "remove" )</a></li>
+	<li><a data-target-fn="showCriteriaDetails"><i class="fa fa-info-circle"></i>&nbsp;&nbsp;$i18n.getString( "show_details" )</a></li>
+  </ul>
+</div>
+
+
+<table class="mainPageTable" >
+  <tr>
+    <td style="vertical-align:top">    	
+        <table width="100%">         
+            <tr>
+				<td>#filterDiv( "index" )</td>
+                <td style="text-align:right">
+                    <input type="button" onclick="addCriteria()" value=$i18n.getString( "add_button" ) style="width:100px; float:right;">
+                </td>
+            </tr>
+        </table>
+        <table class="listTable" id="criteriaList" >
+            <col>
+            <thead>
+                <tr>
+					<th>$i18n.getString( "name" )</th>
+					<th>$i18n.getString( "code" )</th>
+					<th>$i18n.getString( "description" )</th>
+                </tr>
+            </thead>
+            <tbody id="list">
+                #foreach($criteria in $criterias)
+                    <tr id="tr${criteria.id}" 
+                        data-id="$!criteria.id" 
+                        data-uid="$!criteria.uid" 
+                        data-type="criteria" 
+                        data-name="$encoder.htmlEncode( $!criteria.name )"
+                        data-can-manage="$security.canManage( $criteria )"
+                        data-can-update="$security.canUpdate( $criteria )"
+                        data-can-delete="$security.canDelete( $criteria )">
+                        <td>$encoder.htmlEncode( $!criteria.name )</td>
+						<td>$encoder.htmlEncode( $!criteria.code )</td>
+						<td>$encoder.htmlEncode( $!criteria.description )</td>
+                    </tr>
+                #end
+            </tbody>
+      </table>
+<!-- for paging -->
+    </td>
+		<td id="detailsData">
+        <div id="detailsArea">
+            <div id="hideDetailsArea">
+					<a href="javascript:hideDetails()" title="$i18n.getString( 'hide_details' )"><img src="../images/hide.png" alt="$i18n.getString( 'hide_details' )"/></a>
+				</div>
+				<p><label>$i18n.getString( "name" ):</label><br/><span id="nameField"></span></p>
+				<p><label>$i18n.getString( "code" ):</label><br/><span id="codeField"></span></p>
+				<p><label>$i18n.getString( "description" ):</label><br/><span id="descriptionField"></span></p>
+			</div>
+			
+      <div id="warningArea">
+        <div id="hideDetailsArea">
+          <a href="javascript:hideWarning()" title="$i18n.getString( 'hide_warning' )"><img src="../images/hide.png" alt="$i18n.getString( 'hide_warning' )"/></a>
+        </div>
+        <p><span id="warningField"></span></p>
+      </div>
+
+	</td>
+  </tr>
+</table>
+
+
+
+<!--
+
+<h2>$i18n.getString( "list_criteria" )
+<input type="button" onclick="addCriteria()" value=$i18n.getString( "add_button" ) style="width:100px; float:right;">
+</h2>
+<table class="listTable">
+	<thead>
+		<th>$i18n.getString( "name" )</th>
+		<th>$i18n.getString( "code" )</th>
+		<th>$i18n.getString( "description" )</th>
+	</thead>
+	
+	<tbody>
+		
+	#foreach($criteria in $criterias)
+		<tr><td>$criteria.name</td>	
+			<td>$criteria.code</td>	
+			<td>$criteria.description</td>	
+		</tr>
+	#end
+	</tbody>
+</table>
+-->

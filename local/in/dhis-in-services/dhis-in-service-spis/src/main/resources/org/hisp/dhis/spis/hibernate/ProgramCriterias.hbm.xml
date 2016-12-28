@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"
+>
+<hibernate-mapping>
+  <class name="org.hisp.dhis.spis.ProgramCriterias" table="criteriaprogram">
+ 
+	<composite-id>
+	      <key-many-to-one name="criteria" class="org.hisp.dhis.spis.Criteria" column="criteriaid" foreign-key="fk_criteriaid" />
+	      <key-many-to-one name="program" class="org.hisp.dhis.program.Program" column="programid" foreign-key="fk_programid" />      
+	</composite-id>
+
+  </class>
+</hibernate-mapping>

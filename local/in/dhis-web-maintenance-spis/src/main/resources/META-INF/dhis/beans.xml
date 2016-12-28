@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd">
+
+ 	<!--  Show Criteria Form -->
+	<bean id="org.hisp.dhis.spis.action.ShowCriteriaFormAction" class="org.hisp.dhis.spis.action.ShowCriteriaFormAction">
+        <property name="criteriaService" ref="org.hisp.dhis.spis.CriteriaService" /> 
+    </bean>
+    
+    <!--  Show Add Criteria Form -->
+	<bean id="org.hisp.dhis.spis.action.ShowAddCriteriaFormAction" class="org.hisp.dhis.spis.action.ShowAddCriteriaFormAction">
+ 		<!--<property name="trackedEntityAttributeService" ref="org.hisp.dhis.trackedentity.TrackedEntityAttributeService" />-->   
+ 		<property name="programService" ref="org.hisp.dhis.program.ProgramService"></property>
+	 </bean>
+ 
+  <!--  Show Edit Criteria Form -->
+	<bean id="org.hisp.dhis.spis.action.ShowEditCriteriaFormAction" class="org.hisp.dhis.spis.action.ShowEditCriteriaFormAction">
+ 		<!--<property name="trackedEntityAttributeService" ref="org.hisp.dhis.trackedentity.TrackedEntityAttributeService" />-->   
+ 		<property name="programService" ref="org.hisp.dhis.program.ProgramService"></property>
+	 </bean>
+ 
+    <!-- Add  Criteria -->    
+    <bean id="org.hisp.dhis.spis.action.AddCriteriaAction" class="org.hisp.dhis.spis.action.AddCriteriaAction">
+    	<property name="criteriaService" ref="org.hisp.dhis.spis.CriteriaService" />
+      	<property name="currentUserService" ref="org.hisp.dhis.user.CurrentUserService" />
+       	<property name="criteriaValueService" ref="org.hisp.dhis.spis.CriteriaValueService"></property>
+       	<property name="trackedEntityAttributeService" ref="org.hisp.dhis.trackedentity.TrackedEntityAttributeService" />    
+      	<property name="programCriteriasService" ref="org.hisp.dhis.spis.ProgramCriteriasService" />
+     	<property name="programService" ref="org.hisp.dhis.program.ProgramService"></property>
+	</bean>
+	
+	<!-- Edit  Criteria -->    
+	 <bean id="org.hisp.dhis.spis.action.EditCriteriaAction" class="org.hisp.dhis.spis.action.EditCriteriaAction">
+    	<property name="criteriaService" ref="org.hisp.dhis.spis.CriteriaService" />
+      	<property name="currentUserService" ref="org.hisp.dhis.user.CurrentUserService" />
+       	<property name="criteriaValueService" ref="org.hisp.dhis.spis.CriteriaValueService"></property>
+       	<property name="trackedEntityAttributeService" ref="org.hisp.dhis.trackedentity.TrackedEntityAttributeService" />    
+      	<property name="programCriteriasService" ref="org.hisp.dhis.spis.ProgramCriteriasService" />
+     	<property name="programService" ref="org.hisp.dhis.program.ProgramService"></property>
+	</bean>
+	
+    <!-- Delete Criteria -->  
+    <bean id="org.hisp.dhis.spis.action.RemoveCriteriaAction" class="org.hisp.dhis.spis.action.RemoveCriteriaAction">
+	</bean>
+
+    <!-- Show Criteria Details -->
+    <bean id="org.hisp.dhis.spis.action.GetCriteriaAction" class="org.hisp.dhis.spis.action.GetCriteriaAction">
+	</bean>
+
+  	<!--  Scheme Info List -->
+    <bean id="org.hisp.dhis.spis.action.scheme.GetSchemeInfoListAction" class="org.hisp.dhis.spis.action.scheme.GetSchemeInfoListAction">
+	</bean>
+
+    <!--  Show Add/Update Scheme Form -->
+    
+    <bean id="org.hisp.dhis.spis.action.scheme.ShowUpdateSchemeFormAction" class="org.hisp.dhis.spis.action.scheme.ShowUpdateSchemeFormAction">
+	</bean>    
+    
+    <!--
+    <bean id="org.hisp.dhis.spis.action.scheme.ShowAddUpdateSchemeFormAction" class="org.hisp.dhis.spis.action.scheme.ShowAddUpdateSchemeFormAction">
+	</bean>
+	-->
+	
+    <!-- Load Scheme Information Entry Form -->
+    <bean id="org.hisp.dhis.spis.action.scheme.LoadScemeInfoEntryFormAction" class="org.hisp.dhis.spis.action.scheme.LoadSchemeInfoEntryFormAction">
+	</bean>
+
+    <!-- Update Scheme Information -->
+    <bean id="org.hisp.dhis.spis.action.scheme.UpdateSchemeInfoAction" class="org.hisp.dhis.spis.action.scheme.UpdateSchemeInfoAction">
+	</bean>
+	
+</beans>

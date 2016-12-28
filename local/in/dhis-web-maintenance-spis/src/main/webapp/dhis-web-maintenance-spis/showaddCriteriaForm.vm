@@ -1,0 +1,161 @@
+<script>
+var count=2;
+
+function deleteCriteriaRow(rowId){
+	$('#row'+rowId).remove();
+	count=count-1;
+	$('#count').val(count);
+	
+};
+
+function addCriteriaRow(){
+	$('#criteriaRulesTable tr:last').after('<tr id=row'+count+'>\
+      <td> <select  id="tea'+count+'" name="tea'+count+'" onchange=updateValue(this);>\
+      		<option value="-1">$i18n.getString( "select_tea" )</option>\
+      			#foreach( $tea in $teas )\
+					<option  value="$tea.uid" type="$tea.valueType" data-options="#foreach($option in $tea.optionSet.options)$option.name,#end ">$tea.name</option>\
+				#end\
+			</select>\
+       </td>\
+       <td>       <select  id="operator'+count+'" name="operator'+count+'">\
+      		<option value="=">=</option>\
+      		<option value=">">></option>\
+      		<option value="<"><</option>			      		   </select>\
+		</td>\
+		<td id="tdvalue'+count+'"><input type="text" id="validationvalue'+count+'" name="validationvalue'+count+'"></td>\
+				<td ><input id='+count+' type="button" onclick="deleteCriteriaRow(this.id)" value="-" >\
+    </tr>');
+count=count+1;
+$('#count').val(count);
+}
+
+function updateValue(selectedTea){
+
+
+     if (selectedTea.selectedOptions[0].attributes[1].nodeValue=='optionSet'){
+
+	var countid = selectedTea.id.charAt(3);
+	var htmlContent = '<select id=validationvalue'+countid+' name=validationvalue'+countid+' ><option value="-1"> $i18n.getString( "select_options" )</option>';
+	var options =  selectedTea.selectedOptions[0].attributes[2].nodeValue;
+	options = options.split(",");
+	var i=0;
+		for (i; i< options.length-1;i++){
+		htmlContent = htmlContent+' <option value="'+options[i]+'">'+options[i]+' </option> ';
+		}
+	htmlContent=htmlContent+' </select>';
+
+	$('#tdvalue'+countid).html(htmlContent);
+	}else {
+	var countid = selectedTea.id.charAt(3);
+	var htmlContent = '<input type=text id=validationvalue'+countid+' name=validationvalue'+countid+' > ';
+	$('#tdvalue'+countid).html(htmlContent);
+	}
+
+
+}
+</script>
+<h2>$i18n.getString( "add_criteria" )</h2>
+
+<form id="addCriteriaForm" name="addCriteriaForm" action="addCriteria.action" method="post" >
+<input hidden type="text" id="count" name="count" value="2" >  
+
+<table class="listTable">
+  
+  <tr>
+      <td>  <label>$i18n.getString( "name" ) <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+       <td> <input type="text" id="name" name="name" class="{validate:{required:true}}"></td>
+    </tr>
+	<tr>
+        <td><label>$i18n.getString( "code" )</label></td>
+        <td><input type="text" id="code" name="code"></td>
+      </tr>
+      <tr>
+        <td><label>$i18n.getString( "description" )</label></td>
+        <td><textarea id="description" name="description"></textarea></td>
+      </tr>
+   </table>
+   <h2>$i18n.getString( "criteria_parameters" )
+      <input type="button" onclick="addCriteriaRow()" value="+" style="float:right;">
+   </h2>
+   
+   
+   <table id="criteriaRulesTable" class="listTable" >
+   
+   <thead>
+		<th>$i18n.getString( "tea" )</th>
+		<th>$i18n.getString( "operator" )</th>
+		<th>$i18n.getString( "validationvalue" )</th>
+	</thead><tbody>
+  <tr id=1>
+      <td> <select  id="tea1" name="tea1" onchange=updateValue(this);>
+      		<option value="-1">$i18n.getString( "select_tea" )</option>
+      			#foreach( $tea in $teas )
+				<option value="$tea.uid" type="$tea.valueType" data-options="#foreach($option in $tea.optionSet.options)$option.name,#end " >$tea.name</option>
+				#end
+			</select>
+       </td>
+       <td> 
+       <select  id="operator1" name="operator1" >
+            <option value="-1">$i18n.getString( "select_operator" )</option>
+      		<option value="=">=</option>
+      		<option value=">">></option>
+      		<option value="<"><</option>      			      		      			
+			</select>
+		</td>
+		
+		<td id=tdvalue1>
+				
+		<input type="text" id="validationvalue1" name="validationvalue1"></td>
+		<td></td>
+    	</tr>
+		</tbody>
+   </table>
+      <h2>$i18n.getString( "criteria_programs" )
+   </h2>
+   
+<table>
+	<colgroup>
+		<col style='width:500px'/>
+		<col/>
+		<col style='width:500px'/>
+	</colgroup>
+	<tr>
+		<th>$i18n.getString( "availableProgram" )</th>
+		<th>$i18n.getString( "filter" )</th>
+		<th>$i18n.getString( "selectedProgram" )
+			<input type='hidden' id='hasPrograms' name='hasPrograms' class="{validate:{required:true}}">
+		</th>
+	</tr>
+	<tr>
+		<td>
+			<select style="height:200px;width:100%;" multiple="multiple" id="availablePrograms" name="availablePrograms" size="15" ondblclick="moveSelectedById( 'availablePrograms', 'selectedProgramIds' )" >
+				#foreach($Program in $availablePrograms)
+					<option value='$Program.id'>$encoder.htmlEncode($Program.displayName)</option>
+				#end
+			</select>
+		</td>
+		<td>
+			<input type="button" value="&gt;" onclick="moveSelectedById( 'availablePrograms', 'selectedProgramIds' )" class='filterButton' /><br/>
+			<input type="button" value="&lt;" onclick="moveSelectedById( 'selectedProgramIds', 'availablePrograms' )" class='filterButton' /><br/>
+			<input type="button" value="&gt;&gt;" onclick="moveAllById( 'availablePrograms', 'selectedProgramIds' )" class='filterButton' /><br/>
+			<input type="button" value="&lt;&lt;" onclick="moveAllById( 'selectedProgramIds', 'availablePrograms' )" class='filterButton' />
+		</td>
+		<td>
+			<select style="height:200px;width:100%;margin-top:22px;" multiple="multiple" id="selectedProgramIds" name="selectedProgramIds" size="15" ondblclick="moveSelectedById( 'selectedProgramIds', 'availablePrograms' )" >
+				#foreach($Program in $selectedPrograms)
+					<option value='$Program.id'>$encoder.htmlEncode($Program.displayName)</option>
+				#end
+			</select>
+		</td>
+		<td>
+			<a href="javascript:moveUpSelectedOption( 'selectedProgramIds')" title="$i18n.getString( 'move_up' )"><img src="../images/move_up.png" alt="$i18n.getString( 'move_up' )"/></a><br/><br/>
+			<a href="javascript:moveDownSelectedOption( 'selectedProgramIds' )" title="$i18n.getString( 'move_down' )"><img src="../images/move_down.png" alt="$i18n.getString( 'move_up' )"/></a>
+		</td>
+	</tr>  
+</table>
+   
+   <div>
+          <input type="submit" value="$i18n.getString( 'save' )" style="width:120px" />
+         <input type="button" onclick="dhis2.commons.redirectCurrentPage( 'index.action' )" value="$i18n.getString( 'cancel' )" style="width:120px" />
+	</div>
+</form>

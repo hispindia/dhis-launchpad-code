@@ -1,0 +1,72 @@
+
+<script type="text/javascript">
+jQuery( document ).ready( function()
+		{	
+			validation2( 'schemeInformationForm', function( form )
+			{
+				form.submit();
+			},{
+				'beforeValidateHandler' : function()
+				{
+					#tblDynamicAttributesJavascript()
+				}
+			});			
+		});
+
+</script>
+
+
+<h2>$i18n.getString( "scheme_info" )</h2>
+	
+<form id="schemeInformationForm" name="schemeInformationForm" action="updateSchemeInformation.action" method="post" class="inputForm">
+<div>
+	<input type="hidden" name = "selProgramId" id = "selProgramId" value = "$!program.id">
+</div>
+
+<table>
+	<tbody>
+    	<tr>
+    		<td style='width:200px'><label for="schemeId">$i18n.getString( "scheme" )</label></td>
+    		<td>$encoder.htmlEncode( $program.name )
+				<!--
+    			<select id="selProgramId" name="selProgramId" onchange="loadSchemeAttributesForm()">
+    				<option value="-1">[$i18n.getString( "select" )]</option>
+    				#foreach( $program in $programs )
+    				    <option value="$program.id">$encoder.htmlEncode( $program.name )</option>
+    			    #end
+    			</select>
+				-->
+    		</td>
+    	</tr>
+		
+		<!--
+		<tr>
+    		<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    		<td>
+    			<input type="button" onclick="window.location.href='index.action'" style='width:100px' value="Cancel">&nbsp;&nbsp;
+					&nbsp;&nbsp;<input type="submit"  value="Save" name="saveButton" style='width:100px' id="saveButton">
+    		</td>
+    	</tr>
+		-->
+    </tbody>
+</table>
+
+<br />
+#tblDynamicAttributes( { "attributes": $attributes, "attributeValues": $attributeValues } )
+<br />
+
+<!--
+#parse( "/dhis-web-commons/loader/loader.vm" )	
+<div id='schemeAttributesFormDiv'></div> 
+-->
+<p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<input type="button"  value="$i18n.getString( 'Cancel' )" style="width:100px" onclick="window.location.href='schemeInfoList.action'"/>&nbsp;&nbsp;
+	&nbsp;&nbsp;<input type="submit"  id="saveButton" name="saveButton" value="$i18n.getString( 'save' )" style="width:100px"/>
+</p>
+
+</form>

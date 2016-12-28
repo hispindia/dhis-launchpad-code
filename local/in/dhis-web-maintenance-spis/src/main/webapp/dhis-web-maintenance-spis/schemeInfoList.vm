@@ -1,0 +1,81 @@
+#sharingDialog()
+
+<script type="text/javascript">
+	jQuery(document).ready(function(){	
+        tableSorter( 'schemeList' );
+
+    dhis2.contextmenu.makeContextMenu({
+      menuId: 'contextMenu',
+      menuItemActiveClass: 'contextMenuItemActive'
+    });
+	});
+
+</script>
+
+<h3>$i18n.getString( "schemes" )</h3>
+
+<div id="contextMenu" class="contextMenu" style="width: 250px;">
+  <ul id="contextMenuItems" class="contextMenuItems">
+    
+    <li data-enabled="canUpdate"><a data-target-fn="showUpdateSchemeInfoForm"><i class="fa fa-edit"></i>&nbsp;&nbsp;$i18n.getString( "edit" )</a></li>
+    
+	<!--
+    <li data-enabled="canDelete"><a data-target-fn="removeProgram"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;$i18n.getString( "remove" )</a></li>
+    <li><a data-target-fn="showProgramDetails"><i class="fa fa-info-circle"></i>&nbsp;&nbsp;$i18n.getString( "show_details" )</a></li>
+	-->
+  </ul>
+</div>
+
+<table class="mainPageTable">
+  <tr>
+	 <td style="vertical-align:top">
+		<table width="100%">
+			<tr valign="bottom">
+				<td>
+					#filterDiv( "schemeInfoList" )
+				</td>
+				
+				<!--
+				<td align="right">
+					<input type="button" value="$i18n.getString( "add_new" )" onclick="window.location.href='showAddProgramForm.action'" style="width:70px">
+				</td>#9ACD32
+				-->
+			</tr>
+		</table>
+		
+		<table class="listTable" id="schemeList">
+			<col>
+			<thead>
+			  <tr>            
+				<th>$i18n.getString( "name" )</th>
+				<th>&nbsp;</th>
+			  </tr>
+			</thead>
+      <tbody id="list">
+      #foreach( $program in $programs )
+      <tr id="tr${program.id}" data-id="$!program.id" data-uid="$!program.uid" data-type="Program" data-name="$encoder.htmlEncode( $!program.displayName )"
+          data-can-manage="$security.canManage( $program )"
+          data-can-update="$security.canUpdate( $program )"
+          data-can-delete="$security.canDelete( $program )" >
+          <td>$encoder.htmlEncode( $!program.displayName )</td>
+		  
+		  #if( $programIds.contains( $!program.id ) )
+			<td><img src="../images/edit.png" alt='$i18n.getString( "edit" )'></td>
+		  #else
+			<td>&nbsp;</td>
+		  #end
+      </tr>
+      #end
+
+      </tbody>
+      </table>
+		<p></p>
+		#parse( "/dhis-web-commons/paging/paging.vm" )
+	</td>
+
+	</tr>
+</table>
+
+<script type="text/javascript">
+
+</script>
