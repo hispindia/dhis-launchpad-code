@@ -1,0 +1,134 @@
+
+<script type="text/javascript">
+
+    function exportToExcel()
+    {
+        document.getElementById('htmlCode').value = document.getElementById('loadMetaDataLogReoprtDiv').innerHTML;
+        return true;
+    }
+    
+</script>
+
+<br>
+<form id="form1" name="form1" action="exportToWorkBook.action" method="post" onsubmit="return exportToExcel()" target="_newtab">
+<div align="center">
+	<input type="submit" value="Export to Excel" style="width:10em" />
+</div>	
+	
+<div id='loadMetaDataLogReoprtDiv'>
+	<input type="hidden" name="htmlCode" id="htmlCode" />
+    <table class="formSection" border="1">
+		<!--
+		<tr>
+			<td colspan="5" style="text-align: right;" ><input type="submit" value="Export to Excel" /></td>
+			<input type="hidden" name="htmlCode" id="htmlCode" />
+    	</tr>		
+		-->
+		<tr bgcolor="#CBDDEB">
+    		<th colspan="5" style="text-align: center;">$i18n.getString( "meta_data_synch_log_report" ) &nbsp;</th>
+    	</tr>	
+    </ br>
+    
+	#if ( $metaDataSynchLogs.size() > 0 || $dataElementSynchStatus.size() > 0 ||  $indicatorSynchStatus.size() > 0 ||  $organisationUnitSynchStatus.size() > 0  ||  $validationRuleSynchStatus.size() > 0 )
+
+    	<tr bgcolor="#CBDDEB">
+    		<th style="text-align: center;">$i18n.getString( "sl_no" )</th>
+			<th style="text-align: center;">$i18n.getString( "log_date" )</th>
+			<th style="text-align: center;">$i18n.getString( "data_type" )</th>
+			<th style="text-align: center;">$i18n.getString( "status" )</th>
+    		<th style="text-align: left;">$i18n.getString( "remarks" )</th>
+    	</tr>	
+    
+    	#set( $mark = false )
+    	#set( $count=1 )
+    	#foreach( $metaDataSynchLog in $metaDataSynchLogs )
+    		<tr #alternate($mark)>
+    			<td style="text-align: center;">$count</td>
+				<td style="text-align: center;" >$!simpleDateFormat.format( $metaDataSynchLog.getSynchDate() )</td>
+				<td style="text-align: center;" >$encoder.htmlEncode( $metaDataSynchLog.getMetaDataType())</td>
+				<td style="text-align: center;" >$encoder.htmlEncode( $metaDataSynchLog.getStatus())</td>
+				<td style="text-align: left;">$encoder.htmlEncode( $metaDataSynchLog.getRemarks())</td>
+    		</tr>
+			
+    	#set($count = $count + 1)
+    	#set( $mark = !$mark)	
+		#end
+		
+    	#foreach( $deSynchStatus in $dataElementSynchStatus )
+    		<tr #alternate($mark)>
+    			<td style="text-align: center;">$count</td>
+				<td style="text-align: center;" >$!simpleDateFormat.format( $deSynchStatus.getLastUpdated() )</td>
+				<td style="text-align: center;" >DataElement</td>
+				<td style="text-align: center;" >Pending</td>
+				<td style="text-align: left;">$encoder.htmlEncode( $deSynchStatus.getDataElement().getName() )</td>
+    		</tr>
+			
+    	#set($count = $count + 1)
+    	#set( $mark = !$mark)	
+		#end
+		
+    	#foreach( $inSynchStatus in $indicatorSynchStatus )
+    		<tr #alternate($mark)>
+    			<td style="text-align: center;">$count</td>
+				<td style="text-align: center;" >$!simpleDateFormat.format( $inSynchStatus.getLastUpdated() )</td>
+				<td style="text-align: center;" >Indicator</td>
+				<td style="text-align: center;" >Pending</td>
+				<td style="text-align: left;">$encoder.htmlEncode( $inSynchStatus.getIndicator().getName() )</td>
+    		</tr>
+			
+    	#set($count = $count + 1)
+    	#set( $mark = !$mark)	
+		#end		
+
+    	#foreach( $orgUnitSynchStatus in $organisationUnitSynchStatus )
+    		<tr #alternate($mark)>
+    			<td style="text-align: center;">$count</td>
+				<td style="text-align: center;" >$!simpleDateFormat.format( $orgUnitSynchStatus.getLastUpdated() )</td>
+				<td style="text-align: center;" >OrganisationUnit</td>
+				<td style="text-align: center;" >Pending</td>
+				<td style="text-align: left;">$encoder.htmlEncode( $orgUnitSynchStatus.getOrganisationUnit().getName() )</td>
+    		</tr>
+			
+    	#set($count = $count + 1)
+    	#set( $mark = !$mark)	
+		#end		
+		
+    	#foreach( $vrSynchStatus in $validationRuleSynchStatus )
+    		<tr #alternate($mark)>
+    			<td style="text-align: center;">$count</td>
+				<td style="text-align: center;" >$!simpleDateFormat.format( $vrSynchStatus.getLastUpdated() )</td>
+				<td style="text-align: center;" >ValidationRule</td>
+				<td style="text-align: center;" >Pending</td>
+				<td style="text-align: left;">$encoder.htmlEncode( $vrSynchStatus.getValidationRule().getName() )</td>
+    		</tr>
+			
+    	#set($count = $count + 1)
+    	#set( $mark = !$mark)	
+		#end			
+		
+		
+    </table>
+    	<!--
+        <table>
+        	
+        	#foreach( $metaDataSynchLog in $metaDataSynchLogs )
+        		<tr>
+        			<td>$encoder.htmlEncode($metaDataSynchLog.getSynchInstance().getName())</td>
+        			<td>$!simpleDateFormat.format( $metaDataSynchLog.getSynchDate() )</td>
+        			<td>$encoder.htmlEncode( $metaDataSynchLog.getRemarks())</td>
+        		</tr>	
+        		
+        	#end
+        </table>
+    	-->
+		
+	#else
+    	<tr bgcolor="#CBDDEB">
+    		<th colspan="5" style="text-align: center;">No Record Found &nbsp;</th>
+    	</tr>			
+		
+	#end
+
+</div>		
+</form>	
+	
