@@ -1,0 +1,196 @@
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        $('.multiselect').multiselect({
+            maxHeight: 150,
+            numberDisplayed: 1,
+            buttonWidth: '150px'
+
+        });
+    });
+</script>
+
+<form id="approveValidationRule" name="approveValidationRule" action="updateApproveValidationRuleAction.action" >
+
+    <div id="menuBar" class="row">
+        <div style="float: left">
+            <ul class="nav nav-pills">
+                <li class="active"><a href="#newValidationRule" data-toggle="pill" style="font-weight: bold">New</a></li>
+                <li><a href="#updateValidationRule" data-toggle="pill" style="font-weight: bold">Updates</a></li>
+                <li><a href="#synchedValidationRule" data-toggle="pill" style="font-weight: bold">Synced</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div align="right"><input type="submit" value="Update ValidationRule Sync Status" ></div>
+
+    <div class="row">
+        <div id="myTabContent" class="tab-content">
+
+            <div id="newValidationRule" class="tab-pane fade active in">
+                <table class="listTable" style="border: 1px solid" >
+                    <thead>
+                    <th style="text-align: center; border: 1px solid" width="400">
+                        New/Updated Validation Rule
+                    </th> 
+                    <th style="text-align: center; border: 1px  solid" width="100">
+                       $i18n.getString( "approve_needed" )
+                    </th>
+                    <th style="text-align: center; border: 1px  solid" width="150">
+                        Instances
+                    </th>
+                    <th style="text-align: center; border: 1px  solid" width="100">
+                        Approve Status
+                    </th>
+                    </thead>
+
+                    <tbody>
+                        #foreach( $validationRule in $newValidationRules )
+
+                        <tr id="tr${validationRule.id}" data-id="$!validationRule.id" data-uid="$!validationRule.uid"
+                            data-type="ApprovalValidationRule" data-name="$encoder.htmlEncode( $!validationRule.name )">
+
+                            <td style="text-align: left; border: 1px solid">$encoder.htmlEncode( $validationRule.getName() )</td>
+
+
+                            <td style="text-align: center; border: 1px solid">
+                                <input type="checkbox" name="appNeeded_${validationRule.id}" />
+                            </td>
+
+
+                            <td style="text-align: center; border: 1px solid">
+                                <select class="multiselect" multiple="multiple" id="sel${velocityCount}" name="instances_${validationRule.id}">
+                                    #foreach( $instance in $synchInstances )
+                                        <option value="$instance.id" >$encoder.htmlEncode( $instance.name )</option>
+                                    #end
+                                </select>
+                            </td>
+
+
+                            <td style="text-align: center; border: 1px solid" >
+                                <input type="checkbox" id="approveStatus_${validationRule.id}" name="approveStatus_${validationRule.id}"  />
+                            </td>
+
+                        </tr>
+                        #end
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="updateValidationRule" class="tab-pane fade">
+                <table class="listTable" style="border: 1px solid" >
+                    <thead>
+                    <th style="text-align: center; border: 1px solid"  width="400">
+                        New/Updated Validation Rule
+                    </th>
+                    <th style="text-align: center; border: 1px  solid"  width="100">
+                       $i18n.getString( "approve_needed" )
+                    </th>
+                    <th style="text-align: center; border: 1px  solid"  width="150">
+                        Instances
+                    </th>
+                    <th style="text-align: center; border: 1px  solid"  width="100">
+                        Approve Status
+                    </th>
+                    </thead>
+
+                    <tbody>
+                        #foreach( $VRsync in $updatedValidationRuleSyncStatus )
+                        <tr id="tr${VRsync.getValidationRule().getId()}" data-id="$!VRsync.getValidationRule().getId()" data-uid="$!VRsync.getValidationRule().getUid()"
+                            data-type="ApprovalValidationRule" data-name="$encoder.htmlEncode( $!VRsync.getValidationRule().getName() )">
+
+                            <td style="text-align: left; border: 1px solid">$encoder.htmlEncode( $VRsync.getValidationRule().getName())</td>
+
+                            #if($VRsync.getRememberApproveStatus())
+                                <td style="text-align: center; border: 1px solid">
+                                    <input type="checkbox" name="upappNeeded_${VRsync.getValidationRule().getId()}" checked />
+                                </td>
+                            #else
+                                <td style="text-align: center; border: 1px solid">
+                                    <input type="checkbox" name="upappNeeded_${VRsync.getValidationRule().getId()}" />
+                                </td>
+                            #end
+
+                            <td style="text-align: left; border: 1px solid"> <label id="instance" name="upinstances_${VRsync.getValidationRule().getId()}">
+                                $encoder.htmlEncode( $VRsync.getInstance().getName() )</label></td>
+
+                            #if($VRsync.getApproveStatus())
+                                <td style="text-align: center; border: 1px solid" >
+                                    <input type="checkbox" id="upapproveStatus_${VRsync.getValidationRule().getId()}"  name="upapproveStatus_${VRsync.getValidationRule().getId()}" checked />
+                                </td>
+                            #else
+                                <td style="text-align: center; border: 1px solid" >
+                                    <input type="checkbox" id="upapproveStatus_${VRsync.getValidationRule().getId()}" name="upapproveStatus_${VRsync.getValidationRule().getId()}"  />
+                                </td>
+                            #end
+                        </tr>
+                        #end
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="synchedValidationRule" class="tab-pane fade">
+                <table class="listTable" style="border: 1px solid" >
+                    <thead>
+                    <th style="text-align: center; border: 1px solid" width="400">
+                        Approved Validation rule
+                    </th>
+                    <th style="text-align: center; border: 1px  solid" width="150">
+                       $i18n.getString( "approve_needed" )
+                    </th>
+                    <th style="text-align: center; border: 1px  solid" width="200">
+                        Instances
+                    </th>
+                    <th style="text-align: center; border: 1px  solid" width="100">
+                        Approve Status
+                    </th>
+                    </thead>
+
+                    <tbody>
+                        #foreach( $vrsync in $vRuleInstancemap.keySet() )
+                        
+                        <tr id="tr${vrsync.getId()}" data-id="$!vrsync.getId()" data-uid="$!vrsync.getUid()"
+                            data-type="ApprovalValidation" data-name="$encoder.htmlEncode( $!vrsync.getName() )">
+
+                            <td style="text-align: left; border: 1px solid">$encoder.htmlEncode( $vrsync.getName())</td>
+
+                            #if($vRuleInstancemap.get($vrsync).get(0).getRememberApproveStatus())
+                                <td style="text-align: center; border: 1px solid">
+                                    <input type="checkbox" name="syncappNeeded_${vrsync.getId()}" checked />
+                                </td>
+                            #else
+                                <td style="text-align: center; border: 1px solid">
+                                    <input type="checkbox" name="syncappNeeded_${vrsync.getId()}" />
+                                </td>
+                            #end
+
+                            <td style="text-align: center; border: 1px solid">
+                                <select class="multiselect" multiple="multiple" id="sel${velocityCount}" name="syncinstances_${vrsync.getId()}">
+                                    #foreach( $instance in $vRuleInstancemap.get($vrsync))
+                                        <option value="$instance.getInstance().getId()" selected >$encoder.htmlEncode( $instance.getInstance().getName() )</option>
+                                    #end
+                                    #foreach($instance in $validationRuleInstanceLeftMap.get($vrsync))
+                                        <option value="$instance.getId()" >$encoder.htmlEncode( $instance.getName() )</option>
+                                    #end
+                                </select>
+                            </td>
+
+                            #if($vRuleInstancemap.get($vrsync).get(0).getApproveStatus())
+                                <td style="text-align: center; border: 1px solid" >
+                                    <input type="checkbox" id="syncapproveStatus_${vrsync.getId()}"  name="syncapproveStatus_${vrsync.getId()}" checked />
+                                </td>
+                            #else
+                                <td style="text-align: center; border: 1px solid" >
+                                    <input type="checkbox" id="syncapproveStatus_${vrsync.getId()}" name="syncapproveStatus_${vrsync.getId()}"  />
+                                </td>
+                            #end
+                        </tr>
+                        #end
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    #parse( "dhis-web-commons/loader/loader.vm" )
+</form>

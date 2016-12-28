@@ -1,0 +1,57 @@
+
+<script type="text/javascript">
+
+	var completeUrl = window.location.protocol + "//" + window.location.host + "/" +window.location.pathname.split("/")[1] + "/api";
+   			
+	$('#thisUrl').val(completeUrl);
+	
+	document.getElementById("thisUrl").value = completeUrl;
+	
+	alert( completeUrl );
+
+	function callAction()
+	{
+		var completeUrl = window.location.protocol + "//" + window.location.host + "/" +window.location.pathname.split("/")[1] + "/api";
+		window.location.href = "acceptanceList.action?thisUrl=" + completeUrl;
+		
+	}		
+	
+</script>
+
+
+<h2>$i18n.getString( "meta_data_synch" )&nbsp;</h2>
+<ul>
+    
+	<!--<input type="hidden" name="thisUrl" id="thisUrl" >-->
+	
+	#if( $auth.hasAccess( "dhis-web-synchmanager", "instanceList") )
+		<li><a href="instanceList.action?synchType=meta-data">$i18n.getString( "configuration" )&nbsp;</a></li>
+	#end
+	
+	#if( $auth.hasAccess( "dhis-web-synchmanager", "syncStatusDesignForm") )
+		<li><a href="syncStatusDesignForm.action">$i18n.getString( "synch_by_push" )&nbsp;</a></li>
+	#end	
+	
+	#if( $auth.hasAccess( "dhis-web-synchmanager", "acceptanceList") )
+		<li><a href="acceptanceList.action">$i18n.getString( "acceptance" )&nbsp;</a></li>
+		<!--<li><a href="javascript:callAction()">$i18n.getString( "acceptance" )&nbsp;</a></li>-->
+	#end	
+
+	#if( $auth.hasAccess( "dhis-web-synchmanager", "metaDataSynchLogReport") )
+		<li><a href="metaDataSynchLogReport.action?synchType=meta-data">$i18n.getString( "log_report" )&nbsp;</a></li>
+	#end	
+    
+</ul>
+
+<!--
+<h2>$i18n.getString( "data_synch" )&nbsp;</h2>
+<ul>
+    <li><a href="#">$i18n.getString( "configuration" )&nbsp;</a></li>
+    <li><a href="#">$i18n.getString( "mapping" )&nbsp;</a></li>
+    <li><a href="#">$i18n.getString( "log_report" )&nbsp;</a></li>
+
+    <li><a href="testMetaData.action">$i18n.getString( "metaDataTest" )&nbsp;</a></li>
+
+</ul>
+
+-->

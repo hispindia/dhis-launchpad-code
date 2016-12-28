@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	
+	<include file="dhis-web-commons.xml"/>
+	
+	<package name="dhis-web-synchmanager" extends="dhis-web-commons" namespace="/dhis-web-synchmanager">
+	
+        <action name="index" class="org.hisp.dhis.sm.action.NoAction">
+            <result name="success" type="velocity">/main.vm</result>
+            <param name="page">/dhis-web-synchmanager/index.vm</param>
+            <param name="menu">/dhis-web-synchmanager/menu.vm</param>            
+        </action>
+
+        <action name="instanceList" class="org.hisp.dhis.sm.action.ConfigureInstancesAction">
+            <result name="success" type="velocity">/main.vm</result>
+            <param name="page">/dhis-web-synchmanager/instanceList.vm</param>
+            <param name="menu">/dhis-web-synchmanager/menu.vm</param>
+            <param name="javascripts">scripts/instanceConfig.js</param>
+        </action>
+        
+        <action name="showInstanceForm" class="org.hisp.dhis.sm.action.ShowInstanceFormAction">
+            <result name="success" type="velocity">/main.vm</result>
+            <param name="page">/dhis-web-synchmanager/instanceForm.vm</param>
+            <param name="menu">/dhis-web-synchmanager/menu.vm</param>            
+        </action>
+        
+        <action name="addInstance" class="org.hisp.dhis.sm.action.AddInstanceAction">
+            <result name="success" type="redirect">instanceList.action?synchType=${synchType}</result>
+        </action>
+
+        <action name="showBusinessRulesForm" class="org.hisp.dhis.sm.action.ShowBusinessRulesFormAction">
+            <result name="success" type="velocity">/main.vm</result>
+            <param name="page">/dhis-web-synchmanager/businessRulesForm.vm</param>
+            <param name="menu">/dhis-web-synchmanager/menu.vm</param>            
+        </action>
+
+        <action name="setBusinessRules" class="org.hisp.dhis.sm.action.SetBusinessRulesAction">
+            <result name="success" type="redirect">instanceList.action?synchType=${synchType}</result>
+        </action>
+
+	    <action name="getInstance" class="org.hisp.dhis.sm.action.GetInstanceAction">
+	      <result name="success" type="velocity-json">/dhis-web-synchmanager/jsonInstance.vm</result>
+	      <param name="onExceptionReturn">plainTextError</param>
+	    </action>
+
+		<action name="deleteInstance" class="org.hisp.dhis.sm.action.DeleteInstanceAction">
+	      <result name="success" type="velocity-json">/dhis-web-commons/ajax/jsonResponseSuccess.vm</result>
+	      <result name="error" type="velocity-json">/dhis-web-commons/ajax/jsonResponseError.vm</result>
+	      <param name="onExceptionReturn">plainTextError</param>
+	    </action>
+
+        <action name="acceptanceList" class="org.hisp.dhis.sm.action.ShowAcceptanceListAction">
+            <result name="success" type="velocity">/main.vm</result>
+            <param name="page">/dhis-web-synchmanager/dataelementAcceptanceList.vm</param>
+            <param name="menu">/dhis-web-synchmanager/menu.vm</param>
+            <param name="javascripts">scripts/instanceConfig.js</param>
+        </action>
+
+        <action name="syncDataElements" class="org.hisp.dhis.sm.action.SyncNewDataElements">
+            <result name="success" type="velocity">/main.vm</result>
+            <param name="page">/dhis-web-synchmanager/syncDataElementsResult.vm</param>
+            <param name="menu">/dhis-web-synchmanager/menu.vm</param>
+            <param name="javascripts">scripts/instanceConfig.js</param>
+        </action>
+
+        <action name="approveDEStatusAction" class="org.hisp.dhis.sm.action.ApproveDEStatusAction">
+            <result name="success" type="velocity">/main.vm</result>
+            <param name="page">/dhis-web-synchmanager/approveDataElementList.vm</param>
+            <param name="menu">/dhis-web-synchmanager/menu.vm</param>
+            <param name="javascripts">scripts/instanceConfig.js</param>
+        </action>
+
+        <action name="updateApproveDEStatus" class="org.hisp.dhis.sm.action.UpdateApproveDEStatusAction">
+            <result name="success" type="velocity">/main.vm</result>
+            <param name="page">/dhis-web-synchmanager/updateApproveDEStatusResult.vm</param>
+            <param name="menu">/dhis-web-synchmanager/menu.vm</param>
+        </action>
+        
+		<action name="saveAcceptanceDataElement" class="org.hisp.dhis.sm.action.SaveAcceptanceDataElementListAction">
+			<result name="success" type="redirect">acceptanceList.action</result>			
+		</action>
+	</package>
+</struts>

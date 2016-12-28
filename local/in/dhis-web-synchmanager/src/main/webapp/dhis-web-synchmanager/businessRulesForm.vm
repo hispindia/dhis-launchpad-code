@@ -1,0 +1,69 @@
+
+<h3>$i18n.getString( "define_business_ruels_for_synchronizing_metadata" ) - $!instance.name</h3>
+
+<form id="businessRulesForm" name="businessRulesForm" action="setBusinessRules.action" method="post" >
+
+    <input type="hidden" id="instanceId" name="instanceId" value="$!instance.id" />
+    
+    <table>
+        
+        <tr>
+            <td><label for="name">$i18n.getString( "user_group_for_approval" ) <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+            <td>
+                <select id="userGroupForApproval" name="userGroupForApproval" style="width:250px;">
+                    #foreach( $appUserGroup in $approvalUserGroups )
+                        <option value="$appUserGroup.uid" #if( $!businessRules.approvalUserGroupUid == $!appUserGroup.uid) selected #end>$appUserGroup.name</option>
+                    #end
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+    
+        <tr>
+            <td><label for="name">$i18n.getString( "user_group_for_acceptance" ) <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+            <td>
+                <select id="userGroupForAcceptance" name="userGroupForAcceptance" style="width:250px;">
+                    #foreach( $accUserGroup in $accUserGroups )
+                        <option value="$accUserGroup.uid" #if( $businessRules.acceptanceUserGroupUid == $!accUserGroup.uid) selected #end>$accUserGroup.name</option>
+                    #end
+                </select>
+            </td>
+        </tr>
+    <!--
+        <tr>
+            <td><label for="name">$i18n.getString( "orgunit_level_at_instance" ) <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+            <td>
+                #foreach( $ouLevel in $ouLevels )
+                    <input type="checkbox" id="ouLevel" name="ouLevel" value="" /><br/>
+                #end
+            </td>
+        </tr>
+    
+        <tr>
+            <td><label for="name">$i18n.getString( "orgunit_group_at_instance" ) <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+            <td>
+                #foreach( $ouGroup in $ouGroups )
+                    <input type="checkbox" id="ouGroup" name="ouGroup" value="" /><br/>
+                #end
+            </td>
+        </tr>
+    -->    
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+
+        <tr>
+            <td>&nbsp;</td>
+            <td>
+                <input type="submit" value="$i18n.getString( 'save' )" style="width:125px;" />&nbsp;
+                <input type="button" value="$i18n.getString( 'cancel' )" onclick="window.location.href='instanceList.action?synchType=meta-data'" style="width:125px;"/>
+            </td>
+        </tr>
+
+    </table>
+
+</form>

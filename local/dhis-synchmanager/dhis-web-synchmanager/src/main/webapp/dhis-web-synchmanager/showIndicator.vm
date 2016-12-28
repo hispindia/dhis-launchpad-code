@@ -1,0 +1,138 @@
+
+<script type="text/javascript">
+  /*  function closeDialog()
+    {
+        jQuery('#IndicatorPopup').dialog('destroy').remove();
+    } */
+    $(document).ready(function() {
+
+        $(document).ready(function() {
+            $('.multiselect').multiselect({
+                maxHeight: 150,
+              numberDisplayed: 1,
+              buttonWidth: '150px'
+
+            });
+        });
+    });
+
+</script>
+
+<form id="popup_update" action="updateApproveINDStatus.action">
+
+    <div align="right"><input type="submit" value="Update Indicaor Sync Status" ></div>
+
+    <input type="hidden" name="searchIndId" id="searchIndId" value="${indicatorObject.getId()}" >
+
+
+    <table class="listTable" style="border: 1px solid" >
+        <thead>
+        <th style="text-align: center; border: 1px solid"  width="400">
+            New/Updated Indicators
+        </th>
+        <th style="text-align: center; border: 1px  solid"  width="100">
+            Approval needed after updation
+        </th>
+        <th style="text-align: center; border: 1px  solid"  width="150">
+            Instances
+        </th>
+        <th style="text-align: center; border: 1px  solid"  width="100">
+            Approve Status
+        </th>
+        </thead>
+    <tr>
+        #if($AllIndicators.size() == 0)
+            <tbody>
+            <tr id="tr${indicatorObject.getId()}" data-id="$!indicatorObject.getId()" data-uid="$!indicatorObject.getUid()"
+                data-type="ApprovalIndicators" data-name="$encoder.htmlEncode( $!indicatorObject.getName() )">
+
+                <td style="text-align: left; border: 1px solid">$encoder.htmlEncode( $indicatorObject.getName())</td>
+
+                <td style="text-align: center; border: 1px solid">
+                    <input type="checkbox" name="appNeeded_${indicatorObject.getId()}" />
+                </td>
+
+                <td style="text-align: center; border: 1px solid">
+                    <select class="multiselect" multiple="multiple" id="sel${velocityCount}" name="instances_${indicatorObject.id}">
+                        #foreach( $instance in $synchInstances )
+                            <option value="$instance.id" >$encoder.htmlEncode( $instance.name )</option>
+                        #end
+                    </select>
+                </td>
+
+                <td style="text-align: center; border: 1px solid" >
+                    <input type="checkbox" id="approveStatus_${indicatorObject.getId()}" name="approveStatus_${indicatorObject.getId()}"  />
+                </td>
+
+            </tr>
+            </tbody>
+        #else
+            <tbody>
+                #foreach( $indsync in $AllIndicators )
+                <tr id="tr${indsync.getIndicator().getId()}" data-id="$!indsync.getIndicator().getId()" data-uid="$!indsync.getIndicator().getUid()"
+                    data-type="ApprovalIndicators" data-name="$encoder.htmlEncode( $!indsync.getIndicator().getName() )">
+
+                    <td style="text-align: left; border: 1px solid">$encoder.htmlEncode( $indsync.getIndicator().getName())</td>
+
+                    #if($indsync.getRememberApproveStatus())
+                        <td style="text-align: center; border: 1px solid">
+                            <input type="checkbox" name="upappNeeded_${indsync.getIndicator().getId()}" checked />
+                        </td>
+                    #else
+                        <td style="text-align: center; border: 1px solid">
+                            <input type="checkbox" name="upappNeeded_${indsync.getIndicator().getId()}" />
+                        </td>
+                    #end
+
+                    <td style="text-align: center; border: 1px solid"> <label id="instance" name="upinstances_${indsync.getIndicator().getId()}">
+                        $encoder.htmlEncode( $indsync.getInstance().getName() )</label></td>
+
+                    #if($indsync.getApproveStatus())
+                        <td style="text-align: center; border: 1px solid" >
+                            <input type="checkbox" id="upapproveStatus_${indsync.getIndicator().getId()}"  name="upapproveStatus_${indsync.getIndicator().getId()}" checked />
+                        </td>
+                    #else
+                        <td style="text-align: center; border: 1px solid" >
+                            <input type="checkbox" id="upapproveStatus_${indsync.getIndicator().getId()}" name="upapproveStatus_${indsync.getIndicator().getId()}"  />
+                        </td>
+                    #end
+                </tr>
+                #end
+            #if($instancesLeft.size() != 0)
+            <tr id="tr${indicatorObject.getId()}" data-id="$!indicatorObject.getId()" data-uid="$!indicatorObject.getUid()"
+                data-type="ApprovalIndicators" data-name="$encoder.htmlEncode( $!indicatorObject.getName() )">
+
+                <td style="text-align: left; border: 1px solid">$encoder.htmlEncode( $indicatorObject.getName())</td>
+
+                <td style="text-align: center; border: 1px solid">
+                    <input type="checkbox" name="appNeeded_${indicatorObject.getId()}" />
+                </td>
+
+                <td style="text-align: center; border: 1px solid">
+                    <select class="multiselect" multiple="multiple" id="sel${velocityCount}" name="instances_${indicatorObject.id}">
+                        #foreach( $instance in $instancesLeft )
+                            <option value="$instance.id" >$encoder.htmlEncode( $instance.name )</option>
+                        #end
+                    </select>
+                </td>
+
+                <td style="text-align: center; border: 1px solid" >
+                    <input type="checkbox" id="approveStatus_${indicatorObject.getId()}" name="approveStatus_${indicatorObject.getId()}"  />
+                </td>
+            </tr>
+            </tbody>
+             #end
+        #end
+
+   	<select name="instancesLeft" multiple style="display:none" >
+	#foreach( $instance in $instancesLeft )
+		<option value="$instance.id" selected >$instance.name</option>	
+	#end
+	</select>
+   
+
+        </tr>
+    </table>
+    <br>
+
+</form>

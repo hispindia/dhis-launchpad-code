@@ -1,0 +1,10 @@
+#set($oucSize = $currentUser.getOrganisationUnit().getSortedChildren().size())
+#if($callback)$!{callback}
+(
+#end
+{
+"systemSettings":{"infrastructuralDataElementGroup":"$!{infrastructuralDataElementGroup.uid}","infrastructuralPeriodType": "$!{infrastructuralPeriodType.name}"}
+}
+#if($callback)
+)
+#end

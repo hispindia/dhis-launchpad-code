@@ -1,0 +1,528 @@
+<link rel="stylesheet" href="css/bootstrap-3.1.1.min.css" type="text/css"/>
+<script type="text/javascript" src="js/bootstrap-3.1.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
+<link rel="stylesheet" type="text/css" href="css/bootstrap-multiselect.css"/>
+
+<script src="chosen/chosen.jquery.js" type="text/javascript"></script>
+<link rel="stylesheet" href="chosen/chosen.css"/>
+
+<style type="text/css" media="all">
+     .chzn-rtl .chzn-drop {
+        left: -9000px;
+    }
+</style>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+    $('.multiselect').multiselect({
+        maxHeight: 150,
+        numberDisplayed: 1,
+        buttonWidth: '150px'
+
+    });
+});
+
+$(document).ready(function () {
+
+ /*   jQuery('#DataElementPopup').dialog({autoOpen: false});
+    jQuery('#IndicatorPopup').dialog({autoOpen: false});
+    jQuery('#OrgUnitPopup').dialog({autoOpen: false});
+    jQuery('#ValidationPopup').dialog({autoOpen: false}); */
+
+ 	
+	getApproveDataElementList();	
+	
+	$("#loadIndicatorDiv").hide();
+        $("#loadOgrunitDiv").hide();
+        $("#loadValidationRuleDiv").hide();
+
+        $("#INDfilter").hide();
+        $("#VRfilter").hide();
+        $("#ORGfilter").hide();
+
+
+// loadAll();
+
+    function loadAll(){
+
+      var default_id = 0;
+
+        showLoader();
+
+        var De_url = "approveDEStatusAction.action" + "?groupId" +default_id ;
+        var Ind_url = "approveIndicatorStatusAction.action" + "?IndicatorGroupID=" + default_id;
+        var Org_url = "approveOrgUnitStatusAction.action" + "?OrgUnitGroupId=" + default_id;
+        var Vr_url = "approveValidationRuleStatusAction.action" + "?ValidationRuleGroupId=" + default_id;
+
+        $( "#loadDataElementDiv" ).load( De_url, function()
+        {
+            hideLoader();
+          //  showById('loadDataElementDiv');
+
+        } );
+
+        $( "#loadIndicatorDiv" ).load( Ind_url, function()
+        {
+            hideLoader();
+          //  showById('loadIndicatorDiv');
+
+        } );
+
+        $( "#loadOgrunitDiv" ).load( Org_url, function()
+        {
+            hideLoader();
+          //  showById('loadOgrunitDiv');
+
+        } );
+
+        $( "#loadValidationRuleDiv" ).load( Vr_url, function()
+        {
+            hideLoader();
+           // showById('loadValidationRuleDiv');
+
+        } );
+
+ 	$("#loadIndicatorDiv").hide();
+        $("#loadOgrunitDiv").hide();
+        $("#loadValidationRuleDiv").hide();
+
+        $("#INDfilter").hide();
+        $("#VRfilter").hide();
+        $("#ORGfilter").hide();
+
+    }
+
+
+    $("#showDE").click(function () {
+       // getApproveDataElementList();
+        $("#loadIndicatorDiv").hide();
+        $("#loadOgrunitDiv").hide();
+        $("#loadValidationRuleDiv").hide();
+
+        $("#INDfilter").hide();
+        $("#VRfilter").hide();
+        $("#ORGfilter").hide();
+
+        $("#showInd").css({'font-weight': 'bold', 'background-color': '#FFFFFF'});
+        $("#showVR").css({'font-weight': 'bold', 'background-color': '#FFFFFF'});
+        $("#showOrg").css({'font-weight': 'bold', 'background-color': '#FFFFFF'});
+
+        $("#showDE").css({'font-weight': 'bold', 'background-color': '#d3d3d3'});
+        $("#DEfilter").show();
+        $("#loadDataElementDiv").show();
+	getApproveDataElementList();
+
+    });
+
+    $("#showInd").click(function () {
+      //  getApproveIndicatorList();
+
+        $("#loadDataElementDiv").hide();
+        $("#loadOgrunitDiv").hide();
+        $("#loadValidationRuleDiv").hide();
+
+        $("#DEfilter").hide();
+        $("#VRfilter").hide();
+        $("#ORGfilter").hide();
+
+        $("#showDE").css({'font-weight': 'bold', 'background-color': '#FFFFFF'});
+        $("#showVR").css({'font-weight': 'bold', 'background-color': '#FFFFFF'});
+        $("#showOrg").css({'font-weight': 'bold', 'background-color': '#FFFFFF'});
+
+        $("#showInd").css({'font-weight': 'bold', 'background-color': '#d3d3d3'});
+        $("#INDfilter").show();
+        $("#loadIndicatorDiv").show();
+	getApproveIndicatorList();
+
+    });
+
+    $("#showVR").click(function () {
+
+        $("#loadDataElementDiv").hide();
+        $("#loadOgrunitDiv").hide();
+        $("#loadIndicatorDiv").hide();
+
+        $("#DEfilter").hide();
+        $("#ORGfilter").hide();
+        $("#INDfilter").hide();
+
+        $("#showDE").css({'font-weight': 'bold', 'background-color': '#FFFFFF'});
+        $("#showInd").css({'font-weight': 'bold', 'background-color': '#FFFFFF'});
+        $("#showOrg").css({'font-weight': 'bold', 'background-color': '#FFFFFF'});
+
+        $("#showVR").css({'font-weight': 'bold', 'background-color': '#d3d3d3'});
+        $("#VRfilter").show();
+        $("#loadValidationRuleDiv").show();
+	getApproveValidationRuleList();
+    });
+
+    $("#showOrg").click(function () {
+
+        $("#loadDataElementDiv").hide();
+        $("#loadValidationRuleDiv").hide();
+        $("#loadIndicatorDiv").hide();
+
+        $("#INDfilter").hide();
+        $("#DEfilter").hide();
+        $("#VRfilter").hide();
+
+        $("#showDE").css({'font-weight': 'bold', 'background-color': '#FFFFFF'});
+        $("#showInd").css({'font-weight': 'bold', 'background-color': '#FFFFFF'});
+        $("#showVR").css({'font-weight': 'bold', 'background-color': '#FFFFFF'});
+
+        $("#showOrg").css({'font-weight': 'bold', 'background-color': '#d3d3d3'});
+        $("#ORGfilter").show();
+        $("#loadOgrunitDiv").show();
+	getApproveOrgUnitList();
+    });
+
+});
+
+function getApproveDataElementList(){
+
+	var groupid = $( '#dataElementgroup' ).val();
+
+	showLoader();
+
+	var url = "approveDEStatusAction.action" + "?groupId=" + groupid;
+	$( "#loadDataElementDiv" ).load( url, function()
+    {
+ 	    hideLoader();
+	    showById('loadDataElementDiv');
+
+    } );
+   
+}
+
+function getApproveIndicatorList(){
+
+    var IndicatorGroupID = $( '#IndicatorGroup' ).val();
+
+    showLoader();
+
+    var url = "approveIndicatorStatusAction.action" + "?IndicatorGroupID=" + IndicatorGroupID;
+
+    $( "#loadIndicatorDiv" ).load( url, function()
+    {
+        hideLoader();
+        showById('loadIndicatorDiv');
+
+    } );
+}
+
+function getApproveOrgUnitList(){
+
+    var OrgUnitGroupID = $( '#orgUnitgroup' ).val();
+
+    showLoader();
+
+    var url = "approveOrgUnitStatusAction.action" + "?OrgUnitGroupId=" + OrgUnitGroupID;
+
+    $( "#loadOgrunitDiv" ).load( url, function()
+    {
+        hideLoader();
+        showById('loadOgrunitDiv');
+
+    } );
+}
+
+function getApproveValidationRuleList(){
+
+    var validationRuleGroupID = $( '#validationRulegroup' ).val();
+
+    showLoader();
+
+    var url = "approveValidationRuleStatusAction.action" + "?ValidationRuleGroupId=" + validationRuleGroupID;
+
+    $( "#loadValidationRuleDiv" ).load( url, function()
+    {
+        hideLoader();
+        showById('loadValidationRuleDiv');
+
+    } );
+}
+
+
+function getDataElementPopup(){
+
+	var dataelementId = $( '#dataElementID' ).val();
+		
+	if( dataelementId == 0 )
+	{	
+		return;
+	}
+	
+    showLoader();
+    var url = "showDataElementAction.action" + "?dataElementId=" + dataelementId;
+    $( "#loadDataElementDiv" ).load( url, function()
+    {
+        hideLoader();
+        showById('loadDataElementDiv');
+
+    } );
+
+}
+
+function getIndicatorPopup(){
+
+    var indicatorID = $( '#indicatorID' ).val();
+
+    if( indicatorID == 0 )
+    {
+        return;
+    }
+    showLoader();
+
+    var url = "showIndicatorAction.action" + "?indicatorID=" + indicatorID;
+    $( "#loadIndicatorDiv" ).load( url, function()
+    {
+        hideLoader();
+        showById('loadIndicatorDiv');
+
+    } );
+}
+
+function getValidationRulePopup(){
+
+    var validationRuleID = $( '#validationRuleID' ).val();
+
+    if( validationRuleID == 0 )
+    {
+        return;
+    }
+
+    showLoader();
+
+    var url = "showValidationRuleAction.action" + "?validationRuleId=" + validationRuleID;
+    $( "#loadValidationRuleDiv" ).load( url, function()
+    {
+        hideLoader();
+        showById('loadValidationRuleDiv');
+
+    } );
+}
+
+function getOrgUnitPopup(){
+
+    var OrgUnitId = $( '#orgUnitId' ).val();
+
+    if( OrgUnitId == 0 )
+    {
+        return;
+    }
+
+    showLoader();
+
+    var url = "showOrgUnitAction.action" + "?orgUnitId=" + OrgUnitId;
+    $( "#loadOgrunitDiv" ).load( url, function()
+    {
+        hideLoader();
+        showById('loadOgrunitDiv');
+
+    } );
+
+}
+
+</script>
+
+<h3>$i18n.getString( "synch_meta_status" )</h3>
+    <div class="row">
+        <ul class="pagination">
+            <li><a href="#" style="font-weight: bold">&laquo;</a></li>
+            <li><a id="showDE" class="currentDashboard" href="#" style="font-weight: bold; background-color: #d3d3d3">Dataelement Synch</a></li>
+            <li><a id="showInd" href="#" style="font-weight: bold">Indicator Synch</a></li>
+            <li><a id="showVR" href="#" style="font-weight: bold">Validation Rule Synch</a></li>
+            <li><a id="showOrg" href="#" style="font-weight: bold">Organisationunit Synch</a></li>
+            <li><a href="#" style="font-weight: bold">&raquo;</a></li>
+        </ul>
+    </div>
+    
+
+<form id="FilterForm" name="FilterForm" action="updateApproveDEStatus.action" >
+
+<div id="DEfilter">
+    <table>
+        <tr>
+            <th> Filter by Dataelement Group </th>
+            <td> &nbsp &nbsp &nbsp &nbsp &nbsp </td>
+            <th> Filter by Dataelement </th>
+        </tr>
+        <tr>
+            <td>
+                <select class="chzn-select" name="dataElementgroup" id="dataElementgroup" style="width:250px;" tabindex="2" onchange="getApproveDataElementList();">
+                    <option value="0">Search for Dataelement Group</option>
+                    #foreach( $dataelementgroup in $dataElementGroups )
+                        <option value=$dataelementgroup.getId()>$dataelementgroup.getName()</option>
+                    #end
+                </select>
+
+                <script>
+                    $(".chzn-select").chosen();
+                </script>
+            </td>
+
+            <td>&nbsp &nbsp &nbsp &nbsp &nbsp </td>
+
+
+            <td>
+                <select class="chzn-select" name="dataElementID" id="dataElementID" style="width:250px;" tabindex="2" onchange="getDataElementPopup();">
+                    <option value="0">Search for Dataelement</option>
+                    #foreach( $dataelement in $allDataElements )
+                        <option value=$dataelement.getId()>$dataelement.getName()</option>
+                    #end
+                </select>
+
+                <script>
+                    $(".chzn-select").chosen();
+                </script>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+<div id="INDfilter">
+    <table>
+        <tr>
+            <th> Filter by Indicator Group </th>
+            <td> &nbsp &nbsp &nbsp &nbsp &nbsp </td>
+            <th> Filter by Inidcator </th>
+        </tr>
+        <tr>
+            <td>
+                <select class="chzn-select" name="IndicatorGroup" id="IndicatorGroup" style="width:250px;" tabindex="2" onchange="getApproveIndicatorList();">
+                    <option value="0">Search for Indicator Group</option>
+                    #foreach( $indicatorgroup in $indicatorGroups )
+                        <option value=$indicatorgroup.getId()>$indicatorgroup.getName()</option>
+                    #end
+                </select>
+
+                <script>
+                    $(".chzn-select").chosen();
+                </script>
+            </td>
+
+            <td>&nbsp &nbsp &nbsp &nbsp &nbsp </td>
+
+
+            <td>
+                <select class="chzn-select" name="indicatorID" id="indicatorID" style="width:250px;" tabindex="2" onchange="getIndicatorPopup();">
+                    <option value="0">Search for Indicator</option>
+                    #foreach( $indicator in $allIndicators )
+                        <option value=$indicator.getId()>$indicator.getName()</option>
+                    #end
+                </select>
+
+                <script>
+                    $(".chzn-select").chosen();
+                </script>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+<div id="VRfilter">
+    <table>
+        <tr>
+            <th> Filter by Validation Rule Group </th>
+            <td> &nbsp &nbsp &nbsp &nbsp &nbsp </td>
+            <th> Filter by Validation Rule </th>
+        </tr>
+        <tr>
+            <td>
+                <select class="chzn-select" name="validationRulegroup" id="validationRulegroup" style="width:250px;" tabindex="2" onchange="getApproveValidationRuleList();">
+                    <option value="0">Search for Validation Rule Group</option>
+                    #foreach( $validationGroup in $validationRuleGroups )
+                        <option value=$validationGroup.getId()>$validationGroup.getName()</option>
+                    #end
+                </select>
+
+                <script>
+                    $(".chzn-select").chosen();
+                </script>
+            </td>
+
+            <td>&nbsp &nbsp &nbsp &nbsp &nbsp </td>
+
+
+            <td>
+                <select class="chzn-select" name="validationRuleID" id="validationRuleID" style="width:250px;" tabindex="2" onchange="getValidationRulePopup();">
+                    <option value="0">Search for Validation Rule</option>
+                    #foreach( $validRule in $allValidationRules )
+                        <option value=$validRule.getId()>$validRule.getName()</option>
+                    #end
+                </select>
+
+                <script>
+                    $(".chzn-select").chosen();
+                </script>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+<div id="ORGfilter">
+    <table>
+        <tr>
+            <th> Filter by Organisation Unit Group </th>
+            <td> &nbsp &nbsp &nbsp &nbsp &nbsp </td>
+            <th> Filter by Organisation Unit </th>
+        </tr>
+        <tr>
+            <td>
+                <select class="chzn-select" name="orgUnitgroup" id="orgUnitgroup" style="width:250px;" tabindex="2" onchange="getApproveOrgUnitList();">
+                    <option value="0">Search for Orgnisation Group</option>
+                    #foreach( $orgUnitgroup in $OrgUnutGroups )
+                        <option value=$orgUnitgroup.getId()>$orgUnitgroup.getName()</option>
+                    #end
+                </select>
+
+                <script>
+                    $(".chzn-select").chosen();
+                </script>
+            </td>
+
+            <td>&nbsp &nbsp &nbsp &nbsp &nbsp </td>
+
+
+            <td>
+                <select class="chzn-select" name="orgUnitId" id="orgUnitId" style="width:250px;" tabindex="2" onchange="getOrgUnitPopup();">
+                    <option value="0">Search for Orgnisation unit</option>
+                    #foreach( $orgUnits in $allOrgUnits )
+                        <option value=$orgUnits.getId()>$orgUnits.getName()</option>
+                    #end
+                </select>
+
+                <script>
+                    $(".chzn-select").chosen();
+                </script>
+            </td>
+        </tr>
+    </table>
+</div>
+
+ <br>
+  
+<!--	<div id='DataElementPopup'></div>
+    <div id='IndicatorPopup'></div>
+    <div id='OrgUnitPopup'></div>
+    <div id='ValidationPopup'></div> -->
+
+
+ <!--   <div  align="center"  style="height: 500px; overflow: scroll" >
+        <div id='loadDataElementDiv'></div>
+    </div>
+ -->
+    <div id='loadDataElementDiv'></div>
+    <div id='loadIndicatorDiv'></div>
+    <div id='loadOgrunitDiv'></div>
+    <div id='loadValidationRuleDiv'></div>
+
+    
+   #parse( "dhis-web-commons/loader/loader.vm" ) 
+ 
+ </form>   
+   

@@ -1,0 +1,15 @@
+
+<h2>$i18n.getString( "meta_data_synch" )&nbsp;</h2>
+<ul>
+    <li><a href="instanceList.action?synchType=meta-data">$i18n.getString( "configuration" )&nbsp;</a></li>    
+    <li><a href="approveDEStatusAction.action">$i18n.getString( "synch_by_push" )&nbsp;</a></li>
+    <li><a href="acceptanceList.action">$i18n.getString( "acceptance" )&nbsp;</a></li>
+    <li><a href="#">$i18n.getString( "log_report" )&nbsp;</a></li>
+</ul>
+
+<h2>$i18n.getString( "data_synch" )&nbsp;</h2>
+<ul>
+    <li><a href="#">$i18n.getString( "configuration" )&nbsp;</a></li>
+    <li><a href="#">$i18n.getString( "mapping" )&nbsp;</a></li>
+    <li><a href="#">$i18n.getString( "log_report" )&nbsp;</a></li>
+</ul>

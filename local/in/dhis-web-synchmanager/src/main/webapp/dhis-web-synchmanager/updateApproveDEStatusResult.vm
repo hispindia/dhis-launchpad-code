@@ -1,0 +1,41 @@
+
+update
+
+<script src="chosen/chosen.jquery.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="chosen/chosen.css">
+<style type="text/css" media="all">
+        /* fix rtl for demo */
+    .chzn-rtl .chzn-drop {
+        left: -9000px;
+    }
+</style>
+
+<form id="searchFunctionForm" method="post">
+    
+        <table>
+            <tr>
+                <td><label for="dataElementIDSelect">Search Dataelement</label></td>
+			</tr>
+			<tr>
+                <td>
+                    <select class="chzn-select" name="dataElementID" id="dataElementID" style="width:350px;" tabindex="2"
+                            onchange="this.form.submit()">
+                        <option value=0>--Select--</option>
+                        #foreach( $dataelement in $dataElements )
+                            #if($dataelement.getDomainType()!='patient')
+                                <option value=$dataelement.getId()>$dataelement.getName()</option>
+                            #end
+                        #end
+                    </select>
+                    <span id="loaderSpan" style="display:none"><img src='../images/ajax-loader-bar.gif'></span>
+                </td>
+            </tr>
+        </table>
+   
+
+    <script>
+        $(".chzn-select").chosen();
+    </script>
+
+</form>

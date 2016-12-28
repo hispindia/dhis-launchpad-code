@@ -1,0 +1,139 @@
+
+<script type="text/javascript">
+    /*  function closeDialog()
+      {
+          jQuery('#ValidationPopup').dialog('destroy').remove();
+      }
+  */
+    $(document).ready(function() {
+
+        $(document).ready(function() {
+            $('.multiselect').multiselect({
+                maxHeight: 150,
+                numberDisplayed: 1,
+                buttonWidth: '150px'
+
+            });
+        });
+    });
+
+</script>
+
+<form id="popup_update" action="updateApproveValidationRuleAction.action">
+
+    <div align="right"><input type="submit" value="Update ValidationRule Sync Status" ></div>
+
+    <input type="hidden" name="searchVRId" id="searchVRId" value="${validationRuleObject.getId()}" >
+
+    <table class="listTable" style="border: 1px solid" >
+        <thead>
+        <th style="text-align: center; border: 1px solid" width="400">
+            New/Updated Validation Rule
+        </th>
+        <th style="text-align: center; border: 1px  solid" width="100">
+            Approval needed after updation
+        </th>
+        <th style="text-align: center; border: 1px  solid" width="150">
+            Instances
+        </th>
+        <th style="text-align: center; border: 1px  solid" width="100">
+            Approve Status
+        </th>
+        </thead>
+    <tr>
+        #if($allValidationRules.size() == 0)
+            <tbody>
+            <tr id="tr${validationRuleObject.getId()}" data-id="$!validationRuleObject.getId()" data-uid="$!validationRuleObject.getUid()"
+                data-type="ApprovalValidationRule" data-name="$encoder.htmlEncode( $!validationRuleObject.getName() )">
+
+                <td style="text-align: left; border: 1px solid">$encoder.htmlEncode( $validationRuleObject.getName())</td>
+
+                <td style="text-align: center; border: 1px solid">
+                    <input type="checkbox" name="appNeeded_${validationRuleObject.getId()}" />
+                </td>
+
+                <td style="text-align: center; border: 1px solid">
+                    <select class="multiselect" multiple="multiple" id="sel${velocityCount}" name="instances_${validationRuleObject.id}">
+                        #foreach( $instance in $synchInstances )
+                            <option value="$instance.id" >$encoder.htmlEncode( $instance.name )</option>
+                        #end
+                    </select>
+                </td>
+
+                <td style="text-align: center; border: 1px solid" >
+                    <input type="checkbox" id="approveStatus_${validationRuleObject.getId()}" name="approveStatus_${validationRuleObject.getId()}"  />
+                </td>
+
+            </tr>
+            </tbody>
+        #else
+        <tbody>
+            #foreach( $VRsync in $AllValidationRules )
+            <tr id="tr${VRsync.getValidationRule().getId()}" data-id="$!VRsync.getValidationRule().getId()" data-uid="$!VRsync.getValidationRule().getUid()"
+                data-type="ApprovalValidationRule" data-name="$encoder.htmlEncode( $!VRsync.getValidationRule().getName() )">
+
+                <td style="text-align: left; border: 1px solid">$encoder.htmlEncode( $VRsync.getValidationRule().getName())</td>
+
+                #if($VRsync.getRememberApproveStatus())
+                    <td style="text-align: center; border: 1px solid">
+                        <input type="checkbox" name="upappNeeded_${VRsync.getValidationRule().getId()}" checked />
+                    </td>
+                #else
+                    <td style="text-align: center; border: 1px solid">
+                        <input type="checkbox" name="upappNeeded_${VRsync.getValidationRule().getId()}" />
+                    </td>
+                #end
+
+                <td style="text-align: center; border: 1px solid"> <label id="instance" name="upinstances_${VRsync.getValidationRule().getId()}">
+                    $encoder.htmlEncode( $VRsync.getInstance().getName() )</label></td>
+
+                #if($VRsync.getApproveStatus())
+                    <td style="text-align: center; border: 1px solid" >
+                        <input type="checkbox" id="upapproveStatus_${VRsync.getValidationRule().getId()}"  name="upapproveStatus_${VRsync.getValidationRule().getId()}" checked />
+                    </td>
+                #else
+                    <td style="text-align: center; border: 1px solid" >
+                        <input type="checkbox" id="upapproveStatus_${VRsync.getValidationRule().getId()}" name="upapproveStatus_${VRsync.getValidationRule().getId()}"  />
+                    </td>
+                #end
+            </tr>
+            #end
+            #if($instancesLeft.size() != 0)
+            <tr id="tr${validationRuleObject.getId()}" data-id="$!validationRuleObject.getId()" data-uid="$!validationRuleObject.getUid()"
+                data-type="ApprovalValidationRule" data-name="$encoder.htmlEncode( $!validationRuleObject.getName() )">
+
+                <td style="text-align: left; border: 1px solid">$encoder.htmlEncode( $validationRuleObject.getName())</td>
+
+                <td style="text-align: center; border: 1px solid">
+                    <input type="checkbox" name="appNeeded_${validationRuleObject.getId()}" />
+                </td>
+
+                <td style="text-align: center; border: 1px solid">
+                    <select class="multiselect" multiple="multiple" id="sel${velocityCount}" name="instances_${validationRuleObject.id}">
+                        #foreach( $instance in $instancesLeft )
+                            <option value="$instance.id" >$encoder.htmlEncode( $instance.name )</option>
+                        #end
+                    </select>
+                </td>
+
+                <td style="text-align: center; border: 1px solid" >
+                    <input type="checkbox" id="approveStatus_${validationRuleObject.getId()}" name="approveStatus_${validationRuleObject.getId()}"  />
+                </td>
+
+            </tr>
+            </tbody>
+            #end
+        #end
+
+        <select name="instancesLeft" multiple style="display:none" >
+            #foreach( $instance in $instancesLeft )
+                <option value="$instance.id" selected >$$instance.name</option>
+            #end
+        </select>
+
+        </tr>
+    </table>
+    <br>
+
+
+</form>

@@ -1,0 +1,197 @@
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        $('.multiselect').multiselect({
+             maxHeight: 150,
+              numberDisplayed: 1,
+              buttonWidth: '150px'
+
+        });
+    });
+
+</script>
+
+<form id="approveIndicator" name="approveIndicator" action="updateApproveINDStatus.action" >
+
+<div id="menuBar" class="row">
+    <div style="float: left">
+        <ul class="nav nav-pills">
+            <li class="active"><a href="#newIND" data-toggle="pill" style="font-weight: bold">New</a></li>
+            <li><a href="#updateIND" data-toggle="pill" style="font-weight: bold">Updates</a></li>
+            <li><a href="#synchedIND" data-toggle="pill" style="font-weight: bold">Synced</a></li>
+        </ul>
+    </div>
+</div>
+
+    <div align="right"><input type="submit" value="Update Indicaor Sync Status" ></div>
+
+    <div class="row">
+        <div id="myTabContent" class="tab-content">
+
+            <div id="newIND" class="tab-pane fade active in">
+                <table class="listTable" style="border: 1px solid" >
+                    <thead>
+                    <th style="text-align: center; border: 1px solid" width="400">
+                        New/Updated Indicators
+                    </th>
+                    <th style="text-align: center; border: 1px  solid" width="100">
+                        $i18n.getString( "approve_needed" )
+                    </th>
+                    <th style="text-align: center; border: 1px  solid" width="150">
+                        Instances
+                    </th>
+                    <th style="text-align: center; border: 1px  solid" width="100">
+                        Approve Status
+                    </th>
+                    </thead>
+
+                    <tbody>
+                        #foreach( $indicator in $newIndicators )
+
+                        <tr id="tr${indicator.id}" data-id="$!indicator.id" data-uid="$!indicator.uid"
+                            data-type="ApprovalIndicators" data-name="$encoder.htmlEncode( $!indicator.name )">
+
+                            <td style="text-align: left; border: 1px solid">$encoder.htmlEncode( $indicator.getName() )</td>
+
+
+                            <td style="text-align: center; border: 1px solid">
+                                <input type="checkbox" name="appNeeded_${indicator.id}" />
+                            </td>
+
+
+                            <td style="text-align: center; border: 1px solid">
+                                <select class="multiselect" multiple="multiple" id="sel${velocityCount}" name="instances_${indicator.id}">
+                                    #foreach( $instance in $synchInstances )
+                                        <option value="$instance.id" >$encoder.htmlEncode( $instance.name )</option>
+                                    #end
+                                </select>
+                            </td>
+
+
+                            <td style="text-align: center; border: 1px solid" >
+                                <input type="checkbox" id="approveStatus_${indicator.id}" name="approveStatus_${indicator.id}"  />
+                            </td>
+
+                        </tr>
+                        #end
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="updateIND" class="tab-pane fade">
+                <table class="listTable" style="border: 1px solid" >
+                    <thead>
+                    <th style="text-align: center; border: 1px solid" width="400">
+                        New/Updated Indicators
+                    </th>
+                    <th style="text-align: center; border: 1px  solid" width="100">
+                       $i18n.getString( "approve_needed" )
+                    </th>
+                    <th style="text-align: center; border: 1px  solid" width="150">
+                        Instances
+                    </th>
+                    <th style="text-align: center; border: 1px  solid" width="100">
+                        Approve Status
+                    </th>
+                    </thead>
+
+                    <tbody>
+                        #foreach( $indsync in $updatedIndicatorsSyncStatus )
+                        <tr id="tr${indsync.getIndicator().getId()}" data-id="$!indsync.getIndicator().getId()" data-uid="$!indsync.getIndicator().getUid()"
+                            data-type="ApprovalIndicators" data-name="$encoder.htmlEncode( $!indsync.getIndicator().getName() )">
+
+                            <td style="text-align: left; border: 1px solid">$encoder.htmlEncode( $indsync.getIndicator().getName())</td>
+
+                            #if($indsync.getRememberApproveStatus())
+                                <td style="text-align: center; border: 1px solid">
+                                    <input type="checkbox" name="upappNeeded_${indsync.getIndicator().getId()}" checked />
+                                </td>
+                            #else
+                                <td style="text-align: center; border: 1px solid">
+                                    <input type="checkbox" name="upappNeeded_${indsync.getIndicator().getId()}" />
+                                </td>
+                            #end
+
+                            <td style="text-align: left; border: 1px solid"> <label id="instance" name="upinstances_${indsync.getIndicator().getId()}">
+                                $encoder.htmlEncode( $indsync.getInstance().getName() )</label></td>
+
+                            #if($indsync.getApproveStatus())
+                                <td style="text-align: center; border: 1px solid" >
+                                    <input type="checkbox" id="upapproveStatus_${indsync.getIndicator().getId()}"  name="upapproveStatus_${indsync.getIndicator().getId()}" checked />
+                                </td>
+                            #else
+                                <td style="text-align: center; border: 1px solid" >
+                                    <input type="checkbox" id="upapproveStatus_${indsync.getIndicator().getId()}" name="upapproveStatus_${indsync.getIndicator().getId()}"  />
+                                </td>
+                            #end
+                        </tr>
+                        #end
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="synchedIND" class="tab-pane fade">
+                <table class="listTable" style="border: 1px solid" >
+                    <thead>
+                    <th style="text-align: center; border: 1px solid" width="400">
+                        Approved Indicators
+                    </th>
+                    <th style="text-align: center; border: 1px  solid" width="150">
+                         $i18n.getString( "approve_needed" )
+                    </th>
+                    <th style="text-align: center; border: 1px  solid" width="200">
+                        Instances
+                    </th>
+                    <th style="text-align: center; border: 1px  solid" width="100">
+                        Approve Status
+                    </th>
+                    </thead>
+
+                    <tbody>
+                        #foreach( $indsync in $indInstanceMap.keySet() )
+                        <tr id="tr${indsync.getId()}" data-id="$!indsync.getId()" data-uid="$!indsync.getUid()"
+                            data-type="ApprovalIndicators" data-name="$encoder.htmlEncode( $!indsync.getName() )">
+
+                            <td style="text-align: left; border: 1px solid">$encoder.htmlEncode( $indsync.getName())</td>
+
+                            #if($indInstanceMap.get($indsync).get(0).getRememberApproveStatus())
+                                <td style="text-align: center; border: 1px solid">
+                                    <input type="checkbox" name="syncappNeeded_${indsync.getId()}" checked />
+                                </td>
+                            #else
+                                <td style="text-align: center; border: 1px solid">
+                                    <input type="checkbox" name="syncappNeeded_${indsync.getId()}" />
+                                </td>
+                            #end
+
+                            <td style="text-align: center; border: 1px solid">
+                                <select class="multiselect" multiple="multiple" id="sel${velocityCount}" name="syncinstances_${indsync.getId()}">
+                                    #foreach( $instance in $indInstanceMap.get($indsync))
+                                        <option value="$instance.getInstance().getId()" selected >$encoder.htmlEncode( $instance.getInstance().getName() )</option>
+                                    #end
+                                    #foreach($instance in $indInstanceLeftMap.get($indsync))
+                                        <option value="$instance.id" >$encoder.htmlEncode( $instance.getName() )</option>
+                                    #end
+                                </select>
+                            </td>
+
+                            #if($indInstanceMap.get($indsync).get(0).getApproveStatus())
+                                <td style="text-align: center; border: 1px solid" >
+                                    <input type="checkbox" id="syncapproveStatus_${indsync.getId()}"  name="syncapproveStatus_${indsync.getId()}" checked />
+                                </td>
+                            #else
+                                <td style="text-align: center; border: 1px solid" >
+                                    <input type="checkbox" id="syncapproveStatus_${indsync.getId()}" name="syncapproveStatus_${indsync.getId()}"  />
+                                </td>
+                            #end
+                        </tr>
+                        #end
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+    #parse( "dhis-web-commons/loader/loader.vm" )
+</form>

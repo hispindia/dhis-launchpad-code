@@ -1,0 +1,155 @@
+<script type="text/javascript">
+  jQuery(document).ready(function() {
+    $.ajax({
+      url: '../api/schemas.json',
+      dataType: 'json'
+    }).done(function( data ) {
+      var metadata = [];
+
+      $.each(data.schemas, function( idx ) {
+        if( this.metadata ) {
+          var o = {
+            name: this.displayName,
+            id: this.plural
+          }
+
+          metadata.push(o);
+        }
+      });
+
+      metadata.sort(function( a, b ) {
+        if( a.name < b.name )
+          return -1;
+        if( a.name > b.name )
+          return 1;
+        return 0;
+      });
+
+      $.each(metadata, function( idx ) {
+        var type = $('<div />').css({
+          width: '200px',
+          float: 'left'
+        });
+
+        var checkbox = $('<input type="checkbox"/>').attr('id', this.id).attr('value', true);
+        var labelFor = $('<label />').attr('for', this.id).text(this.name);
+
+        type.append(checkbox).append(labelFor);
+        $('#metadata').append(type);
+      });
+
+      selectAll();
+    })
+  });
+
+  function selectAll() {
+    $("#exportForm").find("input:checkbox").attr("checked", true);
+  }
+
+  function selectNone() {
+    $("#exportForm").find("input:checkbox").attr("checked", false);
+  }
+
+  function exportMetaData() {
+    if( $('#dataSets').is(':checked') ) {
+      $('#sections').attr('checked', true);
+    }
+    else {
+      $('#sections').removeAttr('checked');
+    }
+
+    if( $('#categories').is(':checked') ) {
+      $('#categoryCombos').attr('checked', true);
+      $('#categoryOptionCombos').attr('checked', true);
+      $('#categoryOptions').attr('checked', true);
+    }
+    else {
+      $('#categoryCombos').removeAttr('checked');
+      $('#categoryOptionCombos').removeAttr('checked');
+      $('#categoryOptions').removeAttr('checked');
+    }
+
+    if( $('#mapLegendSets').is(':checked') ) {
+      $('#mapLegends').attr('checked', true);
+    }
+    else {
+      $('#mapLegends').removeAttr('checked');
+    }
+
+    if( $('#maps').is(':checked') ) {
+      $('#mapViews').attr('checked', true);
+    }
+    else {
+      $('#mapViews').removeAttr('checked');
+    }
+
+    var url = "../api/metaData";
+    var format = $("#format").val();
+    var compression = $("#compression").val();
+
+    url += "." + format;
+
+    if( compression == "zip" ) {
+      url += ".zip";
+    }
+    else if( compression == "gz" ) {
+      url += ".gz";
+    }
+
+    var selected = {};
+
+    $("#exportForm").find('input:checked').each(function( idx ) {
+      selected[this.id] = this.value;
+    });
+
+    url += "?assumeTrue=false&" + $.param(selected);
+
+    log("url" + url);
+    window.location = url;
+  }
+</script>
+
+<h3>$i18n.getString( "metadata_export" )</h3>
+
+<form id="exportForm" name="exportForm">
+  <fieldset id="metadata" style="width: 80%; border: 1px solid #ccc; padding: 15px;"></fieldset>
+
+  <br/>
+
+  <table>
+    <tr>
+      <td colspan="2">
+        <input type="button" value="$i18n.getString( 'select_all' )" style="width:100px;" onclick="selectAll();"/>
+        <input type="button" value="$i18n.getString( 'select_none' )" style="width:100px;" onclick="selectNone();"/>
+      </td>
+    </tr>
+
+    <tr>
+      <td colspan="2">
+        <select id="format" style="width: 204px;">
+          <option value="xml">XML</option>
+          <option value="json">Json</option>
+        </select>
+      </td>
+    </tr>
+
+    <tr>
+      <td colspan="2">
+        <select id="compression" style="width: 204px;">
+          <option value="zip">Zipped</option>
+          <option value="gz">GZipped</option>
+          <option value="uncompressed">Uncompressed</option>
+        </select>
+      </td>
+    </tr>
+
+    <tr>
+      <td colspan="2">
+        <input type="button" value="$i18n.getString( 'export' )" style="width:204px;" onclick="exportMetaData();"/>
+      </td>
+    </tr>
+
+  </table>
+</form>
+
+<span id="message"></span>

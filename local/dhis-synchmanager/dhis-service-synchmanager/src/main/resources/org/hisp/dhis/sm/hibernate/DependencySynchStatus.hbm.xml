@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"
+    >
+
+<hibernate-mapping package="org.hisp.dhis.dxf2.sm.api">
+  <class name="DependencySynchStatus" table="dependencysynchstatus">
+
+	<id name="id" column="dependencyid">
+      <generator class="native"/>
+    </id>
+	
+    <many-to-one name="instance" lazy="false" class="org.hisp.dhis.dxf2.sm.api.SynchInstance" column="instanceid"
+      not-null="true" foreign-key="fk_dependencysynchstatus_instanceid" />
+      	
+    <property name="metaDataType" column="metadatatype"  length="256"/>
+
+    <property name="metaDataTypeUID" column="metadatatypeuid" length="256" />
+
+    <property name="dependencyType" column="dependencytype" length="256" />
+
+    <property name="dependencyTypeUID" column="dependencytypeuid" length="256" />
+
+    <property name="dependencyTypeLastupdated" column="dependencytypelastupdated" />
+    
+  </class>
+</hibernate-mapping>

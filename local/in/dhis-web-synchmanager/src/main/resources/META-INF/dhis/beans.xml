@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+  <!-- Store definitions -->
+
+  <bean id="org.hisp.dhis.sm.api.SynchInstanceStore" class="org.hisp.dhis.sm.impl.HibernateSynchInstanceStore">
+    <property name="sessionFactory" ref="sessionFactory" />
+    <property name="clazz" value="org.hisp.dhis.sm.api.SynchInstance" />
+  </bean>
+
+   <bean id="org.hisp.dhis.sm.api.DataElementSynchStatusStore" class="org.hisp.dhis.sm.impl.HibernateDataElementSynchStatusStore">
+       <property name="sessionFactory" ref="sessionFactory" />
+   </bean>
+
+  <bean id="org.hisp.dhis.sm.api.InstanceBusinessRulesStore" class="org.hisp.dhis.sm.impl.HibernateInstanceBusinessRulesStore">
+    <property name="sessionFactory" ref="sessionFactory" />
+    <property name="clazz" value="org.hisp.dhis.sm.api.InstanceBusinessRules" />
+  </bean>
+
+  <!-- Service definitions -->
+
+  <bean id="org.hisp.dhis.sm.api.SynchInstanceService" class="org.hisp.dhis.sm.impl.DefaultSynchInstanceService">
+    <property name="synchInstanceStore" ref="org.hisp.dhis.sm.api.SynchInstanceStore" />
+  </bean>
+
+  <bean id="org.hisp.dhis.sm.api.InstanceBusinessRulesService" class="org.hisp.dhis.sm.impl.DefaultInstanceBusinessRulesService">
+    <property name="instanceBusinessRulesStore" ref="org.hisp.dhis.sm.api.InstanceBusinessRulesStore" />
+  </bean>
+
+  <bean id="org.hisp.dhis.sm.api.SynchManager" class="org.hisp.dhis.sm.api.SynchManager">
+    <property name="synchInstanceService" ref="org.hisp.dhis.sm.api.SynchInstanceService" />
+  </bean>
+
+
+  <bean id="org.hisp.dhis.sm.api.DataElementSynchStatusService" class="org.hisp.dhis.sm.impl.DefaultDataElementSynchStatusService">
+    <property name="dataElementSynchStatusStore" ref="org.hisp.dhis.sm.api.DataElementSynchStatusStore" />
+  </bean>
+
+
+  <!-- Instance Configuration  -->
+
+  <bean id="org.hisp.dhis.sm.action.ConfigureInstancesAction" class="org.hisp.dhis.sm.action.ConfigureInstancesAction" scope="prototype">
+    <property name="synchInstanceService" ref="org.hisp.dhis.sm.api.SynchInstanceService" />
+  </bean>
+
+  <bean id="org.hisp.dhis.sm.action.ShowInstanceFormAction" class="org.hisp.dhis.sm.action.ShowInstanceFormAction" scope="prototype">
+    <property name="synchInstanceService" ref="org.hisp.dhis.sm.api.SynchInstanceService" />
+  </bean>
+  
+  <bean id="org.hisp.dhis.sm.action.AddInstanceAction" class="org.hisp.dhis.sm.action.AddInstanceAction" scope="prototype">
+    <property name="synchInstanceService" ref="org.hisp.dhis.sm.api.SynchInstanceService" />
+  </bean>
+
+  <bean id="org.hisp.dhis.sm.action.ShowBusinessRulesFormAction" class="org.hisp.dhis.sm.action.ShowBusinessRulesFormAction" scope="prototype">
+    <property name="synchInstanceService" ref="org.hisp.dhis.sm.api.SynchInstanceService" />
+    <property name="synchManager" ref="org.hisp.dhis.sm.api.SynchManager" />
+    <property name="userGroupService" ref="org.hisp.dhis.user.UserGroupService" />
+    <property name="instanceBusinessRulesService" ref="org.hisp.dhis.sm.api.InstanceBusinessRulesService" />
+  </bean>
+
+  <bean id="org.hisp.dhis.sm.action.SetBusinessRulesAction" class="org.hisp.dhis.sm.action.SetBusinessRulesAction" scope="prototype">
+    <property name="synchInstanceService" ref="org.hisp.dhis.sm.api.SynchInstanceService" />
+    <property name="instanceBusinessRulesService" ref="org.hisp.dhis.sm.api.InstanceBusinessRulesService" />
+  </bean>
+
+  <bean id="org.hisp.dhis.sm.action.GetInstanceAction" class="org.hisp.dhis.sm.action.GetInstanceAction" scope="prototype">
+    <property name="synchInstanceService" ref="org.hisp.dhis.sm.api.SynchInstanceService" />
+  </bean>
+
+  <bean id="org.hisp.dhis.sm.action.DeleteInstanceAction" class="org.hisp.dhis.sm.action.DeleteInstanceAction" scope="prototype">
+    <property name="synchInstanceService" ref="org.hisp.dhis.sm.api.SynchInstanceService" />
+  </bean>
+
+  <bean id="org.hisp.dhis.sm.action.ShowAcceptanceListAction" class="org.hisp.dhis.sm.action.ShowAcceptanceListAction" scope="prototype">
+     <property name="synchInstanceService" ref="org.hisp.dhis.sm.api.SynchInstanceService" />
+     <property name="synchManager" ref="org.hisp.dhis.sm.api.SynchManager" />
+     <property name="dataElementService" ref="org.hisp.dhis.dataelement.DataElementService"/>
+  </bean>
+
+    <bean id="org.hisp.dhis.sm.action.SyncNewDataElements" class="org.hisp.dhis.sm.action.SyncNewDataElements" scope="prototype">
+        <property name="synchInstanceService" ref="org.hisp.dhis.sm.api.SynchInstanceService" />
+        <property name="synchManager" ref="org.hisp.dhis.sm.api.SynchManager" />
+        <property name="dataElementService" ref="org.hisp.dhis.dataelement.DataElementService"/>
+        <property name="dataElementCategoryService" ref="org.hisp.dhis.dataelement.DataElementCategoryService"/>
+        <property name="attributeService" ref="org.hisp.dhis.attribute.AttributeService"/>
+    </bean>
+
+  <bean id="org.hisp.dhis.sm.action.ApproveDEStatusAction" class="org.hisp.dhis.sm.action.ApproveDEStatusAction" scope="prototype">
+     <property name="dataElementSynchStatusService" ref="org.hisp.dhis.sm.api.DataElementSynchStatusService" />
+     <property name="synchInstanceService" ref="org.hisp.dhis.sm.api.SynchInstanceService" />
+     <property name="synchManager" ref="org.hisp.dhis.sm.api.SynchManager" />
+  </bean>
+
+  <bean id="org.hisp.dhis.sm.action.UpdateApproveDEStatusAction" class="org.hisp.dhis.sm.action.UpdateApproveDEStatusAction" scope="prototype">
+  </bean>
+
+</beans>

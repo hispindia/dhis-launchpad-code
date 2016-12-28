@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:batch="http://www.springframework.org/schema/batch"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   http://www.springframework.org/schema/beans/spring-beans-3.1.xsd 
+	   http://www.springframework.org/schema/task
+	   http://www.springframework.org/schema/task/spring-task.xsd
+	   http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-2.2.xsd
+	   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+	   http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd
+	   http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+	   http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+
+
+  <!--  Run Scheduler -->
+   	<task:scheduled-tasks scheduler="synchMetaDataScheduler">
+        <task:scheduled ref="org.hisp.dhis.sm.scheduler.action.RunSchedulerForApproveMetaDataAction" method="execute" cron="0 0 23 * * ?"/>
+   	</task:scheduled-tasks>
+	
+	<!--  <property name="cronExpression" value="0 0/1 * * * ?" /> <property name="cronExpression" cron="0 0 23 * * ?"/>  -->
+	<task:scheduler id="synchMetaDataScheduler" pool-size="1"/>
+
+    <bean id="org.hisp.dhis.sm.scheduler.action.RunSchedulerForApproveMetaDataAction"
+        class="org.hisp.dhis.sm.scheduler.action.RunSchedulerForApproveMetaDataAction"
+        scope="prototype">
+        <property name="dependencySynchStatusService" ref="org.hisp.dhis.sm.api.DependencySynchStatusService" />	
+    </bean>
+
+
+
+	<!-- Instance Configuration -->
+
+	<bean id="org.hisp.dhis.sm.action.ConfigureInstancesAction" class="org.hisp.dhis.sm.action.ConfigureInstancesAction"
+		scope="prototype">
+		<property name="synchInstanceService" ref="org.hisp.dhis.sm.api.SynchInstanceService" />
+	</bean>
+
+	<bean id="org.hisp.dhis.sm.action.ShowInstanceFormAction" class="org.hisp.dhis.sm.action.ShowInstanceFormAction"
+		scope="prototype">
+		<property name="synchInstanceService" ref="org.hisp.dhis.sm.api.SynchInstanceService" />
+	</bean>
+
+	<bean id="org.hisp.dhis.sm.action.AddInstanceAction" class="org.hisp.dhis.sm.action.AddInstanceAction"
+		scope="prototype">
+		<property name="synchInstanceService" ref="org.hisp.dhis.sm.api.SynchInstanceService" />
+	</bean>
+
+	<bean id="org.hisp.dhis.sm.action.ShowBusinessRulesFormAction"
+		class="org.hisp.dhis.sm.action.ShowBusinessRulesFormAction" scope="prototype">
+		<property name="synchInstanceService" ref="org.hisp.dhis.sm.api.SynchInstanceService" />
+		<property name="synchManager" ref="org.hisp.dhis.sm.api.SynchManager" />
+		<property name="userGroupService" ref="org.hisp.dhis.user.UserGroupService" />
+		<property name="instanceBusinessRulesService"
+			ref="org.hisp.dhis.sm.api.InstanceBusinessRulesService" />
+	</bean>
+
+	<bean id="org.hisp.dhis.sm.action.SetBusinessRulesAction" class="org.hisp.dhis.sm.action.SetBusinessRulesAction"
+		scope="prototype">
+		<property name="synchInstanceService" ref="org.hisp.dhis.sm.api.SynchInstanceService" />
+		<property name="instanceBusinessRulesService"
+			ref="org.hisp.dhis.sm.api.InstanceBusinessRulesService" />
+	</bean>
+
+	<bean id="org.hisp.dhis.sm.action.GetInstanceAction" class="org.hisp.dhis.sm.action.GetInstanceAction"
+		scope="prototype">
+		<property name="synchInstanceService" ref="org.hisp.dhis.sm.api.SynchInstanceService" />
+	</bean>
+
+	<bean id="org.hisp.dhis.sm.action.DeleteInstanceAction" class="org.hisp.dhis.sm.action.DeleteInstanceAction"
+		scope="prototype">
+		<property name="synchInstanceService" ref="org.hisp.dhis.sm.api.SynchInstanceService" />
+	</bean>
+
+	<bean id="org.hisp.dhis.sm.action.ShowAcceptanceListAction" class="org.hisp.dhis.sm.action.ShowAcceptanceListAction"
+		scope="prototype">
+		<property name="synchInstanceService" ref="org.hisp.dhis.sm.api.SynchInstanceService" />
+		<property name="synchManager" ref="org.hisp.dhis.sm.api.SynchManager" />
+		<property name="dataElementService" ref="org.hisp.dhis.dataelement.DataElementService" />
+		<property name="indicatorService" ref="org.hisp.dhis.indicator.IndicatorService" />
+		<property name="organisationUnitService"
+			ref="org.hisp.dhis.organisationunit.OrganisationUnitService" />
+	</bean>
+
+	<bean id="org.hisp.dhis.sm.action.SynchMetaDataResultAction"
+		class="org.hisp.dhis.sm.action.SynchMetaDataResultAction" scope="prototype">
+		<property name="synchManager" ref="org.hisp.dhis.sm.api.SynchManager" />
+		<property name="synchInstanceService" ref="org.hisp.dhis.sm.api.SynchInstanceService" />
+		<!--<property name="metaDataValidationCheck" ref="org.hisp.dhis.sm.util.MetaDataValidationCheck" 
+			/> -->
+	</bean>
+
+	<!-- Synchronisation Status page related beans -->
+
+	<bean id="org.hisp.dhis.sm.action.GetDataElementAction" class="org.hisp.dhis.sm.action.GetDataElementAction"
+		scope="prototype">
+		<property name="dataElementSynchStatusService"
+			ref="org.hisp.dhis.sm.api.DataElementSynchStatusService" />
+	</bean>
+
+	<bean id="org.hisp.dhis.sm.action.GetIndicatorAction" class="org.hisp.dhis.sm.action.GetIndicatorAction"
+		scope="prototype">
+		<property name="indicatorSynchStatusService"
+			ref="org.hisp.dhis.sm.api.IndicatorSynchStatusService" />
+	</bean>
+
+	<bean id="org.hisp.dhis.sm.action.GetOrgUnitAction" class="org.hisp.dhis.sm.action.GetOrgUnitAction"
+		scope="prototype">
+		<property name="organisationSynStatusService"
+			ref="org.hisp.dhis.sm.api.OrganisationUnitSynchStatusService" />
+	</bean>
+
+	<bean id="org.hisp.dhis.sm.action.GatValidationRuleAction" class="org.hisp.dhis.sm.action.GatValidationRuleAction"
+		scope="prototype">
+		<property name="validationRuleSynchStatusService"
+			ref="org.hisp.dhis.sm.api.ValidationRuleSynchStatusService" />
+	</bean>
+
+	<bean id="org.hisp.dhis.sm.action.ApproveDEStatusAction" class="org.hisp.dhis.sm.action.ApproveDEStatusAction"
+		scope="prototype">
+		<property name="dataElementSynchStatusService"
+			ref="org.hisp.dhis.sm.api.DataElementSynchStatusService" />
+	</bean>
+
+	<bean id="org.hisp.dhis.sm.action.ApproveIndicatorStatusAction"
+		class="org.hisp.dhis.sm.action.ApproveIndicatorStatusAction" scope="prototype">
+		<property name="indicatorSynchStatusService"
+			ref="org.hisp.dhis.sm.api.IndicatorSynchStatusService" />
+	</bean>
+
+	<bean id="org.hisp.dhis.sm.action.ApproveOrgUnitStatusAction"
+		class="org.hisp.dhis.sm.action.ApproveOrgUnitStatusAction" scope="prototype">
+		<property name="organisationUnitSynchStatusService"
+			ref="org.hisp.dhis.sm.api.OrganisationUnitSynchStatusService" />
+	</bean>
+
+	<bean id="org.hisp.dhis.sm.action.ApproveValidationRuleStatusAction"
+		class="org.hisp.dhis.sm.action.ApproveValidationRuleStatusAction"
+		scope="prototype">
+		<property name="ruleSynchStatusService"
+			ref="org.hisp.dhis.sm.api.ValidationRuleSynchStatusService" />
+	</bean>
+
+	<bean id="org.hisp.dhis.sm.action.UpdateApproveDEStatusAction"
+		class="org.hisp.dhis.sm.action.UpdateApproveDEStatusAction" scope="prototype">
+		<property name="synchManager" ref="org.hisp.dhis.sm.api.SynchManager" />
+		<property name="buissnessRuleService"
+			ref="org.hisp.dhis.sm.api.InstanceBusinessRulesService" />
+			
+		<property name="dependencySynchStatusService" ref="org.hisp.dhis.sm.api.DependencySynchStatusService" />	
+	</bean>
+
+	<bean id="org.hisp.dhis.sm.action.UpdateApproveIndicatorAction"
+		class="org.hisp.dhis.sm.action.UpdateApproveIndicatorAction" scope="prototype">
+		<property name="synchManager" ref="org.hisp.dhis.sm.api.SynchManager" />
+		<property name="buissnessRuleService"
+			ref="org.hisp.dhis.sm.api.InstanceBusinessRulesService" />
+		<property name="dependencySynchStatusService" ref="org.hisp.dhis.sm.api.DependencySynchStatusService" />	
+	</bean>
+
+	<bean id="org.hisp.dhis.sm.action.UpdateApproveOrgUnitAction"
+		class="org.hisp.dhis.sm.action.UpdateApproveOrgUnitAction" scope="prototype">
+		<property name="synchManager" ref="org.hisp.dhis.sm.api.SynchManager" />
+		<property name="buissnessRuleService"
+			ref="org.hisp.dhis.sm.api.InstanceBusinessRulesService" />
+	</bean>
+
+	<bean id="org.hisp.dhis.sm.action.UpdateApproveValidationRuleAction"
+		class="org.hisp.dhis.sm.action.UpdateApproveValidationRuleAction"
+		scope="prototype">
+		<property name="synchManager" ref="org.hisp.dhis.sm.api.SynchManager" />
+		<property name="buissnessRuleService"
+			ref="org.hisp.dhis.sm.api.InstanceBusinessRulesService" />
+		<property name="dependencySynchStatusService" ref="org.hisp.dhis.sm.api.DependencySynchStatusService" />	
+	</bean>
+
+	<bean id="org.hisp.dhis.sm.action.SyncStatusFormDesignAction"
+		class="org.hisp.dhis.sm.action.SyncStatusFormDesignAction" scope="prototype">
+		<property name="validationRuleSynchStatusService"
+			ref="org.hisp.dhis.sm.api.ValidationRuleSynchStatusService" />
+	</bean>
+
+	<!-- Meta Data Synch Log Report form -->
+	<bean id="org.hisp.dhis.sm.action.MetaDataSynchLogReportFormAction"
+		class="org.hisp.dhis.sm.action.MetaDataSynchLogReportFormAction"
+		scope="prototype">
+		<property name="synchInstanceService" ref="org.hisp.dhis.sm.api.SynchInstanceService" />
+	</bean>
+
+	<!-- Load Meta Data Log Report -->
+	<bean
+		id="org.hisp.dhis.sm.action.GenerateMetaDataSynchLogReportResultAction"
+		class="org.hisp.dhis.sm.action.GenerateMetaDataSynchLogReportResultAction"
+		scope="prototype">
+		<property name="synchInstanceService" ref="org.hisp.dhis.sm.api.SynchInstanceService" />
+	</bean>
+	<bean id="org.hisp.dhis.sm.action.TestMetaData" class="org.hisp.dhis.sm.action.TestMetaData"
+		scope="prototype">
+	</bean>
+
+</beans>

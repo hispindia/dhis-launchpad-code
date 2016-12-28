@@ -1,0 +1,308 @@
+<link href="./css/bootstrap.css" rel="stylesheet">
+<script src="./js/bootstrap.js" type="text/javascript"></script>
+
+<!-- 
+<script type="text/javascript"> 
+
+    (function ($) {
+
+        $.fn.selectAllRows = function (callerSettings) {
+            var settings;
+            var headerCheckbox;
+            var columnCheckboxes;
+
+            settings = $.extend({
+                column: 'first',
+                selectTip: 'Click to Select All',
+                unselectTip: 'Click to Un-Select All'
+            }, callerSettings || {});
+
+            if (isNaN(settings.column)) {
+                headerCheckbox = $("thead tr th:" + settings.column + "-child input:checkbox", this);
+                columnCheckboxes = $("tbody tr td:" + settings.column + "-child input:checkbox", this);
+            }
+            else {
+                headerCheckbox = $("thead tr th:nth-child(" + settings.column + ") input:checkbox", this);
+                columnCheckboxes = $("tbody tr td:nth-child(" + settings.column + ") input:checkbox", this);
+            }
+
+            headerCheckbox.attr("title", settings.selectTip);
+
+            headerCheckbox.click(function () {
+                var checkedStatus = this.checked;
+
+                columnCheckboxes.each(function () {
+                    this.checked = checkedStatus;
+                });
+
+                if (checkedStatus == true) {
+                    $(this).attr("title", settings.unselectTip);
+                }
+                else {
+                    $(this).attr("title", settings.selectTip);
+                }
+            });
+
+            return $(this);
+        };
+    })(jQuery);
+</script>
+-->
+<script type="text/javascript">
+
+
+
+    var completeDEList = [];
+
+    var selectedDEList = [];
+
+
+    $(document).ready(function () {
+
+        #foreach( $dataElement in $newDataElements )
+            var deItem = new Object();
+            deItem.id = '$dataElement.getUid()';
+            deItem.name = '$dataElement.getName()';
+            deItem.shortName = '$dataElement.getShortName()';
+            deItem.type = '$dataElement.getType()';
+            deItem.ccid =  '$dataElement.getCategoryCombo().uid';
+            completeDEList[deItem.UID] = (deItem);
+        #end
+
+        $('#chckHead').click(function () {
+
+            if (this.checked == false) {
+                $('.chcktbl:checked').attr('checked', false);
+            }
+            else {
+                $('.chcktbl:not(:checked)').attr('checked', true);
+
+            }
+        });
+
+        $('#chckHead2').click(function () {
+
+            if (this.checked == false) {
+                $('.chcktbl:checked').attr('checked', false);
+            }
+            else {
+                $('.chcktbl:not(:checked)').attr('checked', true);
+
+            }
+        });
+
+        $('#syncButton').click(function () {
+
+            var selectedDEUIDList = [];
+
+            $('.chcktbl:checked').each(function( index ) {
+
+                console.log( index + ": " + $( this).attr('id'));
+
+                selectedDEUIDList.push($(this).attr('id'));
+
+            });
+
+            for(var dataElementUID in selectedDEUIDList)
+            {
+                selectedDEList.push(completeDEList[selectedDEUIDList[dataElementUID]]);
+            }
+
+
+            $.ajax({
+                type: "Post",
+                url: "saveAcceptanceDataElement.action",
+                data : JSON.stringify(selectedDEList),
+                dataType:"json",
+                contentType: "application/json; charset=utf-8",
+            });
+
+            alert(selectedDEUIDList);
+
+            var dataElementsUIDs = selectedDEUIDList;
+
+            //$('#dataElementsUIDs').setAttribute("value", dataElementsUIDs);
+
+            $('#dataElementsUIDs').val(dataElementsUIDs);
+
+            $('#acceptanceForm').submit();
+
+
+        });
+    });
+</script>
+
+<div class="row">
+    <ul class="pagination">
+        <li><a class="currentDashboard" href="#" style="font-weight: bold; background-color: #d3d3d3">Dataelements</a>
+        </li>
+        <li><a href="#" style="font-weight: bold">Organisation Units</a></li>
+        <li><a href="#" style="font-weight: bold">Indicators</a></li>
+        <li><a href="#" style="font-weight: bold">Validation Rules</a></li>
+        <li><a href="#" style="font-weight: bold">&laquo;</a></li>
+        <li><a href="#" style="font-weight: bold">&raquo;</a></li>
+    </ul>
+</div>
+
+<<<<<<< TREE
+
+<input type="hidden" id="dataElementList" name="dataElementList" value="$!dataElements">
+<input type="hidden" id="metaData" name="metaData" value="$!metaData">
+
+<div id="menuBar" class="row">
+    <div style="float: left">
+        <ul class="nav nav-pills">
+            <li class="active"><a href="#home" data-toggle="pill" style="font-weight: bold">New</a></li>
+            <li><a href="#profile" data-toggle="pill" style="font-weight: bold">Updates</a></li>
+        </ul>
+    </div>
+    <div style="float: right">
+        <button type="button" class="btn-default" id="syncButton" >Sync Selected</button>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div id="myTabContent" class="tab-content">
+
+        <div id="home" class="tab-pane fade active in">
+            <table class="listTable" id="instanceList">
+                <thead>
+                <tr>
+                    <th><input type="checkbox" id="chckHead"/></th>
+                    <th>$i18n.getString( "name" )</th>
+                    <th>Short-Name</th>
+                    <th>Type</th>
+                    <th>Category Combo</th>
+                </tr>
+                </thead>
+                <tbody id="list">
+                    #foreach( $dataElement in $dataElements )
+                    <tr id="tr${dataElement.id}" data-id="$!dataElement.id" data-uid="$!dataElement.uid"
+                        data-type="ApprovalDataElements" data-name="$encoder.htmlEncode( $!dataElement.name )">
+                        <td>
+                            <input type="checkbox" class="chcktbl" id="${dataElement.uid}"/>
+                        </td>
+                        <td>$encoder.htmlEncode( $dataElement.getName() )</td>
+                        <td>$encoder.htmlEncode( $dataElement.getShortName() )</td>
+                        <td>$encoder.htmlEncode( $dataElement.getType() )</td>
+                        <td>$encoder.htmlEncode( $dataElement.getCategoryCombo().name )</td>
+                    </tr>
+                    #end
+                </tbody>
+            </table>
+        </div>
+        <div id="profile" class="tab-pane fade">
+            <table class="listTable" id="instanceList">
+                <thead>
+                <tr>
+                    <th><input type="checkbox" id="chckHead2"/></th>
+                    <th>$i18n.getString( "name" )</th>
+                    <th>Short-Name</th>
+                    <th>Type</th>
+                    <th>Category Combo</th>
+                </tr>
+                </thead>
+                <tbody id="list">
+                    #foreach( $dataElement in $dataElements )
+                    <tr id="tr${dataElement.id}" data-id="$!dataElement.id" data-uid="$!dataElement.uid"
+                        data-type="ApprovalDataElements" data-name="$encoder.htmlEncode( $!dataElement.name )">
+                        <td>
+                            <input type="checkbox" class="chcktbl" id="${dataElement.uid}"/>
+                        </td>
+                        <td>$encoder.htmlEncode( $dataElement.getName() )</td>
+                        <td>$encoder.htmlEncode( $dataElement.getShortName() )</td>
+                        <td>$encoder.htmlEncode( $dataElement.getType() )</td>
+                        <td>$encoder.htmlEncode( $dataElement.getCategoryCombo().name )</td>
+                    </tr>
+                    #end
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<form id="acceptanceForm" method="post" action="syncDataElements.action">
+
+    <div id="menuBar" class="row">
+        <div style="float: left">
+            <ul class="nav nav-pills">
+                <li class="active"><a href="#home" data-toggle="pill" style="font-weight: bold">New</a></li>
+                <li><a href="#profile" data-toggle="pill" style="font-weight: bold">Updates</a></li>
+            </ul>
+        </div>
+        <div style="float: right">
+            <button type="button" class="btn-default" id="syncButton" >Sync Selected</button>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div id="myTabContent" class="tab-content">
+
+            <div id="home" class="tab-pane fade active in">
+                <table class="listTable" id="instanceList">
+                    <thead>
+                    <tr>
+                        <th><input type="checkbox" id="chckHead"/></th>
+                        <th>$i18n.getString( "name" )</th>
+                        <th>Short-Name</th>
+                        <th>Type</th>
+                        <th>Category Combo</th>
+                    </tr>
+                    </thead>
+                    <tbody id="list">
+                        #foreach( $dataElement in $newDataElements )
+                        <tr id="tr${dataElement.id}" data-id="$!dataElement.id" data-uid="$!dataElement.uid"
+                            data-type="ApprovalDataElements" data-name="$encoder.htmlEncode( $!dataElement.name )">
+                            <td>
+                                <input type="checkbox" class="chcktbl" id="${dataElement.uid}"/>
+                            </td>
+                            <td>$encoder.htmlEncode( $dataElement.getName() )</td>
+                            <td>$encoder.htmlEncode( $dataElement.getShortName() )</td>
+                            <td>$encoder.htmlEncode( $dataElement.getType() )</td>
+                            <td>$encoder.htmlEncode( $dataElement.getCategoryCombo().name )</td>
+                        </tr>
+                        #end
+                    </tbody>
+                </table>
+            </div>
+            <div id="profile" class="tab-pane fade">
+                <table class="listTable" id="instanceList">
+                    <thead>
+                    <tr>
+                        <th><input type="checkbox" id="chckHead2"/></th>
+                        <th>$i18n.getString( "name" )</th>
+                        <th>Short-Name</th>
+                        <th>Type</th>
+                        <th>Category Combo</th>
+                    </tr>
+                    </thead>
+                    <tbody id="list">
+                        #foreach( $dataElement in $updatedDataElements )
+                        <tr id="tr${dataElement.id}" data-id="$!dataElement.id" data-uid="$!dataElement.uid"
+                            data-type="ApprovalDataElements" data-name="$encoder.htmlEncode( $!dataElement.name )">
+                            <td>
+                                <input type="checkbox" class="chcktbl" id="${dataElement.uid}"/>
+                            </td>
+                            <td>$encoder.htmlEncode( $dataElement.getName() )</td>
+                            <td>$encoder.htmlEncode( $dataElement.getShortName() )</td>
+                            <td>$encoder.htmlEncode( $dataElement.getType() )</td>
+                            <td>$encoder.htmlEncode( $dataElement.getCategoryCombo().name )</td>
+                        </tr>
+                        #end
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <input name="dataElementsUIDs" id="dataElementsUIDs" type="hidden">
+
+    <!--
+    <textarea name="metaDataString" id="metaDataString"></textarea>
+    -->
+
+</form>
