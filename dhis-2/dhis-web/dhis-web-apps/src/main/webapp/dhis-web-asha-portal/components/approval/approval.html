@@ -1,0 +1,47 @@
+<div class="modal-header page">
+    <h3>{{'confirmation' | translate }}</h3>
+</div>
+<div class="modal-body page">    
+    <form name="form.approvalForm" role="form" novalidate>
+        <h4>{{'approval_confirmation' | translate}}   <strong>{{event.latestApprovalStatus}}</strong></h4>
+        <div ng-if="event.latestApprovalStatus !== 'Approved'">            
+            <div class="form-group">
+                <textarea rows="3"
+                    placeholder="{{'comment'| translate}}"
+                    ng-model="event.comment"                                        
+                    ng-required='true'
+                    ng-minlength="3"
+                    name="approvalMessage"                        
+                    class="form-control">
+                </textarea>
+                <span ng-show="form.approvalForm.approvalMessage.$invalid && form.approvalForm.approvalMessage.$dirty || form.approvalForm.submitted && form.approvalForm.approvalMessage.$invalid" class="required">{{'required' | translate}}</span>
+            </div>
+        </div>
+    </form>
+    <div ng-if="event.notes.length > 0">
+        <h4>{{'approval_comments' | translate}}</h4>
+        <table class="table table-striped dhis2-table-hover table-bordered">
+            <tr ng-repeat="note in event.notes">
+                <td class="overflow-ellipsis">
+                    <d2-pop-over content="note" template="popover.html" details="{{'details'| translate}}">
+                        <div>{{note.value}}</div>
+                    </d2-pop-over>
+                    <script type="text/ng-template" id="popover.html">
+                        <p>{{content.value}}</p>
+                        <hr>
+                        <p><strong>{{'created_by' | translate}}: </strong>{{content.storedBy}}</p>
+                        <p><strong>{{'date' | translate}}: </strong>{{content.storedDate}}</p>                           
+                    </script>
+                </td> 
+            </tr>
+        </table>
+    </div>
+    
+    <table class="table table-striped dhis2-table-hover">
+        
+    </table>
+</div>
+<div class="modal-footer page">        
+    <button class="btn btn-primary" data-ng-click="save()">{{'proceed'| translate}}</button>
+    <button class="btn btn-default" data-ng-click="cancel()">{{'cancel'| translate}}</button>
+</div>

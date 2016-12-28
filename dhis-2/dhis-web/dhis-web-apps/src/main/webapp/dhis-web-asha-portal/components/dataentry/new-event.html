@@ -1,0 +1,64 @@
+<div class="modal-header page">
+    <h3>{{'new_event'| translate}} - {{dhis2Event.name}}</h3>
+</div>
+<div class="modal-body page">
+    <form name="eventCreationForm" class="form-horizontal" role="form" novalidate>
+        <div ng-if="!selectedStage.periodType">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">{{'due_date'| translate}}</label>
+                <div class="col-sm-10">
+                    <input type="text" 
+                           class="form-control" 
+                           name="dueDate"
+                           placeholder="{{dhis2CalendarFormat.keyDateFormat}}" 
+                           ng-rquired="true" 
+                           d2-date
+                           ng-model="dhis2Event.dueDate">
+                    <span ng-if="dueDateInvalid" class="error">{{'required'| translate}}</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">{{dhis2Event.reportDateDescription}}</label>
+                <div class="col-sm-10">
+                    <input type="text" 
+                           class="form-control" 
+                           name="eventDate"
+                           placeholder="{{dhis2CalendarFormat.keyDateFormat}}" 
+                           ng-rquired="false" 
+                           d2-date
+                           ng-model="dhis2Event.eventDate">
+                    <span ng-if="eventDateInvalid" class="error">{{'required'| translate}}</span>
+                </div>
+            </div>
+        </div>
+        <div ng-if="selectedStage.periodType">
+            <table class="table table-borderless table-striped">                
+                <tr>
+                    <td style="vertical-align: middle;" class="col-sm-2">
+                        {{'period'| translate}}
+                    </td>
+                    <td class="col-sm-10">
+                        <select ng-model="selectedPeriod"
+                                class="form-control"
+                                ng-options="period.name for period in periods" 
+                                ng-change="applyPeriod(selectedPeriod)"
+                                ng-required="true" 
+                                ng-disabled="periods.length < 1">
+                            <option value="">{{periods.length > 0 ? 'please_select' : 'empty'| translate}}</option>
+                        </select>
+                        <span class="pull-left">
+                            <button type="button" class="btn btn-default" ng-disabled="periodOffset < lowestOffset+1" ng-click="getPeriods('PRV')" title="{{'previous_periods'| translate}}"><i class="fa fa-caret-left"></i></button>
+                        </span>
+                        <span class="pull-right">
+                            <button type="button" class="btn btn-default" ng-disabled="periodOffset > -1" ng-click="getPeriods('NXT')" title="{{'next_periods'| translate}}"><i class="fa fa-caret-right"></i></button>
+                        </span>
+                    </td>
+                </tr>
+            </table>           
+        </div>
+    </form>  
+</div>
+<div class="modal-footer page">        
+    <button class="btn btn-primary" data-ng-click="save()">{{'save'| translate}}</button>
+    <button class="btn btn-default" data-ng-click="cancel()">{{'cancel'| translate}}</button>
+</div>

@@ -1,0 +1,60 @@
+<div class="alert alert-warning align-center" ng-if="!showAddNewServiceDiv && approvalAuthorityLevel <= 0">{{'lacking_approval_authority'| translate}}</div>
+<span class="vertical-spacing">
+    <span>        
+        <button type="button" class="btn btn-success" ng-click="generatePaymentSlip()" ng-if="!showAddNewServiceDiv && servicesProvided.length > 0">{{'get_verification_slip'| translate}}</button>
+    </span>
+    <!--<span class="pull-right">
+        <button type="button" class="btn btn-warning" ng-click="approveAll()" ng-disabled="approvalAuthorityLevel <= 0" ng-if="!showAddNewServiceDiv && approvalAuthorityLevel > 0">{{'approve_all'| translate}}</button>
+        <button type="button" class="btn btn-danger" ng-click="rejectAll()" ng-disabled="approvalAuthorityLevel <= 0" ng-if="!showAddNewServiceDiv && approvalAuthorityLevel > 0">{{'reject_all'| translate}}</button>
+    </span>-->
+</span>
+<table class="table table-bordered table-compact">
+    <thead>                        
+        <tr>
+            <th class="active">
+                {{'program' | translate}}
+            </th>
+            <th class="active" ng-if="gridColumn.show" ng-repeat="gridColumn in serviceGridColumns">
+                {{gridColumn.name}}
+            </th>
+            <th class="active">
+                {{dataElementForCurrentApprovalStatus.name}}
+            </th>
+            <th class="active">
+                {{'latest_approval_status'| translate}}
+            </th>
+        </tr>                        
+    </thead>
+    <tbody ng-repeat="program in beneficiaryPrograms | orderBy: 'name'" ng-if="(servicesProvided | filter: {program: program.id}).length > 0">
+        <tr ng-repeat="service in servicesProvided | filter: {program: program.id} | orderBy: ['trackedEntityInstance', 'serviceName']">
+            <td class="bold" rowspan="{{(servicesProvided | filter: {program: program.id}).length}}" ng-if="$index === 0">
+                {{program.name}}
+            </td>
+            <td ng-if="gridColumn.show" ng-repeat="gridColumn in serviceGridColumns">                                                
+                <span ng-if="gridColumn.id !== dataElementForServiceOwner.id && gridColumn.id !== dataElementForPaymentSanctioned.id && gridColumn.id !== dataElementForCurrentApprovalLevel.id">
+                    {{service[gridColumn.id]}}
+                </span>
+            </td>
+            <td>
+                {{service.currentApprovalStatus}}
+                <!-- visible when comment exisits -->
+                <span class="pull-right" ng-if="service.notes.length > 0" >                                
+                    <a href ng-click="showNotes(service)" title="{{'approval_comments'| translate}}"><i class="fa fa-info-circle"></i></a>
+                </span>    
+                <!-- visible when comment exisits -->
+            </td>
+            <td>
+                <select ng-model="service.latestApprovalStatus"
+                        class="form-control-trimmed"
+                        ng-options="option.name as option.name for option in optionSets[dataElementForCurrentApprovalStatus.optionSet.id].options" 
+                        ng-change="saveServiceApproval(service)"
+                        ng-disabled="service[dataElementForPaymentSanctioned.id] || (approvalAuthorityLevel <= 0 || approvalAuthorityLevel < service[dataElementForCurrentApprovalLevel.id])">
+                    <option value="">{{'[select]'| translate}}</option>
+                </select>
+            </td>
+            <td class="mouse-pointer" ng-click="deleteService(service)" title="{{'delete_row'| translate}}">
+                <i class="fa fa-trash-o alert-danger bold"></i>
+            </td>
+        </tr>
+    </tbody>
+</table>

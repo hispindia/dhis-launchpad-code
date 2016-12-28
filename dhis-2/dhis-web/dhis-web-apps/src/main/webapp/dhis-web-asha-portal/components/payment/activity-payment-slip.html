@@ -1,0 +1,38 @@
+<div class="modal-header page">
+    <h2 class="align-center bold">{{approvingGroup}} {{'verification_slip'| translate}}</h2>
+</div>
+<div class="modal-body page">    
+    <div ng-include="'components/payment/payment-slip-header.html'"></div>
+    <div class="row col-sm-12">
+        <table class="table table-compact table-bordered">
+            <thead>
+                <tr>
+                    <th class="active">
+                        {{'program' | translate}}
+                    </th>
+                    <th class="active" ng-repeat="header in paymentTableHeaders"  ng-if="header.id !== 'program'">
+                        {{header.value}}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="program in programs | orderBy: 'name'" ng-if="paymentReport[program.id].hasData">
+                    <td>
+                        {{paymentReport[program.id].programName}}
+                    </td>
+                    <td ng-repeat="header in paymentTableHeaders" ng-if="header.id !== 'program'">
+                        {{paymentReport[program.id][header.id]}}
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+    
+    <div ng-include="'components/payment/payment-slip-footer.html'"></div>
+    
+</div>
+<div class="modal-footer page hideInPrint">        
+    <button class="btn btn-primary" onclick="javascript:window.print()">{{'print'| translate}}</button>
+    <button class="btn btn-default" data-ng-click="close()">{{'close'| translate}}</button>
+</div>
