@@ -1,0 +1,11 @@
+
+<h2>Import Summary</h2>
+
+#if($importDetails)
+<div>$importDetails</div>
+   #else
+    <div><h4> There is nothing to synchronised, hence No synchronisation has done </h4> </div>
+#end
+
+
+

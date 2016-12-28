@@ -1,0 +1,210 @@
+<style>
+    #overlay {
+    z-index:9998;
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    width:100%;
+    background:#000;
+    opacity:0.45;
+    -moz-opacity:0.45;
+    filter:alpha(opacity=45);
+    visibility:hidden;   
+    }
+    #overlayImg{ width: 50px; height: 50px; z-index: 9999; position: absolute; left:50%}
+</style>
+<div id="overlay">
+    <div id="overlayImg"><img  width="50" height="50" src="images/ajax-loader.gif" style="margin:auto;position:fixed;top: 50%;left: 50%;"/></div>
+</div>
+
+<script type="text/javascript">
+
+function generateMetaDataLogReport()
+{
+   	//alert("validation");
+	
+	hideById('loadMetaDataLogReoprtDiv1');
+	
+    var instanceIdList = document.getElementById("instanceId");
+    var instanceIdIndex = instanceIdList.selectedIndex;
+    
+	var instanceId = $( '#instanceId' ).val();
+	
+	var selStartdate = $( '#selectedStartDate' ).val();
+	var selEnddate = $( '#selectedEndDate' ).val();
+	
+	var date1 = Date.parse($("#selectedStartDate").val());
+	var date2 = Date.parse($("#selectedEndDate").val());
+	
+	/*
+    if( instanceIdList.options[instanceIdIndex].value == null || instanceIdList.options[instanceIdIndex].value== "" ) 
+	{ 
+		showWarningMessage( "Please Select Instance" );
+		return false; 
+	}
+    */
+	
+	if( selStartdate == null || selStartdate == '' || selStartdate == "" ) 
+	{ 
+		showWarningMessage( "Please Select Start Date" );
+		return false; 
+	}
+	
+	else if( selEnddate == null || selEnddate == '' || selEnddate == "" ) 
+	{ 
+		showWarningMessage( "Please Select End Date" );
+		return false; 
+	}
+	
+	else if (date1 > date2) 
+	{
+		showWarningMessage("Start date greater than end date");
+		return false; 
+	}	
+	
+	
+	$( '#reportButton' ).attr( 'disabled', true );
+
+    showLoader();
+	
+	var url = "generateMetaDataLogSynchReportResult.action" + "?instanceId=" + instanceId + "&selectedStartDate=" + selStartdate + "&selectedEndDate=" + selEnddate;
+	
+	
+	$( "#loadMetaDataLogReoprtDiv1" ).load( url, function()
+    {
+        hideLoader();
+		showById('loadMetaDataLogReoprtDiv1');
+
+        //$( '#reportButton').removeAttr( 'disabled' );
+    } );
+	
+	
+	/*
+	var completeUrl = window.location.protocol + "//" + window.location.host + "/" +window.location.pathname.split("/")[1] + "/api";
+  
+	document.getElementById("thisUrl").value = completeUrl;
+	
+	MetaDataSynchLogReport.xml?cleintURL=" + completeUrl + "&startDate=" + selStartdate + "&endDate= " + selEnddate 
+	*/
+	
+	
+	/*
+	contentDiv = 'loadMetaDataLogReoprtDiv1';
+	isAjax = true;
+	
+    document.getElementById('overlay').style.visibility = 'visible';
+	alert( "inside report ");
+	jQuery('#loadMetaDataLogReoprtDiv1').load('generateMetaDataLogSynchReportResult.action',
+		{
+			instanceId:instanceId,
+			selectedDate:seldate
+		}, function()
+		{
+			showById('loadMetaDataLogReoprtDiv1');
+			//document.getElementById('overlay').style.visibility = 'hidden';
+		});
+		
+	*/
+}
+
+</script>
+
+<table>
+
+	<tr>
+		<th colspan="2">$i18n.getString( "meta_data_synch_log_report" ) &nbsp;</th>
+		<!--<input type="hidden" name="thisUrl" id="thisUrl" >-->
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>		
+	
+	<tr id='instanceListTrId' #if( $!instanceType == "S" ) style="display:none" #else #end>
+		<td>$i18n.getString( "instance" )</td>
+		<td>
+			<select id="instanceId" name="instanceId" style="width:137px" onchange="generateMetaDataLogReport();">
+				<option value="">[$i18n.getString( "please_select" )]</option>
+				#foreach ( $instance in $instances )
+					<option value="$instance.id">$encoder.htmlEncode( $!instance.name )</option>
+				#end				
+			</select>
+		</td>
+	</tr>		
+	
+	<tr>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	
+	<tr>
+		<td>$i18n.getString( "start_date" )</td>
+		
+		<td ><input type="text" id="selectedStartDate" name="selectedStartDate" onchange="generateMetaDataLogReport();"/>
+			<script type="text/javascript">
+				datePickerValid( 'selectedStartDate' );
+			</script>
+		</td>
+	</tr>
+
+	<tr>
+		<td>$i18n.getString( "end_date" )</td>
+		
+		<td ><input type="text" id="selectedEndDate" name="selectedEndDate" onchange="generateMetaDataLogReport();"/>
+			<script type="text/javascript">
+				datePickerValid( 'selectedEndDate' );
+			</script>
+		</td>
+	</tr>	
+	
+	
+	
+	<!--
+	<tr>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td><input type="button" id="reportButton" type="button" value="$i18n.getString( 'get_report' )"  style="width:120px" onclick="generateMetaDataLogReport();" /></td>
+		<td>
+			<input type="button"  value="$i18n.getString( 'Cancel' )" onclick="window.location.href='index.action'" style="width:120px"/>
+		</td>
+	</tr>
+	-->
+</table>
+
+#parse( "dhis-web-commons/loader/loader.vm" )
+
+<div id='loadMetaDataLogReoprtDiv1'></div>
+
+
+<script type="text/javascript">
+
+/*
+jQuery(document).ready(function(){	
+	hideUnhideInstanceList( );
+});
+
+function hideUnhideInstanceList( )
+{
+	
+	var instanceIdListLength = document.getElementById("instanceId").length;;
+	
+	//alert( instanceIdListLength );
+	
+	if( instanceIdListLength == 2 )
+	{
+		hideById('instanceListTrId');
+	}
+	
+	else
+	{
+		showById('instanceListTrId');
+	}
+	
+}
+*/
+
+
+</script>

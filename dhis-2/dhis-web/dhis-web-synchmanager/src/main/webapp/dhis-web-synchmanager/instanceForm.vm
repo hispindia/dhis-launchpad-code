@@ -1,0 +1,57 @@
+
+<script type="text/javascript" src="javascript/addInstanceConfig.js"></script>
+
+
+#if( $update )
+<h3>$i18n.getString( "edit_instance" )</h3>
+#else
+<h3>$i18n.getString( "create_new_instance" )</h3>
+#end
+
+<form id="addInstanceForm" action="addInstance.action" method="post" class="inputForm">
+
+#if( $update )
+    <input type="hidden" id="instanceId" name="instanceId" value="$!instance.id"/>
+#end
+
+<input type="hidden" id="synchType" name="synchType" value="$!synchType"/>
+<table>
+    <tr>
+        <th colspan="2">$i18n.getString( "details" )</th>
+    </tr>
+    <tr>
+        <td><label for="name">$i18n.getString( "name" ) <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+        <td><input type="text" id="name" name="name" value="$!encoder.htmlEncode( $!instance.name )"  class="{validate:{required:true}}"></td>
+    </tr>
+    <tr>
+        <td><label for="url">$i18n.getString( "url" )  <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+        <td><input type="text" id="url" name="url" value="$!encoder.htmlEncode( $!instance.url )" class="{validate:{required:true}}"></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td><label for="message" style="color:gray"> (ex: http://192.168.0.194:8090/dhis/api )  </label></td>
+    </tr>
+    <tr>
+        <td><label for="userid">$i18n.getString( "userid" )  <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+        <td><input type="text" id="userId" name="userId" value="$!encoder.htmlEncode( $!instance.userId )" class="{validate:{required:true}}"></td>
+    </tr>
+    <tr>
+        <td><label for="password">$i18n.getString( "password" )  <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+        <td><input type="password" id="password" name="password" class="{validate:{required:true}}"></td>
+    </tr>
+</table>    
+
+<p>
+    #if( $update )
+    <input type="submit" value="$i18n.getString( 'save' )" style="width:10em" />
+    #else
+    <input type="submit" value="$i18n.getString( 'add' )" style="width:10em" />
+    #end
+    <input type="button" value="$i18n.getString( 'cancel' )" onclick="window.location.href='instanceList.action?synchType=meta-data'" style="width:10em" />
+    </p>
+</form>
+	
+<script type="text/javascript">
+	var i18n_field_is_required = '$encoder.jsEscape( $i18n.getString( "field_is_required" ) , "'") ';
+	var isSubmit = true;
+</script>

@@ -1,0 +1,8 @@
+<!--<h3>$i18n.getString( "dhis-web-data-synch" )</h3>-->
+<h3>Synchronisation of DHIS2 Instances</h3>
+
+<ul class="introList">
+    ##introListImgItem( "configInstance.action?synchType='meta-data'" "configuration" "configuration" )
+    ##introListImgItem( "#" "synch_by_pull" "synch_by_pull" )
+    ##introListImgItem( "#" "synch_by_push" "synch_by_push" )
+</ul>

@@ -1,0 +1,10 @@
+{ "instance": 
+  {    
+    "name": "$!encoder.jsonEncode( ${instance.name} )",
+    "url": "$!encoder.jsonEncode( ${instance.url} )",
+    "userId": "$!encoder.jsonEncode( ${instance.userId} )",
+    "password":"$!encoder.jsonEncode( ${instance.password} )",
+    "lastUpdated":"$!encoder.jsonEncode( ${instance.lastUpdated} )",
+    "uid":"$!encoder.jsonEncode( ${instance.uid} )"    
+  }
+}

@@ -1,0 +1,18 @@
+
+<h2>Approve Synchornisation Summary</h2>
+
+<div> $statusMessage </div>
+
+<br>
+<br>
+
+<script type="text/javascript" >
+
+function back(){
+history.go(-1);
+}
+
+</script>
+
+
+<input action="action" type="button" value="Click to Back" onclick="back();" />

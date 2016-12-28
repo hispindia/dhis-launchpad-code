@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="org.hisp.dhis.dxf2.sm.api">
+  <class name="ValidationRuleSynchStatus" table="validationrulesynchstatus">
+
+    <composite-id>
+      <key-many-to-one name="validationRule" class="org.hisp.dhis.validation.ValidationRule" column="validationruleid" foreign-key="fk_validationrulesynchstatus_validationruleid" />
+      <key-many-to-one name="instance" class="org.hisp.dhis.dxf2.sm.api.SynchInstance" column="instanceid" foreign-key="fk_validationrulesynchstatus_instanceid" />      
+    </composite-id>
+    
+    <property name="rememberApproveStatus" column="isapproveneeded"  />
+
+    <property name="lastUpdated" column="lastupdated" />
+
+    <property name="approveStatus" column="approvestatus" />
+
+    <property name="approvedDate" column="approveddate" />
+
+    <property name="acceptStatus" column="acceptstatus" />
+    
+    <property name="acceptedDate" column="accepteddate" />
+    
+    <property name="status" column="status" />
+    
+    <property name="validationRuleStatus" column="validationrulestatus" /><!-- either new or update -->
+
+  </class>
+</hibernate-mapping>

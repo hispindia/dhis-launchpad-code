@@ -1,0 +1,300 @@
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+
+        $('.ORGmulti-select, .ORGhead_multiselect, .ORGallselect, .HeadORGallselect').multiselect({
+            includeSelectAllOption: true,
+            maxHeight: 150,
+            numberDisplayed: 1,
+            buttonWidth: '150px'
+        });
+
+        $('.chckHeadOU').click(function(event) {  //on click
+            if(this.checked) { // check select status
+                $('.chcktblOU').each(function() { //loop through each checkbox
+                    this.checked = true;  //select all checkboxes with class "checkbox1"
+                });
+            }else{
+                $('.chcktblOU').each(function() { //loop through each checkbox
+                    this.checked = false; //deselect all checkboxes with class "checkbox1"
+                });
+            }
+        });
+
+        $('.chckHeadOUApprove').click(function(event) {  //on click
+            if(this.checked) { // check select status
+                $('.chcktblOUApprove').each(function() { //loop through each checkbox
+                    this.checked = true;  //select all checkboxes with class "checkbox1"
+                });
+            }else{
+                $('.chcktblOUApprove').each(function() { //loop through each checkbox
+                    this.checked = false; //deselect all checkboxes with class "checkbox1"
+                });
+            }
+        });
+
+      /*  $('.ORGhead_multiselect').on('change', function() {
+
+            $('.ORGhead_multiselect :selected').each(function(i, selected){
+                var index = $(selected).index() + 1;
+
+                $('.ORGmulti-select').multiselect('select', [index]);
+            });
+
+            $('.ORGhead_multiselect :not(:selected)').each(function(i, selected){
+                var index = $(selected).index() + 1;
+
+                $('.ORGmulti-select').multiselect('deselect', [index]);
+            });
+        });*/
+
+        $('#selectAllOrg').change(function() {  //on click
+
+            $( "#selectAllOrg option:selected" ).each(function() {
+                var value = $(this).val();
+
+                $('.checkbox').find('input[type=checkbox]').each(function() {
+                    if($(this).val() === value){
+                        this.checked = true;
+                    }
+                });
+            });
+
+            $( "#selectAllOrg  option:not(:selected)").each(function() {
+                var value = $(this).val();
+
+                $('.checkbox').find('input[type=checkbox]').each(function() {
+                    if($(this).val() === value){
+                        this.checked = false;
+                    }
+                });
+            });
+        });
+
+        $('#Sync_selectAllOrg').change(function() {  //on click
+
+            $( "#Sync_selectAllOrg option:selected" ).each(function() {
+                var value = $(this).val();
+
+                $('.checkbox').find('input[type=checkbox]').each(function() {
+                    if($(this).val() === value){
+                        this.checked = true;
+                    }
+                });
+            });
+
+            $( "#Sync_selectAllOrg  option:not(:selected)").each(function() {
+                var value = $(this).val();
+
+                $('.checkbox').find('input[type=checkbox]').each(function() {
+                    if($(this).val() === value){
+                        this.checked = false;
+                    }
+                });
+            });
+        });
+    });
+
+</script>
+
+<form id="approveOrgUnit" name="approveOrgUnit" method="post" action="updateApproveOrgUnitAction.action" >
+
+    <div id="menuBar" class="row">
+        <div style="float: left">
+            <ul class="nav nav-pills">
+                <li class="active"><a href="#newOrgUnit" data-toggle="pill" style="font-weight: bold">New</a></li>
+                <li><a href="#updateOrgUnit" data-toggle="pill" style="font-weight: bold">Updates</a></li>
+                <li><a href="#synchedOrgUnit" data-toggle="pill" style="font-weight: bold">Synced</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div align="right"><input type="submit" value="Update Orgnisation Sync Status" ></div>
+
+    <div class="row">
+        <div id="myTabContent" class="tab-content">
+
+            <div id="newOrgUnit" class="tab-pane fade active in">
+                <table class="listTable" style="border: 1px solid" >
+                    <thead>
+                    <th style="text-align: center; border: 1px solid" width="400">
+                        New/Updated Organisation Unit
+                    </th>
+                    <th style="text-align: center; border: 1px  solid" width="100">
+                        <input type="checkbox" class="chckHeadOUApprove"/>  $i18n.getString( "approve_needed" )
+                    </th>
+                    <th style="text-align: center; border: 1px  solid" width="150">
+                        <select class="ORGhead_multiselect" multiple="multiple" id="selectAllOrg" name="orgAllInstances" >
+                            #foreach( $instance in $synchInstances )
+                                <option value="$instance.id" >$encoder.htmlEncode( $instance.name )</option>
+                            #end
+                        </select>
+                        <br>
+                        Instances
+                    </th>
+                    <th style="text-align: center; border: 1px  solid" width="100">
+                        <input type="checkbox" class="chckHeadOU"/>  Approve Status
+                    </th>
+                    </thead>
+
+                    <tbody>
+                        #foreach( $orgunit in $newOrgUnits )
+
+                        <tr id="tr${orgunit.id}" data-id="$!orgunit.id" data-uid="$!orgunit.uid"
+                            data-type="ApprovalOrgUnit" data-name="$encoder.htmlEncode( $!orgunit.name )">
+
+                            <td style="text-align: left; border: 1px solid">$encoder.htmlEncode( $orgunit.getName() )</td>
+
+
+                            <td style="text-align: center; border: 1px solid">
+                                <input type="checkbox" class="chcktblOUApprove" name="appNeeded_${orgunit.id}" />
+                            </td>
+
+
+                            <td style="text-align: center; border: 1px solid">
+                                <select class="ORGmulti-select" multiple="multiple" id="sel${velocityCount}" name="instances_${orgunit.id}">
+                                    #foreach( $instance in $synchInstances )
+                                        <option value="$instance.id" >$encoder.htmlEncode( $instance.name )</option>
+                                    #end
+                                </select>
+                            </td>
+
+
+                            <td style="text-align: center; border: 1px solid" >
+                                <input type="checkbox" class="chcktblOU" id="approveStatus_${orgunit.id}" name="approveStatus_${orgunit.id}"  />
+                            </td>
+
+                        </tr>
+                        #end
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="updateOrgUnit" class="tab-pane fade">
+                <table class="listTable" style="border: 1px solid" >
+                    <thead>
+                    <th style="text-align: center; border: 1px solid" width="400">
+                        New/Updated Organisation Unit
+                    </th>
+                    <th style="text-align: center; border: 1px  solid" width="100">
+                        <input type="checkbox" class="chckHeadOUApprove"/>   $i18n.getString( "approve_needed" )
+                    </th>
+                    <th style="text-align: center; border: 1px  solid" width="150">
+                        Instances
+                    </th>
+                    <th style="text-align: center; border: 1px  solid" width="100">
+                        <input type="checkbox" class="chckHeadOU"/>  Approve Status
+                    </th>
+                    </thead>
+
+                    <tbody>
+                        #foreach( $OrgUnitsync in $updatedOrgUnitSyncStatus )
+                        <tr id="tr${OrgUnitsync.getOrganisationUnit().getId()}" data-id="$!OrgUnitsync.getOrganisationUnit().getId()" data-uid="$!OrgUnitsync.getOrganisationUnit().getUid()"
+                            data-type="ApprovalOrgUnit" data-name="$encoder.htmlEncode( $!OrgUnitsync.getOrganisationUnit().getName() )">
+
+                            <td style="text-align: left; border: 1px solid">$encoder.htmlEncode( $OrgUnitsync.getOrganisationUnit().getName())</td>
+
+                            #if($OrgUnitsync.getRememberApproveStatus())
+                                <td style="text-align: center; border: 1px solid">
+                                    <input type="checkbox" class="chcktblOUApprove" name="upappNeeded_${OrgUnitsync.getOrganisationUnit().getId()}" checked />
+                                </td>
+                            #else
+                                <td style="text-align: center; border: 1px solid">
+                                    <input type="checkbox" class="chcktblOUApprove" name="upappNeeded_${OrgUnitsync.getOrganisationUnit().getId()}" />
+                                </td>
+                            #end
+
+                            <td style="text-align: left; border: 1px solid"> <label id="instance" name="upinstances_${OrgUnitsync.getOrganisationUnit().getId()}">
+                                $encoder.htmlEncode( $OrgUnitsync.getInstance().getName() )</label></td>
+
+                            #if($OrgUnitsync.getApproveStatus())
+                                <td style="text-align: center; border: 1px solid" >
+                                    <input type="checkbox" class="chcktblOU" id="upapproveStatus_${OrgUnitsync.getOrganisationUnit().getId()}"  name="upapproveStatus_${OrgUnitsync.getOrganisationUnit().getId()}" checked />
+                                </td>
+                            #else
+                                <td style="text-align: center; border: 1px solid" >
+                                    <input type="checkbox" class="chcktblOU" id="upapproveStatus_${OrgUnitsync.getOrganisationUnit().getId()}" name="upapproveStatus_${OrgUnitsync.getOrganisationUnit().getId()}"  />
+                                </td>
+                            #end
+                        </tr>
+                        #end
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="synchedOrgUnit" class="tab-pane fade">
+                <table class="listTable" style="border: 1px solid" >
+                    <thead>
+                    <th style="text-align: center; border: 1px solid" width="400">
+                        Approved Organisation Unit
+                    </th>
+                    <th style="text-align: center; border: 1px  solid" width="150">
+                        <input type="checkbox" class="chckHeadOUApprove"/>  $i18n.getString( "approve_needed" )
+                    </th>
+                    <th style="text-align: center; border: 1px  solid" width="200">
+                        <select class="HeadORGallselect" multiple="multiple" id="Sync_selectAllOrg" name="Sync_orgAllInstances" >
+                            #foreach( $instance in $orgInstancemap.get($orgsync))
+                                <option value="$instance.getInstance().getId()" selected >$encoder.htmlEncode( $instance.getInstance().getName() )</option>
+                            #end
+                            #foreach($instance in $orgInstanceLeftMap.get($orgsync))
+                                <option value="$instance.id" >$encoder.htmlEncode( $instance.getName() )</option>
+                            #end
+                        </select><br>
+                        Instances
+                    </th>
+                    <th style="text-align: center; border: 1px  solid" width="100">
+                        <input type="checkbox" class="chckHeadOU"/>  Approve Status
+                    </th>
+                    </thead>
+
+                    <tbody>
+                        #foreach( $orgsync in $orgInstancemap.keySet() )
+                        <tr id="tr${orgsync.getId()}" data-id="$!orgsync.getId()" data-uid="$!orgsync.getUid()"
+                            data-type="ApprovalIndicators" data-name="$encoder.htmlEncode( $!orgsync.getName() )">
+
+                            <td style="text-align: left; border: 1px solid">$encoder.htmlEncode( $orgsync.getName())</td>
+
+                            #if($orgInstancemap.get($orgsync).get(0).getRememberApproveStatus())
+                                <td style="text-align: center; border: 1px solid">
+                                    <input type="checkbox" name="syncappNeeded_${orgsync.getId()}" checked />
+                                </td>
+                            #else
+                                <td style="text-align: center; border: 1px solid">
+                                    <input type="checkbox" name="syncappNeeded_${orgsync.getId()}" />
+                                </td>
+                            #end
+
+                            <td style="text-align: center; border: 1px solid">
+                                <select class="ORGallselect" multiple="multiple" id="sel${velocityCount}" name="syncinstances_${orgsync.getId()}">
+                                    #foreach( $instance in $orgInstancemap.get($orgsync))
+                                        <option value="$instance.getInstance().getId()" selected >$encoder.htmlEncode( $instance.getInstance().getName() )</option>
+                                    #end
+                                    #foreach($instance in $orgInstanceLeftMap.get($orgsync))
+                                        <option value="$instance.id" >$encoder.htmlEncode( $instance.getName() )</option>
+                                    #end
+                                </select>
+                            </td>
+                            <td style="text-align: center; border: 1px solid" >
+                                <input type="checkbox" class="chcktblOU" id="syncapproveStatus_${orgsync.getId()}" name="syncapproveStatus_${orgsync.getId()}"  />
+                            </td>
+                           #* #if($orgInstancemap.get($orgsync).get(0).getApproveStatus())
+                                <td style="text-align: center; border: 1px solid" >
+                                    <input type="checkbox" class="chcktblOU" id="syncapproveStatus_${orgsync.getId()}"  name="syncapproveStatus_${orgsync.getId()}" checked />
+                                </td>
+                            #else
+                                <td style="text-align: center; border: 1px solid" >
+                                    <input type="checkbox" class="chcktblOU" id="syncapproveStatus_${orgsync.getId()}" name="syncapproveStatus_${orgsync.getId()}"  />
+                                </td>
+                            #end*#
+                        </tr>
+                        #end
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+    </div>
+    #parse( "dhis-web-commons/loader/loader.vm" )
+</form>

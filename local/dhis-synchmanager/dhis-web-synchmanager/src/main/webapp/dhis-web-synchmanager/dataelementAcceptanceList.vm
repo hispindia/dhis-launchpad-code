@@ -1,0 +1,750 @@
+<link href="./css/bootstrap-3.1.1.min.css" rel="stylesheet">
+
+<script type="text/javascript">
+
+    var completeDEList = [];
+
+    var selectedDEList = [];
+
+    var completeIndList = [];
+
+    var selectedIndList = [];
+
+    var completeOrgUnitList = [];
+
+    var selectedOrgUnitList = [];
+
+    var completeVRList = [];
+
+    var selectedVRList = [];
+
+    function showDataElementUpdateDetails(updateStatus) {
+        tablerows = "<tr><th></th><th>Old</th><th>New</th></tr>" + updateStatus;
+        //alert("Inside show details function - " + tablerows);
+        $("#changeDETrackTable").empty();
+        $("#changeDETrackTable").append(tablerows);
+        $("#updateDEDetailsDiv").dialog("open");
+    }
+
+
+    function showIndicatorUpdateDetails(updateStatus) {
+        tablerows = "<tr><th></th><th>Old</th><th>New</th></tr>" + updateStatus;
+        //alert("Inside show details function - " + tablerows);
+        $("#changeIndTrackTable").empty();
+        $("#changeIndTrackTable").append(tablerows);
+        $("#updateIndDetailsDiv").dialog("open");
+    }
+
+    function showIndicatorDetails(details) {
+        tablerows = "<tr><th>Indicator Prop</th><th>Prop Details</th></tr>" + details ;
+        //alert("Inside show details function - " + tablerows);
+        $("#IndTrackTable").empty();
+        $("#IndTrackTable").append(tablerows);
+        $("#newIndDetailsDiv").dialog("open");
+    }
+
+    function showOrgUnitUpdateDetails(updateStatus) {
+        tablerows = "<tr><th></th><th>Old</th><th>New</th></tr>" + updateStatus;
+        //alert("Inside show details function - " + tablerows);
+        $("#changeOrgTrackTable").empty();
+        $("#changeOrgTrackTable").append(tablerows);
+        $("#updateOrgDetailsDiv").dialog("open");
+    }
+
+    function showValidationRuleUpdateDetails(updateStatus) {
+        tablerows = "<tr><th></th><th>Old</th><th>New</th></tr>" + updateStatus;
+        //alert("Inside show details function - " + tablerows);
+        $("#changeVRTrackTable").empty();
+        $("#changeVRTrackTable").append(tablerows);
+        $("#updateVRDetailsDiv").dialog("open");
+    }
+
+
+    $(document).ready(function () {
+
+        $('.chckHeadDE').click(function(event) {  //on click
+            if(this.checked) { // check select status
+                $('.chcktblDE').each(function() { //loop through each checkbox
+                    this.checked = true;  //select all checkboxes with class "checkbox1"
+                });
+            }else{
+                $('.chcktblDE').each(function() { //loop through each checkbox
+                    this.checked = false; //deselect all checkboxes with class "checkbox1"
+                });
+            }
+        });
+
+
+        $('.chckHeadInd').click(function(event) {  //on click
+            if(this.checked) { // check select status
+                $('.chcktblInd').each(function() { //loop through each checkbox
+                    this.checked = true;  //select all checkboxes with class "checkbox1"
+                });
+            }else{
+                $('.chcktblInd').each(function() { //loop through each checkbox
+                    this.checked = false; //deselect all checkboxes with class "checkbox1"
+                });
+            }
+        });
+
+        $('.chckHeadOU').click(function(event) {  //on click
+            if(this.checked) { // check select status
+                $('.chcktblOU').each(function() { //loop through each checkbox
+                    this.checked = true;  //select all checkboxes with class "checkbox1"
+                });
+            }else{
+                $('.chcktblOU').each(function() { //loop through each checkbox
+                    this.checked = false; //deselect all checkboxes with class "checkbox1"
+                });
+            }
+        });
+
+        $('.chckHeadVR').click(function(event) {  //on click
+            if(this.checked) { // check select status
+                $('.chcktblVR').each(function() { //loop through each checkbox
+                    this.checked = true;  //select all checkboxes with class "checkbox1"
+                });
+            }else{
+                $('.chcktblVR').each(function() { //loop through each checkbox
+                    this.checked = false; //deselect all checkboxes with class "checkbox1"
+                });
+            }
+        });
+
+
+
+        var completeUrl = window.location.protocol + "//" + window.location.host + "/" +window.location.pathname.split("/")[1] + "/api";
+   
+		document.getElementById("thisUrl").value = completeUrl;
+		
+        $("#showInd").click(function () {
+
+            $("#deList").hide();
+            $("#showDE").css({'font-weight': 'bold', 'background-color': '#FFFFFF'});
+
+            $("#orgUnitList").hide();
+            $("#showOU").css({'font-weight': 'bold', 'background-color': '#FFFFFF'});
+
+            $("#indicatorList").show();
+            $("#showInd").css({'font-weight': 'bold', 'background-color': '#d3d3d3'});
+
+            $("#validationRuleList").hide();
+            $("#showVR").css({'font-weight': 'bold', 'background-color': '#FFFFFF'});
+
+        });
+
+
+        $("#showDE").click(function () {
+
+            $("#deList").show();
+            $("#indicatorList").hide();
+            $("#showInd").css({'font-weight': 'bold', 'background-color': '#FFFFFF'});
+            $("#showDE").css({'font-weight': 'bold', 'background-color': '#d3d3d3'});
+
+            $("#orgUnitList").hide();
+            $("#showOU").css({'font-weight': 'bold', 'background-color': '#FFFFFF'});
+
+            $("#validationRuleList").hide();
+            $("#showVR").css({'font-weight': 'bold', 'background-color': '#FFFFFF'});
+
+        });
+
+
+        $("#showOU").click(function () {
+
+            $("#deList").hide();
+            $("#indicatorList").hide();
+
+            $("#showInd").css({'font-weight': 'bold', 'background-color': '#FFFFFF'});
+            $("#showDE").css({'font-weight': 'bold', 'background-color': '#FFFFFF'});
+
+            $("#orgUnitList").show();
+            $("#showOU").css({'font-weight': 'bold', 'background-color': '#d3d3d3'});
+
+            $("#validationRuleList").hide();
+            $("#showVR").css({'font-weight': 'bold', 'background-color': '#FFFFFF'});
+
+        });
+
+
+        $("#showVR").click(function () {
+
+            $("#deList").hide();
+            $("#indicatorList").hide();
+
+            $("#showInd").css({'font-weight': 'bold', 'background-color': '#FFFFFF'});
+            $("#showDE").css({'font-weight': 'bold', 'background-color': '#FFFFFF'});
+
+            $("#orgUnitList").hide();
+            $("#showOU").css({'font-weight': 'bold', 'background-color': '#FFFFFF'});
+
+            $("#validationRuleList").show();
+            $("#showVR").css({'font-weight': 'bold', 'background-color': '#d3d3d3'});
+
+        });
+
+
+        $("#updateDEDetailsDiv").dialog({
+            autoOpen: false,
+			height: 300,
+			width: 600, 
+        });
+		
+		$("#updateIndDetailsDiv").dialog({
+            autoOpen: false,
+			height: 300,
+			width: 600,
+        });
+
+        $("#newIndDetailsDiv").dialog({
+            autoOpen: false,
+            height: 300,
+            width: 600,
+        });
+		
+		$("#updateOrgDetailsDiv").dialog({
+            autoOpen: false,
+			height: 300,
+			width: 600,
+        });
+		
+		$("#updateVRDetailsDiv").dialog({
+            autoOpen: false,
+			height: 300,
+			width: 600,
+        });
+
+
+        #foreach( $dataElement in $newDataElements )
+            var deItem = new Object();
+            deItem.id = '$dataElement.getUid()';
+            deItem.name = '$dataElement.getName()';
+            deItem.shortName = '$dataElement.getShortName()';
+            deItem.type = '$dataElement.getType()';
+            deItem.ccid = '$dataElement.getCategoryCombo().uid';
+            completeDEList[deItem.UID] = (deItem);
+        #end
+
+        #foreach( $dataElement in $updatedDataElements )
+            var deItem = new Object();
+            deItem.id = '$dataElement.getUid()';
+            deItem.name = '$dataElement.getName()';
+            deItem.shortName = '$dataElement.getShortName()';
+            deItem.type = '$dataElement.getType()';
+            deItem.ccid = '$dataElement.getCategoryCombo().uid';
+            completeDEList[deItem.UID] = (deItem);
+        #end
+
+
+        #foreach( $indicator in $newIndicators )
+            var deItem = new Object();
+            deItem.id = '$indicator.getUid()';
+            deItem.name = '$indicator.getName()';
+            deItem.shortName = '$indicator.getShortName()';
+            completeIndList[deItem.UID] = (deItem);
+        #end
+
+        #foreach( $indicator in $updatedIndicators )
+            var deItem = new Object();
+            deItem.id = '$indicator.getUid()';
+            deItem.name = '$indicator.getName()';
+            deItem.shortName = '$indicator.getShortName()';
+            completeIndList[deItem.UID] = (deItem);
+        #end
+
+        #foreach( $orgUnit in $newOrgUnits )
+            var deItem = new Object();
+            deItem.id = '$orgUnit.getUid()';
+            deItem.name = '$orgUnit.getName()';
+            deItem.shortName = '$orgUnit.getShortName()';
+            completeIndList[deItem.UID] = (deItem);
+        #end
+
+        #foreach( $orgUnit in $upadtedOrgUnits )
+            var deItem = new Object();
+            deItem.id = '$orgUnit.getUid()';
+            deItem.name = '$orgUnit.getName()';
+            deItem.shortName = '$orgUnit.getShortName()';
+            completeIndList[deItem.UID] = (deItem);
+        #end
+
+
+        #foreach( $validationRule in $newValidationRules )
+            var deItem = new Object();
+            deItem.id = '$validationRule.getUid()';
+            deItem.name = '$validationRule.getName()';
+            completeIndList[deItem.UID] = (deItem);
+        #end
+
+        #foreach( $validationRule in $upadtedValidationRules )
+            var deItem = new Object();
+            deItem.id = '$validationRule.getUid()';
+            deItem.name = '$validationRule.getName()';
+            completeIndList[deItem.UID] = (deItem);
+        #end
+
+        $('#syncButton').click(function () {
+
+            var selectedDEUIDList = [];
+
+            var selectedIndUIDList = [];
+
+            var selectedOrgUnitUIDList = [];
+
+            var selectedValidationRuleUIDList = [];
+
+
+            $('.chcktblDE:checked').each(function (index) {
+
+                console.log(index + ": " + $(this).attr('id'));
+
+                selectedDEUIDList.push($(this).attr('id'));
+
+            });
+
+            $('.chcktblInd:checked').each(function (index) {
+
+                console.log(index + ": " + $(this).attr('id'));
+
+                selectedIndUIDList.push($(this).attr('id'));
+
+            });
+
+            $('.chcktblOU:checked').each(function (index) {
+
+                console.log(index + ": " + $(this).attr('id'));
+
+                selectedOrgUnitUIDList.push($(this).attr('id'));
+
+            });
+
+            $('.chcktblVR:checked').each(function (index) {
+
+                console.log(index + ": " + $(this).attr('id'));
+
+                selectedValidationRuleUIDList.push($(this).attr('id'));
+
+            });
+
+            for (var dataElementUID in selectedDEUIDList) {
+                selectedDEList.push(completeDEList[selectedDEUIDList[dataElementUID]]);
+            }
+
+            for (var indicatorUID in selectedIndUIDList) {
+                selectedIndList.push(completeIndList[selectedIndUIDList[indicatorUID]]);
+            }
+
+            for (var orgUnitUID in selectedOrgUnitUIDList) {
+                selectedOrgUnitList.push(completeOrgUnitList[selectedOrgUnitUIDList[orgUnitUID]]);
+            }
+
+            for (var validationRuleUID in selectedValidationRuleUIDList) {
+                selectedVRList.push(completeOrgUnitList[selectedOrgUnitUIDList[orgUnitUID]]);
+            }
+
+            var dataElementsUIDs = selectedDEUIDList;
+
+            var indicatorUIDs =  selectedIndUIDList;
+
+            var orgUnitUIDs =  selectedOrgUnitUIDList;
+
+            var validationRuleUIDs =  selectedValidationRuleUIDList;
+
+            $('#indicatorUIDs').val(indicatorUIDs);
+			
+			$('#dataElementsUIDs').val(dataElementsUIDs);
+
+            $('#orgUnitUIDs').val(orgUnitUIDs);
+
+            $('#validationRuleUIDs').val(validationRuleUIDs);
+	
+			var completeUrl = window.location.protocol + "//" + window.location.host + "/" +window.location.pathname.split("/")[1] + "/api";
+   			
+			$('#thisUrl').val(completeUrl);
+
+            $('#acceptanceForm').submit();
+
+        });
+    });
+	
+	
+
+	
+</script>
+
+<div class="row">
+    <ul class="pagination">
+        <li><a href="#" style="font-weight: bold">&laquo;</a></li>
+        <li><a id="showDE" class="currentDashboard" href="#" style="font-weight: bold; background-color: #d3d3d3">Dataelements</a>
+        </li>
+        <li><a id="showInd" href="#" style="font-weight: bold">Indicators</a></li>
+        <li><a id="showVR" href="#" style="font-weight: bold">Validation Rules</a></li>
+        <li><a id="showOU" href="#" style="font-weight: bold">Organisation Units</a></li>
+        <li><a href="#" style="font-weight: bold">&raquo;</a></li>
+    </ul>
+</div>
+
+<form id="acceptanceForm" method="post" action="synchMetaData.action">
+
+    <div style="float: right">
+        <button type="button" class="btn-default" id="syncButton">Sync Selected</button>
+    </div>
+
+    <div id="deList">
+    <div id="menuBar" class="row">
+        <div style="float: left">
+            <ul class="nav nav-pills">
+                <li class="active"><a href="#home" data-toggle="pill" style="font-weight: bold">New</a></li>
+                <li><a href="#profile" data-toggle="pill" style="font-weight: bold">Updates</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+        <div class="row">
+            <div id="myTabContent" class="tab-content">
+
+                <div id="home" class="tab-pane fade active in">
+                    <table class="listTable" id="instanceList">
+                        <thead>
+                        <tr>
+                            <th><input type="checkbox" class="chckHeadDE"/></th>
+                            <th>$i18n.getString( "name" )</th>
+                            <th>Short-Name</th>
+                            <th>Type</th>
+                            <th>Category Combo</th>
+                        </tr>
+                        </thead>
+                        <tbody id="list">
+                            #foreach( $dataElement in $newDataElements )
+                            <tr id="tr${dataElement.id}" data-id="$!dataElement.id" data-uid="$!dataElement.uid"
+                                data-type="ApprovalDataElements" data-name="$encoder.htmlEncode( $!dataElement.name )">
+                                <td>
+                                    <input type="checkbox" class="chcktblDE" id="${dataElement.uid}"/>
+                                </td>
+                                <td>$!encoder.htmlEncode( $dataElement.getName() )</td>
+                                <td>$!encoder.htmlEncode( $dataElement.getShortName() )</td>
+                                <td>$!encoder.htmlEncode( $dataElement.getType() )</td>
+                                <td>$!encoder.htmlEncode( $dataElement.getCategoryCombo().name )</td>
+                            </tr>
+                            #end
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="profile" class="tab-pane fade">
+                    <table class="listTable" id="instanceList">
+                        <thead>
+                        <tr>
+                            <th><input type="checkbox" class="chckHeadDE"/></th>
+                            <th>$i18n.getString( "name" )</th>
+                            <th>Short-Name</th>
+                            <th>Type</th>
+                            <th>Category Combo</th>
+                        </tr>
+                        </thead>
+                        <tbody id="list">
+                            #foreach( $dataElement in $updatedDataElements )
+
+                            <tr id="tr${dataElement.id}" data-id="$!dataElement.id" data-uid="$!dataElement.uid"
+                                data-type="ApprovalDataElements" data-name="$encoder.htmlEncode( $!dataElement.name )">
+                                <td>
+                                    <input type="checkbox" class="chcktblDE" id="${dataElement.uid}"/>
+                                </td>
+                                <td><a title="Show Updates" href="javascript:showDataElementUpdateDetails('${dataElementUpdates[$velocityCount]}');">$!encoder.htmlEncode( $dataElement.getName() )</a></td>
+                                <td>$!encoder.htmlEncode( $dataElement.getShortName() )</td>
+                                <td>$!encoder.htmlEncode( $dataElement.getType() )</td>
+                                <td>$!encoder.htmlEncode( $dataElement.getCategoryCombo().name )</td>
+                                <!--
+								<td>
+                                    <a title="Show Updates" href="javascript:showDataElementUpdateDetails('${dataElementUpdates[$velocityCount]}');">
+                                        View Changes
+                                    </a>
+                                </td>
+								-->
+                            </tr>
+                            #end
+                        </tbody>
+                    </table>
+                </div>
+                <div id='updateDEDetailsDiv' title="Updates">
+                    <table class="listTable dhis2-table-striped-border dhis2-table-hover" id="changeDETrackTable">
+                    </table>
+                </div>
+            </div>
+        </div>
+        <input name="dataElementsUIDs" id="dataElementsUIDs" type="hidden">
+		<input type="hidden" name="thisUrl" id="thisUrl" >
+    </div>
+
+    <div id="indicatorList" style="display: none">
+
+            <div id="menuBar" class="row">
+                <div style="float: left">
+                    <ul class="nav nav-pills">
+                        <li class="active"><a href="#indNew" data-toggle="pill" style="font-weight: bold">New</a></li>
+                        <li><a href="#indUpdate" data-toggle="pill" style="font-weight: bold">Updates</a></li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div id="myTabContent" class="tab-content">
+
+                    <div id="indNew" class="tab-pane fade active in">
+                        <table class="listTable" id="instanceList">
+                            <thead>
+                            <tr>
+                                <th><input type="checkbox" class="chckHeadInd"/></th>
+                                <th>$i18n.getString( "name" )</th>
+                                <th>Short-Name</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                            </thead>
+                            <tbody id="list">
+                                #foreach( $indicators in $newIndicators )
+                                <tr id="tr${indicators.id}" data-id="$!indicators.id" data-uid="$!indicators.uid"
+                                    data-type="ApprovalDataElements" data-name="$encoder.htmlEncode( $!indicators.name )">
+                                    #set($count = $velocityCount - 1)
+
+                                    <td>
+                                        <input type="checkbox" class="chcktblInd" id="${indicators.uid}"/>
+                                    </td>
+                                    <td><a title="Show" href="javascript:showIndicatorDetails('${newIndicatorsDetails[$count]}');">$!encoder.htmlEncode( $indicators.getName() )</a></td>
+                                    #*<td>$encoder.htmlEncode( $indicators.getName() )</td>*#
+                                    <td>$!encoder.htmlEncode( $indicators.getShortName() )</td>
+                                    <td>$!encoder.htmlEncode( $indicators.getIndicatorType().getName() )</td>
+                                    <td>$!encoder.htmlEncode( $!indicators.getDescription())</td>
+                                </tr>
+                                #end
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div id="indUpdate" class="tab-pane fade">
+                        <table class="listTable" id="instanceList">
+                            <thead>
+                            <tr>
+                                <th><input type="checkbox" class="chckHeadInd"/></th>
+                                <th>$i18n.getString( "name" )</th>
+                                <th>Short-Name</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                            </thead>
+                            <tbody id="list">
+                                #foreach( $indicators in $updatedIndicators )
+
+                                <tr id="tr${indicators.id}" data-id="$!indicators.id" data-uid="$!indicators.uid"
+                                    data-type="ApprovalDataElements" data-name="$encoder.htmlEncode( $!indicators.name )">
+					 #set($count = $velocityCount - 1)
+                                    <td>
+                                        <input type="checkbox" class="chcktblInd" id="${indicators.uid}"/>
+                                    </td>
+                                    <td><a title="Show Updates" href="javascript:showIndicatorUpdateDetails('${indicatorUpdates[$count]}');">$encoder.htmlEncode( $indicators.getName() )</a></td>
+                                    <td>$!encoder.htmlEncode( $indicators.getShortName() )</td>
+                                    <td>$!encoder.htmlEncode( $indicators.getIndicatorType().getName() )</td>
+                                    <td>$!encoder.htmlEncode( $indicators.getDescription() )</td>
+                                    <!--
+									<td>
+                                        <a title="Show Updates"
+                                           href="javascript:showIndicatorUpdateDetails('${indicatorUpdates[$velocityCount]}');">
+                                            View Changes
+                                        </a>
+                                    </td>
+									-->
+                                </tr>
+                                #end
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id='updateIndDetailsDiv' title="Updates">
+                        <table class="listTable dhis2-table-striped-border dhis2-table-hover" id="changeIndTrackTable">
+                        </table>
+                    </div>
+                    <div id='newIndDetailsDiv' title="Indicator Details">
+                        <table class="listTable dhis2-table-striped-border dhis2-table-hover" id="IndTrackTable">
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <input name="indicatorUIDs" id="indicatorUIDs" type="hidden">
+
+    </div>
+
+    <div id="orgUnitList" style="display: none">
+
+        <div id="menuBar" class="row">
+            <div style="float: left">
+                <ul class="nav nav-pills">
+                    <li class="active"><a href="#ouNew" data-toggle="pill" style="font-weight: bold">New</a></li>
+                    <li><a href="#ouUpdate" data-toggle="pill" style="font-weight: bold">Updates</a></li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div id="myTabContent" class="tab-content">
+
+                <div id="ouNew" class="tab-pane fade active in">
+                    <table class="listTable" id="instanceList">
+                        <thead>
+                        <tr>
+                            <th><input type="checkbox" class="chckHeadOU"/></th>
+                            <th>$i18n.getString( "name" )</th>
+                            <th>Short-Name</th>
+                            <th>Parent</th>
+                        </tr>
+                        </thead>
+                        <tbody id="list">
+                            #foreach( $orgUnit in $newOrgUnits )
+                            <tr id="tr${orgUnit.id}" data-id="$!orgUnit.id" data-uid="$!orgUnit.uid"
+                                data-type="ApprovalDataElements" data-name="$encoder.htmlEncode( $!orgUnit.name )">
+                                <td>
+                                    <input type="checkbox" class="chcktblOU" id="${orgUnit.uid}"/>
+                                </td>
+                                <td>$!encoder.htmlEncode( $orgUnit.getName() )</td>
+                                <td>$!encoder.htmlEncode( $orgUnit.getShortName() )</td>
+                                <td>$!encoder.htmlEncode( $orgUnit.getParent().getName()  )</td>
+                            </tr>
+                            #end
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="ouUpdate" class="tab-pane fade">
+                    <table class="listTable" id="instanceList">
+                        <thead>
+                        <tr>
+                            <th><input type="checkbox" class="chckHeadOU"/></th>
+                            <th>$i18n.getString( "name" )</th>
+                            <th>Short-Name</th>
+                            <th>Parent</th>
+                        </tr>
+                        </thead>
+                        <tbody id="list">
+                            #foreach( $orgUnit in $updatedOrgUnits )
+
+                            <tr id="tr${orgUnit.id}" data-id="$!orgUnit.id" data-uid="$!orgUnit.uid"
+                                data-type="ApprovalDataElements" data-name="$encoder.htmlEncode( $!orgUnit.name )">
+                                <td>
+                                    <input type="checkbox" class="chcktblOU" id="${orgUnit.uid}"/>
+                                </td>
+                                <td><a title="Show Updates" href="javascript:showOrgUnitUpdateDetails('${orgUnitUpdates[$velocityCount]}');">$!encoder.htmlEncode( $orgUnit.getName() )</a></td>
+                                <td>$!encoder.htmlEncode( $orgUnit.getShortName() )</td>
+                                <td>$!encoder.htmlEncode( $orgUnit.getParent().getName()  )</td>
+                                <!--
+								<td>
+                                    <a title="Show Updates" href="javascript:showOrgUnitUpdateDetails('${orgUnitUpdates[$velocityCount]}');">
+                                        View Changes
+                                    </a>
+                                </td>
+								-->
+                            </tr>
+                            #end
+                        </tbody>
+                    </table>
+                </div>
+                <div id='updateOrgDetailsDiv' title="Updates">
+                    <table class="listTable dhis2-table-striped-border dhis2-table-hover" id="changeOrgTrackTable">
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <input name="orgUnitUIDs" id="orgUnitUIDs" type="hidden">
+
+    </div>
+
+    <div id="validationRuleList" style="display: none">
+
+        <div id="menuBar" class="row">
+            <div style="float: left">
+                <ul class="nav nav-pills">
+                    <li class="active"><a href="#vrNew" data-toggle="pill" style="font-weight: bold">New</a></li>
+                    <li><a href="#vrUpdate" data-toggle="pill" style="font-weight: bold">Updates</a></li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div id="myTabContent" class="tab-content">
+
+                <div id="vrNew" class="tab-pane fade active in">
+                    <table class="listTable" id="instanceList">
+                        <thead>
+                        <tr>
+                            <th><input type="checkbox" class="chckHeadVR"/></th>
+                            <th>$i18n.getString( "name" )</th>
+                            <th>Importance</th>
+                            <th>Period type</th>
+                        </tr>
+                        </thead>
+                        <tbody id="list">
+                            #foreach( $validationRule in $newValidationRules )
+                            <tr id="tr${validationRule.id}" data-id="$!validationRule.id" data-uid="$!validationRule.uid"
+                                data-type="ApprovalDataElements" data-name="$encoder.htmlEncode( $!validationRule.name )">
+                                <td>
+                                    <input type="checkbox" class="chcktblVR" id="${validationRule.uid}"/>
+                                </td>
+                                <td>$!encoder.htmlEncode( $validationRule.getName() )</td>
+                                <td>$!encoder.htmlEncode( $validationRule.getImportance() )</td>
+                                <td>$!encoder.htmlEncode( $validationRule.getPeriodType().getName() )</td>
+                            </tr>
+                            #end
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="vrUpdate" class="tab-pane fade">
+                    <table class="listTable" id="instanceList">
+                        <thead>
+                        <tr>
+                            <th><input type="checkbox" class="chckHeadVR"/></th>
+                            <th>$i18n.getString( "name" )</th>
+                            <th>Importance</th>
+                            <th>Period type</th>
+                        </tr>
+                        </thead>
+                        <tbody id="list">
+                            #foreach( $validationRule in $updatedValidationRules )
+
+                            <tr id="tr${validationRule.id}" data-id="$!orgUnit.id" data-uid="$!validationRule.uid"
+                                data-type="ApprovalDataElements" data-name="$encoder.htmlEncode( $!validationRule.name )">
+                                <td>
+                                    <input type="checkbox" class="chcktblVR" id="${validationRule.uid}"/>
+                                </td>
+                             
+								<td><a title="Show Updates" href="javascript:showValidationRuleUpdateDetails('${validationRuleUpdates[$velocityCount]}');">$!encoder.htmlEncode( $validationRule.getName() )</a></td>
+                                <td>$!encoder.htmlEncode( $validationRule.getImportance() )</td>
+                                <td>$!encoder.htmlEncode( $validationRule.getPeriodType().getName()  )</td>
+                                <!--
+								<td>
+                                    <a title="Show Updates"
+                                       href="javascript:showValidationRuleUpdateDetails('${validationRuleUpdates[$velocityCount]}');">
+                                        View Changes
+                                    </a>
+                                </td>
+								-->
+                            </tr>
+                            #end
+                        </tbody>
+                    </table>
+                </div>
+                <div id='updateVRDetailsDiv' title="Updates">
+                    <table class="listTable dhis2-table-striped-border dhis2-table-hover" id="changeVRTrackTable">
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <input name="validationRuleUIDs" id="validationRuleUIDs" type="hidden">
+
+    </div>
+
+</form>

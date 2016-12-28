@@ -1,0 +1,301 @@
+<script type="text/javascript">
+
+   $(document).ready(function() {
+        $('.DEmulti-select , .DEhead_multiselect, .DEallselect, .HeadDEallselect').multiselect({
+            includeSelectAllOption: true,
+            maxHeight: 150,
+            numberDisplayed: 1,
+            buttonWidth: '150px'
+        });
+
+       $('.chckHeadDE').click(function(event) {  //on click
+           if(this.checked) { // check select status
+               $('.chcktblDE').each(function() { //loop through each checkbox
+                   this.checked = true;  //select all checkboxes with class "checkbox1"
+               });
+           }else{
+               $('.chcktblDE').each(function() { //loop through each checkbox
+                   this.checked = false; //deselect all checkboxes with class "checkbox1"
+               });
+           }
+       });
+
+       $('.chckHeadDEApprove').click(function(event) {  //on click
+           if(this.checked) { // check select status
+               $('.chcktblDEApprove').each(function() { //loop through each checkbox
+                   this.checked = true;  //select all checkboxes with class "checkbox1"
+               });
+           }else{
+               $('.chcktblDEApprove').each(function() { //loop through each checkbox
+                   this.checked = false; //deselect all checkboxes with class "checkbox1"
+               });
+           }
+       });
+
+
+      /* $('.DEhead_multiselect').on('change', function() {
+
+           $('.DEhead_multiselect :selected').each(function(i, selected){
+               var index = $(selected).index() + 1;
+
+               $('.DEmulti-select').multiselect('select', [index]);
+           });
+
+           $('.DEhead_multiselect :not(:selected)').each(function(i, selected){
+               var index = $(selected).index() + 1;
+
+               $('.DEmulti-select').multiselect('deselect', [index]);
+           });
+       });
+*/
+       $('#selectAllDe').change(function() {  //on click
+
+           $( "#selectAllDe option:selected" ).each(function() {
+               var value = $(this).val();
+
+               $('.checkbox').find('input[type=checkbox]').each(function() {
+                   if($(this).val() === value){
+                       this.checked = true;
+                   }
+               });
+           });
+
+           $( "#selectAllDe  option:not(:selected)").each(function() {
+               var value = $(this).val();
+
+               $('.checkbox').find('input[type=checkbox]').each(function() {
+                   if($(this).val() === value){
+                       this.checked = false;
+                   }
+               });
+           });
+
+       });
+
+
+       $('#Sync_selectAllDe').change(function() {  //on click
+
+           $( "#Sync_selectAllDe option:selected" ).each(function() {
+               var value = $(this).val();
+
+               $('.checkbox').find('input[type=checkbox]').each(function() {
+                   if($(this).val() === value){
+                       this.checked = true;
+                   }
+               });
+           });
+
+           $( "#Sync_selectAllDe  option:not(:selected)").each(function() {
+               var value = $(this).val();
+
+               $('.checkbox').find('input[type=checkbox]').each(function() {
+                   if($(this).val() === value){
+                       this.checked = false;
+                   }
+               });
+           });
+
+       });
+
+    });
+
+</script>
+
+<form id="approveDE" name="approveDE" method="post" action="updateApproveDEStatus.action" >
+
+    <div id="menuBar" class="row">
+        <div style="float: left">
+            <ul class="nav nav-pills">
+                <li class="active"> <a href="#new" data-toggle="pill" style="font-weight: bold">New</a></li>
+                <li><a href="#update" data-toggle="pill" style="font-weight: bold">Updates</a></li>
+                <li><a href="#synched" data-toggle="pill" style="font-weight: bold">Synced</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div align="right"><input id="btnsubmit" type="submit" value="Update DataElement Sync Status" ></div>
+
+    <div class="row">
+
+        <div id="myTabContent" class="tab-content">
+
+            <div id="new" class="tab-pane fade active in">
+                <table class="listTable" style="border: 1px solid">
+                    <thead>
+                    <th style="text-align: center; border: 1px solid" width="400">
+                        New/Updated Data Elements
+                    </th>
+                    <th style="text-align: center; border: 1px  solid" width="100">
+                        <input type="checkbox" class="chckHeadDEApprove"/> $i18n.getString( "approve_needed" )
+                    </th>
+                    <th style="text-align: center; border: 1px  solid" width="200">
+                        <select class="DEhead_multiselect" multiple="multiple" id="selectAllDe" name="deAllInstaces" >
+                            #foreach( $instance in $synchInstances )
+                                <option value="$instance.id" >$encoder.htmlEncode( $instance.name )</option>
+                            #end
+                        </select> <br> Instances
+                    </th>
+                    <th style="text-align: center; border: 1px  solid" width="100">
+                        <input type="checkbox" class="chckHeadDE"/> Approve Status
+                    </th>
+                    </thead>
+
+                    <tbody>
+                        #foreach( $dataElement in $newDataElements )
+
+                        <tr id="tr${dataElement.id}" data-id="$!dataElement.id" data-uid="$!dataElement.uid"
+                            data-type="ApprovalDataElements" data-name="$encoder.htmlEncode( $!dataElement.name )">
+
+                            <td style="text-align: left; border: 1px solid">$encoder.htmlEncode( $dataElement.getName() )</td>
+
+
+                            <td style="text-align: center; border: 1px solid">
+                                <input type="checkbox" class="chcktblDEApprove" name="appNeeded_${dataElement.id}" />
+                            </td>
+
+                            <td style="text-align: center; border: 1px solid">
+                                <select class="DEmulti-select" multiple="multiple" preid="multi" id="sel${velocityCount}" name="instances_${dataElement.id}">
+                                    #foreach( $instance in $synchInstances )
+                                        <option value="$instance.id" >$encoder.htmlEncode( $instance.name )</option>
+                                    #end
+                                </select>
+                            </td>
+
+                            <td style="text-align: center; border: 1px solid" >
+                                <input type="checkbox" class="chcktblDE" id="approveStatus_${dataElement.id}" name="approveStatus_${dataElement.id}"  />
+                            </td>
+                        </tr>
+                        #end
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="update" class="tab-pane fade">
+                <table class="listTable" style="border: 1px solid" >
+                    <thead>
+                    <th style="text-align: center; border: 1px solid" width="400">
+                        New/Updated Data Elements
+                    </th>
+                    <th style="text-align: center; border: 1px  solid" width="100">
+                        <input type="checkbox" class="chckHeadDEApprove"/> $i18n.getString( "approve_needed" )
+                    </th>
+                    <th style="text-align: center; border: 1px  solid" width="200">
+                        Instances
+                    </th>
+                    <th style="text-align: center; border: 1px  solid" width="100">
+                        <input type="checkbox" class="chckHeadDE"/>   Approve Status
+                    </th>
+                    </thead>
+
+                    <tbody>
+                        #foreach( $desync in $updatedDataElementsSyncStatus )
+                        <tr id="tr${desync.getDataElement().getId()}" data-id="$!desync.getDataElement().getId()" data-uid="$!desync.getDataElement().getUid()"
+                            data-type="ApprovalDataElements" data-name="$encoder.htmlEncode( $!desync.getDataElement().getName() )">
+
+                            <td style="text-align: left; border: 1px solid">$encoder.htmlEncode( $desync.getDataElement().getName())</td>
+
+                            #if($desync.getRememberApproveStatus())
+                                <td style="text-align: center; border: 1px solid">
+                                    <input type="checkbox" class="chcktblDEApprove" name="upappNeeded_${desync.getDataElement().getId()}" checked />
+                                </td>
+                            #else
+                                <td style="text-align: center; border: 1px solid">
+                                    <input type="checkbox" class="chcktblDEApprove" name="upappNeeded_${desync.getDataElement().getId()}" />
+                                </td>
+                            #end
+
+                            <td style="text-align: left; border: 1px solid"> <label id="instance" name="upinstances_${desync.getDataElement().getId()}">
+                                $encoder.htmlEncode( $desync.getInstance().getName() )</label></td>
+
+                            #if($desync.getApproveStatus())
+                                <td style="text-align: center; border: 1px solid" >
+                                    <input type="checkbox" class="chcktblDE" id="upapproveStatus_${desync.getDataElement().getId()}"  name="upapproveStatus_${desync.getDataElement().getId()}" checked />
+                                </td>
+                            #else
+                                <td style="text-align: center; border: 1px solid" >
+                                    <input type="checkbox" class="chcktblDE" id="upapproveStatus_${desync.getDataElement().getId()}" name="upapproveStatus_${desync.getDataElement().getId()}"  />
+                                </td>
+                            #end
+                        </tr>
+                        #end
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="synched" class="tab-pane fade">
+
+                <table class="listTable" style="border: 1px solid" >
+                  <thead>
+                    <th style="text-align: center; border: 1px solid" width="400">
+                       Approved Data Elements
+                    </th>
+                    <th style="text-align: center; border: 1px  solid" width="100">
+                        <input type="checkbox" class="chckHeadDEApprove"/>   $i18n.getString( "approve_needed" )
+                    </th>
+                    <th style="text-align: center; border: 1px  solid" width="200">
+                        <select class="HeadDEallselect" multiple="multiple" id="Sync_selectAllDe" name="Sync_deAllInstaces" >
+                            #foreach( $instance in $deInstanceMap.get($synchedDe))
+                                <option value="$instance.getInstance().getId()"  selected >$encoder.htmlEncode( $instance.getInstance().getName() )</option>
+                            #end
+                            #foreach($instance in $instancesLeftMap.get($synchedDe))
+                                <option value="$instance.getId()" >$encoder.htmlEncode( $instance.getName() )</option>
+                            #end
+                        </select><br>
+                        Instances
+                    </th>
+                    <th style="text-align: center; border: 1px  solid" width="100">
+                     <input type="checkbox" class="chckHeadDE"/>    Approve Status
+                    </th>
+                  </thead>
+
+                    <tbody>
+                        #foreach( $synchedDe in $deInstanceMap.keySet() )
+
+                        <tr id="tr${synchedDe.getId()}" data-id="$!synchedDe.getId()" data-uid="$!synchedDe.getUid()"
+                            data-type="synchedDataElements" data-name="$encoder.htmlEncode( $!synchedDe.getName() )">
+
+                            <td style="text-align: left; border: 1px solid">$encoder.htmlEncode( $synchedDe.getName())</td>
+
+                            #if($deInstanceMap.get($synchedDe).get(0).getRememberApproveStatus())
+                                <td style="text-align: center; border: 1px solid">
+                                    <input type="checkbox" class="chcktblDEApprove" name="syncappNeeded_${synchedDe.getId()}" checked />
+                                </td>
+                            #else
+                                <td style="text-align: center; border: 1px solid">
+                                    <input type="checkbox" class="chcktblDEApprove" name="syncappNeeded_${synchedDe.getId()}" />
+                                </td>
+                            #end
+
+                           <td style="text-align: center; border: 1px solid">
+                                <select class="DEallselect" multiple="multiple" id="sel${velocityCount}" name="syncinstances_${synchedDe.getId()}">
+                                    #foreach( $instance in $deInstanceMap.get($synchedDe))
+                                        <option value="$instance.getInstance().getId()"  selected >$encoder.htmlEncode( $instance.getInstance().getName() )</option>
+                                    #end
+                                        #foreach($instance in $instancesLeftMap.get($synchedDe))
+                                             <option value="$instance.getId()" >$encoder.htmlEncode( $instance.getName() )</option>
+                                        #end
+                                 </select>
+                            </td>
+                            <td style="text-align: center; border: 1px solid" >
+                                <input type="checkbox" class="chcktblDE" id="syncapproveStatus_${synchedDe.getId()}" name="syncapproveStatus_${synchedDe.getId()}"  />
+                            </td>
+                            #*#if($deInstanceMap.get($synchedDe).get(0).getApproveStatus())
+                                <td style="text-align: center; border: 1px solid" >
+                                    <input type="checkbox" class="chcktblDE" id="syncapproveStatus_${synchedDe.getId()}"  name="syncapproveStatus_${synchedDe.getId()}" checked />
+                                </td>
+                            #else
+                                <td style="text-align: center; border: 1px solid" >
+                                    <input type="checkbox" class="chcktblDE" id="syncapproveStatus_${synchedDe.getId()}" name="syncapproveStatus_${synchedDe.getId()}"  />
+                                </td>
+                            #end*#
+                        </tr>
+                        #end
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    #parse( "dhis-web-commons/loader/loader.vm" )
+</form>
