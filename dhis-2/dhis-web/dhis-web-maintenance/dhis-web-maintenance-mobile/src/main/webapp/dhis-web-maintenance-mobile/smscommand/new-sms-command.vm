@@ -1,0 +1,55 @@
+#parse("/dhis-web-maintenance-mobile/smscommand/validate_javascript.vm")
+
+<h3>Add command</h3>
+<form id="newSMSCommand" name="updateSMSCommand" action="createSMSCommandForm.action" method="post">
+   
+	<table>
+	 <col/> ## Labels
+    <col/> ## Input
+    <thead>
+      <tr>
+        <th colspan="2">$i18n.getString( "command_details" )</th>
+      </tr>
+    </thead>
+		<tr>
+			<td>
+				$i18n.getString( "name" )
+			</td>
+			<td>
+				<input type="text" value="" id="name" name="name" style="width:20em" class="validate"/>
+			</td>
+		</tr>
+		      <tr>
+		      <td>
+		      $i18n.getString( "parser" )
+		      </td>
+            <td>
+	   <select name="parserType" >
+                #foreach( $x in $parserType )
+                    <option value="$x">$x</option>
+                #end
+        </select> 	  
+                    </td>
+        </tr>
+		</tr>
+		<tr>
+			<td>
+			$i18n.getString( "dataset" )
+			</td>
+			<td>
+				<select name="selectedDataSetID" >
+				#foreach( $dataSet in $dataSets )
+			        <option value="$dataSet.id" #if ($SMSCommand.dataset.id == $dataSet.id) selected #end >$dataSet.displayName</option>
+				#end
+				</select> 
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+			     <input id="save" type="submit"  style="width: 100px" value="$i18n.getString( "save" )" />
+			     <input type="button" id ="btnBack" name ="btnBack" value="Back" style="width:8em" onclick="window.location.href='SMSCommands.action'"/>
+			</td>
+		</tr>
+	</table>
+
+</form>

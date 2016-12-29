@@ -1,0 +1,66 @@
+
+<input type="hidden" id='selectedOrgunitID' value="$!organisationUnit.id" />
+<div id ="ashaManagementDiv" >
+	<h3>$i18n.getString( "asha_management" )</h3>
+	<div id="selectedOrgUnit" style='display:none' > 
+		<input type="text" id='orgunitName' readonly="readonly" #if( $organisationUnit ) value="$encoder.htmlEncode( $organisationUnit.name )" #else value="[$i18n.getString( 'please_select_orgUnit' )]" #end >
+		<input type="text" id='selectedOrgunitText' value="$!organisationUnit.name" >
+	</div>
+</div>
+<div id='addUpdateASHAProfileDiv'></div> <!-- Add / Edit ASHA Profile Form -->
+<!--<div id='resultSearchDiv' style='font-size:13px'></div>--> <!-- List searching ASHAS -->
+<div id='resultDuplicateASHASearchDiv' style='font-size:13px'></div> <!-- List Duplicate Searching ASHAS -->
+
+<div id='ASHAregistrationSuccessDiv'> <!-- ASHA Registration Success Message -->
+
+<h3>$message</h3>
+
+<!--
+$flagDuplicate
+-->
+
+<table  width="75%">
+   
+	
+	#if( $flagDuplicate  )
+		
+    	#foreach( $patient in $patients )
+    		<tr>
+    			<td>ASHA Name : </td>
+				<td>$patient.getFullName()</td>
+			</tr>
+			<tr>
+    			<td>ASHA Id :</td>
+				<td>$patient.id</td>
+    		</tr>
+    	#end	
+	
+	#else
+		
+       <tr>
+    		<td>ASHA ID : </td>
+    		<td>$registrationId</td>
+       </tr> 
+    	
+       <tr>
+    		<td>System ID : </td>
+    		<td>$systemId</td>
+       </tr>	
+	
+	#end
+	
+	<tr>
+        <td>&nbsp;&nbsp;</td>
+        <td>
+            
+            <input type="button" style='width:130px' value='$i18n.getString( "Add New ASHA" )' onclick="showAddAHSAProfileForm();">
+            <input type="button" class="button" value="$i18n.getString( 'back_to_registration' )" onclick="window.location.href='selectASHA.action'"/>
+        </td>
+    </tr>   
+
+</table>
+
+</div>
+<script type="text/javascript">
+
+</script>

@@ -1,0 +1,190 @@
+<script type="text/javascript">
+jQuery(document).ready( function(){
+        validation( 'updateEmployeeForm', function(form){
+            if( isSubmit && validateUpdateEmployee() ) {
+                form.submit(i18n_field_is_required);
+            }
+        }, function( ){
+            isSubmit = true;
+        }); 
+    }); 
+
+</script>
+<h3>$i18n.getString( "update_employee_details" )</h3>
+<form id="updateEmployeeForm" name="updateEmployeeForm" method="post" action="updateEmployee.action"> 
+<table>
+	<tr>
+		<th colspan="2">$i18n.getString( "details" )</th>
+	</tr>
+		
+	<tr>
+		<td style="width:120px"><label for="organisationUnit">$i18n.getString( "organisation_unit" )</label></td>
+		<td style="width:120px">
+			<input type="text" name="orgUnitName" id="orgUnitName" value="$!organisationUnit.getName()" style="width:300px" readonly="true"/>
+			<input type="hidden" name="orgUnitId" id="orgUnitId" value="$!organisationUnit.getId()" />
+			<input type="hidden" name="empId" id="empId" value="$!employee.getId()" />
+		</td>
+	</tr>
+
+	<tr>
+		<td><label for="name">$i18n.getString( "name" ) <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+		<td><input type="text" name="name" id="name" style="width:300px" value="$!employee.getName()" class="{validate:{required:true,rangelength:[4,160]}}" /></td>
+	</tr>
+
+	<tr>
+		<td><label for="gender">$i18n.getString( "gender" )<em title="$i18n.getString( "required" )" class="required">*</em></label></td>
+		<td>
+			<select id="gender" name="gender" style="width:300px" class="{validate:{required:true}}">
+				<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="M" #if( $!employee.gender == 'M' ) selected="selected" #end>$i18n.getString( "male" )</option>
+                <option value="F" #if( $!employee.gender == 'F' ) selected="selected" #end>$i18n.getString( "female" )</option>
+			</select>
+		</td>					
+	</tr>
+	
+	<tr>
+		<td><label for="employeeCode">$i18n.getString( "employee_code" )</label></td>
+		<td><input type="text" name="employeeCode" id="employeeCode" style="width:300px" class="{validate:{required:false}}" value="$!employee.getCode()" /></td>
+	</tr>
+	
+		
+	<tr>
+		<td><label for="jobTitle">$i18n.getString( "designation" )<em title="$i18n.getString( "required" )" class="required">*</em></label></td>
+		<td>
+			<select name="designation" id="designation" style="width:300px" class="{validate:{required:true}}">
+				<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+				#foreach ($option in $!optionSet.getOptions() )
+					<option value="$option" #if( $!employee.getDesignation() == $option ) selected="selected" #end>$option</option>
+				#end	
+			</select>
+		</td>
+	</tr>	
+
+
+	<tr>
+		<td><label for="address">$i18n.getString( "address" )</label></td>
+		<td><input type="text" name="address" id="address" style="width:300px" value="$!employee.getAddress()"/></td>
+	</tr>	
+	
+	<tr>
+		<td><label for="contact_no">$i18n.getString( "contact_no" )</label></td>
+		<td><input type="text" name="phoneNumber" id="phoneNumber" style="width:300px" class="{validate:{phone:true,rangelength:[10,10]}}" value="$!employee.getPhoneNumber()"/></td>
+	</tr>
+	
+	<tr>
+		<td><label for="email">$i18n.getString( "email" )</label></td>
+		<td><input type="text" name="email" id="email" style="width:300px" class="{validate:{email:true,rangelength:[4,160]}}" value="$!employee.getEmail()"/></td>
+	</tr>
+	
+	<tr>
+		<td><label for="date_of_birth">$i18n.getString( "date_of_birth" )<em title="$i18n.getString( "required" )" class="required">*</em></label></td>
+		<td>
+			<input type="text" name="birthDate" id="birthDate" class="{validate:{required:true,dateISO:true}}" style="width:300px" value='$format.formatDate($!employee.birthDate)'/>
+			<script type="text/javascript">
+                datePickerValid( 'birthDate', false );
+            </script>
+		</td>
+	</tr>
+	
+	<tr>
+		<td><label for="educationalLevel">$i18n.getString( "educational_level" )</label></td>
+		<td>
+			<select name="educationLevel" id="educationLevel" style="width:300px">
+				<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+				<option value = "Graduate" #if( $!employee.getEducationLevel() == 'Graduate' ) selected="selected" #end >$i18n.getString( "graduate" )</option>
+				<option value = "Post Graduate" #if( $!employee.getEducationLevel() == 'Post Graduate' ) selected="selected" #end >$i18n.getString( "post_graduate" )</option>
+				<option value = "Others" #if( $!employee.getEducationLevel() == 'Others' ) selected="selected" #end >$i18n.getString( "others" )</option>
+			</select>
+		</td>
+	</tr>	
+	
+	<tr>
+		<td><label for="category">$i18n.getString( "category" )</label></td>
+		<td>
+			<select name="category" id="category" style="width:300px">
+				<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+				<option value = "General" #if( $!employee.getCategory() == 'General' ) selected="selected" #end >$i18n.getString( "general" )</option>
+				<option value = "SC" #if( $!employee.getCategory() == 'SC' ) selected="selected" #end >$i18n.getString( "sc" )</option>
+				<option value = "ST" #if( $!employee.getCategory() == 'ST' ) selected="selected" #end >$i18n.getString( "st" )</option>
+				<option value = "OBC" #if( $!employee.getCategory() == 'OBC' ) selected="selected" #end >$i18n.getString( "obc" )</option>
+				<option value = "Others" #if( $!employee.getCategory() == 'Others' ) selected="selected" #end >$i18n.getString( "others" )</option>
+			</select>
+		</td>
+	</tr>
+
+	<tr>
+		<td><label for="martialstatus">$i18n.getString( "martial_status" )</label></td>
+		<td>
+			<select name="maritalStatus" id="maritalStatus" style="width:300px">
+				<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+				<option value = "Married" #if( $!employee.getMaritalStatus() == 'Married' ) selected="selected" #end  >$i18n.getString( "married" )</option>
+				<option value = "Unmarried" #if( $!employee.getMaritalStatus() == 'Unmarried' ) selected="selected" #end >$i18n.getString( "unmarried" )</option>
+			</select>
+		</td>
+	</tr>	
+	
+	
+	<tr>
+		<td><label for="date_of_joining">$i18n.getString( "date_of_joining" )<em title="$i18n.getString( "required" )" class="required">*</em></label></td>
+		<td>
+			<input type="text" name="joiningDate" id="joiningDate" class="{validate:{required:true,dateISO:true}}" style="width:300px" value='$format.formatDate($!employee.getJoiningDate() )'/>
+			<script type="text/javascript">
+                datePickerValid( 'joiningDate', false );
+            </script>
+		
+		</td>
+	</tr>	
+
+	
+	<tr>
+		<td><label for="totalExperience">$i18n.getString( "total_experience" )</label></td>
+		<td><input type="text" name="experience" id="experience"  style="width:300px" class="{validate:{required:false,number:true}}" value="$!employee.getExperience()"/></td>
+	</tr>	
+	
+	#if( $orientationRecived == "true" )
+    	<tr>
+    		<td><label for="orientationReceived">$i18n.getString( "orientation_received" )</label></td>
+    		<td>
+    			<select name="orientationReceived" id="orientationReceived" style="width:300px">
+    				<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+    				<option value="true" #if( $employee.isOrientationReceived() =='true') selected="selected" #end >$i18n.getString( "yes" )</option>
+    				<option value="false" #if( $employee.isOrientationReceived() =='false') selected="selected" #end >$i18n.getString( "no" )</option>
+    			</select>
+    		</td>
+    	</tr>		
+	#end	
+	
+	<tr>
+		<td><label for="active">$i18n.getString( "active" )</label></td>
+		<td>
+			<input type='checkbox' id="active" name="active" value='true' #if( $employee.active ) checked #end >
+		</td>		
+	</tr>	
+	
+
+	<tr>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>	
+	<tr>
+		<td>&nbsp;</td>
+		<td>
+			<input type="submit" name="save" value="$i18n.getString( 'save' )" style="width:150px" />
+			<input type="button" value="$i18n.getString( 'cancel' )" onclick="window.location.href='getEmployeeList.action'" style="width:150px" />
+		</td>
+	</tr>
+		
+</table>
+
+</form>
+
+<span id="message"></span>
+
+<script type="text/javascript">
+
+    var i18n_field_is_required = '$encoder.jsEscape( $i18n.getString( "field_is_required" ) , "'") ';
+    //var nameField = document.getElementById( 'empCode' );
+    //nameField.select();
+    //nameField.focus();
+
+</script>

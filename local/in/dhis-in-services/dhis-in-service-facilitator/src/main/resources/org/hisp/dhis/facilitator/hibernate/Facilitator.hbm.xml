@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+ "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="org.hisp.dhis.facilitator.Facilitator" table="facilitator">
+
+    <id name="id" column="facilitatorid">
+      <generator class="native" />
+    </id>
+    
+    <property name="name" column="name" not-null="true" length="230" />
+	
+	<property name="code" column="facilitatorcode" not-null="false" length="160" />
+	
+	<property name="gender" column="gender" not-null="true" length="5"  />
+	  
+	<property name="contactNumber" column="contactnumber" not-null="false" length="25" />
+	  
+	<property name="address" column="address" type="text" not-null="false" />
+	<!--<property name="address" column="address" length="255" />-->
+	
+	<property name="email" column="email" not-null="false" length="160" />
+	
+	<property name="birthDate" column="birthdate" not-null="true" type="date" />
+	
+	<property name="educationLevel" column="educationlevel" not-null="false" length="160" />
+	
+	<property name="category" column="category" not-null="false" length="160" />
+
+   	<property name="designation" column="designation" not-null="false" length="160" />
+   	
+   	<property name="maritalStatus" column="maritalstatus" not-null="false" length="160" />
+   	
+   	<property name="joiningDate" column="joiningdate" not-null="true" type="date" />
+   	
+   	<property name="panchayatName" column="panchayatname" not-null="false" length="160" />
+   	
+   	<property name="experience" column="experience" not-null="false" length="160" />
+   	
+    <property name="orientationReceived" column="orientationreceived" not-null="false" />
+	
+	<property name="active" not-null="true" column="active"/>  
+	  
+    <!-- OrganisationUnit -->
+	    
+    <many-to-one name="organisationUnit" class="org.hisp.dhis.organisationunit.OrganisationUnit" column="organisationunitid"
+        not-null="true" foreign-key="fk_location_organisationunitid" />
+	  
+	<!-- Patient -->  	
+    <set name="patients" table="facilitator_patient">
+      <cache usage="read-write" />
+      <key column="facilitatorid" foreign-key="fk_facilitator_patient_facilitatorid" />
+      <many-to-many column="patientid" class="org.hisp.dhis.patient.Patient"
+        foreign-key="fk_facilitator_patientid" />
+    </set>
+	  	
+	 <property name="storedBy" column="storedBy" length="160" />
+
+    <property name="lastupdated" column="lastupdated" type="date" />
+	  
+  </class>
+</hibernate-mapping>

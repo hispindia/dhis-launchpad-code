@@ -1,0 +1,114 @@
+<script type="text/javascript" src="javascript/ashaDataEntry.js"></script>
+<script type="text/javascript">
+	var i18n_select_period = '$encoder.jsEscape( $i18n.getString( "select_period" ) , "'")';
+</script>
+
+<style>
+    #overlay {
+    z-index:9998;
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    width:100%;
+    background:#000;
+    opacity:0.45;
+    -moz-opacity:0.45;
+    filter:alpha(opacity=45);
+    visibility:hidden;   
+    }
+    #overlayImg{ width: 50px; height: 50px; z-index: 9999; position: absolute; left:50%}
+</style>
+<div id="overlay">
+    <div id="overlayImg"><img  width="50" height="50" src="images/ajax-loader.gif" style="margin:auto;position:fixed;top: 50%;left: 50%;"/></div>
+</div>
+
+<script type="text/javascript">
+    
+ 	jQuery(document).ready( function(){
+	currentDiv = 'ashaDataEntryForm';
+	isSubmit = true;
+    jQuery("#ashaDataEntryForm").validate({
+		meta:"validate"
+		,errorElement:"span"
+		,submitHandler: function(form)
+		{
+        	if( isSubmit ) 
+            {
+            	saveASHADataEntryForm();
+            }
+		}
+    	});
+    });  
+</script>
+
+
+<h3>$i18n.getString( "asha_dataentry" )</h3>
+
+<form id="ashaDataEntryForm" name="ashaDataEntryForm" method="post" >	
+<div>
+	<input type="hidden" name="orgUnitId" id="orgUnitId" value="$!patient.organisationUnit.getId()" />
+	<input type="hidden" name="id" id="id" value="$!patient.getId()" />
+	<input type="hidden" name="dataSetId" id="dataSetId" value="$!dataSet.getId()" />
+</div>
+
+<table style="background-color:#ECE0F8;" width="75%">
+	<tr>
+		<td class='text-column'>$i18n.getString( "system_identifier" )</td>
+		<td>$!systemIdentifier</td>
+	</tr>	
+
+	<tr>
+		<th colspan="2" class="heading-column">$i18n.getString( "demographics_details" )</th>
+	</tr>
+	
+	<tr>
+		<td>$i18n.getString("full_name")</td>
+		<td>$encoder.htmlEncode($!patient.getFullName())</td>
+	</tr>
+	
+	<tr>
+		<td>$i18n.getString("location")</td>
+		<td>$encoder.htmlEncode($!patient.organisationUnit.name)</td>
+	</tr>
+
+	<tr>
+		<td>$i18n.getString("date_of_birth")</td>
+		<td>$format.formatDate( $!patient.birthDate) ($!patient.getAge())</td>
+	</tr>
+	
+	<tr>
+		<td>$i18n.getString("phoneNumber")</td>
+		<td>
+			#if($!patient.phoneNumber && $!patient.phoneNumber!='')
+				$!patient.phoneNumber
+			#else
+				[$i18n.getString('none')]
+			#end
+		</td>
+	</tr>
+
+	<tr>
+		<td><label for="selectedPeriodId">$i18n.getString( "period" )</label></td>
+		<td>
+			<select id="selectedPeriodId" name="selectedPeriodId" style="width:200px" onchange="loadASHADataEntryForm()">
+				<option value="-1">[$i18n.getString( "select" )]</option>
+				#foreach( $period in $periods )
+    				    <option value="$period.getExternalId()">$encoder.htmlEncode( $period.name )</option>
+    			    #end
+			</select>
+		</td>
+	</tr>	
+
+</table>
+
+#parse( "/dhis-web-commons/loader/loader.vm" )
+<div id='ashaDataEntryFormDiv'></div> <!-- DataEntry Form -->  	
+
+
+<p>
+	<input type="button"  value="$i18n.getString( 'Cancel' )" style="width:100px" onclick="javascript:callAction( 'getRegisteredASHAList' )"/>&nbsp;&nbsp;
+	&nbsp;&nbsp;<input type="submit"  id="saveButton" name="saveButton" value="$i18n.getString( 'save' )" disabled="disabled" style="width:100px"/>
+</p>
+
+</form>

@@ -1,0 +1,62 @@
+
+<script type="text/javascript">
+
+    jQuery(document).ready(function(){  
+        tableSorter( 'listTable' ); 
+    });
+
+    function exportToExcel()
+    {
+        document.getElementById('htmlCode').value = document.getElementById('htmlContent').innerHTML;
+        return true;
+    }
+    
+</script>
+
+<form id="form1" name="form1" action="exportToWorkBook.action" method="post" onsubmit="return exportToExcel()" target="_newtab">
+
+<table class="mainPageTable">
+    <tr align="left">
+        <td>    
+            <div>
+                <input type="button" value="Back" onclick="javascript:location.href='customReportManagement.action'" /> &nbsp;
+                <input type="submit" value="Export to WorkBook" />
+                <input type="hidden" name="htmlCode" id="htmlCode" />
+            </div>
+        </td>
+    </tr>
+    <tr align="left">
+        <td>    
+            <div id="htmlContent" >
+                <h3>$reportTitle</h3>
+        
+                #set( $count = 1 )
+                #set( $rowCount = $resultGrid.keySet().size() )
+                
+                <table class="listTable" id="listTable">
+                    
+                    <thead> 
+                        <tr>
+                            #foreach( $headerCell in $tableHeader )
+                                <th>$headerCell</th>
+                            #end
+                        </tr>
+                    </thead>
+                    
+                    <tbody id="list">
+                        #foreach( $number in [1..$rowCount] )
+                            #set( $oneRow = $resultGrid.get( "row$number" ) )
+                            <tr>
+                                #foreach( $cellValue in $oneRow )
+                                    <td>$cellValue</td>
+                                #end            
+                            </tr>
+                        #end
+                    </tbody>
+                    
+                </table>
+            </div>
+        </td>
+    </tr>
+</table>    
+</form>

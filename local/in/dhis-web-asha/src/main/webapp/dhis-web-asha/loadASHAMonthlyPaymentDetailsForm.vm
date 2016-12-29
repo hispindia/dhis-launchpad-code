@@ -1,0 +1,190 @@
+
+<style>
+    #overlayPayment {
+    z-index:9998;
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    width:100%;
+    background:#000;
+    opacity:0.45;
+    -moz-opacity:0.45;
+    filter:alpha(opacity=45);
+    visibility:hidden;   
+    }
+    #overlayImgPayment{ width: 50px; height: 50px; z-index: 9999; position: absolute; left:50%}
+</style>
+<div id="overlayPayment">
+    <div id="overlayImgPayment"><img  width="50" height="50" src="images/ajax-loader.gif" style="margin:auto;position:fixed;top: 50%;left: 50%;"/></div>
+</div>
+
+
+<script type="text/javascript">
+
+
+$(document).ready(function () {
+        $("#ckbCheckAll").click(function () {
+        
+		/*
+		var checked = $(this).is(':checked');
+		alert( checked );
+		
+		if ( $(".checkBoxClass").not(':checked') )
+		{
+			$(".checkBoxClass").attr('checked', this.checked);
+		}
+		
+		$('.checkBoxClass:enabled').prop('checked', this.checked);
+		
+		*/
+		
+		//$(".checkBoxClass").attr('checked', this.checked);
+		
+		$('.checkBoxClass:enabled').prop('checked', this.checked);
+			
+        });
+    });
+
+
+
+</script>
+ASHA List -- $ashaList.size()
+
+## Macro for generating the jQuery validation rules 
+#macro( validate $type $require )
+  #if( $type == "NUMBER" || $type == "number" )
+    {validate:{ number:true #if($require), required:true #end }}
+  
+	#elseif( $type == "int" )
+  	{validate:{ integer:true #if($require), required:true #end }}
+  	
+  	#elseif( $type == "positiveNumber" )
+  	{validate:{ positive_integer:true #if($require), required:true #end }}
+  	
+	#elseif( $type == "negativeNumber" )
+  	{validate:{ negative_integer:true #if($require), required:true #end }}
+  
+	#elseif( $require )
+    {validate:{required:true}}
+  #end
+#end
+
+<div>
+	<input type="hidden" id="organisationUnitId" name="organisationUnitId" value="$!organisationUnit.id">
+	<input type="hidden" id="programId" name="programId" value="$!program.id">
+	<input type="hidden" id="programStageId" name="programStageId" value="$!programStage.id">
+</div>
+	
+
+<table>
+	<tr>
+		<td>
+			<table id="listTable"> 
+				<colgroup>
+					<col />
+					<col />
+          			<col />
+					<col/>
+					<col/>
+					<col/>
+					<col/>
+					<col/>
+					<col/>
+					<col/>
+					<col width="150"/>
+				</colgroup>   
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>$i18n.getString( "asha_name" )</th>
+						<!--<th>$i18n.getString( "hierachy_orgunit" )</th>-->
+						<th>$i18n.getString( "Organisation Unit" )</th>
+						<th>$i18n.getString( "Bank Name" )</th>
+						<th>$i18n.getString( "Account Number" )</th>
+						<th>$i18n.getString( "IFSC Code" )</th>
+						<th>$i18n.getString( "Payable Amount" )</th>
+						<th>$i18n.getString( "mode_of_payment" )</th>
+						<th>$i18n.getString( "Cheque/Voucher No" )</th>
+						<th>$i18n.getString( "comments" )</th>
+						<th style="text-align:center">$i18n.getString( "Pay" )
+							<label><b>Select All &nbsp;</b><input type="checkbox" id="ckbCheckAll" /></label>
+						</th>
+					</tr>
+				</thead>
+				<tbody id="list">
+					#set( $count=1 )
+					#set( $mark = !$mark)
+					#foreach( $asha in $ashaList )
+						
+						#set( $paymentStatusCheckBoxId =  $asha.id + ':' + 508 )
+						#set( $paymentStatusCheckBoxValue = "" )
+						#set( $paymentStatusCheckBoxValue = $!patientDataValueMap.get( $paymentStatusCheckBoxId ) )
+						
+						<tr id="tr${asha.id}" #alternate($mark) #if( $paymentStatusCheckBoxValue =="true" ) disabled="disabled" #end >
+							<td>$count</td>
+							
+							#set($value="")
+							#set($value=$asha.getFullName())
+							<td>$encoder.htmlEncode($value)</td>
+							<!--<td>$!mapPatientOrgunit.get($asha.id)</td>-->
+							<td>$!asha.getOrganisationUnit().name</td>
+							
+							#set( $key1 = $asha.id + ":" + 27 )
+							#set( $key2 = $asha.id + ":" + 28 )
+							#set( $key3 = $asha.id + ":" + 186 )
+							
+							<td>$!patientAttributeValueMap.get( $key1 )</td>
+							<td>$!patientAttributeValueMap.get( $key2 )</td>
+							<td>$!patientAttributeValueMap.get( $key3 )</td>
+							<td>
+								#set( $valueMapId =  $asha.id + ':' + 507 )
+								#set( $patientDataValue = "" )
+								#set( $patientDataValue = $!patientDataValueMap.get( $valueMapId ) )
+								
+								<input type="text" id="deps$valueMapId" name="deps$valueMapId" value="$!patientDataValue" style="text-align: center;" readonly #if( $paymentStatusCheckBoxValue =="true" ) disabled="disabled" #end />
+							</td>
+							
+							<td>
+								#set( $valueMapId =  $asha.id + ':' + 174 )
+								#set( $patientDataValue = "" )
+								#set( $patientDataValue = $!patientDataValueMap.get( $valueMapId ) )
+								
+								<select name="deps$valueMapId"  id="deps$valueMapId" style="width:150px" #if( $paymentStatusCheckBoxValue =="true" ) disabled="disabled" #end>
+									#foreach ($option in $modeOfPaymentOptions )
+										<option value="$option" #if($patientDataValue == $option ) selected="selected" #end>$option</option>
+									#end	
+								</select>
+							</td>							
+							
+							<td>
+								#set( $valueMapId =  $asha.id + ':' + 162 )
+								#set( $patientDataValue = "" )
+								#set( $patientDataValue = $!patientDataValueMap.get( $valueMapId ) )
+								
+								<input type="text" id="deps$valueMapId" name="deps$valueMapId" value="$!patientDataValue" style="text-align: left;" #if( $paymentStatusCheckBoxValue =="true" ) disabled="disabled" #end/>
+							</td>
+							
+							<td>
+								#set( $valueMapId =  $asha.id + ':' + 163 )
+								#set( $patientDataValue = "" )
+								#set( $patientDataValue = $!patientDataValueMap.get( $valueMapId ) )
+								
+								<input type="text" id="deps$valueMapId" name="deps$valueMapId" value="$!patientDataValue" style="text-align: left;" #if( $paymentStatusCheckBoxValue =="true" ) disabled="disabled" #end/>
+							</td>							
+							<td style="text-align: center;" >
+								#set( $checkboxId =  $asha.id + ':' + 508 )
+								#set( $checkBoxValue = "" )
+								#set( $checkBoxValue = $!patientDataValueMap.get( $checkboxId ) )
+								<input type="checkbox" class="checkBoxClass" id="checkbox$checkboxId" name="checkbox$checkboxId" #if( $checkBoxValue == "true" ) checked #end #if( $paymentStatusCheckBoxValue =="true" ) disabled="disabled" #end />
+							</td>                        
+						</tr>
+						#set($count = $count + 1)
+						#set( $mark = !$mark)
+					#end
+				</tbody>
+			</table>
+		</td>
+	</tr>
+
+</table>

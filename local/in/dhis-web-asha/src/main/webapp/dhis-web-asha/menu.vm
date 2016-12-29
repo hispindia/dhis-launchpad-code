@@ -1,0 +1,227 @@
+<!--
+<style>
+ .ui-accordion { width: 100%; }
+.ui-accordion .ui-accordion-header { cursor: pointer; position: relative; margin-top: 1px; zoom: 1; }
+.ui-accordion .ui-accordion-li-fix { display: inline; }
+.ui-accordion .ui-accordion-header-active { border-bottom: 0 !important; }
+.ui-accordion .ui-accordion-header a { display: block; font-size: 1em; padding: 0em .4em .4em .9em; }
+.ui-accordion-icons .ui-accordion-header a { padding-left: 2.2em; }
+.ui-accordion .ui-accordion-header .ui-icon { position: absolute; left: .5em; top: 50%; margin-top: -8px; }
+.ui-accordion .ui-accordion-content { padding: 1em 3.5em 1em 2em; border-top: 0; margin-top: -2px; position: relative; top: 1px; margin-bottom: 2px; overflow: auto; display: none; zoom: 1; }
+.ui-accordion .ui-accordion-content-active { display: block; }
+
+.ui-accordion .ui-accordion-header {
+margin:auto;
+padding:10px 10px 0 10px;
+font-size:12px;
+height:18px;
+background: no-repeat;
+}
+.ui-accordion .ui-accordion-content {
+font-size:12px;
+
+opacity:0.4;
+filter:alpha(opacity=40); /* For IE8 and earlier */
+
+}
+</style>
+-->
+<script type="text/javascript">
+	
+	var selOUID = "";
+	
+	jQuery(document).ready(function(){
+	
+	/*
+	$( "#menuDiv" ).accordion({ autoHeight: false});
+	
+	$("#menuDiv ul").removeClass("ui-accordion-content");
+	$("#menuDiv ul").removeClass("ui-helper-reset");
+	$("#menuDiv ul").removeClass("ui-corner-bottom");
+	$("#menuDiv ul").removeClass("ui-accordion-content-active");
+	$("#menuDiv ul").removeClass("ui-widget-content");
+	*/
+	
+	jQuery('#orgUnitTreeContainer').height(150);
+	jQuery('#orgUnitTree').height(150);
+		   
+	});
+	
+	function organisationUnitSelected( orgUnits, orgUnitNames )
+	{   
+		document.getElementById('selectedOrgunitID').value = orgUnits;
+		selOUID = orgUnits;
+		
+		//setFieldValue("selectedOrgunitText", orgUnitNames[0]);
+		//setFieldValue("orgunitName", orgUnitNames[0]);
+	}
+
+	selection.setListenerFunction( organisationUnitSelected );
+
+	function callAction( actionName )
+	{
+		/*
+		if( selOUID == "" )
+		{
+			showWarningMessage( i18n_please_select_orgUnit );
+		}
+		
+		else
+		{	
+			hideById('addUpdateASHAProfileDiv');
+			hideById('ashaFacilitatorListDiv');
+			hideById('locationListDiv');
+			hideById('ashaMasterChartReportDiv');
+			
+			$( '#ashaManagementDiv' ).load( actionName+".action", 
+			{ 
+				orgUnitId : selOUID
+			},
+			function()
+			{
+				showById('ashaManagementDiv');
+			});
+			
+			
+			
+		}
+		
+		*/
+		
+		
+		window.location.href = actionName+".action?orgUnitId=" + selOUID;
+		
+	}
+
+
+	function callActionFacilitator( actionName )
+	{	
+		/*
+		if( selOUID == "" )
+		{
+			showWarningMessage( i18n_please_select_orgUnit );
+		}
+		else
+		{
+			window.location.href = actionName+".action?orgUnitId=" + selOUID;
+			
+		}
+		
+		*/
+		
+		window.location.href = actionName+".action?orgUnitId=" + selOUID;
+		
+	}
+
+	
+	function callActionLocation( actionName )
+	{
+		/*
+		if( selOUID == "" )
+		{
+			showWarningMessage( i18n_please_select_orgUnit );
+		}
+		else
+		{
+			window.location.href = actionName+".action?orgUnitId=" + selOUID;
+			
+		}
+		*/
+		
+		window.location.href = actionName+".action?orgUnitId=" + selOUID;
+	}	
+	
+	
+	function callActionMasterChartReport( actionName )
+	{
+		
+		window.location.href = actionName+".action?orgUnitId=" + selOUID;
+	}		
+	
+	
+</script>
+
+#parse( "/dhis-web-commons/ouwt/orgunittreesearch.vm" )
+
+<!--<div id="menuDiv">-->
+
+<!--<h2><a href="#">$i18n.getString( "asha_management" )&nbsp;</a></h2>-->
+<h2>$i18n.getString( "asha_management" )&nbsp;</h2>
+	<ul>
+		<li><a href="javascript:callAction( 'selectASHA' )">$i18n.getString( "asha_list" )&nbsp;</a></li>
+		<!--<li><a href="javascript:callAction( 'getRegisteredASHAList' )">$i18n.getString( "asha_list" )&nbsp;</a></li>-->
+		<!--<li><a href="javascript:callAction( 'getASHAFacilitatorForm' )">$i18n.getString( "asha_facilitator" )&nbsp;</a></li>-->
+		<li><a href="javascript:callActionFacilitator( 'getASHAFacilitatorList' )">$i18n.getString( "asha_facilitator_list" )&nbsp;</a></li>
+	</ul>
+
+<!--<h2><a href="#">$i18n.getString( "location_management" )&nbsp;</a></h2>-->
+<h2>$i18n.getString( "location_management" )&nbsp;</h2>
+	<ul>
+		<li><a href="javascript:callActionLocation( 'getLocationList' )">$i18n.getString( "location_management" )&nbsp;</a></li>		
+	</ul>	
+
+
+
+#if( $auth.hasAccess( "dhis-web-asha", "showASHAMonthlyPaymentForm") )
+	<h2>$i18n.getString( "payment" )&nbsp;</h2>
+	<!--<h2><a href="#">$i18n.getString( "performance_incentive" )&nbsp;</a></h2>-->
+	<ul>
+		<li><a href="showASHAMonthlyPaymentForm.action">$i18n.getString( "payment" )&nbsp;</a></li>
+		<li><a href="showASHAMonthlyBankVoucherReportForm.action">$i18n.getString( "Bank Advice Report" )&nbsp;</a></li>
+		<li><a href="showASHAPaymentStatusReportForm.action">$i18n.getString( "asha_payment_status_report" )&nbsp;</a></li>
+		<li><a href="showASHABudgetUtilizationStatusReportForm.action">$i18n.getString( "Budget Utilization Status Report" )&nbsp;</a></li>
+		<li><a href="showASHAActivitiesReportForm.action">$i18n.getString( " Activities Report" )&nbsp;</a></li>
+	</ul>
+	
+#end	
+	
+	
+<h2>$i18n.getString( "performance_incentive" )&nbsp;</h2>
+<!--<h2><a href="#">$i18n.getString( "performance_incentive" )&nbsp;</a></h2>-->
+	<ul>
+		<li><a href="showASHAPerformanceIncentiveForm.action">$i18n.getString( "performance_incentive" )&nbsp;</a></li>
+	</ul>
+	
+	
+<!--<h2><a href="#">$i18n.getString( "reports" )&nbsp;</a></h2>-->
+<h2>$i18n.getString( "reports" )&nbsp;</h2>
+	<ul>
+		<li><a href="javascript:callActionMasterChartReport( 'getASHAMasterChartReport' )">$i18n.getString( "asha_master_chart_report" )&nbsp;</a></li>
+		<li><a href="javascript:callAction( 'getASHAOutcomeMonitoringReport' )">$i18n.getString( "asha_outcome_monitoring_report" )&nbsp;</a></li>
+		<!--<li><a href="javascript:callAction( 'getASHAPaymentStatusReportForm' )">$i18n.getString( "asha_payment_status_report" )&nbsp;</a></li>-->
+		<li><a href="javascript:callAction( 'getASHAFacilitatorFormat2ReportForm' )">$i18n.getString( "format_2" )&nbsp;</a></li>
+		<li><a href="javascript:callAction( 'getASHAFacilitatorFormat4ReportForm' )">$i18n.getString( "format_4" )&nbsp;</a></li>
+		<li><a href="javascript:callAction( 'getASHAFacilitatorFormat5ReportForm' )">$i18n.getString( "format_5" )&nbsp;</a></li>
+		<li><a href="showRegisteredASHAListReportForm.action">$i18n.getString( "Registered ASHA List" )&nbsp;</a></li>
+		
+		#if( $auth.hasAccess( "dhis-web-asha", "populateMultipleUsers") )
+			<li><a href = "populateMultipleUsers.action">Populate Users From Excel</a></li>
+		#end
+		
+		#if( $auth.hasAccess( "dhis-web-asha", "transferPatientDataValueForm") )
+			<li><a href = "transferPatientDataValueForm.action">Transfer Data</a></li>
+		#end		
+		
+		
+		
+		
+		<!--<li><a href="generateRegisteredASHAListReport.action"  target="_blank" >$i18n.getString( "Registered ASHA List" )&nbsp;</a></li>-->
+	</ul>
+ 
+<!--<h2><a href="#">$i18n.getString( "resource" )&nbsp;</a></h2>-->
+<h2>$i18n.getString( "resource" )&nbsp;</h2>
+	<ul>
+		<li><a href="getResourceList.action">$i18n.getString( "resource" )&nbsp;</a></li>
+	</ul>	
+	
+<!--</div>-->
+<!--<li><a href="displayViewDocumentForm.action">$i18n.getString( "resource" )&nbsp;</a></li>-->
+	
+	<!--
+	<ul>
+        <li><a href="javascript:callAction( 'getASHAOutcomeMonitoringReport' )">$i18n.getString( "asha_outcome_monitoring_report" )&nbsp;</a></li>
+    </ul>
+    <ul>
+        <li><a href="javascript:callAction( 'getASHAPaymentStatusReportForm' )">$i18n.getString( "asha_payment_status_report" )&nbsp;</a></li>
+    </ul>
+-->

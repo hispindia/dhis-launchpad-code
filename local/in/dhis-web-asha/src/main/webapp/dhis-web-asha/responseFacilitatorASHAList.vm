@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ashalist>
+	#foreach( $patient in $patients )	
+		<asha>
+			<id>$patient.id</id>
+			<name>$encoder.htmlEncode( $patient.getFullName() )</name>
+		</asha>
+	#end
+</ashalist>

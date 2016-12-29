@@ -1,0 +1,672 @@
+
+<script type="text/javascript" src="javascript/ashaBeneficiaryAndActivityAmountDetails.js"></script>
+## Macro for generating the jQuery validation rules 
+#macro( validate $type $require )
+  #if( $type == "NUMBER" || $type == "number" )
+    {validate:{ number:true #if($require), required:true #end }}
+  
+	#elseif( $type == "int" )
+  	{validate:{ integer:true #if($require), required:true #end }}
+  	
+  	#elseif( $type == "positiveNumber" )
+  	{validate:{ positive_integer:true #if($require), required:true #end }}
+  	
+	#elseif( $type == "negativeNumber" )
+  	{validate:{ negative_integer:true #if($require), required:true #end }}
+  
+	#elseif( $require )
+    {validate:{required:true}}
+  #end
+#end
+
+<!--
+$update ---- $id ---- $organisationUnitId -- $totalAmountInMonth
+-->
+<script>
+    
+	jQuery(document).ready( function(){
+	currentDiv = 'ASHABeneficiaryAndActivityAmountDetailsForm';
+	isSubmit = true;
+    jQuery("#ASHABeneficiaryAndActivityAmountDetailsForm").validate({
+		meta:"validate"
+		,errorElement:"span"
+		,submitHandler: function(form)
+		{
+        	if( isSubmit ) 
+            {
+            	saveASHABeneficiaryAndActivityAmountDetailsForm();
+            }
+		}
+    	});
+    }); 
+    
+</script>
+
+<h4>$i18n.getString( "asha_payment_details" )  Name of ASHA : $!patient.getFullName() For the Month : $monthYear In : $!patient.getOrganisationUnit().getName()</h4>
+
+<form id="ASHABeneficiaryAndActivityAmountDetailsForm" name="ASHABeneficiaryAndActivityAmountDetailsForm" method="post"> 
+	
+<div>
+	<input type="hidden" id="id" name="id" value="$patient.id">
+	<input type="hidden" id="programId" name="programId" value="$!program.id">
+	<input type="hidden" id="programInstanceId" name="programInstanceId" value="$!programInstanceId">
+	<input type="hidden" id="programStageId" name="programStageId" value="$!programStage.id">
+	<input type="hidden" id="programStageInstanceId" name="programStageInstanceId" value="$!programStageInstanceId">
+	<input type="hidden" id="selectedPeriodId" name="selectedPeriodId" value="$!selectedPeriodId">	
+</div>
+
+<table class="mainPageTable">
+	<tr>
+		<td>
+			<table class="listTable" id="listTable"> 
+				<colgroup>
+					<col width="30"/>
+					<col />
+					<col />
+					<col />
+					<col/>
+					<col/>
+					<col/>
+					<col/>
+					<col width="80"/>
+				</colgroup>   
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>$i18n.getString( "beneficiary_name" )</th>
+						<th>$i18n.getString( "father_husband_name" )</th>
+						<th>$i18n.getString( "beneficiary_identifier" )</th> 
+						<th class="{sorter: false}">$i18n.getString( "service_given" )</th>
+						<th>$i18n.getString( "incentive_amount" )</th>
+						<th>$i18n.getString( "state_incentive_amount" )</th>
+						<th>$i18n.getString( "total" )</th>
+						<th class="{sorter: false}" align="center">$i18n.getString( "operations" )</th>
+					</tr>
+				</thead>
+				<tbody id="list">   
+					#set( $count=1 )
+					#foreach( $beneficiary in $beneficiaryList )
+						
+						<tr id="tr${beneficiary.id}">
+							<td>
+								$count
+							</td>
+							
+							<td>$encoder.htmlEncode( $!beneficiary.name)</td>
+							<td>$encoder.htmlEncode( $!beneficiary.getFatherName() )</td>
+							<td>$encoder.htmlEncode( $!beneficiary.getIdentifier() )</td>
+							<td>$encoder.htmlEncode( $!beneficiary.getDataElement().getName() )</td>
+							
+							#if( $beneficiary.getDataElement().getId() == 110 )							
+								<td>0</td>
+							#else
+								<td>$encoder.htmlEncode( $!beneficiary.getPrice() )</td>
+							#end
+							
+							<td>$encoder.htmlEncode( $!stateAmountMap.get( $beneficiary.getId() ) )</td>
+							<td>$encoder.htmlEncode( $!totalAmountMap.get( $beneficiary.getId() ) )</td>
+							<td>
+								##if( $update == "YES" )
+									<a href="javascript:showUpdateASHABeneficiaryForm( '$beneficiary.id','$beneficiary.getPeriod().getId()', '$beneficiary.getPatient().getId()' ,'$selectedPeriodId' )" title='$i18n.getString( "edit_beneficiary" )'><img src="images/edit_foto.png" alt='$i18n.getString( "edit_beneficiary" )'></a>
+									<a href="javascript:removeASHABeneficiary( '$beneficiary.id', '$encoder.jsEncode( $beneficiary.name )' ,'$beneficiary.getPeriod().getId()', '$beneficiary.getPatient().getId()', '$selectedPeriodId', '$beneficiary.getPatient().getOrganisationUnit().getId()' )" title='$i18n.getString( "remove" )'><img src="images/deleteRed.png" alt='$i18n.getString( "remove" )'></a>
+								##end
+
+							</td>                               
+						</tr>
+						#set($count = $count + 1)
+					#end
+					<tr>
+						<td colspan="5"><strong>$i18n.getString( "total" )</strong></td>
+						<td>$!totalAmountInMonth</td>
+						<td>$!stateTotalAmountInMonth</td>
+						<td>$!totalAmount</td>
+						<input type="hidden" id="beneficiaryAmount" name="beneficiaryAmount" value="$!totalAmountInMonth" >
+						<input type="hidden" id="stateBeneficiaryAmount" name="stateBeneficiaryAmount" value="$!stateTotalAmountInMonth" >
+						<input type="hidden" id="totalBeneficiaryAmount" name="totalBeneficiaryAmount" value="$!totalAmount" >
+							
+						<td>&nbsp;</td>
+					</tr>
+					
+				</tbody>
+				
+			</table>
+		</td>
+	</tr>
+
+</table>
+
+
+<table  width="100%">
+	
+	<tr bgcolor="#CBDDEB">
+		<td width="100%" colspan="8"><strong>Session/Mobilization</strong></td>
+	</tr>
+	
+	<tr bgcolor="#CBDDEB">
+		<td width="30%"><strong>Kind of Session</strong></td>
+		<td width="10%"><strong>Date of Session</strong></td>
+		<td width="10%"><strong>&nbsp;</strong></td>
+		<td width="10%"><strong>Place of Session</strong></td>
+		<!--<td width="10%"><strong>Number of ASHA</strong></td>-->
+		<td width="10%"><strong>&nbsp;</strong></td>
+		<!--<td width="10%"><strong>Number of Child</strong></td>-->
+		
+		<td width="10%" align="center"><strong>$i18n.getString( "incentive_amount" )</strong></td>
+		<td width="10%" align="center"><strong>$i18n.getString( "state_incentive_amount" )</strong></td>
+		<td width="10%" align="center"><strong>$i18n.getString( "total" )</strong></td>
+	</tr>	
+	
+	
+	<tr>
+		<td width="30%">
+		<input type='checkbox' id='mobilization1' name='mobilization1' style="display:none" #if ( $activityDetailsDataValueMap.get( 418 ) && $!activityDetailsDataValueMap.get( 418 ) != "" ) checked = "checked" #end onchange="calculateStateAndTotalAmount88();"/>
+		 Mobilization of Community for RI</td>
+		<td width="10%">$!activityDetailsDataValueMap.get( 418 )</td>
+		<td width="10%"><strong>&nbsp;</strong></td>
+		<td width="10%">$!activityDetailsDataValueMap.get( 419 )</td>
+		<!--<td width="10%">$!activityDetailsDataValueMap.get( 420 )</td>-->
+		<td width="10%"><strong>&nbsp;</strong></td>
+		<td width="10%" style="display:none">$!activityDetailsDataValueMap.get( 434 )</td>
+		
+		<td width="10%"><input type="text" id="de20" name="de20" value = "$!dataValueMap.get( 20 )" readonly style="text-align: center;" "/></td>
+		<td width="10%"><input type="text" id="deps88" name="deps88" value = "$!activityDetailsDataValueMap.get( 88 )" readonly style="text-align: center" /></td>
+		<td width="10%"><input type="text" id="deps484" name="deps484" value = "$!activityDetailsDataValueMap.get( 484 )" readonly style="text-align: center;"/></td>
+	</tr>	
+
+	
+	
+	<!--
+	<tr>
+		<td width="30%">
+		<input type='checkbox' id='mobilization2' name='mobilization2' style="display:none" #if ( $activityDetailsDataValueMap.get( 421 ) && $!activityDetailsDataValueMap.get( 421 ) != "" ) checked = "checked" #end onclick="calculateStateAndTotalAmount98();"/>
+		Community Mobilization for Vasectomy</td>
+		
+		<td width="10%">$!activityDetailsDataValueMap.get( 421 )</td>
+		<td width="10%">$!activityDetailsDataValueMap.get( 422 )</td>
+		<td width="10%">&nbsp;</td>
+		<td width="10%">&nbsp;</td>
+		
+		<td width="10%"><input type="text" id="de65" name="de65" value = "$!dataValueMap.get( 65 )" readonly style="text-align: center;" onclick="calculateStateAndTotalAmount98();"/></td>
+		<td width="10%"><input type="text" id="deps98" name="deps98" value = "$!patientDataValueMap.get( 98 )" readonly style="text-align: center" /></td>
+		<td width="10%"><input type="text" id="depsamount98" name="depsamount98" readonly style="text-align: center;"/></td>
+
+	</tr>	
+	
+	<tr>
+		<td width="30%">
+		<input type='checkbox' id='mobilization3' name='mobilization3' style="display:none" #if ( $activityDetailsDataValueMap.get( 424 ) && $!activityDetailsDataValueMap.get( 424 ) != "" ) checked = "checked" #end onclick="calculateStateAndTotalAmount97();"/>
+		Community Mobilization for Tubectomy</td>
+
+		<td width="10%">$!activityDetailsDataValueMap.get( 424 )</td>
+		<td width="10%">$!activityDetailsDataValueMap.get( 425 )</td>
+		<td width="10%">&nbsp;</td>
+		<td width="10%">&nbsp;</td>
+		
+		<td width="10%"><input type="text" id="de64" name="de64" value = "$!dataValueMap.get( 64 )" readonly style="text-align: center;" /></td>
+		<td width="10%"><input type="text" id="deps97" name="deps97" value = "$!patientDataValueMap.get( 97 )" readonly style="text-align: center" /></td>
+		<td width="10%"><input type="text" id="depsamount97" name="depsamount97" readonly style="text-align: center;"/></td>		
+		
+	</tr>	
+	-->
+	
+
+	<tr bgcolor="#CBDDEB">
+		<td width="30%"><strong>Other Kind of Session</strong></td>
+		<td width="10%"><strong>Date of Session</strong></td>
+		<td width="10%"><strong>Kind of Session</strong></td>
+		<td width="10%"><strong>Place of Session</strong></td>
+		<!--<td width="10%"><strong>Number of Child</strong></td>-->
+		<td width="10%"><strong>&nbsp;</strong></td>
+		<td width="10%" align="center"><strong>$i18n.getString( "incentive_amount" )</strong></td>
+		<td width="10%" align="center"><strong>$i18n.getString( "state_incentive_amount" )</strong></td>
+		<td width="10%" align="center"><strong>$i18n.getString( "total" )</strong></td>
+	</tr>	
+	
+	
+	<tr>
+		<td width="30%">
+		<input type='checkbox' id='otherSession1' name='otherSession1' style="display:none" #if ( $activityDetailsDataValueMap.get( 470 ) && $!activityDetailsDataValueMap.get( 470 ) != "" ) checked = "checked" #end onchange="calculateStateAndTotalAmountOtherSession1();"/>
+		 Other Kind of Session 1</td>
+		<td width="10%">$!activityDetailsDataValueMap.get( 470 )</td>
+		<td width="10%">$!activityDetailsDataValueMap.get( 466 )</td>
+		<td width="10%">$!activityDetailsDataValueMap.get( 480 )</td>
+		<td width="10%"><strong>&nbsp;</strong></td>
+		<td width="10%" style="display:none">$!activityDetailsDataValueMap.get( 474 )</td>
+		
+		<td width="10%"><input type="text" id="de479" name="de479" value = "$!dataValueMap.get( 479 )" readonly style="text-align: center;"/></td>
+		<td width="10%"><input type="text" id="depsOtherSession1" name="depsOtherSession1" readonly style="text-align: center" /></td>
+		<td width="10%"><input type="text" id="deps485" name="deps485" readonly value = "$!activityDetailsDataValueMap.get( 485 )" style="text-align: center;"/></td>
+	</tr>
+	
+	
+	<tr>
+		<td width="30%">
+		<input type='checkbox' id='otherSession2' name='otherSession2' style="display:none" #if ( $activityDetailsDataValueMap.get( 471 ) && $!activityDetailsDataValueMap.get( 471 ) != "" ) checked = "checked" #end onchange="calculateStateAndTotalAmountOtherSession2();"/>
+		 Other Kind of Session 2</td>
+		<td width="10%">$!activityDetailsDataValueMap.get( 471 )</td>
+		<td width="10%">$!activityDetailsDataValueMap.get( 467 )</td>
+		<td width="10%">$!activityDetailsDataValueMap.get( 481 )</td>
+		<td width="10%"><strong>&nbsp;</strong></td>
+		<td width="10%" style="display:none">$!activityDetailsDataValueMap.get( 475 )</td>
+		
+		<td width="10%"><input type="text" id="de479" name="de479" value = "$!dataValueMap.get( 479 )" readonly style="text-align: center;" "/></td>
+		<td width="10%"><input type="text" id="depsOtherSession2" name="depsOtherSession2" readonly style="text-align: center" /></td>
+		<td width="10%"><input type="text" id="deps486" name="deps486" readonly value = "$!activityDetailsDataValueMap.get( 486 )" style="text-align: center;"/></td>
+	</tr>	
+	
+	
+	<tr>
+		<td width="30%">
+		<input type='checkbox' id='otherSession3' name='otherSession3' style="display:none" #if ( $activityDetailsDataValueMap.get( 472 ) && $!activityDetailsDataValueMap.get( 472 ) != "" ) checked = "checked" #end onchange="calculateStateAndTotalAmountOtherSession3();"/>
+		 Other Kind of Session 3</td>
+		<td width="10%">$!activityDetailsDataValueMap.get( 472 )</td>
+		<td width="10%">$!activityDetailsDataValueMap.get( 468 )</td>
+		<td width="10%">$!activityDetailsDataValueMap.get( 482 )</td>
+		<td width="10%"><strong>&nbsp;</strong></td>
+		<td width="10%" style="display:none">$!activityDetailsDataValueMap.get( 476 )</td>
+		
+		<td width="10%"><input type="text" id="de479" name="de479" value = "$!dataValueMap.get( 479 )" readonly style="text-align: center;" "/></td>
+		<td width="10%"><input type="text" id="depsOtherSession3" name="depsOtherSession3" readonly style="text-align: center" /></td>
+		<td width="10%"><input type="text" id="deps487" name="deps487" readonly value = "$!activityDetailsDataValueMap.get( 487 )" style="text-align: center;"/></td>
+	</tr>	
+	
+	
+	<tr>
+		<td width="30%">
+		<input type='checkbox' id='otherSession4' name='otherSession4' style="display:none" #if ( $activityDetailsDataValueMap.get( 473 ) && $!activityDetailsDataValueMap.get( 473 ) != "" ) checked = "checked" #end onchange="calculateStateAndTotalAmountOtherSession4();"/>
+		 Other Kind of Session 4</td>
+		<td width="10%">$!activityDetailsDataValueMap.get( 473 )</td>
+		<td width="10%">$!activityDetailsDataValueMap.get( 469 )</td>
+		<td width="10%">$!activityDetailsDataValueMap.get( 483 )</td>
+		<td width="10%"><strong>&nbsp;</strong></td>
+		<td width="10%" style="display:none">$!activityDetailsDataValueMap.get( 477 )</td>
+		
+		<td width="10%"><input type="text" id="de479" name="de479" value = "$!dataValueMap.get( 479 )" readonly style="text-align: center;" "/></td>
+		<td width="10%"><input type="text" id="depsOtherSession4" name="depsOtherSession4" readonly style="text-align: center" /></td>
+		<td width="10%"><input type="text" id="deps488" name="deps488" readonly value = "$!activityDetailsDataValueMap.get( 488 )" style="text-align: center;"/></td>
+	</tr>
+	
+	
+	
+	<tr bgcolor="#CBDDEB">
+		<td width="100%" colspan="8"><strong>Meeting</strong></td>
+	</tr>
+
+	
+	<tr bgcolor="#CBDDEB">
+		<td width="30%"><strong>Purpose of Meeting</strong></td>
+		<td width="10%"><strong>Date of Meeting</strong></td>
+		<td width="10%"><strong>Place of Meeting</strong></td>
+		<td width="10%"><strong>&nbsp;</strong></td>
+		<td width="10%"><strong>&nbsp;</strong></td>
+		
+		<td width="10%" align="center"><strong>$i18n.getString( "incentive_amount" )</strong></td>
+		<td width="10%" align="center"><strong>$i18n.getString( "state_incentive_amount" )</strong></td>
+		<td width="10%" align="center"><strong>$i18n.getString( "total" )</strong></td>
+	</tr>	
+	
+	<tr>
+		<td width="30%"><input type='checkbox' id='meeting1' name='meeting1' style="display:none" #if ( $activityDetailsDataValueMap.get( 406 ) && $!activityDetailsDataValueMap.get( 406 ) != "" ) checked = "checked" #end onclick="calculateStateAndTotalAmount92();"/>
+		Community Mobilization for VHND Celebration</td>
+		
+		<td width="10%">$!activityDetailsDataValueMap.get( 406 )</td>
+		<td width="10%">$!activityDetailsDataValueMap.get( 407 )</td>
+		<td width="10%">&nbsp;</td>
+		<td width="10%">&nbsp;</td>
+		
+		<td width="10%"><input type="text" id="de29" name="de29" value = "$!dataValueMap.get( 29 )" readonly style="text-align: center;" /></td>
+		<td width="10%"><input type="text" id="deps92" name="deps92" value = "$!activityDetailsDataValueMap.get( 92 )" readonly style="text-align: center" /></td>
+		<td width="10%"><input type="text" id="deps489" name="deps489" readonly value = "$!activityDetailsDataValueMap.get( 489 )" style="text-align: center;"/></td>	
+	
+	</tr>	
+	
+	<tr>
+		<td width="40%"><input type='checkbox' id='meeting2' name='meeting2' style="display:none" #if ( $activityDetailsDataValueMap.get( 432 ) && $!activityDetailsDataValueMap.get( 432 ) != "" ) checked = "checked" #end onclick="calculateStateAndTotalAmount93();"/>
+		 Convening Monthly Meeting of VHSNC</td>
+		
+		<td width="10%">$!activityDetailsDataValueMap.get( 432 )</td>
+		<td width="10%">$!activityDetailsDataValueMap.get( 433 )</td>
+		<td width="10%">&nbsp;</td>
+		<td width="10%">&nbsp;</td>
+		
+		<td width="10%"><input type="text" id="de30" name="de30" value = "$!dataValueMap.get( 30 )" readonly style="text-align: center;" /></td>
+		<td width="10%"><input type="text" id="deps93" name="deps93" value = "$!activityDetailsDataValueMap.get( 93 )" readonly style="text-align: center" /></td>
+		<td width="10%"><input type="text" id="deps490" name="deps490" readonly value = "$!activityDetailsDataValueMap.get( 490 )" style="text-align: center;"/></td>
+		
+	</tr>
+
+	<tr>
+		<td width="40%"><input type='checkbox' id='meeting3' name='meeting3' style="display:none" #if ( $activityDetailsDataValueMap.get( 411 ) && $!activityDetailsDataValueMap.get( 411 ) != "" ) checked = "checked" #end onclick="calculateStateAndTotalAmount96();"/>
+		 Monthly Meetings at PHC</td>
+		
+				
+		<td width="10%">$!activityDetailsDataValueMap.get( 411 )</td>
+		<td width="10%">$!activityDetailsDataValueMap.get( 412 )</td>
+		<td width="10%">&nbsp;</td>
+		<td width="10%">&nbsp;</td>
+		
+		<td width="10%"><input type="text" id="de34" name="de34" value = "$!dataValueMap.get( 34 )" readonly style="text-align: center;" /></td>
+		<td width="10%"><input type="text" id="deps96" name="deps96" value = "$!activityDetailsDataValueMap.get( 96 )" style="text-align: center" /></td>
+		<td width="10%"><input type="text" id="deps491" name="deps491" readonly value = "$!activityDetailsDataValueMap.get( 491 )" style="text-align: center;"/></td>
+
+	</tr>	
+	
+	<tr>
+		<td width="40%"><input type='checkbox' id='meeting4' name='meeting4' style="display:none" #if ( $activityDetailsDataValueMap.get( 430 ) && $!activityDetailsDataValueMap.get( 430 ) != "" ) checked = "checked" #end onclick="calculateStateAndTotalAmount120();"/>
+		Convenient monthly meeting of adolescent girl</td>
+		
+		<td width="10%">$!activityDetailsDataValueMap.get( 430 )</td>
+		<td width="10%">$!activityDetailsDataValueMap.get( 431 )</td>
+		<td width="10%">&nbsp;</td>
+		<td width="10%">&nbsp;</td>
+		
+		<td width="10%"><input type="text" id="de119" name="de119" value = "$!dataValueMap.get( 119 )" readonly style="text-align: center;" /></td>
+		<td width="10%"><input type="text" id="deps120" name="deps120" value = "$!activityDetailsDataValueMap.get( 120 )" readonly style="text-align: center" /></td>
+		<td width="10%"><input type="text" id="deps492" name="deps492" readonly value = "$!activityDetailsDataValueMap.get( 492 )" style="text-align: center;"/></td>
+		
+	</tr>	
+	
+	<tr bgcolor="#CBDDEB">
+		<td width="30%"><strong>Other Meetings</strong></td>
+		<td width="10%"><strong>Date of Meeting</strong></td>
+		<td width="10%"><strong>Purpose of Meeting</strong></td>
+		<td width="10%"><strong>Place of Meeting</strong></td>
+		<td width="10%"><strong>&nbsp;</strong></td>
+		
+		<td width="10%" align="center"><strong>$i18n.getString( "incentive_amount" )</strong></td>
+		<td width="10%" align="center"><strong>$i18n.getString( "state_incentive_amount" )</strong></td>
+		<td width="10%" align="center"><strong>$i18n.getString( "total" )</strong></td>
+	</tr>	
+	
+	
+	<tr>
+		<td width="40%"><input type='checkbox' id='otherMeeting1' name='otherMeeting1' style="display:none" #if ( $activityDetailsDataValueMap.get( 461 ) && $!activityDetailsDataValueMap.get( 461 ) != "" ) checked = "checked" #end onclick="calculateStateAndTotalAmountOtherMeeting1();"/>
+		Other Meeting 1</td>
+		
+		<td width="10%">$!activityDetailsDataValueMap.get( 461 )</td>
+		<td width="10%">$!activityDetailsDataValueMap.get( 455 )</td>
+		<td width="10%">$!activityDetailsDataValueMap.get( 458 )</td>
+		<td width="10%">&nbsp;</td>
+		
+		<td width="10%"><input type="text" id="de465" name="de465" value = "$!dataValueMap.get( 465 )" readonly style="text-align: center;" /></td>
+		<td width="10%"><input type="text" id="depsOtherMeeting1" name="depsOtherMeeting1"  readonly style="text-align: center" /></td>
+		<td width="10%"><input type="text" id="deps493" name="deps493" readonly value = "$!activityDetailsDataValueMap.get( 493 )" style="text-align: center;" /></td>
+		
+	</tr>	
+	
+	
+	<tr>
+		<td width="40%"><input type='checkbox' id='otherMeeting2' name='otherMeeting2' style="display:none" #if ( $activityDetailsDataValueMap.get( 462 ) && $!activityDetailsDataValueMap.get( 462 ) != "" ) checked = "checked" #end onclick="calculateStateAndTotalAmountOtherMeeting2();"/>
+		Other Meeting 2</td>
+		
+		<td width="10%">$!activityDetailsDataValueMap.get( 462 )</td>
+		<td width="10%">$!activityDetailsDataValueMap.get( 456 )</td>
+		<td width="10%">$!activityDetailsDataValueMap.get( 459 )</td>
+		<td width="10%">&nbsp;</td>
+		
+		<td width="10%"><input type="text" id="de465" name="de465" value = "$!dataValueMap.get( 465 )" readonly style="text-align: center;" /></td>
+		<td width="10%"><input type="text" id="depsOtherMeeting2" name="depsOtherMeeting2"  readonly style="text-align: center" /></td>
+		<td width="10%"><input type="text" id="deps494" name="deps494" readonly value = "$!activityDetailsDataValueMap.get( 494 )" style="text-align: center;"/></td>
+		
+	</tr>	
+	
+	<tr>
+		<td width="40%"><input type='checkbox' id='otherMeeting3' name='otherMeeting3' style="display:none" #if ( $activityDetailsDataValueMap.get( 463 ) && $!activityDetailsDataValueMap.get( 463 ) != "" ) checked = "checked" #end onclick="calculateStateAndTotalAmountOtherMeeting3();"/>
+		Other Meeting 3</td>
+		
+		<td width="10%">$!activityDetailsDataValueMap.get( 463 )</td>
+		<td width="10%">$!activityDetailsDataValueMap.get( 457 )</td>
+		<td width="10%">$!activityDetailsDataValueMap.get( 460 )</td>
+		<td width="10%">&nbsp;</td>
+		
+		<td width="10%"><input type="text" id="de465" name="de465" value = "$!dataValueMap.get( 465 )" readonly style="text-align: center;" /></td>
+		<td width="10%"><input type="text" id="depsOtherMeeting3" name="depsOtherMeeting3"  readonly style="text-align: center" /></td>
+		<td width="10%"><input type="text" id="deps495" name="deps495" readonly value = "$!activityDetailsDataValueMap.get( 495 )" style="text-align: center;"/></td>
+		
+	</tr>	
+	
+	
+
+	<tr bgcolor="#CBDDEB">
+		<td width="100%" colspan="8"><strong>Sample</strong></td>
+	</tr>
+
+	<tr bgcolor="#CBDDEB">
+		<td width="30%"><strong>Kind of Sample</strong></td>
+		<td width="10%"><strong>Date of Sample</strong></td>
+		<td width="10%"><strong>Number of Sample</strong></td>
+		<td width="10%"><strong>Place of Sample</strong></td>
+		<td width="10%"><strong>&nbsp;</strong></td>
+		
+		<td width="10%" align="center"><strong>$i18n.getString( "incentive_amount" )</strong></td>
+		<td width="10%" align="center"><strong>$i18n.getString( "state_incentive_amount" )</strong></td>
+		<td width="10%" align="center"><strong>$i18n.getString( "total" )</strong></td>
+		
+	</tr>	
+	
+	<tr>
+		<td width="30%"><input type='checkbox' id='sample1' name='sample1' style="display:none" #if ( $activityDetailsDataValueMap.get( 408 ) && $!activityDetailsDataValueMap.get( 408 ) != "" ) checked = "checked" #end onclick="calculateStateAndTotalAmount94();"/>
+		Water Samples Taken Community/School/ AWC to be taken for Testing</td>
+		
+		<td width="10%">$!activityDetailsDataValueMap.get( 408 )</td>
+		<td width="10%">$!activityDetailsDataValueMap.get( 409 )</td><input type="hidden" id="noOfWaterSample" name="noOfWaterSample" value="$!activityDetailsDataValueMap.get( 409 )" >
+		<td width="10%">$!activityDetailsDataValueMap.get( 410 )</td>
+		<td width="10%">&nbsp;</td>
+		
+		<td width="10%"><input type="text" id="de32" name="de32" value = "$!dataValueMap.get( 32 )" readonly style="text-align: center;" /></td>
+		<td width="10%"><input type="text" id="deps94" name="deps94" value = "$!activityDetailsDataValueMap.get( 94 )" readonly style="text-align: center" /></td>
+		<td width="10%"><input type="text" id="deps496" name="deps496" readonly value = "$!activityDetailsDataValueMap.get( 496 )" style="text-align: center;"/></td>
+		
+	</tr>		
+
+	<tr>
+		<td width="30%"><input type='checkbox' id='sample2' name='sample2' style="display:none" #if ( $activityDetailsDataValueMap.get( 427 ) && $!activityDetailsDataValueMap.get( 427 ) != "" ) checked = "checked" #end onclick="calculateStateAndTotalAmount122();"/>
+		Conducting Testing of Salt Sample under NIDDCP</td>
+		
+		<td width="10%">$!activityDetailsDataValueMap.get( 427 )</td>
+		<td width="10%">$!activityDetailsDataValueMap.get( 428 )</td><input type="hidden" id="noOfSaltSample" name="noOfSaltSample" value="$!activityDetailsDataValueMap.get( 428 )" >
+		<td width="10%">$!activityDetailsDataValueMap.get( 429 )</td>
+		<td width="10%">&nbsp;</td>
+		
+		<td width="10%"><input type="text" id="de35" name="de35" value = "$!dataValueMap.get( 35 )" readonly style="text-align: center;" /></td>
+		<td width="10%"><input type="text" id="deps122" name="deps122" value = "$!activityDetailsDataValueMap.get( 122 )" readonly style="text-align: center" /></td>
+		<td width="10%"><input type="text" id="deps497" name="deps497" readonly value = "$!activityDetailsDataValueMap.get( 497 )" style="text-align: center;"/></td>
+		
+	</tr>	
+	
+	<tr bgcolor="#CBDDEB">
+		<td width="100%" colspan="8"><strong>TA/DA</strong></td>
+	</tr>
+
+	<tr bgcolor="#CBDDEB">
+		<td width="30%"><strong>Kind of Activity</strong></td>
+		<td width="10%"><strong>Date of Activity</strong></td>
+		<td width="10%"><strong>Place of Activity</strong></td>
+		<td width="10%"><strong>No of Days in Training</strong></td>
+		<td width="10%"><strong>&nbsp;</strong></td>
+			
+		<td width="10%" align="center"><strong>$i18n.getString( "incentive_amount" )</strong></td>
+		<td width="10%" align="center"><strong>$i18n.getString( "state_incentive_amount" )</strong></td>
+		<td width="10%" align="center"><strong>$i18n.getString( "total" )</strong></td>
+	</tr>	
+	
+	<tr>
+		<td width="30%"><input type='checkbox' id='taDa1' name='taDa1' style="display:none" #if ( $activityDetailsDataValueMap.get( 413 ) && $!activityDetailsDataValueMap.get( 413 ) != "" ) checked = "checked" #end onclick="calculateStateAndTotalAmount396();"/>
+		TA/DA for Attending Training Programmes</td>
+		
+		<td width="10%">$!activityDetailsDataValueMap.get( 413 )</td>
+		<td width="10%">$!activityDetailsDataValueMap.get( 414 )</td>
+		<td width="10%">$!activityDetailsDataValueMap.get( 437 )</td><input type="hidden" id="noOfDaysInTraining" name="noOfDaysInTraining" value="$!activityDetailsDataValueMap.get( 437 )" >
+		<td width="10%">&nbsp;</td>
+		
+		<td width="10%"><input type="text" id="de395" name="de395" value = "$!dataValueMap.get( 395 )" readonly style="text-align: center;" /></td>
+		<td width="10%"><input type="text" id="deps396" name="deps396" value = "$!activityDetailsDataValueMap.get( 396 )" readonly style="text-align: center;" /></td>
+		<td width="10%"><input type="text" id="deps498" name="deps498" readonly value = "$!activityDetailsDataValueMap.get( 498 )" style="text-align: center;"/></td>
+		
+	</tr>		
+
+	<tr>
+		<td width="40%"><input type='checkbox' id='taDa2' name='taDa2' style="display:none" #if ( $activityDetailsDataValueMap.get( 415 ) && $!activityDetailsDataValueMap.get( 415 ) != "" ) checked = "checked" #end onclick="calculateStateAndTotalAmount386();"/>
+		TA/DA for Attending Quarterly Award Ceremony</td>
+		
+		<td width="10%">$!activityDetailsDataValueMap.get( 415 )</td>
+		<td width="10%">$!activityDetailsDataValueMap.get( 416 )</td>
+		<td width="10%">&nbsp;</td>
+		<td width="10%">&nbsp;</td>
+		
+		<td width="10%"><input type="text" id="de387" name="de387" value = "$!dataValueMap.get( 387 )" readonly style="text-align: center;" /></td>
+		<td width="10%"><input type="text" id="deps386" name="deps386" value = "$!activityDetailsDataValueMap.get( 386 )" readonly style="text-align: center;" /></td>
+		<td width="10%"><input type="text" id="deps499" name="deps499" readonly value = "$!activityDetailsDataValueMap.get( 499 )" style="text-align: center;"/></td>
+
+	</tr>	
+	
+	<tr bgcolor="#CBDDEB"  >
+		<td width="100%" colspan="8"><strong>Award</strong></td>
+	</tr>
+
+	<tr bgcolor="#CBDDEB">
+		<td width="30%"><strong>Award</strong></td>
+		<td width="10%"><strong>ASHA Award</strong></td>
+		<td width="10%"><strong>Date of Award ceremony</strong></td>
+		<td width="10%"><strong>&nbsp;</strong></td>
+		<td width="10%"><strong>&nbsp;</strong></td>
+		
+		<td width="10%" align="center"><strong>$i18n.getString( "incentive_amount" )</strong></td>
+		<td width="10%" align="center"><strong>$i18n.getString( "state_incentive_amount" )</strong></td>
+		<td width="10%" align="center"><strong>$i18n.getString( "total" )</strong></td>
+	</tr>
+	
+	<tr >
+		<td width="40%"><input type='checkbox' id='award1' name='award1' style="display:none" #if ( $activityDetailsDataValueMap.get( 436 ) && $!activityDetailsDataValueMap.get( 436 ) != "" ) checked = "checked" #end onclick="calculateStateAndTotalAmount124();"/>
+		 ASHA Award</td>
+		
+		<td width="10%">$!activityDetailsDataValueMap.get( 436 )</td>
+		<!--<td width="10%">$!activityDetailsDataValueMap.get( 435 )</td>-->
+		<td width="10%">$!activityDetailsDataValueMap.get( 417 )</td>
+		<td width="10%">&nbsp;</td>
+		<td width="10%">&nbsp;</td>
+		
+		
+		#set( $awardAmountValue = "" )
+		
+		#if( $!activityDetailsDataValueMap.get( 436 ) == "Award-I" )
+			#set( $awardAmountValue = $!dataValueMap.get( 123 ) )
+		#elseif( $!activityDetailsDataValueMap.get( 436 ) == "Award-II" )
+			#set( $awardAmountValue = $!dataValueMap.get( 125 ) )
+		#elseif( $!activityDetailsDataValueMap.get( 436 ) == "Award-III" )
+			#set( $awardAmountValue = $!dataValueMap.get( 127 ) )	
+		#end
+		
+		<td width="10%"><input type="text" id="de123" name="de123" value = "$awardAmountValue" readonly style="text-align: center" /></td>
+		<td width="10%"><input type="text" id="deps124" name="deps124" value = "$!activityDetailsDataValueMap.get( 124 )" readonly style="text-align: center" /></td>
+		<td width="10%"><input type="text" id="deps500" name="deps500" readonly value = "$!activityDetailsDataValueMap.get( 500 )" style="text-align: center;"/></td>	
+	</tr>
+	
+	
+	<tr>
+		<td width="40%"><input type='checkbox' id='inActiveASHA' name='inActiveASHA' style="display:none" #if ( $activityDetailsDataValueMap.get( 438 ) && $!activityDetailsDataValueMap.get( 438 ) != "" ) checked = "checked" #end />
+		 Reason for ASHA Inactive</td>
+		
+		<td width="10%">$!activityDetailsDataValueMap.get( 438 )</td>
+		
+		<td width="10%">&nbsp;</td>
+		<td width="10%">&nbsp;</td>
+		<td width="10%">&nbsp;</td>
+		
+		
+		<td width="10%">&nbsp;</td>
+		<td width="10%">&nbsp;</td>
+		<td width="10%">&nbsp;</td>
+	</tr>	
+	
+	#set( $stateActivityIncentiveAmount = "" )
+	#if ( $beneficiaryList.size() > 0 || $tempActivityDetailsDataValueMap.size() > 0 || ( $activityDetailsDataValueMap.get( 438 ) && $!activityDetailsDataValueMap.get( 438 ) != "" ) )	
+		#set( $stateActivityIncentiveAmount = 500 )
+	#else
+		#set( $stateActivityIncentiveAmount = 0 )
+	#end	
+
+	<tr bgcolor="#CBDDEB">
+		<td width="100%" colspan="7"><strong>Fix Incentive from State Budget</strong></td>
+		<td align="center"><strong>$stateActivityIncentiveAmount</strong</td>
+						
+		<input type="hidden" id="deps501" name="deps501" value="$stateActivityIncentiveAmount" >
+	</tr>
+
+
+	<!-- <tr #if ( $activityDetailsDataValueMap.get( 438 ) && $!activityDetailsDataValueMap.get( 438 ) != "" ) #else style="display:none" #end >-->
+	
+	<!--
+	<tr>
+		<td width="100%" colspan="8">&nbsp;</td>
+	</tr>
+	-->
+	<tr>
+		<td width="70%" colspan="5"><b>$i18n.getString( "grand_total" )</b></td>
+		<td width="10%"><input type="text" id="incentiveTotalAmount" name="incentiveTotalAmount"  style="text-align: center" /></td>
+		<td width="10%"><input type="text" id="stateIncentiveAmount" name="stateIncentiveAmount"  style="text-align: center" /></td>
+		<td width="10%"><input type="text" id="depstotalamount" name="depstotalamount" readonly style="text-align: center;" /></td>
+		
+		<input type="hidden" id="deps160" name="deps160" >
+		
+		<!--	
+		<input type="hidden" id="deps502" name="deps502" value="0">
+		<input type="hidden" id="deps503" name="deps503" value="0" >
+		<input type="hidden" id="deps504" name="deps504" value="0" >
+		-->
+	</tr>	
+	
+</table>	
+
+<p>
+	<input type="button"  value="$i18n.getString( 'Cancel' )" style="width:100px" onclick="javascript:callAction( 'selectASHA' )"/>&nbsp;&nbsp;
+	&nbsp;&nbsp;<input type="submit"  id="saveButton" name="saveButton" value="$i18n.getString( 'save' )" style="width:100px"/>
+</p>
+
+
+</form>
+
+<script type="text/javascript">
+jQuery( document ).ready( function()
+{
+
+
+});
+</script>
+
+<script type="text/javascript">
+
+    var i18n_field_is_required = '$encoder.jsEscape( $i18n.getString( "field_is_required" ) , "'") ';
+	
+	calculateStateAndTotalAmount88();
+	
+	calculateStateAndTotalAmountOtherSession1();
+	calculateStateAndTotalAmountOtherSession2();
+	calculateStateAndTotalAmountOtherSession3();
+	calculateStateAndTotalAmountOtherSession4();
+	
+	//calculateStateAndTotalAmount98();
+	//calculateStateAndTotalAmount97();
+	
+	calculateStateAndTotalAmount92();
+	calculateStateAndTotalAmount93();
+	calculateStateAndTotalAmount96();
+	calculateStateAndTotalAmount120();
+	
+	calculateStateAndTotalAmountOtherMeeting1();
+	calculateStateAndTotalAmountOtherMeeting2();
+	calculateStateAndTotalAmountOtherMeeting3();
+	
+	calculateStateAndTotalAmount94();
+	calculateStateAndTotalAmount122();
+	
+	calculateStateAndTotalAmount396();
+	calculateStateAndTotalAmount386();
+	
+	calculateStateAndTotalAmount124();
+	
+	calculateCountryIncentiveTotal();
+	calculateStateIncentiveTotal();
+	
+	
+</script>

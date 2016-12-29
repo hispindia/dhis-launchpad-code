@@ -1,0 +1,64 @@
+
+<script type="text/javascript">
+
+function formValidations()
+{
+   	//alert("validation");
+	
+    var startPeriodList = document.getElementById("selectedPeriodId");
+    var startPeriodIndex = startPeriodList.selectedIndex;
+    
+    if( startPeriodList.options[startPeriodIndex].value == null || startPeriodList.options[startPeriodIndex].value== "" ) 
+	{ 
+		//alert("Please Select Period");
+		showWarningMessage( "Please Select Period" );
+		return false; 
+	}
+    
+    return true;
+}
+
+</script>
+
+
+#if( $status == "NONE" )
+<form id="ashaFacilitatorFormat4ReportForm" name="ashaFacilitatorFormat4ReportForm" action="generateASHAFacilitatorFormat4Report.action" method="post" onsubmit="return formValidations()" target="_blank" >
+	<table>
+		<tr>
+			<th colspan="2">$i18n.getString( "asha_facilitator_Format4_report_form" ) &nbsp; - $!organisationUnit.name </th>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>$i18n.getString( "period" )</td>
+			<td>
+				<select id="selectedPeriodId" name="selectedPeriodId" >
+					<option value="">[$i18n.getString( "please_select" )]</option>
+					#foreach( $period in $periods )
+						<option value="$period.id">$encoder.htmlEncode( $period.name )</option>
+					#end				
+				</select>
+			</td>
+		</tr>
+
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>
+				<input type="submit" value='$i18n.getString("generate_report")' style="width:120px" />
+				<!--<input type="button"  value="$i18n.getString( 'Cancel' )" onclick="window.location.href='getASHAFacilitatorList.action'" style="width:120px"/>-->
+				<input type="hidden" id="orgUnitId" name="orgUnitId" value="$!organisationUnit.id" />
+				<input type="hidden" id="facilitatorId" name="facilitatorId" value="$!facilitator.id" />
+			</td>
+		</tr>
+		
+	</table>
+</form>
+#else
+	<h4>$status</h4>
+#end

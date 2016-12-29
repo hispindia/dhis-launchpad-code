@@ -1,0 +1,72 @@
+<script type="text/javascript">
+	jQuery(document).ready(function(){	
+		tableSorter( 'listTable' );	
+	});
+
+	var i18n_confirm_to_delete_employee = '$encoder.jsEscape( $i18n.getString( "confirm_to_delete_employee" ) , "'" )';
+	var i18n_employee_details = '$encoder.jsEscape( $i18n.getString( "employee_details" ) , "'" )';
+	
+</script>
+#if( $statusMessage == "NONE" )
+<h3>$i18n.getString( "employee_management" ) At  $organisationUnit.name  </h3>
+<table class="mainPageTable">
+	<tr>
+		<td style="vertical-align:top">
+			<table width="100%">
+				<tr>
+					<td>#filterDiv( "getEmployeeList" )</td>
+					<td colspan="3" style="text-align:right">
+						<input type="button" value="$i18n.getString( 'add_new' )" onclick="window.location.href='showAddEmployeeForm.action?organisationUnitId=$organisationUnit.id&orgUnitLevel=$orgUnitLevel'"/>
+					</td>
+				</tr>
+			</table>
+			<table class="listTable" id="listTable">
+				<!--<col width="30"/>-->
+				<col width="200"/>
+				<col/>
+				<col/>
+				<col/>
+				<col/>
+				<col width="100"/>				
+                <thead>
+				<tr>
+					<!--<th>#</th>-->
+					<th>$i18n.getString( "name" )</th>
+					<th>$i18n.getString( "gender" )</th>
+					<th>$i18n.getString( "date_of_birth" )</th>
+					<th>$i18n.getString( "date_of_joining" )</th>
+					<th>$i18n.getString( "designation" )</th>
+					<th class="{sorter: false}">$i18n.getString( "operations" )</th>
+				</tr>
+                </thead>
+				<tbody id="list">
+				#foreach( $employee in $employeeList )
+				<tr id="tr${employee.id}">
+					<!--<td>&nbsp;</td>-->
+					<td>$encoder.htmlEncode( $employee.name )</td>
+					<td>$encoder.htmlEncode( $employee.gender )</td>
+					<td>$format.formatDate( $employee.birthDate )</td>
+					<td>$format.formatDate( $employee.getJoiningDate() )</td>
+					<td>$encoder.htmlEncode( $employee.designation )</td>
+					<td>
+						<a href="showEmployeeUpdateForm.action?empId=$employee.id&orgUnitLevel=$orgUnitLevel" title="$i18n.getString( 'edit' )"><img src="../images/edit.png" alt="$i18n.getString( 'edit' )"/></a>							  
+						<a href="javascript:removeEmployee( '$employee.id', '$encoder.jsEncode($employee.getName() )' )" title="$i18n.getString( 'remove' )"><img src="../images/delete.png" alt="$i18n.getString( 'remove' )"/></a>						  
+						<a href="javascript:showEmployeeDetails( '$employee.id' )" title="$i18n.getString( 'show_details' )"><img src="../images/information.png" alt="$i18n.getString( 'show_details' )"/></a>
+				   </td>
+				</tr>
+				#end
+                </tbody>
+			</table>
+			<p></p>
+			#parse( "/dhis-web-commons/paging/paging.vm" )
+
+		</td>
+
+	</tr>	
+</table>
+
+ <div id="detailsInfo"></div><!-- details information div -->
+ <span id="message"></span>
+#else
+    <h4>$statusMessage</h4>
+#end

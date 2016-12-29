@@ -1,0 +1,113 @@
+
+
+<h3>$i18n.getString( "dataelements_wise_analysis" )</h3>
+<hr />
+
+<form id="dataElementAnalysisForm" name="dataElementAnalysisForm" action="generateDataElementAnalysisResult.action" method="post" onSubmit="return formValidationsDataElementAnalysis()">
+	<table style=" border-collapse: collapse; margin-top: 0;" cellpadding="0" cellspacing="0" border=0>
+		<tr>
+			<td class="NormalB">&nbsp;</td>
+			<td class="NormalB">&nbsp;</td>
+			<td class="NormalB">&nbsp;</td>
+		</tr>	
+	    <tr>
+	      <td class="NormalB">$i18n.getString( "filter" ):&nbsp;<input type="text" id="availableDataElementsFilter" onkeyup="filterAvailableDataElements()" style="min-width:24em"></td>
+	      <td class="NormalB">&nbsp;</td>
+	      <td class="NormalB">&nbsp;</td>
+	    </tr>
+	    
+	    <tr>
+			<td class="NormalB">&nbsp;</td>
+			<td class="NormalB">&nbsp;</td>
+			<td class="NormalB">&nbsp;</td>
+	    </tr>  	    
+	    
+	    <tr>
+			<td class="NormalB">$i18n.getString( "ga_available_delist" )<br />
+				<select multiple size="7" id="availableDataElements" name="availableDataElements"  style="width:400px; height:150px" ondblclick="moveSelectedById( 'availableDataElements', 'selectedDataElements' )">
+					#foreach ( $reportOption in $reportOptionList )
+					<option value="$reportOption.optionValue" title="$reportOption.optionText">$reportOption.optionText</option>
+					#end
+				</select>
+			</td>
+			<td class="NormalB" align="center"><br />
+				&nbsp;&nbsp;<input type="button" value="&gt;" style="width:40px" onClick="moveSelectedById( 'availableDataElements', 'selectedDataElements' )">&nbsp;&nbsp;<br />
+				&nbsp;&nbsp;<input type="button" value="&lt;" style="width:40px" onClick="moveSelectedById( 'selectedDataElements', 'availableDataElements' )">&nbsp;&nbsp;<br />
+				&nbsp;&nbsp;<input type="button" value="&gt;&gt;" style="width:40px" onClick="moveAllById( 'availableDataElements', 'selectedDataElements' )">&nbsp;&nbsp;<br />
+				&nbsp;&nbsp;<input type="button" value="&lt;&lt;" style="width:40px" onClick="moveAllById( 'selectedDataElements', 'availableDataElements' )">&nbsp;&nbsp;
+			</td>
+			<td class="NormalB"> $i18n.getString( "ga_selected_delist" )<br />
+				<select multiple size="7" id="selectedDataElements" name="selectedDataElements" style="width:400px; height:150px" ondblclick="moveSelectedById( 'selectedDataElements', 'availableDataElements' )">
+				</select>
+			</td>
+		</tr>
+	    <tr>
+			<td class="NormalB">&nbsp;</td>
+			<td class="NormalB">&nbsp;</td>
+			<td class="NormalB">&nbsp;</td>
+	    </tr>
+	    <tr>
+			<td class="NormalB">&nbsp;</td>
+			<td class="NormalB">&nbsp;</td>
+			<td class="NormalB">&nbsp;</td>
+	    </tr>    
+	    <tr>
+			<td class="NormalB">
+				<table>
+					<tr>
+						<td class="NormalB"> $i18n.getString( "orgunit" ) : <br />
+							<input type="text" name="ouNameTB" id="ouNameTB" style="width:175px" disabled />
+						</td>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+						<td align="left" class="NormalB">$i18n.getString( "orgunitgroupset" ) : <br />
+							<select name="orgUnitGroupSet" id="orgUnitGroupSet" style="width: 175px;">                                
+							#foreach ( $organisationUnitGroupSet in $organisationUnitGroupSetList )
+								<option value="$organisationUnitGroupSet.id">$organisationUnitGroupSet.name</option>                              
+							#end
+							</select>
+						</td>
+					</tr>
+				</table>            
+			</td>		
+			<td class="NormalB">&nbsp;</td>
+			<td class="NormalB">
+				<table>
+					<tr>
+						<td class="NormalB">$i18n.getString( 'start_date' )<br/>
+							<input type="text" id="startDate" name="startDate" style="width:165px">
+						</td>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+						<td align="left" class="NormalB"> $i18n.getString( 'end_date' )<br />
+							<input type="text" id="endDate" name="endDate" style="width:165px">                           
+						</td>
+					</tr>
+				</table>            
+			</td>
+		</tr>
+	    <tr>
+			<td class="NormalB">&nbsp;</td>
+			<td class="NormalB">&nbsp;</td>
+			<td class="NormalB">&nbsp;</td>
+	    </tr> 
+	    <tr>
+	        <td class="NormalB">&nbsp;</td>
+	        <td class="NormalB" align="center">&nbsp;</td>
+	        <td class="NormalB"><input type="submit" name="ViewChart" value="$i18n.getString( 'generate' )" style="width:150px; height: 25; font-family:Arial; font-weight:bold; color:#000000" onClick="javascript:generateAnalysisResult()"></td>
+	        <input type="hidden" name="ouIDTB" id="ouIDTB">
+	    </tr>		
+  </table>
+</form>
+
+<!-- <div id="contentDiv"></div> -->
+
+<script type="text/javascript">
+	$( document ).ready( function() {
+		datePickerInRange( "startDate", "endDate", false, false );
+	} );
+
+	var availableDataElements = new Object();	
+    #foreach ( $reportOption in $reportOptionList )
+        availableDataElements['$reportOption.optionValue'] = '$encoder.jsEscape( $reportOption.optionText, "'" )';
+    #end
+	
+</script>

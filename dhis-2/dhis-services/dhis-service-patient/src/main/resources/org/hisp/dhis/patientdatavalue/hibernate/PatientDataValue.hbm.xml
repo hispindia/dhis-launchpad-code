@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="org.hisp.dhis.patientdatavalue.PatientDataValue" table="patientdatavalue">
+
+    <composite-id>
+      <key-many-to-one name="programStageInstance" class="org.hisp.dhis.program.ProgramStageInstance"
+        column="programstageinstanceid" foreign-key="fk_patientdatavalue_programstageinstanceid" />
+      <key-many-to-one name="dataElement" class="org.hisp.dhis.dataelement.DataElement" column="dataelementid"
+        foreign-key="fk_patientdatavalue_dataelementid" />
+    </composite-id>
+    
+    <property name="value" />
+
+    <property name="timestamp" type="date" />
+    
+    <property name="providedElsewhere" />
+	
+    <property name="storedBy" column="storedby" length="31" />
+    
+    <property name="MOApprove" column="moapprove" not-null="false" length="50" />
+    <property name="AAApprove" column="aaapprove" not-null="false" length="50" />
+	
+	<property name="MORemark" column="moremark" not-null="false" length="250" />
+	<property name="AARemark" column="aaremark" not-null="false" length="250" /> 
+    
+  </class>
+</hibernate-mapping>

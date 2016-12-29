@@ -1,0 +1,92 @@
+<script>
+jQuery(document).ready(	function(){
+	 $("#submit").button();
+	 $("#cancel").button();
+});	
+</script>
+<form id="editForm" name="editForm" action="editEmployeeForm.action" method="post">
+	
+
+<h3>Edit Employee</h3>
+<div class="ui-widget-content ui-corner-all" align="center">
+<table align="left" cellspacing="2" cellpadding="4" style="margin:0cm 0cm 0cm 0cm;" width="58%">	
+	<tr>
+		<td>
+			Organisation Unit
+		</td>
+		<td>
+			<input type="hidden" name="employeeId" id="employeeId" value="$employee.id"/>
+			<input type="text" name="orgUnitName" id"orgUnitName" value="$employee.organisationUnit.id" readonly/>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Sur Name
+		</td>
+		<td>
+			<input type="text" name="surName" id"surName" value="$!employee.surname"/>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			First Name
+		</td>
+		<td>
+			<input type="text" name="firstName" id"firstName" value="$!employee.firstName"/>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Last Name
+		</td>
+		<td>
+			<input type="text" name="lastName" id"lastName" value="$!employee.lastName"/>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Employee Code
+		</td>
+		<td>
+			<input type="text" name="empCode" id"empCode" value="$!employee.code"/>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Phone Number
+		</td>
+		<td>
+			<input type="text" name="contactNumber" id"contactNumber" value="$!employee.phoneNumber"/>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Email Id
+		</td>
+		<td>
+			<input type="text" name="emailId" id"emailId" value="$!employee.email"/>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Job Title
+		</td>
+		<td>
+			<select name="jobTitle" id"jobTitle">
+				<option>Select</option>
+				<option>CHV</option>
+				<option>Supervisior</option>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<input type="submit" value="Edit" style="float:right;" id="submit"/>
+		</td>
+		<td>
+			<input type="button" value="Cancel" style="float:left;" id="cancel"/>
+		</td>
+	</tr>
+</table>	
+</div>
+</form>

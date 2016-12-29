@@ -1,0 +1,94 @@
+
+<h3>$i18n.getString( "employee_details" )</h3>
+
+<table>
+	<tr>
+		<th colspan="2">$i18n.getString( "details" )</th>
+	</tr>
+		
+	<tr>
+		<td style="width:120px"><label for="organisationUnit">$i18n.getString( "organisation_unit" )</label></td>
+		<td style="width:120px">$!organisationUnit.getName()</td>
+	</tr>
+
+	<tr>
+		<td><label for="name">$i18n.getString( "name" )</label></td>
+		<td>$!employee.getName()</td>
+	</tr>
+	
+	<tr>
+		<td><label for="gender">$i18n.getString( "gender" )</label></td>
+		<td>$!employee.gender</td>					
+	</tr>
+	
+	<tr>
+		<td><label for="code">$i18n.getString( "employee_code" )</label></td>
+		<td>$!employee.getCode()</td>
+	</tr>
+	
+	<tr>
+		<td><label for="code">$i18n.getString( "designation" )</label></td>
+		<td>$!employee.getDesignation()</td>
+	</tr>	
+	
+	<tr>
+		<td><label for="code">$i18n.getString( "address" )</label></td>
+		<td>$!employee.getAddress()</td>
+	</tr>
+	
+	<tr>
+		<td><label for="phoneNumber">$i18n.getString( "contact_no" )</label></td>
+		<td>$!employee.getPhoneNumber()</td>
+	</tr>
+
+	<tr>
+		<td><label for="email">$i18n.getString( "email" )</label></td>
+		<td>$!employee.getEmail()</td>
+	</tr>	
+	
+	<tr>
+		<td><label for="code">$i18n.getString( "date_of_birth" )</label></td>
+		<td>$format.formatDate( $employee.birthDate )</td>
+	</tr>
+		<tr>
+		<td><label for="code">$i18n.getString( "educational_level" )</label></td>
+		<td>$!employee.getEducationLevel()</td>
+	</tr>
+	
+	<tr>
+		<td><label for="code">$i18n.getString( "category" )</label></td>
+		<td>$!employee.getCategory()</td>
+	</tr>
+	
+	<tr>
+		<td><label for="code">$i18n.getString( "martial_status" )</label></td>
+		<td>$!employee.getMaritalStatus()</td>
+	</tr>
+	
+	<tr>
+		<td><label for="jobTitle">$i18n.getString( "date_of_joining" )</label></td>
+		<td>$format.formatDate( $employee.getJoiningDate())</td>
+	</tr>
+
+	<tr>
+		<td><label for="jobTitle">$i18n.getString( "total_experience" )</label></td>
+		<td>$!employee.getExperience()</td>
+	</tr>
+	
+	<tr>
+		<td><label for="jobTitle">$i18n.getString( "orientation_received" )</label></td>
+		
+		#set($orientation="")
+		
+		#if( $!employee.isOrientationReceived() == "true" )
+			#set( $orientation = 'Yes')
+			<td>$orientation</td>
+		#else
+			#set($orientation = 'No')
+			<td>$orientation</td>
+		#end
+		
+	</tr>	
+	
+</table>
+

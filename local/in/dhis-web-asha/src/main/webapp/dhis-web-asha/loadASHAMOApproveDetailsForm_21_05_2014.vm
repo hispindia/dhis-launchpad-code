@@ -1,0 +1,1824 @@
+
+<script type="text/javascript" src="javascript/ashaMOApproveDataEntry.js"></script>
+<script type="text/javascript">
+    
+    var i18n_select_period = '$encoder.jsEscape( $i18n.getString( "select_period" ) , "'")';
+</script>
+
+## Macro for generating the jQuery validation rules 
+#macro( validate $type $require )
+  #if( $type == "NUMBER" || $type == "number" )
+    {validate:{ number:true #if($require), required:true #end }}
+  
+    #elseif( $type == "int" )
+    {validate:{ integer:true #if($require), required:true #end }}
+    
+    #elseif( $type == "positiveNumber" )
+    {validate:{ positive_integer:true #if($require), required:true #end }}
+    
+    #elseif( $type == "negativeNumber" )
+    {validate:{ negative_integer:true #if($require), required:true #end }}
+  
+    #elseif( $require )
+    {validate:{required:true}}
+  #end
+#end
+
+<!--
+$update ---- $id ---- $organisationUnitId -- $totalAmountInMonth
+-->
+
+<style>
+    #overlay {
+    z-index:9998;
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    width:100%;
+    background:#000;
+    opacity:0.45;
+    -moz-opacity:0.45;
+    filter:alpha(opacity=45);
+    visibility:hidden;   
+    }
+    #overlayImg{ width: 50px; height: 50px; z-index: 9999; position: absolute; left:50%}
+</style>
+<div id="overlay">
+    <div id="overlayImg"><img  width="50" height="50" src="images/ajax-loader.gif" style="margin:auto;position:fixed;top: 50%;left: 50%;"/></div>
+</div>
+
+
+<script>
+    
+    jQuery(document).ready( function(){
+    currentDiv = 'ASHAMOApproveForm';
+    isSubmit = true;
+    jQuery("#ASHAMOApproveForm").validate({
+        meta:"validate"
+        ,errorElement:"span"
+        
+        });
+    }); 
+    
+</script>
+
+##set( $totlaApprovedAmt = 0 )
+##set($Integer = 0)
+<!--<h4>$i18n.getString( "asha_payment_details" )  Name of ASHA : $!patient.getFullName() For the Month : $monthYear In : $!patient.getOrganisationUnit().getName() Medical Officer Incharge Approve Page</h4>-->
+<h4>$i18n.getString( "asha_payment_details" )  Name of ASHA : $!patient.getFullName() For the Month : $monthYear In : $!patient.getOrganisationUnit().getName() BAC Verification Page</h4>
+
+#if( $status == "NONE" )
+
+
+<!-- Codes by HTML.am -->
+<!--<marquee behavior="scroll" style="background:yellow" direction="left">All cases needed to be approved carefully.</marquee>-->
+<font size="3" face="arial" color="blue"><marquee behavior="scroll" direction="left"><b>All cases needed to be approved carefully.</b></marquee></font>
+
+<form id="ASHAMOApproveForm" name="ASHAMOApproveForm" method="post" action="saveASHAMOApproveDetails.action" >  
+
+<div>
+    <input type="hidden" id="id" name="id" value="$patient.id">
+    <input type="hidden" id="organisationUnitId" name="organisationUnitId" value="$!patient.organisationUnit.id">
+    <input type="hidden" id="programId" name="programId" value="$!program.id">
+    <input type="hidden" id="programInstanceId" name="programInstanceId" value="$!activityDetailsprogramInstanceId">
+    <input type="hidden" id="programStageId" name="programStageId" value="$!programStage.id">
+    <input type="hidden" id="programStageInstanceId" name="programStageInstanceId" value="$!activityDetailsProgramStageInstanceId">
+    <input type="hidden" id="selectedPeriodId" name="selectedPeriodId" value="$!currentPeriod.getExternalId()"> 
+</div>
+
+<table class="mainPageTable">
+    <tr>
+        <td>
+            <table class="listTable" id="listTable"> 
+                <colgroup>
+                    <col width="30"/>
+                    <col />
+                    <col />
+                    <col />
+                    <col/>
+                    <col/>
+                    <col/>
+                    <col/>
+                    <col width="245"/>
+                </colgroup>   
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th class="{sorter: false}">$i18n.getString( "beneficiary_name" )</th>
+                        <th class="{sorter: false}">$i18n.getString( "period" )</th>
+                        <th class="{sorter: false}">$i18n.getString( "Husband/Father/Mother Name" )</th>
+                        <th class="{sorter: false}">$i18n.getString( "beneficiary_identifier" )</th>
+                        <th class="{sorter: false}">$i18n.getString( "Date of Service Given" )</th>
+                        <th class="{sorter: false}">$i18n.getString( "Kind of Service" )</th>
+                        <!--
+                        <th>$i18n.getString( "incentive_amount" )</th>
+                        <th>$i18n.getString( "state_incentive_amount" )</th>
+                        -->
+                        <th class="{sorter: false}">$i18n.getString( "Total Payment" )</th>
+                        <th class="{sorter: false}" style="text-align:left">$i18n.getString( "operations" )
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Remarks</th>
+                    </tr>
+                </thead>
+                <tbody id="list" style="background-color:#ECE0F8;">   
+                    #set( $count=1 )
+                    #foreach( $beneficiary in $beneficiaryList )
+                        
+                        <tr id="tr${beneficiary.id}">
+                            <td>
+                                $count
+                            </td>
+                            
+                            <td>$encoder.htmlEncode( $!beneficiary.name)</td>
+                            <td>$monthYear</td>
+                            <td>$encoder.htmlEncode( $!beneficiary.getFatherName() )</td>
+                            <td>$encoder.htmlEncode( $!beneficiary.getIdentifier() )</td>
+                            <td>$!simpleDateFormat.format( $!beneficiary.getServiceGivenDate() )</td>
+                            <td>$encoder.htmlEncode( $!beneficiary.getDataElement().getName() )</td>
+                            <!--
+                            <td>$encoder.htmlEncode( $!beneficiary.getPrice() )</td>
+                            <td>$encoder.htmlEncode( $!stateAmountMap.get( $beneficiary.getId() ) )</td>
+                            -->
+                            <td>$encoder.htmlEncode( $!totalAmountMap.get( $beneficiary.getId() ) )</td>
+                            <td>
+                                #set( $radioId =  $beneficiary.id )
+                                <!--
+                                <input type="radio" id="approveamount$radioId" name="approveamount$radioId" value="3" #if( $beneficiary.getMOApprove() ==3) checked #end onchange="calculateMOApproveAmount( 'approveamount$radioId', '$!totalAmountMap.get( $beneficiary.getId() )' );" >Approve &nbsp;&nbsp;
+                                <input type="radio" id="approveamount$radioId" name="approveamount$radioId" value="2" #if( $beneficiary.getMOApprove() ==2) checked #end onchange="calculateMOApproveAmount( 'approveamount$radioId', '$!totalAmountMap.get( $beneficiary.getId() )' );" >Pending &nbsp;&nbsp;
+                                <input type="radio" id="approveamount$radioId" name="approveamount$radioId" value="1" #if( $beneficiary.getMOApprove() ==1) checked #end onchange="calculateMOApproveAmount( 'approveamount$radioId', '$!totalAmountMap.get( $beneficiary.getId() )' );" >Rejected  
+                                <input type="text" id="moremark$radioId" name="moremark$radioId" value="$!beneficiary.getMORemark()"/>
+                                -->
+                                <select id="approveamount$radioId" name="approveamount$radioId" style="width:100px" #if( $!beneficiary.getMOApprove() == "3" && $!beneficiary.getAAApprove() == "3" ) disabled="disabled" #end onchange="calculateMOApproveAmount( 'approveamount$radioId', '$!totalAmountMap.get( $beneficiary.getId() )', 'flag$radioId' );" >
+                                    <option value="0" >[$i18n.getString( "please_select" )]</option>
+                                    <option value="3" #if( $!beneficiary.getMOApprove() == 3 ) selected #end >$i18n.getString( "Approve" )</option>
+                                    <option value="2" #if( $beneficiary.getMOApprove() == 2 ) selected #end >$i18n.getString( "Pending" )</option>
+                                    <option value="1" #if( $beneficiary.getMOApprove() == 1 ) selected #end >$i18n.getString( "Rejected" )</option>
+                                </select>
+                                <input type="hidden" id="flag$radioId" name="flag$radioId" #if( $!beneficiary.getMOApprove() == "0" || $!beneficiary.getMOApprove() == "1" || $!beneficiary.getMOApprove() == "2" ) value="1" #else value ="0" #end />
+                                <!--
+                                #if( $!beneficiary.getMOApprove() == 3 ) 
+                                    #set( $totlaApprovedAmt = $totlaApprovedAmt + $Integer.parseInt( $!totalAmountMap.get( $beneficiary.getId() ) ) )
+                                #end
+                                --> 
+                                <input type="text" id="moremark$radioId" name="moremark$radioId" value="$!beneficiary.getMORemark()" #if( $!beneficiary.getMOApprove() == "3" && $!beneficiary.getAAApprove() == "3" ) disabled="disabled" #end />
+                                
+                                
+                                <!--
+                                <input type="radio" id="approveamount$beneficiary.id" name="approveamount$beneficiary.id" value="3" #if ( $!beneficiary.getMOApprove() == 3 ) checked = "checked" #end >Approve &nbsp;&nbsp;
+                                <input type="radio" id="approveamount$beneficiary.id" name="approveamount$beneficiary.id" value="1" #if ( $!beneficiary.getMOApprove() == 1 ) checked = "checked" #end >Rejected &nbsp;&nbsp;   
+                                <input type="radio" id="approveamount$beneficiary.id" name="approveamount$beneficiary.id" value="2" #if ( $!beneficiary.getMOApprove() == 2 ) checked = "checked" #end >Pending
+                                -->
+                                
+                                <!--
+                                <input type="radio" id="approveamount$beneficiary.id" name="approveamount$beneficiary.id"  value="3" onchange="calculateMOApproveAmount( 'approveamount$beneficiary.id', '$!totalAmountMap.get( $beneficiary.getId() )', 'beneficiaryApproveAmount');" >Approve &nbsp;&nbsp;
+                                <input type="radio" id="approveamount$beneficiary.id" name="approveamount$beneficiary.id" value="1" onchange="calculateMOApproveAmount( 'approveamount$beneficiary.id', '$!totalAmountMap.get( $beneficiary.getId() )', 'beneficiaryApproveAmount');">Reject &nbsp;&nbsp;  
+                                <input type="radio" id="approveamount$beneficiary.id" name="approveamount$beneficiary.id" value="2" onchange="calculateMOApproveAmount( 'approveamount$beneficiary.id', '$!totalAmountMap.get( $beneficiary.getId() )', 'beneficiaryApproveAmount');" >Pending
+                                -->
+                                
+                                
+                                <!--
+                                #if( $update == "YES" ) name="dataelement$dataElement.id"
+                                    <a href="javascript:showUpdateASHABeneficiaryForm( '$beneficiary.id','$beneficiary.getPeriod().getId()', '$beneficiary.getPatient().getId()' ,'$selectedPeriodId' )" title='$i18n.getString( "edit_beneficiary" )'><img src="images/edit_foto.png" alt='$i18n.getString( "edit_beneficiary" )'></a>
+                                    <a href="javascript:removeASHABeneficiary( '$beneficiary.id', '$encoder.jsEncode( $beneficiary.name )' ,'$beneficiary.getPeriod().getId()', '$beneficiary.getPatient().getId()', '$selectedPeriodId' )" title='$i18n.getString( "remove" )'><img src="images/deleteRed.png" alt='$i18n.getString( "remove" )'></a>
+                                #end
+                                -->
+                            </td>                               
+                        </tr>
+                        #set($count = $count + 1)
+                    #end
+                    
+                    <!--
+                    <tr>
+                        <td colspan="5"><strong>$i18n.getString( "total" )</strong></td>
+                        
+                        <td><input type="text" id="beneficiaryTotalAmount" name="beneficiaryTotalAmount" value="$!totalAmountInMonth" readonly /></td>
+                        <input type="hidden" id="beneficiaryAmount" name="beneficiaryAmount" value="$!totalAmountInMonth" >
+                        <input type="hidden" id="stateBeneficiaryAmount" name="stateBeneficiaryAmount" value="$!stateTotalAmountInMonth" >
+                        <input type="hidden" id="totalBeneficiaryAmount" name="totalBeneficiaryAmount" value="$!totalAmount" >
+                            
+                        <td>&nbsp;</td>
+                    </tr>
+                    -->
+                    <!--
+                    <tr>
+                        <td colspan="5"><strong>$i18n.getString( "Total Approve Amount" )</strong></td>
+                         <td>$!totalMOApproveAmount</td>
+                       
+                        <td>&nbsp;</td>
+                    </tr>                   
+                    -->
+                </tbody>
+#if( $pendingBeneficiaryList.size() > 0 )
+                
+                <tbody id="list" style="background-color:#EFFBEF;">   
+                    
+                <tr>
+                    <td colspan="7"><strong>$i18n.getString( "Beneficiaries pending for approval for previous months" )</strong></td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                    
+                    
+                    #set( $count=1 )
+                    #foreach( $pendingBeneficiary in $pendingBeneficiaryList )
+                        
+                        <tr id="tr${pendingBeneficiary.id}">
+                            <td>
+                                $count
+                            </td>
+                            
+                            <td>$encoder.htmlEncode( $!pendingBeneficiary.name)</td>
+                            <!--<td>$encoder.htmlEncode( $!pendingBeneficiary.getPeriod().getName() )</td>-->
+                            <td>$encoder.htmlEncode( $!pendingPeriodNameMap.get( $pendingBeneficiary.getId() ) )</td>
+                            <td>$encoder.htmlEncode( $!pendingBeneficiary.getFatherName() )</td>
+                            <td>$encoder.htmlEncode( $!pendingBeneficiary.getIdentifier() )</td>
+                            <td>$!simpleDateFormat.format( $!pendingBeneficiary.getServiceGivenDate() )</td>
+                            <td>$encoder.htmlEncode( $!pendingBeneficiary.getDataElement().getName() )</td>
+                            <td>$encoder.htmlEncode( $!totalPendingAmountMap.get( $pendingBeneficiary.getId() ) )</td>
+                            <td>
+                                
+                                #set( $radioId =  $pendingBeneficiary.id )
+                                
+                                <select id="pendingapproveamount$radioId" name="pendingapproveamount$radioId" style="width:100px" #if( $!pendingBeneficiary.getMOApprove() == "3" && $!pendingBeneficiary.getAAApprove() == "3" ) disabled="disabled" #end onchange="calculateMOPendingApproveAmount( 'pendingapproveamount$radioId', '$!totalPendingAmountMap.get( $pendingBeneficiary.getId() )', 'flagpendingapproveamount$radioId' );" >
+                                    <option value="0" >[$i18n.getString( "please_select" )]</option>
+                                    <option value="3" #if( $!pendingBeneficiary.getMOApprove() == 3 ) selected #end >$i18n.getString( "Approve" )</option>
+                                    <option value="2" #if( $pendingBeneficiary.getMOApprove() == 2 ) selected #end >$i18n.getString( "Pending" )</option>
+                                    <option value="1" #if( $pendingBeneficiary.getMOApprove() == 1 ) selected #end >$i18n.getString( "Rejected" )</option>
+                                </select>
+                                <input type="hidden" id="flagpendingapproveamount$radioId" name="flagpendingapproveamount$radioId" #if( $!pendingBeneficiary.getMOApprove() == "0" || $!pendingBeneficiary.getMOApprove() == "1" || $!pendingBeneficiary.getMOApprove() == "2" ) value="1" #else value ="0" #end />
+                                
+                                
+                                <input type="text" id="pendingmoremark$radioId" name="pendingmoremark$radioId" value="$!pendingBeneficiary.getMORemark()" #if( $!pendingBeneficiary.getMOApprove() == "3" && $!pendingBeneficiary.getAAApprove() == "3" ) disabled="disabled" #end/>
+                                
+                                <!--
+                                <input type="radio" id="pendingamount$radioId" name="pendingamount$radioId" value="3" >Approve &nbsp;&nbsp;
+                                <input type="radio" id="pendingamount$radioId" name="pendingamount$radioId" value="2" >Pending &nbsp;&nbsp;
+                                <input type="radio" id="pendingamount$radioId" name="pendingamount$radioId" value="1"  >Rejected   
+                                <input type="text" id="moremark$radioId" name="moremark$radioId" value="$!pendingBeneficiary.getMORemark()"/>   
+                                -->
+                            </td>                               
+                        </tr>
+                        #set($count = $count + 1)
+                    #end
+                    <!--
+                    <tr>
+                        
+                        <td colspan="5"><strong>$i18n.getString( "total_pending_amount" )</strong></td>
+                    
+                        <td>$!totalPendingAmount</td>
+                        
+                        <input type="hidden" id="beneficiaryAmount" name="beneficiaryAmount" value="$!totalAmountInMonth" >
+                        <input type="hidden" id="stateBeneficiaryAmount" name="stateBeneficiaryAmount" value="$!stateTotalAmountInMonth" >
+                        <input type="hidden" id="totalBeneficiaryAmount" name="totalBeneficiaryAmount" value="$!totalAmount" >
+                            
+                        <td>&nbsp;</td>
+                    </tr>
+                    -->
+                </tbody>
+#end                
+            </table>
+        </td>
+    </tr>
+
+</table>
+
+
+#if( $activityDetailsDataValueMap.size() > 0 || $beneficiaryList.size() > 0 )
+
+<table  width="100%" style="background-color:#ECE0F8;">
+    
+    <tr bgcolor="#CBDDEB">
+        <th colspan="2">ASHA Activity</th>
+        <th style="width:70px">$i18n.getString( "period" )</th>
+        <th style="width:100px" >&nbsp;</th>
+        <th style="width:100px" >&nbsp;</th>
+        <th style="width:100px">Date of Activity</th>
+        <th style="width:100px">Place of Activity</th>
+        
+        <th style="width:100px;text-align:left">$i18n.getString( "Total Payment" )</th>
+        <th style="text-align:center;width:230px">$i18n.getString( "operations" )</th>
+        
+    </tr>   
+    
+    <tr #if( $activityDetailsDataValueMap.get( 418 ).split(":")[0] && $!activityDetailsDataValueMap.get( 418 ).split(":")[0] != "" ) #else style="display:none" #end >
+        
+        <td colspan="2" >Mobilization of Community for RI</td>
+        
+        <td>$monthYear</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>$!activityDetailsDataValueMap.get( 418 ).split(":")[0]</td>
+        
+            #set($moApproveStatus = "0" )
+            #set($moApproveStatus = $!activityDetailsDataValueMap.get( 418 ).split(":")[1])
+            #set($aaApproveStatus = $!activityDetailsDataValueMap.get( 418 ).split(":")[3])
+            ##set($moApproveRemark = $!activityDetailsDataValueMap.get( 418 ).split(":")[2])        
+        <td>$!activityDetailsDataValueMap.get( 419 ).split(":")[0]</td>
+        
+        <td style="text-align: center;">$!activityDetailsDataValueMap.get( 484 ).split(":")[0]</td>
+        <!--<td><input type="text" id="deps484" name="deps484" readonly value = "$!activityDetailsDataValueMap.get( 484 )" style="text-align: center;" /></td>-->
+        <td>
+            #set( $ashaActivityRadioId =  418 + ':' + $currentPeriod.id )
+            
+            <select id="ashaactivityapproveamount$ashaActivityRadioId" name="ashaactivityapproveamount$ashaActivityRadioId" style="width:100px" #if( $moApproveStatus == "3" && $aaApproveStatus == "3" ) disabled="disabled" #end onchange="calculateMOApproveAmount( 'ashaactivityapproveamount$ashaActivityRadioId', '$!activityDetailsDataValueMap.get( 484 ).split(":")[0]', 'falgashaactivityapproveamount$ashaActivityRadioId' );" >
+                <option value="0" >[$i18n.getString( "please_select" )]</option>
+                <option value="3" #if($moApproveStatus == "3") selected  #end >$i18n.getString( "Approve" )</option>
+                <option value="2" #if($moApproveStatus == "2") selected  #end >$i18n.getString( "Pending" )</option>
+                <option value="1" #if($moApproveStatus == "1") selected  #end >$i18n.getString( "Rejected" )</option>
+            </select>
+            <input type="hidden" id="falgashaactivityapproveamount$ashaActivityRadioId" name="falgashaactivityapproveamount$ashaActivityRadioId" #if( $moApproveStatus == "0" || $moApproveStatus == "1" || $moApproveStatus == "2" ) value="1" #else value ="0" #end />
+            <!--
+            #if( $moApproveStatus == "3") 
+                #set( $totlaApprovedAmt = $totlaApprovedAmt +  $Integer.parseInt( $!activityDetailsDataValueMap.get( 484 ).split(":")[0] ) )
+            #end    
+            -->
+            <!--
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="3">Approve &nbsp;&nbsp;
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="2">Pending &nbsp;&nbsp;    
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="1">Rejected
+            -->
+            
+            <input type="text" id="ashaactivitymoremark$ashaActivityRadioId" name="ashaactivitymoremark$ashaActivityRadioId" style="width:129px" value="$!activityDetailsMORemarkDataValueMap.get( 418 )" #if( $moApproveStatus == "3" && $aaApproveStatus == "3" ) disabled="disabled" #end />
+        </td>           
+    </tr>
+    <tr #if ( $activityDetailsDataValueMap.get( 470 ).split(":")[0] && $!activityDetailsDataValueMap.get( 470 ).split(":")[0] != "" ) #else style="display:none" #end >
+        
+        <td colspan="2" >Other Kind of Session 1</td>
+        
+        <td>$monthYear</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>$!activityDetailsDataValueMap.get( 470 ).split(":")[0]</td>
+        #set($moApproveStatus = "0" )
+        #set($moApproveStatus = $!activityDetailsDataValueMap.get( 470 ).split(":")[1])
+        #set($aaApproveStatus = $!activityDetailsDataValueMap.get( 470 ).split(":")[3])
+        ##set($moApproveRemark = $!activityDetailsDataValueMap.get( 470 ).split(":")[2])
+        
+        <td>$!activityDetailsDataValueMap.get( 480 ).split(":")[0]</td>
+        <!--<td><input type="text" id="deps485" name="deps485" readonly value = "$!activityDetailsDataValueMap.get( 485 )" style="text-align: center;" /></td>-->
+        <td style="text-align: center;">$!activityDetailsDataValueMap.get( 485 ).split(":")[0]</td> 
+        <td>
+            #set( $ashaActivityRadioId =  470 + ':' + $currentPeriod.id )
+            
+            <select id="ashaactivityapproveamount$ashaActivityRadioId" name="ashaactivityapproveamount$ashaActivityRadioId" style="width:100px" #if( $moApproveStatus == "3" && $aaApproveStatus == "3" ) disabled="disabled" #end onchange="calculateMOApproveAmount( 'ashaactivityapproveamount$ashaActivityRadioId', '$!activityDetailsDataValueMap.get( 485 ).split(":")[0]', 'falgashaactivityapproveamount$ashaActivityRadioId' );" >
+                <option value="0" >[$i18n.getString( "please_select" )]</option>
+                <option value="3" #if($moApproveStatus == "3") selected  #end >$i18n.getString( "Approve" )</option>
+                <option value="2" #if($moApproveStatus == "2") selected  #end >$i18n.getString( "Pending" )</option>
+                <option value="1" #if($moApproveStatus == "1") selected  #end >$i18n.getString( "Rejected" )</option>
+            </select>
+            <input type="hidden" id="falgashaactivityapproveamount$ashaActivityRadioId" name="falgashaactivityapproveamount$ashaActivityRadioId" #if( $moApproveStatus == "0" || $moApproveStatus == "1" || $moApproveStatus == "2" ) value="1" #else value ="0" #end />
+            <!--
+            #if( $moApproveStatus == "3") 
+                #set( $totlaApprovedAmt = $totlaApprovedAmt + $Integer.parseInt( $!activityDetailsDataValueMap.get( 485 ).split(":")[0] ) )
+            #end            
+            -->
+            <!--
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="3">Approve &nbsp;&nbsp;
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="2">Pending &nbsp;&nbsp;    
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="1">Rejected
+            -->
+            <input type="text" id="ashaactivitymoremark$ashaActivityRadioId" name="ashaactivitymoremark$ashaActivityRadioId" style="width:129px" value="$!activityDetailsMORemarkDataValueMap.get( 470 )" #if( $moApproveStatus == "3" && $aaApproveStatus == "3" ) disabled="disabled" #end />
+        </td>
+        
+    </tr>   
+    <tr #if ( $activityDetailsDataValueMap.get( 471 ).split(":")[0] && $!activityDetailsDataValueMap.get( 471 ).split(":")[0] != "" ) #else style="display:none" #end >
+       
+        <td colspan="2" >Other Kind of Session 2</td>
+        
+        <td>$monthYear</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>$!activityDetailsDataValueMap.get( 471 ).split(":")[0]</td>
+    
+        #set($moApproveStatus = "0" )
+        #set($moApproveStatus = $!activityDetailsDataValueMap.get( 471 ).split(":")[1])
+        #set($aaApproveStatus = $!activityDetailsDataValueMap.get( 471 ).split(":")[3])
+        ##set($moApproveRemark = $!activityDetailsDataValueMap.get( 471 ).split(":")[2])
+        <td>$!activityDetailsDataValueMap.get( 481 ).split(":")[0]</td>
+        <!--<td><input type="text" id="deps486" name="deps486" readonly value = "$!activityDetailsDataValueMap.get( 486 )" style="text-align: center;" /></td>-->
+        <td style="text-align: center;">$!activityDetailsDataValueMap.get( 486 ).split(":")[0]</td>     
+        <td>
+            #set( $ashaActivityRadioId =  471 + ':' + $currentPeriod.id )
+            
+            <select id="ashaactivityapproveamount$ashaActivityRadioId" name="ashaactivityapproveamount$ashaActivityRadioId" style="width:100px" #if( $moApproveStatus == "3" && $aaApproveStatus == "3" ) disabled="disabled" #end onchange="calculateMOApproveAmount( 'ashaactivityapproveamount$ashaActivityRadioId', '$!activityDetailsDataValueMap.get( 486 ).split(":")[0]', 'falgashaactivityapproveamount$ashaActivityRadioId' );" >
+                <option value="0" >[$i18n.getString( "please_select" )]</option>
+                <option value="3" #if($moApproveStatus == "3") selected  #end >$i18n.getString( "Approve" )</option>
+                <option value="2" #if($moApproveStatus == "2") selected  #end >$i18n.getString( "Pending" )</option>
+                <option value="1" #if($moApproveStatus == "1") selected  #end >$i18n.getString( "Rejected" )</option>
+            </select>
+            <input type="hidden" id="falgashaactivityapproveamount$ashaActivityRadioId" name="falgashaactivityapproveamount$ashaActivityRadioId" #if( $moApproveStatus == "0" || $moApproveStatus == "1" || $moApproveStatus == "2" ) value="1" #else value ="0" #end />
+            <!--
+            #if( $moApproveStatus == "3") 
+                #set( $totlaApprovedAmt = $totlaApprovedAmt + $Integer.parseInt( $!activityDetailsDataValueMap.get( 486 ).split(":")[0] ) )
+            #end
+            -->         
+            <!--
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="3">Approve &nbsp;&nbsp;
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="2">Pending &nbsp;&nbsp;    
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="1">Rejected
+            -->
+            <input type="text" id="ashaactivitymoremark$ashaActivityRadioId" name="ashaactivitymoremark$ashaActivityRadioId" style="width:129px" value="$!activityDetailsMORemarkDataValueMap.get( 471 )" #if( $moApproveStatus == "3" && $aaApproveStatus == "3" ) disabled="disabled" #end />
+        </td>
+        
+    </tr>       
+    
+    <tr #if ( $activityDetailsDataValueMap.get( 472 ).split(":")[0] && $!activityDetailsDataValueMap.get( 472 ).split(":")[0] != "" ) #else style="display:none" #end >
+        <td colspan="2" >Other Kind of Session 3</td>
+        
+        <td>$monthYear</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>$!activityDetailsDataValueMap.get( 472 ).split(":")[0]</td>
+    
+        #set($moApproveStatus = "0" )
+        #set($moApproveStatus = $!activityDetailsDataValueMap.get( 472 ).split(":")[1])
+        #set($aaApproveStatus = $!activityDetailsDataValueMap.get( 472 ).split(":")[3])
+        ##set($moApproveRemark = $!activityDetailsDataValueMap.get( 472 ).split(":")[2])        
+        <td>$!activityDetailsDataValueMap.get( 482 ).split(":")[0]</td>
+            
+        <!--<td><input type="text" id="deps487" name="deps487" readonly value = "$!activityDetailsDataValueMap.get( 487 )" style="text-align: center;" /></td>-->
+        <td style="text-align: center;">$!activityDetailsDataValueMap.get( 487 ).split(":")[0]</td>     
+        <td>
+            #set( $ashaActivityRadioId =  472 + ':' + $currentPeriod.id )
+            
+            <select id="ashaactivityapproveamount$ashaActivityRadioId" name="ashaactivityapproveamount$ashaActivityRadioId" style="width:100px" #if( $moApproveStatus == "3" && $aaApproveStatus == "3" ) disabled="disabled" #end onchange="calculateMOApproveAmount( 'ashaactivityapproveamount$ashaActivityRadioId', '$!activityDetailsDataValueMap.get( 487 ).split(":")[0]', 'falgashaactivityapproveamount$ashaActivityRadioId' );" >
+                <option value="0" >[$i18n.getString( "please_select" )]</option>
+                <option value="3" #if($moApproveStatus == "3") selected  #end >$i18n.getString( "Approve" )</option>
+                <option value="2" #if($moApproveStatus == "2") selected  #end >$i18n.getString( "Pending" )</option>
+                <option value="1" #if($moApproveStatus == "1") selected  #end >$i18n.getString( "Rejected" )</option>
+            </select>
+            <input type="hidden" id="falgashaactivityapproveamount$ashaActivityRadioId" name="falgashaactivityapproveamount$ashaActivityRadioId" #if( $moApproveStatus == "0" || $moApproveStatus == "1" || $moApproveStatus == "2" ) value="1" #else value ="0" #end />
+            <!--
+            #if( $moApproveStatus != "3" &&  $activityDetailsDataValueMap.get( 472 ) && $!activityDetailsDataValueMap.get( 472 ) != ""  )
+                #set( $totlaApprovedAmt = $totlaApprovedAmt + 0 )
+            #else
+                #set( $totlaApprovedAmt = $totlaApprovedAmt + $Integer.parseInt( $!activityDetailsDataValueMap.get( 487 ).split(":")[0] ) )
+            #end
+            -->     
+            <!--
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="3">Approve &nbsp;&nbsp;
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="2">Pending &nbsp;&nbsp;    
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="1">Rejected
+            --> 
+            <input type="text" id="ashaactivitymoremark$ashaActivityRadioId" name="ashaactivitymoremark$ashaActivityRadioId" style="width:129px" value="$!activityDetailsMORemarkDataValueMap.get( 472 )" #if( $moApproveStatus == "3" && $aaApproveStatus == "3" ) disabled="disabled" #end />
+        </td>
+        
+    </tr>   
+    
+    <tr #if ( $activityDetailsDataValueMap.get( 473 ).split(":")[0] && $!activityDetailsDataValueMap.get( 473 ).split(":")[0] != "" ) #else style="display:none" #end >
+        <td colspan="2" >Other Kind of Session 4</td>
+        
+        <td>$monthYear</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>$!activityDetailsDataValueMap.get( 473 ).split(":")[0]</td>
+        
+        #set($moApproveStatus = "0" )
+        #set($moApproveStatus = $!activityDetailsDataValueMap.get( 473 ).split(":")[1])
+        #set($aaApproveStatus = $!activityDetailsDataValueMap.get( 473 ).split(":")[3])
+        ##set($moApproveRemark = $!activityDetailsDataValueMap.get( 473 ).split(":")[2])        
+        <td>$!activityDetailsDataValueMap.get( 483 ).split(":")[0]</td>
+            
+        <!--<td><input type="text" id="deps488" name="deps488" readonly value = "$!activityDetailsDataValueMap.get( 488 )" style="text-align: center;" /></td>-->
+        <td style="text-align: center;">$!activityDetailsDataValueMap.get( 488 ).split(":")[0]</td> 
+        <td>
+            #set( $ashaActivityRadioId =  473 + ':' + $currentPeriod.id )
+            <select id="ashaactivityapproveamount$ashaActivityRadioId" name="ashaactivityapproveamount$ashaActivityRadioId" style="width:100px" #if( $moApproveStatus == "3" && $aaApproveStatus == "3" ) disabled="disabled" #end onchange="calculateMOApproveAmount( 'ashaactivityapproveamount$ashaActivityRadioId', '$!activityDetailsDataValueMap.get( 488 ).split(":")[0]', 'falgashaactivityapproveamount$ashaActivityRadioId' );" >
+                <option value="0" >[$i18n.getString( "please_select" )]</option>
+                <option value="3" #if($moApproveStatus == "3") selected  #end >$i18n.getString( "Approve" )</option>
+                <option value="2" #if($moApproveStatus == "2") selected  #end >$i18n.getString( "Pending" )</option>
+                <option value="1" #if($moApproveStatus == "1") selected  #end >$i18n.getString( "Rejected" )</option>
+            </select>
+            <input type="hidden" id="falgashaactivityapproveamount$ashaActivityRadioId" name="falgashaactivityapproveamount$ashaActivityRadioId" #if( $moApproveStatus == "0" || $moApproveStatus == "1" || $moApproveStatus == "2" ) value="1" #else value ="0" #end />
+            <!--
+            #if( $moApproveStatus == "3") 
+                #set( $totlaApprovedAmt = $totlaApprovedAmt + $Integer.parseInt( $!activityDetailsDataValueMap.get( 488 ).split(":")[0] ) )
+            #end
+            -->         
+            <!--
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="3">Approve &nbsp;&nbsp;
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="2">Pending &nbsp;&nbsp;    
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="1">Rejected
+            --> 
+            <input type="text" id="ashaactivitymoremark$ashaActivityRadioId" name="ashaactivitymoremark$ashaActivityRadioId" style="width:129px" value="$!activityDetailsMORemarkDataValueMap.get( 473 )" #if( $moApproveStatus == "3" && $aaApproveStatus == "3" ) disabled="disabled" #end />
+        </td>
+    </tr>   
+    
+<!-- Meeting -->    
+    
+    
+    <tr #if ( $activityDetailsDataValueMap.get( 406 ).split(":")[0] && $!activityDetailsDataValueMap.get( 406 ).split(":")[0] != "" ) #else style="display:none" #end >
+        <td colspan="2" >Community Mobilization for VHND Celebration</td>
+        
+        <td>$monthYear</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>$!activityDetailsDataValueMap.get( 406 ).split(":")[0]</td>
+    
+        #set($moApproveStatus = "0" )
+        #set($moApproveStatus = $!activityDetailsDataValueMap.get( 406 ).split(":")[1])
+        #set($aaApproveStatus = $!activityDetailsDataValueMap.get( 406 ).split(":")[3])
+        ##set($moApproveRemark = $!activityDetailsDataValueMap.get( 406 ).split(":")[2])            
+        <td>$!activityDetailsDataValueMap.get( 407).split(":")[0]</td>
+        <td style="text-align: center;">$!activityDetailsDataValueMap.get( 489 ).split(":")[0]</td>     
+        
+        <!--<td><input type="text" id="deps489" name="deps489" readonly value = "$!activityDetailsDataValueMap.get( 489 )" style="text-align: center;" /></td>-->
+            
+        <td>
+            #set( $ashaActivityRadioId =  406 + ':' + $currentPeriod.id )
+            
+            <select id="ashaactivityapproveamount$ashaActivityRadioId" name="ashaactivityapproveamount$ashaActivityRadioId" style="width:100px" #if( $moApproveStatus == "3" && $aaApproveStatus == "3" ) disabled="disabled" #end onchange="calculateMOApproveAmount( 'ashaactivityapproveamount$ashaActivityRadioId', '$!activityDetailsDataValueMap.get( 489 ).split(":")[0]', 'falgashaactivityapproveamount$ashaActivityRadioId' );" >
+                <option value="0" >[$i18n.getString( "please_select" )]</option>
+                <option value="3" #if($moApproveStatus == "3") selected  #end >$i18n.getString( "Approve" )</option>
+                <option value="2" #if($moApproveStatus == "2") selected  #end >$i18n.getString( "Pending" )</option>
+                <option value="1" #if($moApproveStatus == "1") selected  #end >$i18n.getString( "Rejected" )</option>
+            </select>
+            <input type="hidden" id="falgashaactivityapproveamount$ashaActivityRadioId" name="falgashaactivityapproveamount$ashaActivityRadioId" #if( $moApproveStatus == "0" || $moApproveStatus == "1" || $moApproveStatus == "2" ) value="1" #else value ="0" #end />
+            <!--
+            #if( $moApproveStatus == "3") 
+                #set( $totlaApprovedAmt = $totlaApprovedAmt + $Integer.parseInt( $!activityDetailsDataValueMap.get( 489 ).split(":")[0] ) )
+            #end
+            -->         
+            <!--
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="3">Approve &nbsp;&nbsp;
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="2">Pending &nbsp;&nbsp;    
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="1">Rejected
+            -->
+            
+            <input type="text" id="ashaactivitymoremark$ashaActivityRadioId" name="ashaactivitymoremark$ashaActivityRadioId" style="width:129px" value="$!activityDetailsMORemarkDataValueMap.get( 406 )" #if( $moApproveStatus == "3" && $aaApproveStatus == "3" ) disabled="disabled" #end />
+        </td>
+    </tr>   
+    
+    
+    <tr #if ( $activityDetailsDataValueMap.get( 432 ).split(":")[0] && $!activityDetailsDataValueMap.get( 432 ).split(":")[0] != "" ) #else style="display:none" #end >
+        <td colspan="2" >Convening Monthly Meeting of VHSNC</td>
+        
+        <td>$monthYear</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>$!activityDetailsDataValueMap.get( 432 ).split(":")[0]</td>
+       
+        #set($moApproveStatus = "0" )
+        #set($moApproveStatus = $!activityDetailsDataValueMap.get( 432 ).split(":")[1])
+        #set($aaApproveStatus = $!activityDetailsDataValueMap.get( 432 ).split(":")[3])
+        ##set($moApproveRemark = $!activityDetailsDataValueMap.get( 432 ).split(":")[2])            
+        <td>$!activityDetailsDataValueMap.get( 433).split(":")[0]</td>
+        
+        <td style="text-align: center;">$!activityDetailsDataValueMap.get( 490 ).split(":")[0]</td>
+        
+        <!--<td><input type="text" id="deps490" name="deps490" readonly value = "$!activityDetailsDataValueMap.get( 490 )" style="text-align: center;" /></td>-->
+            
+        <td>
+            #set( $ashaActivityRadioId =  432 + ':' + $currentPeriod.id )
+            
+            <select id="ashaactivityapproveamount$ashaActivityRadioId" name="ashaactivityapproveamount$ashaActivityRadioId" style="width:100px" #if( $moApproveStatus == "3" && $aaApproveStatus == "3" ) disabled="disabled" #end onchange="calculateMOApproveAmount( 'ashaactivityapproveamount$ashaActivityRadioId', '$!activityDetailsDataValueMap.get( 490 ).split(":")[0]', 'falgashaactivityapproveamount$ashaActivityRadioId' );" >
+                <option value="0" >[$i18n.getString( "please_select" )]</option>
+                <option value="3" #if($moApproveStatus == "3") selected  #end >$i18n.getString( "Approve" )</option>
+                <option value="2" #if($moApproveStatus == "2") selected  #end >$i18n.getString( "Pending" )</option>
+                <option value="1" #if($moApproveStatus == "1") selected  #end >$i18n.getString( "Rejected" )</option>
+            </select>
+            <input type="hidden" id="falgashaactivityapproveamount$ashaActivityRadioId" name="falgashaactivityapproveamount$ashaActivityRadioId" #if( $moApproveStatus == "0" || $moApproveStatus == "1" || $moApproveStatus == "2" ) value="1" #else value ="0" #end />
+            <!--
+            #if( $moApproveStatus == "3") 
+                #set( $totlaApprovedAmt = $totlaApprovedAmt + $Integer.parseInt( $!activityDetailsDataValueMap.get( 490 ).split(":")[0] ) )
+            #end
+            -->         
+            <!--
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="3">Approve &nbsp;&nbsp;
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="2">Pending &nbsp;&nbsp;    
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="1">Rejected
+            --> 
+            <input type="text" id="ashaactivitymoremark$ashaActivityRadioId" name="ashaactivitymoremark$ashaActivityRadioId" style="width:129px" value="$!activityDetailsMORemarkDataValueMap.get( 432 )" #if( $moApproveStatus == "3" && $aaApproveStatus == "3" ) disabled="disabled" #end />
+        </td>
+    </tr>   
+    
+    <tr #if ( $activityDetailsDataValueMap.get( 411 ).split(":")[0] && $!activityDetailsDataValueMap.get( 411 ).split(":")[0] != "" ) #else style="display:none" #end >
+        <td colspan="2" >Monthly Meetings at PHC</td>
+        
+        <td>$monthYear</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>$!activityDetailsDataValueMap.get( 411 ).split(":")[0]</td> 
+    
+        #set($moApproveStatus = "0" )
+        #set($moApproveStatus = $!activityDetailsDataValueMap.get( 411 ).split(":")[1])
+        #set($aaApproveStatus = $!activityDetailsDataValueMap.get( 411 ).split(":")[3])
+        ##set($moApproveRemark = $!activityDetailsDataValueMap.get( 411 ).split(":")[2])            
+        <td>$!activityDetailsDataValueMap.get( 412).split(":")[0]</td>
+        <td style="text-align: center;">$!activityDetailsDataValueMap.get( 491 ).split(":")[0]</td> 
+        <!--<td><input type="text" id="deps491" name="deps491" readonly value = "$!activityDetailsDataValueMap.get( 491 )" style="text-align: center;" /></td>-->
+            
+        <td>
+            #set( $ashaActivityRadioId =  411 + ':' + $currentPeriod.id )
+            
+            <select id="ashaactivityapproveamount$ashaActivityRadioId" name="ashaactivityapproveamount$ashaActivityRadioId" style="width:100px" #if( $moApproveStatus == "3" && $aaApproveStatus == "3" ) disabled="disabled" #end onchange="calculateMOApproveAmount( 'ashaactivityapproveamount$ashaActivityRadioId', '$!activityDetailsDataValueMap.get( 491 ).split(":")[0]','falgashaactivityapproveamount$ashaActivityRadioId' );" >
+                <option value="0" >[$i18n.getString( "please_select" )]</option>
+                <option value="3" #if($moApproveStatus == "3") selected  #end >$i18n.getString( "Approve" )</option>
+                <option value="2" #if($moApproveStatus == "2") selected  #end >$i18n.getString( "Pending" )</option>
+                <option value="1" #if($moApproveStatus == "1") selected  #end >$i18n.getString( "Rejected" )</option>
+            </select>
+            <input type="hidden" id="falgashaactivityapproveamount$ashaActivityRadioId" name="falgashaactivityapproveamount$ashaActivityRadioId" #if( $moApproveStatus == "0" || $moApproveStatus == "1" || $moApproveStatus == "2" ) value="1" #else value ="0" #end />
+            <!--
+            #if( $moApproveStatus == "3") 
+                #set( $totlaApprovedAmt = $totlaApprovedAmt + $Integer.parseInt( $!activityDetailsDataValueMap.get( 491 ).split(":")[0] ) )
+            #end
+            -->         
+            <!--
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="3">Approve &nbsp;&nbsp;
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="2">Pending &nbsp;&nbsp;    
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="1">Rejected
+            -->
+            
+            <input type="text" id="ashaactivitymoremark$ashaActivityRadioId" name="ashaactivitymoremark$ashaActivityRadioId" style="width:129px" value="$!activityDetailsMORemarkDataValueMap.get( 411 )" #if( $moApproveStatus == "3" && $aaApproveStatus == "3" ) disabled="disabled" #end />
+        </td>
+    </tr>   
+    
+    <tr #if ( $activityDetailsDataValueMap.get( 430 ).split(":")[0] && $!activityDetailsDataValueMap.get( 430 ).split(":")[0] != "" ) #else style="display:none" #end >
+        <td colspan="2">Convenient monthly meeting of adolescent girl</td>
+        
+        <td>$monthYear</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>$!activityDetailsDataValueMap.get( 430 ).split(":")[0]</td>  
+
+        #set($moApproveStatus = "0" )
+        #set($moApproveStatus = $!activityDetailsDataValueMap.get( 430 ).split(":")[1])
+        #set($aaApproveStatus = $!activityDetailsDataValueMap.get( 430 ).split(":")[3])
+        ##set($moApproveRemark = $!activityDetailsDataValueMap.get( 430 ).split(":")[2])            
+        <td>$!activityDetailsDataValueMap.get( 431).split(":")[0]</td>
+        <td style="text-align: center;">$!activityDetailsDataValueMap.get( 492 ).split(":")[0]</td>
+        
+        <!--<td><input type="text" id="deps492" name="deps492" readonly value = "$!activityDetailsDataValueMap.get( 492 )" style="text-align: center;" /></td>-->
+            
+        <td>
+            #set( $ashaActivityRadioId =  430 + ':' + $currentPeriod.id )
+            
+            <select id="ashaactivityapproveamount$ashaActivityRadioId" name="ashaactivityapproveamount$ashaActivityRadioId" style="width:100px" #if( $moApproveStatus == "3" && $aaApproveStatus == "3" ) disabled="disabled" #end onchange="calculateMOApproveAmount( 'ashaactivityapproveamount$ashaActivityRadioId', '$!activityDetailsDataValueMap.get( 492 ).split(":")[0]', 'falgashaactivityapproveamount$ashaActivityRadioId' );" >
+                <option value="0" >[$i18n.getString( "please_select" )]</option>
+                <option value="3" #if($moApproveStatus == "3") selected  #end >$i18n.getString( "Approve" )</option>
+                <option value="2" #if($moApproveStatus == "2") selected  #end >$i18n.getString( "Pending" )</option>
+                <option value="1" #if($moApproveStatus == "1") selected  #end >$i18n.getString( "Rejected" )</option>
+            </select>
+            <input type="hidden" id="falgashaactivityapproveamount$ashaActivityRadioId" name="falgashaactivityapproveamount$ashaActivityRadioId" #if( $moApproveStatus == "0" || $moApproveStatus == "1" || $moApproveStatus == "2" ) value="1" #else value ="0" #end />
+            <!--
+            #if( $moApproveStatus == "3") 
+                #set( $totlaApprovedAmt = $totlaApprovedAmt + $Integer.parseInt( $!activityDetailsDataValueMap.get( 492 ).split(":")[0] ) )
+            #end
+            -->     
+            <!--
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="3">Approve &nbsp;&nbsp;
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="2">Pending &nbsp;&nbsp;    
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="1">Rejected
+            -->
+            
+            <input type="text" id="ashaactivitymoremark$ashaActivityRadioId" name="ashaactivitymoremark$ashaActivityRadioId" style="width:129px" value="$!activityDetailsMORemarkDataValueMap.get( 430 )" #if( $moApproveStatus == "3" && $aaApproveStatus == "3" ) disabled="disabled" #end />
+        </td>
+    </tr>   
+    
+    
+    
+    <!-- Other Meeting -->  
+    <tr #if ( $activityDetailsDataValueMap.get( 461 ).split(":")[0] && $!activityDetailsDataValueMap.get( 461 ).split(":")[0] != "" ) #else style="display:none" #end >
+        <td colspan="2" >Other Meeting 1</td>
+        
+        <td>$monthYear</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>$!activityDetailsDataValueMap.get( 461 ).split(":")[0]</td>
+
+        #set($moApproveStatus = "0" )
+        #set($moApproveStatus = $!activityDetailsDataValueMap.get( 461 ).split(":")[1])
+        #set($aaApproveStatus = $!activityDetailsDataValueMap.get( 461 ).split(":")[3])
+        ##set($moApproveRemark = $!activityDetailsDataValueMap.get( 461 ).split(":")[2])            
+        <td>$!activityDetailsDataValueMap.get( 458).split(":")[0]</td>
+        <td style="text-align: center;">$!activityDetailsDataValueMap.get( 493 ).split(":")[0]</td> 
+        <!--<td><input type="text" id="deps493" name="deps493" readonly value = "$!activityDetailsDataValueMap.get( 493 )" style="text-align: center;" /></td>-->
+            
+        <td>
+            #set( $ashaActivityRadioId =  461 + ':' + $currentPeriod.id )
+            
+            <select id="ashaactivityapproveamount$ashaActivityRadioId" name="ashaactivityapproveamount$ashaActivityRadioId" style="width:100px" #if( $moApproveStatus == "3" && $aaApproveStatus == "3" ) disabled="disabled" #end onchange="calculateMOApproveAmount( 'ashaactivityapproveamount$ashaActivityRadioId', '$!activityDetailsDataValueMap.get( 493 ).split(":")[0]', 'falgashaactivityapproveamount$ashaActivityRadioId' );" >
+                <option value="0" >[$i18n.getString( "please_select" )]</option>
+                <option value="3" #if($moApproveStatus == "3") selected  #end >$i18n.getString( "Approve" )</option>
+                <option value="2" #if($moApproveStatus == "2") selected  #end >$i18n.getString( "Pending" )</option>
+                <option value="1" #if($moApproveStatus == "1") selected  #end >$i18n.getString( "Rejected" )</option>
+            </select>
+            <input type="hidden" id="falgashaactivityapproveamount$ashaActivityRadioId" name="falgashaactivityapproveamount$ashaActivityRadioId" #if( $moApproveStatus == "0" || $moApproveStatus == "1" || $moApproveStatus == "2" ) value="1" #else value ="0" #end />
+            <!--
+            #if( $moApproveStatus == "3") 
+                #set( $totlaApprovedAmt = $totlaApprovedAmt + $Integer.parseInt( $!activityDetailsDataValueMap.get( 493 ).split(":")[0] ) )
+            #end
+            -->     
+            <!--
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="3">Approve &nbsp;&nbsp;
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="2">Pending &nbsp;&nbsp;    
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="1">Rejected
+            --> 
+            <input type="text" id="ashaactivitymoremark$ashaActivityRadioId" name="ashaactivitymoremark$ashaActivityRadioId" style="width:129px" value="$!activityDetailsMORemarkDataValueMap.get( 461 )" #if( $moApproveStatus == "3" && $aaApproveStatus == "3" ) disabled="disabled" #end />
+        </td>
+    </tr>   
+
+    <tr #if ( $activityDetailsDataValueMap.get( 462 ).split(":")[0] && $!activityDetailsDataValueMap.get( 462 ).split(":")[0] != "" ) #else style="display:none" #end >
+        <td colspan="2" >Other Meeting 2</td>
+        
+        <td>$monthYear</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>$!activityDetailsDataValueMap.get( 462 ).split(":")[0]</td>  
+        
+        #set($moApproveStatus = "0" )
+        #set($moApproveStatus = $!activityDetailsDataValueMap.get( 462 ).split(":")[1])
+        #set($aaApproveStatus = $!activityDetailsDataValueMap.get( 462 ).split(":")[3])
+            ##set($moApproveRemark = $!activityDetailsDataValueMap.get( 462 ).split(":")[2])            
+        <td>$!activityDetailsDataValueMap.get( 459).split(":")[0]</td>
+        <td style="text-align: center;">$!activityDetailsDataValueMap.get( 494 ).split(":")[0]</td>
+        
+        <!--<td><input type="text" id="deps494" name="deps494" readonly value = "$!activityDetailsDataValueMap.get( 494 )" style="text-align: center;" /></td>-->
+            
+        <td>
+            #set( $ashaActivityRadioId =  462 + ':' + $currentPeriod.id )
+            
+            <select id="ashaactivityapproveamount$ashaActivityRadioId" name="ashaactivityapproveamount$ashaActivityRadioId" style="width:100px" #if( $moApproveStatus == "3" && $aaApproveStatus == "3" ) disabled="disabled" #end onchange="calculateMOApproveAmount( 'ashaactivityapproveamount$ashaActivityRadioId', '$!activityDetailsDataValueMap.get( 494 ).split(":")[0]', 'falgashaactivityapproveamount$ashaActivityRadioId' );" >
+                <option value="0" >[$i18n.getString( "please_select" )]</option>
+                <option value="3" #if($moApproveStatus == "3") selected  #end >$i18n.getString( "Approve" )</option>
+                <option value="2" #if($moApproveStatus == "2") selected  #end >$i18n.getString( "Pending" )</option>
+                <option value="1" #if($moApproveStatus == "1") selected  #end >$i18n.getString( "Rejected" )</option>
+            </select>
+            <input type="hidden" id="falgashaactivityapproveamount$ashaActivityRadioId" name="falgashaactivityapproveamount$ashaActivityRadioId" #if( $moApproveStatus == "0" || $moApproveStatus == "1" || $moApproveStatus == "2" ) value="1" #else value ="0" #end />
+            <!--
+            #if( $moApproveStatus == "3") 
+                #set( $totlaApprovedAmt = $totlaApprovedAmt + $Integer.parseInt( $!activityDetailsDataValueMap.get( 494 ).split(":")[0] ) )
+            #end
+            -->         
+            <!--
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="3">Approve &nbsp;&nbsp;
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="2">Pending &nbsp;&nbsp;    
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="1">Rejected
+            -->
+            
+            <input type="text" id="ashaactivitymoremark$ashaActivityRadioId" name="ashaactivitymoremark$ashaActivityRadioId" style="width:129px" value="$!activityDetailsMORemarkDataValueMap.get( 462 )" #if( $moApproveStatus == "3" && $aaApproveStatus == "3" ) disabled="disabled" #end />
+        </td>
+    </tr>   
+    
+    <tr #if ( $activityDetailsDataValueMap.get( 463 ).split(":")[0] && $!activityDetailsDataValueMap.get( 463 ).split(":")[0] != "" ) #else style="display:none" #end >
+        <td colspan="2" >Other Meeting 3</td>
+        
+        <td>$monthYear</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>$!activityDetailsDataValueMap.get( 463 ).split(":")[0]</td>
+        
+        #set($moApproveStatus = "0" )
+        #set($moApproveStatus = $!activityDetailsDataValueMap.get( 463 ).split(":")[1])
+        #set($aaApproveStatus = $!activityDetailsDataValueMap.get( 463 ).split(":")[3])
+        ##set($moApproveRemark = $!activityDetailsDataValueMap.get( 463 ).split(":")[2])            
+        <td>$!activityDetailsDataValueMap.get( 460).split(":")[0]</td>
+        <td style="text-align: center;">$!activityDetailsDataValueMap.get( 495 ).split(":")[0]</td>
+        
+        <!--<td><input type="text" id="deps495" name="deps495" readonly value = "$!activityDetailsDataValueMap.get( 495 )" style="text-align: center;" /></td>-->
+            
+        <td>
+            #set( $ashaActivityRadioId =  463 + ':' + $currentPeriod.id )
+            
+            <select id="ashaactivityapproveamount$ashaActivityRadioId" name="ashaactivityapproveamount$ashaActivityRadioId" style="width:100px" #if( $moApproveStatus == "3" && $aaApproveStatus == "3" ) disabled="disabled" #end onchange="calculateMOApproveAmount( 'ashaactivityapproveamount$ashaActivityRadioId', '$!activityDetailsDataValueMap.get( 495 ).split(":")[0]', 'falgashaactivityapproveamount$ashaActivityRadioId' );" >
+                <option value="0" >[$i18n.getString( "please_select" )]</option>
+                <option value="3" #if($moApproveStatus == "3") selected  #end >$i18n.getString( "Approve" )</option>
+                <option value="2" #if($moApproveStatus == "2") selected  #end >$i18n.getString( "Pending" )</option>
+                <option value="1" #if($moApproveStatus == "1") selected  #end >$i18n.getString( "Rejected" )</option>
+            </select>
+            <input type="hidden" id="falgashaactivityapproveamount$ashaActivityRadioId" name="falgashaactivityapproveamount$ashaActivityRadioId" #if( $moApproveStatus == "0" || $moApproveStatus == "1" || $moApproveStatus == "2" ) value="1" #else value ="0" #end />
+            <!--
+            #if( $moApproveStatus == "3") 
+                #set( $totlaApprovedAmt = $totlaApprovedAmt + $Integer.parseInt( $!activityDetailsDataValueMap.get( 495 ).split(":")[0] ) )
+            #end
+            -->         
+            <!--
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="3">Approve &nbsp;&nbsp;
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="2">Pending &nbsp;&nbsp;    
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="1">Rejected
+            -->
+            
+            <input type="text" id="ashaactivitymoremark$ashaActivityRadioId" name="ashaactivitymoremark$ashaActivityRadioId" style="width:129px" value="$!activityDetailsMORemarkDataValueMap.get( 463 )" #if( $moApproveStatus == "3" && $aaApproveStatus == "3" ) disabled="disabled" #end />
+        </td>
+    </tr>   
+    
+    
+<!-- Sample -->
+
+    <tr #if ( $activityDetailsDataValueMap.get( 408 ).split(":")[0] &&  $!activityDetailsDataValueMap.get( 408 ).split(":")[0] != "" ) #else style="display:none" #end >
+        <td colspan="2" >Water Samples Taken for Testing</td>
+        
+        <td>$monthYear</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>$!activityDetailsDataValueMap.get( 408 ).split(":")[0]</td> 
+        
+        #set($moApproveStatus = "0" )
+        #set($moApproveStatus = $!activityDetailsDataValueMap.get( 408 ).split(":")[1])
+        #set($aaApproveStatus = $!activityDetailsDataValueMap.get( 408 ).split(":")[3])
+        ##set($moApproveRemark = $!activityDetailsDataValueMap.get( 408 ).split(":")[2])            
+        <td>$!activityDetailsDataValueMap.get( 410).split(":")[0]</td>
+        <td style="text-align: center;">$!activityDetailsDataValueMap.get( 496 ).split(":")[0]</td>
+        
+        <!--<td><input type="text" id="deps496" name="deps496" readonly value = "$!activityDetailsDataValueMap.get( 496 )" style="text-align: center;" /></td>-->
+            
+        <td>
+            #set( $ashaActivityRadioId =  408 + ':' + $currentPeriod.id )
+            
+            <select id="ashaactivityapproveamount$ashaActivityRadioId" name="ashaactivityapproveamount$ashaActivityRadioId" style="width:100px" #if( $moApproveStatus == "3" && $aaApproveStatus == "3" ) disabled="disabled" #end onchange="calculateMOApproveAmount( 'ashaactivityapproveamount$ashaActivityRadioId', '$!activityDetailsDataValueMap.get( 496 ).split(":")[0]', 'falgashaactivityapproveamount$ashaActivityRadioId' );" >
+                <option value="0" >[$i18n.getString( "please_select" )]</option>
+                <option value="3" #if($moApproveStatus == "3") selected  #end >$i18n.getString( "Approve" )</option>
+                <option value="2" #if($moApproveStatus == "2") selected  #end >$i18n.getString( "Pending" )</option>
+                <option value="1" #if($moApproveStatus == "1") selected  #end >$i18n.getString( "Rejected" )</option>
+            </select>
+            <input type="hidden" id="falgashaactivityapproveamount$ashaActivityRadioId" name="falgashaactivityapproveamount$ashaActivityRadioId" #if( $moApproveStatus == "0" || $moApproveStatus == "1" || $moApproveStatus == "2" ) value="1" #else value ="0" #end />
+            <!--
+            #if( $moApproveStatus == "3") 
+                #set( $totlaApprovedAmt = $totlaApprovedAmt + $Integer.parseInt( $!activityDetailsDataValueMap.get( 496 ).split(":")[0] ) )
+            #end
+            -->         
+            <!--
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="3">Approve &nbsp;&nbsp;
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="2">Pending &nbsp;&nbsp;    
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="1">Rejected
+            --> 
+            
+            <input type="text" id="ashaactivitymoremark$ashaActivityRadioId" name="ashaactivitymoremark$ashaActivityRadioId" style="width:129px"  value="$!activityDetailsMORemarkDataValueMap.get( 408 )" #if( $moApproveStatus == "3" && $aaApproveStatus == "3" ) disabled="disabled" #end />
+        </td>
+    </tr>   
+    
+    ##set( $countSaltSample = $!activityDetailsDataValueMap.get( 428 ) )
+    
+    <tr #if (  $activityDetailsDataValueMap.get( 427 ).split(":")[0] && $!activityDetailsDataValueMap.get( 427 ).split(":")[0] != "" ) #else style="display:none" #end >
+        <td colspan="2" >Conducting Testing of Salt Sample under NIDDCP</td>
+        
+        <td>$monthYear</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>$!activityDetailsDataValueMap.get( 427 ).split(":")[0]</td> 
+   
+        #set($moApproveStatus = "0" )
+        #set($moApproveStatus = $!activityDetailsDataValueMap.get( 427 ).split(":")[1])
+        #set($aaApproveStatus = $!activityDetailsDataValueMap.get( 427 ).split(":")[3])
+        ##set($moApproveRemark = $!activityDetailsDataValueMap.get( 427 ).split(":")[2])            
+        <td>$!activityDetailsDataValueMap.get( 429).split(":")[0]</td>
+        <td style="text-align: center;">$!activityDetailsDataValueMap.get( 497 ).split(":")[0]</td> 
+        
+        <!--<td><input type="text" id="deps497" name="deps497" readonly value = "$!activityDetailsDataValueMap.get( 497 )" style="text-align: center;" /></td>-->
+            
+        <td>
+            #set( $ashaActivityRadioId =  427 + ':' + $currentPeriod.id )
+            
+            <select id="ashaactivityapproveamount$ashaActivityRadioId" name="ashaactivityapproveamount$ashaActivityRadioId" style="width:100px" #if( $moApproveStatus == "3" && $aaApproveStatus == "3" ) disabled="disabled" #end onchange="calculateMOApproveAmount( 'ashaactivityapproveamount$ashaActivityRadioId', '$!activityDetailsDataValueMap.get( 497 ).split(":")[0]', 'falgashaactivityapproveamount$ashaActivityRadioId' );" >
+                <option value="0" >[$i18n.getString( "please_select" )]</option>
+                <option value="3" #if($moApproveStatus == "3") selected  #end >$i18n.getString( "Approve" )</option>
+                <option value="2" #if($moApproveStatus == "2") selected  #end >$i18n.getString( "Pending" )</option>
+                <option value="1" #if($moApproveStatus == "1") selected  #end >$i18n.getString( "Rejected" )</option>
+            </select>
+            <input type="hidden" id="falgashaactivityapproveamount$ashaActivityRadioId" name="falgashaactivityapproveamount$ashaActivityRadioId" #if( $moApproveStatus == "0" || $moApproveStatus == "1" || $moApproveStatus == "2" ) value="1" #else value ="0" #end />
+            <!--
+            #if( $moApproveStatus == "3") 
+                #set( $totlaApprovedAmt = $totlaApprovedAmt + $Integer.parseInt( $!activityDetailsDataValueMap.get( 497).split(":")[0] ) )
+            #end
+            -->     
+            <!--
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="3">Approve &nbsp;&nbsp;
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="2">Pending &nbsp;&nbsp;    
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="1">Rejected
+            --> 
+            <input type="text" id="ashaactivitymoremark$ashaActivityRadioId" name="ashaactivitymoremark$ashaActivityRadioId" style="width:129px" value="$!activityDetailsMORemarkDataValueMap.get( 427 )" #if( $moApproveStatus == "3" && $aaApproveStatus == "3" ) disabled="disabled" #end />
+        </td>
+    </tr>   
+    
+    
+<!-- TA/DA -->
+
+    <tr #if ( $activityDetailsDataValueMap.get( 413 ).split(":")[0] && $!activityDetailsDataValueMap.get( 413 ).split(":")[0] != "" ) #else style="display:none" #end >
+        <td colspan="2" >TA/DA for Attending Training Programmes</td>
+        
+        <td>$monthYear</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>$!activityDetailsDataValueMap.get( 413 ).split(":")[0]</td>  
+
+        #set($moApproveStatus = "0" )
+        #set($moApproveStatus = $!activityDetailsDataValueMap.get( 413 ).split(":")[1])
+        #set($aaApproveStatus = $!activityDetailsDataValueMap.get( 413 ).split(":")[3])
+        ##set($moApproveRemark = $!activityDetailsDataValueMap.get( 413 ).split(":")[2])            
+        <td>$!activityDetailsDataValueMap.get( 414).split(":")[0]</td>
+        <td style="text-align: center;">$!activityDetailsDataValueMap.get( 498 ).split(":")[0]</td>
+        
+        <!--<td><input type="text" id="deps498" name="deps498" readonly value = "$!activityDetailsDataValueMap.get( 498 )" style="text-align: center;" /></td>-->
+            
+        <td>
+            #set( $ashaActivityRadioId =  413 + ':' + $currentPeriod.id )
+            
+            <select id="ashaactivityapproveamount$ashaActivityRadioId" name="ashaactivityapproveamount$ashaActivityRadioId" style="width:100px" #if( $moApproveStatus == "3" && $aaApproveStatus == "3" ) disabled="disabled" #end onchange="calculateMOApproveAmount( 'ashaactivityapproveamount$ashaActivityRadioId', '$!activityDetailsDataValueMap.get( 498 ).split(":")[0]', 'falgashaactivityapproveamount$ashaActivityRadioId' );" >
+                <option value="0" >[$i18n.getString( "please_select" )]</option>
+                <option value="3" #if($moApproveStatus == "3") selected  #end >$i18n.getString( "Approve" )</option>
+                <option value="2" #if($moApproveStatus == "2") selected  #end >$i18n.getString( "Pending" )</option>
+                <option value="1" #if($moApproveStatus == "1") selected  #end >$i18n.getString( "Rejected" )</option>
+            </select>
+            <input type="hidden" id="falgashaactivityapproveamount$ashaActivityRadioId" name="falgashaactivityapproveamount$ashaActivityRadioId" #if( $moApproveStatus == "0" || $moApproveStatus == "1" || $moApproveStatus == "2" ) value="1" #else value ="0" #end />
+            <!--
+            #if( $moApproveStatus == "3") 
+                #set( $totlaApprovedAmt = $totlaApprovedAmt + $Integer.parseInt( $!activityDetailsDataValueMap.get( 498 ).split(":")[0] ) )
+            #end
+            -->         
+            <!--
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="3">Approve &nbsp;&nbsp;
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="2">Pending &nbsp;&nbsp;    
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="1">Rejected
+            --> 
+            <input type="text" id="ashaactivitymoremark$ashaActivityRadioId" name="ashaactivitymoremark$ashaActivityRadioId" style="width:129px" value="$!activityDetailsMORemarkDataValueMap.get( 413 )" #if( $moApproveStatus == "3" && $aaApproveStatus == "3" ) disabled="disabled" #end />
+        </td>
+    </tr>   
+    
+    <tr #if ( $activityDetailsDataValueMap.get( 415 ).split(":")[0] && $!activityDetailsDataValueMap.get( 415 ).split(":")[0] != "" ) #else style="display:none" #end >
+        <td colspan="2" >TA/DA for Attending Quarterly Award Ceremony</td>
+        
+        <td>$monthYear</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>$!activityDetailsDataValueMap.get( 415 ).split(":")[0]</td>  
+        
+        #set($moApproveStatus = "0" )
+        #set($moApproveStatus = $!activityDetailsDataValueMap.get( 415 ).split(":")[1])
+        #set($aaApproveStatus = $!activityDetailsDataValueMap.get( 415 ).split(":")[3])
+        ##set($moApproveRemark = $!activityDetailsDataValueMap.get( 415 ).split(":")[2])
+            
+        <td>$!activityDetailsDataValueMap.get( 416).split(":")[0]</td>
+        
+        <td style="text-align: center;">$!activityDetailsDataValueMap.get( 499 ).split(":")[0]</td>
+        
+        <!--<td><input type="text" id="deps499" name="deps499" readonly value = "$!activityDetailsDataValueMap.get( 499 )" style="text-align: center;" /></td>-->
+            
+        <td>
+            #set( $ashaActivityRadioId =  415 + ':' + $currentPeriod.id )
+            
+            <select id="ashaactivityapproveamount$ashaActivityRadioId" name="ashaactivityapproveamount$ashaActivityRadioId" style="width:100px" #if( $moApproveStatus == "3" && $aaApproveStatus == "3" ) disabled="disabled" #end onchange="calculateMOApproveAmount( 'ashaactivityapproveamount$ashaActivityRadioId', '$!activityDetailsDataValueMap.get( 499 ).split(":")[0]', 'falgashaactivityapproveamount$ashaActivityRadioId' );" >
+                <option value="0" >[$i18n.getString( "please_select" )]</option>
+                <option value="3" #if($moApproveStatus == "3") selected  #end >$i18n.getString( "Approve" )</option>
+                <option value="2" #if($moApproveStatus == "2") selected  #end >$i18n.getString( "Pending" )</option>
+                <option value="1" #if($moApproveStatus == "1") selected  #end >$i18n.getString( "Rejected" )</option>
+            </select>
+            
+            <input type="hidden" id="falgashaactivityapproveamount$ashaActivityRadioId" name="falgashaactivityapproveamount$ashaActivityRadioId" #if( $moApproveStatus == "0" || $moApproveStatus == "1" || $moApproveStatus == "2" ) value="1" #else value ="0" #end />
+            <!--
+            #if( $moApproveStatus == "3") 
+                #set( $totlaApprovedAmt = $totlaApprovedAmt + $Integer.parseInt( $!activityDetailsDataValueMap.get( 499 ).split(":")[0] ) )
+            #end
+            -->         
+            <!--
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="3">Approve &nbsp;&nbsp;
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="2">Pending &nbsp;&nbsp;    
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="1">Rejected
+            -->
+            
+            <input type="text" id="ashaactivitymoremark$ashaActivityRadioId" name="ashaactivitymoremark$ashaActivityRadioId" style="width:129px" value="$!activityDetailsMORemarkDataValueMap.get( 415 )" #if( $moApproveStatus == "3" && $aaApproveStatus == "3" ) disabled="disabled" #end />
+        </td>
+    </tr>   
+    
+    <!-- Award -->
+    <tr #if ( $activityDetailsDataValueMap.get( 436 ).split(":")[0] && $!activityDetailsDataValueMap.get( 436 ).split(":")[0] != "" ) #else style="display:none" #end >
+        <td colspan="2" >ASHA Award</td>
+        
+        <td>$monthYear</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>$!activityDetailsDataValueMap.get( 417 ).split(":")[0]</td> 
+   
+        #set($moApproveStatus = "0" )
+        #set($moApproveStatus = $!activityDetailsDataValueMap.get( 417 ).split(":")[1])
+        #set($aaApproveStatus = $!activityDetailsDataValueMap.get( 417 ).split(":")[3])
+        ##set( $moApproveRemark = $!activityDetailsDataValueMap.get( 417 ).split(":")[2])
+            
+        <td>$!activityDetailsDataValueMap.get( 436).split(":")[0]</td>
+        <td style="text-align: center;">$!activityDetailsDataValueMap.get( 500 ).split(":")[0]</td>
+        
+        <!--<td><input type="text" id="deps500" name="deps500" readonly value = "$!activityDetailsDataValueMap.get( 500 )" style="text-align: center;" /></td>-->
+            
+        <td>
+            
+            #set( $ashaActivityRadioId =  417 + ':' + $currentPeriod.id )
+            
+            <select id="ashaactivityapproveamount$ashaActivityRadioId" name="ashaactivityapproveamount$ashaActivityRadioId" style="width:100px" #if( $moApproveStatus == "3" && $aaApproveStatus == "3" ) disabled="disabled" #end onchange="calculateMOApproveAmount( 'ashaactivityapproveamount$ashaActivityRadioId', '$!activityDetailsDataValueMap.get( 500 ).split(":")[0]', 'falgashaactivityapproveamount$ashaActivityRadioId' );" >
+                <option value="0" >[$i18n.getString( "please_select" )]</option>
+                <option value="3" #if($moApproveStatus == "3") selected  #end >$i18n.getString( "Approve" )</option>
+                <option value="2" #if($moApproveStatus == "2") selected  #end >$i18n.getString( "Pending" )</option>
+                <option value="1" #if($moApproveStatus == "1") selected  #end >$i18n.getString( "Rejected" )</option>
+            </select>
+            
+            <input type="hidden" id="falgashaactivityapproveamount$ashaActivityRadioId" name="falgashaactivityapproveamount$ashaActivityRadioId" #if( $moApproveStatus == "0" || $moApproveStatus == "1" || $moApproveStatus == "2" ) value="1" #else value ="0" #end />
+            <!--
+            #if( $moApproveStatus == "3") 
+                #set( $totlaApprovedAmt = $totlaApprovedAmt + $Integer.parseInt( $!activityDetailsDataValueMap.get( 500 ).split(":")[0] ) )
+            #end
+            -->         
+            <!--
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="3">Approve &nbsp;&nbsp;
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="2">Pending &nbsp;&nbsp;    
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="1">Rejected
+            --> 
+            <input type="text" id="ashaactivitymoremark$ashaActivityRadioId" name="ashaactivitymoremark$ashaActivityRadioId" style="width:129px" value="$!activityDetailsMORemarkDataValueMap.get( 417 )" #if( $moApproveStatus == "3" && $aaApproveStatus == "3" ) disabled="disabled" #end />
+            
+        </td>
+    </tr>
+    
+    <tr #if( $beneficiaryList.size() > 0 || $tempActivityDetailsDataValueMap.size() > 0 || ( $activityDetailsDataValueMap.get( 438 ) && $!activityDetailsDataValueMap.get( 438 ) != "" ) ) #else style="display:none" #end >
+        <td colspan="2">State Activity Incentive Amount</td>
+        <td colspan="3" >$monthYear</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        
+        #if ( $activityDetailsDataValueMap.get( 501 ).split(":")[0] && $!activityDetailsDataValueMap.get( 501 ).split(":")[0] != "" ) 
+            #set( $stateIncentiveAmount = $!activityDetailsDataValueMap.get( 501 ).split(":")[0] )
+        #else 
+            #set( $stateIncentiveAmount = 500 )
+        #end
+        
+        <!--<td style="text-align: center;">$!activityDetailsDataValueMap.get( 501 ).split(":")[0]</td>-->
+        
+        <td style="text-align: center;">$stateIncentiveAmount</td>
+        <!--<td><input type="text" id="deps501" name="deps501" readonly value = "$!activityDetailsDataValueMap.get( 501 )" style="text-align: center;" /></td>-->
+            #set($moApproveStatus = "0" )
+            #set($moApproveStatus = $!activityDetailsDataValueMap.get( 501 ).split(":")[1])
+            #set($aaApproveStatus = $!activityDetailsDataValueMap.get( 501 ).split(":")[3])
+            ##set($moApproveRemark = $!activityDetailsDataValueMap.get( 501 ).split(":")[2])
+            
+        <td>
+            
+            #set( $ashaActivityRadioId =  501 + ':' + $currentPeriod.id )
+            
+            <select id="ashaactivityapproveamount$ashaActivityRadioId" name="ashaactivityapproveamount$ashaActivityRadioId" style="width:100px" #if( $moApproveStatus == "3" && $aaApproveStatus == "3" ) disabled="disabled" #end onchange="calculateMOApproveAmount( 'ashaactivityapproveamount$ashaActivityRadioId', '$stateIncentiveAmount', 'falgashaactivityapproveamount$ashaActivityRadioId' );" >
+                <option value="0" >[$i18n.getString( "please_select" )]</option>
+                <option value="3" #if($moApproveStatus == "3") selected  #end >$i18n.getString( "Approve" )</option>
+                <option value="2" #if($moApproveStatus == "2") selected  #end >$i18n.getString( "Pending" )</option>
+                <option value="1" #if($moApproveStatus == "1") selected  #end >$i18n.getString( "Rejected" )</option>
+            </select>
+            
+            <input type="hidden" id="falgashaactivityapproveamount$ashaActivityRadioId" name="falgashaactivityapproveamount$ashaActivityRadioId" #if( $moApproveStatus == "0" || $moApproveStatus == "1" || $moApproveStatus == "2" ) value="1" #else value ="0" #end />
+            <!--
+            #if( $moApproveStatus == "3") 
+                #set( $totlaApprovedAmt = $totlaApprovedAmt + $Integer.parseInt( $!activityDetailsDataValueMap.get( 501 ).split(":")[0] ) )
+            #end
+            -->     
+            <!--
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="3">Approve &nbsp;&nbsp;
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="2">Pending &nbsp;&nbsp;    
+            <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="1">Rejected
+            --> 
+            <input type="text" id="ashaactivitymoremark$ashaActivityRadioId" name="ashaactivitymoremark$ashaActivityRadioId" style="width:129px" value="$!activityDetailsMORemarkDataValueMap.get( 501 )" #if( $moApproveStatus == "3" && $aaApproveStatus == "3" ) disabled="disabled" #end />
+            
+        </td>       
+
+    </tr>   
+    
+    <!-- for month total -->
+    <!--
+    <tr>
+        <td  colspan="4"><b>$i18n.getString( "grand_total" )</b></td>
+            
+        <td><input type="text" id="deps160" name="deps160" readonly value = "$!activityDetailsDataValueMap.get( 160 )" style="text-align: center;" /></td>
+        
+    </tr>       
+    --> 
+</table>
+#end
+<!-- Pending ASHA Activity -->              
+                
+#if( $pendingPeriodList.size() > 0 )
+<table  width="100%" style="background-color:#EFFBEF;">
+    
+    <tr>
+        <td colspan="6"><strong>$i18n.getString( "Activities pending for approval for previous months" )</strong></td>
+    </tr>   
+    
+    <tr bgcolor="#CBDDEB">
+       <th colspan="2">ASHA Activity</th>
+        <th style="width:70px">$i18n.getString( "period" )</th>
+        <th style="width:100px" >&nbsp;</th>
+        <th style="width:100px" >&nbsp;</th>
+        <th style="width:100px">Date of Activity</th>
+        <th style="width:100px">Place of Activity</th>
+        
+        <th style="width:100px;text-align:left">$i18n.getString( "Total Payment" )</th>
+        <th style="text-align:center;width:230px">$i18n.getString( "operations" )</th>
+    </tr>   
+    
+   
+    #foreach( $pendingPeriod in $pendingPeriodList )
+    
+    #set( $pendingDeValueMap =  $!pendingPatientDataValueMapByPeriod.get( $pendingPeriod )  )
+    #set( $pendingActivityDetailsDeValueMap =  $!pendingActivityDetailsDataValueMapByPeriod.get( $pendingPeriod )  )
+    
+    #set( $pendingMORemarkDeValueMap =  $!pendingPatientMORemarkDataValueMapByPeriod.get( $pendingPeriod )  )
+    
+        <tr #if ( $pendingDeValueMap.get( 418 ).split(":")[0] && $!pendingDeValueMap.get( 418 ).split(":")[0] != "" ) #else style="display:none" #end >
+            <td colspan="2" >Mobilization of Community for RI</td>
+            
+            <td>$!monthFormat.format( $pendingPeriod )</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>$!pendingDeValueMap.get( 418 ).split(":")[0]</td>
+        
+            #set($moPendingStatus = 0 )
+            #set($moPendingStatus = $!pendingDeValueMap.get( 418 ).split(":")[1])
+            ##set($moPendingRemark = $!pendingDeValueMap.get( 418 ).split(":")[2])
+            #set($aaPendingStatus = $!pendingDeValueMap.get( 418 ).split(":")[3])               
+            
+            <td>$!pendingActivityDetailsDeValueMap.get( 419 ).split(":")[0]</td>
+            <td style="text-align: center;">&nbsp;$!pendingActivityDetailsDeValueMap.get( 484 ).split(":")[0]</td>
+            
+            <!--<td><input type="text" id="pendingdeps484" name="pendingdeps484" readonly value = "$!pendingActivityDetailsDeValueMap.get( 484 )" style="text-align: center;" /></td>-->
+            
+            <td>
+                #set( $ashaActivityRadioId =  418 + ':' + $!dateFormat.format( $pendingPeriod ) )
+            
+                <select id="pendingashaactivityamount$ashaActivityRadioId" name="pendingashaactivityamount$ashaActivityRadioId" style="width:100px" #if( $moPendingStatus == "3" && $aaPendingStatus == "3" ) disabled="disabled" #end onchange="calculateMOPendingApproveAmount( 'pendingashaactivityamount$ashaActivityRadioId', '$!pendingActivityDetailsDeValueMap.get( 484 ).split(":")[0]', 'falgpendingashaactivityamount$ashaActivityRadioId' );" >
+                    <option value="0" >[$i18n.getString( "please_select" )]</option>
+                    <option value="3" #if($moPendingStatus == "3") selected  #end >$i18n.getString( "Approve" )</option>
+                    <option value="2" #if($moPendingStatus == "2") selected  #end >$i18n.getString( "Pending" )</option>
+                    <option value="1" #if($moPendingStatus == "1") selected  #end >$i18n.getString( "Rejected" )</option>
+                </select>
+                <input type="hidden" id="falgpendingashaactivityamount$ashaActivityRadioId" name="falgpendingashaactivityamount$ashaActivityRadioId" #if( $moPendingStatus == "0" || $moPendingStatus == "1" || $moPendingStatus == "2" ) value="1" #else value ="0" #end />
+                <!--
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="3">Approve &nbsp;&nbsp;
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="2">Pending &nbsp;&nbsp;    
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="1">Rejected
+                -->
+                
+                <input type="text" id="pendingashaactivitymoremark$ashaActivityRadioId" name="pendingashaactivitymoremark$ashaActivityRadioId" style="width:129px" value="$!pendingMORemarkDeValueMap.get( 418 )" #if( $moPendingStatus == "3" && $aaPendingStatus == "3" ) disabled="disabled" #end />
+            </td>           
+        </tr>
+        <tr #if ( $pendingDeValueMap.get( 470 ).split(":")[0] && $!pendingDeValueMap.get( 470 ).split(":")[0] != "" ) #else style="display:none" #end >
+            <td colspan="2" >Other Kind of Session 1</td>
+            
+            <td>$!monthFormat.format( $pendingPeriod )</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>$!pendingDeValueMap.get( 470 ).split(":")[0]</td>
+        
+            #set($moPendingStatus = 0 )
+            #set($moPendingStatus = $!pendingDeValueMap.get( 470 ).split(":")[1])
+            ##set($moPendingRemark = $!pendingDeValueMap.get( 470 ).split(":")[2])
+            #set($aaPendingStatus = $!pendingDeValueMap.get( 470 ).split(":")[3])   
+            <td>$!pendingActivityDetailsDeValueMap.get( 480 ).split(":")[0]</td>
+            <td style="text-align: center;">$!pendingActivityDetailsDeValueMap.get( 485 ).split(":")[0]</td>
+            
+            <!--<td><input type="text" id="pendingdeps485" name="pendingdeps485" readonly value = "$!pendingActivityDetailsDeValueMap.get( 485 )" style="text-align: center;" /></td>-->
+                
+            <td>
+                #set( $ashaActivityRadioId =  470 + ':' + $!dateFormat.format( $pendingPeriod ) )
+            
+                <select id="pendingashaactivityamount$ashaActivityRadioId" name="pendingashaactivityamount$ashaActivityRadioId" style="width:100px" #if( $moPendingStatus == "3" && $aaPendingStatus == "3" ) disabled="disabled" #end onchange="calculateMOPendingApproveAmount( 'pendingashaactivityamount$ashaActivityRadioId', '$!pendingActivityDetailsDeValueMap.get( 485 ).split(":")[0]', 'falgpendingashaactivityamount$ashaActivityRadioId' );" >
+                    <option value="0" >[$i18n.getString( "please_select" )]</option>
+                    <option value="3" #if($moPendingStatus == "3") selected  #end >$i18n.getString( "Approve" )</option>
+                    <option value="2" #if($moPendingStatus == "2") selected  #end >$i18n.getString( "Pending" )</option>
+                    <option value="1" #if($moPendingStatus == "1") selected  #end >$i18n.getString( "Rejected" )</option>
+                </select>
+                <input type="hidden" id="falgpendingashaactivityamount$ashaActivityRadioId" name="falgpendingashaactivityamount$ashaActivityRadioId" #if( $moPendingStatus == "0" || $moPendingStatus == "1" || $moPendingStatus == "2" ) value="1" #else value ="0" #end />
+                <!--
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="3">Approve &nbsp;&nbsp;
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="2">Pending &nbsp;&nbsp;    
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="1">Rejected
+                -->
+                
+                <input type="text" id="pendingashaactivitymoremark$ashaActivityRadioId" name="pendingashaactivitymoremark$ashaActivityRadioId" style="width:129px" value="$!pendingMORemarkDeValueMap.get( 470 )" #if( $moPendingStatus == "3" && $aaPendingStatus == "3" ) disabled="disabled" #end/>
+            </td>
+            
+        </tr>   
+        <tr #if ( $pendingDeValueMap.get( 471 ).split(":")[0] && $!pendingDeValueMap.get( 471 ).split(":")[0] != "" ) #else style="display:none" #end >
+            <td colspan="2" >Other Kind of Session 2</td>
+            
+            <td>$!monthFormat.format( $pendingPeriod )</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>$!pendingDeValueMap.get( 471 ).split(":")[0]</td>
+           
+            #set($moPendingStatus = 0 )
+            #set($moPendingStatus = $!pendingDeValueMap.get( 471 ).split(":")[1])
+            ##set($moPendingRemark = $!pendingDeValueMap.get( 471 ).split(":")[2])
+            #set($aaPendingStatus = $!pendingDeValueMap.get( 471 ).split(":")[3])   
+            <td>$!pendingActivityDetailsDeValueMap.get( 481 ).split(":")[0]</td>
+            <td style="text-align: center;">$!pendingActivityDetailsDeValueMap.get( 486 ).split(":")[0]</td>    
+            <!--<td><input type="text" id="pendingdeps486" name="pendingdeps486" readonly value = "$!pendingActivityDetailsDeValueMap.get( 486 )" style="text-align: center;" /></td>-->
+                
+            <td>
+                #set( $ashaActivityRadioId =  471 + ':' + $!dateFormat.format( $pendingPeriod ) )
+            
+                <select id="pendingashaactivityamount$ashaActivityRadioId" name="pendingashaactivityamount$ashaActivityRadioId" style="width:100px" #if( $moPendingStatus == "3" && $aaPendingStatus == "3" ) disabled="disabled" #end onchange="calculateMOPendingApproveAmount( 'pendingashaactivityamount$ashaActivityRadioId', '$!pendingActivityDetailsDeValueMap.get( 486 ).split(":")[0]', 'falgpendingashaactivityamount$ashaActivityRadioId' );" >
+                    <option value="0" >[$i18n.getString( "please_select" )]</option>
+                    <option value="3" #if($moPendingStatus == "3") selected  #end >$i18n.getString( "Approve" )</option>
+                    <option value="2" #if($moPendingStatus == "2") selected  #end >$i18n.getString( "Pending" )</option>
+                    <option value="1" #if($moPendingStatus == "1") selected  #end >$i18n.getString( "Rejected" )</option>
+                </select>               
+                <input type="hidden" id="falgpendingashaactivityamount$ashaActivityRadioId" name="falgpendingashaactivityamount$ashaActivityRadioId" #if( $moPendingStatus == "0" || $moPendingStatus == "1" || $moPendingStatus == "2" ) value="1" #else value ="0" #end />
+                <!--
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="3">Approve &nbsp;&nbsp;
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="2">Pending &nbsp;&nbsp;    
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="1">Rejected
+                --> 
+                <input type="text" id="pendingashaactivitymoremark$ashaActivityRadioId" name="pendingashaactivitymoremark$ashaActivityRadioId" style="width:129px" value="$!pendingMORemarkDeValueMap.get( 471 )" #if( $moPendingStatus == "3" && $aaPendingStatus == "3" ) disabled="disabled" #end/>
+            </td>
+            
+        </tr>       
+        
+        <tr #if ( $pendingDeValueMap.get( 472 ).split(":")[0] && $!pendingDeValueMap.get( 472 ).split(":")[0] != "" ) #else style="display:none" #end >
+            <td colspan="2" >Other Kind of Session 3</td>
+            
+            <td>$!monthFormat.format( $pendingPeriod )</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>$!pendingDeValueMap.get( 472 ).split(":")[0]</td>
+ 
+            #set($moPendingStatus = 0 )
+            #set($moPendingStatus = $!pendingDeValueMap.get( 472 ).split(":")[1])
+            ##set($moPendingRemark = $!pendingDeValueMap.get( 472 ).split(":")[2])              
+            #set($aaPendingStatus = $!pendingDeValueMap.get( 472 ).split(":")[3])
+            <td>$!pendingActivityDetailsDeValueMap.get( 482 ).split(":")[0]</td>
+            <td style="text-align: center;">$!pendingActivityDetailsDeValueMap.get( 487 ).split(":")[0]</td>
+            
+            <!--<td><input type="text" id="pendingdeps487" name="pendingdeps487" readonly value = "$!pendingActivityDetailsDeValueMap.get( 487 )" style="text-align: center;" /></td>-->
+                
+            <td>
+                #set( $ashaActivityRadioId =  472 + ':' + $!dateFormat.format( $pendingPeriod ) )
+                
+                <select id="pendingashaactivityamount$ashaActivityRadioId" name="pendingashaactivityamount$ashaActivityRadioId" style="width:100px" #if( $moPendingStatus == "3" && $aaPendingStatus == "3" ) disabled="disabled" #end onchange="calculateMOPendingApproveAmount( 'pendingashaactivityamount$ashaActivityRadioId', '$!pendingActivityDetailsDeValueMap.get( 487 ).split(":")[0]', 'falgpendingashaactivityamount$ashaActivityRadioId' );" >
+                    <option value="0" >[$i18n.getString( "please_select" )]</option>
+                    <option value="3" #if($moPendingStatus == "3") selected  #end >$i18n.getString( "Approve" )</option>
+                    <option value="2" #if($moPendingStatus == "2") selected  #end >$i18n.getString( "Pending" )</option>
+                    <option value="1" #if($moPendingStatus == "1") selected  #end >$i18n.getString( "Rejected" )</option>
+                </select>               
+                <input type="hidden" id="falgpendingashaactivityamount$ashaActivityRadioId" name="falgpendingashaactivityamount$ashaActivityRadioId" #if( $moPendingStatus == "0" || $moPendingStatus == "1" || $moPendingStatus == "2" ) value="1" #else value ="0" #end />
+                <!--
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="3">Approve &nbsp;&nbsp;
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="2">Pending &nbsp;&nbsp;    
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="1">Rejected
+                --> 
+                <input type="text" id="pendingashaactivitymoremark$ashaActivityRadioId" name="pendingashaactivitymoremark$ashaActivityRadioId" style="width:129px" value="$!pendingMORemarkDeValueMap.get( 472 )" #if( $moPendingStatus == "3" && $aaPendingStatus == "3" ) disabled="disabled" #end/>
+            </td>
+            
+        </tr>   
+        
+        <tr #if ( $pendingDeValueMap.get( 473 ).split(":")[0] && $!pendingDeValueMap.get( 473 ).split(":")[0] != "" ) #else style="display:none" #end >
+            <td colspan="2" >Other Kind of Session 4</td>
+            
+            <td>$!monthFormat.format( $pendingPeriod )</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>$!pendingDeValueMap.get( 473 ).split(":")[0]</td>
+            
+            #set($moPendingStatus = 0 )
+            #set($moPendingStatus = $!pendingDeValueMap.get( 473 ).split(":")[1])
+            ##set($moPendingRemark = $!pendingDeValueMap.get( 473 ).split(":")[2])
+            #set($aaPendingStatus = $!pendingDeValueMap.get( 473 ).split(":")[3])               
+            <td>$!pendingActivityDetailsDeValueMap.get( 483 ).split(":")[0]</td>
+            <td style="text-align: center;">$!pendingActivityDetailsDeValueMap.get( 488 ).split(":")[0]</td>
+            
+            <!--<td><input type="text" id="pendingdeps488" name="pendingdeps488" readonly value = "$!pendingActivityDetailsDeValueMap.get( 488 )" style="text-align: center;" /></td>-->
+                
+            <td>
+                #set( $ashaActivityRadioId =  473 + ':' + $!dateFormat.format( $pendingPeriod ) )
+            
+                <select id="pendingashaactivityamount$ashaActivityRadioId" name="pendingashaactivityamount$ashaActivityRadioId" style="width:100px" #if( $moPendingStatus == "3" && $aaPendingStatus == "3" ) disabled="disabled" #end onchange="calculateMOPendingApproveAmount( 'pendingashaactivityamount$ashaActivityRadioId', '$!pendingActivityDetailsDeValueMap.get( 488 ).split(":")[0]', 'falgpendingashaactivityamount$ashaActivityRadioId' );" >
+                    <option value="0" >[$i18n.getString( "please_select" )]</option>
+                    <option value="3" #if($moPendingStatus == "3") selected  #end >$i18n.getString( "Approve" )</option>
+                    <option value="2" #if($moPendingStatus == "2") selected  #end >$i18n.getString( "Pending" )</option>
+                    <option value="1" #if($moPendingStatus == "1") selected  #end >$i18n.getString( "Rejected" )</option>
+                </select>               
+                <input type="hidden" id="falgpendingashaactivityamount$ashaActivityRadioId" name="falgpendingashaactivityamount$ashaActivityRadioId" #if( $moPendingStatus == "0" || $moPendingStatus == "1" || $moPendingStatus == "2" ) value="1" #else value ="0" #end />
+                <!--                
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="3">Approve &nbsp;&nbsp;
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="2">Pending &nbsp;&nbsp;    
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="1">Rejected
+                --> 
+                <input type="text" id="pendingashaactivitymoremark$ashaActivityRadioId" name="pendingashaactivitymoremark$ashaActivityRadioId" style="width:129px" value="$!pendingMORemarkDeValueMap.get( 473 )" #if( $moPendingStatus == "3" && $aaPendingStatus == "3" ) disabled="disabled" #end/>
+            </td>
+        </tr>   
+        
+    <!-- Meeting -->    
+        
+        
+        <tr #if ( $pendingDeValueMap.get( 406 ).split(":")[0] && $!pendingDeValueMap.get( 406 ).split(":")[0] != "" ) #else style="display:none" #end >
+            <td colspan="2" >Community Mobilization for VHND Celebration</td>
+            
+            <td>$!monthFormat.format( $pendingPeriod )</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>$!pendingDeValueMap.get( 406 ).split(":")[0]</td> 
+            
+        
+            #set($moPendingStatus = 0 )
+            #set($moPendingStatus = $!pendingDeValueMap.get( 406 ).split(":")[1])
+            ##set($moPendingRemark = $!pendingDeValueMap.get( 406 ).split(":")[2])
+            #set($aaPendingStatus = $!pendingDeValueMap.get( 406 ).split(":")[3])   
+            <td>$!pendingActivityDetailsDeValueMap.get( 407).split(":")[0]</td>
+            <td style="text-align: center;">$!pendingActivityDetailsDeValueMap.get( 489 ).split(":")[0]</td>
+            
+            <!--<td><input type="text" id="pendingdeps489" name="pendingdeps489" readonly value = "$!pendingActivityDetailsDeValueMap.get( 489 )" style="text-align: center;" /></td>-->
+                
+            <td>
+                #set( $ashaActivityRadioId =  406 + ':' + $!dateFormat.format( $pendingPeriod ) )
+            
+                <select id="pendingashaactivityamount$ashaActivityRadioId" name="pendingashaactivityamount$ashaActivityRadioId" style="width:100px" #if( $moPendingStatus == "3" && $aaPendingStatus == "3" ) disabled="disabled" #end onchange="calculateMOPendingApproveAmount( 'pendingashaactivityamount$ashaActivityRadioId', '$!pendingActivityDetailsDeValueMap.get( 489 ).split(":")[0]', 'falgpendingashaactivityamount$ashaActivityRadioId' );" >
+                    <option value="0" >[$i18n.getString( "please_select" )]</option>
+                    <option value="3" #if($moPendingStatus == "3") selected  #end >$i18n.getString( "Approve" )</option>
+                    <option value="2" #if($moPendingStatus == "2") selected  #end >$i18n.getString( "Pending" )</option>
+                    <option value="1" #if($moPendingStatus == "1") selected  #end >$i18n.getString( "Rejected" )</option>
+                </select>               
+                <input type="hidden" id="falgpendingashaactivityamount$ashaActivityRadioId" name="falgpendingashaactivityamount$ashaActivityRadioId" #if( $moPendingStatus == "0" || $moPendingStatus == "1" || $moPendingStatus == "2" ) value="1" #else value ="0" #end />
+                <!--
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="3">Approve &nbsp;&nbsp;
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="2">Pending &nbsp;&nbsp;    
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="1">Rejected
+                --> 
+                <input type="text" id="pendingashaactivitymoremark$ashaActivityRadioId" name="pendingashaactivitymoremark$ashaActivityRadioId" style="width:129px" value="$!pendingMORemarkDeValueMap.get( 406 )" #if( $moPendingStatus == "3" && $aaPendingStatus == "3" ) disabled="disabled" #end/>
+            </td>
+        </tr>   
+        
+        <tr #if ( $pendingDeValueMap.get( 432 ).split(":")[0] && $!pendingDeValueMap.get( 432 ).split(":")[0] != "" ) #else style="display:none" #end >
+            <td colspan="2" >Convening Monthly Meeting of VHSNC</td>
+            
+            <td>$!monthFormat.format( $pendingPeriod )</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>$!pendingDeValueMap.get( 432 ).split(":")[0]</td>
+
+            #set($moPendingStatus = 0 )
+            #set($moPendingStatus = $!pendingDeValueMap.get( 432 ).split(":")[1])
+            ##set($moPendingRemark = $!pendingDeValueMap.get( 432 ).split(":")[2])
+            #set($aaPendingStatus = $!pendingDeValueMap.get( 432 ).split(":")[3])   
+            <td>$!pendingActivityDetailsDeValueMap.get( 433).split(":")[0]</td>
+            <td style="text-align: center;">$!pendingActivityDetailsDeValueMap.get( 490 ).split(":")[0]</td>
+            
+            <!--<td><input type="text" id="pendingdeps490" name="pendingdeps490" readonly value = "$!pendingActivityDetailsDeValueMap.get( 490 )" style="text-align: center;" /></td>-->
+                
+            <td>
+                #set( $ashaActivityRadioId =  432 + ':' + $!dateFormat.format( $pendingPeriod ) )
+            
+                <select id="pendingashaactivityamount$ashaActivityRadioId" name="pendingashaactivityamount$ashaActivityRadioId" style="width:100px" #if( $moPendingStatus == "3" && $aaPendingStatus == "3" ) disabled="disabled" #end onchange="calculateMOPendingApproveAmount( 'pendingashaactivityamount$ashaActivityRadioId', '$!pendingActivityDetailsDeValueMap.get( 490 ).split(":")[0]', 'falgpendingashaactivityamount$ashaActivityRadioId' );" >
+                    <option value="0" >[$i18n.getString( "please_select" )]</option>
+                    <option value="3" #if($moPendingStatus == "3") selected  #end >$i18n.getString( "Approve" )</option>
+                    <option value="2" #if($moPendingStatus == "2") selected  #end >$i18n.getString( "Pending" )</option>
+                    <option value="1" #if($moPendingStatus == "1") selected  #end >$i18n.getString( "Rejected" )</option>
+                </select>
+                <input type="hidden" id="falgpendingashaactivityamount$ashaActivityRadioId" name="falgpendingashaactivityamount$ashaActivityRadioId" #if( $moPendingStatus == "0" || $moPendingStatus == "1" || $moPendingStatus == "2" ) value="1" #else value ="0" #end />
+                <!--
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="3">Approve &nbsp;&nbsp;
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="2">Pending &nbsp;&nbsp;    
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="1">Rejected
+                --> 
+                <input type="text" id="pendingashaactivitymoremark$ashaActivityRadioId" name="pendingashaactivitymoremark$ashaActivityRadioId" style="width:129px" value="$!pendingMORemarkDeValueMap.get( 432 )" #if( $moPendingStatus == "3" && $aaPendingStatus == "3" ) disabled="disabled" #end/>
+            </td>
+        </tr>   
+        
+        <tr #if ( $pendingDeValueMap.get( 411 ).split(":")[0] && $!pendingDeValueMap.get( 411 ).split(":")[0] != "" ) #else style="display:none" #end >
+            <td colspan="2">Monthly Meetings at PHC</td>
+            
+            <td>$!monthFormat.format( $pendingPeriod )</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>$!pendingDeValueMap.get( 411 ).split(":")[0]</td>
+            
+            #set($moPendingStatus = 0 )
+            #set($moPendingStatus = $!pendingDeValueMap.get( 411 ).split(":")[1])
+            ##set($moPendingRemark = $!pendingDeValueMap.get( 411 ).split(":")[2])
+            #set($aaPendingStatus = $!pendingDeValueMap.get( 411 ).split(":")[3])   
+            <td>$!pendingActivityDetailsDeValueMap.get( 412).split(":")[0]</td>
+            <td style="text-align: center;">$!pendingActivityDetailsDeValueMap.get( 491 ).split(":")[0]</td>    
+            <!--<td><input type="text" id="pendingdeps491" name="pendingdeps491" readonly value = "$!pendingActivityDetailsDeValueMap.get( 491 )" style="text-align: center;" /></td>-->
+                
+            <td>
+                #set( $ashaActivityRadioId =  411 + ':' + $!dateFormat.format( $pendingPeriod ) )
+            
+                <select id="pendingashaactivityamount$ashaActivityRadioId" name="pendingashaactivityamount$ashaActivityRadioId" style="width:100px" #if( $moPendingStatus == "3" && $aaPendingStatus == "3" ) disabled="disabled" #end onchange="calculateMOPendingApproveAmount( 'pendingashaactivityamount$ashaActivityRadioId', '$!pendingActivityDetailsDeValueMap.get( 491 ).split(":")[0]', 'falgpendingashaactivityamount$ashaActivityRadioId' );" >
+                    <option value="0" >[$i18n.getString( "please_select" )]</option>
+                    <option value="3" #if($moPendingStatus == "3") selected  #end >$i18n.getString( "Approve" )</option>
+                    <option value="2" #if($moPendingStatus == "2") selected  #end >$i18n.getString( "Pending" )</option>
+                    <option value="1" #if($moPendingStatus == "1") selected  #end >$i18n.getString( "Rejected" )</option>
+                </select>
+                <input type="hidden" id="falgpendingashaactivityamount$ashaActivityRadioId" name="falgpendingashaactivityamount$ashaActivityRadioId" #if( $moPendingStatus == "0" || $moPendingStatus == "1" || $moPendingStatus == "2" ) value="1" #else value ="0" #end />
+                <!--
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="3">Approve &nbsp;&nbsp;
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="2">Pending &nbsp;&nbsp;    
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="1">Rejected
+                --> 
+                <input type="text" id="pendingashaactivitymoremark$ashaActivityRadioId" name="pendingashaactivitymoremark$ashaActivityRadioId" style="width:129px" value="$!pendingMORemarkDeValueMap.get( 411 )" #if( $moPendingStatus == "3" && $aaPendingStatus == "3" ) disabled="disabled" #end/>
+            </td>
+        </tr>   
+        
+        <tr #if ( $pendingDeValueMap.get( 430 ).split(":")[0] && $!pendingDeValueMap.get( 430 ).split(":")[0] != "" ) #else style="display:none" #end >
+            <td colspan="2" >Convenient monthly meeting of adolescent girl</td>
+            
+            <td>$!monthFormat.format( $pendingPeriod )</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>$!pendingDeValueMap.get( 430 ).split(":")[0]</td>
+           
+            #set($moPendingStatus = 0 )
+            #set($moPendingStatus = $!pendingDeValueMap.get( 430 ).split(":")[1])
+            ##set($moPendingRemark = $!pendingDeValueMap.get( 430 ).split(":")[2])
+            #set($aaPendingStatus = $!pendingDeValueMap.get( 430 ).split(":")[3])   
+            <td>$!pendingActivityDetailsDeValueMap.get( 431).split(":")[0]</td>
+            <td style="text-align: center;">$!pendingActivityDetailsDeValueMap.get( 492 ).split(":")[0]</td>    
+            <!--<td><input type="text" id="pendingdeps492" name="pendingdeps492" readonly value = "$!pendingActivityDetailsDeValueMap.get( 492 )" style="text-align: center;" /></td>-->
+                
+            <td>
+                #set( $ashaActivityRadioId =  430 + ':' + $!dateFormat.format( $pendingPeriod ) )
+            
+                <select id="pendingashaactivityamount$ashaActivityRadioId" name="pendingashaactivityamount$ashaActivityRadioId" style="width:100px" #if( $moPendingStatus == "3" && $aaPendingStatus == "3" ) disabled="disabled" #end onchange="calculateMOPendingApproveAmount( 'pendingashaactivityamount$ashaActivityRadioId', '$!pendingActivityDetailsDeValueMap.get( 492 ).split(":")[0]', 'falgpendingashaactivityamount$ashaActivityRadioId' );" >
+                    <option value="0" >[$i18n.getString( "please_select" )]</option>
+                    <option value="3" #if($moPendingStatus == "3") selected  #end >$i18n.getString( "Approve" )</option>
+                    <option value="2" #if($moPendingStatus == "2") selected  #end >$i18n.getString( "Pending" )</option>
+                    <option value="1" #if($moPendingStatus == "1") selected  #end >$i18n.getString( "Rejected" )</option>
+                </select>
+                <input type="hidden" id="falgpendingashaactivityamount$ashaActivityRadioId" name="falgpendingashaactivityamount$ashaActivityRadioId" #if( $moPendingStatus == "0" || $moPendingStatus == "1" || $moPendingStatus == "2" ) value="1" #else value ="0" #end />
+                <!--
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="3">Approve &nbsp;&nbsp;
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="2">Pending &nbsp;&nbsp;    
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="1">Rejected
+                --> 
+                <input type="text" id="pendingashaactivitymoremark$ashaActivityRadioId" name="pendingashaactivitymoremark$ashaActivityRadioId" style="width:129px" value="$!pendingMORemarkDeValueMap.get( 430 )" #if( $moPendingStatus == "3" && $aaPendingStatus == "3" ) disabled="disabled" #end/>
+            </td>
+        </tr>   
+        
+        
+        <!-- Other Meeting -->  
+        <tr #if ( $pendingDeValueMap.get( 461 ).split(":")[0] && $!pendingDeValueMap.get( 461 ).split(":")[0] != "" ) #else style="display:none" #end >
+            <td colspan="2" >Other Meeting 1</td>
+            
+            <td>$!monthFormat.format( $pendingPeriod )</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>$!pendingDeValueMap.get( 461 ).split(":")[0]</td>
+            
+            #set($moPendingStatus = 0 )
+            #set($moPendingStatus = $!pendingDeValueMap.get( 461 ).split(":")[1])
+            ##set($moPendingRemark = $!pendingDeValueMap.get( 461 ).split(":")[2])
+            #set($aaPendingStatus = $!pendingDeValueMap.get( 461 ).split(":")[3])   
+            <td>$!pendingActivityDetailsDeValueMap.get( 458).split(":")[0]</td>
+            <td style="text-align: center;">$!pendingActivityDetailsDeValueMap.get( 493 ).split(":")[0]</td>    
+            
+            <!--<td><input type="text" id="pendingdeps493" name="pendingdeps493" readonly value = "$!pendingActivityDetailsDeValueMap.get( 493 )" style="text-align: center;" /></td>-->
+                
+            <td>
+                #set( $ashaActivityRadioId =  461 + ':' + $!dateFormat.format( $pendingPeriod ) )
+            
+                <select id="pendingashaactivityamount$ashaActivityRadioId" name="pendingashaactivityamount$ashaActivityRadioId" style="width:100px" #if( $moPendingStatus == "3" && $aaPendingStatus == "3" ) disabled="disabled" #end onchange="calculateMOPendingApproveAmount( 'pendingashaactivityamount$ashaActivityRadioId', '$!pendingActivityDetailsDeValueMap.get( 493 ).split(":")[0]', 'falgpendingashaactivityamount$ashaActivityRadioId' );" >
+                    <option value="0" >[$i18n.getString( "please_select" )]</option>
+                    <option value="3" #if($moPendingStatus == "3") selected  #end >$i18n.getString( "Approve" )</option>
+                    <option value="2" #if($moPendingStatus == "2") selected  #end >$i18n.getString( "Pending" )</option>
+                    <option value="1" #if($moPendingStatus == "1") selected  #end >$i18n.getString( "Rejected" )</option>
+                </select>
+                <input type="hidden" id="falgpendingashaactivityamount$ashaActivityRadioId" name="falgpendingashaactivityamount$ashaActivityRadioId" #if( $moPendingStatus == "0" || $moPendingStatus == "1" || $moPendingStatus == "2" ) value="1" #else value ="0" #end />
+                <!--
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="3">Approve &nbsp;&nbsp;
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="2">Pending &nbsp;&nbsp;    
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="1">Rejected
+                --> 
+                <input type="text" id="pendingashaactivitymoremark$ashaActivityRadioId" name="pendingashaactivitymoremark$ashaActivityRadioId" style="width:129px" value="$!pendingMORemarkDeValueMap.get( 461 )" #if( $moPendingStatus == "3" && $aaPendingStatus == "3" ) disabled="disabled" #end/>
+            </td>
+        </tr>   
+    
+        <tr #if ( $pendingDeValueMap.get( 462 ).split(":")[0] && $!pendingDeValueMap.get( 462 ).split(":")[0] != "" ) #else style="display:none" #end >
+            <td colspan="2" >Other Meeting 2</td>
+            
+            <td>$!monthFormat.format( $pendingPeriod )</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>$!pendingDeValueMap.get( 462 ).split(":")[0]</td>
+            
+            #set($moPendingStatus = 0 )
+            #set($moPendingStatus = $!pendingDeValueMap.get( 462 ).split(":")[1])
+            ##set($moPendingRemark = $!pendingDeValueMap.get( 462 ).split(":")[2])  
+            #set($aaPendingStatus = $!pendingDeValueMap.get( 462 ).split(":")[3])   
+            <td>$!pendingActivityDetailsDeValueMap.get( 459).split(":")[0]</td>
+            <td style="text-align: center;">$!pendingActivityDetailsDeValueMap.get( 494 ).split(":")[0]</td>    
+            <!--<td><input type="text" id="pendingdeps494" name="pendingdeps494" readonly value = "$!pendingActivityDetailsDeValueMap.get( 494 )" style="text-align: center;" /></td>-->
+                
+            <td>
+                #set( $ashaActivityRadioId =  462 + ':' + $!dateFormat.format( $pendingPeriod ) )
+            
+                <select id="pendingashaactivityamount$ashaActivityRadioId" name="pendingashaactivityamount$ashaActivityRadioId" style="width:100px" #if( $moPendingStatus == "3" && $aaPendingStatus == "3" ) disabled="disabled" #end onchange="calculateMOPendingApproveAmount( 'pendingashaactivityamount$ashaActivityRadioId', '$!pendingActivityDetailsDeValueMap.get( 494 ).split(":")[0]', 'falgpendingashaactivityamount$ashaActivityRadioId' );" >
+                    <option value="0" >[$i18n.getString( "please_select" )]</option>
+                    <option value="3" #if($moPendingStatus == "3") selected  #end >$i18n.getString( "Approve" )</option>
+                    <option value="2" #if($moPendingStatus == "2") selected  #end >$i18n.getString( "Pending" )</option>
+                    <option value="1" #if($moPendingStatus == "1") selected  #end >$i18n.getString( "Rejected" )</option>
+                </select>
+                <input type="hidden" id="falgpendingashaactivityamount$ashaActivityRadioId" name="falgpendingashaactivityamount$ashaActivityRadioId" #if( $moPendingStatus == "0" || $moPendingStatus == "1" || $moPendingStatus == "2" ) value="1" #else value ="0" #end />
+                <!--
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="3">Approve &nbsp;&nbsp;
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="2">Pending &nbsp;&nbsp;    
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="1">Rejected
+                --> 
+                <input type="text" id="pendingashaactivitymoremark$ashaActivityRadioId" name="pendingashaactivitymoremark$ashaActivityRadioId" style="width:129px" value="$!pendingMORemarkDeValueMap.get( 462 )" #if( $moPendingStatus == "3" && $aaPendingStatus == "3" ) disabled="disabled" #end/>
+            </td>
+        </tr>   
+        
+        <tr #if ( $pendingDeValueMap.get( 463 ).split(":")[0] && $!pendingDeValueMap.get( 463 ).split(":")[0] != "" ) #else style="display:none" #end >
+            <td colspan="2" >Other Meeting 3</td>
+            
+            <td>$!monthFormat.format( $pendingPeriod )</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>$!pendingDeValueMap.get( 463 ).split(":")[0]</td>
+           
+            #set($moPendingStatus = 0 )
+            #set($moPendingStatus = $!pendingDeValueMap.get( 463 ).split(":")[1])
+            ##set($moPendingRemark = $!pendingDeValueMap.get( 463 ).split(":")[2])
+            #set($aaPendingStatus = $!pendingDeValueMap.get( 463 ).split(":")[3])   
+            <td>$!pendingActivityDetailsDeValueMap.get( 460).split(":")[0]</td>
+            <td style="text-align: center;">$!pendingActivityDetailsDeValueMap.get( 495 ).split(":")[0]</td>    
+            <!--<td><input type="text" id="pendingdeps495" name="pendingdeps495" readonly value = "$!pendingActivityDetailsDeValueMap.get( 495 )" style="text-align: center;" /></td>-->
+                
+            <td>
+                #set( $ashaActivityRadioId =  463 + ':' + $!dateFormat.format( $pendingPeriod ) )
+            
+                <select id="pendingashaactivityamount$ashaActivityRadioId" name="pendingashaactivityamount$ashaActivityRadioId" style="width:100px" #if( $moPendingStatus == "3" && $aaPendingStatus == "3" ) disabled="disabled" #end onchange="calculateMOPendingApproveAmount( 'pendingashaactivityamount$ashaActivityRadioId', '$!pendingActivityDetailsDeValueMap.get( 495 ).split(":")[0]', 'falgpendingashaactivityamount$ashaActivityRadioId' );" >
+                    <option value="0" >[$i18n.getString( "please_select" )]</option>
+                    <option value="3" #if($moPendingStatus == "3") selected  #end >$i18n.getString( "Approve" )</option>
+                    <option value="2" #if($moPendingStatus == "2") selected  #end >$i18n.getString( "Pending" )</option>
+                    <option value="1" #if($moPendingStatus == "1") selected  #end >$i18n.getString( "Rejected" )</option>
+                </select>
+                <input type="hidden" id="falgpendingashaactivityamount$ashaActivityRadioId" name="falgpendingashaactivityamount$ashaActivityRadioId" #if( $moPendingStatus == "0" || $moPendingStatus == "1" || $moPendingStatus == "2" ) value="1" #else value ="0" #end />
+                <!--
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="3">Approve &nbsp;&nbsp;
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="2">Pending &nbsp;&nbsp;    
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="1">Rejected
+                --> 
+                <input type="text" id="pendingashaactivitymoremark$ashaActivityRadioId" name="pendingashaactivitymoremark$ashaActivityRadioId" style="width:129px" value="$!pendingMORemarkDeValueMap.get( 463 )" #if( $moPendingStatus == "3" && $aaPendingStatus == "3" ) disabled="disabled" #end/>
+            </td>
+        </tr>   
+        
+        
+    <!-- Sample -->
+    
+        <tr #if ( $pendingDeValueMap.get( 408 ).split(":")[0] &&  $!pendingDeValueMap.get( 408 ).split(":")[0] != "" ) #else style="display:none" #end >
+            <td colspan="2">Water Samples Taken for Testing</td>
+            
+            <td>$!monthFormat.format( $pendingPeriod )</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>$!pendingDeValueMap.get( 408 ).split(":")[0]</td> 
+            
+            #set($moPendingStatus = 0 )
+            #set($moPendingStatus = $!pendingDeValueMap.get( 408 ).split(":")[1])
+            ##set($moPendingRemark = $!pendingDeValueMap.get( 408 ).split(":")[2])
+            #set($aaPendingStatus = $!pendingDeValueMap.get( 408 ).split(":")[3])   
+            <td>$!pendingActivityDetailsDeValueMap.get( 410).split(":")[0]</td>
+            <td style="text-align: center;">$!pendingActivityDetailsDeValueMap.get( 496 ).split(":")[0]</td>    
+            <!--<td><input type="text" id="pendingdeps496" name="pendingdeps496" readonly value = "$!pendingActivityDetailsDeValueMap.get( 496 )" style="text-align: center;" /></td>-->
+                
+            <td>
+                #set( $ashaActivityRadioId =  408 + ':' + $!dateFormat.format( $pendingPeriod ) )
+            
+                <select id="pendingashaactivityamount$ashaActivityRadioId" name="pendingashaactivityamount$ashaActivityRadioId" style="width:100px" #if( $moPendingStatus == "3" && $aaPendingStatus == "3" ) disabled="disabled" #end onchange="calculateMOPendingApproveAmount( 'pendingashaactivityamount$ashaActivityRadioId', '$!pendingActivityDetailsDeValueMap.get( 496 ).split(":")[0]', 'falgpendingashaactivityamount$ashaActivityRadioId' );" >
+                    <option value="0" >[$i18n.getString( "please_select" )]</option>
+                    <option value="3" #if($moPendingStatus == "3") selected  #end >$i18n.getString( "Approve" )</option>
+                    <option value="2" #if($moPendingStatus == "2") selected  #end >$i18n.getString( "Pending" )</option>
+                    <option value="1" #if($moPendingStatus == "1") selected  #end >$i18n.getString( "Rejected" )</option>
+                </select>
+                <input type="hidden" id="falgpendingashaactivityamount$ashaActivityRadioId" name="falgpendingashaactivityamount$ashaActivityRadioId" #if( $moPendingStatus == "0" || $moPendingStatus == "1" || $moPendingStatus == "2" ) value="1" #else value ="0" #end />
+                <!--
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="3">Approve &nbsp;&nbsp;
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="2">Pending &nbsp;&nbsp;    
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="1">Rejected
+                --> 
+                <input type="text" id="pendingashaactivitymoremark$ashaActivityRadioId" name="pendingashaactivitymoremark$ashaActivityRadioId" style="width:129px" value="$!pendingMORemarkDeValueMap.get( 408 )" #if( $moPendingStatus == "3" && $aaPendingStatus == "3" ) disabled="disabled" #end/>
+                
+            </td>
+        </tr>   
+        
+        ##set( $countSaltSample = $!activityDetailsDataValueMap.get( 428 ) )
+        
+        <tr #if ( $pendingDeValueMap.get( 427 ).split(":")[0] && $!pendingDeValueMap.get( 427 ).split(":")[0] != "" ) #else style="display:none" #end >
+            <td colspan="2">Conducting Testing of Salt Sample under NIDDCP</td>
+            
+            <td>$!monthFormat.format( $pendingPeriod )</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>$!pendingDeValueMap.get( 427 ).split(":")[0]</td>
+            
+            #set($moPendingStatus = 0 )
+            #set($moPendingStatus = $!pendingDeValueMap.get( 427 ).split(":")[1])
+            ##set($moPendingRemark = $!pendingDeValueMap.get( 427 ).split(":")[2])
+            #set($aaPendingStatus = $!pendingDeValueMap.get( 427 ).split(":")[3])   
+            <td>$!pendingActivityDetailsDeValueMap.get( 429).split(":")[0]</td>
+            <td style="text-align: center;">$!pendingActivityDetailsDeValueMap.get( 497 ).split(":")[0]</td>    
+            <!--<td><input type="text" id="pendingdeps497" name="pendingdeps497" readonly value = "$!pendingActivityDetailsDeValueMap.get( 497 )" style="text-align: center;" /></td>-->
+                
+            <td>
+                #set( $ashaActivityRadioId =  427 + ':' + $!dateFormat.format( $pendingPeriod ) )
+            
+                <select id="pendingashaactivityamount$ashaActivityRadioId" name="pendingashaactivityamount$ashaActivityRadioId" style="width:100px" #if( $moPendingStatus == "3" && $aaPendingStatus == "3" ) disabled="disabled" #end onchange="calculateMOPendingApproveAmount( 'pendingashaactivityamount$ashaActivityRadioId', '$!pendingActivityDetailsDeValueMap.get( 497 ).split(":")[0]', 'falgpendingashaactivityamount$ashaActivityRadioId' );" >
+                    <option value="0" >[$i18n.getString( "please_select" )]</option>
+                    <option value="3" #if($moPendingStatus == "3") selected  #end >$i18n.getString( "Approve" )</option>
+                    <option value="2" #if($moPendingStatus == "2") selected  #end >$i18n.getString( "Pending" )</option>
+                    <option value="1" #if($moPendingStatus == "1") selected  #end >$i18n.getString( "Rejected" )</option>
+                </select>
+                <input type="hidden" id="falgpendingashaactivityamount$ashaActivityRadioId" name="falgpendingashaactivityamount$ashaActivityRadioId" #if( $moPendingStatus == "0" || $moPendingStatus == "1" || $moPendingStatus == "2" ) value="1" #else value ="0" #end />
+                <!--
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="3">Approve &nbsp;&nbsp;
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="2">Pending &nbsp;&nbsp;    
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="1">Rejected
+                --> 
+                <input type="text" id="pendingashaactivitymoremark$ashaActivityRadioId" name="pendingashaactivitymoremark$ashaActivityRadioId" style="width:129px" value="$!pendingMORemarkDeValueMap.get( 427 )" #if( $moPendingStatus == "3" && $aaPendingStatus == "3" ) disabled="disabled" #end/>
+            </td>
+        </tr>   
+        
+        
+    <!-- TA/DA -->
+    
+        <tr #if ( $pendingDeValueMap.get( 413 ).split(":")[0] && $!pendingDeValueMap.get( 413 ).split(":")[0] != "" ) #else style="display:none" #end >
+            <td colspan="2" >TA/DA for Attending Training Programmes</td>
+            
+            <td>$!monthFormat.format( $pendingPeriod )</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>$!activityDetailsDataValueMap.get( 413 ).split(":")[0]</td>  
+           
+            #set($moPendingStatus = 0 )
+            #set($moPendingStatus = $!pendingDeValueMap.get( 413 ).split(":")[1])
+            ##set($moPendingRemark = $!pendingDeValueMap.get( 413 ).split(":")[2])
+            #set($aaPendingStatus = $!pendingDeValueMap.get( 413 ).split(":")[3])   
+            <td>$!pendingActivityDetailsDeValueMap.get( 414).split(":")[0]</td>
+            <td style="text-align: center;">$!pendingActivityDetailsDeValueMap.get( 498 ).split(":")[0]</td>    
+            <!--<td><input type="text" id="pendingdeps498" name="pendingdeps498" readonly value = "$!pendingActivityDetailsDeValueMap.get( 498 )" style="text-align: center;" /></td>-->
+                
+            <td>
+                #set( $ashaActivityRadioId =  413 + ':' + $!dateFormat.format( $pendingPeriod ) )
+            
+                <select id="pendingashaactivityamount$ashaActivityRadioId" name="pendingashaactivityamount$ashaActivityRadioId" style="width:100px" #if( $moPendingStatus == "3" && $aaPendingStatus == "3" ) disabled="disabled" #end onchange="calculateMOPendingApproveAmount( 'pendingashaactivityamount$ashaActivityRadioId', '$!pendingActivityDetailsDeValueMap.get( 498 ).split(":")[0]', 'falgpendingashaactivityamount$ashaActivityRadioId' );" >
+                    <option value="0" >[$i18n.getString( "please_select" )]</option>
+                    <option value="3" #if($moPendingStatus == "3") selected  #end >$i18n.getString( "Approve" )</option>
+                    <option value="2" #if($moPendingStatus == "2") selected  #end >$i18n.getString( "Pending" )</option>
+                    <option value="1" #if($moPendingStatus == "1") selected  #end >$i18n.getString( "Rejected" )</option>
+                </select>
+                <input type="hidden" id="falgpendingashaactivityamount$ashaActivityRadioId" name="falgpendingashaactivityamount$ashaActivityRadioId" #if( $moPendingStatus == "0" || $moPendingStatus == "1" || $moPendingStatus == "2" ) value="1" #else value ="0" #end />
+                <!--
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="3">Approve &nbsp;&nbsp;
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="2">Pending &nbsp;&nbsp;    
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="1">Rejected
+                --> 
+                <input type="text" id="pendingashaactivitymoremark$ashaActivityRadioId" name="pendingashaactivitymoremark$ashaActivityRadioId" style="width:129px" value="$!pendingMORemarkDeValueMap.get( 413 )" #if( $moPendingStatus == "3" && $aaPendingStatus == "3" ) disabled="disabled" #end/>
+            </td>
+        </tr>   
+        
+        <tr #if ( $pendingDeValueMap.get( 415 ).split(":")[0] && $!pendingDeValueMap.get( 415 ).split(":")[0] != "" ) #else style="display:none" #end >
+            <td colspan="2" >TA/DA for Attending Quarterly Award Ceremony</td>
+            
+            <td>$!monthFormat.format( $pendingPeriod )</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>$!pendingDeValueMap.get( 415 ).split(":")[0]</td>
+            
+            #set($moPendingStatus = 0 )
+            #set($moPendingStatus = $!pendingDeValueMap.get( 415 ).split(":")[1])
+            ##set($moPendingRemark = $!pendingDeValueMap.get( 415 ).split(":")[2])
+            #set($aaPendingStatus = $!pendingDeValueMap.get( 415 ).split(":")[3])   
+            <td>$!pendingActivityDetailsDeValueMap.get( 416).split(":")[0]</td>
+            <td style="text-align: center;">$!pendingActivityDetailsDeValueMap.get( 499 ).split(":")[0]</td>    
+            <!--<td><input type="text" id="pendingdeps499" name="pendingdeps499" readonly value = "$!pendingActivityDetailsDeValueMap.get( 499 )" style="text-align: center;" /></td>-->
+                
+            <td>
+                #set( $ashaActivityRadioId =  415 + ':' + $!dateFormat.format( $pendingPeriod ) )
+            
+                <select id="pendingashaactivityamount$ashaActivityRadioId" name="pendingashaactivityamount$ashaActivityRadioId" style="width:100px" #if( $moPendingStatus == "3" && $aaPendingStatus == "3" ) disabled="disabled" #end onchange="calculateMOPendingApproveAmount( 'pendingashaactivityamount$ashaActivityRadioId', '$!pendingActivityDetailsDeValueMap.get( 499 ).split(":")[0]', 'falgpendingashaactivityamount$ashaActivityRadioId' );" >
+                    <option value="0" >[$i18n.getString( "please_select" )]</option>
+                    <option value="3" #if($moPendingStatus == "3") selected  #end >$i18n.getString( "Approve" )</option>
+                    <option value="2" #if($moPendingStatus == "2") selected  #end >$i18n.getString( "Pending" )</option>
+                    <option value="1" #if($moPendingStatus == "1") selected  #end >$i18n.getString( "Rejected" )</option>
+                </select>
+                <input type="hidden" id="falgpendingashaactivityamount$ashaActivityRadioId" name="falgpendingashaactivityamount$ashaActivityRadioId" #if( $moPendingStatus == "0" || $moPendingStatus == "1" || $moPendingStatus == "2" ) value="1" #else value ="0" #end />
+                <!--
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="3">Approve &nbsp;&nbsp;
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="2">Pending &nbsp;&nbsp;    
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="1">Rejected
+                --> 
+                <input type="text" id="pendingashaactivitymoremark$ashaActivityRadioId" name="pendingashaactivitymoremark$ashaActivityRadioId" style="width:129px" value="$!pendingMORemarkDeValueMap.get( 415 )" #if( $moPendingStatus == "3" && $aaPendingStatus == "3" ) disabled="disabled" #end/>
+            </td>
+        </tr>   
+        
+        <!-- Award -->
+        <tr #if ( $pendingDeValueMap.get( 417 ).split(":")[0] && $!pendingDeValueMap.get( 417 ).split(":")[0] != "" ) #else style="display:none" #end >
+            <td colspan="2" >ASHA Award</td>
+            
+            <td>$!monthFormat.format( $pendingPeriod )</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>$!pendingDeValueMap.get( 417 ).split(":")[0]</td> 
+           
+            #set($moPendingStatus = 0 )
+            #set($moPendingStatus = $!pendingDeValueMap.get( 417 ).split(":")[1])
+            ##set($moPendingRemark = $!pendingDeValueMap.get( 417 ).split(":")[2])
+            #set($aaPendingStatus = $!pendingDeValueMap.get( 417 ).split(":")[3])   
+            <td>$!pendingActivityDetailsDeValueMap.get( 436).split(":")[0]</td>
+            <td style="text-align: center;">$!pendingActivityDetailsDeValueMap.get( 500 ).split(":")[0]</td>
+                
+            <!--<td><input type="text" id="pendingdeps500" name="pendingdeps500" readonly value = "$!pendingActivityDetailsDeValueMap.get( 500 )" style="text-align: center;" /></td>-->
+                
+            <td>
+                
+                #set( $ashaActivityRadioId =  417 + ':' + $!dateFormat.format( $pendingPeriod ) )
+            
+                <select id="pendingashaactivityamount$ashaActivityRadioId" name="pendingashaactivityamount$ashaActivityRadioId" style="width:100px" #if( $moPendingStatus == "3" && $aaPendingStatus == "3" ) disabled="disabled" #end onchange="calculateMOPendingApproveAmount( 'pendingashaactivityamount$ashaActivityRadioId', '$!pendingActivityDetailsDeValueMap.get( 500 ).split(":")[0]', 'falgpendingashaactivityamount$ashaActivityRadioId' );" >
+                    <option value="0" >[$i18n.getString( "please_select" )]</option>
+                    <option value="3" #if($moPendingStatus == "3") selected  #end >$i18n.getString( "Approve" )</option>
+                    <option value="2" #if($moPendingStatus == "2") selected  #end >$i18n.getString( "Pending" )</option>
+                    <option value="1" #if($moPendingStatus == "1") selected  #end >$i18n.getString( "Rejected" )</option>
+                </select>
+                <input type="hidden" id="falgpendingashaactivityamount$ashaActivityRadioId" name="falgpendingashaactivityamount$ashaActivityRadioId" #if( $moPendingStatus == "0" || $moPendingStatus == "1" || $moPendingStatus == "2" ) value="1" #else value ="0" #end />
+                <!--
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="3">Approve &nbsp;&nbsp;
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="2">Pending &nbsp;&nbsp;    
+                <input type="radio" id="ashaactivityradio$ashaActivityRadioId" name="ashaactivityradio$ashaActivityRadioId" value="1">Rejected
+                --> 
+                <input type="text" id="pendingashaactivitymoremark$ashaActivityRadioId" name="pendingashaactivitymoremark$ashaActivityRadioId" style="width:129px" value="$!pendingMORemarkDeValueMap.get( 417 )" #if( $moPendingStatus == "3" && $aaPendingStatus == "3" ) disabled="disabled" #end/>
+            </td>
+        </tr>       
+
+        <!--
+        <tr #if ( $activityDetailsDataValueMap.size() > 0 || $pendingDeValueMap.get( 438 ) && $!pendingDeValueMap.get( 438 ) != "" ) #else style="display:none" #end >
+            
+            #set( $stateActivityIncentiveAmount = "" )
+            #if ( $beneficiaryList.size() > 0 || $activityDetailsDataValueMap.size() > 0 || ( $activityDetailsDataValueMap.get( 438 ) && $!activityDetailsDataValueMap.get( 438 ) != "" ) ) 
+                #set( $stateActivityIncentiveAmount = 500 )
+            #else
+                #set( $stateActivityIncentiveAmount = 0 )
+            #end    
+            
+            
+            <td  colspan="4">State Activity Incentive Amount</td>
+            <td><input type="text" id="stateActivityIncentiveAmount" name="stateActivityIncentiveAmount" value="$stateActivityIncentiveAmount" readonly style="text-align: center;" /></td>
+                            
+            <input type="hidden" id="stateActivityIncentiveAmount" name="stateActivityIncentiveAmount" value="$stateActivityIncentiveAmount" >
+        </tr>   
+        -->
+        
+    #end    
+
+
+</table>
+#end
+<table width="100%">
+        
+        #if ( $amountDataValueMap.get( 503 ) && $!amountDataValueMap.get( 503 ) != "" ) 
+            #set( $totalApproveAmountInMonthByMO = $amountDataValueMap.get( 503 ) )
+        #else 
+            #set( $totalApproveAmountInMonthByMO = 0 )
+        #end
+
+        #if ( $amountDataValueMap.get( 502 ) && $!amountDataValueMap.get( 502 ) != "" ) 
+            #set( $totalPendingApproveAmountInMonthByMO = $amountDataValueMap.get( 502 ) )
+        #else 
+            #set( $totalPendingApproveAmountInMonthByMO = 0 )
+        #end    
+    
+        <!-- for pending total -->
+        <tr>
+            <td  colspan="4"><b>$i18n.getString( "Total approved amount for current month" )</b></td>
+                
+                <!--
+                <input type="hidden" id="incentiveTotalAmount" name="incentiveTotalAmount"  style="text-align: center" />
+                <input type="hidden" id="stateIncentiveAmount" name="stateIncentiveAmount"  style="text-align: center" />
+                -->
+            <!--<td><input type="text" id="totalMOApproveAmount" name="totalMOApproveAmount" value="$!activityDetailsDataValueMap.get( 160 ).split(":")[0]" readonly style="text-align: center;" /></td>-->
+            <td><input type="text" id="deps503" name="deps503" value="$totalApproveAmountInMonthByMO" readonly style="text-align: center;" /></td>
+            
+        </tr>   
+        <tr>
+            <td  colspan="4"><b>$i18n.getString( "Total approved amount for previous months" )</b></td>
+ 
+            <td><input type="text" id="deps502" name="deps502" value="$totalPendingApproveAmountInMonthByMO" readonly style="text-align: center;" /></td>
+            <input type="hidden" id="deps504" name="deps504" >
+        </tr>
+
+</table>
+
+<p>
+    <input type="button"  value="$i18n.getString( 'Cancel' )" style="width:100px" onclick="javascript:callAction( 'selectASHA' )"/>&nbsp;&nbsp;
+    &nbsp;&nbsp;<input type="submit"  id="saveButton" name="saveButton" value="$i18n.getString( 'save' )"  style="width:100px"/>
+</p>
+
+
+</form>
+
+#else
+    <h4>$status</h4>
+#end
+
+
+<script type="text/javascript">
+jQuery( document ).ready( function()
+{
+    
+});
+</script>
+
+<script type="text/javascript">
+
+    var i18n_field_is_required = '$encoder.jsEscape( $i18n.getString( "field_is_required" ) , "'") ';
+    calculateApproveTotal();
+
+</script>

@@ -1,0 +1,67 @@
+<script type="text/javascript">
+	jQuery(document).ready(function(){	
+		tableSorter( 'listTable' );	
+	});
+
+	
+	var i18n_ovc_employee_details = '$encoder.jsEscape( $i18n.getString( "ovc_employee_details" ) , "'" )';
+	var i18n_confirm_to_delete_employee = '$encoder.jsEscape( $i18n.getString( "confirm_to_delete_employee" ) , "'" )';
+	
+</script>
+
+<h3>$i18n.getString( "community_worker_management" )</h3>
+<table class="mainPageTable">
+	<tr>
+		<td style="vertical-align:top">
+			<table width="100%">
+				<tr>
+					<td style="display:none">#filterDiv( "getEmployeeList" )</td>
+					<td colspan="3" style="text-align:right">
+						<input type="button" value="$i18n.getString( 'add_new' )" onclick="window.location.href='showAddEmployeeForm.action?organisationUnitId=$organisationUnit.id'"/>
+					</td>
+				</tr>
+			</table>
+			<table class="listTable" id="listTable">
+				<!--<col width="30"/>-->
+				<col width="200"/>
+				<col/>
+				<col/>
+				<col/>
+				<col width="100"/>				
+                <thead>
+				<tr>
+					<!--<th>#</th>-->
+					<th>$i18n.getString( "full_name" )</th>
+					<th>$i18n.getString( "code" )</th>
+					<th>$i18n.getString( "gender" )</th>
+					<th>$i18n.getString( "job_title" )</th>
+					<th class="{sorter: false}">$i18n.getString( "operations" )</th>
+				</tr>
+                </thead>
+				<tbody id="list">
+				#foreach( $employee in $employeeList )
+				<tr id="tr${employee.id}">
+					<!--<td>&nbsp;</td>-->
+					<td>$encoder.htmlEncode( $employee.getFullName() )</td>
+					<td>$encoder.htmlEncode( $employee.code )</td>
+					<td>$i18n.getString( $employee.gender )</td>
+					<td>$encoder.htmlEncode( $employee.getJobTitle() )</td>
+					<td>
+						<a href="showEmployeeUpdateForm.action?empId=$employee.id" title="$i18n.getString( 'edit' )"><img src="../images/edit.png" alt="$i18n.getString( 'edit' )"/></a>							  
+						<a href="javascript:removeEmployee( '$employee.id', '$encoder.jsEncode($employee.getFullName() )' )" title="$i18n.getString( 'remove' )"><img src="../images/delete.png" alt="$i18n.getString( 'remove' )"/></a>						  
+						<a href="javascript:showOVCEmployeeDetails( '$employee.id' )" title="$i18n.getString( 'show_details' )"><img src="../images/information.png" alt="$i18n.getString( 'show_details' )"/></a>
+				   </td>
+				</tr>
+				#end
+                </tbody>
+			</table>
+			<p></p>
+			##parse( "/dhis-web-commons/paging/paging.vm" )
+
+		</td>
+
+	</tr>	
+</table>
+
+ <div id="detailsInfo"></div><!-- details information div -->
+ <span id="message"></span>

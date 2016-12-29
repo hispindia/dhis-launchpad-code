@@ -1,0 +1,58 @@
+
+
+## Macro for generating the jQuery validation rules 
+
+<input type="hidden" id="programStageId" name="programStageId" value="$!programStage.id">
+<input type="hidden" id="programStageInstanceId" name="programStageInstanceId" value="$!programStageInstanceId">
+
+
+<table class="formSection" width="70%">
+
+	<tr bgcolor="#285C91">
+		<td width="75%"><font color="#FFFFFF"><strong>DataElement</strong></font></td>
+		<td width="25%"><font color="#FFFFFF"><strong>Value</strong></font></td>
+	</tr>	
+<br />
+
+#set( $tabIndex = 1 )
+#if ( $programStageDataElements.size() > 0)
+	#set( $mark = false )
+	#foreach($programStageDataElement in $programStageDataElements )
+	##set( $valueMapId = $organisationUnit.id + ':' + $period.id + ':' + $dataElement.id )
+	#set( $patientDataValue = "" )
+	#set( $patientDataValue = $!patientDataValueMap.get( $programStageDataElement.dataElement.id ) )
+		<tr #alternate($mark)>
+			<!--#set( $dataEntryId = "${dataElement.id}" )-->
+			<td width="75%"><label>$programStageDataElement.dataElement.getFormNameFallback()</label></td>
+			<td width="25%">
+				#if( $programStageDataElement.dataElement.type == "bool" )
+					<select name="dataelement$programStageDataElement.dataElement.id"  id="dataelement$programStageDataElement.dataElement.id"  tabindex="$tabIndex" width="25%">  
+						<option value="">[$i18n.getString( "please_select" )]</option>            
+						<option value="Yes" #if( $patientDataValue  == "Yes" ) selected="selected" #end >$i18n.getString( "yes" )</option>
+						<option value="No" #if( $patientDataValue == "No") selected="selected" #end >$i18n.getString( "no" )</option>
+					</select>                
+				#elseif( $programStageDataElement.dataElement.type == "date" )
+						<input type="text" id="dataelement$programStageDataElement.dataElement.id" name="dataelement$programStageDataElement.dataElement.id" value="$!patientDataValue" tabindex="$tabIndex" width="25%"> 
+						<script type="text/javascript">
+						   datePickerValid( 'dataelement${programStageDataElement.dataElement.id}' );
+						</script>                    
+				
+				#elseif( $!programStageDataElement.dataElement.optionSet )
+					<select name="dataelement$programStageDataElement.dataElement.id"  id="dataelement$programStageDataElement.dataElement.id"  tabindex="$tabIndex" width="25%">  
+						<!--<option value="">[$i18n.getString( "please_select" )]</option>-->
+						#foreach ($option in $programStageDataElement.dataElement.optionSet.options )
+							<option value="$option" #if($patientDataValue == $option ) selected="selected" #end>$option</option>
+						#end	
+					</select>				
+				
+				#else 
+					<input type="text" id="dataelement$programStageDataElement.dataElement.id" name="dataelement$programStageDataElement.dataElement.id" value="$!patientDataValue" tabindex="$tabIndex" width="25%" #if($dataElement.type =='number') class="{validate:{number:true}}" #elseif($dataElement.type =='int') class="{validate:{integer:true}}" #elseif($dataElement.type =='positiveNumber') class="{validate:{positive_integer:true}}" #elseif($dataElement.type =='negativeNumber') class="{validate:{negative_integer:true}}" #end/>
+				#end
+			</td>		
+		</tr>
+	#set( $tabIndex = $tabIndex + 1 )
+	#set( $mark = !$mark)	
+	#end
+#end
+</table>
+	

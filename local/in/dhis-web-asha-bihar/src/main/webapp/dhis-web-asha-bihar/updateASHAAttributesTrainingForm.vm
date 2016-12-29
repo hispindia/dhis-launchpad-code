@@ -1,0 +1,311 @@
+<script type="text/javascript" src="javascript/ashaTrainingValidation.js"></script>
+#macro( validate $type $require )
+  #if( $type == "NUMBER" )
+  	{validate:{ number:true #if($require), required:true #end }}
+  #elseif( $type == "string" )
+  	{validate:{ alphanumeric:true #if($require), required:true #end }}
+  #elseif( $require )
+  	{validate:{required:true}}
+  #end
+#end
+
+<script>
+    jQuery(document).ready( function(){
+
+        currentDiv = 'updateASHAAttributesForm';
+        isSubmit = true;
+        //alert( "inside update validation");
+        jQuery("#updateASHAAttributesForm").validate({
+                 meta:"validate"
+                ,errorElement:"span"
+                ,submitHandler: function(form)
+                    {
+                    	//alert( "inside update validation after");
+                        if( isSubmit ) 
+                        {
+                            updateASHAAttributes();
+                        }
+                    }
+            });
+    }); 
+    
+</script>
+
+<h4>$i18n.getString( "update_asha_attribute" ) $!attributeGroup.name  $i18n.getString( "details" )</h4>
+<p>
+<form id="updateASHAAttributesForm" name="updateASHAAttributesForm" method="post" >
+
+<input type="hidden" id="attributeGroupId" name="attributeGroupId" value="$attributeGroup.id">
+<input type="hidden" id="attributeGroupName" name='attributeGroupName' value="$!attributeGroup.name"/>
+<input type="hidden" id="id" name="id" value="$patient.id">
+
+<table style="background-color:#ECE0F8;" width="100%">
+	<tr>
+		<td class='text-column'>$i18n.getString( "system_identifier" )</td>
+		<td>$!systemIdentifier</td>
+	</tr>	
+
+	<tr>
+		<th colspan="2" class="heading-column">$i18n.getString( "demographics_details" )</th>
+	</tr>
+	
+	<tr>
+		<td>$i18n.getString("full_name")</td>
+		<td>$encoder.htmlEncode($!patient.getFullName())</td>
+	</tr>
+	
+	<tr>
+		<td>$i18n.getString("location")</td>
+		<td>$encoder.htmlEncode($!patient.organisationUnit.name)</td>
+	</tr>
+
+	<tr>
+		<td>$i18n.getString("date_of_birth")</td>
+		<td>$format.formatDate( $!patient.birthDate) ($!patient.getAge())</td>
+	</tr>
+	
+	<tr>
+		<td>$i18n.getString("phoneNumber")</td>
+		<td>
+			#if($!patient.phoneNumber && $!patient.phoneNumber!='')
+				$!patient.phoneNumber
+			#else
+				[$i18n.getString('none')]
+			#end
+		</td>
+	</tr>
+	
+	<tr>
+		<th colspan="2" class="heading-column">Section 2: Training Details</th>
+	</tr>	
+	
+	<tr #alternate( false ) id="trattr36">	    
+		<!-- Module I -->
+		<td class='text-column'>Module I</td>
+		<td class="input-column" >
+			#set( $attribute = $patientAttributeMap.get( 36 ) )
+			#set( $attributeValuemod1 = $!patientAttributeValueMap.get( 36 ) )
+            <select id="attr36" name="attr36" class='#validate( "default"  $attribute.mandatory )' onchange="validationTrainingMod1();">
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $attributeValuemod1 =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $attributeValuemod1=='false') selected="selected" #end >$i18n.getString( "no" )</option>
+            </select>
+		</td>
+	</tr>	
+
+	<tr #alternate( false ) id="trattr37">	    
+		<!-- If Yes, Year of Training  -->
+		<td class='text-column'>Year of Training</td>
+		<td class="input-column" >
+			#set( $attribute = $patientAttributeMap.get( 37 ) )
+			#set( $attributeValueYear1 = $!patientAttributeValueMap.get( 37 ) )	
+			<select id="attr37" name="attr37" class='#validate( "default"  $attribute.mandatory )' disabled = "disabled">
+			 	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+			 	##foreach ($option in $attribute.attributeOptions )
+			 		<option value="128" #if($attributeValueYear1 == "2005" ) selected="selected" #end >2005</option>
+			 		<option value="129" #if($attributeValueYear1 == "2006" ) selected="selected" #end >2006</option>
+			 		<option value="130" #if($attributeValueYear1 == "2007" ) selected="selected" #end >2007</option>
+			 		<option value="131" #if($attributeValueYear1 == "2008" ) selected="selected" #end >2008</option>
+			 		<option value="132" #if($attributeValueYear1 == "2009" ) selected="selected" #end >2009</option>
+			 		<option value="133" #if($attributeValueYear1 == "2010" ) selected="selected" #end >2010</option>
+			 		<option value="134" #if($attributeValueYear1 == "2011" ) selected="selected" #end >2011</option>
+			 		<option value="135" #if($attributeValueYear1 == "2012" ) selected="selected" #end >2012</option>
+			 		<option value="136" #if($attributeValueYear1 == "2013" ) selected="selected" #end >2013</option>
+	 			##end
+ 			</select>
+ 		</td>
+	</tr>
+
+	<tr #alternate( false ) id="trattr38">	    
+		<!-- Module II-IV -->
+		<td class='text-column'>Module 2,3,4</td>
+		<td class="input-column" >
+			#set( $attribute = $patientAttributeMap.get( 38 ) )
+			#set( $attributeValueMod2 = $!patientAttributeValueMap.get( 38 ) )
+            <select id="attr38" name="attr38" class='#validate( "default"  $attribute.mandatory )' onchange="validationTrainingMod2();">
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $attributeValueMod2 =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $attributeValueMod2=='false') selected="selected" #end >$i18n.getString( "no" )</option>
+            </select>
+		</td>
+	</tr>
+
+	<tr #alternate( false ) id="trattr105">	    
+		<!-- If Yes, Year of Training  -->
+		<td class='text-column'>Year of Training</td>
+		<td class="input-column" >
+			#set( $attribute = $patientAttributeMap.get( 105 ) )
+			#set( $attributeValueYear2 = $!patientAttributeValueMap.get( 105 ) )	
+			<select id="attr105" name="attr105" class='#validate( "default"  $attribute.mandatory )' disabled = "disabled">
+			 	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+			 	##foreach ($option in $attribute.attributeOptions )
+			 		<option value="137" #if($attributeValueYear2 == "2005" ) selected="selected" #end >2005</option>
+			 		<option value="138" #if($attributeValueYear2 == "2006" ) selected="selected" #end >2006</option>
+			 		<option value="139" #if($attributeValueYear2 == "2007" ) selected="selected" #end >2007</option>
+			 		<option value="140" #if($attributeValueYear2 == "2008" ) selected="selected" #end >2008</option>
+			 		<option value="141" #if($attributeValueYear2 == "2009" ) selected="selected" #end >2009</option>
+			 		<option value="142" #if($attributeValueYear2 == "2010" ) selected="selected" #end >2010</option>
+			 		<option value="143" #if($attributeValueYear2 == "2011" ) selected="selected" #end >2011</option>
+			 		<option value="144" #if($attributeValueYear2 == "2012" ) selected="selected" #end >2012</option>
+			 		<option value="145" #if($attributeValueYear2 == "2013" ) selected="selected" #end >2013</option>
+	 			##end
+ 			</select>
+ 		</td>
+	</tr>
+
+	<tr #alternate( false ) id="trattr38">	    
+		<!-- Modular training Module 5,6,7(Phases) -->
+		<td class='text-column'>Training of Module 5,6,7(Phases)</td>
+		<td class="input-column" >
+			#set( $attribute = $patientAttributeMap.get( 208 ) )
+			#set( $attributeValueMod2to7 = $!patientAttributeValueMap.get( 208 ) )
+            <select id="attr208" name="attr208" class='#validate( "default"  $attribute.mandatory )' onchange="validationTrainingMod5to7();">
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $attributeValueMod2to7 =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $attributeValueMod2to7 =='false') selected="selected" #end >$i18n.getString( "no" )</option>
+            </select>
+		</td>
+	</tr>
+
+	
+<!--
+	<tr #alternate( false ) id="trattr105">	    
+		
+		<td class='text-column'>Phase of Training</td>
+		<td class="input-column" >
+			#set( $attribute = $patientAttributeMap.get( 203 ) )
+			#set( $attributeValuePhases = $!patientAttributeValueMap.get( 203 ) )	
+			<select id="attr203" name="attr203" class='#validate( "default"  $attribute.mandatory )' disabled = "disabled">
+			 	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+			 	##foreach ($option in $attribute.attributeOptions )
+			 		<option value="209" #if($attributeValuePhases == "Phase 1" ) selected="selected" #end >Phase 1</option>
+			 		<option value="210" #if($attributeValuePhases == "Phase 2" ) selected="selected" #end >Phase 2</option>
+			 		<option value="211" #if($attributeValuePhases == "Phase 3" ) selected="selected" #end >Phase 3</option>
+	 			##end
+ 			</select>
+ 		</td>
+	</tr>
+
+	<tr #alternate( false ) id="trattr209">	    
+		
+		<td class='text-column'>Year of Training</td>
+		<td class="input-column" ><input type="text" id="attr209" name="attr209" class="{validate:{required:false ,number:true }}" value = "$!patientAttributeValueMap.get( 209 )" style="width:295px" disabled = "disabled"></td>
+	</tr>	
+
+-->	
+	
+	<!-- PHASE 1 -->
+	<tr #alternate( false ) id="trattr210">	    
+		<td class='text-column'>Phase 1</td>
+		<td class="input-column" >
+			#set( $attribute = $patientAttributeMap.get( 210 ) )
+			#set( $attributeValuePhase1 = $!patientAttributeValueMap.get( 210 ) )
+            <select id="attr210" name="attr210" class='#validate( "default"  $attribute.mandatory )' onchange="validationTrainingPhase1();">
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $attributeValuePhase1 =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $attributeValuePhase1 =='false') selected="selected" #end >$i18n.getString( "no" )</option>
+            </select>
+		</td>
+	</tr>	
+	
+	<tr #alternate( false ) id="trattr209">	    
+		
+		<td class='text-column'>Phase 1 Year of Training</td>
+		<td class="input-column" ><input type="text" id="attr211" name="attr211" class="{validate:{required:false ,number:true }}" value = "$!patientAttributeValueMap.get( 211 )" style="width:260px" disabled = "disabled"></td>
+	</tr>	
+	
+
+	
+	<!-- PHASE 2 -->
+	<tr #alternate( false ) id="trattr212">	    
+		<td class='text-column'>Phase 2</td>
+		<td class="input-column" >
+			#set( $attribute = $patientAttributeMap.get( 212) )
+			#set( $attributeValuePhase2 = $!patientAttributeValueMap.get( 212 ) )
+            <select id="attr212" name="attr212" class='#validate( "default"  $attribute.mandatory )' onchange="validationTrainingPhase2();">
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $attributeValuePhase2 =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $attributeValuePhase2 =='false') selected="selected" #end >$i18n.getString( "no" )</option>
+            </select>
+		</td>
+	</tr>	
+	
+	<tr #alternate( false ) id="trattr213">	    
+		
+		<td class='text-column'>Phase 2 Year of Training</td>
+		<td class="input-column" ><input type="text" id="attr213" name="attr213" class="{validate:{required:false ,number:true }}" value = "$!patientAttributeValueMap.get( 213 )" style="width:260px" disabled = "disabled"></td>
+	</tr>	
+		
+	
+	
+	<!-- PHASE 3 -->
+	<tr #alternate( false ) id="trattr212">	    
+		<td class='text-column'>Phase 3</td>
+		<td class="input-column" >
+			#set( $attribute = $patientAttributeMap.get( 214) )
+			#set( $attributeValuePhase3 = $!patientAttributeValueMap.get( 214 ) )
+            <select id="attr214" name="attr214" class='#validate( "default"  $attribute.mandatory )' onchange="validationTrainingPhase3();">
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $attributeValuePhase3 =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $attributeValuePhase3 =='false') selected="selected" #end >$i18n.getString( "no" )</option>
+            </select>
+		</td>
+	</tr>	
+	
+	<tr #alternate( false ) id="trattr215">	    
+		
+		<td class='text-column'>Phase 3 Year of Training</td>
+		<td class="input-column" ><input type="text" id="attr215" name="attr215" class="{validate:{required:false ,number:true }}" value = "$!patientAttributeValueMap.get( 215 )" style="width:260px" disabled = "disabled"></td>
+	</tr>		
+	
+	<!-- PHASE 4 -->
+	<tr #alternate( false ) id="trattr216">	    
+		<td class='text-column'>Phase 4</td>
+		<td class="input-column" >
+			#set( $attribute = $patientAttributeMap.get( 216) )
+			#set( $attributeValuePhase4 = $!patientAttributeValueMap.get( 216 ) )
+            <select id="attr216" name="attr216" class='#validate( "default"  $attribute.mandatory )' onchange="validationTrainingPhase4();">
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $attributeValuePhase4 =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $attributeValuePhase4 =='false') selected="selected" #end >$i18n.getString( "no" )</option>
+            </select>
+		</td>
+	</tr>	
+	
+	<tr #alternate( false ) id="trattr217">	    
+		
+		<td class='text-column'>Phase 4 Year of Training</td>
+		<td class="input-column" ><input type="text" id="attr217" name="attr217" class="{validate:{required:false ,number:true }}" value = "$!patientAttributeValueMap.get( 217 )" style="width:260px" disabled = "disabled"></td>
+	</tr>			
+	
+</table>
+
+<table width="100%">
+	
+	<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+
+	<tr>
+		<td>
+			<input type="submit" class='button' value="$i18n.getString( 'update' )" >
+			<!--<input type="button" class='button' value="$i18n.getString( 'back_to_registration' )" onclick="javascript:callAction( 'getRegisteredASHAList' )"/>-->
+			<input type="button" class='button' value="$i18n.getString( 'back_to_registration' )" onclick="javascript:callAction( 'selectASHA' )"/>
+		</td>
+	</tr>
+</table>
+
+
+</form> 	
+
+
+<script type="text/javascript">
+	
+	validationTrainingMod1();
+	validationTrainingMod2();
+	validationTrainingMod5to7();
+	
+	validationTrainingPhase1();
+	validationTrainingPhase2();
+	validationTrainingPhase3();
+	validationTrainingPhase4();
+
+</script>	

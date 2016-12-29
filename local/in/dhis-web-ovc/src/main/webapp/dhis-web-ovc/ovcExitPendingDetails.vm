@@ -1,0 +1,301 @@
+
+<h3>DETAILS FORM - $!organisationUnit.name - System Generated Id : $systemIdentifier - Registration Date :  $format.formatDate($!patient.getRegistrationDate())</h3>
+
+<table style="background-color:#FFFFFF;" width="100%">
+    <tr><th colspan="6" class="heading-column">Area Details</th></tr>
+
+    <!-- Patient Attribute: -->
+    <tr #alternate( false ) id="trattr291">
+        <!-- Patient Attribute: County -->
+        <td>$i18n.getString( "county" )</td>
+        <td>$!patientAttributeValueMap.get( 291 )</td>
+        
+        <!-- Patient Attribute: District -->
+        <td>$i18n.getString( "district" )</td>
+        <td>$!patientAttributeValueMap.get( 292 )</td>
+        
+        <!-- Patient Attribute: Division -->
+        <td>$i18n.getString( "division" )</td>
+        <td>$!patientAttributeValueMap.get( 292 )</td>
+    </tr>
+
+    <!-- Patient Attribute: -->
+    <tr #alternate( false ) id="trattr41">
+        <!-- Patient Attribute: Location -->
+        <td>$i18n.getString( "location" )</td>
+        <td>$!patientAttributeValueMap.get( 41 )</td>
+        
+        <!-- Patient Attribute: Village -->
+        <td>$i18n.getString( "village" )</td>
+        <td>$!patientAttributeValueMap.get( 42 )</td>
+    </tr>
+
+    <!-- Patient Attribute: Community Home Visitor First Name-->
+    <tr #alternate( false ) id="trattr43">
+        <td>$i18n.getString( "community_home_visitor_code" )</td>
+        <td>$!patientAttributeValueMap.get( 43 )</td>
+    </tr>
+</table>
+
+<table style="background-color:#ECE0F8;" width="100%">
+    <tr><th colspan="6" class="heading-column">A. Personal Information of the Child</th></tr>
+    <!--  Patient Property : Name-->
+    <tr #alternate( false ) id="trname">
+        <!-- Child First Name -->
+        <td><label for="first_name">$i18n.getString( "child_first_name" )</label></td>
+        <td>$!patient.getFirstName()</td>
+        <!-- Middle Name -->
+        <td><label for="middle_name">$i18n.getString( "middle_name" )</label></td>
+        <td>$!patient.getMiddleName()</td>
+        <!-- Sur Name -->
+        <td><label for="sur_name">$i18n.getString( "sur_name" )</label></td>
+        <td>$!patient.getLastName()</td>      
+    </tr>
+    <!-- Patient : Property Gender  --> 
+    <tr #alternate( false ) id="trgender">
+        <td><label for="gender">$i18n.getString( "gender" )</label></td>
+        <td>$!patient.gender</td>
+    </tr>
+    <!-- Patient Property : Date of Birth  -->
+    <tr #alternate( false ) id="trdob">
+        <td><label for="date_of_birth">$i18n.getString( "date_of_birth" )</label></td>
+        <td colspan='2'>$format.formatDate($!patient.birthDate)</td>       
+    </tr>
+    
+
+    <!-- Patient Attribute : Has Birth certificate -->
+    <tr #alternate( false ) id="trattr34">
+        <td>$i18n.getString( "has_birth_certificate" )</td>
+        <td>$!patientAttributeMap.get( 34 )</td>
+    </tr>
+
+    <!-- Patient Attribute : HH has NHIF -->
+    <tr #alternate( false ) id="trattr35">
+        <td class='text-column'>$i18n.getString( "hh_has_nhif" )</td>
+        <td>$!patientAttributeMap.get( 35 )</td>
+    </tr>
+
+    <!-- Patient Attribute : Orphanhood Status -->
+    <tr #alternate( false ) id="trattr36">
+        <td>$i18n.getString( "orphan_hood_status" )</td>
+        <td>$!patientAttributeValueMap.get( 36 )</td>       
+    </tr>
+
+</table>
+
+<table style="background-color:#EFFBEF;" width="100%">
+
+<tr><th colspan="6" class="heading-column">B. Education Details of Child</th></tr>
+    <!-- Patient Attribute : Level in school -->
+    <tr #alternate( false ) id="trattr44">
+        <td>$i18n.getString( "level_in_school" )</td>
+        <td>$!patientAttributeValueMap.get( 44 )</td>
+    </tr>
+
+    <!-- Patient Attribute: Class -->
+    <tr #alternate( false ) id="trattr50">
+        <td>$i18n.getString( "class" )</td>
+        <td>$!patientAttributeValueMap.get( 50 )</td>
+        
+        <!-- Patient Attribute: Name of school/institution -->
+        <td>$i18n.getString( "name_of_school_institution" )</td>
+        <td>$!patientAttributeValueMap.get( 51 )</td>
+    </tr>
+</table>
+
+<table style="background-color:#ECE0F8;" width="100%">
+
+<tr><th colspan="6" class="heading-column">C. Child Health Status</th></tr>
+    <!-- Patient Attribute : Child�s HIV status -->
+    <tr #alternate( false ) id="trattr52">
+        <td>$i18n.getString( "childs_hiv_status" )</td>
+        <td>$!patientAttributeValueMap.get( 52 )</td>
+    </tr>
+
+    <!-- Patient Attribute : Child ART status -->
+    <tr #alternate( false ) id="trattr56">
+        <td>$i18n.getString( "childs_art_status")</td>
+        <td>$!patientAttributeValueMap.get( 56 )</td>
+    </tr>
+    
+    <!-- Patient Attribute: Facility Linked to -->
+    <tr #alternate( false ) id="trattr60">
+        <td>$i18n.getString( "facility_linked_to" )</td>
+        <td>$!patientAttributeValueMap.get( 60 )</td>
+    </tr>   
+
+</table>
+
+<table style="background-color:#EFFBEF;" width="100%">
+
+<tr><th colspan="6" class="heading-column">D. Details of Parents</th></tr>
+    <!--  Patient Property : Father Name-->
+    <tr #alternate( false ) id="trname">
+        <!-- Father  First Name -->
+        <td><label for="first_name">$i18n.getString( "father_first_name" )</label></td>
+        <td>$!patientAttributeValueMap.get( 61 )</td>
+        <!-- Middle Name -->
+        <td><label for="middle_name">$i18n.getString( "middle_name" )</label></td>
+        <td>$!patientAttributeValueMap.get( 294 )</td>
+        <!-- Sur Name -->
+        <td><label for="sur_name">$i18n.getString( "sur_name" )</label></td>
+        <td>$!patientAttributeValueMap.get( 295 )</td>        
+    </tr>
+
+    <!-- Patient Attribute : If not dead Father�s HIV status -->
+    <tr #alternate( false ) id="trattr62">
+        <td>$i18n.getString( "fathers_hiv_status")</td>
+        <td>$!patientAttributeValueMap.get( 62 )</td>
+    </tr>   
+
+
+    <!-- Patient Attribute: Father ID Number / Mobile Number -->
+    <tr #alternate( false ) id="trattr60">
+        <td>$i18n.getString( "id_number" )</td>
+        <td>$!patientAttributeValueMap.get( 66 )</td>
+        <td>$i18n.getString( "mobile_number" )</td>
+        <td>$!patientAttributeValueMap.get( 67 )</td>
+    </tr>
+
+    <!-- Patient Attribute : If father dead, cause of death -->
+    <tr #alternate( false ) id="trattr72">
+        <td class='text-column'>$i18n.getString( "fathers_dead" )</td>
+        <td class="input-column">$!patientAttributeValueMap.get( 72 )</td>
+    </tr>
+
+    <!--  Patient Property : Mother Name-->
+    <tr #alternate( false ) id="tattr76">
+        <!-- Mother First Name -->
+        <td><label for="first_name">$i18n.getString( "mother_first_name" )</label></td>
+        <td>$!patientAttributeValueMap.get( 76 )</td>
+        <!-- Middle Name -->
+        <td><label for="middle_name">$i18n.getString( "middle_name" )</label></td>
+        <td>$!patientAttributeValueMap.get( 76 )</td>
+        <!-- Sur Name -->
+        <td><label for="sur_name">$i18n.getString( "sur_name" )</label></td>
+        <td>$!patientAttributeValueMap.get( 297 )</td>        
+    </tr>
+
+    <!-- Patient Attribute : If not dead mothers HIV status -->
+    <tr #alternate( false ) id="trattr77">
+        <td>$i18n.getString( "mothers_hiv_status" )</td>
+        <td>$!patientAttributeValueMap.get( 77 )</td>
+    </tr>   
+
+
+    <!-- Patient Attribute: Mother ID Number / Mobile Number -->
+    <tr #alternate( false ) id="trattr81">
+        <td class='text-column'>$i18n.getString( "id_number" )</td>
+        <td class="input-column" >$!patientAttributeValueMap.get( 81 )</td>
+        <td class='text-column'>$i18n.getString( "mobile_number" )</td>
+        <td class="input-column" >$!patientAttributeValueMap.get( 82 )</td>
+    </tr>
+
+    <!-- Patient Attribute : If mother dead, cause of death -->
+    <tr #alternate( false ) id="trattr83">
+        <td>$i18n.getString( "mothers_dead" )</td>
+        <td>$!patientAttributeValueMap.get( 83 )</td>
+    </tr>
+
+</table>
+
+<table style="background-color:#ECE0F8;" width="100%">
+
+<tr><th colspan="6" class="heading-column">E. Guardians: Fill Details of Guardian if Child is under a Guardian's Care.</th></tr>
+
+
+    <!--  Patient Property : Guardian  Name-->
+    <tr #alternate( false ) id="tattr87">
+        <!-- Guardian  First Name -->
+        <td class='text-column'><label for="first_name">$i18n.getString( "guardian_first_name" )</td>
+        <td class="input-column" >$!patientAttributeValueMap.get( 87 )</td>
+        <!-- Middle Name -->
+        <td class='text-column'><label for="middle_name">$i18n.getString( "middle_name" )</label></td>
+        <td class="input-column" >$!patientAttributeValueMap.get( 298 )</td>
+        <!-- Sur Name -->
+        <td class='text-column'><label for="sur_name">$i18n.getString( "sur_name" )</label></td>
+        <td class="input-column" >$!patientAttributeValueMap.get( 299 )</td>        
+    </tr>
+
+    <!-- Patient Attribute: Guardian ID Number / Mobile Number -->
+    <tr #alternate( false ) id="trattr88">
+        <td>$i18n.getString( "id_number" )</td>
+        <td>$!patientAttributeValueMap.get( 88 )</td>
+        <td>$i18n.getString( "mobile_number" )</td>
+        <td>$!patientAttributeValueMap.get( 89 )</td>
+    </tr>
+
+    <!-- Patient Attribute : Guardian Gender -->
+    <tr #alternate( false ) id="trattr90">
+        <td>$i18n.getString( "guardian_gender" )</td>
+        <td>$!patientAttributeValueMap.get( 90 )</td>
+    </tr>
+
+
+    <!-- Patient Attribute : Guardian age -->
+    <tr #alternate( false ) id="trattr93">
+        <td>$i18n.getString( "guardian_age" )</td>
+        <td>$!patientAttributeValueMap.get( 93 )</td>
+    </tr>
+
+    <!-- Patient Attribute : Relationship to child -->
+    <tr #alternate( false ) id="trattr101">
+        <td>$i18n.getString( "relationship_to_child" )</td>
+        <td>$!patientAttributeValueMap.get( 101 )</td>
+    </tr>
+
+</table>
+<table style="background-color:#EFFBEF;" width="100%">
+
+    <tr><th colspan="6" class="heading-column">F. Care Giver:</th></tr>
+    
+    <!-- Patient Attribute : F. Care Giver: -->
+    <tr #alternate( false ) id="trattr106">
+        <td>$i18n.getString( "care_giver" )</td>
+        <td>$!patientAttributeValueMap.get( 106 )</td>
+    </tr>
+</table>
+
+<!--
+<table style="background-color:#ECE0F8;" width="100%">
+
+<tr><th colspan="6" class="heading-column">G. Supervisor</th></tr>
+-->    
+   	<!-- Patient Attribute : G. Supervisor: -->
+<!--
+    <tr #alternate( false ) id="trattr300">
+        <td>$i18n.getString( "supervisor" )</td>
+        <td>$!patientAttributeValueMap.get( 300 )</td> 
+    </tr>
+	
+</table>
+-->
+<table style="background-color:#ECE0F8;" width="100%">
+    <tr><th colspan="6" class="heading-column">H. Exit Details</th></tr>
+    
+    <td>$i18n.getString( "date_of_exit" )</td>
+    <td>$!patientAttributeValueMap.get( 604 )</td>
+    
+    <td>$i18n.getString( "reason_for_exit" )</td>
+    <td>$!patientAttributeValueMap.get( 450 )
+    
+    #if( $!patientAttributeValueMap.get( 450 ) == "Was Disengaged" )
+    	
+    	( $!patientAttributeValueMap.get( 456 ) )
+    	 
+    	 #if( $!patientAttributeValueMap.get( 456 ) == "Other Reasons" )
+    	
+    		( $!patientAttributeValueMap.get( 606 ) )
+    	#end	
+    	
+    
+    #elseif	( $!patientAttributeValueMap.get( 450 ) == "Other Reasons" )
+    	
+    	( $!patientAttributeValueMap.get( 605 ) )
+    
+    
+    #end
+        
+    </td>
+         
+</table>

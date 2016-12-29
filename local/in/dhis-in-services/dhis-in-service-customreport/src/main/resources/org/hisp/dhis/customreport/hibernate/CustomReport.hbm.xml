@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+ "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="org.hisp.dhis.customreports.CustomReport" table="customreport">
+
+	<id name="id" column="customreportid">
+      <generator class="native" />
+    </id>
+    
+    <property name="name" not-null="true" length="230" />
+    
+    <property name="description" column="description" not-null="false" length="230" />
+    
+    <property name="reportType" column="reporttype" not-null="false" length="160" />
+	  
+	<many-to-one name="user" class="org.hisp.dhis.user.User" column="userid"
+      not-null="true" foreign-key="fk_customreport_userid" />
+	
+	  
+	<property name="reportAvailable" not-null="true"  column="reportavailable"/>
+	  
+  
+    <list name="customReportDesigns" table="customreport_design">
+	  <key column="customreportid" foreign-key="fk_customreport_design_customreportid" />
+      <list-index column="sort_order" base="1" />
+      <many-to-many class="org.hisp.dhis.customreports.CustomReportDesign" column="customreportdesignid"
+			foreign-key="fk_customreport_customreportdesignid" />
+    </list>	  
+	  	  
+    <list name="customReportFilters" table="customreport_filter">
+	  <key column="customreportid" foreign-key="fk_customreport_filter_customreportid" />
+      <list-index column="sort_order" base="1" />
+      <many-to-many class="org.hisp.dhis.customreports.CustomReportFilter" column="customreportfilterid"
+			foreign-key="fk_customreport_customreportfilterid" />
+    </list>	  
+	  	  
+	  
+	  	    
+	  	  
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,220 @@
+
+<!--<div>$navigationString</div>-->
+
+<div><h4 style="color:black;">IDSP Dashboard $periodString</h4></div>
+
+<script>
+    leftBar.hideAnimated();
+</script>
+
+#set( $mark = 0 )
+<br/><br/>
+<table width="40%" align="right">
+	<tr>
+		<td style="background-color:pink">&nbsp;&nbsp;&nbsp;</td>
+		<td>&nbsp;Data Not confirmed</td>
+	
+		<td style="background-color:red">&nbsp;&nbsp;&nbsp;</td>
+		<td>&nbsp;Single death , More than 5 cases per 1000 population </td>
+	</tr>
+	
+	<tr>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	
+	<tr>
+		
+		<td style="background-color:green">&nbsp;&nbsp;&nbsp;</td>
+		<td>&nbsp;zero cases </td>
+		<td style="background-color:yellow">&nbsp;&nbsp;&nbsp;</td>
+		<td>&nbsp; &lt 5 cases per 1000 population </td>
+	</tr>	
+</table>
+
+<p>&nbsp;</p>
+<br/>
+<table width="100%">
+<tr>
+<td><strong>$navigationString</strong></td>
+</tr>
+</table>
+
+<table valign="top" style="width:100%;margin:auto" border="1" cellspacing="0" cellpadding="5" >
+	
+    <tr bgcolor="#c0c0c0" style="height:23px">
+        <td align="center" style="width:100px"><strong>$rootOrgUnitName</strong></td>
+        #foreach( $normName in $normNames )
+        <td align="center" style="width:100px"><strong>$normName</strong></td>
+        #end
+    </tr>
+	
+    #set( $count1 = 0 )
+    #foreach( $orgUnit in $immChildrenList )
+		<tr style="#if( $mark == 1 )background-color:#e0e0e0;#end height:23px" >
+			
+			#if( $formSDataSetSourceList.contains( $orgUnit ) )
+				<td>$orgUnit.shortName</td>
+			#else
+				<td><a href="idspoutbreak.action?drillDownOrgUnitId=$orgUnit.id">$orgUnit.shortName</a></td>
+			#end
+			
+			#foreach( $normName in $normNames )
+				<td align="center" style='background-color:$outBreakAlertColorMap.get("$normName:$orgUnit.id");'>$outBreakAlertMap.get( "$normName:$orgUnit.id" )</td>
+			#end
+		</tr>
+		#set( $count1 = $count1 + 1 )
+		#if( $mark == 1 )
+			#set( $mark = 0 )
+		#else
+			#set( $mark = 1 )
+		#end    
+    #end
+</table>
+
+<br />
+<br />
+<br />
+<!-- Form P -->
+
+<table width="40%" align="right">
+	<tr>
+		<td style="background-color:pink">&nbsp;&nbsp;&nbsp;</td>
+		<td>&nbsp;Data Not confirmed</td>
+	
+		<td style="background-color:red">&nbsp;&nbsp;&nbsp;</td>
+		<td>&nbsp;Single death , More than 5 cases per 1000 population</td>
+	</tr>
+	
+	<tr>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	
+	<tr>
+		
+		<td style="background-color:green">&nbsp;&nbsp;&nbsp;</td>
+		<td>&nbsp;zero cases</td>
+		<td style="background-color:yellow">&nbsp;&nbsp;&nbsp;</td>
+		<td>&nbsp; &lt 5 cases per 1000 population</td>
+	</tr>
+	
+</table>
+
+<p>&nbsp;</p>
+<br/>
+<table width="100%">
+<tr>
+<td><strong>$navigationStringFormP</strong></td>
+</tr>
+</table>
+
+
+
+
+<table valign="top" style="width:100%;margin:auto" border="1" cellspacing="0" cellpadding="5" >
+    <tr bgcolor="#c0c0c0" style="height:23px">
+        <td align="center" style="width:100px"><strong>$rootOrgUnitNameFormP</strong></td>
+        #foreach( $normNameFormP in $normNamesFormP )
+        <td align="center" style="width:100px" ><strong>$normNameFormP</strong></td>
+        #end
+    </tr>
+
+    #set( $count1 = 0 )
+    #foreach( $orgUnitFormP in $immChildrenListFormP )
+		<tr style="#if( $mark == 1 )background-color:#e0e0e0;#end height:23px" >
+			
+			#if( $formPDataSetSourceList.contains( $orgUnitFormP ) )
+				<td>$orgUnitFormP.shortName</td>
+			#else
+				<td><a href="idspoutbreak.action?drillDownOrgUnitIdFormP=$orgUnitFormP.id">$orgUnitFormP.shortName</a></td>
+			#end
+			
+			#foreach( $normNameFormP in $normNamesFormP )
+				<td align="center" style='background-color:$outBreakAlertColorMapFormP.get("$normNameFormP:$orgUnitFormP.id");'>$outBreakAlertMapFormP.get( "$normNameFormP:$orgUnitFormP.id" )</td>
+			#end
+		</tr>
+		#set( $count1 = $count1 + 1 )
+		#if( $mark == 1 )
+			#set( $mark = 0 )
+		#else
+			#set( $mark = 1 )
+		#end    
+    #end
+</table>
+
+<br />
+<br />
+<br />
+
+<!-- Form L -->
+
+<table width="40%" align="right">
+	<tr>
+		<td style="background-color:pink">&nbsp;&nbsp;&nbsp;</td>
+		<td>&nbsp;Data Not confirmed</td>
+	
+		<td style="background-color:red">&nbsp;&nbsp;&nbsp;</td>
+		<td>&nbsp;Any Diseases more than 5 cases per 1000</td>
+	</tr>
+	
+	<tr>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	
+	<tr>
+		
+		<td style="background-color:green">&nbsp;&nbsp;&nbsp;</td>
+		<td>&nbsp;No positive cases</td>
+		<td style="background-color:yellow">&nbsp;&nbsp;&nbsp;</td>
+		<td>&nbsp; 1 to 5 positive cases</td>
+	</tr>
+	
+</table>
+
+<p>&nbsp;</p>
+<br/>
+<table width="100%">
+<tr>
+<td><strong>$navigationStringFormL</strong></td>
+</tr>
+</table>
+
+
+<table valign="top" style="width:100%;margin:auto" border="1" cellspacing="0" cellpadding="5" >
+    <tr bgcolor="#c0c0c0" style="height:23px">
+        <td align="center" style="width:100px"><strong>$rootOrgUnitNameFormL</strong></td>
+        #foreach( $normNameFormL in $normNamesFormL )
+        <td align="center" style="width:100px" ><strong>$normNameFormL</strong></td>
+        #end
+    </tr>
+
+    #set( $count1 = 0 )
+    #foreach( $orgUnitFormL in $immChildrenListFormL )
+		<tr style="#if( $mark == 1 )background-color:#e0e0e0;#end height:23px" >
+			
+			#if( $formLDataSetSourceList.contains( $orgUnitFormL ) )
+				<td>$orgUnitFormL.shortName</td>
+			#else
+				<td><a href="idspoutbreak.action?drillDownOrgUnitIdFormL=$orgUnitFormL.id">$orgUnitFormL.shortName</a></td>
+			#end
+			
+			#foreach( $normNameFormL in $normNamesFormL )
+				<td align="center" style='background-color:$outBreakAlertColorMapFormL.get("$normNameFormL:$orgUnitFormL.id");'>$outBreakAlertMapFormL.get( "$normNameFormL:$orgUnitFormL.id" )</td>
+			#end
+		</tr>
+		#set( $count1 = $count1 + 1 )
+		#if( $mark == 1 )
+			#set( $mark = 0 )
+		#else
+			#set( $mark = 1 )
+		#end    
+    #end
+</table>

@@ -1,0 +1,73 @@
+
+<script type="text/javascript">
+    
+    var i18n_select_period = '$encoder.jsEscape( $i18n.getString( "select_period" ) , "'")';
+    var i18n_please_select = '$encoder.jsEscape( $i18n.getString( "please_select" ) , "'")';
+    
+</script>
+
+<script type="text/javascript">
+
+function formValidations()
+{
+    //alert("validation");
+    
+    var startOrgUnitList = document.getElementById("selectedOrgUnitId");
+    var startOrgUnitIndex = startOrgUnitList.selectedIndex;
+    
+    if( startOrgUnitList.options[startOrgUnitIndex].value == null || startOrgUnitList.options[startOrgUnitIndex].value== "-1" ) 
+    { 
+        showWarningMessage( "Please Select District" );
+        //alert("Please Select Period"); 
+        return false; 
+    }
+    
+    return true;
+}
+
+</script>
+
+
+<h3>$i18n.getString( "District Wise Registered ASHA List" )</h3>
+
+<form id="registeredASHAListReportForm" name="registeredASHAListReportForm" method="post" action="generateRegisteredASHAListReport.action" onsubmit="return formValidations()" target="_blank" >
+<div>
+    <input type="hidden" name="orgUnitId" id="orgUnitId" value="$!organisationUnit.getId()" />
+</div>
+
+<div class="inputCriteria" style="width:475px;height:50px;">
+<table>
+    <tr>
+        <td><label for="orgUnitName">$i18n.getString( "organisation_unit" )</label></td>
+        <td><input type="text" id="orgUnitName" name = "orgUnitName" readonly="readonly" value="$!organisationUnit.getName()" style="width:367px"></td>
+    </tr>
+
+    <tr>
+        <td><label for="selectedOrgUnitId">$i18n.getString( "District" )</label></td>
+        <td>
+            <select id="selectedOrgUnitId" name="selectedOrgUnitId" style="width:370px">
+                <option value="-1">[$i18n.getString( "please_select" )]</option>
+                #foreach( $orgUnit in $orgUnitList )
+                        <option value="$orgUnit.id">$orgUnit.name</option>
+                    #end
+            </select>
+        </td>
+    </tr>
+
+</table>
+</div>
+
+<p>
+    <input type="button"  value="$i18n.getString( 'Cancel' )" style="width:100px" onclick="window.location.href='index.action'"/>&nbsp;&nbsp;
+    &nbsp;&nbsp;<input type="submit"  id="generate" name="generate" value='$i18n.getString("generate_report")' style="width:100px"/>
+</p>
+
+
+</form>
+
+
+<script type="text/javascript">
+jQuery( document ).ready( function()
+{
+});
+</script>

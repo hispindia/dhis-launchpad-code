@@ -1,0 +1,35 @@
+## Macro for generating the jQuery validation rules 
+#macro( validate $type $require )
+  #if( $type == "NUMBER" )
+  	{validate:{ number:true #if($require), required:true #end }}
+  #elseif( $type == "string" )
+  	{validate:{ alphanumeric:true #if($require), required:true #end }}
+  #elseif( $require )
+  	{validate:{required:true}}
+  #end
+#end
+
+<table  width="75%">
+	#if ( $dataElements.size() > 0 )
+		<tr>
+        	<th style="width:250px;text-align: center">$i18n.getString( "dataElements" )</th>
+            <th style="width:250px;text-align: center">$i18n.getString( "values" )</th>
+               
+		</tr>
+		<br />
+ 
+       	#foreach( $dataElement in $dataElements )
+      		<tr>
+            	<td>$dataElement.getFormNameFallback()</td>
+                #set( $valueMapId =  $dataElement.id )
+                #set( $dataValue = "" )
+                #set( $dataValue = $!ashaDataValueMap.get( $valueMapId ) )
+	        		<td style="width:250px;overflow-x:scroll;text-align: center">
+						<input type="text" name="dataelement$valueMapId" id="dataelement$valueMapId" style="text-align: center;" value="$dataValue"/>
+	        		</td>
+			</tr>
+		#end
+	#else
+	<h3>No Any Dataelements</h3>  
+	#end
+</table>

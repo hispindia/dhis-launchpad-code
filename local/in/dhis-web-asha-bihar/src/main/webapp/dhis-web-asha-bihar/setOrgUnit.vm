@@ -1,0 +1,27 @@
+
+<script>
+	var i18n_please_select_orgUnit = '$encoder.jsEscape( $i18n.getString( "please_select_orgUnit" ) , "'")';
+function organisationUnitSelected( orgUnits )
+{  
+	document.getElementById('orgUnitId').value = orgUnits[0];
+	$('#contentDiv').load("getEmployee.action", 
+			{
+				orgUnitId : orgUnits[0],				
+			}
+			, function( ){
+				$("#heading").remove();		
+			});	
+	
+}
+selection.setListenerFunction( organisationUnitSelected );
+	
+</script>
+<form id="employeeForm" name="employeeForm" action="getEmployee.action" method="post">
+	<input type="hidden" id='orgUnitId'  name="orgUnitId"/>
+	<h3 id="heading">Please Select Organisation Unit</h3>
+	<div id="contentDiv" ></div>
+</form>
+
+
+
+

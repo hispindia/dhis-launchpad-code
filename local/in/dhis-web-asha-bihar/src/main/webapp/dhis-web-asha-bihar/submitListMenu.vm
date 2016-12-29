@@ -1,0 +1,70 @@
+<br />
+
+<script>
+
+var selOUID = "";
+
+jQuery(document).ready(function(){
+
+jQuery('#orgUnitTreeContainer').height(100);
+jQuery('#orgUnitTree').height(100);
+       
+});        
+
+function organisationUnitSelected( orgUnits, orgUnitNames )
+{   
+    document.getElementById('selectedOrgunitID').value = orgUnits;
+	selOUID = orgUnits;
+    //setFieldValue("selectedOrgunitText", orgUnitNames[0]);
+    //setFieldValue("orgunitName", orgUnitNames[0]);
+}
+
+selection.setListenerFunction( organisationUnitSelected );
+
+function callAction( actionName )
+{
+    //var orgObject = document.getElementById('selectedOrgunitID');
+    //var orgUnitId = document.getElementById('selectedOrgunitID').value;
+    
+    //alert( orgUnitId );
+    if( selOUID == "" )
+    {
+        showWarningMessage( i18n_please_select_orgUnit );
+    }
+    else
+    {
+		$( '#ovcManagementDiv' ).load( actionName+".action", 
+        { 
+            orgUnitId : selOUID
+        },
+		function()
+        {
+		});
+        //window.location.href = ?orgUnitId=" + selOUID;;
+    }
+}
+</script>
+
+#parse( "/dhis-web-commons/ouwt/orgunittreesearch.vm" )
+
+<h2>$i18n.getString( "ovc_management" )&nbsp;</h2>
+    <ul>
+        <li><a href="javascript:callAction( 'getRegistrationForm' )">$i18n.getString( "new_registration" )&nbsp;</a></li>
+        <li><a href="javascript:callAction( 'getSubmittedList' )">$i18n.getString( "submitted" )&nbsp;</a></li>
+        <li><a href="#">$i18n.getString( "active" )&nbsp;</a></li>
+        <li><a href="#">$i18n.getString( "rejected" )&nbsp;</a></li>
+    </ul>
+
+<h2>Community Worker Management &nbsp;</h2>
+	<ul>
+		<li><a href="javascript:callAction( 'getEmployee' )">Community Worker Management &nbsp;</a></li>		
+	</ul>
+	
+<h2>$i18n.getString( "exit_form" )&nbsp;</h2>
+    <ul>
+        <li><a href="#">$i18n.getString( "exit_pending" )&nbsp;</a></li>
+        <li><a href="#">$i18n.getString( "in_active" )&nbsp;</a></li>
+    </ul>
+
+<h2>$i18n.getString( "reports" )&nbsp;</h2>
+

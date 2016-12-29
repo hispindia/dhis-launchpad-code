@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+ "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="org.hisp.dhis.employee.Employee" table="employee">
+
+	<id name="id" column="employeeid">
+      <generator class="native" />
+    </id>
+    
+    <property name="name" column="name" not-null="true" length="160" />
+    
+    <!-- 
+    <property name="surname" not-null="false" length="160" />
+    
+    <property name="firstName" column="firstname" not-null="true" length="160" />
+    
+    <property name="lastName" column="lastname" not-null="false" length="160" />
+	-->
+	
+	  
+	<property name="gender" column="gender" not-null="true" length="5" /> 
+	
+	<property name="address" column="address" not-null="false" type="text" />
+	 
+	<property name="phoneNumber" column="phonenumber" not-null="false" length="25" />
+	
+	<property name="email" column="email" not-null="false" length="160" />
+	
+	<property name="birthDate" column="birthdate" not-null="true" type="date" />
+	
+	<property name="educationLevel" column="educationlevel" not-null="false" length="160" />
+	
+	<property name="category" column="category" not-null="false" length="160" />
+
+   	<property name="designation" column="designation" not-null="false" length="160" />
+   	
+   	<property name="maritalStatus" column="maritalstatus" not-null="false" length="160" />
+   	
+   	<property name="joiningDate" column="joiningdate" not-null="true" type="date" />
+   	
+   	<property name="experience" column="experience" not-null="false" length="160" />
+   	
+    <property name="orientationReceived" column="orientationreceived" not-null="false" />
+    
+    <property name="active" column="active" not-null="true" />
+    
+    <property name="code" column="employeecode" not-null="false" length="160" />
+     
+	<many-to-one name="organisationUnit" class="org.hisp.dhis.organisationunit.OrganisationUnit" column="organisationunitid"
+      not-null="true" foreign-key="fk_employee_organisationunitid" />
+      
+    <property name="storedBy" column="storedBy" length="160" />
+
+    <property name="lastupdated" column="lastupdated" type="date" />
+      
+  </class>
+  
+</hibernate-mapping>

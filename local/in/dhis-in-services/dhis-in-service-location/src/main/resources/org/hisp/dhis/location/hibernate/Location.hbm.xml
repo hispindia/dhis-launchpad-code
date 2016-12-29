@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+ "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="org.hisp.dhis.location.Location" table="location">
+
+    <id name="id" column="locationid">
+      <generator class="native" />
+    </id>
+    
+	  
+    <property name="name" column="name" not-null="true" length="230" />
+
+    <property name="shortName" column="shortname" not-null="false" length="50" />	  
+	
+	<property name="code" column="code" not-null="true" length="160" />  
+	  
+    <!-- Contact info -->
+
+    <property name="contactPerson" column="contactperson" not-null="false" length="255" />
+
+    <property name="address" column="address" not-null="false" length="255" />
+
+    <property name="email" column="email" not-null="false" length="150" />
+
+    <property name="phoneNumber" column="phonenumber" not-null="false" length="150" />	  
+	  
+	<!-- Parent OrganisationUnit -->
+	    
+    <many-to-one name="parentOrganisationUnit" class="org.hisp.dhis.organisationunit.OrganisationUnit" column="parentorganisationunitid"
+        not-null="true" foreign-key="fk_location_parentorganisationunitid" />
+	  
+	<property name="active" not-null="true"  column="active"/>
+	  
+  </class>
+</hibernate-mapping>

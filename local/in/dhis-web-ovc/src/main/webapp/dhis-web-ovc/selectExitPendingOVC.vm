@@ -1,0 +1,24 @@
+#if( $ovcStatus == "NONE" )
+
+<div id='searchDiv'>
+	#parse( "dhis-web-ovc/searchOVCExitPendingCriteria.vm" )
+</div>
+
+<div id='listOVCExitRequestedDiv'></div> <!-- List All ExitPending OVC -->
+<div id='updateOVCExitFormDiv'></div> <!-- Update OVC Exit Form -->
+
+#parse( "/dhis-web-commons/loader/loader.vm" )
+#else
+	<h4>$ovcStatus</h4>
+#end
+
+<script type="text/javascript">
+	
+	setFieldValue('startDueDate','');
+	setFieldValue('endDueDate','');
+	
+	isAjax = true;
+	contentDiv = '';
+	
+	listAllExitPendingOVC();
+</script>

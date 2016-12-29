@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+    
+	<!-- PatientDataEntryLock -->
+    <!-- Store -->
+    <bean id="org.hisp.dhis.patientdataentrylock.PatientDataEntryLockStore"
+        class="org.hisp.dhis.patientdataentrylock.hibernate.HiberatePatientDataEntryLockStore">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="periodStore" ref="org.hisp.dhis.period.PeriodStore"/>
+    </bean>
+
+    <!-- Service -->
+    <bean id="org.hisp.dhis.patientdataentrylock.PatientDataEntryLockService"
+        class="org.hisp.dhis.patientdataentrylock.DefaultPatientDataEntryLockService">
+        <property name="patientDataEntryLockStore" ref="org.hisp.dhis.patientdataentrylock.PatientDataEntryLockStore"/>
+    </bean>
+    
+    <!-- Deletion Handlers -->
+    
+</beans>

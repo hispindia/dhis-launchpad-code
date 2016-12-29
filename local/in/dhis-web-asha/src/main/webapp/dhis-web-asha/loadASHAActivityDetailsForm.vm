@@ -1,0 +1,705 @@
+<script type="text/javascript" src="javascript/ashaActivityDetailsDataEntry.js"></script>
+## Macro for generating the jQuery validation rules 
+#macro( validate $type $require )
+  #if( $type == "NUMBER" || $type == "number" )
+    {validate:{ number:true #if($require), required:true #end }}
+  
+	#elseif( $type == "int" )
+  	{validate:{ integer:true #if($require), required:true #end }}
+  	
+  	#elseif( $type == "positiveNumber" )
+  	{validate:{ positive_integer:true #if($require), required:true #end }}
+  	
+	#elseif( $type == "negativeNumber" )
+  	{validate:{ negative_integer:true #if($require), required:true #end }}
+  
+	#elseif( $require )
+    {validate:{required:true}}
+  #end
+#end
+
+<style>
+    #overlay {
+    z-index:9998;
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    width:100%;
+    background:#000;
+    opacity:0.45;
+    -moz-opacity:0.45;
+    filter:alpha(opacity=45);
+    visibility:hidden;   
+    }
+    #overlayImg{ width: 50px; height: 50px; z-index: 9999; position: absolute; left:50%}
+	
+	input[type="text"] 
+	{
+		color:black;
+	}
+	
+	input[type="select"] 
+	{
+		color:black;
+	}
+	
+</style>
+<div id="overlay">
+    <div id="overlayImg"><img  width="50" height="50" src="images/ajax-loader.gif" style="margin:auto;position:fixed;top: 50%;left: 50%;"/></div>
+</div>
+
+
+<script>
+    
+	jQuery(document).ready( function(){
+	currentDiv = 'ASHAActivityDetailsDataEntryForm';
+	isSubmit = true;
+    jQuery("#ASHAActivityDetailsDataEntryForm").validate({
+		meta:"validate"
+		,errorElement:"span"
+		,submitHandler: function(form)
+		{
+        	if( isSubmit ) 
+            {
+            	saveASHAActivityDetailsDataEntryForm();
+            }
+		}
+    	});
+    }); 
+    
+</script>
+
+
+#if( $status == "NONE" )
+<h4>$i18n.getString( "add_asha_activity_details" )</h4>
+
+<form id="ASHAActivityDetailsDataEntryForm" name="ASHAActivityDetailsDataEntryForm" method="post"> 
+
+<div>
+	<input type="hidden" id="id" name="id" value="$patient.id">
+	<input type="hidden" id="programId" name="programId" value="$!program.id">
+	<input type="hidden" id="programInstanceId" name="programInstanceId" value="$!programInstanceId">
+	<input type="hidden" id="programStageId" name="programStageId" value="$!programStage.id">
+	<input type="hidden" id="programStageInstanceId" name="programStageInstanceId" value="$!programStageInstanceId">
+	<input type="hidden" id="selectedPeriodId" name="selectedPeriodId" value="$!selectedPeriodId">	
+</div>	
+
+<!--$selectedPeriodId-->
+<table  width="100%">
+	
+	<tr bgcolor="#CBDDEB">
+		<td width="100%" colspan="5"><strong>Session/Mobilization</strong></td>
+	</tr>
+	
+	
+	
+	<tr bgcolor="#CBDDEB">
+		<td width="40%"><strong>Kind of Session</strong></td>
+		<td width="15%"><strong>Date of Session</strong></td>
+		<td width="15%"><strong>Place of Session</strong></td>
+		<!--<td width="15%"><strong>Number of Child</strong></td>-->
+		<td width="15%"><strong>&nbsp;</strong></td>
+		<td width="15%"><strong>&nbsp;</strong></td>
+	</tr>	
+	
+	
+	<tr>
+		<td width="40%"><input type='checkbox' id='mobilization1' name='mobilization1' #if ( $patientDataValueMap.get( 418 ) && $!patientDataValueMap.get( 418 ) != "" ) checked = "checked" #end onchange="selectMobilization( 'mobilization1', 'deps418', 'deps419','deps434' );"/>&nbsp;&nbsp;
+			Mobilization of Community for RI</td>
+		<td width="15%">
+			<input type="text" id="deps418" name="deps418"  disabled = "disabled" value="$!patientDataValueMap.get( 418 )" style="width:98%;" />
+			<script type="text/javascript">
+				datePickerValid( 'deps418' );
+			</script>
+		</td>
+
+		<td width="15%">
+			<input type="text" id="deps419" name="deps419"  disabled = "disabled"  value="$!patientDataValueMap.get( 419 )" style="width:98%;" />
+		</td>
+				
+		<td width="15%" style="display:none">
+			<input type="text" id="deps434" name="deps434"  disabled = "disabled"  value="$!patientDataValueMap.get( 434 )" style="width:98%;" />
+		</td>
+		
+		<td width="15%"><strong>&nbsp;</strong></td>
+		<td width="15%"><strong>&nbsp;</strong></td>
+	</tr>	
+
+
+	<tr bgcolor="#CBDDEB">
+		<td width="40%"><strong>Other Kind of Session</strong></td>
+		<td width="15%"><strong>Date of Session</strong></td>
+		<td width="15%"><strong>Kind of Session</strong></td>
+		<td width="15%"><strong>Place of Session</strong></td>
+		<!--<td width="15%"><strong>Number of Child</strong></td>-->
+		<td width="15%"><strong>&nbsp;</strong></td>
+	</tr>
+	
+	<tr>
+		<td width="40%"><input type='checkbox' id='otherSession1' name='otherSession1' #if ( $patientDataValueMap.get( 470 ) && $!patientDataValueMap.get( 470 ) != "" ) checked = "checked" #end onchange="selectOtherSession( 'otherSession1', 'deps470', 'deps466','deps480','deps474' );"/>&nbsp;&nbsp;
+			Other Kind of Session 1</td>
+		
+		<td width="15%">
+			<input type="text" id="deps470" name="deps470"  disabled = "disabled" value="$!patientDataValueMap.get( 470 )" style="width:98%;" />
+			<script type="text/javascript">
+				datePickerValid( 'deps470' );
+			</script>
+		</td>
+		
+       <td width="15%">
+        	#set( $dataElement = "")
+			#set( $patientDataValue = "")
+    			
+    		#set( $dataElement = $dataElementMap.get( 466 ) )
+    		#set( $patientDataValue = $!patientDataValueMap.get( 466 ) )
+
+			<select id="deps466" name="deps466" disabled = "disabled" style="color:black" >
+    			<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+    			#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+    				#if($optionVal == $patientDataValue )
+    					<option value="$optionVal" selected = "selected">$optionVal</option>
+    				#else 
+    					<option value="$optionVal" >$optionVal</option>
+    				#end
+                #end
+    		</select>
+        </td>		
+		
+
+		<td width="15%">
+			<input type="text" id="deps480" name="deps480"  disabled = "disabled"  value="$!patientDataValueMap.get( 480 )" style="width:98%;" />
+		</td>
+				
+		<td width="15%" style="display:none">
+			<input type="text" id="deps474" name="deps474"  disabled = "disabled"  value="$!patientDataValueMap.get( 474 )" style="width:98%;" />
+		</td>
+		
+	</tr>
+	
+	
+	<tr>
+		<td width="40%"><input type='checkbox' id='otherSession2' name='otherSession2' #if ( $patientDataValueMap.get( 471 ) && $!patientDataValueMap.get( 471 ) != "" ) checked = "checked" #end onchange="selectOtherSession( 'otherSession2', 'deps471', 'deps467','deps481','deps475' );"/>&nbsp;&nbsp;
+			Other Kind of Session 2</td>
+		
+		<td width="15%">
+			<input type="text" id="deps471" name="deps471"  disabled = "disabled" value="$!patientDataValueMap.get( 471 )" style="width:98%;" />
+			<script type="text/javascript">
+				datePickerValid( 'deps471' );
+			</script>
+		</td>			
+			
+       <td width="15%">
+        	#set( $dataElement = "")
+			#set( $patientDataValue = "")
+    			
+    		#set( $dataElement = $dataElementMap.get( 467 ) )
+    		#set( $patientDataValue = $!patientDataValueMap.get( 467 ) )
+
+			<select id="deps467" name="deps467" disabled = "disabled" style="color:black" >
+    			<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+    			#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+    				#if($optionVal == $patientDataValue )
+    					<option value="$optionVal" selected = "selected">$optionVal</option>
+    				#else 
+    					<option value="$optionVal" >$optionVal</option>
+    				#end
+                #end
+    		</select>
+        </td>		
+		
+		<td width="15%">
+			<input type="text" id="deps481" name="deps481"  disabled = "disabled"  value="$!patientDataValueMap.get( 481 )" style="width:98%;" />
+		</td>
+				
+		<td width="15%" style="display:none">
+			<input type="text" id="deps475" name="deps475"  disabled = "disabled"  value="$!patientDataValueMap.get( 475 )" style="width:98%;" />
+		</td>
+		
+	</tr>	
+	
+	
+	<tr>
+		<td width="40%"><input type='checkbox' id='otherSession3' name='otherSession3' #if ( $patientDataValueMap.get( 472 ) && $!patientDataValueMap.get( 472 ) != "" ) checked = "checked" #end onchange="selectOtherSession( 'otherSession3', 'deps472', 'deps468','deps482','deps476' );"/>&nbsp;&nbsp;
+			Other Kind of Session 3</td>
+
+		<td width="15%">
+			<input type="text" id="deps472" name="deps472"  disabled = "disabled" value="$!patientDataValueMap.get( 472 )" style="width:98%;" />
+			<script type="text/javascript">
+				datePickerValid( 'deps472' );
+			</script>
+		</td>			
+			
+       <td width="15%">
+        	#set( $dataElement = "")
+			#set( $patientDataValue = "")
+    			
+    		#set( $dataElement = $dataElementMap.get( 468 ) )
+    		#set( $patientDataValue = $!patientDataValueMap.get( 468 ) )
+
+			<select id="deps468" name="deps468" disabled = "disabled" style="color:black" >
+    			<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+    			#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+    				#if($optionVal == $patientDataValue )
+    					<option value="$optionVal" selected = "selected">$optionVal</option>
+    				#else 
+    					<option value="$optionVal" >$optionVal</option>
+    				#end
+                #end
+    		</select>
+        </td>		
+
+
+		<td width="15%">
+			<input type="text" id="deps482" name="deps482"  disabled = "disabled"  value="$!patientDataValueMap.get( 482 )" style="width:98%;" />
+		</td>
+				
+		<td width="15%" style="display:none">
+			<input type="text" id="deps476" name="deps476"  disabled = "disabled"  value="$!patientDataValueMap.get( 476 )" style="width:98%;" />
+		</td>
+		
+	</tr>	
+	
+
+	<tr>
+		<td width="40%"><input type='checkbox' id='otherSession4' name='otherSession4' #if ( $patientDataValueMap.get( 473 ) && $!patientDataValueMap.get( 473 ) != "" ) checked = "checked" #end onchange="selectOtherSession( 'otherSession4', 'deps473', 'deps469','deps483','deps477' );"/>&nbsp;&nbsp;
+			Other Kind of Session 4</td>
+		
+		<td width="15%">
+			<input type="text" id="deps473" name="deps473"  disabled = "disabled" value="$!patientDataValueMap.get( 473 )" style="width:98%;" />
+			<script type="text/javascript">
+				datePickerValid( 'deps473' );
+			</script>
+		</td>	
+		
+       <td width="15%">
+        	#set( $dataElement = "")
+			#set( $patientDataValue = "")
+    			
+    		#set( $dataElement = $dataElementMap.get( 469 ) )
+    		#set( $patientDataValue = $!patientDataValueMap.get( 469 ) )
+
+			<select id="deps469" name="deps469" disabled = "disabled" style="color:black" >
+    			<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+    			#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+    				#if($optionVal == $patientDataValue )
+    					<option value="$optionVal" selected = "selected">$optionVal</option>
+    				#else 
+    					<option value="$optionVal" >$optionVal</option>
+    				#end
+                #end
+    		</select>
+        </td>		
+		
+		<td width="15%">
+			<input type="text" id="deps483" name="deps483"  disabled = "disabled"  value="$!patientDataValueMap.get( 483 )" style="width:98%;" />
+		</td>
+				
+		<td width="15%" style="display:none">
+			<input type="text" id="deps477" name="deps477"  disabled = "disabled"  value="$!patientDataValueMap.get( 477 )" style="width:98%;" />
+		</td>
+		
+	</tr>	
+	
+	
+	
+	<tr bgcolor="#CBDDEB">
+		<td width="100%" colspan="5"><strong>Meeting</strong></td>
+	</tr>
+	
+	<tr bgcolor="#CBDDEB">
+		<td width="40%"><strong>Purpose of Meeting</strong></td>
+		<td width="15%"><strong>Date of Meeting</strong></td>
+		<td width="15%"><strong>Place of Meeting</strong></td>
+		<td width="15%"><strong>&nbsp;</strong></td>
+		<td width="15%"><strong>&nbsp;</strong></td>
+	</tr>	
+	
+	<tr>
+		<td width="40%"><input type='checkbox' id='meeting1' name='meeting1' #if ( $patientDataValueMap.get( 406 ) && $!patientDataValueMap.get( 406 ) != "" ) checked = "checked" #end onchange="selectCommunityMobilization( 'meeting1', 'deps406', 'deps407' );"/>&nbsp;&nbsp;
+			Community Mobilization for VHND Celebration</td>
+		<td width="15%">
+			<input type="text" id="deps406" name="deps406"  disabled = "disabled" value="$!patientDataValueMap.get( 406 )" style="width:98%;" />
+			<script type="text/javascript">
+				datePickerValid( 'deps406' );
+			</script>
+		</td>
+
+		<td width="15%">
+			<input type="text" id="deps407" name="deps407"  disabled = "disabled"  value="$!patientDataValueMap.get( 407 )" style="width:98%;" />
+		</td>
+		<td width="15%">&nbsp;</td>
+		<td width="15%">&nbsp;</td>
+		
+	</tr>	
+	
+	<tr>
+		<td width="40%"><input type='checkbox' id='meeting2' name='meeting2' #if ( $patientDataValueMap.get( 432 ) && $!patientDataValueMap.get( 432 ) != "" ) checked = "checked" #end onchange="selectCommunityMobilization( 'meeting2', 'deps432', 'deps433' );"/>&nbsp;&nbsp;
+			Convening Monthly Meeting of VHSNC</td>
+		<td width="15%">
+			<input type="text" id="deps432" name="deps432"  disabled = "disabled" value="$!patientDataValueMap.get( 432 )" style="width:98%;" />
+			<script type="text/javascript">
+				datePickerValid( 'deps432' );
+			</script>
+		</td>
+
+		<td width="15%">
+			<input type="text" id="deps433" name="deps433"  disabled = "disabled"  value="$!patientDataValueMap.get( 433 )" style="width:98%;" />
+		</td>
+		<td width="15%">&nbsp;</td>
+		<td width="15%">&nbsp;</td>
+	</tr>
+
+	<tr>
+		<td width="40%"><input type='checkbox' id='meeting3' name='meeting3' #if ( $patientDataValueMap.get( 411 ) && $!patientDataValueMap.get( 411 ) != "" ) checked = "checked" #end onchange="selectCommunityMobilization( 'meeting3', 'deps411', 'deps412' );"/>&nbsp;&nbsp;
+			Monthly Meetings at PHC</td>
+		<td width="15%">
+			<input type="text" id="deps411" name="deps411"  disabled = "disabled" value="$!patientDataValueMap.get( 411 )" style="width:98%;" />
+			<script type="text/javascript">
+				datePickerValid( 'deps411' );
+			</script>
+		</td>
+
+		<td width="15%">
+			<input type="text" id="deps412" name="deps412"  disabled = "disabled"  value="$!patientDataValueMap.get( 412 )" style="width:98%;" />
+		</td>
+		<td width="15%">&nbsp;</td>
+		<td width="15%">&nbsp;</td>
+	</tr>	
+	
+	<tr>
+		<td width="40%"><input type='checkbox' id='meeting4' name='meeting4' #if ( $patientDataValueMap.get( 430 ) && $!patientDataValueMap.get( 430 ) != "" ) checked = "checked" #end onchange="selectCommunityMobilization( 'meeting4', 'deps430', 'deps431' );"/>&nbsp;&nbsp;
+			Convenient monthly meeting of adolescent girl</td>
+		<td width="15%">
+			<input type="text" id="deps430" name="deps430"  disabled = "disabled" value="$!patientDataValueMap.get( 430 )" style="width:98%;" />
+			<script type="text/javascript">
+				datePickerValid( 'deps430' );
+			</script>
+		</td>
+
+		<td width="15%">
+			<input type="text" id="deps431" name="deps431"  disabled = "disabled"  value="$!patientDataValueMap.get( 431 )" style="width:98%;" />
+		</td>
+		<td width="15%">&nbsp;</td>
+		<td width="15%">&nbsp;</td>
+	</tr>	
+
+	<tr bgcolor="#CBDDEB">
+		<td width="40%"><strong>Other Meetings</strong></td>
+		<td width="15%"><strong>Date of Meeting</strong></td>
+		<td width="15%"><strong>Purpose of Meeting</strong></td>
+		<td width="15%"><strong>Place of Meeting</strong></td>
+		<td width="15%"><strong>&nbsp;</strong></td>
+	</tr>	
+	
+	
+	<tr>
+		<td width="40%"><input type='checkbox' id='otherMeeting1' name='otherMeeting1' #if ( $patientDataValueMap.get( 461 ) && $!patientDataValueMap.get( 461 ) != "" ) checked = "checked" #end onchange="selectOtherMeeting( 'otherMeeting1', 'deps461', 'deps455', 'deps458' );"/>&nbsp;&nbsp;
+			Other Meeting 1</td>
+
+		<td width="15%">
+			<input type="text" id="deps461" name="deps461"  disabled = "disabled" value="$!patientDataValueMap.get( 461 )" style="width:98%;" />
+			<script type="text/javascript">
+				datePickerValid( 'deps461' );
+			</script>
+		</td>			
+			
+		<td width="15%">
+			<input type="text" id="deps455" name="deps455"  disabled = "disabled"  value="$!patientDataValueMap.get( 455 )" style="width:98%;" />
+		</td>
+		
+		<td width="15%">
+			<input type="text" id="deps458" name="deps458"  disabled = "disabled"  value="$!patientDataValueMap.get( 458 )" style="width:98%;" />
+		</td>
+		
+		<td width="15%">&nbsp;</td>
+	</tr>	
+	
+	<tr>
+		<td width="40%"><input type='checkbox' id='otherMeeting2' name='otherMeeting2' #if ( $patientDataValueMap.get( 462 ) && $!patientDataValueMap.get( 462 ) != "" ) checked = "checked" #end onchange="selectOtherMeeting( 'otherMeeting2', 'deps462', 'deps456', 'deps459' );"/>&nbsp;&nbsp;
+			Other Meeting 2</td>
+		
+		<td width="15%">
+			<input type="text" id="deps462" name="deps462"  disabled = "disabled" value="$!patientDataValueMap.get( 462 )" style="width:98%;" />
+			<script type="text/javascript">
+				datePickerValid( 'deps462' );
+			</script>
+		</td>			
+			
+		<td width="15%">
+			<input type="text" id="deps456" name="deps456"  disabled = "disabled"  value="$!patientDataValueMap.get( 456 )" style="width:98%;" />
+		</td>
+		
+
+		<td width="15%">
+			<input type="text" id="deps459" name="deps459"  disabled = "disabled"  value="$!patientDataValueMap.get( 459 )" style="width:98%;" />
+		</td>
+		
+		<td width="15%">&nbsp;</td>
+	</tr>
+	
+	<tr>
+		<td width="40%"><input type='checkbox' id='otherMeeting3' name='otherMeeting3' #if ( $patientDataValueMap.get( 463 ) && $!patientDataValueMap.get( 463 ) != "" ) checked = "checked" #end onchange="selectOtherMeeting( 'otherMeeting3', 'deps463', 'deps457', 'deps460' );"/>&nbsp;&nbsp;
+			Other Meeting 3</td>
+		
+		<td width="15%">
+			<input type="text" id="deps463" name="deps463"  disabled = "disabled" value="$!patientDataValueMap.get( 463 )" style="width:98%;" />
+			<script type="text/javascript">
+				datePickerValid( 'deps463' );
+			</script>
+		</td>			
+			
+		<td width="15%">
+			<input type="text" id="deps457" name="deps457"  disabled = "disabled"  value="$!patientDataValueMap.get( 457 )" style="width:98%;" />
+		</td>
+		
+		<td width="15%">
+			<input type="text" id="deps460" name="deps460"  disabled = "disabled"  value="$!patientDataValueMap.get( 460 )" style="width:98%;" />
+		</td>
+		
+		<td width="15%">&nbsp;</td>
+	</tr>	
+	
+	
+	<tr bgcolor="#CBDDEB">
+		<td width="100%" colspan="5"><strong>Sample</strong></td>
+	</tr>
+
+	
+	<tr bgcolor="#CBDDEB">
+		<td width="40%"><strong>Kind of Sample</strong></td>
+		<td width="15%"><strong>Date of Sample</strong></td>
+		<td width="15%"><strong>Place of Sample</strong></td>
+		<td width="15%"><strong>Number of Sample</strong></td>
+		<td width="15%"><strong>&nbsp;</strong></td>
+	</tr>	
+	
+	<tr>
+		<td width="40%"><input type='checkbox' id='sample1' name='sample1' #if ( $patientDataValueMap.get( 408 ) && $!patientDataValueMap.get( 408 ) != "" ) checked = "checked" #end onchange="selectSampleTest( 'sample1', 'deps408', 'deps409', 'deps410' );"/>&nbsp;&nbsp;
+			Water Samples Taken Community/School/ AWC to be taken for Testing</td>
+		<td width="15%">
+			<input type="text" id="deps408" name="deps408"  disabled = "disabled" value="$!patientDataValueMap.get( 408 )" style="width:98%;" />
+			<script type="text/javascript">
+				datePickerValid( 'deps408' );
+			</script>
+		</td>
+
+		<td width="15%">
+			<input type="text" id="deps410" name="deps410"  disabled = "disabled"  value="$!patientDataValueMap.get( 410 )" style="width:98%;" />
+		</td>
+		
+		<td width="15%">
+			<input type="text" id="deps409" name="deps409"  disabled = "disabled"  value="$!patientDataValueMap.get( 409 )" style="width:98%;" />
+		</td>
+		
+		<td width="15%">&nbsp;</td>
+	</tr>		
+
+	<tr>
+		<td width="40%"><input type='checkbox' id='sample2' name='sample2' #if ( $patientDataValueMap.get( 427 ) && $!patientDataValueMap.get( 427 ) != "" ) checked = "checked" #end onchange="selectSampleTest( 'sample2', 'deps427', 'deps428', 'deps429' );"/>&nbsp;&nbsp;
+			Conducting Testing of Salt Sample under NIDDCP</td>
+		<td width="15%">
+			<input type="text" id="deps427" name="deps427"  disabled = "disabled" value="$!patientDataValueMap.get( 427 )" style="width:98%;" />
+			<script type="text/javascript">
+				datePickerValid( 'deps427' );
+			</script>
+		</td>
+
+		<td width="15%">
+			<input type="text" id="deps429" name="deps429"  disabled = "disabled"  value="$!patientDataValueMap.get( 429 )" style="width:98%;" />
+		</td>		
+		
+		<td width="15%">
+			<input type="text" id="deps428" name="deps428"  disabled = "disabled"  value="$!patientDataValueMap.get( 428 )" style="width:98%;" onchange="validateNoOfSampleTaken( 'sample2' );" />
+		</td>
+		
+		<td width="15%">&nbsp;</td>
+	</tr>	
+	
+	<tr bgcolor="#CBDDEB">
+		<td width="100%" colspan="5"><strong>TA/DA</strong></td>
+	</tr>
+
+	
+	<tr bgcolor="#CBDDEB">
+		<td width="40%"><strong>Kind of Activity</strong></td>
+		<td width="15%"><strong>Date of Activity</strong></td>
+		<td width="15%"><strong>Place of Activity</strong></td>
+		<td width="15%"><strong>No of Days in Training</strong></td>
+		<td width="15%"><strong>&nbsp;</strong></td>
+	</tr>	
+	
+	<tr>
+		<td width="40%"><input type='checkbox' id='taDa1' name='taDa1' #if ( $patientDataValueMap.get( 413 ) && $!patientDataValueMap.get( 413 ) != "" ) checked = "checked" #end onchange="selectTADAForTraining( 'taDa1', 'deps413', 'deps414', 'deps437' );"/>&nbsp;&nbsp;
+			TA/DA for Attending Training Programmes</td>
+		<td width="15%">
+			<input type="text" id="deps413" name="deps413"  disabled = "disabled" value="$!patientDataValueMap.get( 413 )" style="width:98%;" />
+			<script type="text/javascript">
+				datePickerValid( 'deps413' );
+			</script>
+		</td>
+
+		<td width="15%">
+			<input type="text" id="deps414" name="deps414"  disabled = "disabled"  value="$!patientDataValueMap.get( 414 )" style="width:98%;" />
+		</td>
+		<td width="15%"><input type="text" id="deps437" name="deps437"  disabled = "disabled"  value="$!patientDataValueMap.get( 437 )" style="width:98%;" onchange="validateNoOfDaysInTrainingProgrammes( 'taDa1' );" /></td>
+		<td width="15%">&nbsp;</td>
+	</tr>		
+
+	<tr>
+		<td width="40%"><input type='checkbox' id='taDa2' name='taDa2' #if ( $patientDataValueMap.get( 415 ) && $!patientDataValueMap.get( 415 ) != "" ) checked = "checked" #end onchange="selectCommunityMobilization( 'taDa2', 'deps415', 'deps416' );"/>&nbsp;&nbsp;
+			TA/DA for Attending Quarterly Award Ceremony</td>
+		<td width="15%">
+			<input type="text" id="deps415" name="deps415"  disabled = "disabled" value="$!patientDataValueMap.get( 415 )" style="width:98%;" />
+			<script type="text/javascript">
+				datePickerValid( 'deps415' );
+			</script>
+		</td>
+
+		<td width="15%">
+			<input type="text" id="deps416" name="deps416"  disabled = "disabled"  value="$!patientDataValueMap.get( 416 )" style="width:98%;" />
+		</td>
+		<td width="15%">&nbsp;</td>
+		<td width="15%">&nbsp;</td>
+	</tr>	
+	
+	<tr bgcolor="#CBDDEB">
+		<td width="100%" colspan="5"><strong>Award</strong></td>
+	</tr>
+
+	
+	<tr bgcolor="#CBDDEB">
+		<td width="40%"><strong>Award</strong></td>
+		<td width="15%"><strong>ASHA Award</strong></td>
+		<!--<td width="15%"><strong>Approved Amount</strong></td>-->
+		<td width="15%"><strong>Date of Award ceremony</strong></td>
+		<td width="15%"><strong>&nbsp;</strong></td>
+		<td width="15%"><strong>&nbsp;</strong></td>
+	</tr>	
+	
+	<tr>
+		<td width="40%"><input type='checkbox' id='award1' name='award1' #if ( $patientDataValueMap.get( 436 ) && $!patientDataValueMap.get( 436 ) != "" ) checked = "checked" #end onchange="selectAward( 'award1', 'deps436', 'deps417' );"/>&nbsp;&nbsp;
+			ASHA Award</td>
+		
+        <td width="15%">
+        	#set( $dataElement = "")
+				#set( $patientDataValue = "")
+    			
+    			#set( $dataElement = $dataElementMap.get( 436 ) )
+    			#set( $patientDataValue = $!patientDataValueMap.get( 436 ) )
+
+				<select id="deps436" name="deps436" disabled = "disabled" style="color:black" >
+    				<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+    				#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+    					#if($optionVal == $patientDataValue )
+    						<option value="$optionVal" selected = "selected">$optionVal</option>
+    					#else 
+    						<option value="$optionVal" >$optionVal</option>
+    					#end
+                	#end
+    			</select>
+        </td>
+		
+		<td width="15%">
+			<input type="text" id="deps417" name="deps417"  disabled = "disabled" value="$!patientDataValueMap.get( 417 )" style="width:98%;" />
+			<script type="text/javascript">
+				datePickerValid( 'deps417' );
+			</script>
+		</td>
+		
+		<td width="15%">
+			&nbsp;<!--<input type="text" id="deps435" name="deps435"  disabled = "disabled"  value="$!patientDataValueMap.get( 435 )" style="width:98%;" />-->
+		</td>		
+		
+		
+
+		<td width="15%">&nbsp;</td>
+	</tr>
+
+	
+	<tr>
+		<td width="40%"><input type='checkbox' id='inActiveASHA' name='inActiveASHA' #if ( $patientDataValueMap.get( 438 ) && $!patientDataValueMap.get( 438 ) != "" ) checked = "checked" #end onchange="selectReasonForInActive( 'inActiveASHA', 'deps438' );"/>&nbsp;&nbsp;
+			Reason for ASHA Inactive</td>
+		
+        <td width="15%">
+        	#set( $dataElement = "")
+			#set( $patientDataValue = "")
+    			
+    		#set( $dataElement = $dataElementMap.get( 438 ) )
+    		#set( $patientDataValue = $!patientDataValueMap.get( 438 ) )
+
+			<select id="deps438" name="deps438" disabled = "disabled" style="color:black" >
+    			<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+    			#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+    				#if($optionVal == $patientDataValue )
+    					<option value="$optionVal" selected = "selected">$optionVal</option>
+    				#else 
+    					<option value="$optionVal" >$optionVal</option>
+    				#end
+                #end
+    		</select>
+        </td>
+		
+		<td width="15%">&nbsp;</td>
+		<td width="15%">&nbsp;</td>
+		<td width="15%">&nbsp;</td>
+	</tr>	
+		
+</table>	
+
+
+#parse( "/dhis-web-commons/loader/loader.vm" )
+
+<p>
+	<input type="submit"  id="saveButton" name="saveButton" value="$i18n.getString( 'save' )" style="width:100px"/>
+</p>
+
+
+</form>
+
+#else
+    <h4></h4>
+#end
+
+<script type="text/javascript">
+jQuery( document ).ready( function()
+{
+	selectMobilization( 'mobilization1', 'deps418', 'deps419', 'deps434' );
+	
+	selectCommunityMobilization( 'meeting1', 'deps406', 'deps407' );
+	selectCommunityMobilization( 'meeting2', 'deps432', 'deps433' );
+	selectCommunityMobilization( 'meeting3', 'deps411', 'deps412' );
+	selectCommunityMobilization( 'meeting4', 'deps430', 'deps431' );
+	
+	selectOtherMeeting( 'otherMeeting1', 'deps461', 'deps455', 'deps458' );
+	selectOtherMeeting( 'otherMeeting2', 'deps462', 'deps456', 'deps459' );
+	selectOtherMeeting( 'otherMeeting3', 'deps463', 'deps457', 'deps460' );
+	
+	selectOtherSession( 'otherSession1', 'deps470', 'deps466','deps480','deps474' );
+	selectOtherSession( 'otherSession2', 'deps471', 'deps467','deps481','deps475' );
+	selectOtherSession( 'otherSession3', 'deps472', 'deps468','deps482','deps476' );
+	selectOtherSession( 'otherSession4', 'deps473', 'deps469','deps483','deps477' );
+	
+	selectSampleTest( 'sample1', 'deps408', 'deps409', 'deps410' );
+	selectSampleTest( 'sample2', 'deps427', 'deps428', 'deps429' );
+	validateNoOfSampleTaken( 'sample2' );
+	
+	//selectCommunityMobilization( 'taDa1', 'deps413', 'deps414' );
+	
+	selectTADAForTraining( 'taDa1', 'deps413', 'deps414', 'deps437' );
+	validateNoOfDaysInTrainingProgrammes( 'taDa1' );
+	
+	selectCommunityMobilization( 'taDa2', 'deps415', 'deps416' );
+	
+	selectAward( 'award1', 'deps436','deps417' );
+	
+	selectReasonForInActive( 'inActiveASHA', 'deps438' );
+	
+
+});
+</script>
+
+<script type="text/javascript">
+
+    var i18n_field_is_required = '$encoder.jsEscape( $i18n.getString( "field_is_required" ) , "'") ';
+</script>

@@ -1,0 +1,77 @@
+<script type="text/javascript" src="javascript/addASHA_1.js"></script>
+## Macro for generating the jQuery validation rules 
+#macro( validate $type $require )
+  #if( $type == "NUMBER" )
+  	{validate:{ number:true #if($require), required:true #end }}
+  #elseif( $type == "string" )
+  	{validate:{ alphanumeric:true #if($require), required:true #end }}
+  #elseif( $require )
+  	{validate:{required:true}}
+  #end
+#end
+<table style="background-color:#ECE0F8;" width="100%">
+<tr style='display:none'>
+	<td class='text-column'><label for="registration_date">$i18n.getString( "registration_date" )<em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+	<td class="input-column" colspan='2'>
+		<input type="text" id="registrationDate" name="registrationDate" class="{validate:{required:true}}"/>
+		<script type="text/javascript">
+			datePickerValid( 'registrationDate', true );
+		</script>    
+	</td>		
+</tr>
+
+<tr>
+	<td class='text-column'><label for="fullName">$i18n.getString( "full_name_asha" )<em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+	<td class="input-column">
+		<input type="text" id="fullName" name="fullName" class="{validate:{required:true, unicodechars:true, rangelength:[7,50]}}"/>
+	</td>
+</tr>
+
+<tr style='display:none'>
+	<td class='text-column'><label for="gender">$i18n.getString( "gender" )<em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+	<td class="input-column">
+		<select id="gender" name="gender" class="{validate:{required:true}}" readonly >
+			<option value="F">$i18n.getString( "female" )</option>
+		</select>
+	</td>		
+</tr>
+
+<tr>
+	<td class='text-column'><label for="birthDate">$i18n.getString( "date_of_birth" )<em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+	<td class="input-column">	
+		<select id='dobType' name="dobType" style='width:120px' onchange='dobTypeOnChange("addASHAProfileForm")' >
+			<!--<option value="V" selected>$i18n.getString( "verified" )</option>-->
+			<!--<option value="D" >$i18n.getString( "declared" )</option>-->
+			<option value="A" >$i18n.getString( "approximated" )</option>
+			<option value="D" >$i18n.getString( "declared" )</option>
+		</select>
+		<input type="text" id="age" name="age" placeholder="Enter age in years..." class="{validate:{number:true}}" style="width:136px;display:none;" onchange="ageValidation();"/>
+		<input type="text" id="birthDate" name="birthDate" style='width:136px;' onchange="dobValidation();"/>
+		<input id="memberValidator" class="hidden {validate:{required:true}}"/>
+	</td>
+	
+    <td style="display:none">
+		<input type="text" id="bobOfASHA" name="bobOfASHA"/>
+    </td>	
+</tr>
+
+<tr>
+	<td></td>
+	<td><input type="button" class='button' id='checkDuplicateBtn' name='checkDuplicateBtn' value="$i18n.getString('check_duplicate')" /></td>
+</tr>
+</table>
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+	dobTypeOnChange("addASHAProfileForm");
+	//ageValidation();
+	//dobValidation();
+	
+</script>

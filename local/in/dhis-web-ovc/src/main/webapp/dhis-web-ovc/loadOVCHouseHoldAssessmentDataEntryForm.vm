@@ -1,0 +1,916 @@
+<input type="hidden" id="ovcID" name="ovcID" value="$!patient.id">
+<input type="hidden" id="programID" name="programID" value="$!program.id">
+<input type="hidden" id="programStageId" name="programStageId" value="$!programStage.id">
+<input type="hidden" id="programStageInstanceId" name="programStageInstanceId" value="$!programStageInstanceId">
+
+<table style="background-color:#EFFBEF;" width="100%">
+	<tr><td colspan="8" style="text-align: center;"><h3><b>OVC Household Assessment</b></h3></td></tr>
+	<tr><td colspan="8" style="text-align: center;"><h4><i><b>Introduction (purpose of the assessment, assure household of confidentiality, willingness to decline response)</b></i></h4></td></tr>
+</table>
+
+<table style="background-color:#ECE0F8;" width="100%" border="0">
+	<tr style="background-color:#FFC000;">
+		<td  style="text-align: center;" class="heading-column"><b>Code</b></td>
+		<td colspan="3" style="text-align: center;" class="heading-column"><b>Indicator</b></td>
+		<td colspan="4" style="text-align: center;" class="heading-column"><b>Responses</b></td>
+	</tr>
+
+	<tr>
+		<td width="4%" class="heading-column"><b>HA1</b></td>
+		<td colspan="3" class='text-column' style="text-align: left;">Number of individuals in the household below 18 yrs</td>
+		
+		<td class='text-column'><label for="males">$i18n.getString( "males" )</label></td>
+		<td class="input-column"><input type="text" id="deps737" name="deps737" value="$!patientDataValueMap.get( 737 )" class="{validate:{required:false ,number:true }}" style="text-align: center;" /></td>
+		
+		<td class='text-column'><label for="females">$i18n.getString( "females" )</label></td>
+		<td class="input-column"><input type="text" id="deps738" name="deps738" value="$!patientDataValueMap.get( 738 )" class="{validate:{required:false ,number:true }}" style="text-align: center;" /></td>
+	</tr>
+
+	<tr>
+		<td class="heading-column"><b>HA2</b></td>
+		<td colspan="3" class='text-column' style="text-align: left;">Number of individuals in the household above 18 yrs</td>
+		
+		<td class='text-column'><label for="males">$i18n.getString( "males" )</label></td>
+		<td class="input-column"><input type="text" id="deps739" name="deps739" value="$!patientDataValueMap.get( 739 )" class="{validate:{required:false ,number:true }}" style="text-align: center;" /></td>
+		
+		<td class='text-column'><label for="females">$i18n.getString( "females" )</label></td>
+		<td class="input-column"><input type="text" id="deps740" name="deps740" value="$!patientDataValueMap.get( 740 )" class="{validate:{required:false ,number:true }}" style="text-align: center;" /></td>
+	</tr>
+
+	<tr>
+		<td class="heading-column"><b>HA3</b></td>
+		<td colspan="3" class='text-column' style="text-align: left;">Number of disabled individuals in the household below 18 yrs</td>
+		
+		<td class='text-column'><label for="males">$i18n.getString( "males" )</label></td>
+		<td class="input-column"><input type="text" id="deps741" name="deps741" value="$!patientDataValueMap.get( 741 )" class="{validate:{required:false ,number:true }}" style="text-align: center;" /></td>
+		
+		<td class='text-column'><label for="females">$i18n.getString( "females" )</label></td>
+		<td class="input-column"><input type="text" id="deps742" name="deps742" value="$!patientDataValueMap.get( 742 )" class="{validate:{required:false ,number:true }}" style="text-align: center;" /></td>
+	</tr>
+	
+	<tr>
+		<td class="heading-column"><b>HA4</b></td>
+		<td colspan="3" class='text-column' style="text-align: left;">Number of disabled individuals in the household above 18 yrs</td>
+		
+		<td class='text-column'><label for="males">$i18n.getString( "males" )</label></td>
+		<td class="input-column"><input type="text" id="deps743" name="deps743" value="$!patientDataValueMap.get( 743 )" class="{validate:{required:false ,number:true }}" style="text-align: center;" /></td>
+		
+		<td class='text-column'><label for="females">$i18n.getString( "females" )</label></td>
+		<td class="input-column"><input type="text" id="deps744" name="deps744" value="$!patientDataValueMap.get( 744 )" class="{validate:{required:false ,number:true }}" style="text-align: center;" /></td>
+	</tr>		
+</table>
+
+<table style="background-color:#EFFBEF;" width="100%" border="0">
+	<tr><td colspan="8" style="text-align: left;"><b>Water Sanitation and Hygiene</b></td></tr>
+
+	<tr>
+		<td width="4%" class="heading-column"><b>HA5</b></td>
+		<td colspan="3" class='text-column'style="text-align: left;" >Household main source of water</td>
+        <td  colspan="2" style="text-align: left;" class="input-column" >
+       		#set( $dataElement = $dataElementMap.get( 745 ) )
+			<select id="deps745" name="deps745" onchange="changeWaterSource();">
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 745 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+        	</select>       	
+       	</td>
+       	<td class="input-column" id="td746" style="display:none">
+	  		<input type="text" id="deps746" name="deps746" value="$!patientDataValueMap.get( 746 )" style="text-align: left;" />
+	  	</td>	
+		<td>&nbsp;</td>
+	</tr>
+
+	<tr>
+		<td class="heading-column"><b>HA6</b></td>
+		<td colspan="3" class='text-column' style="text-align: left;">How do you make your drinking water safe?</td>
+        <td  colspan="2" style="text-align: left;" class="input-column" >
+       		#set( $dataElement = $dataElementMap.get( 747 ) )
+			<select id="deps747" name="deps747" onchange="changeWaterSafe();">
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 747 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            
+            	#end
+        	</select>       	
+       	</td>
+       	
+       	<td class="input-column" id="td748" style="display:none">
+	  		<input type="text" id="deps748" name="deps748" value="$!patientDataValueMap.get( 748 )" style="text-align: left;" />
+	  	</td>	       	
+       	
+       	<td class="input-column" id="td749" style="display:none">
+	  		<input type="text" id="deps749" name="deps749" value="$!patientDataValueMap.get( 749 )" style="text-align: left;" />
+		</td>
+       	
+	</tr>
+
+	<tr>
+		<td class="heading-column"><b>HA7</b></td>
+		<td colspan="3" class='text-column' style="text-align: left;" >What is the main mode of human waste disposal?</td>
+        <td  colspan="2" style="text-align: left;" class="input-column" >
+       		#set( $dataElement = $dataElementMap.get( 750 ) )
+			<select id="deps750" name="deps750" onchange="changeWaterDisposal();">
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 750 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            
+            	#end
+        	</select>       	
+       	</td>
+       	
+      	<td class="input-column" id="td751" style="display:none">
+	  		<input type="text" id="deps751" name="deps751" value="$!patientDataValueMap.get( 751 )" style="text-align: left;" />
+	  	</td> 
+	  	<td>&nbsp;</td>      	
+	</tr>
+	
+	<tr>
+		<td class="heading-column"><b>HA8</b></td>
+		<td colspan="3" class='text-column' style="text-align: left;">Household using utensil rack. (Observe)</td>
+		<td colspan="2" class="input-column" >
+			#set( $dataElement = $dataElementMap.get( 752 ) )
+			#set( $patientDataValueutensil = $patientDataValueMap.get( 752 ))
+            <select id="deps752" name="deps752" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $patientDataValueutensil =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $patientDataValueutensil =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>			
+		</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>	
+</table>
+
+
+<table style="background-color:#DBE5F1;" width="100%">
+	<tr><td colspan="8" style="text-align: left;"><b>Shelter and care</b></td></tr>
+	
+	<tr>
+		<td width="4%" class="heading-column"><b>HA8</b></td>
+		<td colspan="3" class='text-column'style="text-align: left;" >Condition of House (Observe)</td>
+        <td  colspan="3" style="text-align: left;" class="input-column" >
+       		#set( $dataElement = $dataElementMap.get( 753 ) )
+			<select id="deps753" name="deps753" >
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 753 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+        	</select>       	
+       	</td>
+       	<td>&nbsp;</td>
+	</tr>	
+
+
+	<tr>
+		<td class="heading-column"><b>HA9</b></td>
+		<td colspan="3"  class='text-column'style="text-align: left;" >Type and number of bedding used by household members (tick as appropriate)</td>
+        <td>&nbsp;</td>
+		<td  class='text-column'style="text-align: left;" ><b>Type</b></td>
+ 		<td  class='text-column'style="text-align: left;" ><b>Number</b></td>
+ 		<td  class='text-column'style="text-align: left;" ><b>Condition (Worn out /Good)</b></td>
+ 		
+	</tr>
+
+	<tr>
+		<td rowspan="7" class="heading-column">&nbsp;</td>
+		<td colspan="3" rowspan="7" class='text-column'style="text-align: left;" >&nbsp;</td>
+        <td>&nbsp;</td>
+		<td  class='text-column'style="text-align: left;" >Mattress</td>
+ 		<td class="input-column"><input type="text" id="deps754" name="deps754" value="$!patientDataValueMap.get( 754 )" class="{validate:{required:false ,number:true }}" style="text-align: center;" /></td>
+		<td  class="input-column" >
+       		#set( $dataElement = $dataElementMap.get( 755 ) )
+			<select id="deps755" name="deps755" >
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 755 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+        	</select>
+		
+		</td>
+ 		
+	</tr>
+
+	<tr>
+		<td>&nbsp;</td>
+		<td  class='text-column'style="text-align: left;" >Blankets</td>
+ 		<td class="input-column"><input type="text" id="deps756" name="deps756" value="$!patientDataValueMap.get( 756 )" class="{validate:{required:false ,number:true }}" style="text-align: center;" /></td>
+		<td  class="input-column" >
+       		#set( $dataElement = $dataElementMap.get( 757 ) )
+			<select id="deps757" name="deps757" >
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 757 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+        	</select>	
+		
+		</td>
+ 		
+	</tr>
+	
+	
+	<tr>
+		<td>&nbsp;</td>
+		<td  class='text-column'style="text-align: left;" >Sack</td>
+ 		<td class="input-column"><input type="text" id="deps758" name="deps758" value="$!patientDataValueMap.get( 758 )" class="{validate:{required:false ,number:true }}" style="text-align: center;" /></td>
+		<td  class="input-column" >
+       		#set( $dataElement = $dataElementMap.get( 759 ) )
+			<select id="deps759" name="deps759" >
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 759 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+        	</select>		
+		
+		</td>
+ 		
+	</tr>	
+	
+	<tr>
+		<td>&nbsp;</td>
+		<td  class='text-column'style="text-align: left;" >Boxes</td>
+ 		<td class="input-column"><input type="text" id="deps760" name="deps760" value="$!patientDataValueMap.get( 760 )" class="{validate:{required:false ,number:true }}" style="text-align: center;" /></td>
+		<td  class="input-column" >
+       		#set( $dataElement = $dataElementMap.get( 761 ) )
+			<select id="deps761" name="deps761" >
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 761 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+        	</select>	
+		
+		</td>
+ 		
+	</tr>
+
+	<tr>
+		<td>&nbsp;</td>
+		<td  class='text-column'style="text-align: left;" >Hide/skin</td>
+  		<td class="input-column"><input type="text" id="deps762" name="deps762" value="$!patientDataValueMap.get( 762 )" class="{validate:{required:false ,number:true }}" style="text-align: center;" /></td>
+		<td  class="input-column" >
+       		#set( $dataElement = $dataElementMap.get( 763 ) )
+			<select id="deps763" name="deps763" >
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 763 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+        	</select>
+		</td>
+ 		
+	</tr>
+	
+	
+	<tr>
+		<td>&nbsp;</td>
+		<td  class='text-column'style="text-align: left;" >Old clothes</td>
+ 		<td class="input-column"><input type="text" id="deps764" name="deps764" value="$!patientDataValueMap.get( 764 )" class="{validate:{required:false ,number:true }}" style="text-align: center;" /></td>
+		<td  class="input-column" >
+       		#set( $dataElement = $dataElementMap.get( 765 ) )
+			<select id="deps765" name="deps765" >
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 765 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+        	</select>
+		</td>
+ 		
+	</tr>	
+	
+	<tr>
+		<td>&nbsp;</td>
+		<td class='text-column'style="text-align: left;" >Others (specify)</td>
+  		<td class="input-column"><input type="text" id="deps766" name="deps766" value="$!patientDataValueMap.get( 766 )" style="text-align: center;" /></td>
+		<td  class="input-column" >
+       		#set( $dataElement = $dataElementMap.get( 767 ) )
+			<select id="deps767" name="deps767" >
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 767 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+        	</select>
+		</td>
+ 		
+	</tr>	
+</table>
+
+
+<table style="background-color:#EFFBEF;" width="100%" border="0">
+	<tr><td colspan="8" style="text-align: left;"><b>Food Security and Nutrition</b></td></tr>
+	
+	<tr>
+		<td width="4%" class="heading-column"><b>HA10</b></td>
+		<td colspan="3" class='text-column'style="text-align: left;" >On average, how many meals do household members eat in a day</td>
+        <td  colspan="3" style="text-align: left;" class="input-column" >
+       		#set( $dataElement = $dataElementMap.get( 768 ) )
+			<select id="deps768" name="deps768" >
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 768 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+        	</select>       	
+       	</td>
+       	<td>&nbsp;</td>
+       	
+	</tr>	
+	<tr>
+		<td class="heading-column"><b>HA11</b></td>
+		<td colspan="3" class='text-column'style="text-align: left;" >What is the main source of food for the household?</td>
+        <td  colspan="3" style="text-align: left;" class="input-column" >
+       		#set( $dataElement = $dataElementMap.get( 769 ) )
+			<select id="deps769" name="deps769"  onchange="changeFoodSource();">
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 769 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+        	</select>       	
+       	</td>
+       	
+      	<td class="input-column" id="td770" style="display:none">
+	  		<input type="text" id="deps770" name="deps770" value="$!patientDataValueMap.get( 770 )" style="text-align: left;" />
+	  	</td>        	
+	</tr>	
+</table>
+
+
+<table style="background-color:#DBE5F1;" width="100%">
+	<tr><td colspan="8" style="text-align: left;"><b>Household income and property ---- include an introduction for all sections</b></td></tr>
+	
+	
+	<tr>
+		<td width="4%" class="heading-column"><b>HA12</b></td>
+		<td colspan="3" class='text-column'style="text-align: left;" >What is the household main source of income?</td>
+        <td  colspan="3" style="text-align: left;" class="input-column" >
+       		#set( $dataElement = $dataElementMap.get( 771 ) )
+			<select id="deps771" name="deps771" onchange="changeSourceOfIncome();">
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 771 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+        	</select>       	
+       	</td>
+       	
+      	<td class="input-column" id="td772" style="display:none">
+	  		<input type="text" id="deps772" name="deps772" value="$!patientDataValueMap.get( 772 )" style="text-align: left;" />
+	  	</td>       	
+
+       	
+	</tr>		
+
+	<tr>
+		<td class="heading-column"><b>HA13</b></td>
+		<td colspan="3" class='text-column'style="text-align: left;" >Who owns the house where the members stay?</td>
+        <td  colspan="3" style="text-align: left;" class="input-column" >
+       		#set( $dataElement = $dataElementMap.get( 773 ) )
+			<select id="deps773" name="deps773" >
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 773 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+        	</select>       	
+       	</td>
+       	
+		<td>&nbsp;</td>
+	</tr>
+
+
+	<tr>
+		<td class="heading-column" valign="top" ><b>HA14</b></td>
+		<td colspan="3" class='text-column'style="text-align: left;" valign="top">What asset does the household own?</td>
+		<td  colspan="4" style="text-align: left;" class="input-column" >
+			<table>
+    			<tr #alternate( false ) id="trattr774">
+        			<td class="input-column">
+            		#set( $dataElement = $dataElementMap.get( 774 ) )
+           			#set( $livestock = $!patientDataValueMap.get( 774 ) )  
+            			<input type='checkbox' id="deps774" name="deps774" onclick="liveStock();" #if( $livestock =="true" ) checked #end >
+            			&nbsp;Livestock
+        			</td>
+        			
+			      	<td class="input-column" id="td786" style="display:none">
+				  		Specify &nbsp;<input type="text" id="deps786" name="deps786" value="$!patientDataValueMap.get( 786 )" style="text-align: left;" />
+				  	</td>         			
+        			
+			        <td class="input-column">
+			            #set( $dataElement = $dataElementMap.get( 780 ) )
+			            #set( $land = $!patientDataValueMap.get( 780 ) )
+			            <input type='checkbox' id="deps780" name="deps780" onclick="landSize();" #if( $land =="true" ) checked #end >
+			            &nbsp;Land
+			        </td>
+	
+			      	<td class="input-column" id="td787" style="display:none">
+				  		Specify Size &nbsp;<input type="text" id="deps787" name="deps787" value="$!patientDataValueMap.get( 787 )" style="text-align: left;" />
+				  	</td> 	
+	
+   
+     		 	</tr>
+     		 	
+
+    			<tr #alternate( false ) id="trattr681">
+			        <td class="input-column">
+			           #set( $dataElement = $dataElementMap.get( 775 ) )
+			           #set( $cellphone = $!patientDataValueMap.get( 775 ) ) 
+			            <input type='checkbox' id="deps775" name="deps775"  #if( $cellphone =="true" ) checked #end >
+			            &nbsp;Cellphone(s)
+			        </td>	        			
+					<!-- ID TO Be Added 
+			      	<td class="input-column" id="tdAAA" style="display:none">
+				  		Specify &nbsp;<input type="text" id="deps772" name="deps772" value="$!patientDataValueMap.get( 772 )" style="text-align: left;" />
+				  	</td>         			
+        			-->
+        			<td>&nbsp;</td>
+        			<td class="input-column">
+            		#set( $dataElement = $dataElementMap.get( 781 ) )
+           			#set( $jiko = $!patientDataValueMap.get( 781 ) ) 
+            			<input type='checkbox' id="deps781" name="deps781"  #if( $jiko =="true" ) checked #end >
+            			&nbsp;Jiko
+        			</td>
+			        <td class="input-column">
+			            #set( $dataElement = $dataElementMap.get( 782 ) )
+			           #set( $stove = $!patientDataValueMap.get( 782 ) )  
+			            <input type='checkbox' id="deps782" name="deps782"  #if( $stove =="true" ) checked #end >
+			            &nbsp;Stove
+			        </td>
+   
+     		 	</tr>     		 	
+     		 	
+    			<tr #alternate( false ) id="trattr777">
+			        <td class="input-column">
+			            #set( $dataElement = $dataElementMap.get( 776 ) )
+			            #set( $bicycle = $!patientDataValueMap.get( 776 ) )  
+			            <input type='checkbox' id="deps776" name="deps776"  #if( $bicycle =="true" ) checked #end >
+			            &nbsp;Bicycle
+			        </td>	        			
+        			
+        			<td class="input-column">
+            		#set( $dataElement = $dataElementMap.get( 777 ) )
+           			#set( $gasLamp = $!patientDataValueMap.get( 777 ) )
+            			<input type='checkbox' id="deps777" name="deps777"  #if( $gasLamp =="true" ) checked #end >
+            			&nbsp;Gas Lamp
+        			</td>
+			        <td class="input-column">
+			           #set( $dataElement = $dataElementMap.get( 783 ) )
+			           #set( $furniture = $!patientDataValueMap.get( 783 ) )
+			           <input type='checkbox' id="deps783" name="deps783"  #if( $furniture =="true" ) checked #end >
+			            &nbsp;Furniture
+			        </td>
+	
+			        <td class="input-column">
+			           #set( $dataElement = $dataElementMap.get( 784 ) )
+			           #set( $car = $!patientDataValueMap.get( 784 ) )  
+			           <input type='checkbox' id="deps784" name="deps784"  #if( $car =="true" ) checked #end >
+			            &nbsp;Car
+			        </td>	   
+     		 	</tr>      		 	
+
+    			<tr #alternate( false ) id="trattr778">
+        			<td class="input-column">
+            		#set( $dataElement = $dataElementMap.get( 778 ) )
+           			#set( $lantern = $!patientDataValueMap.get( 778 ) )  
+            			<input type='checkbox' id="deps778" name="deps778"  #if( $lantern =="true" ) checked #end >
+            			&nbsp;Lantern
+        			</td>
+			        <td class="input-column">
+			           #set( $dataElement = $dataElementMap.get( 779 ) )
+			           #set( $radio = $!patientDataValueMap.get( 779 ) ) 
+			           <input type='checkbox' id="deps779" name="deps779"  #if( $radio =="true" ) checked #end >
+			            &nbsp;Radio
+			        </td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+
+				<tr #alternate( false ) id="trattr785">
+			        <td class="input-column">
+			            #set( $dataElement = $dataElementMap.get( 785 ) )
+			          	#set( $otherSpecify = $!patientDataValueMap.get( 785 ) )
+			            <input type='checkbox' id="deps785" name="deps785" onclick="other();" #if( $otherSpecify =="true" ) checked #end >
+			            &nbsp;Other (Specify) 
+			        </td>
+			 
+			      	<td class="input-column" id="td788" style="display:none">
+				  		&nbsp;<input type="text" id="deps788" name="deps788" value="$!patientDataValueMap.get( 788 )" style="text-align: left;" />
+				  	</td>
+				  	<td>&nbsp;</td>
+				  	<td>&nbsp;</td> 				        
+     		 	</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td colspan="3" class='text-column'style="text-align: left;" >What is the households main source of cooking fuel?</td>
+      	<td  colspan="3" style="text-align: left;" class="input-column" >
+       		#set( $dataElement = $dataElementMap.get( 789 ) )
+			<select id="deps789" name="deps789"  onchange="changeSourceOfCookingFuel();">
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 789 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+        	</select>       	
+       	</td>
+      	<td class="input-column" id="td790" style="display:none">
+	  		<input type="text" id="deps790" name="deps790" value="$!patientDataValueMap.get( 790 )" style="text-align: left;" />
+	  	</td> 	
+	</tr>
+
+
+	<tr>
+		<td class="heading-column"><b>HA15</b></td>
+		<td colspan="3" class='text-column'style="text-align: left;" >What is the average household monthly income before purchase?</td>
+      	<td  colspan="3" style="text-align: left;" class="input-column" >
+       		#set( $dataElement = $dataElementMap.get( 791 ) )
+			<select id="deps791" name="deps791" >
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 791 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+        	</select>       	
+       	</td>
+       <td>&nbsp;</td>		
+	</tr>
+
+	<tr>
+		<td class="heading-column"><b>HA16</b></td>
+		<td colspan="3" class='text-column'style="text-align: left;" >What is the average household savings after expenses</td>
+      	<td  colspan="3" style="text-align: left;" class="input-column" >
+       		#set( $dataElement = $dataElementMap.get( 792 ) )
+			<select id="deps792" name="deps792" >
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 792 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+        	</select>       	
+       	</td>
+       	
+       	<td>&nbsp;</td>		
+	</tr>
+	
+	<tr>
+		<td class="heading-column"><b>HA17</b></td>
+		<td colspan="3" class='text-column'style="text-align: left;" >Which of the following take up most of the household income?</td>
+      	<td  colspan="3" style="text-align: left;" class="input-column" >
+       		#set( $dataElement = $dataElementMap.get( 793 ) )
+			<select id="deps793" name="deps793"  onchange="changeHouseHoldIncome();">
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 793 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+        	</select>       	
+       	</td>
+      	<td class="input-column" id="td794" style="display:none">
+	  		<input type="text" id="deps794" name="deps794" value="$!patientDataValueMap.get( 794 )" style="text-align: left;" />
+	  	</td> 	
+	</tr>
+
+	<tr>
+		<td class="heading-column"><b>HA18</b></td>
+		<td colspan="3" class='text-column'style="text-align: left;" >Is any member of the household in of savings group?</td>
+      	<td  colspan="3" style="text-align: left;" class="input-column" >
+			#set( $dataElement = $dataElementMap.get( 795 ) )
+			#set( $savingsGroup = $patientDataValueMap.get( 795 ))
+            <select id="deps795" name="deps795" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $savingsGroup =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $savingsGroup =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>
+       	</td>
+       	<td>&nbsp;</td>	
+	</tr>
+
+	<tr>
+		<td class="heading-column"><b>HA19</b></td>
+		<td colspan="3" class='text-column'style="text-align: left;" >Which of the following documents does the household possess?</td>
+      	<td  colspan="3" style="text-align: left;" class="input-column" >
+       		#set( $dataElement = $dataElementMap.get( 796 ) )
+			<select id="deps796" name="deps796" onchange="changeHouseHoldDocument();">
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 796 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+        	</select>     	
+       	</td>
+       	
+      	<td class="input-column" id="td797" style="display:none">
+	  		<input type="text" id="deps797" name="deps797" value="$!patientDataValueMap.get( 797 )" style="text-align: left;" />
+	  	</td> 
+	</tr>
+</table>
+
+
+<table style="background-color:#ECE0F8;" width="100%" border="0">
+	<tr><td colspan="8" style="text-align: left;"><b>Health services and Health seeking behavior</b></td></tr>
+	
+	<tr>
+		<td width="4%" class="heading-column"><b>HA20</b></td>
+		<td colspan="3" class='text-column'style="text-align: left;" >Where do household members access health services when sick?</td>
+      	<td  colspan="3" style="text-align: left;" class="input-column" >
+       		#set( $dataElement = $dataElementMap.get( 798 ) )
+			<select id="deps798" name="deps798"  onchange="changeHealthService();">
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 798 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+        	</select>       	
+       	</td>
+       	
+      	<td class="input-column" id="td799" style="display:none">
+	  		<input type="text" id="deps799" name="deps799" value="$!patientDataValueMap.get( 799 )" style="text-align: left;" />
+	  	</td>        			
+	</tr>	
+	
+
+	<tr>
+		<td class="heading-column"><b>HA21</b></td>
+		<td colspan="3" class='text-column'style="text-align: left;" >How far is the nearest health facility</td>
+      	<td  colspan="3" style="text-align: left;" class="input-column" >
+       		#set( $dataElement = $dataElementMap.get( 800 ) )
+			<select id="deps800" name="deps800" >
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 800 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+        	</select>       	
+       	</td>
+       	<td>&nbsp;</td>			
+	</tr>
+
+	<tr>
+		<td class="heading-column"><b>HA22</b></td>
+		<td colspan="3" class='text-column'style="text-align: left;" >Does the household have a health insurance?</td>
+      	<td  colspan="3" style="text-align: left;" class="input-column" >
+       		#set( $dataElement = $dataElementMap.get( 801 ) )
+			<select id="deps801" name="deps801"  onchange="changeHealthiIsurance();">
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 801 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+        	</select>       	
+       	</td>
+       	
+      	<td class="input-column" id="td802" style="display:none">
+	  		<input type="text" id="deps802" name="deps802" value="$!patientDataValueMap.get( 802 )" style="text-align: left;" />
+	  	</td>        	
+       			
+	</tr>
+		
+	<tr>
+		<td class="heading-column"><b>HA23</b></td>
+		<td colspan="3" class='text-column'style="text-align: left;" >Household using mosquito nets (Observe or ask)</td>
+      	<td  colspan="4" style="text-align: left;" class="input-column" >
+			#set( $dataElement = $dataElementMap.get( 803 ) )
+			#set( $mosquito = $patientDataValueMap.get( 803 ))
+            <select id="deps803" name="deps803" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $mosquito =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $mosquito =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>
+       	</td>		
+	</tr>	
+	
+	<tr>
+		<td class="heading-column"><b>HA24</b></td>
+		<td colspan="3" class='text-column'>Number of known HIV +ve individuals in the household below 18 yrs</td>
+		
+		<td class='text-column'><label for="males">$i18n.getString( "males" )</label></td>
+		<td class="input-column"><input type="text" id="deps804" name="deps804" value="$!patientDataValueMap.get( 804 )" class="{validate:{required:false ,number:true }}" style="text-align: center;" /></td>
+		
+		<td class='text-column'><label for="females">$i18n.getString( "females" )</label></td>
+		<td class="input-column"><input type="text" id="deps805" name="deps805" value="$!patientDataValueMap.get( 805 )" class="{validate:{required:false ,number:true }}" style="text-align: center;" /></td>
+	</tr>
+	
+	<tr>
+		<td class="heading-column"><b>HA25</b></td>
+		<td colspan="3" class='text-column'>Number of known HIV +ve individuals in the household above 18 yrs</td>
+		
+		<td class='text-column'><label for="males">$i18n.getString( "males" )</label></td>
+		<td class="input-column"><input type="text" id="deps806" name="deps806" value="$!patientDataValueMap.get( 806 )" class="{validate:{required:false ,number:true }}" style="text-align: center;" /></td>
+		
+		<td class='text-column'><label for="females">$i18n.getString( "females" )</label></td>
+		<td class="input-column"><input type="text" id="deps807" name="deps807" value="$!patientDataValueMap.get( 807 )" class="{validate:{required:false ,number:true }}" style="text-align: center;" /></td>
+	</tr>		
+</table>
+
+<table style="background-color:#EFFBEF;" width="100%" border="0">
+	<tr><td colspan="8" style="text-align: left;"><b>Protection</b></td></tr>
+		
+	<tr>
+		<td width="4%" class="heading-column"><b>HA26</b></td>
+		<td colspan="3" class='text-column'style="text-align: left;" >Where does the household access legal protection services when needed?</td>
+      	<td  colspan="3" style="text-align: left;" class="input-column" >
+       		#set( $dataElement = $dataElementMap.get( 808 ) )
+			<select id="deps808" name="deps808"  onchange="changeLegalProtection();">
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 808 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+        	</select>       	
+       	</td>
+       	
+      	<td class="input-column" id="td809" style="display:none">
+	  		<input type="text" id="deps809" name="deps809" value="$!patientDataValueMap.get( 809 )" style="text-align: left;" />
+	  	</td>         	
+       			
+	</tr>
+	<tr>
+		<td class="heading-column"><b>HA27</b></td>
+		<td colspan="3" class='text-column'style="text-align: left;" >Is the household currently receiving support from any of the following (specify where applicable)</td>
+      	<td  colspan="3" style="text-align: left;" class="input-column" >
+       		#set( $dataElement = $dataElementMap.get( 810 ) )
+			<select id="deps810" name="deps810" onchange="changeReceivingSupport();">
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 810 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+        	</select>       	
+       	</td>
+       	
+      	<td class="input-column" id="td811" style="display:none">
+	  		<input type="text" id="deps811" name="deps811" value="$!patientDataValueMap.get( 811 )" style="text-align: left;" />
+	  	</td>       	
+       			
+	</tr>
+
+	<tr>
+		<td>&nbsp;</td>
+		<td colspan="3" class='text-column'style="text-align: left;" >&nbsp;</td>
+      	<td  colspan="3" style="text-align: left;" class="input-column" ><b>List services received</b></td>
+      	<td>&nbsp;</td>
+	</tr>
+
+	<tr>
+		<td>&nbsp;</td>
+		<td colspan="3" class='text-column'style="text-align: left;" >&nbsp;</td>
+      	<td  colspan="3" style="text-align: left;" class="input-column" >
+       		<textarea rows="4" cols="45" id="deps816" name="deps816" >$!patientDataValueMap.get( 816 )</textarea>
+       	</td>
+       	<td>&nbsp;</td>		
+	</tr>	
+</table>
+
+
+<table style="background-color:#DBE5F1;" width="100%">
+	
+	<tr><td colspan="8" style="text-align: left;"><b>HOUSEHOLD PRIORITIES:</b></td></tr>
+	
+	<!--
+	<tr>
+		<td colspan="2" >&nbsp;</td>
+		<td colspan="6" style="text-align: left;"><b>HOUSEHOLD PRIORITIES:</b></td>
+	</tr>
+	-->
+	<tr>
+		<td colspan="2" >&nbsp;</td>
+		<td colspan="2" class='text-column'>Household Priority 1</td>
+		
+		<td class="input-column"><input type="text" id="deps817" name="deps817" value="$!patientDataValueMap.get( 817 )" style="text-align: left;" /></td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		
+	</tr>		
+	
+	<tr>
+		<td colspan="2" >&nbsp;</td>
+		<td colspan="2" class='text-column'>Household Priority 2</td>
+		
+		<td class="input-column"><input type="text" id="deps818" name="deps818" value="$!patientDataValueMap.get( 818 )" style="text-align: left;" /></td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		
+	</tr>		
+	
+	<tr>
+		<td colspan="2" >&nbsp;</td>
+		<td colspan="2" class='text-column'>Household Priority 3</td>
+		
+		<td class="input-column"><input type="text" id="deps819" name="deps819" value="$!patientDataValueMap.get( 819 )" style="text-align: left;" /></td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		
+	</tr>
+	
+</table>
+
+
+<script language="javascript">
+     changeWaterSource();
+     changeWaterSafe();
+     changeWaterDisposal();
+     changeFoodSource();
+     changeSourceOfIncome();
+     liveStock();
+     landSize();
+     //cellphone();
+     other();
+     changeSourceOfCookingFuel();
+     changeHouseHoldIncome();
+     changeHouseHoldDocument();
+     changeHealthService();
+     changeHealthiIsurance();
+     changeLegalProtection();
+     changeReceivingSupport();
+     
+	
+</script>

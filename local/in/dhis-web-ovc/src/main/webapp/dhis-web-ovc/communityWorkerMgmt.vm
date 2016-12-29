@@ -1,0 +1,83 @@
+
+<script>
+	function addEmployee()
+	{
+		var org =  document.getElementById("orgUnitId").value;
+		window.location.href = 'getAddEmployeeForm.action?organisationUnitId='+org;
+	}
+</script>
+
+
+<div id="contentDiv" >
+
+    <h3>Community Worker Management</h3>
+
+	<form id="employeeForm" name="employeeForm" action="getEmployee.action" method="post" >
+		<input type="hidden" id='orgUnitId'  name="orgUnitId" value="$!organisationUnit.id"" />
+		<table class="mainPageTable" id="empDetails">
+			<tr>
+				<td style="vertical-align:top">
+					<table width="100%">
+						<tr>
+							<td>#filterDiv( "employee" )</td>
+							<td colspan="9" style="text-align:right">					
+								<input type="button" value="$i18n.getString( 'add_new' )" onclick="addEmployee()" style="width:80px"/></a>
+							</td>
+						</tr>						
+					</table>
+				</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td>		
+					<table class="listTable" id="listTable">
+						<col/>          
+						<col width="230"/>
+						<col />
+						<thead>
+						  <tr>
+							<th>$i18n.getString( "code" )</th>
+							<th>$i18n.getString( "name" )</th>
+							<th style="text-align:center" class="{sorter: false}">$i18n.getString( "operations" )</th>
+						  </tr>
+						</thead>          
+						<tbody id="list">
+							#foreach( $employee in $employeeList )
+							  <tr id="tr${employee.id}">
+								<td onclick="showEmployeeDetails( $employee.id )">$encoder.htmlEncode( $employee.code )</td>
+								<td onclick="showEmployeeDetails( $employee.id )">$employee.surname $employee.firstName $employee.lastName</td>
+								<td style="text-align:right">
+								  <a href="getEmployeeForEdit.action?employeeCode=$employee.code" title="$i18n.getString( 'edit' )"><img src="../images/edit.png" alt="$i18n.getString( 'edit' )"/></a> 								  
+								  <a href="javascript:removeEmployee( '$employee.id', '$encoder.jsEncode( $employee.firstName )' )" title="$i18n.getString( 'remove' )"><img src="../images/delete.png" alt="$i18n.getString( 'remove' )"/></a>								  
+								  <a href="javascript:showEmployeeDetails( '$employee.id' )" title="$i18n.getString( 'show_details' )"><img src="../images/information.png" alt="$i18n.getString( 'show_details' )"/></a>
+								</td>
+							  </tr>
+							#end
+						</tbody>
+					</table>
+				</td>
+				<td style="width:20em; padding-left:2em; vertical-align:top">
+
+					<div id="detailsArea" style="display:none">
+						<div style="float:right">
+							<a href="javascript:hideDetails()" title="$i18n.getString( 'hide_details' )"><img src="../images/hide.png" alt="$i18n.getString( 'hide_details' )"/></a>
+						</div>
+						<p><label>$i18n.getString( "name" ):</label><br/><span id="nameField"></span></p>
+						<p><label>$i18n.getString( "description" ):</label><br/><span id="descriptionField"></span></p>
+						<p><label>$i18n.getString( "frequency" ):</label><br/><span id="frequencyField"></span></p>
+						<p><label>$i18n.getString( "number_of_data_elements" ):</label><br/><span id="dataElementCountField"></span></p>
+						<p><label>$i18n.getString( "dataentryform" ):</label><br/><span id="dataEntryFormField"></span></p>
+					</div>
+			
+					<div id="warningArea" style="position:fixed;right:10px;top:200px;display:none">
+						<div style="float:right">
+							<a href="javascript:hideWarning()" title="$i18n.getString( 'hide_warning' )"><img src="../images/hide.png" alt="$i18n.getString( 'hide_warning' )"/></a>
+						</div>
+						<p><span id="warningField"></span></p>
+					</div>
+
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>

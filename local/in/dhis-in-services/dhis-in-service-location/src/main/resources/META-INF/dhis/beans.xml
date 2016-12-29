@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+	<!-- Store -->
+	<bean id="org.hisp.dhis.location.LocationStore"
+		class="org.hisp.dhis.location.hibernate.HiberateLocationStore">
+		<property name="clazz" value="org.hisp.dhis.location.Location" />
+		<property name="sessionFactory" ref="sessionFactory"/>
+		<property name="cacheable" value="true" />
+	</bean>
+
+	<!-- Service -->
+	<bean id="org.hisp.dhis.location.LocationService"
+		class="org.hisp.dhis.location.DefaultLocationService">
+		<property name="locationStore" ref="org.hisp.dhis.location.LocationStore"/>
+	</bean>
+	
+	<!-- Deletion Handlers -->
+		
+</beans>

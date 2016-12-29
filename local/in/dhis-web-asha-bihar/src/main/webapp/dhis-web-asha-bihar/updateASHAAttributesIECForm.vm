@@ -1,0 +1,295 @@
+<script type="text/javascript" src="javascript/ashaDrugKitValidation.js"></script>
+#macro( validate $type $require )
+  #if( $type == "NUMBER" )
+  	{validate:{ number:true #if($require), required:true #end }}
+  #elseif( $type == "string" )
+  	{validate:{ alphanumeric:true #if($require), required:true #end }}
+  #elseif( $require )
+  	{validate:{required:true}}
+  #end
+#end
+
+<script>
+    jQuery(document).ready( function(){
+
+        currentDiv = 'updateASHAAttributesForm';
+        isSubmit = true;
+        //alert( "inside update validation");
+        jQuery("#updateASHAAttributesForm").validate({
+                 meta:"validate"
+                ,errorElement:"span"
+                ,submitHandler: function(form)
+                    {
+                    	//alert( "inside update validation after");
+                        if( isSubmit ) 
+                        {
+                            updateASHAAttributes();
+                        }
+                    }
+            });
+    }); 
+    
+</script>
+
+<h4>$i18n.getString( "update_asha_attribute" ) Item  $i18n.getString( "details" )</h4>
+<p>
+<form id="updateASHAAttributesForm" name="updateASHAAttributesForm" method="post" >
+
+<input type="hidden" id="attributeGroupId" name="attributeGroupId" value="$attributeGroup.id">
+<input type="hidden" id="attributeGroupName" name='attributeGroupName' value="$!attributeGroup.name"/>
+<input type="hidden" id="id" name="id" value="$patient.id">
+
+<table style="background-color:#ECE0F8;" width="100%">
+	<tr>
+		<td class='text-column'>$i18n.getString( "system_identifier" )</td>
+		<td>$!systemIdentifier</td>
+	</tr>	
+
+	<tr>
+		<th colspan="2" class="heading-column">$i18n.getString( "demographics_details" )</th>
+	</tr>
+	
+	<tr>
+		<td>$i18n.getString("full_name")</td>
+		<td>$encoder.htmlEncode($!patient.getFullName())</td>
+	</tr>
+	
+	<tr>
+		<td>$i18n.getString("location")</td>
+		<td>$encoder.htmlEncode($!patient.organisationUnit.name)</td>
+	</tr>
+
+	<tr>
+		<td>$i18n.getString("date_of_birth")</td>
+		<td>$format.formatDate( $!patient.birthDate) ($!patient.getAge())</td>
+	</tr>
+	
+	<tr>
+		<td>$i18n.getString("phoneNumber")</td>
+		<td>
+			#if($!patient.phoneNumber && $!patient.phoneNumber!='')
+				$!patient.phoneNumber
+			#else
+				[$i18n.getString('none')]
+			#end
+		</td>
+	</tr>
+	
+	<tr>
+		<th colspan="2" class="heading-column">Section 3: Item Details</th>
+	</tr>	
+	
+	<tr #alternate( false ) id="trattr75">	    
+		<!-- Drug Kit Received  -->
+		<td class='text-column'>Drug Kit Received</td>
+		<td class="input-column" >
+			#set( $attribute = $patientAttributeMap.get( 75 ) )
+			#set( $attributeValueDrugKitReceived = $!patientAttributeValueMap.get( 75 ) )
+            <select id="attr75" name="attr75" class='#validate( "default"  $attribute.mandatory )' onchange="validationDrugKitReceived();">
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $attributeValueDrugKitReceived =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $attributeValueDrugKitReceived =='false') selected="selected" #end >$i18n.getString( "no" )</option>
+            </select>
+		</td>
+	</tr>
+
+	<tr #alternate( false ) id="trattr188">	    
+		<!-- Date of Procurement -->
+		<td class='text-column'>Date of Receiving</td>
+		#set( $attributeDate = $patientAttributeMap.get( 188 ) )
+		<td class="input-column" ><input type="text" id="attr188" name="attr188" class=' #validate( "default"  $attributeDate.mandatory )' value = "$!patientAttributeValueMap.get( 188 )" style="width:260px" disabled = "disabled"/></td>
+		<script type="text/javascript">
+			datePickerValid( 'attr188' );
+		</script> 
+	</tr>
+
+	<tr #alternate( false ) id="trattr77">	    
+		<!-- Drug Kit Replenished  -->
+		<td class='text-column'>Drug Kit Replenished</td>
+		<td class="input-column" >
+			#set( $attribute = $patientAttributeMap.get( 77) )
+			#set( $attributeValueDrugKitReplenished = $!patientAttributeValueMap.get( 77 ) )
+            <select id="attr77" name="attr77" class='#validate( "default"  $attribute.mandatory )' onchange="validationDrugKitReplenished();">
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $attributeValueDrugKitReplenished =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $attributeValueDrugKitReplenished =='false') selected="selected" #end >$i18n.getString( "no" )</option>
+            </select>
+		</td>
+	</tr>
+
+	<tr #alternate( false ) id="trattr178">	    
+		<!-- Date of Replenishment -->
+		<td class='text-column'>Date of Replenishment</td>
+		#set( $attributeDate = $patientAttributeMap.get( 178 ) )
+		<td class="input-column" ><input type="text" id="attr178" name="attr178" class=' #validate( "default"  $attributeDate.mandatory )' value = "$!patientAttributeValueMap.get( 178 )" style="width:260px" disabled = "disabled"/></td>
+		<script type="text/javascript">
+			datePickerValid( 'attr178' );
+		</script> 
+	</tr>
+
+	<tr #alternate( false ) id="trattr204">	    
+		<!-- Saree Received  -->
+		<td class='text-column'>Saree Received</td>
+		<td class="input-column" >
+			#set( $attribute = $patientAttributeMap.get( 204 ) )
+			#set( $attributeValueSareeReceived = $!patientAttributeValueMap.get( 204 ) )
+            <select id="attr204" name="attr204" class='#validate( "default"  $attribute.mandatory )' onchange="validationSareeReceived();">
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $attributeValueSareeReceived =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $attributeValueSareeReceived =='false') selected="selected" #end >$i18n.getString( "no" )</option>
+            </select>
+		</td>
+	</tr>
+
+
+	<tr #alternate( false ) id="trattr205">
+		<!-- Number of Sarees Issued -->
+		<td class='text-column'>Number of Sarees Received</td>
+		#set( $attributeDate = $patientAttributeMap.get( 205 ) )
+		<td class="input-column" ><input type="text" id="attr205" name="attr205" class=' #validate( "default"  $attributeDate.mandatory )' value = "$!patientAttributeValueMap.get( 205 )" style="width:260px" disabled = "disabled"/></td>
+		
+	</tr>
+
+	<tr #alternate( false ) id="trattr206">	    
+		<!-- Year of Sarees Issued -->
+		<td class='text-column'>Year of Sarees Received</td>
+		#set( $attributeDate = $patientAttributeMap.get( 206 ) )
+		<td class="input-column" ><input type="text" id="attr206" name="attr206" class=' #validate( "default"  $attributeDate.mandatory )' value = "$!patientAttributeValueMap.get( 206 )" style="width:260px" disabled = "disabled"/></td>
+		
+	</tr>
+
+	
+
+	<!-- Communication Kit Received -->
+	
+	<tr #alternate( false ) id="trattr218">	    
+		<!-- Saree Received  -->
+		<td class='text-column'>Communication Kit Received</td>
+		<td class="input-column" >
+			#set( $attribute = $patientAttributeMap.get( 218 ) )
+			#set( $attributeValueCommunicationReceived = $!patientAttributeValueMap.get( 218 ) )
+            <select id="attr218" name="attr218" class='#validate( "default"  $attribute.mandatory )' onchange="validationCommunicationKitReceived();">
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $attributeValueCommunicationReceived =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $attributeValueCommunicationReceived =='false') selected="selected" #end >$i18n.getString( "no" )</option>
+            </select>
+		</td>
+	</tr>
+
+
+	<tr #alternate( false ) id="trattr219">	    
+		<!-- Year of Sarees Issued -->
+		<td class='text-column'>Year of Receiving</td>
+		#set( $attributeDate = $patientAttributeMap.get( 219 ) )
+		<td class="input-column" ><input type="text" id="attr219" name="attr219" class=' #validate( "default"  $attributeDate.mandatory )' value = "$!patientAttributeValueMap.get( 219 )" style="width:260px" disabled = "disabled"/></td>
+		
+	</tr>
+	
+	
+	<!-- HBNC/Neo-Natal Kit -->
+	
+	<tr #alternate( false ) id="trattr218">	    
+		<!-- Saree Received  -->
+		<td class='text-column'>HBNC/Neo-Natal Kit Received</td>
+		<td class="input-column" >
+			#set( $attribute = $patientAttributeMap.get( 220 ) )
+			#set( $attributeValueNeoReceived = $!patientAttributeValueMap.get( 220 ) )
+            <select id="attr220" name="attr220" class='#validate( "default"  $attribute.mandatory )' onchange="validationNeoKitReceived();">
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $attributeValueNeoReceived =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $attributeValueNeoReceived =='false') selected="selected" #end >$i18n.getString( "no" )</option>
+            </select>
+		</td>
+	</tr>
+
+
+	<tr #alternate( false ) id="trattr221">	    
+		<!-- Year of Sarees Issued -->
+		<td class='text-column'>Year of Receiving</td>
+		#set( $attributeDate = $patientAttributeMap.get( 221 ) )
+		<td class="input-column" ><input type="text" id="attr221" name="attr221" class=' #validate( "default"  $attributeDate.mandatory )' value = "$!patientAttributeValueMap.get( 221 )" style="width:260px" disabled = "disabled"/></td>
+		
+	</tr>
+		
+	<!-- Other item -->
+	<tr>
+		<td colspan="2"><b>Other Items</b></td>
+	</tr>	
+	
+	<tr #alternate( false ) id="trattr222">	    
+		<!-- Year of Sarees Issued -->
+		<td class='text-column'>Name of items</td>
+		#set( $attributeDate = $patientAttributeMap.get( 222 ) )
+		<td class="input-column" ><input type="text" id="attr222" name="attr222" class=' #validate( "default"  $attributeDate.mandatory )' value = "$!patientAttributeValueMap.get( 222 )" style="width:260px" /></td>
+		
+	</tr>
+	
+	<tr #alternate( false ) id="trattr223">	    
+		<!-- Year of Sarees Issued -->
+		<td class='text-column'>Year of Receiving</td>
+		#set( $attributeDate = $patientAttributeMap.get( 223 ) )
+		<td class="input-column" ><input type="text" id="attr223" name="attr223" class=' #validate( "default"  $attributeDate.mandatory )' value = "$!patientAttributeValueMap.get( 223 )" style="width:260px" /></td>
+		
+	</tr>
+	
+	<tr #alternate( false ) id="trattr224">	    
+		<!-- Year of Sarees Issued -->
+		<td class='text-column'>Name of items</td>
+		#set( $attributeDate = $patientAttributeMap.get( 224 ) )
+		<td class="input-column" ><input type="text" id="attr224" name="attr224" class=' #validate( "default"  $attributeDate.mandatory )' value = "$!patientAttributeValueMap.get( 224 )" style="width:260px" /></td>
+		
+	</tr>
+	
+	<tr #alternate( false ) id="trattr225">	    
+		<!-- Year of Sarees Issued -->
+		<td class='text-column'>Year of Receiving</td>
+		#set( $attributeDate = $patientAttributeMap.get( 225 ) )
+		<td class="input-column" ><input type="text" id="attr225" name="attr225" class=' #validate( "default"  $attributeDate.mandatory )' value = "$!patientAttributeValueMap.get( 225 )" style="width:260px" /></td>
+		
+	</tr>	
+
+	
+	<tr #alternate( false ) id="trattr226">	    
+		<!-- Year of Sarees Issued -->
+		<td class='text-column'>Name of items</td>
+		#set( $attributeDate = $patientAttributeMap.get( 226 ) )
+		<td class="input-column" ><input type="text" id="attr226" name="attr226" class=' #validate( "default"  $attributeDate.mandatory )' value = "$!patientAttributeValueMap.get( 226 )" style="width:260px" /></td>
+		
+	</tr>
+	
+	<tr #alternate( false ) id="trattr227">	    
+		<!-- Year of Sarees Issued -->
+		<td class='text-column'>Year of Receiving</td>
+		#set( $attributeDate = $patientAttributeMap.get( 227 ) )
+		<td class="input-column" ><input type="text" id="attr227" name="attr227" class=' #validate( "default"  $attributeDate.mandatory )' value = "$!patientAttributeValueMap.get( 227 )" style="width:260px" /></td>
+		
+	</tr>		
+	
+</table>
+
+<table width="100%">
+	
+	<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+
+	<tr>
+		<td>
+			<input type="submit" class='button' value="$i18n.getString( 'update' )" >
+			<!--<input type="button" class='button' value="$i18n.getString( 'back_to_registration' )" onclick="javascript:callAction( 'getRegisteredASHAList' )"/>-->
+			<input type="button" class='button' value="$i18n.getString( 'back_to_registration' )" onclick="javascript:callAction( 'selectASHA' )"/>
+		</td>
+	</tr>
+</table>
+
+<!-- style="width:150px" -->
+
+</form> 	
+<script type="text/javascript">
+	
+	validationDrugKitReceived();
+	validationDrugKitReplenished();
+	validationSareeReceived();
+	
+	validationCommunicationKitReceived();
+	validationNeoKitReceived();
+	
+</script>	

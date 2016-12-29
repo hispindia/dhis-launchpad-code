@@ -1,0 +1,70 @@
+
+<script type="text/javascript">
+
+function formValidations()
+{
+   	var orgUnitId = $( '#orgUnitId' ).val();
+	var blockId = $( '#blockId' ).val();
+    
+    if( orgUnitId == "-1" ) 
+	{ 
+		showWarningMessage( "Please Select District" );
+		return false; 
+	}
+    
+	else if( blockId == "-1" ) 
+	{ 
+		showWarningMessage( "Please Select Block" );
+		return false; 
+	}
+	
+    return true;
+}
+
+</script>
+
+
+
+<form id="asha_format7_report_form" name="asha_format7_report_form" action="format7ReportResult.action" method="post" onsubmit="return formValidations()" target="_blank" >
+	<table>
+		<tr>
+			<th colspan="2">$i18n.getString( "asha_format7_report_form" )</th>
+		</tr>
+		<tr>
+			<td>$i18n.getString( "district" )&nbsp;&nbsp;&nbsp;&nbsp;</td>
+			<td>
+				<select id="orgUnitId" name="orgUnitId" onchange="loadChildrenOrgUnit()">
+					<option value="-1">[$i18n.getString( "select" )]</option>
+					#foreach( $orgUnitGroupMember in $orgUnitGroupMembers )
+						<option value="$orgUnitGroupMember.id">$orgUnitGroupMember.name</option>
+					#end				
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>		
+
+		<tr>
+			<td>$i18n.getString( "block" )&nbsp;&nbsp;&nbsp;&nbsp;</td>
+			<td>
+				<select id="blockId" name="blockId" disabled="disabled" >
+					<option value="-1">[$i18n.getString( "select" )]</option>
+				</select>
+			</td>
+		</tr>		
+		
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>			
+		
+		<tr>
+			<td>&nbsp;</td>
+			<td>
+				<input type="submit" value='$i18n.getString("generate_report")' />
+			</td>
+		</tr>
+	</table>
+</form>

@@ -1,0 +1,215 @@
+
+## Macro for generating the jQuery validation rules 
+#macro( validate $type $require )
+  #if( $type == "NUMBER" )
+    {validate:{ number:true #if($require), required:true #end }}
+  #elseif( $require )
+    {validate:{required:true}}
+  #end
+#end
+
+<script type="text/javascript">
+	var i18n_please_select_orgUnit = '$encoder.jsEscape( $i18n.getString( "please_select_orgUnit" ) , "'")';
+</script>
+
+<script type="text/javascript">
+jQuery(document).ready( function(){
+        validation( 'updateASHAFacilitatorForm', function(form){
+            if( isSubmit && validateAddEmployee() ) {
+                form.submit(i18n_field_is_required);
+            }
+        }, function( ){
+            isSubmit = true;
+        }); 
+    }); 
+
+</script>
+
+<h3>$i18n.getString( "add_asha_facilitator_details" )</h3>
+<form id="updateASHAFacilitatorForm" name="updateASHAFacilitatorForm" method="post" action="updateASHAFacilitator.action"> 
+<table>
+	<tr>
+		<th colspan="2">$i18n.getString( "details" )</th>
+	</tr>
+		
+	<tr>
+		<td style="width:160px"><label for="organisationUnit">$i18n.getString( "organisation_unit" )</label></td>
+		<td style="width:160px">
+			<input type="text" name="orgUnitName" id="orgUnitName" value="$!facilitator.organisationUnit.getName()" style="width:300px" readonly="true"/>
+			<input type="hidden" name="orgUnitId" id="orgUnitId" value="$!facilitator.organisationUnit.getId()" />
+			<input type="hidden" name="facilitatorId" id="facilitatorId" value="$!facilitator.getId()" />
+			<input type="hidden" id='selectedOrgunitID' value="$!organisationUnit.id" />
+		</td>
+	</tr>
+
+	<tr>
+		<td style="width:120px"><label for="name">$i18n.getString( "name" ) <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+		<td><input type="text" name="name" id="name" value="$!facilitator.getName()" style="width:300px" class="{validate:{required:true,rangelength:[4,160]}}"/></td>
+	</tr>
+
+	<tr>
+		<td><label for="gender">$i18n.getString( "gender" )<em title="$i18n.getString( "required" )" class="required">*</em></label></td>
+		<td>
+			<select id="gender" name="gender" style="width:300px" class="{validate:{required:true}}">
+				<!--<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>-->
+                <option value="F" #if( $!facilitator.gender == 'F' ) selected="selected" #end>$i18n.getString( "female" )</option>
+                <option value="M" #if( $!facilitator.gender == 'M' ) selected="selected" #end>$i18n.getString( "male" )</option>
+			</select>
+		</td>					
+	</tr>	
+	
+	<tr>
+		<td><label for="contactNumber">$i18n.getString( "contactNumber" )</label></td>
+		<td><input type="text" name="contactNumber" id="contactNumber" style="width:300px" value="$!facilitator.getContactNumber()" class="{validate:{phone:true,rangelength:[10,10]}}" /></td>
+	</tr>
+	
+	<tr>
+		<td><label for="address">$i18n.getString( "address" )</label></td>
+		<td><input type="text" name="address" id="address"  value="$!facilitator.getAddress()"  style="width:300px"/></td>
+	</tr>
+
+	
+	
+	<tr>
+		<td><label for="email">$i18n.getString( "email" )</label></td>
+		<td><input type="text" name="email" id="email" style="width:300px" class="{validate:{required:false,email:true,rangelength:[4,160]}}" value="$!facilitator.getEmail()"/></td>
+	</tr>
+	
+	<tr>
+		<td><label for="panchayatName">$i18n.getString( "panchayat_name" )</label></td>
+		<td><input type="text" name="panchayatName" id="panchayatName" style="width:300px" class="{validate:{required:false,rangelength:[4,160]}}" value="$!facilitator.getPanchayatName()"/></td>
+	</tr>	
+	
+	
+	
+	<tr>
+		<td><label for="date_of_birth">$i18n.getString( "date_of_birth" )<em title="$i18n.getString( "required" )" class="required">*</em></label></td>
+		<td>
+			<input type="text" name="birthDate" id="birthDate" class="{validate:{required:true,dateISO:true}}" style="width:300px" value='$format.formatDate($!facilitator.birthDate)'/>
+			<script type="text/javascript">
+                datePickerValid( 'birthDate', false );
+            </script>
+		</td>
+	</tr>
+	
+	<tr>
+		<td><label for="educationalLevel">$i18n.getString( "educational_level" )</label></td>
+		<td>
+			<select name="educationLevel" id="educationLevel" style="width:300px">
+				<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+				<option value = "Graduate" #if( $!facilitator.getEducationLevel() == 'Graduate' ) selected="selected" #end >$i18n.getString( "graduate" )</option>
+				<option value = "Post Graduate" #if( $!facilitator.getEducationLevel() == 'Post Graduate' ) selected="selected" #end >$i18n.getString( "post_graduate" )</option>
+				<option value = "Others" #if( $!facilitator.getEducationLevel() == 'Others' ) selected="selected" #end >$i18n.getString( "others" )</option>
+			</select>
+		</td>
+	</tr>	
+	
+	<tr>
+		<td><label for="category">$i18n.getString( "category" )</label></td>
+		<td>
+			<select name="category" id="category" style="width:300px">
+				<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+				<option value = "General" #if( $!facilitator.getCategory() == 'General' ) selected="selected" #end >$i18n.getString( "general" )</option>
+				<option value = "SC" #if( $!facilitator.getCategory() == 'SC' ) selected="selected" #end >$i18n.getString( "sc" )</option>
+				<option value = "ST" #if( $!facilitator.getCategory() == 'ST' ) selected="selected" #end >$i18n.getString( "st" )</option>
+				<option value = "OBC" #if( $!facilitator.getCategory() == 'OBC' ) selected="selected" #end >$i18n.getString( "obc" )</option>
+				<option value = "Others" #if( $!facilitator.getCategory() == 'Others' ) selected="selected" #end >$i18n.getString( "others" )</option>
+			</select>
+		</td>
+	</tr>
+
+	<tr>
+		<td><label for="martialstatus">$i18n.getString( "martial_status" )</label></td>
+		<td>
+			<select name="maritalStatus" id="maritalStatus" style="width:300px">
+				<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+				<option value = "Married" #if( $!facilitator.getMaritalStatus() == 'Married' ) selected="selected" #end  >$i18n.getString( "married" )</option>
+				<option value = "Unmarried" #if( $!facilitator.getMaritalStatus() == 'Unmarried' ) selected="selected" #end >$i18n.getString( "unmarried" )</option>
+			</select>
+		</td>
+	</tr>	
+	
+	
+	<tr>
+		<td><label for="date_of_joining">$i18n.getString( "date_of_joining" )<em title="$i18n.getString( "required" )" class="required">*</em></label></td>
+		<td>
+			<input type="text" name="joiningDate" id="joiningDate" class="{validate:{required:true,dateISO:true}}" style="width:300px" value='$format.formatDate($!facilitator.getJoiningDate() )'/>
+			<script type="text/javascript">
+                datePickerValid( 'joiningDate', false );
+            </script>
+		
+		</td>
+	</tr>	
+
+	<tr>
+		<td><label for="orientationReceived">$i18n.getString( "orientation_received" )</label></td>
+		<td>
+			<select name="orientationReceived" id="orientationReceived" style="width:300px">
+				<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+				<option value="true" #if( $facilitator.isOrientationReceived() =='true') selected="selected" #end >$i18n.getString( "yes" )</option>
+				<option value="false" #if( $facilitator.isOrientationReceived() =='false') selected="selected" #end >$i18n.getString( "no" )</option>
+			</select>
+		</td>
+	</tr>		
+	
+	<tr>
+		<td><label for="active">$i18n.getString( "active" )</label></td>
+		<td>
+			<input type='checkbox' id="active" name="active" value='true' #if( $facilitator.active ) checked #end>
+		</td>		
+	</tr>
+	
+	<tr>
+		<td>&nbsp;</td>
+		<td>
+			<table>
+					<tr>
+						<th>$i18n.getString( "asha_list" )</th>
+						<th></th>
+						<th>$i18n.getString( "selected_asha_list" )</th>
+					</tr>
+					
+					<tr>
+						<td>
+							<select multiple="multiple" id="availableASHAList" name="availableASHAList" size="9" ondblclick="moveSelectedById( 'availableASHAList', 'selectedASHAList' )"  style="width:300px; height:100%;">
+								#foreach ( $patient in $patients )
+									<option value="$patient.id" title="$patient.getFullName()">$patient.getFullName()</option>
+								#end
+							
+							</select>
+						</td>
+						<td>
+							<input type="button" value="&gt;" style="width:40px" onClick="moveSelectedById( 'availableASHAList', 'selectedASHAList' )"><br/>
+							<input type="button" value="&lt;" style="width:40px" onClick="moveSelectedById( 'selectedASHAList', 'availableASHAList' )"><br/>
+							<input type="button" value="&gt;&gt;" style="width:40px" onClick="moveAllById( 'availableASHAList', 'selectedASHAList' )"><br/>
+							<input type="button" value="&lt;&lt;" style="width:40px" onClick="moveAllById( 'selectedASHAList', 'availableASHAList' )">
+						</td>
+						<td>
+							<select multiple="multiple" id="selectedASHAList" name="selectedASHAList" size="9" ondblclick="moveSelectedById( 'selectedASHAList', 'availableASHAList' )"  style="width:300px; height:100%;">
+								#foreach ( $facilitatorPatient in $facilitatorPatients )
+                  					<option value="$facilitatorPatient.id" title="$facilitatorPatient.getFullName()">$facilitatorPatient.getFullName()</option>
+              					#end   
+							</select>
+						</td>
+					</tr> 
+			</table>
+		</td>
+	</tr>
+	
+	<tr>
+		<td>&nbsp;</td>
+		<td>
+			<input type="submit" name="save" value="$i18n.getString( 'save' )" style="width:150px" />
+			<input type="button" value="$i18n.getString( 'cancel' )" onclick="window.location.href='getASHAFacilitatorList.action'" style="width:150px" />
+		</td>
+	</tr>
+		
+</table>
+
+</form>	
+
+
+<script type="text/javascript">
+
+    var i18n_field_is_required = '$encoder.jsEscape( $i18n.getString( "field_is_required" ) , "'") ';
+</script>

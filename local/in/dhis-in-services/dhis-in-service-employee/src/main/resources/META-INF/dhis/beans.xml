@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+	<!-- Store -->
+	<bean id="org.hisp.dhis.employee.EmployeeStore"
+		class="org.hisp.dhis.employee.hibernate.HiberateEmployeeStore">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+
+	<!-- Service -->
+	<bean id="org.hisp.dhis.employee.EmployeeService"
+		class="org.hisp.dhis.employee.DefaultEmployeeService">
+		<property name="employeeStore" ref="org.hisp.dhis.employee.EmployeeStore"/>
+	</bean>
+	
+	<!-- Deletion Handlers -->
+	
+</beans>

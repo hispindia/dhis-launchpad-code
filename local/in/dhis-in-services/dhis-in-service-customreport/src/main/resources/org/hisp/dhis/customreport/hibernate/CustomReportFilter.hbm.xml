@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+ "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="org.hisp.dhis.customreports.CustomReportFilter" table="customreportfilter">
+
+	<id name="id" column="customreportfilterid">
+      <generator class="native" />
+    </id>
+    
+    <property name="filterType" column="filtertype" not-null="true" length="230" />
+    
+	<property name="filterOperator" column="filteroperator" not-null="true" length="160" />  
+	
+	<property name="filterLeftString" column="filterleftstring" not-null="true" length="160" />
+	
+	<property name="filterRightString" column="filterrightstring" not-null="true" length="160" />
+	  
+	<property name="searchTexts" column="searchtexts" not-null="true" length="250" />          
+    
+	<!--  
+	<many-to-one name="customReport" class="org.hisp.dhis.customreports.CustomReport" column="customreportid"
+      not-null="true" foreign-key="fk_customreportdesign_customreportid" />
+	-->
+	  
+	  	  
+  </class>
+</hibernate-mapping>

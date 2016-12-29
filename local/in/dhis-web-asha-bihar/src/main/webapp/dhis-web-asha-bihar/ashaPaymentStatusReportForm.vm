@@ -1,0 +1,41 @@
+#if( $status == "NONE" )
+<form id="ashaPaymentStatusForm" name="ashaPaymentStatusForm" action="generateASHApaymentStatusReport.action" method="post" onsubmit="return formValidations()" target="_blank" >
+	<table>
+		<tr>
+			<th colspan="2">$i18n.getString( "asha_payment_status_report_form" ) - $!organisationUnit.name</th>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>$i18n.getString( "period" )</td>
+			<td>
+				<select id="selectedPeriodId" name="selectedPeriodId" >
+					<option value="-1">[$i18n.getString( "Select" )]</option>
+					#foreach( $period in $periods )
+						<option value="$period.getExternalId()">$encoder.htmlEncode( $period.name )</option>
+					#end				
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>		
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>
+				<input type="submit"  id="generate" name="generate" value='$i18n.getString("generate_report")'/>
+				<input type="hidden" id="orgUnitId" name="orgUnitId" value="$!organisationUnit.id" />
+			</td>
+		</tr>
+	</table>
+</form>
+#else
+	<h4>$status</h4>
+#end
