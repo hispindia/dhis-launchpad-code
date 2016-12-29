@@ -1,0 +1,89 @@
+
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>$!encoder.htmlEncode( ${applicationTitle} )</title>
+        <meta name="description" content="DHIS 2">
+        <meta name="keywords" content="DHIS 2">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script type="text/javascript" src="../javascripts/jQuery/jquery.min.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/security/login.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/useraccount/updateUserAccountForm.js"></script>
+        <link type="text/css" rel="stylesheet" href="../dhis-web-commons/css/widgets.css">
+        <link type="text/css" rel="stylesheet" href="../dhis-web-commons/css/login.css">
+    </head>
+    <body>
+    	<h1 style="display:none">$!encoder.htmlEncode( ${applicationTitle} )</h1>
+    	<div style="display:none">DHIS 2</div>
+        <div>       
+        #if ( $keyFlag )
+            <img id="flagArea" src="../dhis-web-commons/flags/$!{keyFlagImage}">
+        #end
+        #if ( $applicationTitle )
+            <span id="titleArea">$!encoder.htmlEncode( ${applicationTitle} )</span>
+        #end        
+        #if ( $keyApplicationIntro )
+            <span id="introArea">$!{keyApplicationIntro}</span>
+        #end
+        </div>        
+        <div id="passwordUpdateField" align="center">
+            <div id="bannerArea"><a href="http://www.dhis2.org"><img src="../dhis-web-commons/security/logo_front.png" style="border:none"></a></div>
+            
+            <form id="updateUserinforForm" action="updateUserAccount.action" method="post" class="inputForm">
+			<div>
+				<input type="hidden" id="id" name="id" value="$userCredentials.id"/>
+				<input type="hidden" id="password" name="password" value="$password"/>	
+				<input type="hidden" id="rawPassword1" name="rawPassword1" value="$rawPassword1"/>
+				<input type="hidden" id="rawPassword2" name="rawPassword2" value="$rawPassword2"/>
+				<input type="hidden" id="rawPassword3" name="rawPassword3" value="$rawPassword3"/>
+			</div>			
+			<div>	
+				<h1></h1>
+				<h1></h1>
+				<div id="loginMessage" >
+				<h><b>YOUR PASSWORD HAS BEEN EXPIRED, PLEASE UPDATE IMMEDIATELY !!!</b></h>
+            	</div>
+			</div>			
+			<table>				
+			    <tr>
+			        <td><label for="username">$i18n.getString( "User Name" )</label></td>
+			        <td><input type="text" id="username" name="username" value="$!encoder.htmlEncode( $!userCredentials.username )" disabled="disabled" style="width:262px"></td>
+			    </tr>       
+				<tr>
+					<td><label for="rawPassword">$i18n.getString( "Old Password" )</label></td>
+					<td><input type="password" id="oldPassword" name="oldPassword"></td>
+				</tr>								
+				<tr>
+					<td><label for="rawPassword">$i18n.getString( "New Password" )</label></td>
+					<td><input type="password" id="rawPassword" name="rawPassword"></td>
+				</tr>				
+				<tr>
+					<td><label for="retypePassword">$i18n.getString( "Retype New Password" )</label></td>
+					<td><input type="password" id="retypePassword" name="retypePassword"></td>
+				</tr>	
+				<tr>
+					<td></td>
+					<td valign="top"><input type="submit" value="$i18n.getString( 'save' )" style="width:10em"><input type="button" value="$i18n.getString( 'Logout' )" style="width:10em" onclick="window.location.href='/dhis-web-commons-security/logout.action'"></td>
+				</tr>
+			</table>			
+			</form>						     			
+			#if( $warningFlag == true )
+            <div id="loginMessage" style="width:775px;">
+            	$message
+            </div>
+            #end              
+        </div>
+        <div id="footerArea">
+        	<span id="poweredByLabel">Powered by</span>
+        	<a href="http://www.dhis2.org">DHIS 2</a>&nbsp;
+        	<span id="applicationFooter">$!{keyApplicationFooter}</span>
+        	<select id="localeSelect" onchange="login.localeChanged()" style="margin-left: 30px">
+        		<option value="">[ Change language ]</option>
+        		#foreach( $locale in $availableLocales )
+        		<option value="${locale.language}">${locale.displayName}</option>
+		        #end
+	        </select>
+
+        </div>
+    </body>
+</html>

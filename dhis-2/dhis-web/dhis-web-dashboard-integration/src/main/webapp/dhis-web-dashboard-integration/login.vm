@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>$!encoder.htmlEncode( ${applicationTitle} )</title>
+        <meta name="description" content="DHIS 2">
+        <meta name="keywords" content="DHIS 2">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script type="text/javascript" src="../javascripts/jQuery/jquery.min.js"></script>
+        <script type="text/javascript" src="login.js"></script>
+        <link type="text/css" rel="stylesheet" href="../css/widgets.css">
+        <link type="text/css" rel="stylesheet" href="../css/login.css">
+    </head>
+    <body>
+    	<h1 style="display:none">$!encoder.htmlEncode( ${applicationTitle} )</h1>
+    	<div style="display:none">DHIS 2</div>
+        <div>       
+        #if ( $keyFlag )
+            <img id="flagArea" src="../flags/$!{keyFlagImage}">
+        #end
+        #if ( $applicationTitle )
+            <span id="titleArea">$!encoder.htmlEncode( ${applicationTitle} )</span>
+        #end        
+        #if ( $keyApplicationIntro )
+            <span id="introArea">$!{keyApplicationIntro}</span>
+        #end
+        </div>
+        #if ( $keyConfig.selfRegistrationAllowed() )
+        <div id="accountArea">
+        	<a id="createAccountButton" class="greenButtonLink" href="account.action">Create an account</a>
+        </div>
+        #end
+        <div id="loginField">
+            <div id="bannerArea"><a href="http://www.dhis2.org"><img src="logo_front.png" style="border:none"></a></div>
+            
+            <form id="updateUserinforForm" action="updateUserAccount.action" method="post" onsubmit='return false;' class="inputForm">
+			<div>
+				<input type="hidden" id="id" name="id" value="$userCredentials.id"/>
+			</div>
+			
+			<div id="warningArea">	
+				<h1>Your password hasbeen expired, please update immediately to use application</p>
+			</div>
+			
+			<table>
+			    <tr>
+			        <td><label for="username">$i18n.getString( "user_name" )</label></td>
+			        <td><input type="text" id="username" name="username" value="$!encoder.htmlEncode( $!userCredentials.username )" disabled="disabled"></td>
+			    </tr>       
+				<tr>
+					<td><label for="rawPassword">$i18n.getString( "old_password" ) <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+					<td><input type="password" id="oldPassword" name="oldPassword"></td>
+				</tr>
+				<tr>
+					<td><label for="rawPassword">$i18n.getString( "new_password" )</label></td>
+					<td><input type="password" id="rawPassword" name="rawPassword"></td>
+				</tr>
+				<tr>
+					<td><label for="retypePassword">$i18n.getString( "retype_new_password" )</label></td>
+					<td><input type="password" id="retypePassword" name="retypePassword"></td>
+				</tr>	
+				<tr>
+					<td></td>
+					<td valign="top"><input type="submit" value="$i18n.getString( 'save' )" style="width:10em"></td>
+				</tr>
+			</table>
+			
+			</form>           
+            
+        </div>
+        <div id="footerArea">
+        	<span id="poweredByLabel">Powered by</span>
+        	<a href="http://www.dhis2.org">DHIS 2</a>&nbsp;
+        	<span id="applicationFooter">$!{keyApplicationFooter}</span>
+
+        	<select id="localeSelect" onchange="login.localeChanged()" style="margin-left: 30px">
+        		<option value="">[ Change language ]</option>
+        		#foreach( $locale in $availableLocales )
+        		<option value="${locale.language}">${locale.displayName}</option>
+		        #end
+	        </select>
+
+        </div>
+    </body>
+</html>
