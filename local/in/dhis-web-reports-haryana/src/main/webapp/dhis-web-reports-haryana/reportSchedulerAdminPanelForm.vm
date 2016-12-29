@@ -1,0 +1,125 @@
+
+<h3>$i18n.getString("Reports Administrative Scheduling Panel")</h3>
+	
+<form id="schedulingForm" name="schedulingForm" action="updateSchedulAction.action" method="post" class="inputForm">
+	<table>
+		<tr>
+			<td valign="top">
+				<table valign="top">																		
+				    <tr><td>&nbsp;</td></tr>
+				    									
+					<tr><th>$i18n.getString( "available_reports_for_scheduling" )</th><td></td><th>$i18n.getString( "selected_reports_for_scheduling" )</th></tr>										
+					<tr>	
+						<td>	
+							<select id="reportList" name="reportList" multiple="multiple" style="min-width:325px;height:11.25em" ondblclick="moveSelectedById( this.id, 'selectedReportList' )">
+								#foreach($report in $reportList)
+	                    			<option value="$report.id">$report.name</option>
+	                			#end
+							</select>
+						</td>
+						<td style="text-align:center">			
+							<input type="button" value="&gt;" title="$i18n.getString('move_selected')" style="width:50px" onclick="moveSelectedById( 'reportList', 'selectedReportList' )" /><br/>
+							<input type="button" value="&lt;" title="$i18n.getString('remove_selected')" style="width:50px" onclick="moveSelectedById( 'selectedReportList', 'reportList' )" /><br/>
+						</td>	
+						<td>
+							<select id="selectedReportList" name="selectedReportList" size="2" multiple="multiple" style="min-width:325px;height:11.25em" ondblclick="moveSelectedById( this.id, 'reportList' )">
+								#foreach($selectedReport in $selectedReportList)
+	                    			<option value="$selectedReport.id">$selectedReport.name</option>
+	                			#end
+	                		</select>
+						</td>
+					</tr>
+																
+					<!--tr><td>&nbsp;</td></tr>	
+					<tr>	
+						<td>
+							<select id="cronId" name="cronId" size="2" style="min-width:325px;height:11.25em" ondblclick="">
+								#foreach($cron in $cronList)
+	                    			<option value="$cron.id">$cron.description</option>
+	                			#end
+	                		</select>
+						</td>
+					</tr-->	
+					
+					<tr><td>&nbsp;</td></tr>						
+					<tr>
+						<td>   	
+							<script>                     
+					           function enableEmailAttachmentCB()
+					           {
+					           		if($('#email').is(":checked"))
+					           		{
+					           		   $('#emailAttachmentCB').val("true");        		           		   			              				       				                   		
+					           		}
+									else
+									{
+									   $('#emailAttachmentCB').val("false");
+					           		}
+					           }
+	           				</script>					             
+							<input type="checkbox" checked="true" id="email" name="email" onchange="enableEmailAttachmentCB()"> 
+							<input type="hidden" id="emailAttachmentCB" name="emailAttachmentCB"> 
+							<label>$i18n.getString( "emailAttachment" )</label>     
+						</td>	
+					</tr>
+										
+					<tr><td>&nbsp;</td></tr>																									
+					<tr>																	
+						<td>			
+							<input type="submit" id="schedule" name="schedule" value="$i18n.getString('Enable Schedule')" style="width:12em"/>
+							<input type="button" id="cancel" name="cancel" value="$i18n.getString('Cancel')" style="width:12em" onclick="reportsIndex()"/>
+						</td>					
+					</tr>																							
+				</table>
+			</td>
+		</tr>
+	</table>	
+</form>
+
+<span id="message"></span>
+
+<script>
+
+function clock()
+	{
+		var time = new Date()
+		var hr = time.getHours()
+		var min = time.getMinutes()
+		var sec = time.getSeconds()
+		if (hr < 10)
+			{
+				hr = " " + hr
+			}
+		if (min < 10)
+			{
+				min = "0" + min
+			}
+		if (sec < 10)
+			{
+				sec = "0" + sec
+			}
+		document.clockForm.clockButton.value = hr + ":" + min + ":" + sec
+		setTimeout("clock()", 1000)
+	}
+	
+function showDate()
+	{
+		var date = new Date()
+		var year = date.getYear()
+		if(year < 1000)
+			{
+				year += 1900
+			}
+		var monthArray = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
+		alert(monthArray[date.getMonth()] + " " + date.getDate() + ", " + year)
+	}
+	
+function reportsIndex()
+	{
+		var url = "index.action";							
+		window.location.href = url;	
+	}
+	
+window.onload=clock;
+
+</script>

@@ -1,0 +1,223 @@
+
+<script>
+    function formValidations()
+    {
+		var ouIDTB = $('#ouIDTB').val();
+		var ouNameTB = $('#ouNameTB').val();
+		var availablePeriod = $('#availablePeriods option:selected').val();
+	    var reportList = $('#reportList option:selected').val();
+	    var downloadPeriod = $('#downloadPeriods option:selected').val();  
+			    
+        if(availablePeriod == null) 
+        {
+            alert("Please Select Period");
+            return false;
+        }                       
+        else if(ouIDTB == null || ouNameTB == null)
+        {
+            alert("Please Select OrganisationUnit"); 
+            return false;
+        }       
+        else if(reportList == null) 
+        {
+            alert("Please Select Report"); 
+            return false;
+        }
+        else if(aggData == null) 
+        {
+            alert("Please Select Report"); 
+            return false;
+        }
+        else if(downloadPeriod == 'NA') 
+        {
+            alert("Please Select Pre-Generated Reports Period"); 
+            return false;
+        }
+        
+        $('#generate').attr('disabled', 'disabled');
+        $('#downloadPreGeneratedReports').attr('disabled', 'disabled');
+        
+        return true;
+    }   
+    
+	
+	
+    function getPreGeneratedReport() 
+	{
+		var ouIDTB = $('#ouIDTB').val();
+		var ouNameTB = $('#ouNameTB').val();
+		var availablePeriod = $('#availablePeriods option:selected').val();
+	    var reportList = $('#reportList option:selected').val();
+	    var downloadPeriod = $('#downloadPeriods option:selected').val();  
+	    	    
+	    if(availablePeriod == null) 
+        {
+            alert("Please Select Period");
+            return false;
+        }                       
+        else if(ouIDTB == null || ouNameTB == null)
+        {
+            alert("Please Select OrganisationUnit"); 
+            return false;
+        }       
+        else if(reportList == null) 
+        {
+            alert("Please Select Report"); 
+            return false;
+        }           
+		
+		if (ouIDTB != "NA" && ouNameTB != null && availablePeriods != null && reportList != null && downloadPeriod != null) 
+		{
+			var url = "generatePreGeneratedReport.action?ouIDTB=" + ouIDTB 
+						+ "&availablePeriod=" + availablePeriod 
+						+ "&reportList=" + reportList					
+						+ "&downloadPeriod=" + downloadPeriod;								
+			window.location.href = url;				 
+		}					
+	} 	      
+</script>
+
+<h1>$i18n.getString( "ll_bulk_ra" )</h1>
+<hr /><br />
+<form id="reportForm" name="reportForm" action="generateLLBulkReport.action" method="post" onsubmit="return formValidations()" target="_blank">        
+    <table align="center" style=" border-collapse: collapse; margin-top: 0;" cellpadding="0" cellspacing="0" width="730" border=0>                      
+        <tr>
+            <td class="NormalB">
+                1. $i18n.getString("periodtype") :<br />
+                <select id="periodTypeId" name="periodTypeId" style="width:200px" onchange="getPeriods()">
+                    <option value="NA">[ $i18n.getString("select_periodtype") ]</option>
+                    #foreach ($type in $periodTypes)
+                        <option value="$type.name">$type.name</option>
+                    #end
+                </select>
+            </td>
+            <td class="NormalB">                            
+                3. $i18n.getString("organisationunit") :<br />
+                <input type="text" name="ouNameTB" id="ouNameTB" style="width:200px" disabled>         
+            </td>       
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>           
+        <tr>
+            <td class="NormalB">
+                2. $i18n.getString("periods") :<br />
+                <select id="availablePeriods" name="availablePeriods" style="width:200px" disabled="disabled"></select>
+            </td>
+            <td class="NormalB">
+                4. $i18n.getString("reports") :<br />
+                <select id="reportList" name="reportList" style="width:200px" disabled="disabled"></select>
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>          
+            <td class="NormalB">
+                <!--<input type="checkbox" id="aggCB" name="aggCB" checked> $i18n.getString( "aggregated_data" )-->
+               <!--
+			   <script>
+           	   function enableGenerate()
+           	   {
+           			$('#generate').removeAttr('disabled');   
+           			$('#downloadPreGeneratedReports').attr('disabled', 'disabled');
+           			$('#downloadPeriods').attr('disabled', 'disabled');
+					$('#enableDownload').attr("checked", false);           	   
+			   }
+           	   </script>
+			   -->
+               5. $i18n.getString("generated_data_type") :<br />
+                <select id="aggData" name="aggData" style="width:200px" onchange="enableGenerate()">
+                	<option value="usecaptureddata">$i18n.getString("use_captured_data")</option>
+                    <option value="generateaggdata">$i18n.getString("generate_agg_data")</option>
+                    <option value="useexistingaggdata">$i18n.getString("use_existing_agg_data")</option>
+                </select>
+           </td>     
+           <td>
+           		<input type="submit" id= "generate" name="generate" value='$i18n.getString("generate_report")' style="width:200px" disabled="disabled">
+                <input type="hidden" name="autogen" id="autogen" value="0" >
+                <input type="hidden" name="ouIDTB" id="ouIDTB">
+                <input type="hidden" name="reportTypeNameTB" id="reportTypeNameTB" value="$reportTypeName">
+           </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+		
+		<!--
+        <tr>                    
+           <td class="NormalB">
+           <script>
+           function enableDownload(){    
+           		$('#generate').attr('disabled', 'disabled');    			              				       				         
+           		$('#downloadPreGeneratedReports').removeAttr('disabled');
+           		$("#aggData option:selected").val() = usecaptureddata;
+           		$("#aggData option:selected").text = 'use_captured_data';           		          		       		
+           }           
+           function enableDownloadPreGeneratedReports(){
+           		if($('#enableDownload').is(":checked")){
+	           		$('#aggData').attr('disabled', 'disabled'); 
+	           	    $('#generate').attr('disabled', 'disabled'); 
+	           	    $('#downloadPeriods').removeAttr('disabled'); 								    			          		         		     
+	           	    $('#downloadPreGeneratedReports').removeAttr('disabled');
+	           	    var report = $('#reportList option:selected').val(); 
+					if (report != null) {
+						var url = "getPreGeneratedReportPeriod.action?report=" + report;	
+						var request = new Request();
+						request.setResponseTypeXML('downloadPeriods');
+						request.setCallbackSuccess(getPreGeneratedReportPeriodsReceived);
+						request.send(url); 
+					}				             		           		   			              				       				                   		
+           		}else{
+				    $('#downloadPreGeneratedReports').attr('disabled', 'disabled');  	
+				    $('#downloadPeriods').attr('disabled', 'disabled');  								    			
+					$('#aggData').removeAttr('disabled'); 
+           		    $('#generate').removeAttr('disabled'); 
+           		}
+           	}           			
+			function getPreGeneratedReportPeriodsReceived(xmlObject) {	
+				var downloadPeriods=document.getElementById("downloadPeriods");
+				clearDownloadPeriodsList(downloadPeriods);
+				var downloadPeriods=xmlObject.getElementsByTagName("downloadPeriod");
+				for ( var i=0; i<downloadPeriods.length; i++) {
+					var id=downloadPeriods[i].getElementsByTagName("id")[0].firstChild.nodeValue;
+					var name=downloadPeriods[i].getElementsByTagName("name")[0].firstChild.nodeValue;							
+					$("#downloadPeriods").append("<option value='"+ id +"'>" + name + "</option>");
+				}	
+			}  
+			function clearDownloadPeriodsList(downloadPeriods) {
+			if(downloadPeriods.options.length != 0){
+				downloadPeriods.options.length = 0;
+				} 	 
+			}
+           </script>
+           6. $i18n.getString("select_date_for_pregenerated_reports") :<br />
+           		<select id="downloadPeriods" name="downloadPeriods" style="width:200px" onchange="enableDownload()">
+           			#foreach ($downloadPeriod in $downloadPeriods)
+                        <option value="$downloadPeriod.id">$downloadPeriod.name</option>
+                    #end
+           		</select>
+           </td>
+           <td>
+                <input type="checkbox" checked="true" id="enableDownload" onchange="enableDownloadPreGeneratedReports()">      
+           		<input type="button" id= "downloadPreGeneratedReports" name="downloadPreGeneratedReports" value='$i18n.getString("pre_generated_report")' style="width:175px" disabled="disabled" onclick="return getPreGeneratedReport()" target="_blank">
+           </td>
+        </tr>
+		-->
+    </table>
+</form>
