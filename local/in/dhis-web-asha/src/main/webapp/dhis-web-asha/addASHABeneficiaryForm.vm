@@ -1,0 +1,194 @@
+## Macro for generating the jQuery validation rules 
+#macro( validate $type $require )
+  #if( $type == "NUMBER" )
+  	{validate:{ number:true #if($require), required:true #end }}
+  #elseif( $type == "string" )
+  	{validate:{ alphanumeric:true #if($require), required:true #end }}
+  #elseif( $require )
+  	{validate:{required:true}}
+  #end
+#end
+
+<table style="background-color:#EFFBEF;" width="80%">
+	<tr>
+		<th colspan="4">$i18n.getString( "beneficiary_details" )</th>
+	</tr>
+	
+	<tr>
+		<td style="width:250px">$i18n.getString( "beneficiary_name" ):<em title="$i18n.getString( "required" )" class="required">*</em></td>
+		<td><input type="text" id="name" name="name" style="width:250px" class="{validate:{required:true, unicodechars:true}}"/></td>
+	</tr>	
+	
+	<tr>
+		<td style="width:250px">$i18n.getString( "father_husband_name" ):</td>
+		<td><input type="text" id="fatherName" name="fatherName" style="width:250px"/></td>
+	</tr>	
+	<tr>
+		<td style="width:250px">$i18n.getString( "gender" )<em title="$i18n.getString( "required" )" class="required">*</em></td>
+		<td>
+			<select id="gender" name="gender" style="width:250px" class="{validate:{required:true}}">
+				<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="M" >$i18n.getString( "male" )</option>
+                <option value="F">$i18n.getString( "female" )</option>
+			</select>
+		</td>					
+	</tr>		
+	<tr>
+		<td style="width:250px">$i18n.getString( "village_name" ):</td>
+		<td class="input-column">
+            <select id="village" name="village" style="width:250px">
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                 #foreach ($option in $locations )
+                    <option value="$option.name" >$option.name</option>
+                 #end
+            </select>
+        </td>			
+		<!--<td><input type="text" id="village" name="village" style="width:320px"/></td>-->
+	</tr>	
+
+
+	<!--
+	<tr>
+		<td style="width:250px">$i18n.getString( "beneficiary_identifier" ): <em title="$i18n.getString( "required" )" class="required">*</em><br /> ( $i18n.getString( "aadhar_uid_mcts_munber" ) )</td>
+		<td><input type="text" id="identifier" name="identifier" style="width:250px" class="{validate:{required:true ,alphanumeric:true }}"/></td>
+	</tr>
+	-->
+	
+	<tr>
+		<td style="width:250px">$i18n.getString( "beneficiary_identifier" ): <br /> ( $i18n.getString( "aadhar_uid_mcts_munber" ) )</td>
+		<td><input type="text" id="identifier" name="identifier" style="width:250px" /></td>
+	</tr>
+	
+	<tr>
+	    <td style="width:250px">$i18n.getString( "serviceGivenDate" )<em title="$i18n.getString( "required" )" class="required">*</em></td>
+		
+		<td>
+	        <input type="text" id="serviceGivenDate" name="serviceGivenDate" style="width:250px" class="{validate:{required:true}}" />
+	        <script type="text/javascript">
+	            datePickerValid( 'serviceGivenDate' );
+	        </script>    
+	    </td>
+	</tr>
+	
+	<tr>
+		<td  valign="top" style="width:250px">$i18n.getString( "category_sub_category" ): <em title="$i18n.getString( "required" )"  class="required">*</em></td>
+		
+		<td>
+			<select id="dataElementGroupId" name="dataElementGroupId" style="width:250px" onChange="getDataElementList()" class="{validate:{required:true}}" >
+				<option value="">[ Please Select ]</option>
+				#foreach ( $dataElementGroup in $dataElementGroupList )
+				<option value="$dataElementGroup.id" title="$dataElementGroup.name">$dataElementGroup.name</option>
+				#end
+			</select>
+		</td>
+	</tr>
+	
+	<tr style="display:none">
+	    <td>
+	        <input type="text" id="registrationDate" name="registrationDate"/>
+	        <script type="text/javascript">
+	            datePickerValid( 'registrationDate', true );
+	        </script>    
+	    </td>
+	</tr>
+	
+</table>
+
+
+<table width="75%">
+    <tr>
+    	<th>$i18n.getString( "available_data_elements" )</th>
+    	<th>$i18n.getString( "filter" )</th>
+    	<th>$i18n.getString( "selected_data_elements" )</th>
+    </tr>
+    
+    <tr>
+        <td>
+          <select multiple="multiple" id="availableDataElementsList" name="availableDataElementsList" size="9"  ondblclick="moveSelectedById( 'availableDataElementsList', 'selecteddataElementsList' )" style="height: 150px; width: 400px;"></select>
+        </td>
+    	
+    	<td>
+    		<input type="button" value="&gt;" style="width:40px" onClick="moveSelectedById( 'availableDataElementsList', 'selecteddataElementsList' )"><br/>
+    		<input type="button" value="&lt;" style="width:40px" onClick="moveSelectedById( 'selecteddataElementsList', 'availableDataElementsList' )"><br/>
+    		<input type="button" value="&gt;&gt;" style="width:40px" onClick="moveAllById( 'availableDataElementsList', 'selecteddataElementsList' )"><br/>
+    		<input type="button" value="&lt;&lt;" style="width:40px" onClick="moveAllById( 'selecteddataElementsList', 'availableDataElementsList' )">
+    	</td>
+    	
+        <td>
+        	<select multiple="multiple" id="selecteddataElementsList" name="selecteddataElementsList" size="9" ondblclick="moveSelectedById( 'selectedPersonProperties', 'availablePersonProperties' )" style="height: 150px; width: 400px;"></select>
+        </td>
+    </tr>	
+    	
+			
+</table>
+	
+	<!--
+	
+	<tr>
+		<td  valign="top" style="width:250px">$i18n.getString( "category_sub_category" ): <em title="$i18n.getString( "required" )"  class="required">*</em></td>
+		<td>
+			<table>
+				<tr>
+					<th>$i18n.getString( "available_data_elements" )</th>
+					<th>$i18n.getString( "filter" )</th>
+					<th>$i18n.getString( "selected_data_elements" )</th>
+				</tr>
+				
+            	<tr>
+            		<td>
+            			<select id="dataElementGroupId" name="dataElementGroupId" style="width:250px" onChange="getDataElementList()" class="{validate:{required:true}}" >
+            				<option value="">[ Please Select ]</option>
+            				#foreach ( $dataElementGroup in $dataElementGroupList )
+            				<option value="$dataElementGroup.id" title="$dataElementGroup.name">$dataElementGroup.name</option>
+            				#end
+            			</select>
+            		</td>
+					<td>&nbsp;</td>
+            	</tr>
+            
+            	<tr>
+                    <td>
+                      <select multiple="multiple" id="availableDataElementsList" name="availableDataElementsList" size="9"  ondblclick="moveSelectedById( 'availableDataElementsList', 'selecteddataElementsList' )" style="height: 200px; width: 250px;"></select>
+                    </td>
+            		
+            		<td>
+                		<input type="button" value="&gt;" style="width:40px" onClick="moveSelectedById( 'availableDataElementsList', 'selecteddataElementsList' )"><br/>
+                		<input type="button" value="&lt;" style="width:40px" onClick="moveSelectedById( 'selecteddataElementsList', 'availableDataElementsList' )"><br/>
+                		<input type="button" value="&gt;&gt;" style="width:40px" onClick="moveAllById( 'availableDataElementsList', 'selecteddataElementsList' )"><br/>
+                		<input type="button" value="&lt;&lt;" style="width:40px" onClick="moveAllById( 'selecteddataElementsList', 'availableDataElementsList' )">
+            		</td>
+            		
+                    <td>
+                    	<select multiple="multiple" id="selecteddataElementsList" name="selecteddataElementsList" size="9" ondblclick="moveSelectedById( 'selectedPersonProperties', 'availablePersonProperties' )" style="height: 200px; width: 250px;" /></select>
+                    </td>
+            	</tr>	
+            	
+				
+            </table>
+		</td>
+	</tr>
+	
+	-->
+	
+	<!--
+	<tr>
+		<td>$i18n.getString( "sub_category" ): <em title="$i18n.getString( "required" )" class="required">*</em></td>
+		<td>
+			<select id="dataElementId" name="dataElementId" style="width:325px" onChange="getServicePrice()" class="{validate:{required:true}}" >
+				
+			</select>
+		</td>
+	</tr>
+	-->
+	
+	<!--
+	<tr>
+		<td>$i18n.getString( "price" ):</td>
+		<td><input type="text" id="amount" name="amount" disabled="disabled" style="text-align: left; width:320px" class="{validate:{required:true}}"/></td>
+		
+		<input type="hidden" id="price" name="price">
+	</tr>
+	-->
+
+
+<!--<span id="message"></span>-->

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+	
+	<!-- Facilitator -->
+	
+	<!-- Store -->
+	<bean id="org.hisp.dhis.facilitator.FacilitatorStore"
+		class="org.hisp.dhis.facilitator.hibernate.HiberateFacilitatorStore">
+		<property name="clazz" value="org.hisp.dhis.facilitator.Facilitator" />
+		<property name="sessionFactory" ref="sessionFactory"/>
+		<property name="cacheable" value="true" />
+	</bean>
+
+	<!-- Service -->
+	<bean id="org.hisp.dhis.facilitator.FacilitatorService"
+		class="org.hisp.dhis.facilitator.DefaultFacilitatorService">
+		<property name="facilitatorStore" ref="org.hisp.dhis.facilitator.FacilitatorStore"/>
+	</bean>
+	
+	<!-- Deletion Handlers -->
+
+	
+	
+	
+	<!-- Facilitator DataValue-->
+	
+	<!-- Store -->
+	<bean id="org.hisp.dhis.facilitator.FacilitatorDataValueStore"
+		class="org.hisp.dhis.facilitator.hibernate.HibernateFacilitatorDataValueStore">
+		<property name="sessionFactory" ref="sessionFactory" />
+		<property name="periodStore" ref="org.hisp.dhis.period.PeriodStore" />
+	</bean>
+
+	<!-- Service -->
+	<bean id="org.hisp.dhis.facilitator.FacilitatorDataValueService"
+		class="org.hisp.dhis.facilitator.DefaultFacilitatorDataValueService">
+		<property name="facilitatorDataValueStore" ref="org.hisp.dhis.facilitator.FacilitatorDataValueStore"/>
+	</bean>
+	
+	<!-- Deletion Handlers -->	
+	
+	
+			
+</beans>

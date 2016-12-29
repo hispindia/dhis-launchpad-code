@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="org.hisp.dhis.school.SchoolDetails" table="schooldetails">
+
+    <composite-id>
+      <key-many-to-one name="school" class="org.hisp.dhis.school.School" column="schoolid"
+        foreign-key="fk_schooldetails_schoolid" />
+      <key-many-to-one name="patientAttribute" class="org.hisp.dhis.patient.PatientAttribute" column="patientattributeid"
+        foreign-key="fk_schooldetails_patientattributeid" />
+    </composite-id>
+
+    <property name="value" />
+
+  </class>
+</hibernate-mapping>

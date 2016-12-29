@@ -1,0 +1,843 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+<include file="dhis-web-commons.xml"/>
+	
+	<package name="dhis-web-ovc" extends="dhis-web-commons" namespace="/dhis-web-ovc">
+
+		<!-- Home page -->	
+		<action name="index" class="org.hisp.dhis.ovc.action.NoAction">
+		  <result name="success" type="velocity">/main.vm</result>
+		  <param name="page">/dhis-web-ovc/welcome.vm</param>
+		  <param name="menu">/dhis-web-ovc/submitListMenu.vm</param>
+		  <param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/registration.js</param>			
+		</action>	
+		
+		<!-- Registration -->
+		<action name="getRegistrationForm" class="org.hisp.dhis.ovc.registration.GetRegistrationFormAction">
+		  <result name="success" type="velocity">/main.vm</result>
+		  <param name="page">/dhis-web-ovc/registrationForm.vm</param>
+		  <param name="menu">/dhis-web-ovc/submitListMenu.vm</param>
+		  <param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/registration.js,javascript/searchOVC.js</param>
+		  <!--<param name="stylesheets">css/style.css</param>-->
+		  <param name="requiredAuthorities">F_OVC_REGISTRATION</param>			
+		</action>	 
+		
+		<!-- Validation -->
+		<action name="validateOVCRegistration" class="org.hisp.dhis.ovc.registration.validateOVCRegistration">
+			<result name="success" type="velocity-xml">/dhis-web-ovc/responseValidateSuccess.vm</result>
+			<result name="input" type="velocity-xml">/dhis-web-ovc/responseValidateInput.vm</result>
+			<param name="onExceptionReturn">plainTextError</param>
+		</action>
+			 
+		<action name="saveRegistrationData" class="org.hisp.dhis.ovc.registration.SaveRegistredDataAction">
+			<result name="success" type="velocity">/main.vm</result>
+			<param name="page">/dhis-web-ovc/registrationSuccess.vm</param>
+			<param name="menu">/dhis-web-ovc/submitListMenu.vm</param>
+			<param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/registration.js,javascript/searchOVC.js</param>
+			<param name="requiredAuthorities">F_OVC_REGISTRATION</param>
+		</action> 
+				
+		<!-- Update OVC Registration Data Form -->
+		
+		<action name="showUpdateOVCRegistrationForm" class="org.hisp.dhis.ovc.registration.ShowUpdateOVCRegistrationFormAction">
+		  <result name="success" type="velocity">/content.vm</result>
+		  <param name="page">/dhis-web-ovc/updateOVCRegistrationForm.vm</param>
+		  <param name="menu">/dhis-web-ovc/submitListMenu.vm</param>
+		  <!--<param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/registration.js</param>-->
+		  <param name="requiredAuthorities">F_OVC_UPDATE</param>			
+		</action>		
+		
+		<action name="updateOVCRegistrationData" class="org.hisp.dhis.ovc.registration.UpdateOVCRegistrationAction">
+            <result name="success" type="velocity-json">/dhis-web-commons/ajax/jsonResponseSuccess.vm</result>
+			<result name="input" type="redirect">selectApprovedOVC.action?selectOrgUnitInsideDashBoard=${selectOrgUnitInsideDashBoard}</result>
+			<param name="requiredAuthorities">F_OVC_UPDATE</param>   
+        </action>		
+						
+		<!-- for Update Status Role -->	 
+		<action name="updateovcstatus" class="org.hisp.dhis.ovc.action.NoAction">
+		  <result name="success" type="velocity">/main.vm</result>
+		  <param name="page">/dhis-web-ovc/welcome.vm</param>
+		  <param name="menu">/dhis-web-ovc/menu.vm</param>
+		  <param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/registration.js</param>		
+		  <param name="requiredAuthorities">F_OVC_STATUS</param>		
+		</action>	
+		 
+		<!-- for Exit Message Role -->	 
+		<action name="sendOVCExitMessage" class="org.hisp.dhis.ovc.action.NoAction">
+		  <result name="success" type="velocity">/main.vm</result>
+		  <param name="page">/dhis-web-ovc/welcome.vm</param>
+		  <param name="menu">/dhis-web-ovc/menu.vm</param>
+		  <param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/registration.js</param>		
+		  <param name="requiredAuthorities">F_OVC_EXIT_MESSAGE</param>		
+		</action>		 
+		
+
+		<!-- for Exit Reject Message Role -->	 
+		<action name="sendOVCExitRejectMessage" class="org.hisp.dhis.ovc.action.NoAction">
+		  <result name="success" type="velocity">/main.vm</result>
+		  <param name="page">/dhis-web-ovc/welcome.vm</param>
+		  <param name="menu">/dhis-web-ovc/menu.vm</param>
+		  <param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/registration.js</param>		
+		  <param name="requiredAuthorities">F_OVC_EXIT_REJECT_MESSAGE</param>		
+		</action>		
+				
+		<action name="getOVCRegistrationDetails"
+			class="org.hisp.dhis.ovc.registration.GetOVCRegistrationDetailsAction">
+			<result name="success" type="velocity">/content.vm</result>
+			<result name="xls" type="gridXlsResult" />
+			<result name="pdf" type="gridPdfResult" />
+			<param name="page">/dhis-web-ovc/ovcRegistrationDetails.vm</param>
+			<!--<param name="page">/dhis-web-ovc/ovcRegistrationHistory.vm</param>-->
+		</action>	 
+		
+		<!-- Submitted OVC -->
+		
+		<action name="selectSubmittedOVC" class="org.hisp.dhis.ovc.submitted.action.SelectSubmittedOVCAction">
+		  <result name="success" type="velocity">/main.vm</result>
+		  <param name="page">/dhis-web-ovc/selectSubmittedOVC.vm</param>
+		  <param name="menu">/dhis-web-ovc/submitListMenu.vm</param>
+		  <param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/registration.js,javascript/searchOVC.js</param>
+		  <param name="stylesheets">css/style.css</param>
+		</action>		
+		
+		
+		<action name="getSubmittedOVCList" class="org.hisp.dhis.ovc.submitted.action.GetSubmittedListAction">
+		  <!--<result name="success" type="velocity">/main.vm</result>-->
+		  <result name="success" type="velocity">/content.vm</result>	
+		  <param name="page">/dhis-web-ovc/submittedOVCList.vm</param>
+		</action>
+	
+		
+		<action name="searchOVCAllFacilities" class="org.hisp.dhis.ovc.action.NoAction">
+		  <result name="success" type="velocity-json">/dhis-web-commons/ajax/jsonResponseSuccess.vm</result>
+		  <param name="requiredAuthorities">F_SEARCH_OVC_IN_ALL_FACILITIES</param>
+		</action>		
+		
+
+
+
+		<!-- Remove OVC -->  
+		<action name="removeOVC" class="org.hisp.dhis.ovc.submitted.action.RemoveOVCAction">
+		  <result name="success" type="velocity-json">/dhis-web-commons/ajax/jsonResponseSuccess.vm</result>
+		  <result name="error" type="velocity-json">/dhis-web-commons/ajax/jsonResponseError.vm</result>
+		  <param name="onExceptionReturn">plainTextError</param>
+		  <param name="requiredAuthorities">F_OVC_DELETE</param>
+		</action>
+
+
+
+
+			
+        <!-- Approved OVC -->
+		
+		<action name="selectApprovedOVC" class="org.hisp.dhis.ovc.approved.action.SelectApprovedOVCAction">
+		  <result name="success" type="velocity">/main.vm</result>
+		  <param name="page">/dhis-web-ovc/selectApprovedOVC.vm</param>
+		  <param name="menu">/dhis-web-ovc/submitListMenu.vm</param>
+		  <param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/registration.js,javascript/searchApprovedOVC.js</param>
+		  <param name="stylesheets">css/style.css</param>
+		</action>
+		
+		<action name="getApprovedOVCList" class="org.hisp.dhis.ovc.approved.action.GetApprovedListAction">
+		  <!--<result name="success" type="velocity">/main.vm</result>-->
+		  <result name="success" type="velocity">/content.vm</result>	
+		  <param name="page">/dhis-web-ovc/approvedOVCList.vm</param>
+		</action>		        
+		
+		<!--
+		<action name="getApprovedList" class="org.hisp.dhis.ovc.approved.action.GetApprovedListAction">
+          <result name="success" type="velocity">/main.vm</result>
+          <param name="page">/dhis-web-ovc/approvedOVCList.vm</param>
+          <param name="menu">/dhis-web-ovc/submitListMenu.vm</param>
+          <param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/registration.js</param>
+        </action>
+		-->
+		
+		 
+		<action name="getOVCRegistrationDetailsInActive" class="org.hisp.dhis.ovc.approved.action.GetOVCDetailsAction">
+			<result name="success" type="velocity">/content.vm</result>
+			<param name="page">/dhis-web-ovc/ovcRegistrationDetailsInActive.vm</param>
+		</action>
+			
+	
+		<!-- Update OVC Registration Data Form Approve-->
+		
+		<action name="showUpdateOVCRegistrationInApproveForm" class="org.hisp.dhis.ovc.registration.ShowUpdateOVCRegistrationFormAction">
+		  <result name="success" type="velocity">/content.vm</result>
+		  <param name="page">/dhis-web-ovc/updateOVCRegistrationFormInApprove.vm</param>
+		  <param name="menu">/dhis-web-ovc/submitListMenu.vm</param>
+		  <!--<param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/registration.js</param>-->
+		  <param name="requiredAuthorities">F_OVC_UPDATE</param>			
+		</action>		
+		
+		
+	    <!-- Show OVC Exit Form -->
+		
+		<action name="showOVCExitForm" class="org.hisp.dhis.ovc.approved.action.ShowOVCExitFormAction">
+		  <result name="success" type="velocity">/content.vm</result>
+		  <param name="page">/dhis-web-ovc/ovcExitForm.vm</param>
+		  <param name="menu">/dhis-web-ovc/submitListMenu.vm</param>
+		  <param name="requiredAuthorities">F_OVC_EXIT_UPDATE</param>			
+		</action>
+		
+		<!-- Save OVC Exit Form Data -->
+		<action name="saveOVCExitFormData" class="org.hisp.dhis.ovc.approved.action.SaveOVCExitFormDataAction">
+            <result name="success" type="velocity-json">/dhis-web-commons/ajax/jsonResponseSuccess.vm</result>
+			<param name="requiredAuthorities">F_OVC_EXIT_UPDATE</param>   
+        </action>		
+		
+		
+		
+		
+		
+		<!-- Exit Pending/Exit Requested List OVC -->
+        
+		<!--
+		<action name="getExitPendingList" class="org.hisp.dhis.ovc.exitpending.action.GetExitPendingListAction">
+          <result name="success" type="velocity">/main.vm</result>
+          <param name="page">/dhis-web-ovc/exitPendingOVCList.vm</param>
+          <param name="menu">/dhis-web-ovc/submitListMenu.vm</param>
+          <param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/registration.js</param>
+        </action>		
+		-->
+		
+		<action name="selectExitPendingOVC" class="org.hisp.dhis.ovc.exitpending.action.SelectExitPendingOVCAction">
+			<result name="success" type="velocity">/main.vm</result>
+			<param name="page">/dhis-web-ovc/selectExitPendingOVC.vm</param>
+			<param name="menu">/dhis-web-ovc/submitListMenu.vm</param>
+			<param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/registration.js,javascript/searchExitPendingOVC.js</param>
+			<param name="stylesheets">css/style.css</param>
+		</action>		
+		
+		
+		<action name="getExitPendingOVCList" class="org.hisp.dhis.ovc.exitpending.action.GetExitPendingListAction">
+          <!--<result name="success" type="velocity">/main.vm</result>-->
+		  <result name="success" type="velocity">/content.vm</result>
+          <param name="page">/dhis-web-ovc/exitPendingOVCList.vm</param>
+        </action>
+		
+		
+		
+		
+		
+		
+		<!-- Exit Pending/Exit Requested  Details-->
+		<action name="getOVCExitPendingDetails"
+			class="org.hisp.dhis.ovc.registration.GetOVCRegistrationDetailsAction">
+			<result name="success" type="velocity">/content.vm</result>
+			<result name="xls" type="gridXlsResult" />
+			<result name="pdf" type="gridPdfResult" />
+			<param name="page">/dhis-web-ovc/ovcExitPendingDetails.vm</param>
+		</action>		
+		
+		
+		
+		
+		
+		
+
+		<!-- Update OVC Exit Form -->
+		
+		<action name="showUpdateOVCExitForm" class="org.hisp.dhis.ovc.exitpending.action.ShowUpdateOVCExitFormAction">
+		  <result name="success" type="velocity">/content.vm</result>
+		  <param name="page">/dhis-web-ovc/updateOVCExitForm.vm</param>
+		  <param name="menu">/dhis-web-ovc/submitListMenu.vm</param>
+		  <param name="requiredAuthorities">F_OVC_UPDATE</param>			
+		</action>		
+		
+		<!-- Update OVC Exit Form Data -->
+		<action name="updateOVCExitForm" class="org.hisp.dhis.ovc.approved.action.SaveOVCExitFormDataAction">
+            <result name="success" type="velocity-json">/dhis-web-commons/ajax/jsonResponseSuccess.vm</result>
+			<param name="requiredAuthorities">F_OVC_EXIT_UPDATE</param>   
+        </action>		
+		
+		
+		
+		
+		
+		<!-- Inactive OVC List  -->
+        
+		<action name="selectInActiveOVC" class="org.hisp.dhis.ovc.inactive.action.SelectInActiveOVCAction">
+			<result name="success" type="velocity">/main.vm</result>
+			<param name="page">/dhis-web-ovc/selectInActiveOVC.vm</param>
+			<param name="menu">/dhis-web-ovc/submitListMenu.vm</param>
+			<param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/registration.js,javascript/searchInActiveOVC.js</param>
+			<param name="stylesheets">css/style.css</param>
+		</action>		
+		
+		
+		<action name="getInActiveOVCList" class="org.hisp.dhis.ovc.inactive.action.GetOVCInActiveListAction">
+          <!--<result name="success" type="velocity">/main.vm</result>-->
+		  <result name="success" type="velocity">/content.vm</result>
+          <param name="page">/dhis-web-ovc/inActiveOVCList.vm</param>
+        </action>
+		
+		
+		<!-- In Active Details -->
+		<action name="getOVCInActiveDetails"
+				class="org.hisp.dhis.ovc.registration.GetOVCRegistrationDetailsAction">
+				<result name="success" type="velocity">/content.vm</result>
+				<result name="xls" type="gridXlsResult" />
+				<result name="pdf" type="gridPdfResult" />
+				<param name="page">/dhis-web-ovc/ovcInActiveDetails.vm</param>
+		</action>		
+		
+				
+        <!-- Rejected OVC -->
+		
+		<action name="selectRejectedOVC" class="org.hisp.dhis.ovc.rejected.action.SelectRejectedOVCAction">
+			<result name="success" type="velocity">/main.vm</result>
+			<param name="page">/dhis-web-ovc/selectRejectedOVC.vm</param>
+			<param name="menu">/dhis-web-ovc/submitListMenu.vm</param>
+			<param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/registration.js,javascript/searchRejectedOVC.js</param>
+			<param name="stylesheets">css/style.css</param>
+		</action>		
+		
+		
+		<action name="getRejectedOVCList" class="org.hisp.dhis.ovc.rejected.action.GetRejectedListAction">
+          <!--<result name="success" type="velocity">/main.vm</result>-->
+		  <result name="success" type="velocity">/content.vm</result>
+          <param name="page">/dhis-web-ovc/rejectedOVCList.vm</param>
+        </action>		
+		
+		
+		<!--
+        <action name="getRejectedList" class="org.hisp.dhis.ovc.rejected.action.GetRejectedListAction">
+          <result name="success" type="velocity">/main.vm</result>
+          <param name="page">/dhis-web-ovc/rejectedOVCList.vm</param>
+          <param name="menu">/dhis-web-ovc/submitListMenu.vm</param>
+          <param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/registration.js</param>
+        </action>
+		-->
+		
+		
+		
+		
+		
+		
+		
+		<action name="getOVCRegistrationDetailsInRejection"
+			class="org.hisp.dhis.ovc.registration.GetOVCRegistrationDetailsAction">
+			<result name="success" type="velocity">/content.vm</result>
+			<result name="xls" type="gridXlsResult" />
+			<result name="pdf" type="gridPdfResult" />
+			<param name="page">/dhis-web-ovc/ovcRegistrationDetailsInRejection.vm</param>
+		</action>
+		
+
+		
+		<!-- Update OVC Registration Data Form Rejected -->
+		
+		<action name="showUpdateOVCRegistrationInRejectionForm" class="org.hisp.dhis.ovc.registration.ShowUpdateOVCRegistrationFormAction">
+		  <result name="success" type="velocity">/content.vm</result>
+		  <param name="page">/dhis-web-ovc/updateOVCRegistrationFormInRejection.vm</param>
+		  <param name="menu">/dhis-web-ovc/submitListMenu.vm</param>
+		  <!--<param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/registration.js</param>-->
+		  <param name="requiredAuthorities">F_OVC_UPDATE</param>			
+		</action>		
+		
+		
+		
+		
+		<!-- Employee -->
+		
+		<!--
+		<action name="getOrgUnit" class="org.hisp.dhis.ovc.employee.NoAction">
+		  <result name="success" type="velocity">/main.vm</result>
+		  <param name="page">/dhis-web-ovc/setOrgUnit.vm</param>
+		  <param name="javascripts">../dhis-web-commons/ouwt/ouwt.js</param>
+		  <param name="menu">/dhis-web-ovc/menu.vm</param>
+		</action>
+	    -->
+		
+		<!-- Display List of Employee -->
+		<action name="getEmployeeList" class="org.hisp.dhis.ovc.employee.GetEmployeeListAction">
+		  <result name="success" type="velocity">/main.vm</result>		 
+		  <param name="page">/dhis-web-ovc/employeeList.vm</param>
+			<param name="menu">/dhis-web-ovc/submitListMenu.vm</param>
+			<param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/employee.js</param>	 
+		</action>
+		
+		<!-- Add Employee Form --> 
+		<action name="showAddEmployeeForm" class="org.hisp.dhis.ovc.employee.ShowAddEmployeeFormAction">
+		  <result name="success" type="velocity">/main.vm</result>
+		  <param name="page">/dhis-web-ovc/addEmployeeForm.vm</param>
+		  <param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/employee.js</param>
+		  <param name="menu">/dhis-web-ovc/submitListMenu.vm</param>
+		  <param name="requiredAuthorities">F_OVC_EMPLOYEE_ADD</param>	 	
+		</action>		
+		
+		<!-- Employee Validation during Addition or Updation of Employee -->
+        <action name="validateEmployee" class="org.hisp.dhis.ovc.employee.ValidateEmployeeAction">
+            <result name="success" type="velocity-xml">/dhis-web-ovc/responseEmployeeSuccess.vm</result>
+            <result name="input" type="velocity-xml">/dhis-web-ovc/responseEmployeeInput.vm</result>
+			<param name="onExceptionReturn">plainTextError</param>
+        </action>
+		
+		
+		
+		<!-- Add Employee -->
+		<action name="addEmployee" class="org.hisp.dhis.ovc.employee.AddEmployeeAction">
+		  <result name="success" type="redirect">getEmployeeList.action</result>
+		  <param name="requiredAuthorities">F_OVC_EMPLOYEE_ADD</param>	
+		</action>
+		
+		<!-- Update Employee Form -->
+		<action name="showEmployeeUpdateForm" class="org.hisp.dhis.ovc.employee.ShowEmployeeUpdateFormAction">
+		  <result name="success" type="velocity">/main.vm</result>
+		  <param name="page">/dhis-web-ovc/updateEmployeeForm.vm</param>
+		  <param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/employee.js</param>
+		  <param name="menu">/dhis-web-ovc/submitListMenu.vm</param>
+		  <param name="requiredAuthorities">F_OVC_EMPLOYEE_UPDATE</param>	 	
+		</action>		
+		
+		<!-- Update Employee -->
+		<action name="updateEmployee" class="org.hisp.dhis.ovc.employee.UpdateEmployeeAction">
+		  <result name="success" type="redirect">getEmployeeList.action</result>
+		  <param name="requiredAuthorities">F_OVC_EMPLOYEE_UPDATE</param>	
+		</action>
+		
+		<!-- Get Employee Details -->		
+		<action name="getEmployeeDetails"
+			class="org.hisp.dhis.ovc.employee.GetOVCEmployeeDetailsAction">
+			<result name="success" type="velocity">/content.vm</result>
+			<param name="page">/dhis-web-ovc/employeeDetails.vm</param>
+			<!--<param name="page">/dhis-web-ovc/ovcRegistrationHistory.vm</param>-->
+		</action>		
+		
+		<!-- Remove Employee -->
+		<action name="removeEmployee"
+			class="org.hisp.dhis.ovc.employee.RemoveEmployeeAction">
+			<result name="success" type="velocity-json">/dhis-web-commons/ajax/jsonResponseSuccess.vm</result>
+			<result name="error" type="velocity-json">/dhis-web-commons/ajax/jsonResponseError.vm</result>
+			<param name="onExceptionReturn">plainTextError</param>
+			<param name="requiredAuthorities">F_OVC_EMPLOYEE_DELETE</param>
+			<!--<param name="page">/dhis-web-ovc/ovcRegistrationHistory.vm</param>-->
+		</action>	  
+		
+		<!--
+		<action name="getEmployeeForEdit" class="org.hisp.dhis.ovc.employee.BeforeEditEmployeeAction">
+		  <result name="success" type="velocity">/main.vm</result>
+		  <param name="page">/dhis-web-ovc/editEmployee.vm</param>
+		  <param name="menu">/dhis-web-ovc/submitListMenu.vm</param>	 	
+		</action>
+		
+		<action name="editEmployeeForm" class="org.hisp.dhis.ovc.employee.EditEmployeeAction">
+		  <result name="success" type="velocity">/main.vm</result>
+		  <param name="page">/dhis-web-ovc/setOrgUnit.vm</param>
+		  <param name="menu">/dhis-web-ovc/submitListMenu.vm</param>	 	
+		</action>
+		-->
+			
+		
+		<!-- Location -->
+		
+		<!-- Display List of Location -->
+		<action name="getLocationList" class="org.hisp.dhis.ovc.location.GetLocationListAction">
+		  <result name="success" type="velocity">/main.vm</result>		 
+		  <param name="page">/dhis-web-ovc/locationList.vm</param>
+		  <param name="menu">/dhis-web-ovc/submitListMenu.vm</param>
+		  <param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/location.js</param>	 
+		</action>		
+		
+
+		<!-- Add Location Form --> 
+		<action name="showAddLocationForm" class="org.hisp.dhis.ovc.location.ShowAddLocationFormAction">
+		  <result name="success" type="velocity">/main.vm</result>
+		  <param name="page">/dhis-web-ovc/addLocationForm.vm</param>
+		  <param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/location.js</param>
+		  <param name="menu">/dhis-web-ovc/submitListMenu.vm</param>
+		  <param name="requiredAuthorities">F_OVC_LOCATION_ADD</param>	 	
+		</action>		
+				
+		<!-- Location Validation during Addition or Updation of Location -->
+        <action name="validateLocation" class="org.hisp.dhis.ovc.location.ValidateLocationAction">
+            <result name="success" type="velocity-xml">/dhis-web-ovc/responselocationSuccess.vm</result>
+            <result name="input" type="velocity-xml">/dhis-web-ovc/responselocationInput.vm</result>
+			<param name="onExceptionReturn">plainTextError</param>
+        </action>
+		
+		
+		<!-- Add Location -->
+		<action name="addLocation" class="org.hisp.dhis.ovc.location.AddLocationAction">
+		  <result name="success" type="redirect">getLocationList.action</result>
+		  <param name="requiredAuthorities">F_OVC_LOCATION_ADD</param>	
+		</action>		
+				
+
+		<!-- Update Location Form -->
+		<action name="showUpdateLocationForm" class="org.hisp.dhis.ovc.location.ShowLocationUpdateFormAction">
+		  <result name="success" type="velocity">/main.vm</result>
+		  <param name="page">/dhis-web-ovc/updateLocationForm.vm</param>
+		  <param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/location.js</param>
+		  <param name="menu">/dhis-web-ovc/submitListMenu.vm</param>
+		  <param name="requiredAuthorities">F_OVC_LOCATION_UPDATE</param>	 	
+		</action>		
+				
+		
+		<!-- Update Location -->
+		<action name="updateLocation" class="org.hisp.dhis.ovc.location.UpdateLocationAction">
+		  <result name="success" type="redirect">getLocationList.action</result>
+		  <param name="requiredAuthorities">F_OVC_LOCATION_UPDATE</param>	
+		</action>		
+		
+		
+		<!-- Get Location Details -->		
+		<action name="getLocationDetails"
+			class="org.hisp.dhis.ovc.location.GetLocationDetailsAction">
+			<result name="success" type="velocity">/content.vm</result>
+			<param name="page">/dhis-web-ovc/locationDetails.vm</param>
+		</action>		
+		
+		<!-- Remove Location -->
+		<action name="removeLocation"
+			class="org.hisp.dhis.ovc.location.RemoveLocationAction">
+			<result name="success" type="velocity-json">/dhis-web-commons/ajax/jsonResponseSuccess.vm</result>
+			<result name="error" type="velocity-json">/dhis-web-commons/ajax/jsonResponseError.vm</result>
+			<param name="onExceptionReturn">plainTextError</param>
+			<param name="requiredAuthorities">F_OVC_LOCATION_DELETE</param>
+		</action>		
+
+<!-- Location End -->		
+
+
+		<!-- School Management -->
+		
+		<!-- Display List of School -->
+		<action name="getSchoolList" class="org.hisp.dhis.ovc.school.GetSchoolListAction">
+		  <result name="success" type="velocity">/main.vm</result>		 
+		  <param name="page">/dhis-web-ovc/schoolList.vm</param>
+		  <param name="menu">/dhis-web-ovc/submitListMenu.vm</param>
+		  <param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/school.js</param>	 
+		</action>
+
+		<!-- Add School Form --> 
+		<action name="showAddSchoolForm" class="org.hisp.dhis.ovc.school.ShowAddSchoolFormAction">
+		  <result name="success" type="velocity">/main.vm</result>
+		  <param name="page">/dhis-web-ovc/addSchoolForm.vm</param>
+		  <param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/school.js</param>
+		  <param name="menu">/dhis-web-ovc/submitListMenu.vm</param>
+		  <param name="requiredAuthorities">F_OVC_SCHOOL_ADD</param>	 	
+		</action>
+
+		<!-- Add School -->
+		<action name="addSchool" class="org.hisp.dhis.ovc.school.AddSchoolAction">
+		  <result name="success" type="redirect">getSchoolList.action</result>
+		  <param name="requiredAuthorities">F_OVC_SCHOOL_ADD</param>	
+		</action>
+
+		<!-- Update School Form -->
+		<action name="showUpdateSchoolForm" class="org.hisp.dhis.ovc.school.ShowSchoolUpdateFormAction">
+		  <result name="success" type="velocity">/main.vm</result>
+		  <param name="page">/dhis-web-ovc/updateSchoolForm.vm</param>
+		  <param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/school.js</param>
+		  <param name="menu">/dhis-web-ovc/submitListMenu.vm</param>
+		  <param name="requiredAuthorities">F_OVC_SCHOOL_UPDATE</param>	 	
+		</action>
+
+		<!-- Update School -->
+		<action name="updateSchool" class="org.hisp.dhis.ovc.school.UpdateSchoolAction">
+		  <result name="success" type="redirect">getSchoolList.action</result>
+		  <param name="requiredAuthorities">F_OVC_SCHOOL_UPDATE</param>	
+		</action>
+
+		<!-- Remove School -->
+		<action name="removeSchool"
+			class="org.hisp.dhis.ovc.school.RemoveSchoolAction">
+			<result name="success" type="velocity-json">/dhis-web-commons/ajax/jsonResponseSuccess.vm</result>
+			<result name="error" type="velocity-json">/dhis-web-commons/ajax/jsonResponseError.vm</result>
+			<param name="onExceptionReturn">plainTextError</param>
+			<param name="requiredAuthorities">F_OVC_SCHOOL_DELETE</param>
+		</action>
+
+
+		<!-- Get School Details -->		
+		<action name="getSchoolDetails"
+			class="org.hisp.dhis.ovc.school.GetSchoolDetailsAction">
+			<result name="success" type="velocity">/content.vm</result>
+			<param name="page">/dhis-web-ovc/schoolDetails.vm</param>
+		</action>
+
+		<!-- School Validation during Addition or Updation of School -->
+        <action name="validateSchool" class="org.hisp.dhis.ovc.school.ValidateSchoolAction">
+            <result name="success" type="velocity-xml">/dhis-web-ovc/responseSchoolSuccess.vm</result>
+            <result name="input" type="velocity-xml">/dhis-web-ovc/responseSchoolInput.vm</result>
+			<param name="onExceptionReturn">plainTextError</param>
+        </action>
+
+
+		<!-- Get School Data value -->
+		<action name="getSchoolDetail" class="org.hisp.dhis.ovc.school.GetSchoolDetailAction">
+			<result name="success" type="velocity-xml">/dhis-web-ovc/responseSchoolDetail.vm</result>
+			<param name="onExceptionReturn">plainTextError</param>
+		</action>
+
+
+	
+		<!-- School Fee Details Form --> 
+		<action name="showSchoolFeeDetailsForm" class="org.hisp.dhis.ovc.school.ShowSchoolFeeDetailsFormAction">
+		  <result name="success" type="velocity">/main.vm</result>
+		  <param name="page">/dhis-web-ovc/ovcSchoolDetailsForm.vm</param>
+		  <param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/school.js</param>
+		  <param name="menu">/dhis-web-ovc/submitListMenu.vm</param>
+		  <param name="requiredAuthorities">F_OVC_SCHOOL_ADD</param>	 	
+		</action>
+
+
+		<!-- Load  School Fee Details Data Entry Form --> 
+		<action name="loadSchoolDetailsDataEntryForm" class="org.hisp.dhis.ovc.school.LoadSchoolFeeDetailsDataEntryFormAction">
+			<result name="success" type="velocity">/content.vm</result>
+			<param name="page">/dhis-web-ovc/loadSchoolFeeDetailsDataEntryForm.vm</param>
+			<param name="requiredAuthorities">F_OVC_SCHOOL_ADD</param>
+		</action>	
+
+
+		<!-- Save School Fee Details Data Entry Form Data --> 
+		<action name="saveSchoolDetailsData" class="org.hisp.dhis.ovc.school.SaveSchoolFeeDetailsDataAction">
+			<result name="success" type="velocity-json">/dhis-web-commons/ajax/jsonResponseSuccess.vm</result>
+			<param name="requiredAuthorities">F_OVC_SCHOOL_ADD</param>
+		</action>
+
+
+		<!-- School Details Report Form -->
+		<action name="showSchoolDetailsReportForm" class="org.hisp.dhis.ovc.school.ShowSchoolDetailsReportFormAction">
+		  <result name="success" type="velocity">/main.vm</result>
+		  <param name="page">/dhis-web-ovc/schoolDetailsReportForm.vm</param>
+		  <param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/school.js</param>
+		  <param name="menu">/dhis-web-ovc/submitListMenu.vm</param>
+		  <param name="requiredAuthorities">F_OVC_SCHOOL_REPORT</param>	 	
+		</action>
+
+
+	<!--  School Details Report -->
+	<action name="generateSchoolDetailsReport" class="org.hisp.dhis.ovc.school.GenerateSchoolDetailsReoprtAction">
+		<result name="success" type="stream">
+			<param name="contentType">application/vnd.ms-excel</param>
+			<param name="inputName">inputStream</param>
+			<param name="contentDisposition">filename="${fileName}"</param>
+			<param name="bufferSize">1024</param>
+		</result>
+	</action>
+
+
+
+		
+<!-- OVC Form (1 A)	-->		
+		
+	    <!-- Show OVC Form 1A -->
+		
+		<action name="showOVCForm1A" class="org.hisp.dhis.ovc.form1A.ShowOVCForm1AAction">
+		  <result name="success" type="velocity">/content.vm</result>
+		  <param name="page">/dhis-web-ovc/ovcForm1A.vm</param>
+		  <param name="menu">/dhis-web-ovc/submitListMenu.vm</param>
+		  <param name="requiredAuthorities">F_OVC_FORM1A_ADD</param>			
+		</action>
+
+		<!-- Load OVC DataEntry Form1A --> 
+		<action name="loadOVCForm1ADataEntryForm" class="org.hisp.dhis.ovc.form1A.LoadOVCForm1ADataEntryFormAction">
+			<result name="success" type="velocity">/content.vm</result>
+			<param name="page">/dhis-web-ovc/loadOVCForm1ADataEntryForm.vm</param>
+			<param name="requiredAuthorities">F_OVC_FORM1A_ADD</param>
+		</action>	 
+
+
+
+	 
+	 
+		<!-- Save OVC DataEntry Form Data --> 
+		<action name="saveOVCForm1AData" class="org.hisp.dhis.ovc.form1A.SaveOVCForm1ADataAction">
+			<result name="success" type="velocity-json">/dhis-web-commons/ajax/jsonResponseSuccess.vm</result>
+			<param name="requiredAuthorities">F_OVC_FORM1A_ADD</param>
+		</action>	 		
+		
+		<!-- OVC Form1A for View Form --> 
+		<action name="showOVCForm1AForView" class="org.hisp.dhis.ovc.form1A.ShowOVCForm1AForViewAction">
+			<result name="success" type="velocity">/content.vm</result>
+			<param name="page">/dhis-web-ovc/ovcForm1AForView.vm</param>
+			<param name="requiredAuthorities">F_OVC_FORM1A_ADD</param>
+		</action>					
+
+
+<!-- OVC Care Giver Form	-->	
+
+		<!-- Show OVC Care Giver Form -->
+		<action name="showOVCCareGiverForm" class="org.hisp.dhis.ovc.caregiver.ShowOVCCareGiverFormAction">
+		  <result name="success" type="velocity">/content.vm</result>
+		  <param name="page">/dhis-web-ovc/ovcCareGiverForm.vm</param>
+		  <param name="menu">/dhis-web-ovc/submitListMenu.vm</param>
+		  <param name="requiredAuthorities">F_OVC_CARE_GIVER_ADD</param>			
+		</action>
+
+		<!-- Load OVC DataEntry Care Giver Form --> 
+		<action name="loadOVCCareGiverDataEntryForm" class="org.hisp.dhis.ovc.caregiver.LoadOVCCareGiverDataEntryFormAction">
+			<result name="success" type="velocity">/content.vm</result>
+			<param name="page">/dhis-web-ovc/loadOVCCareGiverDataEntryForm.vm</param>
+			<param name="requiredAuthorities">F_OVC_CARE_GIVER_ADD</param>
+		</action>
+
+	 
+		<!-- Save OVC Care Giver DataEntry Form Data --> 
+		<action name="saveOVCCareGiverData" class="org.hisp.dhis.ovc.caregiver.SaveOVCCareGiverDataAction">
+			<result name="success" type="velocity-json">/dhis-web-commons/ajax/jsonResponseSuccess.vm</result>
+			<param name="requiredAuthorities">F_OVC_CARE_GIVER_ADD</param>
+		</action>
+
+
+
+
+
+
+<!-- OVC Household Assessment Form	-->			
+	    
+		<!-- OVC Household Assessment Form -->
+		
+		<action name="showOVCHouseHoldAssessmentForm" class="org.hisp.dhis.ovc.household.ShowOVCHouseholdAssessmentFormAction">
+		  <result name="success" type="velocity">/content.vm</result>
+		  <param name="page">/dhis-web-ovc/ovcHouseHoldAssessmentForm.vm</param>
+		  <param name="menu">/dhis-web-ovc/submitListMenu.vm</param>
+		  <param name="requiredAuthorities">F_OVC_HOUSEHOLD_ASSESSMENT_ADD</param>			
+		</action>
+		
+		<!-- Update OVC Household Assessment Form -->
+		<action name="showOVCHouseHoldAssessmentUpdateForm" class="org.hisp.dhis.ovc.household.ShowOVCHouseholdAssessmentFormAction">
+		  <result name="success" type="velocity">/content.vm</result>
+		  <param name="page">/dhis-web-ovc/updateOVCHouseHoldAssessment.vm</param>
+		  <param name="menu">/dhis-web-ovc/submitListMenu.vm</param>
+		  <param name="requiredAuthorities">F_OVC_HOUSEHOLD_ASSESSMENT_UPDATE</param>			
+		</action>		
+		
+						
+
+		<!-- Load OVC Household Assessment Data Entry Form -->
+		<action name="loadOVCHouseHoldAssessmentDataEntryForm" class="org.hisp.dhis.ovc.household.LoadOVCHouseholdAssessmentDataEntryFormAction">
+			<result name="success" type="velocity">/content.vm</result>
+			<param name="page">/dhis-web-ovc/loadOVCHouseHoldAssessmentDataEntryForm.vm</param>
+			<!--<param name="requiredAuthorities">F_OVC_HOUSEHOLD_ASSESSMENT_ADD</param>-->
+		</action>	 
+	 
+	 
+		<!-- Save Household Assessment Data Entry Form Data --> 
+		<action name="saveOVCHouseHoldAssessmentData" class="org.hisp.dhis.ovc.household.SaveOVCHouseholdAssessmentDataAction">
+			<!--<result name="success" type="velocity-json">/dhis-web-commons/ajax/jsonResponseSuccess.vm</result>-->
+			<result name="success" type="velocity-xml">/dhis-web-ovc/responseValidateSuccess.vm</result>
+			<result name="input" type="velocity-xml">/dhis-web-ovc/responseHouseHoldUpdateInput.vm</result>
+			<param name="requiredAuthorities">F_OVC_HOUSEHOLD_ASSESSMENT_ADD</param>
+		</action>
+		
+		
+		<!-- Update Household Assessment Data Entry Form Data --> 
+		<action name="updateOVCHouseHoldAssessmentData" class="org.hisp.dhis.ovc.household.SaveOVCHouseholdAssessmentDataAction">
+			<!--<result name="success" type="velocity-json">/dhis-web-commons/ajax/jsonResponseSuccess.vm</result>-->
+			<result name="success" type="velocity-xml">/dhis-web-ovc/responseValidateSuccess.vm</result>
+			<!--<result name="input" type="velocity-json">/dhis-web-commons/ajax/jsonResponseInput.vm</result>-->
+			<result name="input" type="velocity-xml">/dhis-web-ovc/responseValidateInput.vm</result>
+			<param name="requiredAuthorities">F_OVC_HOUSEHOLD_ASSESSMENT_UPDATE</param>
+		</action>		
+		
+<!-- Custom Report -->
+		
+		<!-- Report List -->
+		<action name="customReportManagement" class="org.hisp.dhis.ovc.report.action.ReportListAction">
+			<result name="success" type="velocity">/main.vm</result>
+			<param name="page">/dhis-web-ovc/reportList.vm</param>
+			<param name="menu">/dhis-web-ovc/submitListMenu.vm</param>
+			<param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/reports.js</param>
+			<param name="requiredAuthorities">F_OVC_REPORT</param>
+		</action>		
+
+		<!-- Add New Report Form-->
+		<action name="showAddReportForm" class="org.hisp.dhis.ovc.report.action.ShowAddReportFormAction">
+			<result name="success" type="velocity">/main.vm</result>
+			<param name="page">/dhis-web-ovc/addReportForm.vm</param>
+			<param name="menu">/dhis-web-ovc/submitListMenu.vm</param>
+			<param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/reports.js</param>
+			<param name="requiredAuthorities">F_OVC_REPORT_ADD</param>
+		</action>		
+
+		<!-- Save Report-->
+		<action name="saveReportForm" class="org.hisp.dhis.ovc.report.action.SaveReportAction">
+			<result name="success" type="velocity">/main.vm</result>
+			<param name="page">/dhis-web-ovc/reportPreview.vm</param>
+			<param name="menu">/dhis-web-ovc/submitListMenu.vm</param>
+			<param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/reports.js</param>
+			<param name="requiredAuthorities">F_OVC_REPORT_ADD</param>
+		</action>
+
+		<!-- Select OrgUnit and Period Form -->
+		<action name="showOrgUnitAndPeriodSelectionForm" class="org.hisp.dhis.ovc.report.action.ShowOrgUnitAndPeriodSelectionFormAction">
+			<result name="success" type="velocity">/content.vm</result>
+			<param name="page">/dhis-web-ovc/showOrgUnitAndPeriodSelectionForm.vm</param>
+			<param name="requiredAuthorities">F_OVC_REPORT_ADD</param>
+		</action>		
+		
+		<!--  Namebased Report generation -->
+        <action name="generateNameBasedReport" class="org.hisp.dhis.ovc.report.action.GenerateNameBasedReportAction">
+            <result name="success" type="velocity">/main.vm</result>
+            <param name="page">/dhis-web-ovc/nameBasedReportOutput.vm</param>
+            <param name="hideMenu">true</param>
+        </action>
+        
+        <action name="exportToWorkBook" class="org.hisp.dhis.ovc.report.action.ExportToExcelAction">
+	        <result name="success" type="stream">
+	            <param name="contentType">application/vnd.ms-excel</param>
+	            <param name="inputName">inputStream</param>
+	            <param name="contentDisposition">attachment;filename="${fileName}"</param>
+	            <param name="bufferSize">1024</param>
+	        </result>
+        </action>
+
+		
+		
+		<!--  Namebased Report Preview -->
+        <action name="previewReportResult" class="org.hisp.dhis.ovc.report.action.GenerateNameBasedReportAction">
+            <result name="success" type="velocity">/content.vm</result>
+            <param name="page">/dhis-web-ovc/nameBasedReportOutputPreview.vm</param>
+        </action>
+		
+		
+		
+		
+		
+		
+		<!-- Remove Namebased Report --> 
+		<action name="removeNameBasedReport" class="org.hisp.dhis.ovc.report.action.RemoveNameBasedReportAction">
+			<result name="success" type="velocity-json">/dhis-web-commons/ajax/jsonResponseSuccess.vm</result>
+			<result name="error" type="velocity-json">/dhis-web-commons/ajax/jsonResponseError.vm</result>
+			<param name="onExceptionReturn">plainTextError</param>
+			<param name="requiredAuthorities">F_OVC_REPORT_DELETE</param>
+		</action>		
+		
+
+		<!-- Update Report Form-->
+		<action name="showUpdateReportForm" class="org.hisp.dhis.ovc.report.action.ShowUpdateReportFormAction">
+			<result name="success" type="velocity">/main.vm</result>
+			<param name="page">/dhis-web-ovc/updateReportForm.vm</param>
+			<param name="menu">/dhis-web-ovc/submitListMenu.vm</param>
+			<param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/reports.js</param>
+			<param name="requiredAuthorities">F_OVC_REPORT_ADD</param>
+		</action>		
+		
+<!-- OVC Aggregation Query Form-->
+	    <action name="runAggregationQueryForm" class="org.hisp.dhis.ovc.aggregationreport.action.RunAggregationQueryFormAction">
+	        <result name="success" type="velocity">/main.vm</result>
+	        <param name="page">/dhis-web-ovc/runAggregationQueryForm.vm</param>
+	        <param name="menu">/dhis-web-ovc/aggregationMenu.vm</param>
+	    </action>		
+<!-- OVC Aggregation Query Result-->		
+	    <action name="runAggregationQuery" class="org.hisp.dhis.ovc.aggregationreport.action.RunAggregationQueryAction">
+	        <result name="success" type="velocity">/main.vm</result>
+	        <param name="page">/dhis-web-ovc/runAggregationQueryResult.vm</param>
+	        <param name="menu">/dhis-web-ovc/aggregationMenu.vm</param>
+	    </action>				
+	
+		<!--  pre/next period -->
+        <action name="getAvailableNextPrePeriods" class="org.hisp.dhis.ovc.period.action.LoadNextPrePeriodsAction">
+            <result name="success" type="velocity-json">/dhis-web-ovc/jsonPeriods.vm</result>
+        </action>
+
+										
+	</package>
+</struts>

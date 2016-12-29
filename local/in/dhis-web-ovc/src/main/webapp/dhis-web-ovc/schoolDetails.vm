@@ -1,0 +1,43 @@
+
+<h3>$i18n.getString( "ovc_school_details" )</h3>
+
+<table>
+	<tr>
+		<th colspan="2">$i18n.getString( "details" )</th>
+	</tr>
+		
+	<tr>
+		<td style="width:200px"><label for="organisationUnit">$i18n.getString( "parent_organisation_unit" )</label></td>
+		<td style="width:120px">$!organisationUnit.getName()</td>
+	</tr>
+
+	<tr>
+		<td style="width:200px"><label for="name">$i18n.getString( "name" )</label></td>
+		<td style="width:120px">$!school.name</td>
+	</tr>
+	
+	
+	<tr>
+		<td style="width:200px"><label for="description">$i18n.getString( "description" )</label></td>
+		<td style="width:120px">$!school.getDescription()</td>
+	</tr>	
+	
+	<tr>
+		<td style="width:200px"><label for="description">$i18n.getString( "no_of_ovc" )</label></td>
+		<td style="width:120px">$!school.getPatients().size()</td>
+	</tr>	
+	
+<!-- PATIENT ATTRIBUTES IN GROUP-->	
+	
+	#if( $!patientAttributes || $patientAttributes.size() > 0 ) 
+		<tr><th colspan="2" class="heading-column">$i18n.getString( "ovc_school_details" )</th></tr>
+	#end
+
+	#foreach( $attribute in $patientAttributes )
+		<tr>
+			<td style="width:200px"><label>$encoder.htmlEncode($attribute.displayName)</label></td>
+			<td style="width:120px">$!schoolDetailsValueMap.get($attribute.id)</td>
+		</tr>
+	#end	
+
+</table>

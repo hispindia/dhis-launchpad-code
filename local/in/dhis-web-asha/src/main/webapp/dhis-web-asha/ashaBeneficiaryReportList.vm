@@ -1,0 +1,78 @@
+<script type="text/javascript">
+
+    jQuery(document).ready(function(){  
+        tableSorter( 'listTable' ); 
+    });
+
+    function exportToExcel()
+    {
+        document.getElementById('htmlCode').value = document.getElementById('htmlContent').innerHTML;
+        return true;
+    }
+    
+</script>
+
+<form id="form1" name="form1" action="exportToWorkBook.action" method="post" onsubmit="return exportToExcel()" target="_newtab">
+
+<table class="mainPageTable">
+    <tr align="right">
+        <td>    
+            <div>
+                <input type="submit" value="Export to WorkBook" />
+                <input type="hidden" name="htmlCode" id="htmlCode" />
+            </div>
+        </td>
+    </tr>
+    <tr align="left">
+        <td>    
+            <div id="htmlContent" >
+ 			<table class="listTable" id="listTable"> 
+				<colgroup>
+					<col width="30"/>
+					<col />
+					<col />
+					<col />
+					<col/>
+					<col/>
+					<col/>
+					<col/>
+				</colgroup>   
+				<thead>
+					<tr>
+						<th>$i18n.getString( "sl_no" )</th>
+						<th>$i18n.getString( "beneficiary_name" )</th>
+						<th>$i18n.getString( "gender" )</th>
+						<th>$i18n.getString( "father_husband_name" )</th>
+						<th>$i18n.getString( "beneficiary_identifier" )</th>
+						<th>$i18n.getString( "category" )</th>
+						<th>$i18n.getString( "service_given" )</th>
+						<th>$i18n.getString( "price" )</th>
+					</tr>
+				</thead>
+				<tbody id="list">   
+					#set( $count=1 )
+					#foreach( $beneficiary in $beneficiaryList )
+						
+						<tr id="tr${beneficiary.id}">
+							<td>
+								$count
+							</td>
+							
+							<td>$encoder.htmlEncode( $!beneficiary.name)</td>
+							<td>$i18n.getString( $!beneficiary.gender )</td>
+							<td>$encoder.htmlEncode( $!beneficiary.getFatherName() )</td>
+							<td>$encoder.htmlEncode( $!beneficiary.getIdentifier() )</td>
+							<td>$encoder.htmlEncode( $!beneficiary.getDataElementGroup().getName() )</td>
+							<td>$encoder.htmlEncode( $!beneficiary.getDataElement().getName() )</td>
+							<td>$encoder.htmlEncode( $!beneficiary.getPrice() )</td>
+							                   
+						</tr>
+						#set($count = $count + 1)
+					#end
+				</tbody>
+			</table>
+            </div>
+        </td>
+    </tr>
+</table>
+</form>

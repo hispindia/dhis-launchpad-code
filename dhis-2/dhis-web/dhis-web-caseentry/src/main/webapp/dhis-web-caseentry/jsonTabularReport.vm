@@ -1,0 +1,106 @@
+{
+	"id": "${tabularReport.id}",
+	"name": "$!encoder.jsonEncode( ${tabularReport.name} )",
+	"lastUpdated": "$!format.formatDate( ${tabularReport.lastUpdated} )",
+	"programId": "${programStage.program.id}",
+	"singleEvent": 
+		#if($programStage.program.programStages.size() == 1 )
+			"true",
+		#else
+			"false",
+		#end
+	#if( $tabularReport.programStage)
+		#set($programStage = $tabularReport.programStage)
+	#end
+	
+	"type": "${programStage.program.type}",
+	"programStageId": "${programStage.id}",
+	"programStageName": "$!encoder.jsonEncode( ${programStage.displayName} )",
+	"programStages": [
+		#set( $programStages = $programStage.program.programStages )
+		#set( $size = $programStages.size() )
+		#foreach( ${programStage} in $!{programStages} )
+			{
+				"id": "$programStage.id",
+				"name": "$programStage.name"
+			}
+			#if( $velocityCount < $size ),#end
+		#end
+	],
+	"startDate": "$!format.formatDate( $tabularReport.startDate )",
+	"endDate": "$!format.formatDate( ${tabularReport.endDate} )",
+	"level": "${tabularReport.level}",
+	"sortedOrgunitAsc": "${tabularReport.sortedOrgunitAsc}",
+	"facilityLB": "${tabularReport.facilityLB}",
+	"displayOrgunitCode": "$!tabularReport.displayOrgunitCode",
+	"useFormNameDataElement": "$!tabularReport.useFormNameDataElement",
+	"useCompletedEvents": "$!tabularReport.useCompletedEvents",
+	"userOrganisationUnit": "$!tabularReport.userOrganisationUnit",
+	"userOrganisationUnitChildren": "$!tabularReport.userOrganisationUnitChildren",
+	"orgunitIds": [
+		#set( $size = $tabularReport.organisationUnits.size() )
+		#set( $organisationUnits = ${tabularReport.organisationUnits} )
+		#foreach( ${organisationUnit} in $!{organisationUnits} )
+			{
+				"id": "$organisationUnit.uid",
+				"localid": "$organisationUnit.id",
+				"path":"#foreach($anc in $organisationUnit.getAncestors())/${anc.uid}#end"
+			}
+			#if( $velocityCount < $size ),#end
+		#end
+	],
+	"patientProperties": [
+		#set($idx=0)
+		#foreach( ${fixedAttribute} in $!{selectedFixedAttributes} )
+			{	
+				#set( $attr = $i18n.getString($fixedAttribute) )
+				"id": "fixedAttr_${fixedAttribute}",
+				"name": "$attr",
+				"filter": "$fixedAttributeFilters.get($idx)"
+			},
+			#set($idx=$idx+1)
+		#end
+		
+		#set($idx=0)
+		#set( $size = ${selectedIdentifierTypes.size()} )		
+		#foreach( ${identifier} in $!{selectedIdentifierTypes} )
+			{
+				"id": "iden_${identifier.id}",
+				"name": "${identifier.displayName}",
+				"filter": "$identifierTypeFilters.get($idx)"
+			}#if( $velocityCount < $size ),#end
+			#set($idx=$idx+1)
+		#end
+		
+		#set($idx=0)
+		#set( $size = ${selectedAttributes.size()} )		
+		#foreach( ${attribute} in $!{selectedAttributes} )
+			{
+				"id": "attr_${attribute.id}",
+				"name": "${attribute.displayName}",
+				"filter": "$patientAttributeFilters.get($idx)"
+			}
+			#if( $velocityCount < $size ),#end
+			#set($idx=$idx+1)
+		#end
+	],
+	"dataElements": [
+		#set($idx=0)
+		#set( $size = ${selectedDataElements.size()} )
+		#foreach( ${dataElement} in $!{selectedDataElements} )
+			{
+				"id": "de_${dataElement.id}",
+				"name": "${dataElement.name}",
+				"compulsory": "",
+				"valueType": #if( $dataElement.optionSet )
+								"list"
+							 #else
+								"${dataElement.type}"
+							 #end,
+				"filter": "$dataelementFilters.get($idx)"
+			}
+			#if( $velocityCount < $size ),#end
+			#set($idx=$idx+1)
+		#end
+	]
+}

@@ -1,0 +1,52 @@
+
+<script type="text/javascript">
+
+    jQuery(document).ready(function(){  
+        tableSorter( 'listTable' ); 
+    });
+
+</script>
+
+#if( $patients.size() > 0 && $resultGrid.keySet().size() > 0 )
+<form id="form1" name="form1" action="exportToWorkBook.action">
+
+<table class="mainPageTable">
+
+    <tr align="left">
+        <td>    
+            <div id="htmlContent" >
+                <h3>$reportTitle</h3>
+        
+                #set( $count = 1 )
+                #set( $rowCount = $resultGrid.keySet().size() )
+                
+                <table class="listTable" id="listTable">
+                    
+                    <thead> 
+                        <tr>
+                            #foreach( $headerCell in $tableHeader )
+                                <th>$headerCell</th>
+                            #end
+                        </tr>
+                    </thead>
+                    
+                    <tbody id="list">
+                        #foreach( $number in [1..$rowCount] )
+                            #set( $oneRow = $resultGrid.get( "row$number" ) )
+                            <tr>
+                                #foreach( $cellValue in $oneRow )
+                                    <td>$cellValue</td>
+                                #end            
+                            </tr>
+                        #end
+                    </tbody>
+                    
+                </table>
+            </div>
+        </td>
+    </tr>
+</table>    
+</form>
+#else
+	<h4>No any OVC Exits</h4>
+#end

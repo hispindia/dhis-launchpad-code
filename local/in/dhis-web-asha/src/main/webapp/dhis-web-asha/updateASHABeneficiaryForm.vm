@@ -1,0 +1,167 @@
+<script type="text/javascript" src="javascript/updateASHABeneficiary.js"></script>
+## Macro for generating the jQuery validation rules 
+#macro( validate $type $require )
+  #if( $type == "NUMBER" )
+  	{validate:{ number:true #if($require), required:true #end }}
+  #elseif( $type == "string" )
+  	{validate:{ alphanumeric:true #if($require), required:true #end }}
+  #elseif( $require )
+  	{validate:{required:true}}
+  #end
+#end
+
+<script>
+    
+	jQuery(document).ready( function(){
+	currentDiv = 'UpdateASHABeneficiaryForm';
+	isSubmit = true;
+    jQuery("#UpdateASHABeneficiaryForm").validate({
+		meta:"validate"
+		,errorElement:"span"
+		,submitHandler: function(form)
+		{
+        	if( isSubmit ) 
+            {
+            	//addASHABeneficiary();
+            	validateUpdateBeneficiary();
+            }
+		}
+    	});
+    }); 
+    
+</script>
+
+<form id="UpdateASHABeneficiaryForm" name="UpdateASHABeneficiaryForm" method="post" >	
+	
+<div>
+	<input type="hidden" id="periodId" name="periodId" value="$!period.id">
+	<input type="hidden" id="ashaId" name="ashaId" value="$!patient.id">
+	<input type="hidden" id="beneficiaryId" name="beneficiaryId" value="$!beneficiary.id">
+	<input type="hidden" id="selectedPeriodId" name="selectedPeriodId" value="$selectedPeriodId">
+	
+</div>
+
+
+<table style="background-color:#EFFBEF;" width="100%">
+	<tr>
+		<th colspan="4">$i18n.getString( "beneficiary_details" )</th>
+	</tr>
+	
+	<tr>
+		<td>$i18n.getString( "beneficiary_name" ):<em title="$i18n.getString( "required" )" class="required">*</em></td>
+		<td><input type="text" id="name1" name="name1" value="$!beneficiary.name" style="width:320px" class="{validate:{required:true, unicodechars:true}}"/></td>
+	</tr>	
+	
+	<tr>
+		<td>$i18n.getString( "father_husband_name" ):</td>
+		<td><input type="text" id="fatherName1" name="fatherName1" value="$!beneficiary.getFatherName()" style="width:320px"/></td>
+	</tr>	
+	<tr>
+		<td>$i18n.getString( "gender" )<em title="$i18n.getString( "required" )" class="required">*</em></td>
+		<td>
+			<select id="gender1" name="gender1" style="width:325px" class="{validate:{required:true}}">
+				<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="M" #if( $!beneficiary.getGender() == 'M' ) selected="selected" #end>$i18n.getString( "male" )</option>
+                <option value="F" #if( $!beneficiary.getGender() == 'F' ) selected="selected" #end>$i18n.getString( "female" )</option>
+			</select>
+		</td>					
+	</tr>		
+	<tr>
+		<td>$i18n.getString( "village_name" ):</td>
+		<td class="input-column">
+            <select id="village1" name="village1" style="width:325px">
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                 #foreach ($option in $locations )
+                    <option value="$option.name" #if($!beneficiary.getVillage() == $option.name ) selected="selected" #end >$option.name</option>
+                 #end
+            </select>
+        </td>
+		<!--<td><input type="text" id="village1" name="village1" value="$!beneficiary.getVillage()" style="width:320px"/></td>-->
+	</tr>	
+
+	<tr>
+		<td>$i18n.getString( "beneficiary_identifier" ): <br /> ( $i18n.getString( "aadhar_uid_mcts_munber" ) )</td>
+		<td><input type="text" id="identifier1" name="identifier1" value="$!beneficiary.getIdentifier()" style="width:320px" /></td>
+	</tr>
+	
+	
+	<tr>
+	    <td>$i18n.getString( "serviceGivenDate" )<em title="$i18n.getString( "required" )" class="required">*</em></td>
+		
+		<td>
+	        <input type="text" id="serviceGivenDate1" name="serviceGivenDate1" class="{validate:{required:true}}" style="width:320px" value='$format.formatDate($!beneficiary.getServiceGivenDate() )' />
+	        <script type="text/javascript">
+	            datePickerValid( 'serviceGivenDate1' );
+	        </script>    
+	    </td>
+	</tr>
+	
+	
+	
+<!--
+	<tr>
+		<td>$i18n.getString( "beneficiary_identifier" ): <em title="$i18n.getString( "required" )" class="required">*</em><br /> ( $i18n.getString( "aadhar_uid_mcts_munber" ) )</td>
+		<td><input type="text" id="identifier1" name="identifier1" value="$!beneficiary.getIdentifier()" style="width:320px" class="{validate:{required:true ,alphanumeric:true }}"/></td>
+	</tr>	
+-->	
+	
+	<tr>
+		<td>$i18n.getString( "category" ):<em title="$i18n.getString( "required" )" class="required">*</em></td>
+		<td>
+			<select id="dataElementGroupId1" name="dataElementGroupId1" style="width:325px" onChange="getDataElementList1()" class="{validate:{required:true}}" >
+				<option value="">[ Please Select ]</option>
+				#foreach ( $dataElementGroup in $dataElementGroupList )
+				<option value="$dataElementGroup.id" title="$dataElementGroup.name" #if($!beneficiary.getDataElementGroup().getId() == $dataElementGroup.id ) selected="selected" #end >$dataElementGroup.name</option>
+				#end
+			</select>
+		</td>
+	</tr>
+
+	<tr>
+		<td>$i18n.getString( "sub_category" ): <em title="$i18n.getString( "required" )" class="required">*</em></td>
+		<td>
+			<select id="dataElementId1" name="dataElementId1" style="width:325px" onChange="getServicePrice1()"  class="{validate:{required:true}}" >
+				#foreach ( $dataElement in $dataElementList )
+					<option value="$dataElement.id"  #if($!beneficiary.getDataElement().getId() == $dataElement.id ) selected="selected" #end >$dataElement.name</option>
+				#end
+				<!--<option value="-1">[ Please Select ]</option>-->
+				<!--<option value="$dataElement.id"  #if($!beneficiary.getDataElement().getId() == $dataElement.id ) selected="selected" #end >$dataElement.name</option>-->
+			</select>
+		</td>
+	</tr>
+
+	<tr>
+		<td>$i18n.getString( "price" ):</td>
+		<td><input type="text" id="amount1" name="amount1" disabled="disabled" style="text-align: left; width:320px" value="$!beneficiary.getPrice()" class="{validate:{required:true}}"/></td>
+		
+		<input type="hidden" id="price1" name="price1" value="$!beneficiary.getPrice()" >
+	</tr>
+
+
+	<tr style="display:none">
+	    <td>
+	        <input type="text" id="registrationDate1" name="registrationDate1" value='$format.formatDate($!beneficiary.getRegistrationDate())'"/>
+	        <script type="text/javascript">
+	            datePickerValid( 'registrationDate1', true );
+	        </script>    
+	    </td>
+	</tr>
+	
+</table>
+
+	<p align="left">
+		
+		
+		<input type="button"  value="$i18n.getString( 'Cancel' )" style="width:100px" onclick="closeUpdateBeneficiaryWindow();"/>&nbsp;&nbsp;
+        &nbsp;&nbsp;<input type="submit"  value="$i18n.getString( 'Save' )" style="width:100px"/>
+		
+	</p>	
+</form>
+
+<script type="text/javascript">
+jQuery( document ).ready( function()
+{
+	//getDataElementList1();
+	//getServicePrice1();
+});
+</script>

@@ -1,0 +1,111 @@
+
+## Macro for generating the jQuery validation rules 
+#macro( validate $type $require )
+  #if( $type == "NUMBER" )
+  	{validate:{ number:true #if($require), required:true #end }}
+  #elseif( $type == "string" )
+  	{validate:{ alphanumeric:true #if($require), required:true #end }}
+  #elseif( $require )
+  	{validate:{required:true}}
+  #end
+#end
+
+<input type="hidden" id="programStageId" name="programStageId" value="$!programStage.id">
+
+<input type="hidden" id="programStageInstanceId" name="programStageInstanceId" value="$!programStageInstanceId">
+
+<table style="background-color:#EFFBEF;" width="75%">
+
+
+	<tr>
+		<th style="text-align: center;" colspan="4" ><img src="images/rupee.png" width="15"  alt='$i18n.getString( "asha_payment" )'> $i18n.getString( "payment_details" )</th>
+	</tr>
+
+	<tr>
+		<td>&nbsp;</td>
+		<td>$i18n.getString( "payment_due" )</td>
+		<td><input type="text" id="paymentDue" name="paymentDue" value = "$!paymentDueValue" style="width:320px" readonly /></td>
+		<td>&nbsp;</td>
+	</tr>
+
+	<tr>
+		<td>&nbsp;</td>
+		<td>$i18n.getString( "payable_amount" )</td>
+		<td><input type="text" id="deps160" name="deps160" value = "$!patientDataValueMap.get( 160 )" style="width:320px" readonly  /></td>
+		<td>&nbsp;</td>
+	</tr>
+
+	<tr>
+		<td>&nbsp;</td>
+		<td>$i18n.getString( "total_payable_amount" )</td>
+		<td><input type="text" id="totalPayableAmount" name="totalPayableAmount" style="width:320px" readonly  /></td>
+		<td>&nbsp;</td>
+	</tr>
+
+	<tr>
+		<td>&nbsp;</td>
+		<td>$i18n.getString( "amount_paid" )<em title="$i18n.getString( 'required' )" class="required">*</em></td>
+		<td><input type="text" id="deps161" name="deps161" style="width:320px" value = "$!patientDataValueMap.get( 161 )" onkeyup="calculateDueAmountForNextMonth();" class="{validate:{required:true,number:true}}" /></td>
+		<td>&nbsp;</td>
+	</tr>
+	
+	<tr>
+		<td>&nbsp;</td>
+		<td>$i18n.getString( "payment_due_for_next_month" )</td>
+		<td><input type="text" id="deps159" name="deps159" style="width:320px" readonly /></td>
+		<td>&nbsp;</td>
+	</tr>
+	
+	<tr>
+		<td>&nbsp;</td>
+		<td valign = "top">$i18n.getString( "mode_of_payment" )</td>
+		#set( $optionValue = $!patientDataValueMap.get( 174 ) )
+		<td>
+			<select name="deps174"  id="deps174"  style="width:320px">
+				#foreach ($option in $modeOfPaymentOptions )
+					<option value="$option" #if($optionValue == $option ) selected="selected" #end>$option</option>
+				#end	
+			</select> 	
+		</td>
+		<td>&nbsp;</td>
+	</tr>	
+	
+	<tr>
+		<td>&nbsp;</td>
+		<td>$i18n.getString( "cheque_voucher_number" )</td>
+		<td><input type="text" id="deps162" name="deps162" value = "$!patientDataValueMap.get( 162 )" style="width:320px" class="{validate:{required:false,alphanumeric:true}}" /></td>
+		<td>&nbsp;</td>
+	</tr>
+
+	<tr>
+		<td>&nbsp;</td>
+		<td valign = "top">$i18n.getString( "comments" )</td>
+		<td><textarea rows="4" cols="45" id="deps163" name="deps163" value = "$!patientDataValueMap.get( 163 )" style="width:320px" >$!patientDataValueMap.get( 163 )</textarea></td>
+		<td>&nbsp;</td>
+	</tr>
+
+	
+
+<!--
+	<tr style="display:none">
+		<td>$i18n.getString( "paymentDataElementList" )</td>
+		<td>
+			<select id="paymentDataElementList" name="paymentDataElementList" >
+				<option value="">[ Please Select ]</option>
+				#foreach ( $dataElement in $paymentDataElementList )
+				<option value="$dataElement.id" title="$dataElement.name">$dataElement.name</option>
+				#end
+			</select>
+		</td>
+	</tr>
+-->	
+</table>
+
+<script type="text/javascript">
+jQuery( document ).ready( function()
+{
+	calculateTotalPayable();
+	calculateDueAmountForNextMonth();
+
+});
+</script>

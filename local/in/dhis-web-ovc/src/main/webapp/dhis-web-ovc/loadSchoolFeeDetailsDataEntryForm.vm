@@ -1,0 +1,72 @@
+
+## Macro for generating the jQuery validation rules 
+#macro( validate $type $require )
+  #if( $type == "NUMBER" || $type == "number" )
+    {validate:{ number:true #if($require), required:true #end }}
+  
+	#elseif( $type == "int" )
+  	{validate:{ integer:true #if($require), required:true #end }}
+  	
+  	#elseif( $type == "positiveNumber" )
+  	{validate:{ positive_integer:true #if($require), required:true #end }}
+  	
+	#elseif( $type == "negativeNumber" )
+  	{validate:{ negative_integer:true #if($require), required:true #end }}
+  
+  
+  #elseif( $require )
+    {validate:{required:true}}
+  #end
+#end
+
+
+#set( $tabIndex = 1 )
+#if ( $ovcList.size() > 0 )
+
+<table class="formSection">
+	<tr bgcolor="#CBDDEB">
+		<th colspan="7" style="text-align: center;">Beneficiaries OVCs details under the the respective school</th>
+	</tr>	
+	
+</ br>
+	
+	<tr bgcolor="#CBDDEB">
+		<th style="text-align: center;">$i18n.getString( "full_name" )</th>
+		<th style="text-align: center;">$i18n.getString( "gender" )</th>
+		<th style="text-align: center;">$i18n.getString( "student_admin_no" )</th>
+		<th style="text-align: center;">$i18n.getString( "ovc_code" )</th>
+		<th style="text-align: center;">$i18n.getString( "class" )</th>
+		
+		#foreach( $programStageDataElement in $programStageDataElements )
+			<th style="height:50px;width:100px" >$encoder.htmlEncode( $programStageDataElement.getDataElement().getName() )</th>
+		#end	
+		
+	</tr>
+	
+	#set( $mark = false )
+	#foreach($ovc in $ovcList )
+		<tr #alternate($mark)>
+			<td><label>$ovc.getFullName()</label></td>
+			<td style="text-align: center;" ><label>$ovc.getGender()</label></td>
+			
+			#set( $key1 = $ovc.id + ":" + 1764 )
+			#set( $key3 = $ovc.id + ":" + 50 )
+			
+			<td style="text-align: center;"><label>$!patientAttributeValueMap.get( $key1 )</label></td>
+			<td style="text-align: center;"><label>$!ovcIDMap.get( $ovc.id )</label></td>
+			<td style="text-align: center;"><label>$!patientAttributeValueMap.get( $key3 )</label></td>
+		
+			#foreach($programStageDataElement in $programStageDataElements )
+				#set( $valueMapId =  $ovc.id + ':' + $programStageDataElement.getDataElement().id )
+				#set( $patientDataValue = "" )
+				#set( $patientDataValue = $!patientDataValueMap.get( $valueMapId ) )
+				<td><input type="text" name="deps$valueMapId" id="deps$valueMapId" value="$!patientDataValue" tabindex="$tabIndex" style="text-align: center;" #if($programStageDataElement.getDataElement().type =='number') class="{validate:{number:true}}" #elseif($programStageDataElement.getDataElement().type =='int') class="{validate:{integer:true}}" #elseif($programStageDataElement.getDataElement().type =='positiveNumber') class="{validate:{positive_integer:true}}" #elseif($programStageDataElement.getDataElement().type =='negativeNumber') class="{validate:{negative_integer:true}}" #end/></td>
+			#end
+		</tr>
+		#set( $tabIndex = $tabIndex + 1 )
+		#set( $mark = !$mark)	
+	#end
+	
+</table
+	
+#end

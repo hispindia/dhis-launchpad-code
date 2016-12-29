@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<include file="dhis-web-commons.xml"/>
+	
+	<package name="dhis-web-dqa" extends="dhis-web-commons" namespace="/dhis-web-dqa">
+		
+		<!-- Index action -->
+		<action name="index" class="org.hisp.dhis.dqa.action.NoAction">
+			<result name="success" type="velocity">/main.vm</result>
+			<param name="page">/dhis-web-dqa/index.vm</param>
+			<param name="menu">/dhis-web-dqa/menu.vm</param>
+		</action>
+
+
+		<!-- WHO DQA -->
+		<action name="viewWHOSettingsForm" class="org.hisp.dhis.dqa.action.ViewWHOSettingsFormAction">
+		  <result name="success" type="velocity">/main.vm</result>
+		  <param name="page">/dhis-web-dqa/WHOSettingsForm.vm</param>
+		  <param name="menu">/dhis-web-dqa/menu.vm</param>
+		  <param name="javascripts">../dhis-web-commons/oust/oust.js,javascript/dqa.js</param>
+		</action>
+
+		<action name="saveDQAParameters" class="org.hisp.dhis.dqa.action.SaveDQAParametersAction">
+		  <result name="success" type="velocity">/main.vm</result>
+		  <param name="page">/dhis-web-dqa/index.vm</param>
+		  <param name="menu">/dhis-web-dqa/menu.vm</param>      
+		</action>
+		
+		<action name="showReportCardForm" class="org.hisp.dhis.dqa.action.ReportCardFormAction">
+		  <result name="success" type="velocity">/main.vm</result>
+		  <param name="page">/dhis-web-dqa/reportCardForm.vm</param>
+		  <param name="menu">/dhis-web-dqa/menu.vm</param>
+		  <param name="javascripts">../dhis-web-commons/oust/oust.js,javascript/dqa.js</param>
+		</action>
+		
+		<action name="showDataInputPage" class="org.hisp.dhis.dqa.action.NoAction">
+		  <result name="success" type="velocity">/main.vm</result>
+		  <param name="page">/dhis-web-dqa/dqaDataInput.vm</param>
+		  <param name="menu">/dhis-web-dqa/menu.vm</param>
+		</action>
+		
+		<action name="generateReportCardOutput" class="org.hisp.dhis.dqa.action.ReportCardOutputAction">
+		  <result name="success" type="velocity">/main.vm</result>
+		  <param name="page">/dhis-web-dqa/index.vm</param>
+		  <param name="menu">/dhis-web-dqa/menu.vm</param>      
+		</action>
+
+		<action name="manageDQAIndicators" class="org.hisp.dhis.dqa.action.ManageDQAIndicators">
+		  <result name="success" type="velocity">/dhis-web-dqa/manageDQAIndicator.vm</result>
+		 <param name="javascripts">javascript/dqa.js</param>
+		</action>   
+				
+	</package>
+	
+</struts>

@@ -1,0 +1,574 @@
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        #if ( $dimension )
+        document.getElementById( "doIndicators" ).disabled = true;
+        document.getElementById( "doOrganisationUnits" ).disabled = true;
+        document.getElementById( "doPeriods" ).disabled = true;
+        #end   
+    });
+
+		
+    var i18n_done = '$encoder.jsEscape( $i18n.getString( "done" ), "'")';
+    var i18n_must_enter_name = '$encoder.jsEscape( $i18n.getString( "must_enter_name" ), "'")';
+    var i18n_cannot_include_more_organisation_unit_regression = '$encoder.jsEscape( $i18n.getString( "cannot_include_more_organisation_unit_regression" ), "'")';
+    var i18n_must_select_at_least_one_indictor_data_element_data_set = '$encoder.jsEscape( $i18n.getString( "must_select_at_least_one_indictor_data_element_data_set" ), "'")';
+    var i18n_must_select_at_least_one_unit = '$encoder.jsEscape( $i18n.getString( "must_select_at_least_one_unit" ), "'")';
+    var i18n_must_select_at_least_one_period = '$encoder.jsEscape( $i18n.getString( "must_select_at_least_one_period" ), "'")';
+    var i18n_cannot_select_orgunit_and_parent_orgunit_param = '$encoder.jsEscape( $i18n.getString( "cannot_select_orgunit_and_parent_orgunit_param" ), "'")';
+
+	
+</script>
+
+<script type="text/javascript">
+function manageCustomIndicators( parameterName ,parameterValue)
+{  
+	$( '#indicatorDiv' ).load( 'manageDQAIndicators.action', 
+	{   parameterName : parameterName,   
+		parameterValue: parameterValue
+	}, 
+	function (data)
+	{		
+	  displayIndicatorDialog( 'Change DQA Indicators' );	
+	
+	});
+
+}
+function displayIndicatorDialog( operandName )
+{
+	$( '#indicatorDiv' ).dialog( {
+	modal: true,
+	title: operandName,
+	width: 580,
+	height: 660
+	});
+}
+
+</script>
+
+
+<h3>$i18n.getString( "settings_who" )</h3>
+
+<form id="tableForm" name="tableForm" method="post" action="saveDQAParameters.action">
+
+	<input type="hidden" id="tableId" name="tableId" value="$!reportTable.id" />
+	<input type="hidden" id="mode" name="mode" value="$!mode" />
+	<input type="hidden" id="dimension" name="dimension" value="$!dimension" />
+
+	<div style="background-color:#4A89BA;width:650px;padding:0; margin:0;">
+		<table>
+			<tr>
+				<th colspan="2" style="background-color:cyan;">
+					$i18n.getString( "dimension1" )&nbsp;
+					<!--<span align="right"><input type="button" value='$i18n.getString( "create_indicator" )' style="width:150px;" onclick="javascript:window.location.href='../dhis-web-maintenance-datadictionary/showAddIndicatorForm.action'" /></span>
+				-->
+				</th>
+			</tr>
+			<tr>
+				<td colspan="2">&nbsp;</td>
+			</tr>
+			<tr>
+				<td>
+					<table>
+						<tr>
+							<td style="width:500px">$i18n.getString( "D1.1b")</td>
+							<td><input type="text" id="D1.1b" name="D1.1b" value="$!dqaParameterMap.get( "D1.1b" )"  style="width:150px;text-align: center;" /></td>		
+						</tr>
+						<tr>
+							<td style="width:500px">$i18n.getString( "D1.1c" )</td>
+							<td><input type="text" id="D1.1c" name="D1.1c" value="$!dqaParameterMap.get( "D1.1c" )" style="width:150px;text-align: center;" /></td>        
+						</tr>
+						
+					</table>
+				</td>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
+	</div>
+
+	<table>       
+		<tr><td colspan="2">&nbsp;</td></tr>
+	</table>   
+
+	<div style="background-color:#4A89BA;width:650px;padding:0; margin:0;">
+		<table>
+			<tr>
+				<th colspan="2" style="background-color:cyan;">
+					$i18n.getString( "dimension2" )
+				</th>      
+			</tr>
+			<tr>
+				<td colspan="2">&nbsp;</td>      
+			</tr>
+			<tr>
+				<td>
+					<table>
+						<tr>
+							<td style="width:500px">$i18n.getString( "D2.2b.1" )</td>
+							<td><input type="text" id="D2.2b.1" name="D2.2b.1" value="$!dqaParameterMap.get( "D2.2b.1" )" style="width:150px;text-align: center;" /></td>
+						</tr>
+						<tr>
+							<td style="width:500px">$i18n.getString( "D2.2b.2" )</td>
+							<td><input type="text"  id="D2.2b.2" name="D2.2b.2" value="$!dqaParameterMap.get( "D2.2b.2" )" style="width:150px;text-align: center;" /></td>        
+						</tr>
+						<tr>
+							<td style="width:500px">$i18n.getString( "D2.2c" )</td>
+							<td><input type="text"  id="D2.2c" name="D2.2c"   value="$!dqaParameterMap.get( "D2.2c" )" style="width:150px;text-align: center;" /></td>
+						</tr>
+						 <tr>
+							<td style="width:500px">$i18n.getString( "D2.2d" )</td>
+							<td><input type="text"  id="D2.2d" name="D2.2d"  value="$!dqaParameterMap.get( "D2.2d" )" style="width:150px;text-align: center;" /></td>
+						</tr>						
+					</table>
+				</td>
+				<td>&nbsp;</td>   
+			</tr>
+		</table>
+	</div>
+
+	<table>    
+		<tr><td colspan="2">&nbsp;</td></tr>
+	</table>
+
+	<div style="background-color:#4A89BA;width:650px;padding:0; margin:0;">
+		<table>    
+			<tr>
+				<th colspan="2" style="background-color:cyan;">
+					$i18n.getString( "dimension3" )
+				</th>      
+			</tr>
+			<tr>
+				<td colspan="2">&nbsp;</td>      
+			</tr>
+			<tr>
+				<!--<th> $i18n.getString("set_parameters")</th>-->
+			</tr>   
+			<tr>
+				<td>
+					<table>
+						<tr>
+							<td style="width:500px">$i18n.getString( "D3.3b.1" )</td>
+							<td><input type="text" id="D3.3b.1" name="D3.3b.1"  value="$!dqaParameterMap.get( "D3.3b.1" )" style="width:150px;text-align: center;" /></td>
+						</tr>
+						<tr>
+							<td style="width:500px">$i18n.getString( "D3.3b.2" )</td>
+							<td><input type="text"  id="D3.3b.2" name="D3.3b.2"  value="$!dqaParameterMap.get( "D3.3b.2" )" style="width:150px;text-align: center;" /></td>
+						</tr>
+					</table>
+				</td>
+				<td>&nbsp;</td>   
+			</tr>
+		</table>
+	</div>
+
+	<table>   
+		<tr><td colspan="2">&nbsp;</td></tr>
+	</table>
+
+	<div style="background-color:#4A89BA;width:650px;padding:0; margin:0;">
+		<table>
+			<tr>
+				<th colspan="2" style="background-color:cyan;">
+					$i18n.getString( "dimension4" )
+				</th>      
+			</tr>
+			<tr>
+				<td colspan="2">&nbsp;</td>      
+			</tr>    
+			<tr>
+				<td>
+					<table>
+						<tr>
+							<td style="width:500px">$i18n.getString( "D4.4a" )</td>
+							<td><input type="text" id="D4.4a" name="D4.4a" value="$!dqaParameterMap.get( "D4.4a" )" style="width:150px;text-align: center;" /></td>
+						</tr>
+						<tr>
+							<td style="width:500px">$i18n.getString( "D4.4b" )</td>
+							<td><input type="text" id="D4.4b" name="D4.4b" value="$!dqaParameterMap.get( "D4.4b" )" style="width:150px;text-align: center;" /></td>
+						</tr>
+						 <tr>
+							<td style="width:500px">$i18n.getString( "D4.4c" )</td>
+							<td><input type="text" id="D4.4c" name="D4.4c" value="$!dqaParameterMap.get( "D4.4c" )" style="width:150px;text-align: center;" /></td>
+						</tr>
+					</table>
+				</td>
+				<td>&nbsp;</td>   
+			</tr>
+		</table>
+	</div>
+
+	<table>
+		<tr><td colspan="2">&nbsp;</td></tr>
+	</table>   
+
+	<div style="width:650px;padding:0; margin:0;">
+		<table bgcolor=#4A89BA>    
+			<tr>
+				<th colspan="2" style="background-color:cyan;">$i18n.getString( "other_parameters" )</th>      
+			</tr>			
+			<tr>
+				<td style="width:500px">$i18n.getString( "financialyear_starting_month" )</td>
+				<td>
+					<select id="starting_month_financial_year" name="starting_month_financial_year" style="width:150px" >
+						<option value="1" #if($!dqaParameterMap.get( "starting_month_financial_year" ) == "1" ) selected="selected"  #end >Jan</option>
+						<option value="2" #if($!dqaParameterMap.get( "starting_month_financial_year" ) == "2" ) selected="selected"  #end >Feb</option>
+						<option value="3" #if($!dqaParameterMap.get( "starting_month_financial_year" ) == "3" ) selected="selected"  #end >Mar</option>
+						<option value="4" #if($!dqaParameterMap.get( "starting_month_financial_year" ) == "4" ) selected="selected"  #end >Apr</option>
+						<option value="5" #if($!dqaParameterMap.get( "starting_month_financial_year" ) == "5" ) selected="selected"  #end >May</option>
+						<option value="6" #if($!dqaParameterMap.get( "starting_month_financial_year" ) == "6" ) selected="selected"  #end >Jun</option>
+						<option value="7" #if($!dqaParameterMap.get( "starting_month_financial_year" ) == "7" ) selected="selected"  #end >Jul</option>
+						<option value="8" #if($!dqaParameterMap.get( "starting_month_financial_year" ) == "8" ) selected="selected"  #end >Aug</option>
+						<option value="9" #if($!dqaParameterMap.get( "starting_month_financial_year" ) == "9" ) selected="selected"  #end >Sep</option>
+						<option value="10" #if($!dqaParameterMap.get( "starting_month_financial_year" ) == "10" ) selected="selected"  #end >Oct</option>
+						<option value="11" #if($!dqaParameterMap.get( "starting_month_financial_year" ) == "11" ) selected="selected"  #end >Nov</option>
+						<option value="12" #if($!dqaParameterMap.get( "starting_month_financial_year" ) == "12" ) selected="selected"  #end >Dec</option>
+					</select>
+				</td>
+			</tr>       
+			<tr>
+				<td style="width:500px">$i18n.getString( "level_of_aggregation" )</td>
+				<td>
+					<select id="level_aggregation_most_recent_population_survey" name="level_aggregation_most_recent_population_survey" style="width:150px" >
+						#foreach( $level in $organisationUnitLevels )
+						<option value="$level.id" #if($!dqaParameterMap.get( "level_aggregation_most_recent_population_survey" ) == $level.id ) selected="selected"  #end>$encoder.htmlEncode( $level.displayName )</option>
+						#end     
+					</select>
+				</td>      
+			</tr>
+			<tr>
+				<td style="width:500px">$i18n.getString( "root_level" )</td>
+				<td>
+					<select id="root_level" name="root_level" style="width:150px" >
+						#foreach( $level in $organisationUnitLevels )
+						<option value="$level.level" #if($!dqaParameterMap.get( "root_level" ) == $level.level ) selected="selected"  #end>$encoder.htmlEncode( $level.displayName )</option>
+						#end     
+					</select>
+				</td>      
+			</tr>
+			<tr>
+				<td style="width:500px">$i18n.getString( "ou_group_set" )</td>
+				<td>
+					<select id="ou_group_set" name="ou_group_set" style="width:150px" >
+						#foreach( $ougs in $organisationUnitGroupSets )
+						<option value="$ougs.id" #if($!dqaParameterMap.get( "ou_group_set" ) == $ougs.id ) selected="selected"  #end>$encoder.htmlEncode( $ougs.displayName )</option>
+						#end     
+					</select>
+						
+				</td>      
+			</tr>		
+			<tr>
+				<td style="width:500px">$i18n.getString( "all_service_des" )</td>
+				<td>
+					<input type="text" id="all_service_des" name="all_service_des" value="$!dqaParameterMap.get( "all_service_des" )" style="width:150px;text-align: center;" />
+						
+				</td>      
+			</tr>			
+		</table>
+   </div>
+
+<br />
+
+	<table>
+		<tr>        
+			<td>$i18n.getString( 'advanced' )&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:showAdvancedParameters()" >$i18n.getString( 'show' )</a>&nbsp;&nbsp;<a href="javascript:hideAdvancedParameters()" >$i18n.getString( 'hide' )</a>
+				<!--<input type="button" value="$i18n.getString( 'advanced' )" onclick="javascript:showAdvancedParameters()" style="width:120px" />&nbsp;&nbsp;
+				&nbsp;&nbsp;<input type="button" value="$i18n.getString( 'hide' )" onclick="javascript:hideAdvancedParameters()" style="width:120px" />-->
+			</td>
+		</tr>    
+	</table>
+
+<br />
+	<div id="advancedParameterID" style="background-color:#4A89BA;width:650px;padding:0;margin:0;display:none" >
+		
+		<table>
+			<tr>
+				<th colspan="2" style="background-color:cyan;">
+					$i18n.getString( "set_indicator_dimension1" )
+				</th>
+			</tr>
+			<tr>
+				<td colspan="2">&nbsp;</td>
+			</tr>
+			<tr>
+				<td>
+					<table>
+						<tr>
+							<td style="width:500px">$i18n.getString( "expected_monthly_reports_indicator")</td>
+							<td><input  type="text" align="centre" id="expected_monthly_reports_indicators" name="expected_monthly_reports_indicators"  value="$!dqaParameterMap.get( "expected_monthly_reports_indicators" )" style="width:150px;text-align: center;" /></td>
+							<td><input type="button" align="centre" id="expected_monthly_reports_indicators_button" name="expected_monthly_reports_indicators_button"  value="Change" style="width:150px;text-align: center;" onclick="manageCustomIndicators('expected_monthly_reports_indicators','$!dqaParameterMap.get( "expected_monthly_reports_indicators" )' );" /></td>		
+						</tr>
+						<tr>
+							<td style="width:500px">$i18n.getString( "expected_monthly_facility_reports_indicators" )</td>
+							<td><input type="text" id="expected_monthly_facility_reports_indicators" name="expected_monthly_facility_reports_indicators"  value="$!dqaParameterMap.get( "expected_monthly_facility_reports_indicators" )" style="width:150px;text-align: center;" /></td>        
+						<td><input type="button"  id="expected_monthly_facility_reports_indicators_button" name="expected_monthly_facility_reports_indicators_button"  value="Change Indicator Value" style="width:150px;text-align: center;" onclick="manageCustomIndicators('expected_monthly_facility_reports_indicators','$!dqaParameterMap.get( "expected_monthly_facility_reports_indicators" )' );" /></td>		
+					
+						</tr>
+						<tr>
+							<td style="width:500px">$i18n.getString( "monthly_reports_not_zero_missing_average_indicators")</td>
+							<td><input type="text" id="monthly_reports_not_zero_missing_average_indicators" name="monthly_reports_not_zero_missing_average_indicators" value="$!dqaParameterMap.get( "monthly_reports_not_zero_missing_average_indicators" )" style="width:150px;text-align: center;" /></td>
+						<td><input type="button"  id="monthly_reports_not_zero_missing_average_indicators_button" name="monthly_reports_not_zero_missing_average_indicators_button"  value="Change Indicator Value" style="width:150px;text-align: center;" onclick="manageCustomIndicators('monthly_reports_not_zero_missing_average_indicators','$!dqaParameterMap.get( "monthly_reports_not_zero_missing_average_indicators" )' );" /></td>		
+					
+						</tr>
+						<tr>
+							<td style="width:500px">$i18n.getString( "monthly_reports_not_zero_missing_anc1_indicator")</td>
+							<td><input type="text" id="monthly_reports_not_zero_missing_anc1_indicator" name="monthly_reports_not_zero_missing_anc1_indicator"  value="$!dqaParameterMap.get( "monthly_reports_not_zero_missing_anc1_indicator" )" style="width:150px;text-align: center;" /></td>		
+						<td><input type="button"  id="monthly_reports_not_zero_missing_anc1_indicator_button" name="monthly_reports_not_zero_missing_anc1_indicator_button"  value="Change Indicator Value" style="width:150px;text-align: center;" onclick="manageCustomIndicators('monthly_reports_not_zero_missing_anc1_indicator','$!dqaParameterMap.get( "monthly_reports_not_zero_missing_anc1_indicator" )' );" /></td>		
+					
+						</tr>
+						<tr>
+							<td style="width:500px">$i18n.getString( "monthly_reports_not_zero_missing_deliveries_indicator" )</td>
+							<td><input type="text" id="monthly_reports_not_zero_missing_deliveries_indicator" name="monthly_reports_not_zero_missing_deliveries_indicator"  value="$!dqaParameterMap.get( "monthly_reports_not_zero_missing_deliveries_indicator" )" style="width:150px;text-align: center;" /></td>        
+							<td><input type="button"  id="monthly_reports_not_zero_missing_deliveries_indicator_button" name="monthly_reports_not_zero_missing_deliveries_indicator_button"  value="Change Indicator Value" style="width:150px;text-align: center;" onclick="manageCustomIndicators('monthly_reports_not_zero_missing_deliveries_indicator','$!dqaParameterMap.get( "monthly_reports_not_zero_missing_deliveries_indicator" )' );" /></td>		
+					
+						</tr>
+						<tr>
+							<td style="width:500px">$i18n.getString( "monthly_reports_not_zero_missing_dpt3_indicator")</td>
+							<td><input type="text" id="monthly_reports_not_zero_missing_dpt3_indicator" name="monthly_reports_not_zero_missing_dpt3_indicator" value="$!dqaParameterMap.get( "monthly_reports_not_zero_missing_dpt3_indicator" )" style="width:150px;text-align: center;" /></td>
+							<td><input type="button"  id="monthly_reports_not_zero_missing_dpt3_indicator_button" name="monthly_reports_not_zero_missing_dpt3_indicator_button"  value="Change Indicator Value" style="width:150px;text-align: center;" onclick="manageCustomIndicators('monthly_reports_not_zero_missing_dpt3_indicator','$!dqaParameterMap.get( "monthly_reports_not_zero_missing_dpt3_indicator" )' );" /></td>		
+	
+						</tr>						
+						<tr>
+							<td style="width:500px">$i18n.getString( "monthly_reports_not_zero_missing_opd_indicator")</td>
+							<td><input type="text" id="monthly_reports_not_zero_missing_opd_indicator" name="monthly_reports_not_zero_missing_opd_indicator" value="$!dqaParameterMap.get( "monthly_reports_not_zero_missing_opd_indicator" )" style="width:150px;text-align: center;" /></td>
+							<td><input type="button"  id="monthly_reports_not_zero_missing_opd_indicator_button" name="monthly_reports_not_zero_missing_opd_indicator_button"  value="Change Indicator Value" style="width:150px;text-align: center;" onclick="manageCustomIndicators('monthly_reports_not_zero_missing_opd_indicator','$!dqaParameterMap.get( "monthly_reports_not_zero_missing_opd_indicator" )' );" /></td>		
+	
+						</tr>						
+					</table>
+				</td>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
+		
+		<table>
+			<tr>
+				<th colspan="2" style="background-color:cyan;">
+					$i18n.getString( "set_indicator_dimension2" )
+				</th>
+			</tr>
+			<tr>
+				<td colspan="2">&nbsp;</td>
+			</tr>
+			<tr>
+				<td>
+					<table>
+						<tr>
+							<td style="width:500px">$i18n.getString( "monthly_extreme_outliers_average_indicators")</td>
+							<td><input type="text" id="monthly_extreme_outliers_average_indicators" name="monthly_extreme_outliers_average_indicators" value="$!dqaParameterMap.get( "monthly_extreme_outliers_average_indicators" )" style="width:150px;text-align: center;" /></td>		
+						<td><input type="button"  id="monthly_extreme_outliers_average_indicators_button" name="monthly_extreme_outliers_average_indicators_button"  value="Change Indicator Value" style="width:150px;text-align: center;" onclick="manageCustomIndicators('monthly_extreme_outliers_average_indicators','$!dqaParameterMap.get( "monthly_extreme_outliers_average_indicators" )' );" /></td>		
+	
+						</tr>
+						<tr>
+							<td style="width:500px">$i18n.getString( "monthly_extreme_outliers_anc1_indicator" )</td>
+							<td><input type="text" id="monthly_extreme_outliers_anc1_indicator" name="monthly_extreme_outliers_anc1_indicator" value="$!dqaParameterMap.get( "monthly_extreme_outliers_anc1_indicator" )" style="width:150px;text-align: center;" /></td>        
+							<td><input type="button"  id="monthly_extreme_outliers_anc1_indicator_button" name="monthly_extreme_outliers_anc1_indicator_button"  value="Change Indicator Value" style="width:150px;text-align: center;" onclick="manageCustomIndicators('monthly_extreme_outliers_anc1_indicator','$!dqaParameterMap.get( "monthly_extreme_outliers_anc1_indicator" )' );" /></td>		
+	
+						</tr>
+						<tr>
+							<td style="width:500px">$i18n.getString( "monthly_extreme_outliers_deliveries_indicator")</td>
+							<td><input type="text" id="monthly_extreme_outliers_deliveries_indicator" name="monthly_extreme_outliers_deliveries_indicator" value="$!dqaParameterMap.get( "monthly_extreme_outliers_deliveries_indicator" )" style="width:150px;text-align: center;" /></td>
+							<td><input type="button"  id="monthly_extreme_outliers_deliveries_indicator_button" name="monthly_extreme_outliers_deliveries_indicator_button"  value="Change Indicator Value" style="width:150px;text-align: center;" onclick="manageCustomIndicators('monthly_extreme_outliers_deliveries_indicator','$!dqaParameterMap.get( "monthly_extreme_outliers_deliveries_indicator" )' );" /></td>		
+	
+						</tr>
+						
+						<tr>
+							<td style="width:500px">$i18n.getString( "monthly_extreme_outliers_dpt3_indicator")</td>
+							<td><input type="text" id="monthly_extreme_outliers_dpt3_indicator" name="monthly_extreme_outliers_dpt3_indicator" value="$!dqaParameterMap.get( "monthly_extreme_outliers_dpt3_indicator" )" style="width:150px;text-align: center;" /></td>		
+							<td><input type="button"  id="monthly_extreme_outliers_dpt3_indicator_button" name="monthly_extreme_outliers_dpt3_indicator_button"  value="Change Indicator Value" style="width:150px;text-align: center;" onclick="manageCustomIndicators('monthly_extreme_outliers_dpt3_indicator','$!dqaParameterMap.get( "monthly_extreme_outliers_dpt3_indicator" )' );" /></td>		
+	
+						</tr>
+						<tr>
+							<td style="width:500px">$i18n.getString( "monthly_extreme_outliers_opd_indicator" )</td>
+							<td><input type="text" id="monthly_extreme_outliers_opd_indicator" name="monthly_extreme_outliers_opd_indicator" value="$!dqaParameterMap.get( "monthly_extreme_outliers_opd_indicator" )" style="width:150px;text-align: center;" /></td>        
+							<td><input type="button"  id="monthly_extreme_outliers_opd_indicator_button" name="monthly_extreme_outliers_opd_indicator_button"  value="Change Indicator Value" style="width:150px;text-align: center;" onclick="manageCustomIndicators('monthly_extreme_outliers_opd_indicator','$!dqaParameterMap.get( "monthly_extreme_outliers_opd_indicator" )' );" /></td>		
+	
+						</tr>
+						<tr>
+							<td style="width:500px">$i18n.getString( "monthly_moderate_outliers_average_indicators")</td>
+							<td><input type="text" id="monthly_moderate_outliers_average_indicators" name="monthly_moderate_outliers_average_indicators" value="$!dqaParameterMap.get( "monthly_moderate_outliers_average_indicators" )" style="width:150px;text-align: center;" /></td>
+							<td><input type="button"  id="monthly_moderate_outliers_average_indicators_button" name="monthly_moderate_outliers_average_indicators_button"  value="Change Indicator Value" style="width:150px;text-align: center;" onclick="manageCustomIndicators('monthly_moderate_outliers_average_indicators','$!dqaParameterMap.get( "monthly_moderate_outliers_average_indicators" )' );" /></td>		
+	
+						</tr>						
+						<tr>
+							<td style="width:500px">$i18n.getString( "monthly_moderate_outliers_anc1_indicator")</td>
+							<td><input type="text" id="monthly_moderate_outliers_anc1_indicator" name="monthly_moderate_outliers_anc1_indicator" value="$!dqaParameterMap.get( "monthly_moderate_outliers_anc1_indicator" )" style="width:150px;text-align: center;" /></td>		
+							<td><input type="button"  id="monthly_moderate_outliers_anc1_indicator_button" name="monthly_moderate_outliers_anc1_indicator_button"  value="Change Indicator Value" style="width:150px;text-align: center;" onclick="manageCustomIndicators('monthly_moderate_outliers_anc1_indicator','$!dqaParameterMap.get( "monthly_moderate_outliers_anc1_indicator" )' );" /></td>		
+	
+						</tr>
+						<tr>
+							<td style="width:500px">$i18n.getString( "monthly_moderate_outliers_deliveries_indicator" )</td>
+							<td><input type="text" id="monthly_moderate_outliers_deliveries_indicator" name="monthly_moderate_outliers_deliveries_indicator" value="$!dqaParameterMap.get( "monthly_moderate_outliers_deliveries_indicator" )" style="width:150px;text-align: center;" /></td>        
+							<td><input type="button"  id="monthly_moderate_outliers_deliveries_indicator_button" name="monthly_moderate_outliers_deliveries_indicator_button"  value="Change Indicator Value" style="width:150px;text-align: center;" onclick="manageCustomIndicators('monthly_moderate_outliers_deliveries_indicator','$!dqaParameterMap.get( "monthly_moderate_outliers_deliveries_indicator" )' );" /></td>		
+	
+						</tr>
+						<tr>
+							<td style="width:500px">$i18n.getString( "monthly_moderate_outliers_dpt3_indicator")</td>
+							<td><input type="text" id="monthly_moderate_outliers_dpt3_indicator" name="monthly_moderate_outliers_dpt3_indicator" value="$!dqaParameterMap.get( "monthly_moderate_outliers_dpt3_indicator" )" style="width:150px;text-align: center;" /></td>
+							<td><input type="button"  id="monthly_moderate_outliers_dpt3_indicator_button" name="monthly_moderate_outliers_dpt3_indicator_button"  value="Change Indicator Value" style="width:150px;text-align: center;" onclick="manageCustomIndicators('monthly_moderate_outliers_dpt3_indicator','$!dqaParameterMap.get( "monthly_moderate_outliers_dpt3_indicator" )' );" /></td>		
+	
+						</tr>
+						<tr>
+							<td style="width:500px">$i18n.getString( "monthly_moderate_outliers_opd_indicator")</td>
+							<td><input type="text" id="monthly_moderate_outliers_opd_indicator" name="monthly_moderate_outliers_opd_indicator"  value="$!dqaParameterMap.get( "monthly_moderate_outliers_opd_indicator" )" style="width:150px;text-align: center;" /></td>		
+							<td><input type="button"  id="monthly_moderate_outliers_opd_indicator_button" name="monthly_moderate_outliers_opd_indicator_button"  value="Change Indicator Value" style="width:150px;text-align: center;" onclick="manageCustomIndicators('monthly_moderate_outliers_opd_indicator','$!dqaParameterMap.get( "monthly_moderate_outliers_opd_indicator" )' );" /></td>		
+	
+						</tr>
+						<tr>
+							<td style="width:500px">$i18n.getString( "events_current_divided_preceding_3_years_average_indicators" )</td>
+							<td><input type="text" id="events_current_divided_preceding_3_years_average_indicators" name="events_current_divided_preceding_3_years_average_indicators" value="$!dqaParameterMap.get( "events_current_divided_preceding_3_years_average_indicators" )" style="width:150px;text-align: center;" /></td>        
+							<td><input type="button"  id="events_current_divided_preceding_3_years_average_indicators_button" name="events_current_divided_preceding_3_years_average_indicators_button"  value="Change Indicator Value" style="width:150px;text-align: center;" onclick="manageCustomIndicators('events_current_divided_preceding_3_years_average_indicators','$!dqaParameterMap.get( "events_current_divided_preceding_3_years_average_indicators" )' );" /></td>		
+	
+						</tr>
+						<tr>
+							<td style="width:500px">$i18n.getString( "deviation_anc1_from_average_3_previous_years_indicator")</td>
+							<td><input type="text" id="deviation_anc1_from_average_3_previous_years_indicator" name="deviation_anc1_from_average_3_previous_years_indicator" value="$!dqaParameterMap.get( "deviation_anc1_from_average_3_previous_years_indicator" )" style="width:150px;text-align: center;" /></td>
+							<td><input type="button"  id="deviation_anc1_from_average_3_previous_years_indicator_button" name="deviation_anc1_from_average_3_previous_years_indicator_button"  value="Change Indicator Value" style="width:150px;text-align: center;" onclick="manageCustomIndicators('deviation_anc1_from_average_3_previous_years_indicator','$!dqaParameterMap.get( "deviation_anc1_from_average_3_previous_years_indicator" )' );" /></td>		
+	
+						</tr>
+						
+						<tr>
+							<td style="width:500px">$i18n.getString( "deviation_deliveries_from_average_3_previous_years_indicator")</td>
+							<td><input type="text" id="deviation_deliveries_from_average_3_previous_years_indicator" name="deviation_deliveries_from_average_3_previous_years_indicator" value="$!dqaParameterMap.get( "deviation_deliveries_from_average_3_previous_years_indicator" )" style="width:150px;text-align: center;" /></td>		
+							<td><input type="button"  id="deviation_deliveries_from_average_3_previous_years_indicator_button" name="deviation_deliveries_from_average_3_previous_years_indicator_button"  value="Change Indicator Value" style="width:150px;text-align: center;" onclick="manageCustomIndicators('deviation_deliveries_from_average_3_previous_years_indicator','$!dqaParameterMap.get( "deviation_deliveries_from_average_3_previous_years_indicator" )' );" /></td>		
+							
+						</tr>
+						<tr>
+							<td style="width:500px">$i18n.getString( "deviation_dpt1_from_average_3_previous_years_indicator" )</td>
+							<td><input type="text" id="deviation_dpt1_from_average_3_previous_years_indicator" name="deviation_dpt1_from_average_3_previous_years_indicator" value="$!dqaParameterMap.get( "deviation_dpt1_from_average_3_previous_years_indicator" )" style="width:150px;text-align: center;" /></td>        
+							<td><input type="button"  id="deviation_dpt1_from_average_3_previous_years_indicator_button" name="deviation_dpt1_from_average_3_previous_years_indicator_button"  value="Change Indicator Value" style="width:150px;text-align: center;" onclick="manageCustomIndicators('deviation_dpt1_from_average_3_previous_years_indicator','$!dqaParameterMap.get( "deviation_dpt1_from_average_3_previous_years_indicator" )' );" /></td>		
+				
+						</tr>
+						<tr>
+							<td style="width:500px">$i18n.getString( "deviation_dpt3_from_average_3_previous_years_indicator")</td>
+							<td><input type="text" id="deviation_dpt3_from_average_3_previous_years_indicator" name="deviation_dpt3_from_average_3_previous_years_indicator" value="$!dqaParameterMap.get( "deviation_dpt3_from_average_3_previous_years_indicator" )" style="width:150px;text-align: center;" /></td>
+							<td><input type="button"  id="deviation_dpt3_from_average_3_previous_years_indicator_button" name="deviation_dpt3_from_average_3_previous_years_indicator_button"  value="Change Indicator Value" style="width:150px;text-align: center;" onclick="manageCustomIndicators('deviation_dpt3_from_average_3_previous_years_indicator','$!dqaParameterMap.get( "deviation_dpt3_from_average_3_previous_years_indicator" )' );" /></td>		
+				
+						</tr>
+						<tr>
+							<td style="width:500px">$i18n.getString( "deviation_opd_from_average_3_previous_years_indicator")</td>
+							<td><input type="text" id="deviation_opd_from_average_3_previous_years_indicator" name="deviation_opd_from_average_3_previous_years_indicator" value="$!dqaParameterMap.get( "deviation_opd_from_average_3_previous_years_indicator" )" style="width:150px;text-align: center;" /></td>		
+							<td><input type="button"  id="deviation_opd_from_average_3_previous_years_indicator_button" name="deviation_opd_from_average_3_previous_years_indicator_button"  value="Change Indicator Value" style="width:150px;text-align: center;" onclick="manageCustomIndicators('deviation_opd_from_average_3_previous_years_indicator','$!dqaParameterMap.get( "deviation_opd_from_average_3_previous_years_indicator" )' );" /></td>		
+			
+						</tr>
+						<tr>
+							<td style="width:500px">$i18n.getString( "no_of_dpt1_to_anc1_indicator" )</td>
+							<td><input type="text" id="no_of_dpt1_to_anc1_indicator" name="no_of_dpt1_to_anc1_indicator" value="$!dqaParameterMap.get( "no_of_dpt1_to_anc1_indicator" )" style="width:150px;text-align: center;" /></td>        
+							<td><input type="button"  id="no_of_dpt1_to_anc1_indicator_button" name="no_of_dpt1_to_anc1_indicator_button"  value="Change Indicator Value" style="width:150px;text-align: center;" onclick="manageCustomIndicators('no_of_dpt1_to_anc1_indicator','$!dqaParameterMap.get( "no_of_dpt1_to_anc1_indicator" )' );" /></td>		
+			
+						</tr>
+						<tr>
+							<td style="width:500px">$i18n.getString( "no_of_dpt3_divided_by_dpt1_indicator")</td>
+							<td><input type="text" id="no_of_dpt3_divided_by_dpt1_indicator" name="no_of_dpt3_divided_by_dpt1_indicator" value="$!dqaParameterMap.get( "no_of_dpt3_divided_by_dpt1_indicator" )" style="width:150px;text-align: center;" /></td>
+							<td><input type="button"  id="no_of_dpt3_divided_by_dpt1_indicator_button" name="no_of_dpt3_divided_by_dpt1_indicator_button"  value="Change Indicator Value" style="width:150px;text-align: center;" onclick="manageCustomIndicators('no_of_dpt3_divided_by_dpt1_indicator','$!dqaParameterMap.get( "no_of_dpt3_divided_by_dpt1_indicator" )' );" /></td>		
+			
+						</tr>
+						<tr>
+							<td style="width:500px">$i18n.getString( "dpt3_facility_reports_by_coverage_rate_survey_indicator_SE")</td>
+							<td><input type="text" id="dpt3_facility_reports_by_coverage_rate_survey_indicator_SE" name="dpt3_facility_reports_by_coverage_rate_survey_indicator_SE" value="$!dqaParameterMap.get( "dpt3_facility_reports_by_coverage_rate_survey_indicator_SE" )" style="width:150px;text-align: center;" /></td>
+							<td><input type="button"  id="dpt3_facility_reports_by_coverage_rate_survey_indicator_SE_button" name="dpt3_facility_reports_by_coverage_rate_survey_indicator_SE_button"  value="Change Indicator Value" style="width:150px;text-align: center;" onclick="manageCustomIndicators('dpt3_facility_reports_by_coverage_rate_survey_indicator_SE','$!dqaParameterMap.get( "dpt3_facility_reports_by_coverage_rate_survey_indicator_SE" )' );" /></td>		
+			
+						</tr>
+						<tr>
+							<td style="width:500px">$i18n.getString( "delivery_facility_reports_by_coverage_rate_survey_indicator_SE")</td>
+							<td><input type="text" id="delivery_facility_reports_by_coverage_rate_survey_indicator_SE" name="delivery_facility_reports_by_coverage_rate_survey_indicator_SE" value="$!dqaParameterMap.get( "delivery_facility_reports_by_coverage_rate_survey_indicator_SE" )" style="width:150px;text-align: center;" /></td>
+							<td><input type="button"  id="delivery_facility_reports_by_coverage_rate_survey_indicator_SE_button" name="delivery_facility_reports_by_coverage_rate_survey_indicator_SE_button"  value="Change Indicator Value" style="width:150px;text-align: center;" onclick="manageCustomIndicators('delivery_facility_reports_by_coverage_rate_survey_indicator_SE','$!dqaParameterMap.get( "delivery_facility_reports_by_coverage_rate_survey_indicator_SE" )' );" /></td>		
+			
+						</tr>
+						<tr>
+							<td style="width:500px">$i18n.getString( "anc1_facility_reports_by_coverage_rate_survey_indicator_SE")</td>
+							<td><input type="text" id="anc1_facility_reports_by_coverage_rate_survey_indicator_SE" name="anc1_facility_reports_by_coverage_rate_survey_indicator_SE" value="$!dqaParameterMap.get( "anc1_facility_reports_by_coverage_rate_survey_indicator_SE" )" style="width:150px;text-align: center;" /></td>
+							<td><input type="button"  id="anc1_facility_reports_by_coverage_rate_survey_indicator_SE_button" name="anc1_facility_reports_by_coverage_rate_survey_indicator_SE_button"  value="Change Indicator Value" style="width:150px;text-align: center;" onclick="manageCustomIndicators('anc1_facility_reports_by_coverage_rate_survey_indicator_SE','$!dqaParameterMap.get( "anc1_facility_reports_by_coverage_rate_survey_indicator_SE" )' );" /></td>		
+			
+						</tr>
+					</table>
+				</td>
+				<td>&nbsp;</td>
+			</tr>
+		</table>		
+		
+		<table>
+			<tr>
+				<th colspan="2" style="background-color:cyan;">
+					$i18n.getString( "set_indicator_dimension3" )
+				</th>
+			</tr>
+			<tr>
+				<td colspan="2">&nbsp;</td>
+			</tr>
+			<tr>
+				<td>
+					<table>
+						<tr>
+							<td style="width:500px">$i18n.getString( "population_projection_live_births_indicator")</td>
+							<td><input type="text" id="population_projection_live_births_indicator" name="population_projection_live_births_indicator" value="$!dqaParameterMap.get( "population_projection_live_births_indicator" )" style="width:150px;text-align: center;" /></td>		
+							<td><input type="button"  id="population_projection_live_births_indicator_button" name="population_projection_live_births_indicator_button"  value="Change Indicator Value" style="width:150px;text-align: center;" onclick="manageCustomIndicators('population_projection_live_births_indicator','$!dqaParameterMap.get( "population_projection_live_births_indicator" )' );" /></td>		
+			
+						</tr>
+						<tr>
+							<td style="width:500px">$i18n.getString( "anc1_total_by_anc1_coverage_rate_survey_indicator" )</td>
+							<td><input type="text" id="anc1_total_by_anc1_coverage_rate_survey_indicator" name="anc1_total_by_anc1_coverage_rate_survey_indicator" value="$!dqaParameterMap.get( "anc1_total_by_anc1_coverage_rate_survey_indicator" )" style="width:150px;text-align: center;" /></td>        
+							<td><input type="button"  id="anc1_total_by_anc1_coverage_rate_survey_indicator_button" name="anc1_total_by_anc1_coverage_rate_survey_indicator_button"  value="Change Indicator Value" style="width:150px;text-align: center;" onclick="manageCustomIndicators('anc1_total_by_anc1_coverage_rate_survey_indicator','$!dqaParameterMap.get( "anc1_total_by_anc1_coverage_rate_survey_indicator" )' );" /></td>		
+			
+						</tr>
+						<tr>
+							<td style="width:500px">$i18n.getString( "dpt1_total_by_dpt1_coverage_rate_survey_indicator")</td>
+							<td><input type="text" id="dpt1_total_by_dpt1_coverage_rate_survey_indicator" name="dpt1_total_by_dpt1_coverage_rate_survey_indicator" value="$!dqaParameterMap.get( "dpt1_total_by_dpt1_coverage_rate_survey_indicator" )" style="width:150px;text-align: center;" /></td>
+							<td><input type="button"  id="dpt1_total_by_dpt1_coverage_rate_survey_indicator_button" name="dpt1_total_by_dpt1_coverage_rate_survey_indicator_button"  value="Change Indicator Value" style="width:150px;text-align: center;" onclick="manageCustomIndicators('dpt1_total_by_dpt1_coverage_rate_survey_indicator','$!dqaParameterMap.get( "dpt1_total_by_dpt1_coverage_rate_survey_indicator" )' );" /></td>		
+			
+						</tr>
+					</table>
+				</td>
+				<td>&nbsp;</td>
+			</tr>
+		</table>		
+		
+		
+		<table>
+			<tr>
+				<th colspan="2" style="background-color:cyan;">
+					$i18n.getString( "set_indicator_dimension4" )
+				</th>
+			</tr>
+			<tr>
+				<td colspan="2">&nbsp;</td>
+			</tr>
+			<tr>
+				<td>
+					<table>
+						<tr>
+							<td style="width:500px">$i18n.getString( "anc1_facility_reports_by_coverage_rate_survey_indicator")</td>
+							<td><input type="text" id="anc1_facility_reports_by_coverage_rate_survey_indicator" name="anc1_facility_reports_by_coverage_rate_survey_indicator" value="$!dqaParameterMap.get( "anc1_facility_reports_by_coverage_rate_survey_indicator" )"  style="width:150px;text-align: center;" /></td>		
+							<td><input type="button"  id="anc1_facility_reports_by_coverage_rate_survey_indicator_button" name="anc1_facility_reports_by_coverage_rate_survey_indicator_button"  value="Change Indicator Value" style="width:150px;text-align: center;" onclick="manageCustomIndicators('anc1_facility_reports_by_coverage_rate_survey_indicator','$!dqaParameterMap.get( "anc1_facility_reports_by_coverage_rate_survey_indicator" )' );" /></td>		
+			
+						</tr>
+						<tr>
+							<td style="width:500px">$i18n.getString( "delivery_facility_reports_by_coverage_rate_survey_indicator" )</td>
+							<td><input type="text" id="delivery_facility_reports_by_coverage_rate_survey_indicator" name="delivery_facility_reports_by_coverage_rate_survey_indicator"  value="$!dqaParameterMap.get( "delivery_facility_reports_by_coverage_rate_survey_indicator" )" style="width:150px;text-align: center;" /></td>        
+							<td><input type="button"  id="delivery_facility_reports_by_coverage_rate_survey_indicator_button" name="delivery_facility_reports_by_coverage_rate_survey_indicator_button"  value="Change Indicator Value" style="width:150px;text-align: center;" onclick="manageCustomIndicators('delivery_facility_reports_by_coverage_rate_survey_indicator','$!dqaParameterMap.get( "delivery_facility_reports_by_coverage_rate_survey_indicator" )' );" /></td>		
+			
+						</tr>
+						<tr>
+							<td style="width:500px">$i18n.getString( "dpt3_facility_reports_by_coverage_rate_survey_indicator")</td>
+							<td><input type="text" id="dpt3_facility_reports_by_coverage_rate_survey_indicator" name="dpt3_facility_reports_by_coverage_rate_survey_indicator" value="$!dqaParameterMap.get( "dpt3_facility_reports_by_coverage_rate_survey_indicator" )" style="width:150px;text-align: center;" /></td>
+							<td><input type="button"  id="dpt3_facility_reports_by_coverage_rate_survey_indicator_button" name="dpt3_facility_reports_by_coverage_rate_survey_indicator_button"  value="Change Indicator Value" style="width:150px;text-align: center;" onclick="manageCustomIndicators('dpt3_facility_reports_by_coverage_rate_survey_indicator','$!dqaParameterMap.get( "dpt3_facility_reports_by_coverage_rate_survey_indicator" )' );" /></td>		
+			
+						</tr>
+					</table>
+				</td>
+				<td>&nbsp;</td>
+			</tr>
+		</table>		
+		
+	</div>
+
+<br />
+	<table>
+		<tr>        
+			<td>
+				<input type="submit" value="$i18n.getString( 'save' )"  style="width:120px" />
+				<input type="button" value="$i18n.getString( 'back' )" onclick="javascript:window.location.href='index.action'" style="width:120px" />
+			</td>
+		</tr>    
+	</table>
+	<div id="indicatorDiv" class="page"></div>
+</form>
+
+<span id="message"></span>

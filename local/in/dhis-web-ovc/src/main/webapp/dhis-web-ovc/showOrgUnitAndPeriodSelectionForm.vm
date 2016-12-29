@@ -1,0 +1,72 @@
+
+<script>
+jQuery(document).ready(function(){
+
+jQuery('#orgUnitTreeContainer').height(100);
+jQuery('#orgUnitTree').height(100);
+       
+});        
+</script>
+<form id="" action="" method="post">
+
+  <table>
+	<tr>
+	  <td style="width:290px; height:228px">
+		#organisationUnitSelectionTree( false, true, false )
+	  </td>
+    </tr>
+   <!--
+   <tr>
+   	<td>&nbsp;</td>
+   </tr>
+   -->
+	<tr>
+	  <td>
+		<table>
+			<tr>
+				<th colspan="7">$i18n.getString( "period_range" )</th>
+			</tr>
+			
+			<tr>
+				<td>$i18n.getString( "start_date" )</td>
+				<td colspan='2'>
+					<input type="text" id="startDate" name="startDate"   />
+            			<script type="text/javascript">
+                			datePickerValid( 'startDate', false );
+            			</script>  					
+				</td>
+				<td>&nbsp;</td>
+				<td>$i18n.getString( "end_date" )</td>
+				<td colspan='2'>
+					<input type="text" id="endDate" name="endDate"  />
+            			<script type="text/javascript">
+                			datePickerValid( 'endDate', false );
+            			</script> 					
+				</td>
+			</tr>			
+			
+		</table>
+	  </td>
+    </tr>    
+   
+   <!-- 
+   <tr>
+   	<td>&nbsp;</td>
+   </tr>
+   --> 
+	<tr>
+      <td>
+        <input type="submit" id="submitButton" value="$i18n.getString( "save" )" style="width:10em">&nbsp;&nbsp;
+        <input type="button" value="$i18n.getString( "cancel" )" style="width:10em" onClick="closeDialog();" />
+      </td>
+    </tr>
+  </table>
+
+</form>
+
+<script type="text/javascript">
+
+  var levelMustBeInt = '$encoder.jsEncode( $i18n.getString( "level_must_be_int" ) )';
+  var i18n_loading = '$encoder.jsEncode( $i18n.getString( "loading" ) )';
+
+</script>

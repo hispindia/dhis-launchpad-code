@@ -1,0 +1,182 @@
+<style>
+    #overlay {
+    z-index:9998;
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    width:100%;
+    background:#000;
+    opacity:0.45;
+    -moz-opacity:0.45;
+    filter:alpha(opacity=45);
+    visibility:hidden;   
+    }
+    #overlayImg{ width: 50px; height: 50px; z-index: 9999; position: absolute; left:50%}
+</style>
+<div id="overlay">
+    <div id="overlayImg"><img  width="50" height="50" src="images/ajax-loader.gif" style="margin:auto;position:fixed;top: 50%;left: 50%;"/></div>
+</div>
+
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+		var savedReportId;	
+		tableSorter( 'listTable' );	
+	});
+	
+var i18n_confirm_to_delete_report = '$encoder.jsEscape( $i18n.getString( "confirm_to_delete_report" ) , "'" )';
+</script>
+
+<h3>$i18n.getString( "reports" ) #openHelp( "report" )</h3>
+
+<table class="mainPageTable">
+	<tr>
+		<td style="vertical-align:top">
+			<table width="100%">
+				<tr>
+					<td>#filterDiv( "customReportManagement" )</td>
+					<td style="text-align:right">
+						<input type="button" value="$i18n.getString( 'add_new_report' )" onclick="window.location.href='showAddReportForm.action'"/>
+					</td>
+				</tr>
+			</table>
+			<table class="listTable" id="listTable">
+				<col />
+				<col width="12%"/>				
+                <thead>				
+				<tr>
+					<th>$i18n.getString( "name" )</th>
+					<th style="text-align:center" class="{sorter: false}">$i18n.getString( "operations" )</th>
+				</tr>
+                </thead>
+				<tbody id="list">
+				#foreach( $report in $reportList )
+				<tr id="tr${report.id}">
+					<td>$encoder.htmlEncode( $report.name )</td>
+					<td style="text-align:right">
+						
+						<!--<a href="generateNameBasedReport.action?reportId=$report.id" title="$i18n.getString( 'generate' )"><img src="../images/start_process.png" alt="$i18n.getString( 'generate' )"/></a>-->
+						<a href="javascript:selectSavedReportParam( $report.id, '$encoder.jsEncode( $report.name )' )" title="$i18n.getString( 'generate' )"><img src="../images/start_process.png" alt="$i18n.getString( 'generate' )"/></a>
+						<!--<a href="showUpdateReportForm.action?reportId=$report.id" title="$i18n.getString( 'edit' )"><img src="../images/edit.png" alt="$i18n.getString( 'edit' )"/></a>-->
+						<a href="javascript:removeNameBasedReport( $report.id, '$encoder.jsEncode( $report.name )' )" title="$i18n.getString( 'remove' )"><img src="../images/delete.png" alt="$i18n.getString( 'remove' )"/></a>
+                        <a href="#" title="$i18n.getString( 'show_details' )"><img src="../images/information.png" alt="$i18n.getString( 'show_details' )"/></a>
+						
+						<!--
+						<a href="showUpdateLocationForm.action?id=$location.id" title="$i18n.getString( 'edit' )"><img src="../images/edit.png" alt="$i18n.getString( 'edit' )"/></a>
+						
+						<a href="javascript:removeLocation( $location.id, '$encoder.jsEncode( $location.name )' )" title="$i18n.getString( 'remove' )"><img src="../images/delete.png" alt="$i18n.getString( 'remove' )"/></a>
+						
+						<a href="javascript:showLocationDetails( $location.id )" title="$i18n.getString( 'show_details' )"><img src="../images/information.png" alt="$i18n.getString( 'show_details' )"/></a>
+						-->
+					</td>
+				</tr>
+				#end
+                </tbody>
+				
+			</table>
+			<p></p>
+			#parse( "/dhis-web-commons/paging/paging.vm" )
+
+		</td>
+
+	</tr>
+</table>
+
+<script type="text/javascript">
+	jQuery(document).ready(function() {
+		//selectionTreeSelection.setMultipleSelectionAllowed( false );
+		//selectionTree.clearSelectedOrganisationUnits();
+		//selectionTree.buildSelectionTree();
+	});
+
+	var i18n_please_select_org_unit = '$encoder.jsEscape( $i18n.getString( "please_select_org_unit" ) , "'")';
+    var i18n_please_select_period = '$encoder.jsEscape( $i18n.getString( "please_select_period" ) , "'")';
+</script>
+
+
+<!--
+<div id="reportParameterDiv" class="inputCriteria" style="width:660px; height:auto; padding:20px;">
+<div style="width:320px; float:left;">
+	<label>$i18n.getString( "organisation_unit" )</label>
+	<div id="selectionTree" style="width:290px; height:180px"></div>
+</div>
+-->
+<div id="savedReportParamDiv">
+    
+<!--
+    <label for="start_date">$i18n.getString( "orgUnit_group" )</label><br/>
+	<select id="orgUnitGroupId" name="orgUnitGroupId" style="width:210px">
+		<option value="0">[ $i18n.getString( "select_orgUnit_Group" ) ]</option>
+		#foreach( $orgUnitgroup in $orgUnitGroups )
+			<option value="$orgUnitgroup.id">$orgUnitgroup.name</option>
+		#end
+	
+	</select>
+	<br><br>
+    
+    <label for="start_date">$i18n.getString( "start_date" )</label><br/>
+    <input type="text" id="startDate" name="startDate"  style="width:200px" class="{validate:{required:true}}"  />
+		<script type="text/javascript">
+			datePickerValid( 'startDate', false );
+		</script>			
+    
+    <br/>
+    
+    <label for="end_date">$i18n.getString( "endDate" )</label><br/>
+    <input type="text" id="endDate" name="endDate"  style="width:200px" class="{validate:{required:true}}"  />
+		<script type="text/javascript">
+			datePickerValid( 'endDate', false );
+		</script>			
+    
+    <br/>
+    <br/>  
+ -->
+	<table>
+		<tr>
+			<td><strong>$i18n.getString( "orgUnit_group" )</strong></td>
+			<td>
+				<select id="orgUnitGroupId" name="orgUnitGroupId" style="width:180px">
+					<option value="0">[ $i18n.getString( "select_orgUnit_Group" ) ]</option>
+					#foreach( $orgUnitgroup in $orgUnitGroups )
+						<option value="$orgUnitgroup.id">$orgUnitgroup.name</option>
+					#end
+				</select>			
+			</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>				   
+		<tr>
+			<td><strong>$i18n.getString( "start_date" )</strong></td>
+			<td>
+				<input type="text" id="startDate" name="startDate"  class="{validate:{required:true}}"  />
+        			<script type="text/javascript">
+            			datePickerValid( 'startDate', false );
+        			</script>					
+			</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>	
+		<tr>	
+			<td><strong>$i18n.getString( "end_date" )</strong></td>
+			<td>
+				<input type="text" id="endDate" name="endDate" class="{validate:{required:true}}" />
+        			<script type="text/javascript">
+            			datePickerValid( 'endDate', false );
+        			</script> 					
+			</td>
+		</tr>    
+
+	</table>
+	<br />
+<div align="left">
+    <input type="button" value="$i18n.getString( 'generate' )" style="width:135px" onclick='validateGenerateSavedReport();'/> &nbsp;
+    <input type="button" style='width:100px' value="$i18n.getString( 'cancel' )" onClick="savedReportParamDialog();" />	
+</div>
+
+</div>
+
+

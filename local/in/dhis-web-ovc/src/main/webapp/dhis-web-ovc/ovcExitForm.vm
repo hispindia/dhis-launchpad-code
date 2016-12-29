@@ -1,0 +1,223 @@
+
+## Macro for generating the jQuery validation rules 
+#macro( validate $type $require )
+  #if( $type == "NUMBER" )
+    {validate:{ number:true #if($require), required:true #end }}
+  #elseif( $require )
+    {validate:{required:true}}
+  #end
+#end
+
+<style>
+
+	input[type="text"] 
+	{
+		width: 90%;
+	}
+	
+</style>
+
+
+
+<script type="text/javascript">
+	
+var updatePrivilege = "";
+
+#if( $auth.hasAccess( "dhis-web-ovc", "updateovcstatus") )
+	updatePrivilege = "yes";
+#else
+	updatePrivilege = "no";
+#end
+	
+jQuery(document).ready( function(){
+	
+        validation( 'ovcExitForm', function(form){
+            if( isSubmit && validateOVCExitForm() ) {
+                form.submit(i18n_field_is_required);
+            }
+        }, function( ){
+            isSubmit = true;
+        }); 
+    }); 
+
+</script>
+
+
+<h3>$i18n.getString( "ovc_exit_form" )</h3>
+<form id="ovcExitForm" name="ovcExitForm" action="saveOVCExitFormData.action" method="post" >
+
+<table style="background-color:#ECE0F8;" width="100%">
+    <tr><th colspan="4" class="heading-column">$i18n.getString( "cbo_details" )</th></tr>
+
+    <!-- Patient Attribute: -->
+	<tr #alternate( false ) id="trattr291">
+        <td class='text-column'>$i18n.getString( "cbo_name" )</td>
+        <!--<td class="input-column" ><input type="text" id="attr291" name="attr291" value = "$!organisationUnit.getName()" readonly/></td>-->
+        <td class="input-column" >$!organisationUnit.getName()</td>
+        <input type="hidden" id="cboName" name="cboName" value="$!organisationUnit.getName()">
+        <td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr> 
+</table>
+
+<table style="background-color:#EFFBEF;" width="100%">
+    <tr><th colspan="4" class="heading-column">$i18n.getString( "personal_info" )</th></tr>
+    <!--  Patient Property : Full Name -->
+    <tr #alternate( false ) id="trname">
+        <!-- Name of the Child -->
+        <td class='text-column'><label for="first_name">$i18n.getString( "child_full_name" )</label></td>
+        <!--<td class="input-column" ><input type="text" id="fullName" name="fullName" value="$!patient.getFullName()" readonly/></td>-->
+		<td class="input-column" >$!patient.getFullName()</td>
+		
+		<!-- OVC Number -->
+        <td class='text-column'><label for="ovc_number">$i18n.getString( "ovc_number" )</label></td>
+        <!--<td class="input-column" ><input type="text" id="ovcNumber" name="ovcNumber" value="$systemIdentifier" readonly/></td>-->
+        <td class="input-column" >$systemIdentifier</td>
+        <input type="hidden" id="ovcSystemId" name="ovcSystemId" value="$systemIdentifier">
+        <input type="hidden" id="chvId" name="chvId" value="$!patientAttributeValueMap.get( 43 )">  
+    </tr>
+    
+    
+   <!--  Patient Property : Child DOB -->
+    <tr #alternate( false ) id="trdob">
+        <!-- Date of Birth -->
+ 		<td class='text-column'><label for="date_of_birth">$i18n.getString( "date_of_birth" )</label></td>
+        <!--<td class="input-column" ><input type="text" id="dateOfBirth" name="dateOfBirth" value='$format.formatDate($!patient.birthDate)' readonly/></td>-->
+        <td class="input-column" >$format.formatDate($!patient.birthDate)</td> 
+		
+		<!-- OVC Number -->
+        <td class='text-column'><label for="gender">$i18n.getString( "gender" )</label></td>
+        <!--<td class="input-column" ><input type="text" id="gender" name="gender" value='$i18n.getString( $!patient.gender )' readonly/></td>-->
+        <td class="input-column" >$i18n.getString( $!patient.gender )</td>  
+    </tr>    
+    
+    
+   <!--  Patient Attribute : District Division -->
+    <tr #alternate( false ) id="trattr291">
+    	
+        <!-- Patient Attribute: District -->
+        <td class='text-column'>$i18n.getString( "district" )</td>
+        <!--<td class="input-column" ><input type="text" id="attr292" name="attr292" value = "$!organisationUnit.getParent().getParent().getName()" readonly /></td>-->
+        <td class="input-column" >$!patientAttributeValueMap.get( 292 )</td> 
+        
+        <!-- Patient Attribute: Division -->
+        <td class='text-column'>$i18n.getString( "division" )</td>
+        <!--<td class="input-column" ><input type="text" id="attr293" name="attr293" value = "$!organisationUnit.getParent().getName()" readonly /></td>-->
+        <td class="input-column" >$!patientAttributeValueMap.get( 293 )</td> 
+    </tr>    
+    
+    <!-- Patient Attribute: -->
+	<tr #alternate( false ) id="trattr41">
+		<!-- Patient Attribute: Location -->
+        
+		<td class='text-column'>$i18n.getString( "location" )</td>
+		<td class="input-column">$!patientAttributeValueMap.get( 41 )</td>
+                
+		<!-- Patient Attribute: Sub Location /village-->
+		<td class='text-column'>$i18n.getString( "sub_location" )</td>
+		<td>$!patientAttributeValueMap.get( 42 )</td>
+	</tr>    
+
+</table>
+
+<table style="background-color:#ECE0F8;" width="100%">
+
+<tr><th colspan="6" class="heading-column">$i18n.getString( "exit_info" )</th></tr>
+    
+    <!-- Patient Property : Date of Exit  -->
+    <tr #alternate( false ) id="trattr604">
+        <td class='text-column'><label for="date_of_birth">$i18n.getString( "date_of_exit" )<em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+        <td class="input-column" colspan='2'>
+            <input type="text" id="attr604" name="attr604" value = "$!patientAttributeValueMap.get( 604 )" class="{validate:{required:true,dateISO:true}}"/>
+            <script type="text/javascript">
+                datePickerValid( 'attr604', false );
+            </script>    
+        </td>
+    </tr>
+
+    <!-- Patient Attribute: Reason for Exit -->
+	<tr #alternate( false ) id="trattr450">
+        <td class='text-column'><label for="reason_for_exit">$i18n.getString( "reason_for_exit" )<em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 450 ) )
+            #set( $attributeValueExitReason = $!patientAttributeValueMap.get( 450 ) ) 
+            <select id="attr450" name="attr450" class="{validate:{required:true}}" onchange="exitReasonChange();" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                 #foreach ($option in $attribute.attributeOptions )
+                    <option value="$option.id" #if( $attributeValueExitReason == $option.name) selected="selected" #end>$option.name</option>
+                 #end
+            </select>
+        </td>
+	</tr>
+
+	<tr #alternate( false ) id="trattr456" style="display:none">
+    	<td class='text-column'><label for="reason_for_exit_disengagement">$i18n.getString( "reason_for_exit_disengagement" )<em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+    	<td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 456 ) )
+            #set( $attributeValueOtherReasonDisengagement = $!patientAttributeValueMap.get( 456 ) ) 
+            <select id="attr456" name="attr456" class="{validate:{required:true}}" onchange="otherReasonDisengagement();" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                 #foreach ($option in $attribute.attributeOptions )
+                    <option value="$option.id" #if( $attributeValueOtherReasonDisengagement == $option.name) selected="selected" #end>$option.name</option>
+                 #end
+            </select>
+        </td>
+	</tr>
+
+	<tr #alternate( false ) id="trattr605" style="display:none">
+        <td class='text-column'><label for="other_reason_exit">$i18n.getString( "other_reason_exit" )<em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+        <td class="input-column" >
+        	<input type="text" id="attr605" name="attr605" value = "$!patientAttributeValueMap.get( 605 )"  class="{validate:{required:true}}" /></td>
+		</td> 
+	</tr>
+
+
+	<tr #alternate( false ) id="trattr606" style="display:none">
+        <td class='text-column'><label for="other_reason_exit">$i18n.getString( "other_reason_disengagement" )<em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+        <td class="input-column" >
+        	<input type="text" id="attr606" name="attr606" style="width:260px" value = "$!patientAttributeValueMap.get( 606 )"  class="{validate:{required:true}}" /></td>
+		</td> 
+	</tr>
+
+</table>
+
+<table width="100%">
+	
+    <tr #alternate( false ) id="trattr301" style="display:none">
+        <td class='text-column'>$i18n.getString( "ovc_status" )<em title="$i18n.getString( 'required' )" class="required">*</em></td>
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 301 ) )
+            #set( $attributeValue = $!patientAttributeValueMap.get( 301 ) )
+            <select id="attr301" name="attr301">
+                 <option value="469">$i18n.getString( "exit_pending" )</option>                 
+            </select>    
+        </td>
+    </tr>	
+	
+	
+    <tr>
+        <td>
+            <input type="submit" class="button" value="$i18n.getString( 'save' ) " style="width:150px" />&nbsp;&nbsp;&nbsp;&nbsp;
+            <!--<input type="button" class="button" value="$i18n.getString( 'back' )"  style="width:150px" onclick="window.location.href='getApprovedList.action'"/>-->
+            <input type="button" class="button" value="$i18n.getString( 'back' )"  style="width:150px" onclick="loadApprovedOVCList();"/>
+        </td>
+    </tr>   
+
+	<tr style="display:none">
+
+    	<td>$i18n.getString( "ovcid" )<input type="text" id="ovcId" name="ovcId" value="$!patient.getId()"/></td>
+	</tr>
+    
+</table>
+
+
+</form>
+
+<script type="text/javascript">
+
+</script>
+
+<script language="javascript">
+	exitReasonChange();
+	otherReasonDisengagement();
+</script>

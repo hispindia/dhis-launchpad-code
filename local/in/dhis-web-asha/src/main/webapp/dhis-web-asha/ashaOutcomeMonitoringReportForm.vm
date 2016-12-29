@@ -1,0 +1,30 @@
+
+<form id="asha_master_chart_report_form" name="asha_master_chart_report_form" action="ashaOutcomeMonitoringReport.action" method="post" target="_blank" >
+    <table>
+        <tr>
+            <th colspan="2">$i18n.getString( "asha_outcome_monitoring_report" )</th>
+        </tr>
+        <tr>
+            <td>$i18n.getString( "period" )</td>
+            <td>
+                <select id="startMonth" name="startMonth" >
+                    <option value="-1">[$i18n.getString( "select" )]</option>
+                    #foreach( $period in $periods )
+                        <option value="$period.getExternalId()">$encoder.htmlEncode( $period.name )</option>
+                    #end
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>
+                <input type="submit" value='$i18n.getString("generate_report")' />
+                <input type="hidden" id="orgUnitId" name="orgUnitId" value="$!organisationUnit.id" />
+            </td>
+        </tr>
+    </table>
+</form>

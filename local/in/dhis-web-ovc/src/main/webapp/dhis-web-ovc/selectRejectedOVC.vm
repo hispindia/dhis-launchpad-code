@@ -1,0 +1,24 @@
+#if( $ovcStatus == "NONE" )
+
+<div id='searchDiv'>
+	#parse( "dhis-web-ovc/searchOVCRejectedCriteria.vm" )
+</div>
+
+<div id='listOVCRejectedDiv'></div> <!-- List All Rejected OVC -->
+<div id='updateOVCRegistrationFormInRejectionDiv'></div> <!-- Update OVC Registration Form in Rejection -->
+
+#parse( "/dhis-web-commons/loader/loader.vm" )
+#else
+	<h4>$ovcStatus</h4>
+#end
+
+<script type="text/javascript">
+	
+	setFieldValue('startDueDate','');
+	setFieldValue('endDueDate','');
+	
+	isAjax = true;
+	contentDiv = '';
+	
+	listAllRejectedOVC();
+</script>

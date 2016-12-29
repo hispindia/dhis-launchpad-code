@@ -1,0 +1,48 @@
+
+<h3>$i18n.getString( "community_worker_details" )</h3>
+
+<table>
+	<tr>
+		<th colspan="2">$i18n.getString( "details" )</th>
+	</tr>
+		
+	<tr>
+		<td style="width:120px"><label for="organisationUnit">$i18n.getString( "organisation_unit" )</label></td>
+		<td style="width:120px">$!organisationUnit.getName()</td>
+	</tr>
+
+	<tr>
+		<td style="width:120px"><label for="surName">$i18n.getString( "sur_name" )</label></td>
+		<td>$!employee.getSurname()</td>
+	</tr>
+	<tr>
+		<td><label for="firstName">$i18n.getString( "first_name" )</label></td>
+		<td>$!employee.getFirstName()</td>
+	</tr>
+	<tr>
+		<td><label for="lastName">$i18n.getString( "last_name" )</label></td>
+		<td>$!employee.getLastName()</td>
+	</tr>
+	<tr>
+		<td><label for="gender">$i18n.getString( "gender" )</label></td>
+		<td>$!employee.gender</td>					
+	</tr>
+	<tr>
+		<td><label for="code">$i18n.getString( "code" )</label></td>
+		<td>$!employee.getCode()</td>
+	</tr>
+	<tr>
+		<td><label for="phoneNumber">$i18n.getString( "phoneNumber" )</label></td>
+		<td>$!employee.getPhoneNumber()</td>
+	</tr>
+	<tr>
+		<td><label for="email">$i18n.getString( "email" )</label></td>
+		<td>$!employee.getEmail()</td>
+	</tr>
+	<tr>
+		<td><label for="jobTitle">$i18n.getString( "job_title" )</label></td>
+		<td>$!employee.getJobTitle()</td>
+	</tr>
+
+</table>
+

@@ -1,0 +1,102 @@
+<script type="text/javascript">
+jQuery(document).ready( function(){
+        validation( 'addEmployeeForm', function(form){
+            if( isSubmit && validateAddEmployee() ) {
+                form.submit(i18n_field_is_required);
+            }
+        }, function( ){
+            isSubmit = true;
+        }); 
+    }); 
+
+</script>
+<h3>$i18n.getString( "add_community_worker_details" )</h3>
+<form id="addEmployeeForm" name="addEmployeeForm" method="post" action="addEmployee.action"> 
+<table>
+	<tr>
+		<th colspan="2">$i18n.getString( "details" )</th>
+	</tr>
+		
+	<tr>
+		<td style="width:120px"><label for="organisationUnit">$i18n.getString( "organisation_unit" )</label></td>
+		<td style="width:120px">
+			<input type="text" name="orgUnitName" id="orgUnitName" value="$!organisationUnit.getName()" style="width:300px" readonly="true"/>
+			<input type="hidden" name="orgUnitId" id="orgUnitId" value="$!organisationUnit.getId()" />
+		</td>
+	</tr>
+<!-- First name -->
+	<tr>
+		<td><label for="firstName">$i18n.getString( "first_name" ) <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+		<td><input type="text" name="firstName" id="firstName" style="width:300px" class="{validate:{required:true,rangelength:[4,160]}}"/></td>
+	</tr>
+	
+<!-- Middle Name -->	
+	<tr>
+		<td><label for="lastName">$i18n.getString( "middle_name" )</label></td>
+		<td><input type="text" name="lastName" style="width:300px" id="lastName"/></td>
+	</tr>	
+	
+<!-- Sur name -->	
+	<tr>
+		<td style="width:120px"><label for="surName">$i18n.getString( "chv_sur_name" )</label></td>
+		<td><input type="text" name="surName" id="surName" style="width:300px"/></td>
+	</tr>
+
+
+	<tr>
+		<td><label for="gender">$i18n.getString( "gender" )<em title="$i18n.getString( "required" )" class="required">*</em></label></td>
+		<td>
+			<select id="gender" name="gender" style="width:300px" class="{validate:{required:true}}">
+				<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="M" >$i18n.getString( "male" )</option>
+                <option value="F">$i18n.getString( "female" )</option>
+			</select>
+		</td>					
+	</tr>	
+	<tr>
+		<td><label for="code">$i18n.getString( "code" )</label></td>
+		<td><input type="text" name="employeeCode" id="employeeCode" value="$employeeCode" style="width:300px" class="{validate:{required:true}}" readonly="true"/></td>
+	</tr>
+	<tr>
+		<td><label for="phoneNumber">$i18n.getString( "phoneNumber" )</label></td>
+		<td><input type="text" name="phoneNumber" id="phoneNumber" style="width:300px" /></td>
+	</tr>
+	<tr>
+		<td><label for="email">$i18n.getString( "email" )</label></td>
+		<td><input type="text" name="email" id="email" style="width:300px" class="{validate:{email:true,rangelength:[4,160]}}" /></td>
+	</tr>
+	<tr style="display:none">
+		<td><label for="jobTitle">$i18n.getString( "job_title" )</label></td>
+		<td>
+			<select name="jobTitle" id="jobTitle" style="width:300px">
+				<option value = "CHV" selected>$i18n.getString( "chv" )</option>
+				<option value = "Supervisior">$i18n.getString( "supervisior" )</option>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>	
+	<tr>
+		<td>&nbsp;</td>
+		<td>
+			<input type="submit" name="save" value="$i18n.getString( 'add' )" style="width:150px" />
+			<input type="button" value="$i18n.getString( 'cancel' )" onclick="window.location.href='getEmployeeList.action'" style="width:150px" />
+		</td>
+	</tr>
+		
+</table>
+
+</form>	
+
+<span id="message"></span>
+
+<script type="text/javascript">
+
+    var i18n_field_is_required = '$encoder.jsEscape( $i18n.getString( "field_is_required" ) , "'") ';
+    //var nameField = document.getElementById( 'empCode' );
+    //nameField.select();
+    //nameField.focus();
+
+</script>

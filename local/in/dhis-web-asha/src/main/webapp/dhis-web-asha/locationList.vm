@@ -1,0 +1,69 @@
+<script type="text/javascript">
+	jQuery(document).ready(function(){	
+		tableSorter( 'listTable' );	
+	});
+	
+	var i18n_please_select_orgUnit = '$encoder.jsEscape( $i18n.getString( "please_select_orgUnit" ) , "'")';
+	var i18n_confirm_to_delete_location = '$encoder.jsEscape( $i18n.getString( "confirm_to_delete_location" ) , "'" )';
+	var i18n_location_details = '$encoder.jsEscape( $i18n.getString( "location_details" ) , "'" )';
+</script>
+<input type="hidden" id='selectedOrgunitID' value="$!organisationUnit.id" />
+<div id ="ashaManagementDiv" ></div><!-- ASHA Management Div -->
+<div id='addUpdateASHAProfileDiv'></div> <!-- Add / Edit ASHA Profile Form -->
+<div id='resultSearchDiv' style='font-size:13px'></div> <!-- List searching ASHAS -->
+<div id ="ashaFacilitatorListDiv" ></div><!-- List ASHA Facilatator -->
+<div id ="locationListDiv" >
+#if( $status == "NONE" )
+<h3>$i18n.getString( "location_management" ) #openHelp( "orgunit" )</h3>
+
+<table class="mainPageTable">
+	<tr>
+		<td style="vertical-align:top">
+			<table width="100%">
+				<tr>
+					<td>#filterDiv( "getLocationList" )</td>
+					<td colspan="3" style="text-align:right">
+						<input type="button" value="$i18n.getString( 'add_new' )" onclick="window.location.href='showAddLocationForm.action?organisationUnitId=$organisationUnit.id'"/>
+					</td>
+				</tr>
+			</table>
+			<table class="listTable" id="listTable">
+				<col/>
+				<col width="96px"/>				
+                <thead>				
+				<tr>
+					<th>$i18n.getString( "name" )</th>
+					<th class="{sorter: false}">$i18n.getString( "operations" )</th>
+				</tr>
+                </thead>
+				<tbody id="list">
+				#foreach( $location in $locations )
+				<tr id="tr${location.id}">
+					<td>$encoder.htmlEncode( $location.name )</td>
+					<td style="text-align:right">
+						<a href="showUpdateLocationForm.action?id=$location.id" title="$i18n.getString( 'edit' )"><img src="../images/edit.png" alt="$i18n.getString( 'edit' )"/></a>
+						
+						<a href="javascript:removeLocation( $location.id, '$encoder.jsEncode( $location.name )' )" title="$i18n.getString( 'remove' )"><img src="../images/delete.png" alt="$i18n.getString( 'remove' )"/></a>
+						
+						<a href="javascript:showLocationDetails( $location.id )" title="$i18n.getString( 'show_details' )"><img src="../images/information.png" alt="$i18n.getString( 'show_details' )"/></a>
+					</td>
+				</tr>
+				#end
+                </tbody>
+				
+			</table>
+			<p></p>
+			#parse( "/dhis-web-commons/paging/paging.vm" )
+
+		</td>
+
+	</tr>
+</table>
+
+ <div id="detailsInfo"></div><!-- details information div -->
+ <span id="message"></span>
+
+ #else
+	<h4>$status</h4>
+#end
+</div> 

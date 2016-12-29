@@ -1,0 +1,710 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+<include file="dhis-web-commons.xml"/>
+	
+ <package name="dhis-web-asha" extends="dhis-web-commons" namespace="/dhis-web-asha">
+
+
+	<!-- ASHA Payment Role -->	 
+	<action name="ashapayment" class="org.hisp.dhis.asha.action.NoAction">
+	  <result name="success" type="velocity">/main.vm</result>
+	  <param name="page">/dhis-web-asha/welcome.vm</param>
+	  <param name="menu">/dhis-web-asha/menu.vm</param>
+	  <param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/asha.js</param>
+	  <param name="requiredAuthorities">F_ASHA_PAYMENT</param>		
+	</action>
+
+
+<!--  Resource -->
+
+
+    <action name="getResourceList" class="org.hisp.dhis.asha.resource.GetAllDocumentsAction">
+      <result name="success" type="velocity">/main.vm</result>
+      <param name="page">/dhis-web-asha/ashaDocumentList.vm</param>
+      <param name="menu">/dhis-web-asha/menu.vm</param>
+      <param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/document.js</param>
+    </action>
+
+ 
+    <action name="displayAddUpdateDocumentForm" class="org.hisp.dhis.asha.resource.GetDocumentAction">
+      <result name="success" type="velocity">/main.vm</result>
+      <param name="page">/dhis-web-asha/addUpdateDocumentForm.vm</param>
+      <param name="menu">/dhis-web-asha/menu.vm</param>
+      <param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/document.js</param>
+      <param name="anyAuthorities">F_DOCUMENT_ADD_UPDATE</param>
+    </action>
+
+    <action name="saveDocument" class="org.hisp.dhis.asha.resource.SaveDocumentAction">
+      <result name="success" type="redirect">getResourceList.action</result>
+      <interceptor-ref name="fileUploadStack" />
+      <param name="anyAuthorities">F_DOCUMENT_ADD_UPDATE</param>
+    </action>
+
+
+    <action name="removeDocument" class="org.hisp.dhis.asha.resource.RemoveDocumentAction">
+      <result name="success" type="velocity-json">/dhis-web-commons/ajax/jsonResponseSuccess.vm</result>
+      <param name="requiredAuthorities">F_DOCUMENT_DELETE</param>
+      <param name="onExceptionReturn">plainTextError</param>
+    </action>
+
+
+
+	<!-- Home page -->	
+    <action name="index" class="org.hisp.dhis.asha.action.NoAction">
+      <result name="success" type="velocity">/main.vm</result>
+      <param name="page">/dhis-web-asha/welcome.vm</param>
+      <param name="menu">/dhis-web-asha/menu.vm</param>
+	  <param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/asha.js</param>			
+    </action>	
+	
+	<!-- Get Dob of Asha details -->
+	<action name="getDOBFromAgeReport" class="org.hisp.dhis.asha.action.GetDateOfBirthFromAgeAction">
+		<result name="success" type="velocity-xml">/dhis-web-asha/responseDateOfBirth.vm</result>
+		<param name="onExceptionReturn">plainTextError</param>
+	</action>	 
+ 
+ 
+ 
+	<!-- Registrated ASHA -->
+	
+	<action name="selectASHA" class="org.hisp.dhis.asha.registration.SelectASHAAction">
+	  <result name="success" type="velocity">/main.vm</result>
+	  <param name="page">/dhis-web-asha/selectASHA.vm</param>
+	  <param name="menu">/dhis-web-asha/menu.vm</param>
+	  <param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/asha.js,javascript/searchASHA.js</param>
+	  <param name="stylesheets">css/style.css</param>
+	</action>	 
+ 
+ 
+	<action name="searchASHAAllFacilities" class="org.hisp.dhis.asha.action.NoAction">
+	  <result name="success" type="velocity-json">/dhis-web-commons/ajax/jsonResponseSuccess.vm</result>
+	  <param name="requiredAuthorities">F_SEARCH_ASHA_IN_ALL_FACILITIES</param>
+	</action>	 
+ 
+ 
+ 
+ 
+	 
+	<!-- Registration List -->
+    <action name="getRegisteredASHAList" class="org.hisp.dhis.asha.registration.GetRegisteredASHAListAction">
+      <result name="success" type="velocity">/content.vm</result>
+      <param name="page">/dhis-web-asha/registeredASHAList.vm</param>
+      <!-- 
+      <param name="menu">/dhis-web-asha/menu.vm</param>
+      <param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/asha.js</param>
+      -->
+    </action>		
+
+	 
+	 
+	<!-- add ASHA Profile Form -->
+	<action name="showAddASHAProfileForm"
+		class="org.hisp.dhis.asha.registration.ShowAddASHAProfileFormAction">
+		<result name="success" type="velocity">/content.vm</result>
+		<param name="page">/dhis-web-asha/addASHAProfileForm.vm</param>
+		<!--<param name="page">/dhis-web-asha/addASHAProfileForm_1.vm</param>-->
+		<param name="stylesheets">css/basic.css</param>
+		<param name="requiredAuthorities">F_ASHA_PROFILE_ADD</param>
+	</action>	 
+	 
+	     	 
+	
+	<!-- Validation -->
+
+	<action name="validateASHA"
+		class="org.hisp.dhis.asha.registration.ValidateASHAAction">
+		<result name="success" type="velocity-xml">/dhis-web-commons/ajax/xmlResponseSuccess.vm</result>
+		<result name="error" type="velocity-xml">/dhis-web-commons/ajax/xmlResponseError.vm</result>
+		<result name="input" type="velocity-xml">/dhis-web-commons/ajax/xmlResponseInput.vm</result>
+		<result name="duplicate" type="velocity-xml">/dhis-web-asha/responseDuplicate.vm</result>
+		<param name="onExceptionReturn">plainTextError</param>
+	</action>	 	 
+
+
+	<!-- Add ASHA --> 
+    <action name="addASHA" class="org.hisp.dhis.asha.registration.AddASHAAction">
+      <result name="success" type="velocity-json">/dhis-web-commons/ajax/jsonResponseSuccess.vm</result>
+      <param name="requiredAuthorities">F_ASHA_PROFILE_ADD</param>
+    </action>	 
+	 	 
+	 	 
+	<!-- Add ASHA Properties -->
+    <action name="addASHAProperties" class="org.hisp.dhis.asha.registration.AddASHAPropertiesAction">
+      
+      <!--<result name="success" type="velocity-xml">/dhis-web-asha/ASHARegistrationSuccess.vm</result>-->
+      <result name="success" type="velocity">/main.vm</result>
+      <param name="page">/dhis-web-asha/ASHARegistrationSuccess.vm</param>
+      <param name="menu">/dhis-web-asha/menu.vm</param>
+	  <param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/asha.js,javascript/searchASHA.js</param>
+      <param name="requiredAuthorities">F_ASHA_PROFILE_ADD</param>
+    </action>	 	 
+	 	 
+	 	 
+
+	<!-- Update ASHA Profile Form --> 
+	<action name="showUpdateASHAProfileForm" class="org.hisp.dhis.asha.registration.ShowUpdateASHAProfileFormAction">
+		<result name="success" type="velocity">/content.vm</result>
+		<param name="page">/dhis-web-asha/updateASHAProfileForm.vm</param>
+		<param name="stylesheets">css/basic.css</param>
+		<param name="requiredAuthorities">F_ASHA_UPDATE</param>
+	</action>	 
+	 
+	<!-- Update Profile -->
+	<action name="updateASHAProfile" class="org.hisp.dhis.asha.registration.UpdateASHAProfileAction">
+		<result name="success" type="velocity-json">/dhis-web-commons/ajax/jsonResponseSuccess.vm</result>
+		<param name="requiredAuthorities">F_ASHA_UPDATE</param>
+	</action>	 
+	 
+	 
+	<!-- add/UPDate ASHA Attributes Training Form -->
+	 
+	<action name="showUpdateASHAAttributesTrainingForm" class="org.hisp.dhis.asha.registration.ShowAddASHAAttributesFormAction">
+		<result name="success" type="velocity">/content.vm</result>
+		<param name="page">/dhis-web-asha/updateASHAAttributesTrainingForm.vm</param>
+		<param name="requiredAuthorities">F_ASHA_UPDATE</param>
+	</action>	 
+	 
+	<!-- add/UPDate ASHA Attributes Skills Form --> 
+	<action name="showUpdateASHAAttributesSkillsForm" class="org.hisp.dhis.asha.registration.ShowAddASHAAttributesFormAction">
+		<result name="success" type="velocity">/content.vm</result>
+		<param name="page">/dhis-web-asha/updateASHAAttributesSkillsForm.vm</param>
+		<param name="requiredAuthorities">F_ASHA_UPDATE</param>
+	</action>	 
+	 
+	<!-- add/UPDate ASHA Attributes IEC Form --> 
+	<action name="showUpdateASHAAttributesIECForm" class="org.hisp.dhis.asha.registration.ShowAddASHAAttributesFormAction">
+		<result name="success" type="velocity">/content.vm</result>
+		<param name="page">/dhis-web-asha/updateASHAAttributesIECForm.vm</param>
+		<param name="requiredAuthorities">F_ASHA_UPDATE</param>
+	</action>	 
+	 
+	 
+	<!-- Update Attributes -->
+	<action name="updateASHAAttributes" class="org.hisp.dhis.asha.registration.UpdateASHAAttributesAction">
+		<result name="success" type="velocity-json">/dhis-web-commons/ajax/jsonResponseSuccess.vm</result>
+		<param name="requiredAuthorities">F_ASHA_UPDATE</param>
+	</action>
+
+	 
+	<!-- UPDate ASHA Amount Details Form --> 
+	<action name="showUpdateASHAAmountDetailsForm" class="org.hisp.dhis.asha.registration.ShowUpdateASHAAmountDetailsFormAction">
+		<result name="success" type="velocity">/content.vm</result>
+		<param name="page">/dhis-web-asha/updateASHAAmountDetailsForm.vm</param>
+		<param name="requiredAuthorities">F_ASHA_UPDATE</param>
+	</action>	 
+	 
+	<!-- Load ASHA Amount Details Form --> 
+	<action name="loadASHAAmountDetailsForm" class="org.hisp.dhis.asha.registration.LoadASHAAmountDetailsFormAction">
+		<result name="success" type="velocity">/content.vm</result>
+		<param name="page">/dhis-web-asha/loadASHAAmountDetailsForm.vm</param>
+		<param name="requiredAuthorities">F_ASHA_UPDATE</param>
+	</action>	 
+	 
+	 
+	<!-- Save ASHA Incentive Amounts --> 
+	<action name="saveASHAIncentiveAmounts" class="org.hisp.dhis.asha.registration.SAVEASHAIncentiveAmountsAction">
+		<result name="success" type="velocity-json">/dhis-web-commons/ajax/jsonResponseSuccess.vm</result>
+		<param name="requiredAuthorities">F_ASHA_UPDATE</param>
+	</action>	 
+	 
+
+<!-- ASHA Training -->
+
+
+	<!-- Show ASHA Training Details Form --> 
+	<action name="showASHATrainingForm" class="org.hisp.dhis.asha.training.ShowASHATrainingFormAction">
+		<result name="success" type="velocity">/content.vm</result>
+		<param name="page">/dhis-web-asha/showASHATrainingDetailsForm.vm</param>
+		<param name="requiredAuthorities">F_ASHA_UPDATE</param>
+	</action>
+
+	<!-- Load ASHA Training Details Form --> 
+	<action name="loadASHATrainingDetailsForm" class="org.hisp.dhis.asha.training.LoadASHATrainingDetailsFormAction">
+		<result name="success" type="velocity">/content.vm</result>
+		<param name="page">/dhis-web-asha/loadASHATrainingDetailsForm.vm</param>
+		<param name="requiredAuthorities">F_ASHA_UPDATE</param>
+	</action>
+
+	<!-- Save ASHA Training Details --> 
+	<action name="saveASHATrainingDetails" class="org.hisp.dhis.asha.training.SaveASHATrainingDetailsAction">
+		<result name="success" type="velocity-json">/dhis-web-commons/ajax/jsonResponseSuccess.vm</result>
+		<param name="requiredAuthorities">F_ASHA_UPDATE</param>
+	</action>
+
+
+
+<!-- ASHA Drug Kit IEC -->
+
+	<!-- Show ASHA Drug Kit IEC Details Form --> 
+	<action name="showASHADrugKitIECForm" class="org.hisp.dhis.asha.drugkitiec.ShowASHADrugKitIECFormAction">
+		<result name="success" type="velocity">/content.vm</result>
+		<param name="page">/dhis-web-asha/showASHADrugKitIECDetailsForm.vm</param>
+		<param name="requiredAuthorities">F_ASHA_UPDATE</param>
+	</action>
+
+
+	<!-- Load ASHA Drug Kit IEC Details Form --> 
+	<action name="loadASHADrugKitIECDataEntryForm" class="org.hisp.dhis.asha.drugkitiec.LoadASHADrugKitIECDetailsFormAction">
+		<result name="success" type="velocity">/content.vm</result>
+		<param name="page">/dhis-web-asha/loadASHADrugKitIECDetailsForm.vm</param>
+		<param name="requiredAuthorities">F_ASHA_UPDATE</param>
+	</action>
+
+
+
+	<!-- Save ASHA Drug Kit IEC Details --> 
+	<action name="saveASHADrugKitIECDetails" class="org.hisp.dhis.asha.drugkitiec.SaveASHADrugKitIECDetailsAction">
+		<result name="success" type="velocity-json">/dhis-web-commons/ajax/jsonResponseSuccess.vm</result>
+		<param name="requiredAuthorities">F_ASHA_UPDATE</param>
+	</action>	
+
+
+<!-- ASHA Performance Incentive -->
+
+	<!-- Performance Incentive Form --> 
+
+	<action name="showASHAPerformanceIncentiveForm" class="org.hisp.dhis.asha.performanceincentive.ShowASHAPerformanceIncentiveFormAction">
+		<result name="success" type="velocity">/main.vm</result>
+		<param name="page">/dhis-web-asha/ashaPerformanceIncentiveForm.vm</param>
+		 <param name="menu">/dhis-web-asha/menu.vm</param>
+		<param name="requiredAuthorities">F_ASHA_PERFORMANCE_INCENTIVE</param>
+		<param name="javascripts">../dhis-web-commons/ouwt/ouwt.js</param>
+	</action>
+
+
+	<!-- Load Performance Incentive Data Entry Form --> 
+	<action name="loadPerformanceIncentiveDataEntryForm" class="org.hisp.dhis.asha.performanceincentive.LoadASHAPerformanceIncentiveDataEntryFormAction">
+		<result name="success" type="velocity">/content.vm</result>
+		<param name="page">/dhis-web-asha/loadPerformanceIncentiveDataEntryForm.vm</param>
+		<param name="requiredAuthorities">F_ASHA_PERFORMANCE_INCENTIVE</param>
+	</action>
+
+
+	<!-- Save Performance Incentive Data --> 
+	<action name="savePerformanceIncentiveDataValue" class="org.hisp.dhis.asha.performanceincentive.SaveASHAPerformanceIncentiveDataValueAction">
+		<result name="success" type="velocity-json">/dhis-web-commons/ajax/jsonResponseSuccess.vm</result>
+		<param name="requiredAuthorities">F_ASHA_PERFORMANCE_INCENTIVE</param>
+	</action>	 	 
+
+
+
+<!-- ASHA Payment -->
+	 
+	<!-- Update ASHA Payment Details Form --> 
+	<action name="showUpdateASHAPaymentDetailsForm" class="org.hisp.dhis.asha.payment.ShowUpdateASHAPaymentDetailsFormAction">
+		<result name="success" type="velocity">/content.vm</result>
+		<param name="page">/dhis-web-asha/updateASHAPaymentDetailsForm.vm</param>
+		<param name="requiredAuthorities">F_ASHA_UPDATE_PAYMENT</param>
+	</action>	 	 
+	 
+	 
+	<!-- Load ASHA Payment Details Form --> 
+	<action name="loadASHAPaymentDetailsForm" class="org.hisp.dhis.asha.payment.LoadASHAPaymentDetailsFormAction">
+		<result name="success" type="velocity">/content.vm</result>
+		<param name="page">/dhis-web-asha/loadASHAPaymentDetailsForm.vm</param>
+		<param name="requiredAuthorities">F_ASHA_UPDATE_PAYMENT</param>
+	</action>	 
+	 
+	<!-- Save ASHA Payment Details --> 
+	<action name="saveASHAPaymentDetails" class="org.hisp.dhis.asha.payment.SaveASHAPaymentDetailsAction">
+		<result name="success" type="velocity-json">/dhis-web-commons/ajax/jsonResponseSuccess.vm</result>
+		<param name="requiredAuthorities">F_ASHA_UPDATE_PAYMENT</param>
+	</action>	 	 
+
+	 
+	 	 
+	 	 
+	<!-- Details of ASHA -->
+	<action name="getASHADetails" class="org.hisp.dhis.asha.registration.GetASHADetailsAction">
+		<result name="success" type="velocity">/content.vm</result>
+		<result name="xls" type="gridXlsResult" />
+		<result name="pdf" type="gridPdfResult" />
+		<param name="page">/dhis-web-asha/ashaDetails.vm</param>
+	</action>	 
+	
+	<!-- Remove ASHA -->  
+    <action name="removeASHA" class="org.hisp.dhis.asha.registration.RemoveASHAAction">
+      <result name="success" type="velocity-json">/dhis-web-commons/ajax/jsonResponseSuccess.vm</result>
+      <result name="error" type="velocity-json">/dhis-web-commons/ajax/jsonResponseError.vm</result>
+      <param name="onExceptionReturn">plainTextError</param>
+      <param name="requiredAuthorities">F_ASHA_DELETE</param>
+    </action>	 
+
+	 
+	 
+	<!-- ASHA Beneficiary Information --> 
+	
+	 
+	 
+
+	<!-- Get Data Element List --> 
+	<action name="getDataElementList" class="org.hisp.dhis.asha.action.GetDataElementListAction">
+		<result name="success" type="velocity-xml">/dhis-web-asha/responseDataElement.vm</result>
+		<param name="onExceptionReturn">plainTextError</param>
+	</action>	 
+
+	<!-- Get Service Price -->  
+	<action name="getServicePrice" class="org.hisp.dhis.asha.action.GetServicePriceAction">
+		<result name="success" type="velocity-xml">/dhis-web-asha/responseServicePrice.vm</result>
+		<param name="onExceptionReturn">plainTextError</param>
+	</action>	 
+
+	 
+	<!-- Show Add Beneficiary Form -->
+	<action name="showAddASHABeneficiaryForm" class="org.hisp.dhis.asha.beneficiaries.ShowAddASHABeneficiaryFormAction">
+		<result name="success" type="velocity">/content.vm</result>
+		<param name="page">/dhis-web-asha/showAddASHABeneficiaryForm.vm</param>
+		<param name="requiredAuthorities">F_ASHA_UPDATE</param>
+	</action>	 	 
+	 
+	<!-- Load ASHA Beneficiary Add Form -->
+	<action name="loadASHABeneficiaryAddForm" class="org.hisp.dhis.asha.beneficiaries.LoadASHABeneficiaryAddFormAction">
+		<result name="success" type="velocity">/content.vm</result>
+		<param name="page">/dhis-web-asha/addASHABeneficiaryForm.vm</param>
+		<param name="requiredAuthorities">F_ASHA_UPDATE</param>
+	</action>	 
+	 	 	 
+	<!-- Add ASHA Beneficiary --> 
+	<action name="addASHABeneficiary" class="org.hisp.dhis.asha.beneficiaries.AddASHABeneficiaryAction">
+		<result name="success" type="velocity-json">/dhis-web-commons/ajax/jsonResponseSuccess.vm</result>
+		<!--<result name="success" type="redirect">showAddASHABeneficiaryForm.action?id=${ashaId}</result>-->
+		<param name="requiredAuthorities">F_ASHA_UPDATE</param>
+	</action>
+
+	 
+	<!-- ASHA Beneficiary List --> 
+	<action name="getASHABeneficiaryList" class="org.hisp.dhis.asha.beneficiaries.GetASHABeneficiaryListAction">
+		<result name="success" type="velocity">/content.vm</result>
+		<param name="page">/dhis-web-asha/ashaBeneficiaryList.vm</param>
+		<param name="javascripts">javascript/ashaBeneficiary.js</param>
+	</action>
+	 
+	<!-- Beneficiary Validation during Addition or Updation of Beneficiary -->
+	<action name="validateBeneficiary" class="org.hisp.dhis.asha.beneficiaries.ValidateBeneficiaryAction">
+		<result name="success" type="velocity-xml">/dhis-web-asha/responseBeneficiarySuccess.vm</result>
+		<result name="input" type="velocity-xml">/dhis-web-asha/responseBeneficiaryInput.vm</result>
+		<param name="onExceptionReturn">plainTextError</param>
+	</action>	 
+	 
+
+	 
+	<!-- Update ASHA Beneficiary Form -->
+	<action name="showUpdateASHABeneficiaryForm" class="org.hisp.dhis.asha.beneficiaries.ShowUpdateASHABeneficiaryFormAction">
+		<result name="success" type="velocity">/content.vm</result>
+		<param name="page">/dhis-web-asha/updateASHABeneficiaryForm.vm</param>
+	</action>	 
+	 
+	<!-- Update ASHA Beneficiary --> 
+	<action name="updateASHABeneficiary" class="org.hisp.dhis.asha.beneficiaries.UpdateASHABeneficiaryAction">
+		<result name="success" type="velocity-json">/dhis-web-commons/ajax/jsonResponseSuccess.vm</result>
+		<!--<result name="success" type="redirect">showAddASHABeneficiaryForm.action?id=${ashaId}</result>-->
+		<param name="requiredAuthorities">F_ASHA_UPDATE</param>
+	</action>	 
+	 
+	<!-- Remove ASHA Beneficiary -->  
+    <action name="removeASHABeneficiary" class="org.hisp.dhis.asha.beneficiaries.RemoveASHABeneficiaryAction">
+      <result name="success" type="velocity-json">/dhis-web-commons/ajax/jsonResponseSuccess.vm</result>
+      <result name="error" type="velocity-json">/dhis-web-commons/ajax/jsonResponseError.vm</result>
+      <param name="onExceptionReturn">plainTextError</param>
+      <param name="requiredAuthorities">F_ASHA_DELETE</param>
+    </action>	 
+
+	<!-- ASHA Beneficiary Report --> 
+	<action name="ashaBeneficiaryReport" class="org.hisp.dhis.asha.beneficiaries.GetASHABeneficiaryListAction">
+      <result name="success" type="velocity">/content.vm</result>
+      <param name="page">/dhis-web-asha/ashaBeneficiaryReportList.vm</param>
+	</action>	 
+
+	 
+	<action name="ashaBeneficiaryReport"
+		class="org.hisp.dhis.asha.beneficiaries.GetASHABeneficiaryReportResultAction">
+		<result name="success" type="stream">
+			<param name="contentType">application/vnd.ms-excel</param>
+			<param name="inputName">inputStream</param>
+			<param name="contentDisposition">filename="${fileName}"</param>
+			<param name="bufferSize">1024</param>
+		</result>
+	</action>	 
+	 	 
+	<!-- Export To Excel -->
+	<!--
+	<action name="exportToWorkBook" class="org.hisp.dhis.asha.action.ExportToExcelAction">
+		<result name="success" type="stream">
+			<param name="contentType">application/vnd.ms-excel</param>
+			<param name="inputName">inputStream</param>
+			<param name="contentDisposition">attachment;filename="${fileName}"</param>
+			<param name="bufferSize">1024</param>
+		</result>
+	</action>	 
+	--> 
+	 	 	 	
+<!--<result name="success" type="redirect">programStage.action?id=${catalogTypeId}</result>-->		
+
+	<!-- ASHA Facilitator List -->
+	<action name="getASHAFacilitatorList" class="org.hisp.dhis.asha.facilitator.GetASHAFacilitatorListAction">
+	  <result name="success" type="velocity">/main.vm</result>
+	  <param name="page">/dhis-web-asha/ashaFacilitatorList.vm</param>
+	  <param name="menu">/dhis-web-asha/menu.vm</param>
+	  <param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/facilitator.js</param>
+	  <param name="requiredAuthorities">F_ASHA_FACILITATOR</param>			
+	</action>	
+	 
+
+	<!-- Show Add ASHA Facilitator Form -->
+	<action name="showAddASHAFacilitatorForm" class="org.hisp.dhis.asha.facilitator.ShowAddASHAFacilitatorFormAction">
+	  <result name="success" type="velocity">/main.vm</result>
+	  <param name="page">/dhis-web-asha/addASHAFacilitatorForm.vm</param>
+	  <param name="menu">/dhis-web-asha/menu.vm</param>
+	  <param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/facilitator.js</param>
+	  <param name="requiredAuthorities">F_ASHA_FACILITATOR</param>			
+	</action>	 
+	 
+
+	<!-- Add ASHA Facilitator --> 
+	<action name="addASHAFacilitator" class="org.hisp.dhis.asha.facilitator.AddASHAFacilitatorAction">
+		<result name="success" type="redirect">getASHAFacilitatorList.action</result>
+		<param name="requiredAuthorities">F_ASHA_FACILITATOR</param>
+	</action>	 
+	 
+	 
+
+	 
+	<!-- Show Update ASHA Facilitator Form -->
+	<action name="showUpdateASHAFacilitatorForm" class="org.hisp.dhis.asha.facilitator.ShowUpdateASHAFacilitatorFormAction">
+	  <result name="success" type="velocity">/main.vm</result>
+	  <param name="page">/dhis-web-asha/updateASHAFacilitatorForm.vm</param>
+	  <param name="menu">/dhis-web-asha/menu.vm</param>
+	  <param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/facilitator.js</param>
+	  <param name="requiredAuthorities">F_ASHA_FACILITATOR</param>			
+	</action>	 
+	 
+	<!-- Update ASHA Facilitator --> 
+	<action name="updateASHAFacilitator" class="org.hisp.dhis.asha.facilitator.UpdateASHAFacilitatorAction">
+		<result name="success" type="redirect">getASHAFacilitatorList.action</result>
+		<param name="requiredAuthorities">F_ASHA_FACILITATOR</param>
+	</action>	 
+	 	 
+
+	<!-- Remove ASHA Facilitator --> 
+	<action name="removeFacilitator" class="org.hisp.dhis.asha.facilitator.RemoveASHAFacilitatorAction">
+		<result name="success" type="velocity-json">/dhis-web-commons/ajax/jsonResponseSuccess.vm</result>
+		<result name="error" type="velocity-json">/dhis-web-commons/ajax/jsonResponseError.vm</result>
+		<param name="onExceptionReturn">plainTextError</param>
+		<param name="requiredAuthorities">F_ASHA_FACILITATOR</param>
+	</action>
+	 
+	 
+	<!-- Show ASHA Facilitator Data Entry Form  -->
+	<action name="showASHAFacilitatorDataEntryForm" class="org.hisp.dhis.asha.facilitator.ShowASHAFacilitatorDataEntryFormAction">
+	  <result name="success" type="velocity">/main.vm</result>
+	  <param name="page">/dhis-web-asha/ashaFacilitatorDataEntryForm.vm</param>
+	  <param name="menu">/dhis-web-asha/menu.vm</param>
+	  <param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/facilitator.js</param>
+	  <param name="requiredAuthorities">F_ASHA_FACILITATOR</param>			
+	</action>
+	 
+	 
+	<!-- Load ASHA Facilitator Data Entry Form --> 
+	<action name="loadASHAFacilitatorDataEntryForm" class="org.hisp.dhis.asha.facilitator.LoadASHAFacilitatorDataEntryFormAction">
+		<result name="success" type="velocity">/content.vm</result>
+		<param name="page">/dhis-web-asha/loadASHAFacilitatorDataEntryForm.vm</param>
+		<param name="requiredAuthorities">F_ASHA_FACILITATOR</param>
+	</action>	 
+	 
+	 
+	<!-- Save ASHA Facilitator Data Value--> 
+	<action name="saveASHAFacilitatorDataValue" class="org.hisp.dhis.asha.facilitator.SaveASHAFacilitatorDataValueAction">
+		<result name="success" type="velocity-json">/dhis-web-commons/ajax/jsonResponseSuccess.vm</result>
+		<param name="requiredAuthorities">F_ASHA_FACILITATOR</param>
+	</action>	 
+	 	 	 	 
+	<!-- Show ASHA Facilitator Form -->
+	<action name="getASHAFacilitatorForm" class="org.hisp.dhis.asha.facilitator.ShowASHAFacilitatorFormAction">
+	  <result name="success" type="velocity">/content.vm</result>
+	  <param name="page">/dhis-web-asha/ashaFacilitatorRegistrationForm.vm</param>
+	  <param name="menu">/dhis-web-asha/menu.vm</param>
+	  <param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/facilitator.js</param>
+	  <param name="requiredAuthorities">F_ASHA_FACILITATOR</param>			
+	</action>		 
+ 
+	<!-- Save ASHA Facilitator Data --> 
+	<action name="saveASHAFacilitatorData" class="org.hisp.dhis.asha.facilitator.SaveASHAFacilitatorDataAction">
+		<result name="success" type="velocity">/main.vm</result>
+		<param name="page">/dhis-web-asha/facilitatorRegistrationSuccess.vm</param>
+		<param name="menu">/dhis-web-asha/menu.vm</param>
+		<param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/facilitator.js</param>
+		<param name="requiredAuthorities">F_ASHA_FACILITATOR</param>
+	</action>	 
+	 
+	 
+	 
+	<!-- ASHA PerFormance List --> 
+	<action name="getASHAPerFormanceList" class="org.hisp.dhis.asha.facilitator.GetASHAPerformanceListAction">
+		<result name="success" type="velocity">/content.vm</result>
+		<param name="page">/dhis-web-asha/ashaPerformanceList.vm</param>
+	</action>	 
+	 
+	 
+
+	<!-- Get Facilitator ASHA List -->
+	<action name="getFacilitatorASHAList" class="org.hisp.dhis.asha.facilitator.GetFacilitatorASHAListAction">
+		<result name="success" type="velocity-xml">/dhis-web-asha/responseFacilitatorASHAList.vm</result>
+		<param name="onExceptionReturn">plainTextError</param>
+	</action>
+
+	<!--  Facilitator Format 1 Report -->
+	<action name="facilitatorFormat1Report"
+		class="org.hisp.dhis.asha.facilitator.GetASHAFacilitatorFormat1ReportResultAction">
+		<result name="success" type="stream">
+			<param name="contentType">application/vnd.ms-excel</param>
+			<param name="inputName">inputStream</param>
+			<param name="contentDisposition">filename="${fileName}"</param>
+			<param name="bufferSize">1024</param>
+		</result>
+	</action>
+
+
+
+
+	<!-- Village -->
+	
+	<!-- Display List of Village/Location -->
+	<action name="getLocationList" class="org.hisp.dhis.asha.location.GetLocationListAction">
+	  <result name="success" type="velocity">/main.vm</result>		 
+	  <param name="page">/dhis-web-asha/locationList.vm</param>
+	  <param name="menu">/dhis-web-asha/menu.vm</param>
+	  <param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/location.js</param>
+	   <param name="requiredAuthorities">F_ASHA_LOCATION_LIST</param> 
+	</action>		
+
+
+	<!-- Add Location/village Form --> 
+	<action name="showAddLocationForm" class="org.hisp.dhis.asha.location.ShowAddLocationFormAction">
+	  <result name="success" type="velocity">/main.vm</result>
+	  <param name="page">/dhis-web-asha/addLocationForm.vm</param>
+	   <param name="menu">/dhis-web-asha/menu.vm</param>
+	  <param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/location.js</param>
+	  <param name="requiredAuthorities">F_ASHA_LOCATION_ADD</param>	 	
+	</action>
+
+	<!-- Location Validation during Addition or Updation of Location -->
+       <action name="validateLocation" class="org.hisp.dhis.asha.location.ValidateLocationAction">
+           <result name="success" type="velocity-xml">/dhis-web-asha/responselocationSuccess.vm</result>
+           <result name="input" type="velocity-xml">/dhis-web-asha/responselocationInput.vm</result>
+		<param name="onExceptionReturn">plainTextError</param>
+       </action>
+
+	<!-- Add Location -->
+	<action name="addLocation" class="org.hisp.dhis.asha.location.AddLocationAction">
+	  <result name="success" type="redirect">getLocationList.action</result>
+	  <param name="requiredAuthorities">F_ASHA_LOCATION_ADD</param>	
+	</action>
+
+
+
+	<!-- Update Location/Village Form -->
+	<action name="showUpdateLocationForm" class="org.hisp.dhis.asha.location.ShowLocationUpdateFormAction">
+	  <result name="success" type="velocity">/main.vm</result>
+	  <param name="page">/dhis-web-asha/updateLocationForm.vm</param>
+	  <param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/location.js</param>
+	  <param name="menu">/dhis-web-asha/menu.vm</param>
+	  <param name="requiredAuthorities">F_ASHA_LOCATION_UPDATE</param>	 	
+	</action>		
+			
+	
+	<!-- Update Location -->
+	<action name="updateLocation" class="org.hisp.dhis.asha.location.UpdateLocationAction">
+	  <result name="success" type="redirect">getLocationList.action</result>
+	  <param name="requiredAuthorities">F_ASHA_LOCATION_UPDATE</param>	
+	</action>		
+
+
+	
+	<!-- Get Location/Village Details -->		
+	<action name="getLocationDetails"
+		class="org.hisp.dhis.asha.location.GetLocationDetailsAction">
+		<result name="success" type="velocity">/content.vm</result>
+		<param name="page">/dhis-web-asha/locationDetails.vm</param>
+	</action>		
+	
+	<!-- Remove Location/Village -->
+	<action name="removeLocation"
+		class="org.hisp.dhis.asha.location.RemoveLocationAction">
+		<result name="success" type="velocity-json">/dhis-web-commons/ajax/jsonResponseSuccess.vm</result>
+		<result name="error" type="velocity-json">/dhis-web-commons/ajax/jsonResponseError.vm</result>
+		<param name="onExceptionReturn">plainTextError</param>
+		<param name="requiredAuthorities">F_ASHA_LOCATION_DELETE</param>
+	</action>		
+
+
+
+ 	
+<!-- Report -->
+	 
+	<!-- ASHA Master Chart Report -->
+    <action name="getASHAMasterChartReport" class="org.hisp.dhis.asha.reports.GetASHAMasterChartReportFormAction">
+      <result name="success" type="velocity">/main.vm</result>
+      <!--<result name="success" type="velocity">/content.vm</result>-->
+      <param name="page">/dhis-web-asha/ashaMasterChartReportForm.vm</param>
+      <param name="menu">/dhis-web-asha/menu.vm</param>
+      <param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/reports.js</param>
+    </action>	 	 
+
+	<action name="ashaMasterChartReport" class="org.hisp.dhis.asha.reports.ASHAMasterChartReportAction">
+		<result name="success" type="stream">
+			<param name="contentType">application/vnd.ms-excel</param>
+            <param name="inputName">inputStream</param>
+            <param name="contentDisposition">filename="${fileName}"</param>
+            <param name="bufferSize">1024</param>
+		</result>
+	</action>
+
+    <!-- OUTCOME MONITORING FOR ASHA  Report -->
+    <action name="getASHAOutcomeMonitoringReport" class="org.hisp.dhis.asha.reports.GetASHAMasterChartReportFormAction">
+      <result name="success" type="velocity">/main.vm</result>
+      <!--<result name="success" type="velocity">/content.vm</result>-->
+      <param name="page">/dhis-web-asha/ashaOutcomeMonitoringReportForm.vm</param>
+      <param name="menu">/dhis-web-asha/menu.vm</param>
+      <param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/reports.js</param>
+	  <param name="requiredAuthorities">F_ASHA_REPORT_OUTCOME_MONITORING</param>
+    </action>     
+    <action name="ashaOutcomeMonitoringReport" class="org.hisp.dhis.asha.reports.ASHAOutcomeMonitoringReportAction">
+        <result name="success" type="stream">
+            <param name="contentType">application/vnd.ms-excel</param>
+            <param name="inputName">inputStream</param>
+            <param name="contentDisposition">filename="${fileName}"</param>
+            <param name="bufferSize">1024</param>
+        </result>
+    </action>
+
+
+	 
+	<!-- ASHA Payment Status Report Form-->
+    <action name="getASHAPaymentStatusReportForm" class="org.hisp.dhis.asha.payment.GetASHAPaymentStatusReportFormAction">
+      <result name="success" type="velocity">/main.vm</result>
+      <!--<result name="success" type="velocity">/content.vm</result>-->
+      <param name="page">/dhis-web-asha/ashaPaymentStatusReportForm.vm</param>
+      <param name="menu">/dhis-web-asha/menu.vm</param>
+      <param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/paymentStatusReports.js</param>
+    </action>	 
+	 	 
+
+	<!-- ASHA Payment Status Report List -->
+	<action name="generateASHApaymentStatusReport"
+		class="org.hisp.dhis.asha.payment.GetASHAPaymentStatusReportResultAction">
+		<result name="success" type="stream">
+			<param name="contentType">application/vnd.ms-excel</param>
+			<param name="inputName">inputStream</param>
+			<param name="contentDisposition">filename="${fileName}"</param>
+			<param name="bufferSize">1024</param>
+		</result>
+	</action>
+
+
+
+
+</package>
+</struts>

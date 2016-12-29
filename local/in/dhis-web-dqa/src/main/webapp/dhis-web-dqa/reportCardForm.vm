@@ -1,0 +1,208 @@
+<script type="text/javascript">
+    
+    /*
+    jQuery(document).ready(function() {        
+                
+       
+        #if( $render == true )
+        var reportCard = {
+            
+            periodType: "Yearly",
+            period: "${pe}",
+            offset: ${offset}
+        };
+        setReportCard( reportCard );      
+        #else
+        selectionTreeSelection.setMultipleSelectionAllowed( false );
+        selectionTree.clearSelectedOrganisationUnits();
+        selectionTree.buildSelectionTree();
+        #end
+        
+    });
+
+    var i18n_select_data_set = '$encoder.jsEscape( $i18n.getString( "select_data_set" ), "'")';
+    var i18n_select_period = '$encoder.jsEscape( $i18n.getString( "select_period" ), "'")';
+    var i18n_select_organisation_unit = '$encoder.jsEscape( $i18n.getString( "select_organisation_unit" ), "'")';
+    var i18n_generating_report = '$encoder.jsEscape( $i18n.getString( "generating_report" ), "'")';    
+    var i18n_share_your_interpretation = '$encoder.jsEscape( $i18n.getString( "share_your_interpretation" ), "'")';
+    var i18n_interpretation_was_shared = '$encoder.jsEscape( $i18n.getString( "interpretation_was_shared" ), "'")';
+    
+    */
+</script>
+
+<script type="text/javascript">
+    function formValidations()
+    {                       
+        var orgUnitLevel1 = document.getElementById("orgUnitLevel1");
+        var orgUnitLevel1Index = orgUnitLevel1.selectedIndex;
+        
+        
+        var orgUnitLevel2 = document.getElementById("orgUnitLevel2");
+        var orgUnitLevel2Index = orgUnitLevel2.selectedIndex;
+        
+        var level1Value = orgUnitLevel1.options[orgUnitLevel1Index].value;
+        var level2Value = orgUnitLevel2.options[orgUnitLevel2Index].value;
+        
+        
+        
+        var periodList = document.getElementById("yearlyPeriodId");
+        var periodIndex = periodList.selectedIndex;
+        
+        
+        var outputTypeList = document.getElementById("outputType");
+        var outputTypeIndex = outputTypeList.selectedIndex;
+        
+        if( orgUnitLevel1.options[orgUnitLevel1Index].text == null || orgUnitLevel1.options[orgUnitLevel1Index].text== "" )
+        { 
+        	alert("Please Select First Level");
+        	return false;
+        }
+        else if( orgUnitLevel2.options[orgUnitLevel2Index].value == -1 )
+        { 
+        	alert("Please Select Second Level");
+         	return false;
+       	}
+        
+        else if( level2Value <= level1Value )
+        { 
+        	alert("Please Select Correct Level for Analysis");
+         	return false;
+       	}        
+        
+        else if( periodList.options[periodIndex].text== null  || periodList.options[periodIndex].text== "" )
+        { 
+        	alert("Please Select Period");
+         	return false;
+       	}
+                
+        else if( outputTypeList.options[outputTypeIndex].text== null  || outputTypeList.options[outputTypeIndex].text== "" )
+        { 
+        	alert("Please Select Output Type");
+         	return false;
+       	}
+                 
+        //return true;
+    }
+</script>
+
+<style type="text/css" media="print">
+div#control {
+  display: none;
+}
+
+h3#dataset_report_header {
+  display: none;
+}
+
+#download_buttons {
+  display: none;
+}
+
+#shareForm {
+  display: none;
+}  
+
+.gridTable {
+    width: 100%;
+}
+</style>
+
+<style type="text/css">
+div#control {
+  margin-bottom: 15px;
+}
+
+div.inputSection {
+  padding-top: 7px;
+  padding-bottom: 5px;
+}
+</style>
+
+<h3 id="dataset_report_header">$i18n.getString( "report_card_form" ) #openHelp( "report_card_form" )</h3>
+
+<form id="reportCardForm" name="reportCardForm" action="generateReportCardOutput.action" method="post" onsubmit="return formValidations()" target="_blank">          
+<div id="criteria" class="inputCriteria" style="width:360px;height:360px;">
+	<div class="inputSection" style="display:none">
+		<label>$i18n.getString( "national_level" )</label><br>
+		<select id="orgUnitLevel1" name="orgUnitLevel1" style="width:250px">
+			<!--<option value="">[ $i18n.getString( "select" ) ]</option>-->
+			#foreach ( $level in $levels )
+			<option value="$level.level">$!level.displayName</option>
+			#end  
+		</select>
+	</div>
+	
+	<div class="inputSection">
+		<label>$i18n.getString( "at_what_administrative_unit_level_are_you_conducting_your_analysis" )</label><br>
+		<select id="orgUnitLevel2" name="orgUnitLevel2" style="width:250px">
+			<option value="-1">[ $i18n.getString( "select" ) ]</option>
+			#foreach ( $level in $levels )
+			<option value="$level.level">$!level.displayName</option>
+			#end
+		</select>
+	</div>
+	
+	<div class="inputSection">
+		<label>$i18n.getString( "report_period" )</label><br>
+		<select id="yearlyPeriodId" name="yearlyPeriodId" style="width:250px">
+		#foreach ( $period in $periodNameList )
+			<option value="$period">$period</option>
+			#end  
+		</select>
+		
+	</div>	
+
+	<div class="inputSection">
+		<label>$i18n.getString( "output_type" )</label><br>
+		<select id="outputType" name="outputType" style="width:250px">
+			<option value="pdf">$i18n.getString( "pdf" )</option>
+			<option value="html" >$i18n.getString( "html" )</option>
+			<option value="excel">$i18n.getString( "xls" )</option>
+		    <option value="word">$i18n.getString( "word" )</option>
+		</select>
+	</div>
+
+	<div class="inputSection">
+		<label>$i18n.getString( "generated_report_type" )</label><br>
+		<select id="report_type" name="report_type" style="width:250px">
+			<option value="generateFromSaved" >$i18n.getString( "saved_generate" )</option>
+			<option value="saveAndGenerate">$i18n.getString( "save_and_generate" )</option>
+		</select>
+	</div>
+<!--
+	<div class="inputSection">
+		<label>$i18n.getString( "chartReportOption" )</label><br>
+		<select id="chartReportOption" name="chartReportOption" style="width:250px">
+			<option value="report" >$i18n.getString( "Report" )</option>
+			<option value="chart">$i18n.getString( "Charts" )</option>
+		</select>
+	</div>
+-->
+	
+	<br />
+	<br />
+	<!--
+	<div class="inputSection">
+		<label>$i18n.getString( "report_period" )</label><br>
+		<select id="periodId" name="periodId" style="width:174px" disabled="disabled">
+		</select>
+		<input type="button" style="width:75px" value="$i18n.getString( 'prev_year' )" onclick="displayPreviousPeriods()" />
+		<input type="button" style="width:75px" value="$i18n.getString( 'next_year' )" onclick="displayNextPeriods()" />
+	</div>
+	
+	
+	
+	<div class="inputSection">
+		<label>$i18n.getString( "report_organisation_unit" )</label><br>
+		<div id="selectionTree" style="width:328px;height:200px;overflow:auto;border:1px solid #cccccc"></div>
+	</div>
+	-->
+	<div class="inputSection">
+		<input type="submit" value='$i18n.getString( "get_report" )' style="width:250px" >
+		<!--<input type="button" value='$i18n.getString( "cancel" )' style="width:120px" onclick="hideCriteria()">-->
+	</div>
+</div>
+</form>
+#parse( "dhis-web-commons/loader/loader.vm" )
+
+<div id="content"></div>

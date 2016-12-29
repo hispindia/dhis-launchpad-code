@@ -1,0 +1,1342 @@
+<style>
+   
+	input[type="text"] 
+	{
+		width: 90%;
+	}
+	
+</style>
+
+<table style="background-color:#EFFBEF;" width="100%" table-layout:fixed">
+	
+	<!-- Organization Unit Details -->
+	<tr>
+		<td width="13%">Organization Name:</td>
+		<td width="12%"><input type="text" id="deps324" name="deps324" value="$!patient.getOrganisationUnit().getName()" readonly /></td>
+		<td width="13%">Region</td>
+		<td width="12%"><input type="text" id="region" name="region" value = "$!patient.getOrganisationUnit().getParent().getParent().getParent().getName()" readonly /></td>
+		<td width="13%">County</td>
+		<td width="12%"><input type="text" id="county" name="county" value = "$!patient.getOrganisationUnit().getParent().getParent().getParent().getName()" readonly /></td>
+		<td width="13%">Sub County</td>
+		<td width="12%"><input type="text" id="subCounty" name="subCounty" value = "$!patient.getOrganisationUnit().getParent().getParent().getName()" readonly /></td>
+	</tr>
+
+	<!-- OVC Details -->
+	<tr>
+		<td width="13%">Child First Name:</td>
+		<td width="12%"><input type="text" id="deps328" name="deps328" value="$!patient.getFirstName()" readonly /></td>
+		<td width="13%">Middle Name:</td>
+		<td width="12%"><input type="text" id="deps329" name="deps329" value="$!patient.getMiddleName()" readonly /></td>
+		<td width="13%">Surname:</td>
+		<td width="12%"><input type="text" id="deps330" name="deps330" value="$!patient.getLastName()" readonly/></td>
+		<td width="13%">&nbsp;</td>
+		<td width="12%">&nbsp;</td>
+	</tr>	
+	
+	<!--  Guardian/Parent Details -->
+	<tr>
+		<td width="13%">Guardian/Parent First Name:</td>
+		<td width="12%"><input type="text" id="guardianFirstName" name="guardianFirstName" value = "$!patientAttributeValueMap.get( 87 )" readonly /></td>
+		<td width="13%">Middle Name:</td>
+		<td width="12%"><input type="text" id="guardianMiddleName" name="guardianMiddleName" value = "$!patientAttributeValueMap.get( 298 )" readonly /></td>
+		<td width="13%">Surname:</td>
+		<td width="12%"><input type="text" id="guardianSurName" name="guardianSurName" value = "$!patientAttributeValueMap.get( 299 )" readonly/></td>
+		<td width="13%">&nbsp;</td>
+		<td width="12%">&nbsp;</td>
+	</tr>	
+	
+	<!--  CHV Details -->
+	<tr>
+		<td width="13%">CHV First Name:</td>
+		<td width="12%"><input type="text" id="chvFirstName" name="guardianFirstName" value="$!employee.firstName" readonly /></td>
+		<td width="13%">Middle Name:</td>
+		<td width="12%"><input type="text" id="chvName" name="guardianMiddleName" value="$!employee.lastName" readonly /></td>
+		<td width="13%">Surname:</td>
+		<td width="12%"><input type="text" id="chvSurName" name="guardianSurName" value="$!employee.surname" readonly /></td>
+		<td width="13%">&nbsp;</td>
+		<td width="12%">&nbsp;<!--<input type="text" id="" name="" value="$period.name" readonly />--></td>
+	</tr>		
+	
+</table>
+
+<!-- HEALTH AND NUTRITION -->
+<table style="background-color:#ECE0F8;" width="100%">
+	
+	<tr>
+		<td width="25%">CORE SERVICES</td>
+		<td width="50%" >STATUS OF CHILD AND SERVICES PROVIDED DIRECTLY BY PROJECT /CBO OR THROUGH  ADVOCACY/LINKAGES/ AND COMPLETE REFERALS</td>
+		<td width="25%" style="text-align:center" >Period <br />$period.name</td>
+	</tr>	
+
+	
+	<tr>
+		<th colspan="3">HEALTH AND NUTRITION</th>
+	</tr>
+	
+<!-- ASSESSMENT OF HEALTH AND NUTRITIONAL STATUS -->
+
+	<!-- 1 Child's general health checked for common childhood illnesses -->
+	<tr>
+		<td rowspan="5" width="25%">ASSESSMENT OF HEALTH AND NUTRITIONAL STATUS</td>
+		<td width="50%">Child's general health checked for common childhood illnesses</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $optionVal = "" )
+			#set( $dataElement = $dataElementMap.get( 1706 ) )
+			<select id="deps1706" name="deps1706" disabled="disabled" >
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 1706 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+        	</select>      
+		</td>
+	</tr>	
+	
+	<!-- 2 Mosquito net available and in use -->
+	<tr>
+		
+		<td width="50%">Mosquito net available and in use</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $optionVal = "" )
+			#set( $dataElement = $dataElementMap.get( 1707 ) )
+			<select id="deps1707" name="deps1707" disabled="disabled">
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 1707 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+        	</select>      
+		</td>
+	</tr>	
+	
+
+	<!-- 3 Child is fully immunized/ immunization card is up to date (check immunization card for under 5 yrs only) -->
+	<tr>
+		
+		<td width="50%">Child is fully immunized/ immunization card is up to date (check immunization card for under 5 yrs only)</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $optionVal = "" )
+			#set( $dataElement = $dataElementMap.get( 1708 ) )
+			<select id="deps1708" name="deps1708" disabled="disabled">
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 1708 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+        	</select>      
+		</td>
+	</tr>	
+	
+	<!-- 4 Child has been tested for HIV and status known by child, caregiver -->
+	<tr>
+		<td width="50%">Child has been tested for HIV and status known by child, caregiver</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $optionVal = "" )
+			#set( $dataElement = $dataElementMap.get( 1709 ) )
+			<select id="deps1709" name="deps1709" disabled="disabled">
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 1709 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+        	</select>      
+		</td>
+	</tr>	
+	
+	
+	<!-- 5 Child growth is monitored (check immunization card for under 5 yrs only) -->
+	<tr>
+		<td width="50%">Child growth is monitored (check immunization card for under 5 yrs only)</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $optionVal = "" )
+			#set( $dataElement = $dataElementMap.get( 1710 ) )
+			<select id="deps1710" name="deps1710" disabled="disabled">
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 1710 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+        	</select>      
+		</td>
+	</tr>	
+	
+	<tr><td colspan="3"><hr style="color:black" /></td></tr>
+	<!--
+	<tr>
+		<td width="25%">&nbsp;</td>
+		<td width="50%">&nbsp;</td>
+		<td width="25%">&nbsp;</td>
+	</tr>	
+	-->
+<!-- SERVICES RECEIVED -->
+
+	<!-- 1 Child treated for illness -->
+	<tr>
+		<td rowspan="7" width="25%">SERVICES RECEIVED</td>
+		<td width="50%">Child treated for illness</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $patientDataValue = "" )
+			#set( $dataElement = $dataElementMap.get( 1711 ) )
+			#set( $patientDataValue = $patientDataValueMap.get( 1711 ))
+            <select id="deps1711" name="deps1711" disabled="disabled">
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $patientDataValue =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $patientDataValue =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>    
+		</td>
+	</tr>	
+		
+	<!-- 2 Mosquito net provided -->
+	<tr>
+		<td width="50%">Mosquito net provided</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $patientDataValue = "" )
+			#set( $dataElement = $dataElementMap.get( 1712 ) )
+			#set( $patientDataValue = $patientDataValueMap.get( 1712 ))
+            <select id="deps1712" name="deps1712" disabled="disabled">
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $patientDataValue =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $patientDataValue =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>    
+		</td>
+	</tr>	
+	
+	<!-- 3 Child tested for HIV -->
+	<tr>
+		<td width="50%">Child tested for HIV</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $patientDataValue = "" )
+			#set( $dataElement = $dataElementMap.get( 1713 ) )
+			#set( $patientDataValue = $patientDataValueMap.get( 1713 ))
+            <select id="deps1713" name="deps1713" disabled="disabled" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $patientDataValue =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $patientDataValue =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>    
+		</td>
+	</tr>	
+	
+	<!-- 4 Child linked to care and treatment -->
+	<tr>
+		<td width="50%">Child linked to care and treatment</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $patientDataValue = "" )
+			#set( $dataElement = $dataElementMap.get( 1714 ) )
+			#set( $patientDataValue = $patientDataValueMap.get( 1714 ))
+            <select id="deps1714" name="deps1714" disabled="disabled">
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $patientDataValue =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $patientDataValue =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>    
+		</td>
+	</tr>	
+	
+	<!-- 5 Child provided with health and nutrition education -->
+	<tr>
+		<td width="50%">Child provided with health and nutrition education</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $patientDataValue = "" )
+			#set( $dataElement = $dataElementMap.get( 1715 ) )
+			#set( $patientDataValue = $patientDataValueMap.get( 1715 ))
+            <select id="deps1715" name="deps1715" disabled="disabled">
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $patientDataValue =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $patientDataValue =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>    
+		</td>
+	</tr>	
+	
+	<!-- 6 Child provided with supplementary feeding -->
+	<tr>
+		<td width="50%">Child provided with supplementary feeding</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $patientDataValue = "" )
+			#set( $dataElement = $dataElementMap.get( 1716 ) )
+			#set( $patientDataValue = $patientDataValueMap.get( 1716 ))
+            <select id="deps1716" name="deps1716" disabled="disabled" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $patientDataValue =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $patientDataValue =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>    
+		</td>
+	</tr>	
+	
+	<!-- 7 Child received vitamin A -->
+	<tr>
+		<td width="50%">Child received vitamin A</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $patientDataValue = "" )
+			#set( $dataElement = $dataElementMap.get( 1717 ) )
+			#set( $patientDataValue = $patientDataValueMap.get( 1717 ))
+            <select id="deps1717" name="deps1717" disabled="disabled" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $patientDataValue =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $patientDataValue =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>    
+		</td>
+	</tr>	
+	
+</table	
+
+
+
+<!-- SHELTER AND CARE -->
+<table style="background-color:#EFFBEF;" width="100%">
+
+	<tr>
+		<th colspan="3">SHELTER AND CARE</th>
+	</tr>	
+	
+	
+<!-- ASSESSMENT OF SHELTER AND CARE CONDITIONS -->
+
+	<!-- 1 Child is cared for by an adult caregiver -->
+	<tr>
+		<td rowspan="5" width="25%">ASSESSMENT OF SHELTER AND CARE CONDITIONS</td>
+		<td width="50%">Child is cared for by an adult caregiver</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $optionVal = "" )
+			#set( $dataElement = $dataElementMap.get( 1718 ) )
+			<select id="deps1718" name="deps1718" disabled="disabled" >
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 1718 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+        	</select>      
+		</td>
+	</tr>	
+	
+	<!-- 2 Child sleeps in a dry safe place -->
+	<tr>
+		
+		<td width="50%">Child sleeps in a dry safe place</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $optionVal = "" )
+			#set( $dataElement = $dataElementMap.get( 1719 ) )
+			<select id="deps1719" name="deps1719" disabled="disabled" >
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 1719 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+        	</select>      
+		</td>
+	</tr>	
+	
+
+	<!-- 3 Child has a blanket-->
+	<tr>
+		
+		<td width="50%">Child has a blanket</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $optionVal = "" )
+			#set( $dataElement = $dataElementMap.get( 1720 ) )
+			<select id="deps1720" name="deps1720" disabled="disabled" >
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 1720 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+        	</select>      
+		</td>
+	</tr>	
+	
+	<!-- 4 Child has a mattress -->
+	<tr>
+		<td width="50%">Child has a mattress</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $optionVal = "" )
+			#set( $dataElement = $dataElementMap.get( 1721 ) )
+			<select id="deps1721" name="deps1721" disabled="disabled" >
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 1721 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+        	</select>      
+		</td>
+	</tr>	
+	
+	
+	<!-- 5 Child has home clothes -->
+	<tr>
+		<td width="50%">Child has home clothes</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $optionVal = "" )
+			#set( $dataElement = $dataElementMap.get( 1722 ) )
+			<select id="deps1722" name="deps1722" disabled="disabled" >
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 1722 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+        	</select>      
+		</td>
+	</tr>	
+	
+	<tr><td colspan="3"><hr style="color:black" /></td></tr>	
+	
+	
+<!-- SERVICES RECEIVED -->
+
+	<!-- 1 Child received mattress -->
+	<tr>
+		<td rowspan="7" width="25%">SERVICES RECEIVED</td>
+		<td width="50%">Child received mattress</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $patientDataValue = "" )
+			#set( $dataElement = $dataElementMap.get( 662 ) )
+			#set( $patientDataValue = $patientDataValueMap.get( 662 ))
+            <select id="deps662" name="deps662" disabled="disabled" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $patientDataValue =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $patientDataValue =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>    
+		</td>
+	</tr>	
+		
+	<!-- 2 Child received blanket -->
+	<tr>
+		<td width="50%">Child received blanket</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $patientDataValue = "" )
+			#set( $dataElement = $dataElementMap.get( 1723 ) )
+			#set( $patientDataValue = $patientDataValueMap.get( 1723 ))
+            <select id="deps1723" name="deps1723" disabled="disabled">
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $patientDataValue =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $patientDataValue =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>    
+		</td>
+	</tr>	
+	
+	<!-- 3 Household repaired -->
+	<tr>
+		<td width="50%">Household repaired</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $patientDataValue = "" )
+			#set( $dataElement = $dataElementMap.get( 1724 ) )
+			#set( $patientDataValue = $patientDataValueMap.get( 1724 ))
+            <select id="deps1724" name="deps1724" disabled="disabled">
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $patientDataValue =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $patientDataValue =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>    
+		</td>
+	</tr>	
+	
+</table>
+
+<!-- PROTECTION -->
+<table style="background-color:#ECE0F8;" width="100%">
+	
+	<tr>
+		<th colspan="3">PROTECTION</th>
+	</tr>
+
+	
+<!-- ASSESSMENT OF PROTECTIVE SERVICES -->
+
+	<!-- 1 Child has signs of abuse (physical marks, sexual abuse, withdrwal, nervousness) -->
+	<tr>
+		<td rowspan="3" width="25%">ASSESSMENT OF PROTECTIVE SERVICES</td>
+		<td width="50%">Child has signs of abuse (physical marks, sexual abuse, withdrwal, nervousness)</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $optionVal = "" )
+			#set( $dataElement = $dataElementMap.get( 1725 ) )
+			<select id="deps1725" name="deps1725" disabled="disabled">
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 1725 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+        	</select>      
+		</td>
+	</tr>	
+	
+	<!-- 2 Child is aware of rights, responsibilities -->
+	<tr>
+		
+		<td width="50%">Child is aware of rights, responsibilities</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $optionVal = "" )
+			#set( $dataElement = $dataElementMap.get( 1769 ) )
+			<select id="deps1769" name="deps1769" disabled="disabled">
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 1769 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+        	</select>      
+		</td>
+	</tr>	
+	
+
+	<!-- 3 Child is aware of where to get appropriate help -->
+	<tr>
+		
+		<td width="50%">Child is aware of where to get appropriate help</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $optionVal = "" )
+			#set( $dataElement = $dataElementMap.get( 1726 ) )
+			<select id="deps1726" name="deps1726" disabled="disabled" >
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 1726 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+        	</select>      
+		</td>
+	</tr>
+	
+<tr><td colspan="3"><hr style="color:black" /></td></tr>
+
+
+<!-- SERVICES RECEIVED -->
+
+	<!-- 1 Child provided with birth certificate -->
+	<tr>
+		<td rowspan="4" width="25%">SERVICES RECEIVED</td>
+		<td width="50%">Child provided with birth certificate</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $patientDataValue = "" )
+			#set( $dataElement = $dataElementMap.get( 1770 ) )
+			#set( $patientDataValue = $patientDataValueMap.get( 1770 ))
+            <select id="deps1770" name="deps1770" disabled="disabled" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $patientDataValue =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $patientDataValue =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>    
+		</td>
+	</tr>	
+		
+	<!-- 2 Child rescued from an abusive environment and placed in safe environment -->
+	<tr>
+		<td width="50%">Child rescued from an abusive environment and placed in safe environment</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $patientDataValue = "" )
+			#set( $dataElement = $dataElementMap.get( 1728 ) )
+			#set( $patientDataValue = $patientDataValueMap.get( 1728 ))
+            <select id="deps1728" name="deps1728" disabled="disabled" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $patientDataValue =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $patientDataValue =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>
+		</td>
+	</tr>	
+	
+	<!-- 3 Child has been re-united or placed under foster care -->
+	<tr>
+		<td width="50%">Child has been re-united or placed under foster care</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $patientDataValue = "" )
+			#set( $dataElement = $dataElementMap.get( 1729 ) )
+			#set( $patientDataValue = $patientDataValueMap.get( 1729 ))
+            <select id="deps1729" name="deps1729" disabled="disabled" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $patientDataValue =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $patientDataValue =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>    
+		</td>
+	</tr>	
+	
+	<!-- 4 Child provided with age appropriate information on rights and responsibilites -->
+	<tr>
+		<td width="50%">Child provided with age appropriate information on rights and responsibilites</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $patientDataValue = "" )
+			#set( $dataElement = $dataElementMap.get( 1730 ) )
+			#set( $patientDataValue = $patientDataValueMap.get( 1730 ))
+            <select id="deps1730" name="deps1730" disabled="disabled" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $patientDataValue =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $patientDataValue =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>    
+		</td>
+	</tr>	
+
+</table>
+
+<!-- PSYCHOSOCIAL SUPPORT -->
+<table style="background-color:#EFFBEF;" width="100%">
+
+	<tr>
+		<th colspan="3">PSYCHOSOCIAL SUPPORT</th>
+	</tr>	
+	
+	
+<!-- ASSESSMENT OF EMOTIONAL WELLBEING -->
+
+	<!-- 1 Child interacts freely with others -->
+	<tr>
+		<td rowspan="2" width="25%">ASSESSMENT OF EMOTIONAL WELLBEING</td>
+		<td width="50%">Child interacts freely with others</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $optionVal = "" )
+			#set( $dataElement = $dataElementMap.get( 1731 ) )
+			<select id="deps1731" name="deps1731" disabled="disabled" >
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 1731 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+        	</select>      
+		</td>
+	</tr>	
+	
+	<!-- 2 Child is sad or withdrawn -->
+	<tr>
+		
+		<td width="50%">Child is sad or withdrawn</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $optionVal = "" )
+			#set( $dataElement = $dataElementMap.get( 1732 ) )
+			<select id="deps1732" name="deps1732" disabled="disabled" >
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 1732 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+        	</select>      
+		</td>
+	</tr>	
+	
+<tr><td colspan="3"><hr style="color:black" /></td></tr>
+
+<!-- SERVICES RECEIVED -->
+
+	<!-- 1 Child involved in childrens club in community, school -->
+	<tr>
+		<td rowspan="6" width="25%">SERVICES RECEIVED</td>
+		<td width="50%">Child involved in childrens club in community, school</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $patientDataValue = "" )
+			#set( $dataElement = $dataElementMap.get( 1733 ) )
+			#set( $patientDataValue = $patientDataValueMap.get( 1733 ))
+            <select id="deps1733" name="deps1733" disabled="disabled" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $patientDataValue =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $patientDataValue =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>    
+		</td>
+	</tr>	
+		
+	<!-- 2 Child participates in mentorship program or has an older person to talk to in case of an issue -->
+	<tr>
+		<td width="50%">Child participates in mentorship program or has an older person to talk to in case of an issue</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $patientDataValue = "" )
+			#set( $dataElement = $dataElementMap.get( 1734 ) )
+			#set( $patientDataValue = $patientDataValueMap.get( 1734 ))
+            <select id="deps1734" name="deps1734" disabled="disabled" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $patientDataValue =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $patientDataValue =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>
+		</td>
+	</tr>	
+	
+	<!-- 3 Child is actively involved in support group/club/kids/peer club -->
+	<tr>
+		<td width="50%">Child is actively involved in support group/club/kids/peer club</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $patientDataValue = "" )
+			#set( $dataElement = $dataElementMap.get( 1735 ) )
+			#set( $patientDataValue = $patientDataValueMap.get( 1735 ))
+            <select id="deps1735" name="deps1735" disabled="disabled" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $patientDataValue =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $patientDataValue =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>    
+		</td>
+	</tr>	
+	
+	<!-- 4 Child provided with general counseling to address their needs -->
+	<tr>
+		<td width="50%">Child provided with general counseling to address their needs</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $patientDataValue = "" )
+			#set( $dataElement = $dataElementMap.get( 1736 ) )
+			#set( $patientDataValue = $patientDataValueMap.get( 1736 ))
+            <select id="deps1736" name="deps1736" disabled="disabled" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $patientDataValue =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $patientDataValue =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>    
+		</td>
+	</tr>	
+
+
+	<!-- 5 Child provided with adherence counseling  -->
+	<tr>
+		<td width="50%">Child provided with adherence counseling</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $patientDataValue = "" )
+			#set( $dataElement = $dataElementMap.get( 1737 ) )
+			#set( $patientDataValue = $patientDataValueMap.get( 1737 ))
+            <select id="deps1737" name="deps1737" disabled="disabled" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $patientDataValue =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $patientDataValue =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>    
+		</td>
+	</tr>
+
+	<!-- 5 Child provided with professional counseling  -->
+	<tr>
+		<td width="50%">Child provided with professional counseling</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $patientDataValue = "" )
+			#set( $dataElement = $dataElementMap.get( 1738 ) )
+			#set( $patientDataValue = $patientDataValueMap.get( 1738 ))
+            <select id="deps1738" name="deps1738" disabled="disabled" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $patientDataValue =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $patientDataValue =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>    
+		</td>
+	</tr>
+
+</table>
+
+
+
+
+
+
+
+<!-- EDUCATION -->
+<table style="background-color:#ECE0F8;" width="100%">
+	
+	<tr>
+		<th colspan="3">EDUCATION</th>
+	</tr>
+
+	
+<!-- ASSESSMENT OF SCHOOL ATTENDANCE & ENROLLMENT -->
+
+	<!-- 1 Child enrolled in school -->
+	<tr>
+		<td rowspan="4" width="25%">ASSESSMENT OF SCHOOL ATTENDANCE & ENROLLMENT</td>
+		<td width="50%">Child enrolled in school</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $patientDataValue = "" )
+			#set( $dataElement = $dataElementMap.get( 1739 ) )
+			#set( $patientDataValue = $patientDataValueMap.get( 1739 ))
+            <select id="deps1739" name="deps1739" disabled="disabled" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $patientDataValue =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $patientDataValue =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>    
+		</td>
+	</tr>	
+	
+	<!-- 2 Child school attendance is regular -->
+	<tr>
+		
+		<td width="50%">Child school attendance is regular</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $patientDataValue = "" )
+			#set( $dataElement = $dataElementMap.get( 1740 ) )
+			#set( $patientDataValue = $patientDataValueMap.get( 1740 ))
+            <select id="deps1740" name="deps1740" disabled="disabled" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $patientDataValue =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $patientDataValue =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>
+		</td>
+	</tr>	
+	
+	<!-- 3 Child school attendance is iregular  -->
+	<tr>
+		
+		<td width="50%">Child school attendance is iregular</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $patientDataValue = "" )
+			#set( $dataElement = $dataElementMap.get( 1741 ) )
+			#set( $patientDataValue = $patientDataValueMap.get( 1741 ))
+            <select id="deps1741" name="deps1741" disabled="disabled" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $patientDataValue =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $patientDataValue =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>
+		</td>
+	</tr>
+	
+	
+	<!-- 4 Child school attendance is highly iregular  - can be addressed by above-too much info  -->
+	<tr>
+		
+		<td width="50%">Child school attendance is highly iregular - can be addressed by above-too much info</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $patientDataValue = "" )
+			#set( $dataElement = $dataElementMap.get( 1742 ) )
+			#set( $patientDataValue = $patientDataValueMap.get( 1742 ))
+            <select id="deps1742" name="deps1742" disabled="disabled" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $patientDataValue =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $patientDataValue =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>
+		</td>
+	</tr>	
+	
+<tr><td colspan="3"><hr style="color:black" /></td></tr>
+
+<!-- ASSESSMENT OF REASONS FOR NOT ATTENDING SCHOOL -->
+
+	<!-- 1 Child is ill -->
+	<tr>
+		<td rowspan="6" width="25%">ASSESSMENT OF REASONS FOR NOT ATTENDING SCHOOL</td>
+		<td width="50%">Child is ill</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $patientDataValue = "" )
+			#set( $dataElement = $dataElementMap.get( 1774 ) )
+			#set( $patientDataValue = $patientDataValueMap.get( 1774 ))
+            <select id="deps1774" name="deps1774" disabled="disabled" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $patientDataValue =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $patientDataValue =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>    
+		</td>
+	</tr>	
+	
+	<!-- 2 The school distance is too far from home -->
+	<tr>
+		
+		<td width="50%">The school distance is too far from home</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $patientDataValue = "" )
+			#set( $dataElement = $dataElementMap.get( 1775 ) )
+			#set( $patientDataValue = $patientDataValueMap.get( 1775 ))
+            <select id="deps1775" name="deps1775" disabled="disabled" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $patientDataValue =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $patientDataValue =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>
+		</td>
+	</tr>	
+	
+	<!-- 3 Child lacks scholastic materials -->
+	<tr>
+		<td width="50%">Child lacks scholastic materials</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $optionVal = "" )
+			#set( $dataElement = $dataElementMap.get( 1743 ) )
+			<select id="deps1743" name="deps1743" disabled="disabled" >
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 1743 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+        	</select>    
+		</td>
+	</tr>	
+
+
+	<!-- 4 Child lacks school fees -->
+	<tr>
+		<td width="50%">Child lacks school fees</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $optionVal = "" )
+			#set( $dataElement = $dataElementMap.get( 1744 ) )
+			<select id="deps1744" name="deps1744" disabled="disabled" >
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 1744 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+        	</select>
+		</td>
+	</tr>	
+
+	<!-- 5 Child taking care of sick household member -->
+	<tr>
+		
+		<td width="50%">Child taking care of sick household member</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $patientDataValue = "" )
+			#set( $dataElement = $dataElementMap.get( 1745 ) )
+			#set( $patientDataValue = $patientDataValueMap.get( 1745 ))
+            <select id="deps1745" name="deps1745" disabled="disabled" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $patientDataValue =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $patientDataValue =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>
+		</td>
+	</tr>
+
+	<!-- 6 Child lacks sanitary pads -->
+	<tr>
+		<td width="50%">Child lacks sanitary pads</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $optionVal = "" )
+			#set( $dataElement = $dataElementMap.get( 1746 ) )
+			<select id="deps1746" name="deps1746" disabled="disabled" >
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 1746 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+        	</select>
+		</td>
+	</tr>
+	
+<tr><td colspan="3"><hr style="color:black" /></td></tr>
+	
+<!-- ASSESSMENT OF TRANSITION, COMPLETION AND VOCATIONAL NEEDS -->
+
+	<!-- 1 Child progressed from one class/form to another -->
+	<tr>
+		<td rowspan="3" width="25%">ASSESSMENT OF TRANSITION, COMPLETION AND VOCATIONAL NEEDS</td>
+		<td width="50%">Child progressed from one class/form to another</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $patientDataValue = "" )
+			#set( $dataElement = $dataElementMap.get( 1747 ) )
+			#set( $patientDataValue = $patientDataValueMap.get( 1747 ))
+            <select id="deps1747" name="deps1747" disabled="disabled">
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $patientDataValue =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $patientDataValue =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>    
+		</td>
+	</tr>	
+	
+	<!-- 2 Child has completed school level at the end of year -->
+	<tr>
+		
+		<td width="50%">Child has completed school level at the end of year</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $patientDataValue = "" )
+			#set( $dataElement = $dataElementMap.get( 1748 ) )
+			#set( $patientDataValue = $patientDataValueMap.get( 1748 ))
+            <select id="deps1748" name="deps1748" disabled="disabled" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $patientDataValue =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $patientDataValue =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>
+		</td>
+	</tr>	
+	
+	<!-- 3 Child needs vocational skills training  -->
+	<tr>
+		
+		<td width="50%">Child needs vocational skills training</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $patientDataValue = "" )
+			#set( $dataElement = $dataElementMap.get( 1749 ) )
+			#set( $patientDataValue = $patientDataValueMap.get( 1749 ))
+            <select id="deps1749" name="deps1749" disabled="disabled">
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $patientDataValue =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $patientDataValue =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>
+		</td>
+	</tr>
+		
+<tr><td colspan="3"><hr style="color:black" /></td></tr>	
+	
+<!-- SERVICES RECEIVED  -->
+
+	<!-- 1 Child enrolled back to school -->
+	<tr>
+		<td rowspan="7" width="25%">SERVICES RECEIVED</td>
+		<td width="50%">Child enrolled back to school</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $patientDataValue = "" )
+			#set( $dataElement = $dataElementMap.get( 1750 ) )
+			#set( $patientDataValue = $patientDataValueMap.get( 1750 ))
+            <select id="deps1750" name="deps1750" disabled="disabled">
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $patientDataValue =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $patientDataValue =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>    
+		</td>
+	</tr>	
+	
+	<!-- 2 Child provided with school fees -->
+	<tr>
+		
+		<td width="50%">Child provided with school fees</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $patientDataValue = "" )
+			#set( $dataElement = $dataElementMap.get( 1751 ) )
+			#set( $patientDataValue = $patientDataValueMap.get( 1751 ))
+            <select id="deps1751" name="deps1751" disabled="disabled">
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $patientDataValue =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $patientDataValue =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>
+		</td>
+	</tr>	
+	
+	<!-- 3 Child provided with school levies  -->
+	<tr>
+		
+		<td width="50%">Child provided with school levies</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $patientDataValue = "" )
+			#set( $dataElement = $dataElementMap.get( 1752 ) )
+			#set( $patientDataValue = $patientDataValueMap.get( 1752 ))
+            <select id="deps1752" name="deps1752" disabled="disabled">
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $patientDataValue =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $patientDataValue =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>
+		</td>
+	</tr>	
+	
+	
+	<!-- 4 Child provided with school uniform  -->
+	<tr>
+		
+		<td width="50%">Child provided with school uniform</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $patientDataValue = "" )
+			#set( $dataElement = $dataElementMap.get( 1753 ) )
+			#set( $patientDataValue = $patientDataValueMap.get( 1753 ))
+            <select id="deps1753" name="deps1753" disabled="disabled">
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $patientDataValue =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $patientDataValue =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>
+		</td>
+	</tr>	
+	
+	
+	<!-- 5 Child provided with scholastic materials  -->
+	<tr>
+		
+		<td width="50%">Child provided with scholastic materials</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $patientDataValue = "" )
+			#set( $dataElement = $dataElementMap.get( 1754 ) )
+			#set( $patientDataValue = $patientDataValueMap.get( 1754 ))
+            <select id="deps1754" name="deps1754" disabled="disabled" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $patientDataValue =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $patientDataValue =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>
+		</td>
+	</tr>
+	
+	
+	
+	
+	<!-- 6 Child provided with sanitary towel  -->
+	<tr>
+		
+		<td width="50%">Child provided with sanitary towel</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $patientDataValue = "" )
+			#set( $dataElement = $dataElementMap.get( 1755 ) )
+			#set( $patientDataValue = $patientDataValueMap.get( 1755 ))
+            <select id="deps1755" name="deps1755" disabled="disabled">
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $patientDataValue =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $patientDataValue =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>
+		</td>
+	</tr>
+	
+	
+	<!-- 7 Child supported with vocational training and attending classes  -->
+	<tr>
+		
+		<td width="50%">Child supported with vocational training and attending classes</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $patientDataValue = "" )
+			#set( $dataElement = $dataElementMap.get( 1756 ) )
+			#set( $patientDataValue = $patientDataValueMap.get( 1756 ))
+            <select id="deps1756" name="deps1756" disabled="disabled" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $patientDataValue =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $patientDataValue =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>
+		</td>
+	</tr>	
+	
+</table>
+
+
+<!-- HOUSEHOLD ECONOMIC STREGTHENING -->
+<table style="background-color:#EFFBEF;" width="100%">
+
+	<tr>
+		<th colspan="3">HOUSEHOLD ECONOMIC STREGTHENING</th>
+	</tr>	
+	
+	
+<!-- ASSESSMENT -->
+
+	<!-- 1 Vocational skills graduate and require a start-up kit -->
+	<tr>
+		<td rowspan="1" width="25%">ASSESSMENT</td>
+		<td width="50%">Vocational skills graduate and require a start-up kit</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $optionVal = "" )
+			#set( $dataElement = $dataElementMap.get( 1757 ) )
+			<select id="deps1757" name="deps1757" disabled="disabled" >
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 1757 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+        	</select>      
+		</td>
+	</tr>
+<tr><td colspan="3"><hr style="color:black" /></td></tr>
+
+<!-- SERVICES RECEIVED BY CHILD -->
+
+	<!-- 1 Child received a start-up kit -->
+	<tr>
+		<td rowspan="2" width="25%">SERVICES RECEIVED BY CHILD</td>
+		<td width="50%">Child received a start-up kit</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $patientDataValue = "" )
+			#set( $dataElement = $dataElementMap.get( 1758 ) )
+			#set( $patientDataValue = $patientDataValueMap.get( 1758 ))
+            <select id="deps1758" name="deps1758" disabled="disabled" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $patientDataValue =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $patientDataValue =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>    
+		</td>
+	</tr>	
+	
+	<!-- 2 Child linked to a job opportunity -->
+	<tr>
+		
+		<td width="50%">Child linked to a job opportunity</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $patientDataValue = "" )
+			#set( $dataElement = $dataElementMap.get( 1759 ) )
+			#set( $patientDataValue = $patientDataValueMap.get( 1759 ))
+            <select id="deps1759" name="deps1759" disabled="disabled">
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $patientDataValue =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $patientDataValue =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>
+		</td>
+	</tr>	
+</table>
+
+<!-- PRIORITY -->
+<table style="background-color:#ECE0F8;" width="100%">
+	
+	<tr>
+		<th colspan="1" width="50%">LIST THE 3 PRIORITY NEEDS ONLY IN  THE SPECIFIED PERIOD IN ORDER OF PRIORITY AS ASSESSED BY CHV/REPORTED BY CHILD/PARENT/GUARDIAN</th>
+		<th colspan="2" width="50%">Critical events</th>
+	</tr>
+	
+	<!--  CHILD DataElement : Priority 1 -->	
+	<tr>
+		<td width="50%">Priority 1 &nbsp;&nbsp;
+       		#set( $dataElement = $dataElementMap.get( 374 ) )
+			<select id="deps374" name="deps374" disabled="disabled">
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 374 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            
+            	#end
+        	</select>
+		</td>
+		
+		<!-- Child migrated to a different region -->
+		<td width="25%">Child migrated to a different region</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $patientDataValue = "" )
+			#set( $dataElement = $dataElementMap.get( 1776 ) )
+			#set( $patientDataValue = $patientDataValueMap.get( 1776 ))
+            <select id="deps1776" name="deps1776" disabled="disabled">
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $patientDataValue =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $patientDataValue =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>
+		</td>
+	</tr>	
+	
+	
+	<!--  CHILD DataElement : Priority 2 -->	
+	<tr>
+		<td width="50%">Priority 2 &nbsp;&nbsp;
+       		#set( $dataElement = $dataElementMap.get( 375 ) )
+			<select id="deps375" name="deps375" disabled="disabled" >
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 375 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            
+            	#end
+        	</select>
+		</td>
+		
+		<!-- Child lost a guardian/caregiver -->
+		<td width="25%">Child lost a guardian/caregiver</td>
+		<td width="25%" style="text-align:center" >
+			#set( $dataElement = "" )
+			#set( $patientDataValue = "" )
+			#set( $dataElement = $dataElementMap.get( 1777 ) )
+			#set( $patientDataValue = $patientDataValueMap.get( 1777 ))
+            <select id="deps1777" name="deps1777" disabled="disabled">
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $patientDataValue =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $patientDataValue =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>
+		</td>
+	</tr>	
+	
+	<!--  CHILD DataElement : Priority 3 -->	
+	<tr>
+		<td width="50%">Priority 3 &nbsp;&nbsp;
+       		#set( $dataElement = $dataElementMap.get( 376 ) )
+			<select id="deps376" name="deps376" disabled="disabled">
+            	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+            	#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+        			#if($optionVal == $patientDataValueMap.get( 376 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            
+            	#end
+        	</select>
+		</td>
+		
+		<!-- Other (specify) -->
+		<td width="25%">Other (specify)</td>
+		<td width="25%" style="text-align:center" >
+			<input type="text" id="deps1778" name="deps1778" value="$!patientDataValueMap.get( 1778 )" readonly="readonly" style="width:100%" />
+		</td>
+	</tr>	
+	
+</table>
+
+<p>
+	<!--<input type="button"  value="$i18n.getString( 'Cancel' )" style="width:100px" onclick="window.location.href='getApprovedList.action'"/>-->
+	<input type="button"  value="$i18n.getString( 'Cancel' )" style="width:100px" onclick="loadApprovedOVCList();"/>
+</p>	

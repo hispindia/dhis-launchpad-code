@@ -1,0 +1,1404 @@
+
+<input type="hidden" id="programStageId" name="programStageId" value="$!programStage.id">
+
+<input type="hidden" id="programStageInstanceId" name="programStageInstanceId" value="$!programStageInstanceId">
+<!--
+	programStage : $!programStage.id
+	
+	programStageInstanceId : $!programStageInstanceId
+	
+	programStageDataElements Size : $programStageDataElements.size()
+	
+	patientDataValueMap size : $patientDataValueMap.size()
+	
+	colspan="3"
+	
+	Period : $period.getStartDateString()
+	
+	value.equalsIgnoreCase( "" );
+-->
+	
+
+<table  width="100%">	
+
+	<tr bgcolor="#CBDDEB">
+		<td width="25%"><strong>Kit</strong></td>
+		<td width="25%"><strong>Received</strong></td>
+		<td width="25%"><strong>Replenishment</strong></td>
+		<td width="25%"><strong>Date of Replenishment</strong></td>
+	</tr>		
+	
+	
+	<!--
+	<tr>
+		<th>Kit</th>
+		<th>Received</th>
+		<th>Replenishment</th>
+		<th>Date of Replenishment</th>
+	</tr>	
+	-->
+	
+	<tr>
+		<td width="25%">Drug Kit</td>
+		<td width="25%">
+			#set( $dataElement = $dataElementMap.get( 328 ) )
+			#set( $drugKitReceived = $patientDataValueMap.get( 328 ))
+			<select id="deps328" name="deps328" onchange="validateReceivedStatus( 'deps328','deps329', 'deps330' );">
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $drugKitReceived =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $drugKitReceived =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>
+			
+		</td>
+		
+		<td width="25%">
+			#set( $dataElement = $dataElementMap.get( 329 ) )
+			#set( $drugKitReplenishment = $patientDataValueMap.get( 329 ))
+			<select id="deps329" name="deps329" #if( $drugKitReceived == 'true'  ) #else disabled = "disabled" #end onchange="validateReplenishmentStatus( 'deps328','deps329', 'deps330' );">
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $drugKitReplenishment =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $drugKitReplenishment =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>
+			
+		</td>		
+		
+		<td width="25%">
+			<input type="text" id="deps330" name="deps330" #if( $drugKitReplenishment == 'true'  ) #else disabled = "disabled" #end value="$!patientDataValueMap.get( 330 )"  />
+			<script type="text/javascript">
+				datePickerValid( 'deps330' );
+			</script>
+		</td>
+	</tr>	
+	
+	<tr>
+		<td width="25%">HBPNC Kit</td>
+		<td width="25%">
+			#set( $dataElement = $dataElementMap.get( 331 ) )
+			#set( $hbpncKitReceived = $patientDataValueMap.get( 331 ))
+			<select id="deps331" name="deps331" onchange="validateReceivedStatus( 'deps331','deps332', 'deps333' );">
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $hbpncKitReceived =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $hbpncKitReceived =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>
+			
+		</td>
+		
+		<td width="25%">
+			#set( $dataElement = $dataElementMap.get( 332 ) )
+			#set( $hbpncKitReplenishment = $patientDataValueMap.get( 332 ))
+			<select id="deps332" name="deps332" #if( $hbpncKitReceived == 'true'  ) #else disabled = "disabled" #end onchange="validateReplenishmentStatus( 'deps331','deps332', 'deps333' );">
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $hbpncKitReplenishment =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $hbpncKitReplenishment =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>
+			
+		</td>		
+		
+		<td width="25%">
+			<input type="text" id="deps333" name="deps333" #if( $hbpncKitReplenishment == 'true'  ) #else disabled = "disabled" #end  value="$!patientDataValueMap.get( 333 )" />
+			<script type="text/javascript">
+				datePickerValid( 'deps333' );
+			</script>
+		</td>
+	</tr>	
+		
+	<tr>
+		<td width="25%">IEC Material</td>
+		<td width="25%">
+			#set( $dataElement = $dataElementMap.get( 334 ) )
+			#set( $iecMaterialReceived = $patientDataValueMap.get( 334 ))
+			<select id="deps334" name="deps334" onchange="validateReceivedStatus( 'deps334','deps335', 'deps336' );">
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $iecMaterialReceived =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $iecMaterialReceived =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>
+			
+		</td>
+		
+		<td width="25%">
+			#set( $dataElement = $dataElementMap.get( 335 ) )
+			#set( $iecMaterialReplenishment = $patientDataValueMap.get( 335 ))
+			<select id="deps335" name="deps335" #if( $iecMaterialReceived == 'true'  ) #else disabled = "disabled" #end onchange="validateReplenishmentStatus( 'deps334','deps335', 'deps336' );">
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $iecMaterialReplenishment =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $iecMaterialReplenishment =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>
+			
+		</td>		
+		
+		<td width="25%">
+			<input type="text" id="deps336" name="deps336" #if( $iecMaterialReplenishment == 'true'  ) #else disabled = "disabled" #end value="$!patientDataValueMap.get( 336 )" />
+			<script type="text/javascript">
+				datePickerValid( 'deps336' );
+			</script>
+		</td>
+	</tr>		
+</table>	
+	
+<table style="table-layout:fixed;width:100%">
+	
+	<tr bgcolor="#CBDDEB">
+		<td width="25%"><strong>Drug Name</strong></td>
+		<td width="15%"><strong>Opening Balance</strong></td>
+		<td width="15%"><strong>Quantity Replenished</strong></td>
+		<td width="15%"><strong>Consumed</strong></td>
+		<td width="15%"><strong>Unusable</strong></td>
+		<td width="15%"><strong>Closing Balance</strong></td>
+	</tr>	
+	
+	
+	
+	<!--
+	style="width:500px;height:150px;"
+	<tr>
+		<th>Item Name</th>
+		<th>Opening Balance</th>
+		<th>Quantity Replenished</th>
+		<th>Consumed</th>
+		<th>Unusable</th>
+		<th>Closing Balance</th>
+	</tr>
+	!string.isEmpty()
+	value.equalsIgnoreCase( "" );
+	
+	
+	#if( $null.isNull($patientDataValueMap.get( 224 ) ) || $!orsValue != "" ||  $!orsValue != " ") readonly = "true" #else readonly = "false" #end
+	
+	#if (!$variable)
+	 ... do stuff here if the variable is null
+	#end
+	
+	##if( $!orsValue.isEmpty() ) readonly = "readonly" #end
+	##if( $null.isNull($patientDataValueMap.get( 224 ) ) )
+	-->
+	
+	<tr>
+		<td width="25%">ORS (20.5gm - WHO Formula) Packets</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 224 ) )
+			#set( $orsValue = $patientDataValueMap.get( 224 ) )
+			
+			<input type="text" id="deps224" name="deps224" #if ( $patientDataValueMap.get( 224 ) ) readonly = "readonly" #end value="$!patientDataValueMap.get( 224 )" style="width:98%;" class="{validate:{required:false ,number:true}}" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 225 ) )
+			<input type="text" id="deps225" name="deps225" value="$!patientDataValueMap.get( 225 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps224','deps225', 'deps226', 'deps227' , 'deps228','depsnextperiod224' );"  />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 226 ) )
+			<input type="text" id="deps226" name="deps226" value="$!patientDataValueMap.get( 226 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps224','deps225', 'deps226', 'deps227' , 'deps228', 'depsnextperiod224' );" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 227 ) )
+			<input type="text" id="deps227" name="deps227" value="$!patientDataValueMap.get( 227 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps224','deps225', 'deps226', 'deps227' , 'deps228', 'depsnextperiod224' );" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 228 ) )
+			<input type="text" id="deps228" name="deps228" value="$!patientDataValueMap.get( 228 )" style="width:98%;" class="{validate:{required:false ,number:true}}"   readonly = "readonly" />
+		
+			<input type='hidden' id='depsnextperiod224' name='depsnextperiod224' value="$!patientDataValueMap.get( 228 )" />
+		
+		</td>
+		
+	</tr>		
+	
+	<tr>
+		<td width="25%">IFA Large (200mg)</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 229 ) )
+			#set( $ifaValue = $!patientDataValueMap.get( 229 ))
+		
+			<input type="text" id="deps229" name="deps229" #if ( $patientDataValueMap.get( 229 ) ) readonly = "readonly" #end value="$!patientDataValueMap.get( 229 )" style="width:98%;" class="{validate:{required:false ,number:true}}" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 230 ) )
+			<input type="text" id="deps230" name="deps230" value="$!patientDataValueMap.get( 230 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps229','deps230', 'deps231', 'deps232' , 'deps233', 'depsnextperiod229' );"  />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 231 ) )
+			<input type="text" id="deps231" name="deps231" value="$!patientDataValueMap.get( 231 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps229','deps230', 'deps231', 'deps232' , 'deps233', 'depsnextperiod229' );" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 232 ) )
+			<input type="text" id="deps232" name="deps232" value="$!patientDataValueMap.get( 232 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps229','deps230', 'deps231', 'deps232' , 'deps233', 'depsnextperiod229' );" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 233 ) )
+			<input type="text" id="deps233" name="deps233" value="$!patientDataValueMap.get( 233 )" style="width:98%;" class="{validate:{required:false ,number:true}}"   readonly = "readonly"/>
+			
+			<input type='hidden' id='depsnextperiod229' name='depsnextperiod229' value="$!patientDataValueMap.get( 233 )" />
+		</td>
+	</tr>		
+		
+	<tr>
+		<td width="25%">IFA Small (100mg)</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 234 ) )
+			<input type="text" id="deps234" name="deps234" #if ( $patientDataValueMap.get( 234 ) ) readonly = "readonly" #end value="$!patientDataValueMap.get( 234 )" style="width:98%;" class="{validate:{required:false ,number:true}}" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 235 ) )
+			<input type="text" id="deps235" name="deps235" value="$!patientDataValueMap.get( 235 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps234','deps235', 'deps236', 'deps237' , 'deps238', 'depsnextperiod234' );"  />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 236 ) )
+			<input type="text" id="deps236" name="deps236" value="$!patientDataValueMap.get( 236 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps234','deps235', 'deps236', 'deps237' , 'deps238', 'depsnextperiod234' );" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 237 ) )
+			<input type="text" id="deps237" name="deps237" value="$!patientDataValueMap.get( 237 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps234','deps235', 'deps236', 'deps237' , 'deps238', 'depsnextperiod234' );" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 238 ) )
+			<input type="text" id="deps238" name="deps238" value="$!patientDataValueMap.get( 238 )" style="width:98%;" class="{validate:{required:false ,number:true}}"  readonly = "readonly"/>
+		
+			<input type='hidden' id='depsnextperiod234' name='depsnextperiod234' value="$!patientDataValueMap.get( 238 )" />
+		</td>
+		
+	</tr>			
+	
+	<tr>
+		<td width="25%">PCM (500mg)</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 239 ) )
+			<input type="text" id="deps239" name="deps239" #if ( $patientDataValueMap.get( 239 ) ) readonly = "readonly" #end value="$!patientDataValueMap.get( 239 )" style="width:98%;" class="{validate:{required:false ,number:true}}" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 240 ) )
+			<input type="text" id="deps240" name="deps240" value="$!patientDataValueMap.get( 240 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps239','deps240', 'deps241', 'deps242' , 'deps243', 'depsnextperiod239' );"  />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 241 ) )
+			<input type="text" id="deps241" name="deps241" value="$!patientDataValueMap.get( 241 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps239','deps240', 'deps241', 'deps242' , 'deps243', 'depsnextperiod239' );" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 242 ) )
+			<input type="text" id="deps242" name="deps242" value="$!patientDataValueMap.get( 242 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps239','deps240', 'deps241', 'deps242' , 'deps243', 'depsnextperiod239' );" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 243 ) )
+			<input type="text" id="deps243" name="deps243" value="$!patientDataValueMap.get( 243 )" style="width:98%;" class="{validate:{required:false ,number:true}}"  readonly = "readonly"/>
+		
+			<input type='hidden' id='depsnextperiod239' name='depsnextperiod239' value="$!patientDataValueMap.get( 243 )" />
+		</td>
+		
+	</tr>				
+	
+	<tr>
+		<td width="25%">GV Paint Bottles</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 244 ) )
+			<input type="text" id="deps244" name="deps244" #if ( $patientDataValueMap.get( 244 ) ) readonly = "readonly" #end value="$!patientDataValueMap.get( 244 )" style="width:98%;" class="{validate:{required:false ,number:true}}" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 245 ) )
+			<input type="text" id="deps245" name="deps245" value="$!patientDataValueMap.get( 245 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps244','deps245', 'deps246', 'deps247' , 'deps248', 'depsnextperiod244' );"  />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 246 ) )
+			<input type="text" id="deps246" name="deps246" value="$!patientDataValueMap.get( 246 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps244','deps245', 'deps246', 'deps247' , 'deps248', 'depsnextperiod244' );" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 247 ) )
+			<input type="text" id="deps247" name="deps247" value="$!patientDataValueMap.get( 247 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps244','deps245', 'deps246', 'deps247' , 'deps248', 'depsnextperiod244' );" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 248 ) )
+			<input type="text" id="deps248" name="deps248" value="$!patientDataValueMap.get( 248 )" style="width:98%;" class="{validate:{required:false ,number:true}}"  readonly = "readonly"/>
+		
+			<input type='hidden' id='depsnextperiod244' name='depsnextperiod244' value="$!patientDataValueMap.get( 248 )" />
+		</td>
+		
+	</tr>				
+	
+	<tr>
+		<td width="25%">Cotrimoxazole Tablets</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 249 ) )
+			<input type="text" id="deps249" name="deps249" #if ( $patientDataValueMap.get( 249 ) ) readonly = "readonly" #end value="$!patientDataValueMap.get( 249 )" style="width:98%;" class="{validate:{required:false ,number:true}}" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 250 ) )
+			<input type="text" id="deps250" name="deps250" value="$!patientDataValueMap.get( 250 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps249','deps250', 'deps251', 'deps252' , 'deps253', 'depsnextperiod249' );"  />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 251 ) )
+			<input type="text" id="deps251" name="deps251" value="$!patientDataValueMap.get( 251 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps249','deps250', 'deps251', 'deps252' , 'deps253', 'depsnextperiod249' );" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 252 ) )
+			<input type="text" id="deps252" name="deps252" value="$!patientDataValueMap.get( 252 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps249','deps250', 'deps251', 'deps252' , 'deps253', 'depsnextperiod249' );" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 253 ) )
+			<input type="text" id="deps253" name="deps253" value="$!patientDataValueMap.get( 253 )" style="width:98%;" class="{validate:{required:false ,number:true}}"  readonly = "readonly"/>
+		
+			<input type='hidden' id='depsnextperiod249' name='depsnextperiod249' value="$!patientDataValueMap.get( 253 )" />
+		</td>
+		
+	</tr>				
+	
+	<tr>
+		<td width="25%">Absorbent Cotton Rolls</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 254 ) )
+			<input type="text" id="deps254" name="deps254" #if ( $patientDataValueMap.get( 254 ) ) readonly = "readonly" #end value="$!patientDataValueMap.get( 254 )" style="width:98%;" class="{validate:{required:false ,number:true}}" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 255 ) )
+			<input type="text" id="deps255" name="deps255" value="$!patientDataValueMap.get( 255 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps254','deps255', 'deps256', 'deps257' , 'deps258', 'depsnextperiod254' );"  />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 256 ) )
+			<input type="text" id="deps256" name="deps256" value="$!patientDataValueMap.get( 256 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps254','deps255', 'deps256', 'deps257' , 'deps258', 'depsnextperiod254' );" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 257 ) )
+			<input type="text" id="deps257" name="deps257" value="$!patientDataValueMap.get( 257 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps254','deps255', 'deps256', 'deps257' , 'deps258', 'depsnextperiod254' );" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 258 ) )
+			<input type="text" id="deps258" name="deps258" value="$!patientDataValueMap.get( 258 )" style="width:98%;" class="{validate:{required:false ,number:true}}"  readonly = "readonly"/>
+		
+			<input type='hidden' id='depsnextperiod254' name='depsnextperiod254' value="$!patientDataValueMap.get( 258 )" />
+		</td>
+		
+	</tr>				
+		
+	<tr>
+		<td width="25%">Paldai</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 259 ) )
+			<input type="text" id="deps259" name="deps259" #if ( $patientDataValueMap.get( 259 ) ) readonly = "readonly" #end value="$!patientDataValueMap.get( 259 )" style="width:98%;" class="{validate:{required:false ,number:true}}" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 260 ) )
+			<input type="text" id="deps260" name="deps260" value="$!patientDataValueMap.get( 260 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps259','deps260', 'deps261', 'deps262' , 'deps263', 'depsnextperiod259' );"  />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 261 ) )
+			<input type="text" id="deps261" name="deps261" value="$!patientDataValueMap.get( 261 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps259','deps260', 'deps261', 'deps262' , 'deps263', 'depsnextperiod259' );" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 262 ) )
+			<input type="text" id="deps262" name="deps262" value="$!patientDataValueMap.get( 262 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps259','deps260', 'deps261', 'deps262' , 'deps263', 'depsnextperiod259' );" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 263 ) )
+			<input type="text" id="deps263" name="deps263" value="$!patientDataValueMap.get( 263 )" style="width:98%;" class="{validate:{required:false ,number:true}}"  readonly = "readonly"/>
+		
+			<input type='hidden' id='depsnextperiod259' name='depsnextperiod259' value="$!patientDataValueMap.get( 263 )" />
+		</td>
+		
+	</tr>		
+	
+	<tr>
+		<td width="25%">Nishchaya Kit</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 264 ) )
+			<input type="text" id="deps264" name="deps264" #if ( $patientDataValueMap.get( 264 ) ) readonly = "readonly" #end value="$!patientDataValueMap.get( 264 )" style="width:98%;" class="{validate:{required:false ,number:true}}" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 265 ) )
+			<input type="text" id="deps265" name="deps265" value="$!patientDataValueMap.get( 265 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps264','deps265', 'deps266', 'deps267' , 'deps268', 'depsnextperiod264' );"  />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 266 ) )
+			<input type="text" id="deps266" name="deps266" value="$!patientDataValueMap.get( 266 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps264','deps265', 'deps266', 'deps267' , 'deps268', 'depsnextperiod264' );" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 267 ) )
+			<input type="text" id="deps267" name="deps267" value="$!patientDataValueMap.get( 267 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps264','deps265', 'deps266', 'deps267' , 'deps268', 'depsnextperiod264' );" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 268 ) )
+			<input type="text" id="deps268" name="deps268" value="$!patientDataValueMap.get( 268 )" style="width:98%;" class="{validate:{required:false ,number:true}}"  readonly = "readonly"/>
+		
+			<input type='hidden' id='depsnextperiod264' name='depsnextperiod264' value="$!patientDataValueMap.get( 268 )" />
+		</td>
+		
+	</tr>		
+	
+	<tr>
+		<td width="25%">Salt Test Kits</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 269 ) )
+			<input type="text" id="deps269" name="deps269" #if ( $patientDataValueMap.get( 269 ) ) readonly = "readonly" #end value="$!patientDataValueMap.get( 269 )" style="width:98%;" class="{validate:{required:false ,number:true}}" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 270 ) )
+			<input type="text" id="deps270" name="deps270" value="$!patientDataValueMap.get( 270 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps269','deps270', 'deps271', 'deps272' , 'deps273', 'depsnextperiod269' );"  />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 271 ) )
+			<input type="text" id="deps271" name="deps271" value="$!patientDataValueMap.get( 271 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps269','deps270', 'deps271', 'deps272' , 'deps273', 'depsnextperiod269' );" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 272 ) )
+			<input type="text" id="deps272" name="deps272" value="$!patientDataValueMap.get( 272 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps269','deps270', 'deps271', 'deps272' , 'deps273', 'depsnextperiod269' );" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 273 ) )
+			<input type="text" id="deps273" name="deps273" value="$!patientDataValueMap.get( 273 )" style="width:98%;" class="{validate:{required:false ,number:true}}"  readonly = "readonly"/>
+		
+			<input type='hidden' id='depsnextperiod269' name='depsnextperiod269' value="$!patientDataValueMap.get( 273 )" />
+		</td>
+		
+	</tr>		
+		
+	<tr>
+		<td width="25%">Condoms</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 274 ) )
+			<input type="text" id="deps274" name="deps274" #if ( $patientDataValueMap.get( 274 ) ) readonly = "readonly" #end value="$!patientDataValueMap.get( 274 )" style="width:98%;" class="{validate:{required:false ,number:true}}" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 275 ) )
+			<input type="text" id="deps275" name="deps275" value="$!patientDataValueMap.get( 275 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps274','deps275', 'deps276', 'deps277' , 'deps278', 'depsnextperiod274' );"  />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 276 ) )
+			<input type="text" id="deps276" name="deps276" value="$!patientDataValueMap.get( 276 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps274','deps275', 'deps276', 'deps277' , 'deps278', 'depsnextperiod274' );" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 277 ) )
+			<input type="text" id="deps277" name="deps277" value="$!patientDataValueMap.get( 277 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps274','deps275', 'deps276', 'deps277' , 'deps278', 'depsnextperiod274' );" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 278 ) )
+			<input type="text" id="deps278" name="deps278" value="$!patientDataValueMap.get( 278 )" style="width:98%;" class="{validate:{required:false ,number:true}}"  readonly = "readonly"/>
+		
+			<input type='hidden' id='depsnextperiod274' name='depsnextperiod274' value="$!patientDataValueMap.get( 278 )" />
+		</td>
+		
+	</tr>		
+	
+	<tr>
+		<td width="25%">Contraceptive Pills</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 279 ) )
+			<input type="text" id="deps279" name="deps279" #if ( $patientDataValueMap.get( 279 ) ) readonly = "readonly" #end value="$!patientDataValueMap.get( 279 )" style="width:98%;" class="{validate:{required:false ,number:true}}" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 280 ) )
+			<input type="text" id="deps280" name="deps280" value="$!patientDataValueMap.get( 280 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps279','deps280', 'deps281', 'deps282' , 'deps283', 'depsnextperiod279' );"  />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 281 ) )
+			<input type="text" id="deps281" name="deps281" value="$!patientDataValueMap.get( 281 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps279','deps280', 'deps281', 'deps282' , 'deps283', 'depsnextperiod279' );" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 282 ) )
+			<input type="text" id="deps282" name="deps282" value="$!patientDataValueMap.get( 282 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps279','deps280', 'deps281', 'deps282' , 'deps283', 'depsnextperiod279' );" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 283 ) )
+			<input type="text" id="deps283" name="deps283" value="$!patientDataValueMap.get( 283 )" style="width:98%;" class="{validate:{required:false ,number:true}}"  readonly = "readonly"/>
+		
+			<input type='hidden' id='depsnextperiod279' name='depsnextperiod279' value="$!patientDataValueMap.get( 283 )" />
+		</td>
+		
+	</tr>	
+
+	<tr>
+		<td width="25%">Emergency Contraceptive Pills</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 284 ) )
+			<input type="text" id="deps284" name="deps284" #if ( $patientDataValueMap.get( 284 ) ) readonly = "readonly" #end value="$!patientDataValueMap.get( 284 )" style="width:98%;" class="{validate:{required:false ,number:true}}" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 285 ) )
+			<input type="text" id="deps285" name="deps285" value="$!patientDataValueMap.get( 285 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps284','deps285', 'deps286', 'deps287' , 'deps288', 'depsnextperiod284' );"  />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 286 ) )
+			<input type="text" id="deps286" name="deps286" value="$!patientDataValueMap.get( 286 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps284','deps285', 'deps286', 'deps287' , 'deps288', 'depsnextperiod284' );" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 287 ) )
+			<input type="text" id="deps287" name="deps287" value="$!patientDataValueMap.get( 287 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps284','deps285', 'deps286', 'deps287' , 'deps288', 'depsnextperiod284' );" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 288 ) )
+			<input type="text" id="deps288" name="deps288" value="$!patientDataValueMap.get( 288 )" style="width:98%;" class="{validate:{required:false ,number:true}}"  readonly = "readonly"/>
+		
+			<input type='hidden' id='depsnextperiod284' name='depsnextperiod284' value="$!patientDataValueMap.get( 288 )" />
+		</td>
+		
+	</tr>	
+	
+	<tr>
+		<td width="25%">RT of PF/PV <font size="3">+</font><sup>ve</sup> Malaria</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 289 ) )
+			<input type="text" id="deps289" name="deps289" #if ( $patientDataValueMap.get( 289 ) ) readonly = "readonly" #end value="$!patientDataValueMap.get( 289 )" style="width:98%;" class="{validate:{required:false ,number:true}}" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 290 ) )
+			<input type="text" id="deps290" name="deps290" value="$!patientDataValueMap.get( 290 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps289','deps290', 'deps291', 'deps292' , 'deps293', 'depsnextperiod289' );"  />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 291 ) )
+			<input type="text" id="deps291" name="deps291" value="$!patientDataValueMap.get( 291 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps289','deps290', 'deps291', 'deps292' , 'deps293', 'depsnextperiod289' );" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 292 ) )
+			<input type="text" id="deps292" name="deps292" value="$!patientDataValueMap.get( 292 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps289','deps290', 'deps291', 'deps292' , 'deps293', 'depsnextperiod289' );" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 293 ) )
+			<input type="text" id="deps293" name="deps293" value="$!patientDataValueMap.get( 293 )" style="width:98%;" class="{validate:{required:false ,number:true}}"  readonly = "readonly"/>
+		
+			<input type='hidden' id='depsnextperiod289' name='depsnextperiod289' value="$!patientDataValueMap.get( 293 )" />
+		</td>
+		
+	</tr>		
+	
+	<tr>
+		<td width="25%">Albendazole Tablets</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 294 ) )
+			<input type="text" id="deps294" name="deps294" #if ( $patientDataValueMap.get( 294 ) ) readonly = "readonly" #end value="$!patientDataValueMap.get( 294 )" style="width:98%;" class="{validate:{required:false ,number:true}}" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 295 ) )
+			<input type="text" id="deps295" name="deps295" value="$!patientDataValueMap.get( 295 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps294','deps295', 'deps296', 'deps297' , 'deps298', 'depsnextperiod294' );"  />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 296 ) )
+			<input type="text" id="deps296" name="deps296" value="$!patientDataValueMap.get( 296 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps294','deps295', 'deps296', 'deps297' , 'deps298', 'depsnextperiod294' );" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 297 ) )
+			<input type="text" id="deps297" name="deps297" value="$!patientDataValueMap.get( 297 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps294','deps295', 'deps296', 'deps297' , 'deps298', 'depsnextperiod294' );" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 298 ) )
+			<input type="text" id="deps298" name="deps298" value="$!patientDataValueMap.get( 298 )" style="width:98%;" class="{validate:{required:false ,number:true}}"  readonly = "readonly"/>
+		
+			<input type='hidden' id='depsnextperiod294' name='depsnextperiod294' value="$!patientDataValueMap.get( 298 )" />
+		</td>
+		
+	</tr>	
+	
+	<tr>
+		<td width="25%">Chloroquine Tablets</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 299 ) )
+			<input type="text" id="deps299" name="deps299" #if ( $patientDataValueMap.get( 299 ) ) readonly = "readonly" #end value="$!patientDataValueMap.get( 299 )" style="width:98%;" class="{validate:{required:false ,number:true}}" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 300 ) )
+			<input type="text" id="deps300" name="deps300" value="$!patientDataValueMap.get( 300 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps299','deps300', 'deps301', 'deps302' , 'deps303', 'depsnextperiod299' );"  />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 301 ) )
+			<input type="text" id="deps301" name="deps301" value="$!patientDataValueMap.get( 301 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps299','deps300', 'deps301', 'deps302' , 'deps303', 'depsnextperiod299' );" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 302 ) )
+			<input type="text" id="deps302" name="deps302" value="$!patientDataValueMap.get( 302 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps299','deps300', 'deps301', 'deps302' , 'deps303', 'depsnextperiod299' );" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 303 ) )
+			<input type="text" id="deps303" name="deps303" value="$!patientDataValueMap.get( 303 )" style="width:98%;" class="{validate:{required:false ,number:true}}"  readonly = "readonly"/>
+		
+			<input type='hidden' id='depsnextperiod299' name='depsnextperiod299' value="$!patientDataValueMap.get( 303 )" />
+		</td>
+		
+	</tr>	
+	
+	<tr bgcolor="#CBDDEB">
+		<td width="100%" colspan="6"><strong>Enter Any Other Drug Details</strong></td>
+	</tr>		
+	
+	
+	<!-- Any Other Drug 1 Name -->
+	<tr>
+		<td width="25%">
+			#set( $dataElement = $dataElementMap.get( 304 ) )
+			<input type="text" id="deps304" name="deps304" value="$!patientDataValueMap.get( 304 )" style="width:98%;" class="{validate:{required:false ,alphanumeric:true}}" />		
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 305 ) )
+			<input type="text" id="deps305" name="deps305" #if ( $patientDataValueMap.get( 305 ) ) readonly = "readonly" #end value="$!patientDataValueMap.get( 305 )" style="width:98%;" class="{validate:{required:false ,number:true}}" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 306 ) )
+			<input type="text" id="deps306" name="deps306" value="$!patientDataValueMap.get( 306 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps305','deps306', 'deps307', 'deps308' , 'deps309', 'depsnextperiod305' );"  />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 307 ) )
+			<input type="text" id="deps307" name="deps307" value="$!patientDataValueMap.get( 307 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps305','deps306', 'deps307', 'deps308' , 'deps309', 'depsnextperiod305' );" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 308 ) )
+			<input type="text" id="deps308" name="deps308" value="$!patientDataValueMap.get( 308 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps305','deps306', 'deps307', 'deps308' , 'deps309', 'depsnextperiod305' );" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 309 ) )
+			<input type="text" id="deps309" name="deps309" value="$!patientDataValueMap.get( 309 )" style="width:98%;" class="{validate:{required:false ,number:true}}"  readonly = "readonly"/>
+		
+			<!--<input type='hidden' id='depsnextperiod305' name='depsnextperiod305' value="$!patientDataValueMap.get( 309 )" />-->
+		</td>
+		
+	</tr>
+	
+	<!-- Any Other Drug 2 Name -->
+	<tr>
+		<td width="25%">
+			#set( $dataElement = $dataElementMap.get( 310 ) )
+			<input type="text" id="deps310" name="deps310" value="$!patientDataValueMap.get( 310 )" style="width:98%;" class="{validate:{required:false ,alphanumeric:true}}" />		
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 325 ) )
+			<input type="text" id="deps325" name="deps325" #if ( $patientDataValueMap.get( 325 ) ) readonly = "readonly" #end value="$!patientDataValueMap.get( 325 )" style="width:98%;" class="{validate:{required:false ,number:true}}" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 311 ) )
+			<input type="text" id="deps311" name="deps311" value="$!patientDataValueMap.get( 311 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps325','deps311', 'deps312', 'deps313' , 'deps314', 'depsnextperiod325' );"  />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 312 ) )
+			<input type="text" id="deps312" name="deps312" value="$!patientDataValueMap.get( 312 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps325','deps311', 'deps312', 'deps313' , 'deps314', 'depsnextperiod325' );" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 313 ) )
+			<input type="text" id="deps313" name="deps313" value="$!patientDataValueMap.get( 313 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps325','deps311', 'deps312', 'deps313' , 'deps314', 'depsnextperiod325' );" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 314 ) )
+			<input type="text" id="deps314" name="deps314" value="$!patientDataValueMap.get( 314 )" style="width:98%;" class="{validate:{required:false ,number:true}}"  readonly = "readonly"/>
+		
+			<!--<input type='hidden' id='depsnextperiod325' name='depsnextperiod325' value="$!patientDataValueMap.get( 314 )" />-->
+		</td>
+		
+	</tr>	
+	
+	<!-- Any Other Drug 3 Name -->
+	<tr>
+		<td width="25%">
+			#set( $dataElement = $dataElementMap.get( 315 ) )
+			<input type="text" id="deps315" name="deps315" value="$!patientDataValueMap.get( 315 )" style="width:98%;" class="{validate:{required:false ,alphanumeric:true}}" />		
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 326 ) )
+			<input type="text" id="deps326" name="deps326" #if ( $patientDataValueMap.get( 326 ) ) readonly = "readonly" #end value="$!patientDataValueMap.get( 326 )" style="width:98%;" class="{validate:{required:false ,number:true}}" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 316 ) )
+			<input type="text" id="deps316" name="deps316" value="$!patientDataValueMap.get( 316 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps326','deps316', 'deps317', 'deps318' , 'deps319', 'depsnextperiod326' );"  />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 317 ) )
+			<input type="text" id="deps317" name="deps317" value="$!patientDataValueMap.get( 317 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps326','deps316', 'deps317', 'deps318' , 'deps319', 'depsnextperiod326' );" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 318 ) )
+			<input type="text" id="deps318" name="deps318" value="$!patientDataValueMap.get( 318 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps326','deps316', 'deps317', 'deps318' , 'deps319', 'depsnextperiod326' );" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 319 ) )
+			<input type="text" id="deps319" name="deps319" value="$!patientDataValueMap.get( 319 )" style="width:98%;" class="{validate:{required:false ,number:true}}"  readonly = "readonly"/>
+		
+			<!--<input type='hidden' id='depsnextperiod326' name='depsnextperiod326' value="$!patientDataValueMap.get( 319 )" />-->
+		</td>
+		
+	</tr>	
+		
+	<!-- Any Other Drug 4 Name -->
+	<tr>
+		<td width="25%">
+			#set( $dataElement = $dataElementMap.get( 320 ) )
+			<input type="text" id="deps320" name="deps320" value="$!patientDataValueMap.get( 320 )" style="width:98%;" class="{validate:{required:false ,alphanumeric:true}}" />		
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 327 ) )
+			<input type="text" id="deps327" name="deps327" #if ( $patientDataValueMap.get( 327 ) ) readonly = "readonly" #end value="$!patientDataValueMap.get( 327 )" style="width:98%;" class="{validate:{required:false ,number:true}}" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 321 ) )
+			<input type="text" id="deps321" name="deps321" value="$!patientDataValueMap.get( 321 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps327','deps321', 'deps322', 'deps323' , 'deps324', 'depsnextperiod327' );"  />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 322 ) )
+			<input type="text" id="deps322" name="deps322" value="$!patientDataValueMap.get( 322 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps327','deps321', 'deps322', 'deps323' , 'deps324', 'depsnextperiod327' );" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 323 ) )
+			<input type="text" id="deps323" name="deps323" value="$!patientDataValueMap.get( 323 )" style="width:98%;" class="{validate:{required:false ,number:true}}" onkeyup="calculateClosingBalance( 'deps327','deps321', 'deps322', 'deps323' , 'deps324', 'depsnextperiod327' );" />
+		</td>
+		
+		<td width="15%">
+			#set( $dataElement = $dataElementMap.get( 324 ) )
+			<input type="text" id="deps324" name="deps324" value="$!patientDataValueMap.get( 324 )" style="width:98%;" class="{validate:{required:false ,number:true}}"  readonly = "readonly"/>
+		
+			<!--<input type='hidden' id='depsnextperiod327' name='depsnextperiod327' value="$!patientDataValueMap.get( 324 )" />-->
+		</td>
+		
+	</tr>	
+
+</table>
+
+<table style="table-layout:fixed;width:100%" >
+	
+	
+	<tr bgcolor="#CBDDEB">
+		<td width="25%"><strong>Item Name</strong></td>
+		<td width="19%"><strong>Received</strong></td>
+		<td width="19%"><strong>Working Status</strong></td>
+		<td width="19%"><strong>Issued or Not</strong></td>
+		<td width="18%"><strong>Date of Re-Issue</strong></td>
+	</tr>	
+	
+	
+	<tr>
+		<td width="20%">Digital Thermometer</td>
+		<td width="20%">
+			#set( $dataElement = $dataElementMap.get( 337 ) )
+			#set( $digitalThermometerReceived = $patientDataValueMap.get( 337 ))
+			<select id="deps337" name="deps337" style="width:100%;" onchange="validateItemReceived( 'deps337','deps338', 'deps339', 'deps340' );" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $digitalThermometerReceived =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $digitalThermometerReceived =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>
+			
+		</td>
+		
+		<td width="20%">
+			#set( $dataElement = $dataElementMap.get( 338 ) )
+			#set( $digitalThermometerWorkingStatus = $patientDataValueMap.get( 338 ))
+			<select id="deps338" name="deps338" style="width:100%;" onchange="validateItemWorkingStatus( 'deps337','deps338', 'deps339', 'deps340' );" #if( $digitalThermometerReceived == 'true'  ) #else disabled = "disabled" #end >
+				<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+				<!--
+				<option value="Functional" >Functional</option>
+				<option value="Non Functional" >Non Functional</option>
+				-->
+				#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+					#if($optionVal == $patientDataValueMap.get( 338 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+				
+			</select>
+		</td>
+		
+		<td width="20%">
+			#set( $dataElement = $dataElementMap.get( 339 ) )
+			#set( $digitalThermometerIssued = $patientDataValueMap.get( 339 ))
+			<select id="deps339" name="deps339" style="width:100%;" onchange="validateItemFunctionalStatus( 'deps337','deps338', 'deps339', 'deps340' );" #if( $digitalThermometerWorkingStatus == 'Non Functional'  ) #else disabled = "disabled" #end >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $digitalThermometerIssued =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $digitalThermometerIssued =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>
+			
+		</td>		
+		
+		<td width="20%">
+			<input type="text" id="deps340" name="deps340" style="width:99%;" value="$!patientDataValueMap.get( 340 )" #if( $digitalThermometerIssued == 'true'  ) #else disabled = "disabled" #end />
+			<script type="text/javascript">
+				datePickerValid( 'deps340' );
+			</script>
+		</td>
+	</tr>		
+	
+	<tr>
+		<td width="20%">Salter Scale</td>
+		<td width="20%">
+			#set( $dataElement = $dataElementMap.get( 341 ) )
+			#set( $salterScaleReceived = $patientDataValueMap.get( 341 ))
+			<select id="deps341" name="deps341" style="width:100%;" onchange="validateItemReceived( 'deps341','deps343', 'deps344', 'deps345' );" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $salterScaleReceived =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $salterScaleReceived =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>
+			
+		</td>
+		
+		
+		<td width="20%">
+			#set( $dataElement = $dataElementMap.get( 343 ) )
+			#set( $salterScaleWorkingStatus = $patientDataValueMap.get( 343 ))
+			<select id="deps343" name="deps343" style="width:100%;" onchange="validateItemWorkingStatus( 'deps341','deps343', 'deps344', 'deps345' );" #if( $salterScaleReceived == 'true'  ) #else disabled = "disabled" #end >
+				<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+				<!--
+				<option value="Functional" >Functional</option>
+				<option value="Non Functional" >Non Functional</option>
+				-->
+				
+				#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+					#if($optionVal == $patientDataValueMap.get( 343 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+				
+			</select>
+		</td>
+		
+		
+		<td width="20%">
+			#set( $dataElement = $dataElementMap.get( 344 ) )
+			#set( $salterScaleIssued = $patientDataValueMap.get( 344 ))
+			<select id="deps344" name="deps344" style="width:100%;" onchange="validateItemFunctionalStatus( 'deps341','deps343', 'deps344', 'deps345' );" #if( $salterScaleWorkingStatus == 'Non Functional'  ) #else disabled = "disabled" #end >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $salterScaleIssued =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $salterScaleIssued =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>
+			
+		</td>		
+
+		
+		<td width="20%">
+			<input type="text" id="deps345" name="deps345" style="width:99%;" value="$!patientDataValueMap.get( 345 )" #if( $salterScaleIssued == 'true'  ) #else disabled = "disabled" #end />
+			<script type="text/javascript">
+				datePickerValid( 'deps345' );
+			</script>
+		</td>
+	</tr>			
+	
+	
+	<tr>
+		<td width="20%">Stop Watch</td>
+		<td width="20%">
+			#set( $dataElement = $dataElementMap.get( 346 ) )
+			#set( $stopWatchReceived = $patientDataValueMap.get( 346 ))
+			<select id="deps346" name="deps346" style="width:100%;" onchange="validateItemReceived( 'deps346','deps347', 'deps348', 'deps349' );" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $digitalThermometerReceived =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $digitalThermometerReceived =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>
+			
+		</td>
+		
+		
+		<td width="20%">
+			#set( $dataElement = $dataElementMap.get( 347 ) )
+			#set( $stopWatchWorkingStatus = $patientDataValueMap.get( 347 ))
+			<select id="deps347" name="deps347" style="width:100%;" onchange="validateItemWorkingStatus( 'deps346','deps347', 'deps348', 'deps349' );" #if( $stopWatchReceived == 'true'  ) #else disabled = "disabled" #end >
+				<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+				#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+					#if($optionVal == $patientDataValueMap.get( 347 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+			</select>
+		</td>
+		
+		
+		<td width="20%">
+			#set( $dataElement = $dataElementMap.get( 348 ) )
+			#set( $stopWatchIssued = $patientDataValueMap.get( 348 ))
+			<select id="deps348" name="deps348" style="width:100%;" onchange="validateItemFunctionalStatus( 'deps346','deps347', 'deps348', 'deps349' );" #if( $stopWatchIssued == 'Non Functional'  ) #else disabled = "disabled" #end >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $stopWatchIssued =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $stopWatchIssued =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>
+			
+		</td>		
+		
+		<td width="20%">
+			<input type="text" id="deps349" name="deps349" style="width:99%;" value="$!patientDataValueMap.get( 349 )"  #if( $stopWatchIssued == 'true'  ) #else disabled = "disabled" #end />
+			<script type="text/javascript">
+				datePickerValid( 'deps349' );
+			</script>
+		</td>
+	</tr>			
+	
+</table>	
+
+<table style="table-layout:fixed;width:100%">
+
+	<tr bgcolor="#CBDDEB">
+		<td width="25%"><strong>IEC Material</strong></td>
+		<td width="25%"><strong>Received</strong></td>
+		<td width="25%"><strong>Quantity</strong></td>
+		<td width="25%"><strong>Date of Issue</strong></td>
+	</tr>	
+		
+	<tr>
+		<td width="25%"><i>Parsvottar Gharelu Sampark Pustika</i></td>
+		<td width="25%">
+			#set( $dataElement = $dataElementMap.get( 350 ) )
+			#set( $parsvottarReceived = $patientDataValueMap.get( 350 ))
+			<select id="deps350" name="deps350" onchange="validateIECMaterialReceivedStatus( 'deps350','deps351', 'deps352' );" style="width:100%;" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $parsvottarReceived =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $parsvottarReceived =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>
+			
+		</td>
+		
+		<td width="25%">
+			#set( $dataElement = $dataElementMap.get( 351 ) )
+			<input type="text" id="deps351" name="deps351" value="$!patientDataValueMap.get( 351 )" style="width:99%;" class="{validate:{required:false ,number:true}}"  #if( $parsvottarReceived == 'true'  ) #else disabled = "disabled" #end />
+		</td>		
+
+		<td width="25%">
+			<input type="text" id="deps352" name="deps352"  value="$!patientDataValueMap.get( 352 )" style="width:99%;" #if( $parsvottarReceived == 'true'  ) #else disabled = "disabled" #end />
+			<script type="text/javascript">
+				datePickerValid( 'deps352' );
+			</script>
+		</td>
+	</tr>				
+	
+	<tr>
+		<td width="25%">HBNC Flip Chart</td>
+		<td width="25%">
+			#set( $dataElement = $dataElementMap.get( 353 ) )
+			#set( $hBNCFlipChartReceived = $patientDataValueMap.get( 353 ))
+			<select id="deps353" name="deps353" onchange="validateIECMaterialReceivedStatus( 'deps353','deps354', 'deps355' );" style="width:100%;" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $hBNCFlipChartReceived =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $hBNCFlipChartReceived =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>
+			
+		</td>
+		
+		<td width="25%">
+			#set( $dataElement = $dataElementMap.get( 354 ) )
+			<input type="text" id="deps354" name="deps354" value="$!patientDataValueMap.get( 354 )" style="width:99%;" class="{validate:{required:false ,number:true}}"  #if( $hBNCFlipChartReceived == 'true'  ) #else disabled = "disabled" #end />
+		</td>		
+
+		<td width="25%">
+			<input type="text" id="deps355" name="deps355"  value="$!patientDataValueMap.get( 355 )" style="width:99%;" #if( $hBNCFlipChartReceived == 'true'  ) #else disabled = "disabled" #end />
+			<script type="text/javascript">
+				datePickerValid( 'deps355' );
+			</script>
+		</td>
+	</tr>				
+		
+	<tr>
+		<td width="25%"><i>Bal Poshan Pustika</i></td>
+		<td width="25%">
+			#set( $dataElement = $dataElementMap.get( 356 ) )
+			#set( $balPoshanPustikaReceived = $patientDataValueMap.get( 356 ))
+			<select id="deps356" name="deps356" onchange="validateIECMaterialReceivedStatus( 'deps356','deps357', 'deps358' );" style="width:100%;" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $balPoshanPustikaReceived =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $balPoshanPustikaReceived =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>
+			
+		</td>
+		
+		<td width="25%">
+			#set( $dataElement = $dataElementMap.get( 357 ) )
+			<input type="text" id="deps357" name="deps357" value="$!patientDataValueMap.get( 357 )" style="width:99%;" class="{validate:{required:false ,number:true}}" #if( $balPoshanPustikaReceived == 'true'  ) #else disabled = "disabled" #end />
+		</td>		
+
+		<td width="25%">
+			<input type="text" id="deps358" name="deps358"  value="$!patientDataValueMap.get( 358 )" style="width:99%;" #if( $balPoshanPustikaReceived == 'true'  ) #else disabled = "disabled" #end />
+			<script type="text/javascript">
+				datePickerValid( 'deps358' );
+			</script>
+		</td>
+	</tr>				
+
+	<tr>
+		<td width="25%">PNC Cards</td>
+		<td width="25%">
+			#set( $dataElement = $dataElementMap.get( 359 ) )
+			#set( $pNCCardsReceived = $patientDataValueMap.get( 359 ))
+			<select id="deps359" name="deps359" onchange="validateIECMaterialReceivedStatus( 'deps359','deps360', 'deps361' );" style="width:100%;" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $pNCCardsReceived =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $pNCCardsReceived =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>
+			
+		</td>
+		
+		<td width="25%">
+			#set( $dataElement = $dataElementMap.get( 360 ) )
+			<input type="text" id="deps360" name="deps360" value="$!patientDataValueMap.get( 360 )" style="width:99%;" #if( $pNCCardsReceived == 'true'  ) #else disabled = "disabled" #end />
+		</td>		
+
+		<td width="25%">
+			<input type="text" id="deps361" name="deps361"  value="$!patientDataValueMap.get( 361 )" style="width:99%;" #if( $pNCCardsReceived == 'true'  ) #else disabled = "disabled" #end />
+			<script type="text/javascript">
+				datePickerValid( 'deps361' );
+			</script>
+		</td>
+	</tr>	
+	
+	<tr>
+		<td width="25%">Referral Cards</td>
+		<td width="25%">
+			#set( $dataElement = $dataElementMap.get( 362 ) )
+			#set( $referralCardsReceived = $patientDataValueMap.get( 362 ))
+			<select id="deps362" name="deps362" onchange="validateIECMaterialReceivedStatus( 'deps362','deps363', 'deps364' );" style="width:100%;" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $referralCardsReceived =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $referralCardsReceived =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>
+			
+		</td>
+		
+		<td width="25%">
+			#set( $dataElement = $dataElementMap.get( 363 ) )
+			<input type="text" id="deps363" name="deps363" value="$!patientDataValueMap.get( 363 )" style="width:99%;" class="{validate:{required:false ,number:true}}"  #if( $referralCardsReceived == 'true'  ) #else disabled = "disabled" #end />
+		</td>		
+
+		<td width="25%">
+			<input type="text" id="deps364" name="deps364"  value="$!patientDataValueMap.get( 364 )" style="width:99%;" #if( $referralCardsReceived == 'true'  ) #else disabled = "disabled" #end  />
+			<script type="text/javascript">
+				datePickerValid( 'deps364' );
+			</script>
+		</td>
+	</tr>	
+
+	<tr>
+		<td width="25%">Booklet for PW/Mother/Family Member</td>
+		<td width="25%">
+			#set( $dataElement = $dataElementMap.get( 365 ) )
+			#set( $familyMemberReceived = $patientDataValueMap.get( 365 ))
+			<select id="deps365" name="deps365" onchange="validateIECMaterialReceivedStatus( 'deps365','deps366', 'deps367' );" style="width:100%;" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $familyMemberReceived =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $familyMemberReceived =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>
+			
+		</td>
+		
+		<td width="25%">
+			#set( $dataElement = $dataElementMap.get( 366 ) )
+			<input type="text" id="deps366" name="deps366" value="$!patientDataValueMap.get( 366 )" style="width:99%;" class="{validate:{required:false ,number:true}}"  #if( $familyMemberReceived == 'true'  ) #else disabled = "disabled" #end />
+		</td>		
+
+		<td width="25%">
+			<input type="text" id="deps367" name="deps367"  value="$!patientDataValueMap.get( 367 )" style="width:99%;" #if( $familyMemberReceived == 'true'  ) #else disabled = "disabled" #end />
+			<script type="text/javascript">
+				datePickerValid( 'deps367' );
+			</script>
+		</td>
+	</tr>	
+	
+	<tr>
+		<td width="25%">Expected Date of Delivery Calendar (EDD)</td>
+		<td width="25%">
+			#set( $dataElement = $dataElementMap.get( 368 ) )
+			#set( $eddCalendarReceived = $patientDataValueMap.get( 368 ))
+			<select id="deps368" name="deps368" onchange="validateIECMaterialReceivedStatus( 'deps368','deps369', 'deps370' );" style="width:100%;" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $eddCalendarReceived =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $eddCalendarReceived =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>
+			
+		</td>
+		
+		<td width="25%">
+			#set( $dataElement = $dataElementMap.get( 369 ) )
+			<input type="text" id="deps369" name="deps369" value="$!patientDataValueMap.get( 369 )" style="width:99%;" class="{validate:{required:false ,number:true}}"  #if( $eddCalendarReceived == 'true'  ) #else disabled = "disabled" #end />
+		</td>		
+
+		<td width="25%">
+			<input type="text" id="deps370" name="deps370"  value="$!patientDataValueMap.get( 370 )" style="width:99%;" #if( $eddCalendarReceived == 'true'  ) #else disabled = "disabled" #end />
+			<script type="text/javascript">
+				datePickerValid( 'deps370' );
+			</script>
+		</td>
+	</tr>	
+
+	<tr>
+		<td width="25%">Reaching the Unreached</td>
+		<td width="25%">
+			#set( $dataElement = $dataElementMap.get( 371 ) )
+			#set( $unreachedReceived = $patientDataValueMap.get( 371 ))
+			<select id="deps371" name="deps371" onchange="validateIECMaterialReceivedStatus( 'deps371','deps372', 'deps373' );" style="width:100%;" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $unreachedReceived =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $unreachedReceived =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>
+			
+		</td>
+		
+		<td width="25%">
+			#set( $dataElement = $dataElementMap.get( 372 ) )
+			<input type="text" id="deps372" name="deps372" value="$!patientDataValueMap.get( 372 )" style="width:99%;" class="{validate:{required:false ,number:true}}"  #if( $unreachedReceived == 'true'  ) #else disabled = "disabled" #end />
+		</td>		
+
+		<td width="25%">
+			<input type="text" id="deps373" name="deps373"  value="$!patientDataValueMap.get( 373 )" style="width:99%;" #if( $unreachedReceived == 'true'  ) #else disabled = "disabled" #end />
+			<script type="text/javascript">
+				datePickerValid( 'deps373' );
+			</script>
+		</td>
+	</tr>	
+	
+	<tr>
+		<td width="25%">Self Appraisal Booklet</td>
+		<td width="25%">
+			#set( $dataElement = $dataElementMap.get( 380 ) )
+			#set( $selfAppraisalBookletReceived = $patientDataValueMap.get( 380 ))
+			<select id="deps380" name="deps380" onchange="validateIECMaterialReceivedStatus( 'deps380','deps381', 'deps382' );" style="width:100%;" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $selfAppraisalBookletReceived =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $selfAppraisalBookletReceived =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>
+			
+		</td>
+		
+		<td width="25%">
+			#set( $dataElement = $dataElementMap.get( 381 ) )
+			<input type="text" id="deps381" name="deps381" value="$!patientDataValueMap.get( 381 )" style="width:99%;" class="{validate:{required:false ,number:true}}"  #if( $selfAppraisalBookletReceived == 'true'  ) #else disabled = "disabled" #end />
+		</td>		
+
+		<td width="25%">
+			<input type="text" id="deps382" name="deps382"  value="$!patientDataValueMap.get( 382 )" style="width:99%;" #if( $selfAppraisalBookletReceived == 'true'  ) #else disabled = "disabled" #end />
+			<script type="text/javascript">
+				datePickerValid( 'deps382' );
+			</script>
+		</td>
+	</tr>	
+	
+	<tr>
+		<td width="25%">Asha Diary</td>
+		<td width="25%">
+			#set( $dataElement = $dataElementMap.get( 383 ) )
+			#set( $ashaDiaryReceived = $patientDataValueMap.get( 383 ))
+			<select id="deps383" name="deps383" onchange="validateIECMaterialReceivedStatus( 'deps383','deps384', 'deps385' );" style="width:100%;" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $ashaDiaryReceived =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $ashaDiaryReceived =='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>
+			
+		</td>
+		
+		<td width="25%">
+			#set( $dataElement = $dataElementMap.get( 384 ) )
+			<input type="text" id="deps384" name="deps384" value="$!patientDataValueMap.get( 384 )" style="width:99%;" class="{validate:{required:false ,number:true}}"  #if( $ashaDiaryReceived == 'true'  ) #else disabled = "disabled" #end />
+		</td>		
+
+		<td width="25%">
+			<input type="text" id="deps385" name="deps385"  value="$!patientDataValueMap.get( 385 )" style="width:99%;" #if( $ashaDiaryReceived == 'true'  ) #else disabled = "disabled" #end />
+			<script type="text/javascript">
+				datePickerValid( 'deps385' );
+			</script>
+		</td>
+	</tr>	
+
+	<!-- Any Other IEC Material Details -->
+	<tr bgcolor="#CBDDEB">
+		<td width="25%"><strong>Any Other IEC Material</strong></td>
+		<td width="25%"><strong>Name</strong></td>
+		<td width="25%"><strong>Quantity</strong></td>
+		<td width="25%"><strong>Date of Issue</strong></td>
+	</tr>	
+	
+	<tr>
+		<td width="25%">Any other IEC Material 1</td>
+		
+		<td width="25%">
+			#set( $dataElement = $dataElementMap.get( 374 ) )
+			<input type="text" id="deps374" name="deps374" value="$!patientDataValueMap.get( 374 )" style="width:99%;" class="{validate:{required:false ,alphanumeric:true}}" />
+		</td>		
+
+		<td width="25%">
+			#set( $dataElement = $dataElementMap.get( 375 ) )
+			<input type="text" id="deps375" name="deps375" value="$!patientDataValueMap.get( 375 )" style="width:99%;" class="{validate:{required:false ,number:true}}" />
+		</td>		
+		
+		
+		<td width="25%">
+			<input type="text" id="deps376" name="deps376"  value="$!patientDataValueMap.get( 376 )" style="width:99%;" />
+			<script type="text/javascript">
+				datePickerValid( 'deps376' );
+			</script>
+		</td>
+	</tr>		
+	
+	<tr>
+		<td width="25%">Any other IEC Material 2</td>
+		
+		<td width="25%">
+			#set( $dataElement = $dataElementMap.get( 377 ) )
+			<input type="text" id="deps377" name="deps377" value="$!patientDataValueMap.get( 377 )" style="width:99%;" class="{validate:{required:false ,alphanumeric:true}}" />
+		</td>		
+
+		<td width="25%">
+			#set( $dataElement = $dataElementMap.get( 378 ) )
+			<input type="text" id="deps378" name="deps378" value="$!patientDataValueMap.get( 378 )" style="width:99%;" class="{validate:{required:false ,number:true}}" />
+		</td>		
+		
+		
+		<td width="25%">
+			<input type="text" id="deps379" name="deps379"  value="$!patientDataValueMap.get( 379 )" style="width:99%;" />
+			<script type="text/javascript">
+				datePickerValid( 'deps379' );
+			</script>
+		</td>
+	</tr>	
+	
+	
+	
+</table>	
+
+
+
+<!-- DATAELEMENTS WITH NO SECTIONS-->
+<!--
+<th>&nbsp;</th>
+<table class="formSection" width="75%">
+
+	<tr bgcolor="#285C91">
+		<td width="75%"><font color="#FFFFFF"><strong>Data Elements</strong></font></td>
+		<td width="25%"><font color="#FFFFFF"><strong>Value</strong></font></td>
+	</tr>	
+
+
+<br />
+#set( $tabIndex = 1 )
+#if ( $programStageDataElements.size() > 0)
+	#set( $mark = false )
+	#foreach($dataElement in $programStageDataElements )
+	
+	#set( $dataElement = $dataElementMap.get( $dataElement.id ) )
+	#set( $patientDataValue = "" )
+	#set( $patientDataValue = $!patientDataValueMap.get( $dataElement.id ) )
+		<tr #alternate($mark)>
+			<td width="75%"><label>$dataElement.getFormNameFallback()</label></td>
+			<td>
+				#if( $dataElement.type == "bool" )
+					<select name="dataelement$dataElement.id"  id="dataelement$dataElement.id"  tabindex="$tabIndex" width="25%">  
+						<option value="">[$i18n.getString( "please_select" )]</option>            
+						<option value="Yes" #if( $patientDataValue  == "Yes" ) selected="selected" #end >$i18n.getString( "yes" )</option>
+						<option value="No" #if( $patientDataValue == "No") selected="selected" #end >$i18n.getString( "no" )</option>
+					</select>                
+				#elseif( $dataElement.type == "date" )
+						<input type="text" id="dataelement$dataElement.id" name="dataelement$dataElement.id" value="$!patientDataValue" tabindex="$tabIndex" width="25%"> 
+						<script type="text/javascript">
+						   datePickerValid( 'dataelement${dataElement.id}' );
+						</script>                    
+				
+				#elseif( $!dataElement.optionSet )
+					<select name="dataelement$dataElement.id"  id="dataelement$dataElement.id"  tabindex="$tabIndex" width="25%">  
+						<option value="">[$i18n.getString( "please_select" )]</option>
+						#foreach ($option in $dataElement.optionSet.options )
+							<option value="$option" #if($patientDataValue == $option ) selected="selected" #end>$option</option>
+						#end	
+					</select>				
+				
+				#else 
+					<input type="text" id="dataelement$dataElement.id" name="dataelement$dataElement.id" value="$!patientDataValue" tabindex="$tabIndex" width="25%" #if($dataElement.type =='number') class="{validate:{number:true}}" #elseif($dataElement.type =='int') class="{validate:{integer:true}}" #elseif($dataElement.type =='positiveNumber') class="{validate:{positive_integer:true}}" #elseif($dataElement.type =='negativeNumber') class="{validate:{negative_integer:true}}" #end/>
+				#end
+			</td>		
+		</tr>
+	#set( $tabIndex = $tabIndex + 1 )
+	#set( $mark = !$mark)	
+	#end
+#end
+</table>
+-->
+
+<script type="text/javascript">
+jQuery( document ).ready( function()
+{
+	//validateReceivedStatus( receivedId, replenishmentId, dateDe );
+	//validateReplenishmentStatus( receivedId, replenishmentId, dateDe );
+	//calculateClosingBalance( openingBalance, replenished, consumed, unusable, closingBalance );
+});
+</script>
+

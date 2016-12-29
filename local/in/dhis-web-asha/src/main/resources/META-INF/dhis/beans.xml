@@ -1,0 +1,839 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+	<!-- Home page -->
+	<bean id="org.hisp.dhis.asha.action.NoAction"
+        class="org.hisp.dhis.asha.action.NoAction" scope="prototype">
+		<property name="selectionManager" ref="org.hisp.dhis.ouwt.manager.OrganisationUnitSelectionManager" />
+    </bean>
+
+	<bean id="org.hisp.dhis.asha.action.GetDateOfBirthFromAgeAction"
+        class="org.hisp.dhis.asha.action.GetDateOfBirthFromAgeAction" scope="prototype">
+    </bean>	
+	
+	
+	<!--  Resource -->
+	<bean id="org.hisp.dhis.asha.resource.GetAllDocumentsAction" 
+		class="org.hisp.dhis.asha.resource.GetAllDocumentsAction" scope="prototype">
+	    <property name="documentService" ref="org.hisp.dhis.document.DocumentService" />
+	</bean>	
+	
+	<bean id="org.hisp.dhis.asha.resource.GetDocumentAction" 
+		class="org.hisp.dhis.asha.resource.GetDocumentAction" scope="prototype">
+	    <property name="documentService" ref="org.hisp.dhis.document.DocumentService" />
+	</bean>		
+	
+	<bean id="org.hisp.dhis.asha.resource.SaveDocumentAction" 
+		class="org.hisp.dhis.asha.resource.SaveDocumentAction" scope="prototype">
+	     <property name="locationManager" ref="locationManager" />
+	    <property name="documentService" ref="org.hisp.dhis.document.DocumentService" />
+	</bean>		
+	
+
+	<bean id="org.hisp.dhis.asha.resource.RemoveDocumentAction" 
+		class="org.hisp.dhis.asha.resource.RemoveDocumentAction" scope="prototype">
+	     <property name="locationManager" ref="locationManager" />
+	    <property name="documentService" ref="org.hisp.dhis.document.DocumentService" />
+	</bean>
+
+
+	
+	<!-- Registrated ASHA -->
+
+	<bean id="org.hisp.dhis.asha.registration.SelectASHAAction"
+        class="org.hisp.dhis.asha.registration.SelectASHAAction" scope="prototype">
+        <property name="selectionManager" ref="org.hisp.dhis.ouwt.manager.OrganisationUnitSelectionManager" />
+		<property name="patientAttributeService" ref="org.hisp.dhis.patient.PatientAttributeService" />
+		<property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+    </bean>		
+	
+	
+	
+	
+	<!-- Registration list -->
+
+	<bean id="org.hisp.dhis.asha.registration.GetRegisteredASHAListAction"
+        class="org.hisp.dhis.asha.registration.GetRegisteredASHAListAction" scope="prototype">
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="selectionManager" ref="org.hisp.dhis.ouwt.manager.OrganisationUnitSelectionManager" />
+		<property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+    </bean>	
+	
+	<!-- add ASHA Profile Form -->
+
+	<bean id="org.hisp.dhis.asha.registration.ShowAddASHAProfileFormAction"
+        class="org.hisp.dhis.asha.registration.ShowAddASHAProfileFormAction" scope="prototype">
+		<!--<property name="organisationUnitService" ref="org.hisp.dhis.organisationunit.OrganisationUnitService" />-->
+		<property name="patientAttributeGroupService" ref="org.hisp.dhis.patient.PatientAttributeGroupService" />
+		<property name="selectionManager" ref="org.hisp.dhis.ouwt.manager.OrganisationUnitSelectionManager" />
+		<property name="locationService" ref="org.hisp.dhis.location.LocationService" />	
+    </bean>		
+	
+	
+	<!-- Validation -->
+	<bean id="org.hisp.dhis.asha.registration.ValidateASHAAction"
+		class="org.hisp.dhis.asha.registration.ValidateASHAAction"
+		scope="prototype">
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="patientAttributeValueService">
+			<ref
+				bean="org.hisp.dhis.patientattributevalue.PatientAttributeValueService" />
+		</property>
+		<property name="identifierTypeService">
+			<ref bean="org.hisp.dhis.patient.PatientIdentifierTypeService" />
+		</property>
+		<property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+	</bean>	
+	
+	
+	<!-- Add ASHA -->
+	<bean id="org.hisp.dhis.asha.registration.AddASHAAction"
+		class="org.hisp.dhis.asha.registration.AddASHAAction" scope="prototype">
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="patientIdentifierService"
+			ref="org.hisp.dhis.patient.PatientIdentifierService" />				
+		<property name="selectionManager"
+			ref="org.hisp.dhis.ouwt.manager.OrganisationUnitSelectionManager" />
+		<property name="patientAttributeGroupService" ref="org.hisp.dhis.patient.PatientAttributeGroupService" />
+		<property name="patientAttributeOptionService"
+			ref="org.hisp.dhis.patient.PatientAttributeOptionService" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+		<property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+		<property name="programInstanceService" ref="org.hisp.dhis.program.ProgramInstanceService" />
+	</bean>	
+
+
+	<!-- Add ASHA Properties Only -->
+	<bean id="org.hisp.dhis.asha.registration.AddASHAPropertiesAction"
+		class="org.hisp.dhis.asha.registration.AddASHAPropertiesAction" scope="prototype">
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="patientIdentifierService"
+			ref="org.hisp.dhis.patient.PatientIdentifierService" />				
+		<property name="selectionManager"
+			ref="org.hisp.dhis.ouwt.manager.OrganisationUnitSelectionManager" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+		<property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+		<property name="programInstanceService" ref="org.hisp.dhis.program.ProgramInstanceService" />
+	</bean>	
+
+	
+	
+	<!-- Update ASHA Profile Form --> 	
+	
+	<bean id="org.hisp.dhis.asha.registration.ShowUpdateASHAProfileFormAction"
+		class="org.hisp.dhis.asha.registration.ShowUpdateASHAProfileFormAction" scope="prototype">
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="patientAttributeGroupService"
+			ref="org.hisp.dhis.patient.PatientAttributeGroupService" />				
+		<property name="patientAttributeValueService"
+			ref="org.hisp.dhis.patientattributevalue.PatientAttributeValueService" />
+		<property name="locationService"
+			ref="org.hisp.dhis.location.LocationService" />	
+	</bean>	
+		
+	<!-- Update Profile -->
+	
+	<bean id="org.hisp.dhis.asha.registration.UpdateASHAProfileAction"
+		class="org.hisp.dhis.asha.registration.UpdateASHAProfileAction" scope="prototype">
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="patientAttributeValueService"
+			ref="org.hisp.dhis.patientattributevalue.PatientAttributeValueService" />
+		<property name="patientAttributeGroupService"
+			ref="org.hisp.dhis.patient.PatientAttributeGroupService" />
+		<property name="patientAttributeOptionService"
+			ref="org.hisp.dhis.patient.PatientAttributeOptionService" />
+		
+	</bean>	
+	
+	
+	
+	
+		
+	<!-- add/UPDate ASHA Attributes Form -->	
+	
+	<bean id="org.hisp.dhis.asha.registration.ShowAddASHAAttributesFormAction"
+		class="org.hisp.dhis.asha.registration.ShowAddASHAAttributesFormAction" scope="prototype">
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="patientAttributeGroupService"
+			ref="org.hisp.dhis.patient.PatientAttributeGroupService" />				
+		<property name="patientAttributeValueService"
+			ref="org.hisp.dhis.patientattributevalue.PatientAttributeValueService" />
+		<property name="optionService"
+			ref="org.hisp.dhis.option.OptionService" />
+		<property name="patientAttributeService"
+			ref="org.hisp.dhis.patient.PatientAttributeService" />		
+	</bean>	
+		
+	<!-- Update Attributes -->
+	<bean id="org.hisp.dhis.asha.registration.UpdateASHAAttributesAction"
+		class="org.hisp.dhis.asha.registration.UpdateASHAAttributesAction" scope="prototype">
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="patientAttributeGroupService"
+			ref="org.hisp.dhis.patient.PatientAttributeGroupService" />				
+		<property name="patientAttributeOptionService"
+			ref="org.hisp.dhis.patient.PatientAttributeOptionService" />
+		<property name="patientAttributeValueService"
+			ref="org.hisp.dhis.patientattributevalue.PatientAttributeValueService" />
+		<property name="optionService"
+			ref="org.hisp.dhis.option.OptionService" />
+		<property name="patientAttributeService"
+			ref="org.hisp.dhis.patient.PatientAttributeService" />						
+	</bean>	
+
+	
+	
+	<!-- UPDate ASHA Amount Details Form --> 
+
+	<bean id="org.hisp.dhis.asha.registration.ShowUpdateASHAAmountDetailsFormAction"
+		class="org.hisp.dhis.asha.registration.ShowUpdateASHAAmountDetailsFormAction" scope="prototype">
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="ashaService" ref="org.hisp.dhis.asha.util.ASHAService" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+		<property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+		<property name="programInstanceService" ref="org.hisp.dhis.program.ProgramInstanceService" />
+	</bean>	
+	
+		
+	<bean id="org.hisp.dhis.asha.registration.LoadASHAAmountDetailsFormAction"
+		class="org.hisp.dhis.asha.registration.LoadASHAAmountDetailsFormAction" scope="prototype">
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="constantService"
+			ref="org.hisp.dhis.constant.ConstantService" />				
+		<property name="programService"
+			ref="org.hisp.dhis.program.ProgramService" />
+		<property name="programStageService"
+			ref="org.hisp.dhis.program.ProgramStageService" />
+		<property name="dataSetService"
+			ref="org.hisp.dhis.dataset.DataSetService" />
+		<property name="reportService"
+			ref="org.hisp.dhis.reports.ReportService" />			
+		<property name="dataElementCategoryService"
+			ref="org.hisp.dhis.dataelement.DataElementCategoryService" />
+		<property name="ashaService"
+			ref="org.hisp.dhis.asha.util.ASHAService" />
+			<property name="beneficiaryService" ref="org.hisp.dhis.beneficiary.BeneficiaryService" />
+		
+		<property name="programInstanceService" ref="org.hisp.dhis.program.ProgramInstanceService" />
+		<property name="programStageInstanceService" ref="org.hisp.dhis.program.ProgramStageInstanceService" />
+							
+	</bean>		
+	
+	
+	<bean id="org.hisp.dhis.asha.registration.SAVEASHAIncentiveAmountsAction"
+		class="org.hisp.dhis.asha.registration.SAVEASHAIncentiveAmountsAction" scope="prototype">
+		<property name="programStageService" ref="org.hisp.dhis.program.ProgramStageService" />
+		<property name="programStageInstanceService" ref="org.hisp.dhis.program.ProgramStageInstanceService" />
+		<property name="currentUserService" ref="org.hisp.dhis.user.CurrentUserService" />
+		<property name="patientDataValueService" ref="org.hisp.dhis.patientdatavalue.PatientDataValueService" />					
+	</bean>		
+
+<!-- ASHA Training -->
+
+	<!-- Show ASHA Training Details Form --> 
+	<bean id="org.hisp.dhis.asha.training.ShowASHATrainingFormAction"
+		class="org.hisp.dhis.asha.training.ShowASHATrainingFormAction" scope="prototype">
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="patientAttributeGroupService"
+			ref="org.hisp.dhis.patient.PatientAttributeGroupService" />	
+		<property name="constantService"
+			ref="org.hisp.dhis.constant.ConstantService" />	
+		<property name="ashaService"
+			ref="org.hisp.dhis.asha.util.ASHAService" />	
+		<property name="programService"
+			ref="org.hisp.dhis.program.ProgramService" />
+		<property name="programInstanceService"
+			ref="org.hisp.dhis.program.ProgramInstanceService" />								
+	</bean>	
+
+
+
+	<!-- Load ASHA Training Details Form --> 
+	<bean id="org.hisp.dhis.asha.training.LoadASHATrainingDetailsFormAction"
+		class="org.hisp.dhis.asha.training.LoadASHATrainingDetailsFormAction" scope="prototype">
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />				
+		<property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+		<property name="programStageService" ref="org.hisp.dhis.program.ProgramStageService" />
+		<property name="ashaService" ref="org.hisp.dhis.asha.util.ASHAService" />
+		<property name="patientAttributeValueService" ref="org.hisp.dhis.patientattributevalue.PatientAttributeValueService" />
+	</bean>			
+
+	<!-- Save ASHA Training Details -->
+	<bean id="org.hisp.dhis.asha.training.SaveASHATrainingDetailsAction"
+		class="org.hisp.dhis.asha.training.SaveASHATrainingDetailsAction" scope="prototype">
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+		<property name="programStageService" ref="org.hisp.dhis.program.ProgramStageService" />
+		<property name="ashaService" ref="org.hisp.dhis.asha.util.ASHAService" />
+		<property name="programInstanceService" ref="org.hisp.dhis.program.ProgramInstanceService" />
+		<property name="programStageInstanceService" ref="org.hisp.dhis.program.ProgramStageInstanceService" />
+		<property name="currentUserService" ref="org.hisp.dhis.user.CurrentUserService" />
+		<property name="patientDataValueService" ref="org.hisp.dhis.patientdatavalue.PatientDataValueService" />
+		<property name="patientAttributeService" ref="org.hisp.dhis.patient.PatientAttributeService" />
+		<property name="patientAttributeOptionService" ref="org.hisp.dhis.patient.PatientAttributeOptionService" />
+		<property name="patientAttributeValueService" ref="org.hisp.dhis.patientattributevalue.PatientAttributeValueService" />
+		
+		<!--<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />-->				
+	</bean>	
+
+
+
+<!-- ASHA Drug Kit IEC -->
+
+
+	<!-- Show ASHA Drug Kit IEC Details Form -->
+	<bean id="org.hisp.dhis.asha.drugkitiec.ShowASHADrugKitIECFormAction"
+		class="org.hisp.dhis.asha.drugkitiec.ShowASHADrugKitIECFormAction" scope="prototype">
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />	
+		<property name="ashaService" ref="org.hisp.dhis.asha.util.ASHAService" />	
+		<property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+		<property name="programInstanceService" ref="org.hisp.dhis.program.ProgramInstanceService" />								
+	</bean>	
+
+
+	<!-- Load ASHA Drug Kit IEC Details Form -->
+	<bean id="org.hisp.dhis.asha.drugkitiec.LoadASHADrugKitIECDetailsFormAction"
+		class="org.hisp.dhis.asha.drugkitiec.LoadASHADrugKitIECDetailsFormAction" scope="prototype">
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />				
+		<property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+		<property name="programStageService" ref="org.hisp.dhis.program.ProgramStageService" />
+		<property name="ashaService" ref="org.hisp.dhis.asha.util.ASHAService" />
+		<property name="periodService" ref="org.hisp.dhis.period.PeriodService" />
+	</bean>	
+
+
+	<!-- Save ASHA Drug Kit IEC Details -->
+	<bean id="org.hisp.dhis.asha.drugkitiec.SaveASHADrugKitIECDetailsAction"
+		class="org.hisp.dhis.asha.drugkitiec.SaveASHADrugKitIECDetailsAction" scope="prototype">
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+		<property name="programStageService" ref="org.hisp.dhis.program.ProgramStageService" />
+		<property name="ashaService" ref="org.hisp.dhis.asha.util.ASHAService" />
+		<property name="programInstanceService" ref="org.hisp.dhis.program.ProgramInstanceService" />
+		<property name="programStageInstanceService" ref="org.hisp.dhis.program.ProgramStageInstanceService" />
+		<property name="currentUserService" ref="org.hisp.dhis.user.CurrentUserService" />
+		<property name="patientDataValueService" ref="org.hisp.dhis.patientdatavalue.PatientDataValueService" />
+		<property name="optionService" ref="org.hisp.dhis.option.OptionService" />
+		<property name="dataElementService" ref="org.hisp.dhis.dataelement.DataElementService" />			
+	</bean>	
+
+
+
+<!-- ASHA Performance Incentive -->
+
+	<!-- Performance Incentive Form --> 
+
+	<bean id="org.hisp.dhis.asha.performanceincentive.ShowASHAPerformanceIncentiveFormAction"
+		class="org.hisp.dhis.asha.performanceincentive.ShowASHAPerformanceIncentiveFormAction" scope="prototype">
+		<property name="dataSetService" ref="org.hisp.dhis.dataset.DataSetService" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+	</bean>	
+
+	<!-- Load Performance Incentive Data Entry Form --> 
+	<bean id="org.hisp.dhis.asha.performanceincentive.LoadASHAPerformanceIncentiveDataEntryFormAction"
+		class="org.hisp.dhis.asha.performanceincentive.LoadASHAPerformanceIncentiveDataEntryFormAction" scope="prototype">
+		<property name="dataSetService" ref="org.hisp.dhis.dataset.DataSetService" />
+		<property name="periodService" ref="org.hisp.dhis.period.PeriodService" />
+		<property name="organisationUnitService" ref="org.hisp.dhis.organisationunit.OrganisationUnitService" />
+		<property name="ashaService" ref="org.hisp.dhis.asha.util.ASHAService" />
+	</bean>	
+
+	<!-- Save Performance Incentive Data --> 
+	<bean id="org.hisp.dhis.asha.performanceincentive.SaveASHAPerformanceIncentiveDataValueAction"
+		class="org.hisp.dhis.asha.performanceincentive.SaveASHAPerformanceIncentiveDataValueAction" scope="prototype">
+		<property name="dataSetService" ref="org.hisp.dhis.dataset.DataSetService" />
+		<property name="currentUserService" ref="org.hisp.dhis.user.CurrentUserService" />
+		<property name="organisationUnitService" ref="org.hisp.dhis.organisationunit.OrganisationUnitService" />
+		<property name="tariffDataValueService" ref="org.hisp.dhis.tariffdatavalue.TariffDataValueService" />
+	</bean>	
+
+
+<!-- ASHA Payment -->
+	 
+	<!-- Update ASHA Payment Details Form --> 
+
+	<bean id="org.hisp.dhis.asha.payment.ShowUpdateASHAPaymentDetailsFormAction"
+		class="org.hisp.dhis.asha.payment.ShowUpdateASHAPaymentDetailsFormAction" scope="prototype">
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="ashaService" ref="org.hisp.dhis.asha.util.ASHAService" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+		<property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+		<property name="programInstanceService" ref="org.hisp.dhis.program.ProgramInstanceService" />
+	</bean>		
+	
+	<!-- Load ASHA Payment Details Form --> 
+	
+	<bean id="org.hisp.dhis.asha.payment.LoadASHAPaymentDetailsFormAction"
+		class="org.hisp.dhis.asha.payment.LoadASHAPaymentDetailsFormAction" scope="prototype">
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />				
+		<property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+		<property name="programStageService" ref="org.hisp.dhis.program.ProgramStageService" />
+		<property name="ashaService" ref="org.hisp.dhis.asha.util.ASHAService" />
+		<property name="programInstanceService" ref="org.hisp.dhis.program.ProgramInstanceService" />
+		<property name="programStageInstanceService" ref="org.hisp.dhis.program.ProgramStageInstanceService" />
+		<property name="optionService" ref="org.hisp.dhis.option.OptionService" />
+		<property name="dataElementService" ref="org.hisp.dhis.dataelement.DataElementService" />
+	</bean>			
+	
+	<!-- Save ASHA Payment Details -->
+	<bean id="org.hisp.dhis.asha.payment.SaveASHAPaymentDetailsAction"
+		class="org.hisp.dhis.asha.payment.SaveASHAPaymentDetailsAction" scope="prototype">
+		<property name="programStageService" ref="org.hisp.dhis.program.ProgramStageService" />
+		<property name="programStageInstanceService" ref="org.hisp.dhis.program.ProgramStageInstanceService" />
+		<property name="currentUserService" ref="org.hisp.dhis.user.CurrentUserService" />
+		<property name="patientDataValueService" ref="org.hisp.dhis.patientdatavalue.PatientDataValueService" />
+		<property name="optionService" ref="org.hisp.dhis.option.OptionService" />
+		<property name="dataElementService" ref="org.hisp.dhis.dataelement.DataElementService" />
+		<property name="programInstanceService" ref="org.hisp.dhis.program.ProgramInstanceService" />
+		<property name="ashaService" ref="org.hisp.dhis.asha.util.ASHAService" />
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />				
+	</bean>	
+
+	<!-- ASHA Payment Status Report Form-->
+	<bean id="org.hisp.dhis.asha.payment.GetASHAPaymentStatusReportFormAction"
+		class="org.hisp.dhis.asha.payment.GetASHAPaymentStatusReportFormAction"
+		scope="prototype">
+		<property name="selectionManager" ref="org.hisp.dhis.ouwt.manager.OrganisationUnitSelectionManager" />
+		<property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+		<!--
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+		<property name="organisationUnitGroupService" ref="org.hisp.dhis.organisationunit.OrganisationUnitGroupService" />
+		-->
+	</bean>	
+	
+		
+	<!-- ASHA Payment Status Report List -->
+	<bean id="org.hisp.dhis.asha.payment.GetASHAPaymentStatusReportResultAction"
+		class="org.hisp.dhis.asha.payment.GetASHAPaymentStatusReportResultAction"
+		scope="prototype">
+		<property name="organisationUnitService" ref="org.hisp.dhis.organisationunit.OrganisationUnitService" />
+		<property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+		<property name="optionService" ref="org.hisp.dhis.option.OptionService" />
+		<property name="dataElementService" ref="org.hisp.dhis.dataelement.DataElementService" />
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="ashaService" ref="org.hisp.dhis.asha.util.ASHAService" />
+	</bean>		
+	
+					
+	<!-- Details of ASHA -->
+	<bean id="org.hisp.dhis.asha.registration.GetASHADetailsAction"
+		class="org.hisp.dhis.asha.registration.GetASHADetailsAction"
+		scope="prototype">
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="programInstanceService" ref="org.hisp.dhis.program.ProgramInstanceService" />
+	</bean>		
+
+	
+	<!-- Remove ASHA -->
+	<bean id="org.hisp.dhis.asha.registration.RemoveASHAAction"
+		class="org.hisp.dhis.asha.registration.RemoveASHAAction"
+		scope="prototype">
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+	</bean>	
+			
+
+
+	
+	<!-- ASHA Beneficiary Information -->	
+
+	<!-- Get Data Element List --> 
+	<bean id="org.hisp.dhis.asha.action.GetDataElementListAction"
+		class="org.hisp.dhis.asha.action.GetDataElementListAction"
+		scope="prototype">
+		<property name="dataElementService" ref="org.hisp.dhis.dataelement.DataElementService" />
+	</bean>		
+	
+	<!-- Get Service Price --> 
+	<bean id="org.hisp.dhis.asha.action.GetServicePriceAction"
+		class="org.hisp.dhis.asha.action.GetServicePriceAction"
+		scope="prototype">
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+		<property name="dataSetService" ref="org.hisp.dhis.dataset.DataSetService" />
+		<property name="reportService" ref="org.hisp.dhis.reports.ReportService" />
+		<property name="dataElementService" ref="org.hisp.dhis.dataelement.DataElementService" />
+		<property name="dataElementCategoryService" ref="org.hisp.dhis.dataelement.DataElementCategoryService" />
+	</bean>		
+
+	
+	<!-- Show Add Beneficiary Form -->
+	<bean id="org.hisp.dhis.asha.beneficiaries.ShowAddASHABeneficiaryFormAction"
+		class="org.hisp.dhis.asha.beneficiaries.ShowAddASHABeneficiaryFormAction"
+		scope="prototype">
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+	</bean>		
+		
+	
+	<!-- Load ASHA Beneficiary Add Form -->
+	<bean id="org.hisp.dhis.asha.beneficiaries.LoadASHABeneficiaryAddFormAction"
+		class="org.hisp.dhis.asha.beneficiaries.LoadASHABeneficiaryAddFormAction"
+		scope="prototype">
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+		<property name="dataElementService" ref="org.hisp.dhis.dataelement.DataElementService" />
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="locationService" ref="org.hisp.dhis.location.LocationService" />
+	</bean>		
+	
+	<!-- Add Beneficiary -->
+	<bean id="org.hisp.dhis.asha.beneficiaries.AddASHABeneficiaryAction"
+		class="org.hisp.dhis.asha.beneficiaries.AddASHABeneficiaryAction"
+		scope="prototype">
+		<property name="beneficiaryService" ref="org.hisp.dhis.beneficiary.BeneficiaryService" />
+		<property name="dataElementService" ref="org.hisp.dhis.dataelement.DataElementService" />
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="ashaService" ref="org.hisp.dhis.asha.util.ASHAService" />
+	</bean>	
+
+	
+	
+	<!-- Add Beneficiary List -->
+	<bean id="org.hisp.dhis.asha.beneficiaries.GetASHABeneficiaryListAction"
+		class="org.hisp.dhis.asha.beneficiaries.GetASHABeneficiaryListAction"
+		scope="prototype">
+		<property name="beneficiaryService" ref="org.hisp.dhis.beneficiary.BeneficiaryService" />
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+	</bean>
+
+	
+	<!-- Validate Beneficiary -->
+	<bean id="org.hisp.dhis.asha.beneficiaries.ValidateBeneficiaryAction"
+		class="org.hisp.dhis.asha.beneficiaries.ValidateBeneficiaryAction"
+		scope="prototype">
+		<property name="beneficiaryService" ref="org.hisp.dhis.beneficiary.BeneficiaryService" />
+		<property name="dataElementService" ref="org.hisp.dhis.dataelement.DataElementService" />
+	</bean>	
+			
+
+	<!-- Update ASHA Beneficiary Form -->
+	<bean id="org.hisp.dhis.asha.beneficiaries.ShowUpdateASHABeneficiaryFormAction"
+		class="org.hisp.dhis.asha.beneficiaries.ShowUpdateASHABeneficiaryFormAction"
+		scope="prototype">
+		<property name="beneficiaryService" ref="org.hisp.dhis.beneficiary.BeneficiaryService" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+		<property name="dataElementService" ref="org.hisp.dhis.dataelement.DataElementService" />
+		<property name="locationService" ref="org.hisp.dhis.location.LocationService" />
+	</bean>	
+
+	
+	<!-- Update Beneficiary -->
+	<bean id="org.hisp.dhis.asha.beneficiaries.UpdateASHABeneficiaryAction"
+		class="org.hisp.dhis.asha.beneficiaries.UpdateASHABeneficiaryAction"
+		scope="prototype">
+		<property name="beneficiaryService" ref="org.hisp.dhis.beneficiary.BeneficiaryService" />
+		<property name="dataElementService" ref="org.hisp.dhis.dataelement.DataElementService" />
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+	</bean>		
+	
+	<!-- Remove ASHA Beneficiary --> 
+	<bean id="org.hisp.dhis.asha.beneficiaries.RemoveASHABeneficiaryAction"
+		class="org.hisp.dhis.asha.beneficiaries.RemoveASHABeneficiaryAction"
+		scope="prototype">
+		<property name="beneficiaryService" ref="org.hisp.dhis.beneficiary.BeneficiaryService" />
+	</bean>	
+	
+
+	<!-- Beneficiary Report List -->
+	<bean id="org.hisp.dhis.asha.beneficiaries.GetASHABeneficiaryReportResultAction"
+		class="org.hisp.dhis.asha.beneficiaries.GetASHABeneficiaryReportResultAction"
+		scope="prototype">
+		<property name="beneficiaryService" ref="org.hisp.dhis.beneficiary.BeneficiaryService" />
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<!--<property name="ashaService" ref="org.hisp.dhis.asha.util.ASHAService" />-->
+		<property name="optionService" ref="org.hisp.dhis.option.OptionService" />
+		<property name="dataElementService" ref="org.hisp.dhis.dataelement.DataElementService" />
+	</bean>	
+							
+
+<!-- ASHA Facilitator -->
+	
+	
+	<!-- ASHA Facilitator List -->
+	<bean id="org.hisp.dhis.asha.facilitator.GetASHAFacilitatorListAction"
+		class="org.hisp.dhis.asha.facilitator.GetASHAFacilitatorListAction"
+		scope="prototype">
+		<property name="selectionManager" ref="org.hisp.dhis.ouwt.manager.OrganisationUnitSelectionManager" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+		<property name="organisationUnitGroupService" ref="org.hisp.dhis.organisationunit.OrganisationUnitGroupService" />
+		<property name="facilitatorService" ref="org.hisp.dhis.facilitator.FacilitatorService" />
+	</bean>	
+	
+
+	<!-- Show Add ASHA Facilitator Form -->
+	<bean id="org.hisp.dhis.asha.facilitator.ShowAddASHAFacilitatorFormAction"
+		class="org.hisp.dhis.asha.facilitator.ShowAddASHAFacilitatorFormAction"
+		scope="prototype">
+		<property name="organisationUnitService" ref="org.hisp.dhis.organisationunit.OrganisationUnitService" />
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="facilitatorService" ref="org.hisp.dhis.facilitator.FacilitatorService" />
+	</bean>	
+
+	
+	<!-- Add ASHA Facilitator --> 
+	
+	<bean id="org.hisp.dhis.asha.facilitator.AddASHAFacilitatorAction"
+		class="org.hisp.dhis.asha.facilitator.AddASHAFacilitatorAction"
+		scope="prototype">
+		<property name="organisationUnitService" ref="org.hisp.dhis.organisationunit.OrganisationUnitService" />
+		<property name="facilitatorService" ref="org.hisp.dhis.facilitator.FacilitatorService" />
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+	</bean>			
+	
+
+	<!-- Show Update ASHA Facilitator Form -->
+	<bean id="org.hisp.dhis.asha.facilitator.ShowUpdateASHAFacilitatorFormAction"
+		class="org.hisp.dhis.asha.facilitator.ShowUpdateASHAFacilitatorFormAction"
+		scope="prototype">
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="facilitatorService" ref="org.hisp.dhis.facilitator.FacilitatorService" />
+	</bean>		
+	
+	
+	<!-- Update ASHA Facilitator --> 
+	<bean id="org.hisp.dhis.asha.facilitator.UpdateASHAFacilitatorAction"
+		class="org.hisp.dhis.asha.facilitator.UpdateASHAFacilitatorAction"
+		scope="prototype">
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="facilitatorService" ref="org.hisp.dhis.facilitator.FacilitatorService" />
+	</bean>				
+	
+	
+	<!-- Remove ASHA Facilitator --> 
+	<bean id="org.hisp.dhis.asha.facilitator.RemoveASHAFacilitatorAction"
+		class="org.hisp.dhis.asha.facilitator.RemoveASHAFacilitatorAction"
+		scope="prototype">
+		<property name="facilitatorService" ref="org.hisp.dhis.facilitator.FacilitatorService" />
+	</bean>		
+	
+	<!-- Show ASHA Facilitator Data Entry Form  -->
+	<bean id="org.hisp.dhis.asha.facilitator.ShowASHAFacilitatorDataEntryFormAction"
+		class="org.hisp.dhis.asha.facilitator.ShowASHAFacilitatorDataEntryFormAction"
+		scope="prototype">
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+		<property name="dataSetService" ref="org.hisp.dhis.dataset.DataSetService" />
+		<property name="facilitatorService" ref="org.hisp.dhis.facilitator.FacilitatorService" />
+	</bean>	
+	
+	
+	<!-- Load ASHA Facilitator Data Entry Form --> 
+	<bean id="org.hisp.dhis.asha.facilitator.LoadASHAFacilitatorDataEntryFormAction"
+		class="org.hisp.dhis.asha.facilitator.LoadASHAFacilitatorDataEntryFormAction"
+		scope="prototype">
+		<property name="dataSetService" ref="org.hisp.dhis.dataset.DataSetService" />
+		<property name="facilitatorService" ref="org.hisp.dhis.facilitator.FacilitatorService" />
+	<!--
+		<property name="facilitatorDataValueService" ref="org.hisp.dhis.facilitator.FacilitatorDataValueService" />
+		<property name="dataElementCategoryService" ref="org.hisp.dhis.dataelement.DataElementCategoryService" />
+	-->
+		<property name="ashaService" ref="org.hisp.dhis.asha.util.ASHAService" />
+		<property name="periodService" ref="org.hisp.dhis.period.PeriodService" />
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="patientAttributeGroupService" ref="org.hisp.dhis.patient.PatientAttributeGroupService" />
+	</bean>
+	
+	
+	<!-- Save ASHA Facilitator Data Value-->
+	<bean id="org.hisp.dhis.asha.facilitator.SaveASHAFacilitatorDataValueAction"
+		class="org.hisp.dhis.asha.facilitator.SaveASHAFacilitatorDataValueAction"
+		scope="prototype">
+		<property name="dataSetService" ref="org.hisp.dhis.dataset.DataSetService" />
+		<property name="currentUserService" ref="org.hisp.dhis.user.CurrentUserService" />
+		<property name="dataElementCategoryService" ref="org.hisp.dhis.dataelement.DataElementCategoryService" />
+		<property name="facilitatorService" ref="org.hisp.dhis.facilitator.FacilitatorService" />
+		<property name="facilitatorDataValueService" ref="org.hisp.dhis.facilitator.FacilitatorDataValueService" />
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="patientAttributeGroupService" ref="org.hisp.dhis.patient.PatientAttributeGroupService" />
+		<property name="patientAttributeOptionService" ref="org.hisp.dhis.patient.PatientAttributeOptionService" />
+		<property name="patientAttributeValueService" ref="org.hisp.dhis.patientattributevalue.PatientAttributeValueService" />
+	</bean>	
+	
+	<!-- ASHA PerFormance List --> 
+	<bean id="org.hisp.dhis.asha.facilitator.GetASHAPerformanceListAction"
+		class="org.hisp.dhis.asha.facilitator.GetASHAPerformanceListAction"
+		scope="prototype">
+		<property name="ashaService" ref="org.hisp.dhis.asha.util.ASHAService" />
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="dataSetService" ref="org.hisp.dhis.dataset.DataSetService" />
+		<property name="facilitatorService" ref="org.hisp.dhis.facilitator.FacilitatorService" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+		<property name="periodService" ref="org.hisp.dhis.period.PeriodService" />		
+	</bean>	
+	
+	
+	<!-- Get Facilitator ASHA List -->
+	<bean id="org.hisp.dhis.asha.facilitator.GetFacilitatorASHAListAction"
+		class="org.hisp.dhis.asha.facilitator.GetFacilitatorASHAListAction"
+		scope="prototype">
+		<property name="ashaService" ref="org.hisp.dhis.asha.util.ASHAService" />
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="facilitatorService" ref="org.hisp.dhis.facilitator.FacilitatorService" />
+		<property name="periodService" ref="org.hisp.dhis.period.PeriodService" />		
+	</bean>		
+	
+	
+	
+	
+	<!--  Facilitator Format 1 Report -->
+	<bean id="org.hisp.dhis.asha.facilitator.GetASHAFacilitatorFormat1ReportResultAction"
+		class="org.hisp.dhis.asha.facilitator.GetASHAFacilitatorFormat1ReportResultAction"
+		scope="prototype">
+		<property name="facilitatorService" ref="org.hisp.dhis.facilitator.FacilitatorService" />
+		<property name="periodService" ref="org.hisp.dhis.period.PeriodService" />
+		<property name="dataSetService" ref="org.hisp.dhis.dataset.DataSetService" />
+		<property name="ashaService" ref="org.hisp.dhis.asha.util.ASHAService" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+		<property name="organisationUnitService" ref="org.hisp.dhis.organisationunit.OrganisationUnitService" />
+	</bean>	
+	
+		
+	
+	
+		
+			
+	<!-- Show ASHA Facilitator Form -->
+	
+	<bean id="org.hisp.dhis.asha.facilitator.ShowASHAFacilitatorFormAction"
+		class="org.hisp.dhis.asha.facilitator.ShowASHAFacilitatorFormAction"
+		scope="prototype">
+		<property name="selectionManager" ref="org.hisp.dhis.ouwt.manager.OrganisationUnitSelectionManager" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+		<property name="organisationUnitGroupService" ref="org.hisp.dhis.organisationunit.OrganisationUnitGroupService" />
+		<property name="facilitatorService" ref="org.hisp.dhis.facilitator.FacilitatorService" />
+	</bean>			
+			
+
+	<!-- Save ASHA Facilitator Data -->
+	
+	<bean id="org.hisp.dhis.asha.facilitator.SaveASHAFacilitatorDataAction"
+		class="org.hisp.dhis.asha.facilitator.SaveASHAFacilitatorDataAction"
+		scope="prototype">
+		<property name="organisationUnitService" ref="org.hisp.dhis.organisationunit.OrganisationUnitService" />
+		<property name="facilitatorService" ref="org.hisp.dhis.facilitator.FacilitatorService" />
+	</bean>				
+					
+
+
+	<!-- Location -->
+	
+	<!-- Display List of Location/Village -->
+	<bean id="org.hisp.dhis.asha.location.GetLocationListAction"
+        class="org.hisp.dhis.asha.location.GetLocationListAction" scope="prototype">
+		<property name="selectionManager" ref="org.hisp.dhis.ouwt.manager.OrganisationUnitSelectionManager" />
+		<property name="locationService" ref="org.hisp.dhis.location.LocationService" />
+		<property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+    </bean>	
+
+
+	<!-- Add Location/Village Form --> 
+	<bean id="org.hisp.dhis.asha.location.ShowAddLocationFormAction"
+        class="org.hisp.dhis.asha.location.ShowAddLocationFormAction" scope="prototype">
+		<property name="organisationUnitService" ref="org.hisp.dhis.organisationunit.OrganisationUnitService" />
+    </bean>	
+
+
+	<!-- Location/Village Validation during Addition or Updation of Location -->	
+	<bean id="org.hisp.dhis.asha.location.ValidateLocationAction"
+        class="org.hisp.dhis.asha.location.ValidateLocationAction" scope="prototype">
+		<property name="locationService" ref="org.hisp.dhis.location.LocationService" />
+		<property name="organisationUnitService" ref="org.hisp.dhis.organisationunit.OrganisationUnitService" />
+    </bean>
+
+
+	<!-- Add Location/Village --> 
+	<bean id="org.hisp.dhis.asha.location.AddLocationAction"
+        class="org.hisp.dhis.asha.location.AddLocationAction" scope="prototype">
+		<property name="locationService" ref="org.hisp.dhis.location.LocationService" />
+		<property name="organisationUnitService" ref="org.hisp.dhis.organisationunit.OrganisationUnitService" />
+    </bean>	
+       				
+	
+	<!-- Update Location/Village Form --> 
+	<bean id="org.hisp.dhis.asha.location.ShowLocationUpdateFormAction"
+        class="org.hisp.dhis.asha.location.ShowLocationUpdateFormAction" scope="prototype">
+		<property name="locationService" ref="org.hisp.dhis.location.LocationService" />
+    </bean>	
+		
+	<!-- Update Location/Village --> 
+	<bean id="org.hisp.dhis.asha.location.UpdateLocationAction"
+        class="org.hisp.dhis.asha.location.UpdateLocationAction" scope="prototype">
+		<property name="locationService" ref="org.hisp.dhis.location.LocationService" />
+    </bean>	
+	
+
+	<!-- Get Location/Village Details -->
+	<bean id="org.hisp.dhis.asha.location.GetLocationDetailsAction"
+        class="org.hisp.dhis.asha.location.GetLocationDetailsAction" scope="prototype">
+		<property name="locationService" ref="org.hisp.dhis.location.LocationService" />
+    </bean>
+	
+	
+	<!-- Remove Location/Village --> 
+	<bean id="org.hisp.dhis.asha.location.RemoveLocationAction"
+        class="org.hisp.dhis.asha.location.RemoveLocationAction" scope="prototype">
+		<property name="locationService" ref="org.hisp.dhis.location.LocationService" />
+    </bean>	
+
+
+							
+<!-- Report -->
+	 
+	<!-- ASHA Master Chart Report -->
+	<bean id="org.hisp.dhis.asha.reports.GetASHAMasterChartReportFormAction"
+		class="org.hisp.dhis.asha.reports.GetASHAMasterChartReportFormAction"
+		scope="prototype">
+		<property name="selectionManager" ref="org.hisp.dhis.ouwt.manager.OrganisationUnitSelectionManager" />
+	</bean>	
+	
+	<bean id="org.hisp.dhis.asha.reports.ASHAMasterChartReportAction"
+		class="org.hisp.dhis.asha.reports.ASHAMasterChartReportAction"
+		scope="prototype">
+		<property name="organisationUnitService" ref="org.hisp.dhis.organisationunit.OrganisationUnitService" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+		<property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+		<property name="periodService" ref="org.hisp.dhis.period.PeriodService" />
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="patientAttributeService" ref="org.hisp.dhis.patient.PatientAttributeService" />
+		<property name="ashaService" ref="org.hisp.dhis.asha.util.ASHAService" />
+	</bean>	
+	
+    <bean id="org.hisp.dhis.asha.reports.ASHAOutcomeMonitoringReportAction"
+        class="org.hisp.dhis.asha.reports.ASHAOutcomeMonitoringReportAction"
+        scope="prototype">
+        <property name="organisationUnitService" ref="org.hisp.dhis.organisationunit.OrganisationUnitService" />
+        <property name="organisationUnitGroupService" ref="org.hisp.dhis.organisationunit.OrganisationUnitGroupService" />
+		<property name="periodService" ref="org.hisp.dhis.period.PeriodService" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+		<property name="dataSetService" ref="org.hisp.dhis.dataset.DataSetService" />
+		<property name="ashaService" ref="org.hisp.dhis.asha.util.ASHAService" />
+		<!--
+        <property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+        <property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+        <property name="patientAttributeService" ref="org.hisp.dhis.patient.PatientAttributeService" />
+        -->
+    </bean> 
+
+	
+	
+	
+	
+	
+	
+	
+	
+<!-- Util/Services -->	
+	<bean id="org.hisp.dhis.asha.util.ASHAService"
+		class="org.hisp.dhis.asha.util.ASHAService"
+		scope="prototype">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+		<property name="dataSetService" ref="org.hisp.dhis.dataset.DataSetService" />
+		<property name="reportService" ref="org.hisp.dhis.reports.ReportService" />
+		<property name="dataElementService" ref="org.hisp.dhis.dataelement.DataElementService" />
+		<property name="dataElementCategoryService" ref="org.hisp.dhis.dataelement.DataElementCategoryService" />
+	</bean>		
+		
+</beans>

@@ -1,0 +1,89 @@
+<br />
+<!--
+<style>
+	
+	height:900px;
+	background-color:#639167;
+</style>
+-->
+<script>
+
+var selOUID = "";
+
+jQuery(document).ready(function(){
+
+jQuery('#orgUnitTreeContainer').height(150);
+jQuery('#orgUnitTree').height(150);
+       
+});        
+
+function organisationUnitSelected( orgUnits, orgUnitNames )
+{   
+    //document.getElementById('selectedOrgunitID').value = orgUnits;
+	selOUID = orgUnits;
+    //setFieldValue("selectedOrgunitText", orgUnitNames[0]);
+    //setFieldValue("orgunitName", orgUnitNames[0]);
+}
+
+selection.setListenerFunction( organisationUnitSelected );
+
+function callAction( actionName )
+{
+    //var orgObject = document.getElementById('selectedOrgunitID');
+    //var orgUnitId = document.getElementById('selectedOrgunitID').value;
+    
+    //alert( orgUnitId );
+    //if( selOUID == "" )
+    //{
+    //    showWarningMessage( "Please Select OrganisationUnit" );
+   // }
+   // else
+    //{
+		/*
+		$( '#ovcManagementDiv' ).load( actionName+".action", 
+        { 
+            orgUnitId : selOUID
+        },
+		function()
+        {
+		});
+		*/
+      //  window.location.href = actionName+".action?orgUnitId=" + selOUID;;
+    //}
+	
+	window.location.href = actionName+".action?orgUnitId=" + selOUID;
+}
+</script>
+
+#parse( "/dhis-web-commons/ouwt/orgunittreesearch.vm" )
+
+<h2>$i18n.getString( "ovc_management" )&nbsp;</h2>
+    <ul>
+        <li><a href="javascript:callAction( 'getRegistrationForm' )">$i18n.getString( "new_registration" )&nbsp;</a></li>
+        <li><a href="javascript:callAction( 'selectSubmittedOVC' )">$i18n.getString( "submitted" )&nbsp;</a></li>
+        <li><a href="javascript:callAction( 'selectApprovedOVC' )">$i18n.getString( "active" )&nbsp;</a></li>
+        <li><a href="javascript:callAction( 'selectRejectedOVC' )">$i18n.getString( "rejected" )&nbsp;</a></li>
+    </ul>
+
+<h2>$i18n.getString( "community_worker_management" )</h2>
+	<ul>
+		<li><a href="javascript:callAction( 'getEmployeeList' )">$i18n.getString( "community_worker_management" )&nbsp;</a></li>		
+	</ul>
+
+<h2>$i18n.getString( "location_management" )&nbsp;</h2>
+	<ul>
+		<li><a href="javascript:callAction( 'getLocationList' )">$i18n.getString( "location_management" )&nbsp;</a></li>
+		<li><a href="javascript:callAction( 'getSchoolList' )">$i18n.getString( "school_management" )&nbsp;</a></li>
+	</ul>
+	
+<h2>$i18n.getString( "exit_management" )&nbsp;</h2>
+    <ul>
+        <li><a href="javascript:callAction( 'selectExitPendingOVC' )">$i18n.getString( "exit_pending" )&nbsp;</a></li>
+        <li><a href="javascript:callAction( 'selectInActiveOVC' )">$i18n.getString( "in_active" )&nbsp;</a></li>
+    </ul>
+
+<h2>$i18n.getString( "reports" )&nbsp;</h2>
+    <ul>
+        <li><a href = "customReportManagement.action">$i18n.getString( "custom_report" )&nbsp;</a></li>
+		<li><a href="runAggregationQueryForm.action">$i18n.getString( "manual_aggregation" )</a></li>
+    </ul>

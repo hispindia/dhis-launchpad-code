@@ -1,0 +1,896 @@
+<script type="text/javascript" src="javascript/ashaAmountDataEntry.js"></script>
+
+<form id="amountDetails" name="amountDetails" >
+
+<input type="hidden" id="programStageId" name="programStageId" value="$!programStage.id">
+<input type="hidden" id="programStageInstanceId" name="programStageInstanceId" value="$!programStageInstanceId">
+<table style="background-color:#EFFBEF;" width="100%">
+	
+	<tr>
+		<th style="text-align: center;">$i18n.getString( "sl_no" )</th>
+		<th>$i18n.getString( "service_name" )</th>
+		<th style="text-align: center;">$i18n.getString( "amount" )</th>
+		<th style="text-align: center;">$i18n.getString( "total_case" )</th>
+		<th style="text-align: center;">$i18n.getString( "total_amount" )</th>
+	</tr>
+<!-- Maternal Health Start -->
+
+
+	<tr>
+		<th style="text-align: center;">&nbsp;</th>
+		<th colspan="4">$i18n.getString( "maternal_health" )</th>
+	</tr>
+	
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "1" )</td>
+		<td>Registration and Facilitation to Pregnant Women belonging to SC and BPL for ANC-I in Trimester-I</td>
+		<td><input type="text" id="de3" name="de3" value = "$!dataValueMap.get( 3 )" readonly style="text-align: center;"/></td>
+		<td><input type="text" id="deps67" name="deps67" value = "$!patientDataValueMap.get( 67 )" readonly onkeyup="calCulateAmount67();"  style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount67" name="depsamount67" readonly style="text-align: center;"/></td>
+	</tr>
+
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "2" )</td>
+		<td>Registration and Facilitation to Pregnant Women belonging to General Category for ANC-I in Trimester-I</td>
+		<td><input type="text" id="de6" name="de6" value = "$!dataValueMap.get( 6 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps68" name="deps68" value = "$!patientDataValueMap.get( 68 )" readonly onkeyup="calCulateAmount68();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount68" name="depsamount68" readonly style="text-align: center;"/></td>
+	</tr>
+
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "3" )</td>
+		<td>Registration and Facilitation to Pregnant Women belonging to SC and BPL for ANC-II in Trimester-II</td>
+		<td><input type="text" id="de10" name="de10" value = "$!dataValueMap.get( 10 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps71" name="deps71" value = "$!patientDataValueMap.get( 71 )" readonly onkeyup="calCulateAmount71();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount71" name="depsamount71" readonly style="text-align: center;"/></td>
+	</tr>
+
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "4" )</td>
+		<td>Registration and Facilitation to Pregnant Women belonging to General Category for ANC-II in Trimester-II</td>
+		<td><input type="text" id="de5" name="de5" value = "$!dataValueMap.get( 5 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps72" name="deps72" value = "$!patientDataValueMap.get( 72 )" readonly onkeyup="calCulateAmount72();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount72" name="depsamount72" readonly style="text-align: center;"/></td>
+	</tr>
+
+<!--
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "3" )</td>
+		<td>Registration and Facilitation to Pregnant Women belonging to SC and BPL for ANC-II in Trimester-II</td>
+		<td><input type="text" id="de9" name="de9" value = "$!dataValueMap.get( 9 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps69" name="deps69" value = "$!patientDataValueMap.get( 69 )" onkeyup="calCulateAmount69();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount69" name="depsamount69" readonly style="text-align: center;"/></td>
+	</tr>
+
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "4" )</td>
+		<td>Registration and Facilitation to Pregnant Women belonging to General Category for ANC-II in Trimester-II</td>
+		<td><input type="text" id="de5" name="de5" value = "$!dataValueMap.get( 5 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps70" name="deps70" value = "$!patientDataValueMap.get( 70 )" onkeyup="calCulateAmount70();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount70" name="depsamount70" readonly style="text-align: center;"/></td>
+	</tr>
+-->
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "5" )</td>
+		<td>Facilitation to Pregnant Women for ANC-III in Trimester-III</td>
+		<td><input type="text" id="de15" name="de15" value = "$!dataValueMap.get( 15 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps75" name="deps75" value = "$!patientDataValueMap.get( 75 )" readonly onkeyup="calCulateAmount75();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount75" name="depsamount75" readonly style="text-align: center;"/></td>
+	</tr>	
+
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "6" )</td>
+		<td>Facilitation of Institutional Deliveries to SC and BPL Pregnant Women</td>
+		<td><input type="text" id="de13" name="de13" value = "$!dataValueMap.get( 13 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps76" name="deps76" value = "$!patientDataValueMap.get( 76 )" readonly onkeyup="calCulateAmount76();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount76" name="depsamount76" readonly style="text-align: center;"/></td>
+	</tr>
+
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "7" )</td>
+		
+		<td>Facilitation of Institutional Deliveries to General Category Pregnant Women</td>
+		<td><input type="text" id="de109" name="de109" value = "$!dataValueMap.get( 109 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps110" name="deps110" value = "$!patientDataValueMap.get( 110 )" readonly onkeyup="calCulateAmount110();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount110" name="depsamount110" readonly style="text-align: center;"/></td>
+		
+	</tr>
+
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "8" )</td>
+		<td>Facilitation for Referral and MTPs of Pregnant Women</td>
+		<td><input type="text" id="de12" name="de12" value = "$!dataValueMap.get( 12 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps78" name="deps78" value = "$!patientDataValueMap.get( 78 )" readonly onkeyup="calCulateAmount78();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount78" name="depsamount78" readonly style="text-align: center;"/></td>
+	</tr>
+
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "9" )</td>
+		<td>Identification/Referral of Identified Danger Sign Cases (Other then HBPNC)</td>
+		<td><input type="text" id="de14" name="de14" value = "$!dataValueMap.get( 14 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps77" name="deps77" value = "$!patientDataValueMap.get( 77 )" readonly onkeyup="calCulateAmount77();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount77" name="depsamount77" readonly style="text-align: center;"/></td>
+	</tr>
+
+
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "10" )</td>
+		
+		<td>First Information about Maternal Death and Community Audit</td>
+		<td><input type="text" id="de111" name="de111" value = "$!dataValueMap.get( 111 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps112" name="deps112" value = "$!patientDataValueMap.get( 112 )" readonly onkeyup="calCulateAmount112();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount112" name="depsamount112" readonly style="text-align: center;"/></td>
+		
+	</tr>
+
+
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "11" )</td>
+		<td>Community Audit of Maternal Death</td>
+		<td><input type="text" id="de8" name="de8" value = "$!dataValueMap.get( 8 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps86" name="deps86" value = "$!patientDataValueMap.get( 86 )" readonly onkeyup="calCulateAmount86();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount86" name="depsamount86" readonly style="text-align: center;"/></td>
+	</tr>
+
+	<tr>
+		<td>&nbsp;</td>
+		<td colspan="3"><b>$i18n.getString( "group_total" )</b></td>
+		<td><input type="text" id="deps129" name="deps129" readonly  value = "$!patientDataValueMap.get( 129 )"  style="text-align: center;" /></td>
+	</tr>
+
+
+<!-- Maternal Health End -->
+
+<!-- rest of Maternal health
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "5" )</td>
+		<td>SC/BPL Pregnant Women Registered for Facilitation of ANC-II in the Second Trimester</td>
+		<td><input type="text" id="de10" name="de10" value = "$!dataValueMap.get( 10 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps71" name="deps71" value = "$!patientDataValueMap.get( 71 )" onkeyup="calCulateAmount71();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount71" name="depsamount71" readonly style="text-align: center;"/></td>
+	</tr>
+	
+
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "6" )</td>
+		<td>Other Pregnant Women registered for facilitation of ANC-II in the Second Trimester</td>
+		<td><input type="text" id="de5" name="de5" value = "$!dataValueMap.get( 5 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps72" name="deps72" value = "$!patientDataValueMap.get( 72 )" onkeyup="calCulateAmount72();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount72" name="depsamount72" readonly style="text-align: center;"/></td>
+	</tr>
+
+
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "7" )</td>
+		<td>SC/BPL Pregnant Women Facilitated for ANC-II after Second Trimester</td>
+		<td><input type="text" id="de16" name="de16" value = "$!dataValueMap.get( 16 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps73" name="deps73" value = "$!patientDataValueMap.get( 73 )" onkeyup="calCulateAmount73();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount73" name="depsamount73" readonly style="text-align: center;"/></td>
+	</tr>
+
+
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "8" )</td>
+		<td>Other Pregnant Women Facilitated for ANC-II after Second Trimester</td>
+		<td><input type="text" id="de62" name="de62" value = "$!dataValueMap.get( 62 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps74" name="deps74" value = "$!patientDataValueMap.get( 74 )" onkeyup="calCulateAmount74();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount74" name="depsamount74" readonly style="text-align: center;"/></td>
+	</tr>
+
+-->
+
+
+<!-- Child Health Start -->
+
+	<tr>
+		<th style="text-align: center;">&nbsp;</th>
+		<th colspan="4">$i18n.getString( "child_health" )</th>
+	</tr>	
+	
+	
+	
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "1" )</td>
+		<td>06/07 Home Visits by ASHA under HBNC </td>
+		<td><input type="text" id="de61" name="de61" value = "$!dataValueMap.get( 61 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps82" name="deps82" value = "$!patientDataValueMap.get( 82 )" readonly onkeyup="calCulateAmount82();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount82" name="depsamount82" readonly style="text-align: center;"/></td>
+	</tr>
+
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "2" )</td>
+		<td>Identification/Referral of Identified Danger Sign Cases (Other then HBPNC)</td>
+		<td><input type="text" id="de4" name="de4" value = "$!dataValueMap.get( 4 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps83" name="deps83" value = "$!patientDataValueMap.get( 83 )" readonly onkeyup="calCulateAmount83();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount83" name="depsamount83" readonly style="text-align: center;"/></td>
+	</tr>		
+
+<!-- Move to for RBSY Group -->
+<!--
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "3" )</td>
+		
+		<td>Management of Identified Moderate & Severely Malnourished Children and Referral with Maximum 03 follow up visits</td>
+		<td><input type="text" id="de113" name="de113" value = "$!dataValueMap.get( 113 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps114" name="deps114" value = "$!patientDataValueMap.get( 114 )" readonly onkeyup="calCulateAmount114();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount114" name="depsamount114" readonly style="text-align: center;"/></td>
+		
+	</tr>
+
+
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "4" )</td>
+		<td>Anemia Management of Severely / Moderate Children</td>
+		<td><input type="text" id="de18" name="de18" value = "$!dataValueMap.get( 18 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps108" name="deps108" value = "$!patientDataValueMap.get( 108 )" readonly onkeyup="calCulateAmount108();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount108" name="depsamount108" readonly style="text-align: center;"/></td>
+	</tr>
+
+<!-- for RBSY end-->	
+
+
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "3" )</td>
+		<td>Information about Infant Death and Community Audit</td>
+		<td><input type="text" id="de115" name="de115" value = "$!dataValueMap.get( 115 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps116" name="deps116" value = "$!patientDataValueMap.get( 116 )" readonly onkeyup="calCulateAmount116();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount116" name="depsamount116" readonly style="text-align: center;"/></td>
+		
+	</tr>
+
+
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "4" )</td>
+		<td>Community Audit of Infant Death</td>
+		<td><input type="text" id="de11" name="de11" value = "$!dataValueMap.get( 11 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps85" name="deps85" value = "$!patientDataValueMap.get( 85 )" readonly onkeyup="calCulateAmount85();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount85" name="depsamount85" readonly style="text-align: center;"/></td>
+	</tr>
+
+
+	<tr>
+		<td>&nbsp;</td>
+		<td colspan="3"><b>$i18n.getString( "group_total" )</b></td>
+		<td><input type="text" id="deps130" name="deps130" readonly value = "$!patientDataValueMap.get( 130 )"  style="text-align: center;" /></td>
+	</tr>
+
+
+<!-- Child Health End -->
+
+
+
+<!-- RBSY Start -->
+
+	<tr>
+		<th style="text-align: center;">&nbsp;</th>
+		<th colspan="4">$i18n.getString( "rbsk" )</th>
+	</tr>
+	
+	
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "1" )</td>
+		<!--<td>Mobilization of Malnourished Children to NRCs and their Follow-up as per the GoI Policy</td>-->
+		<td>Management of Identified Moderate & Severely Malnourished Children and Referral with Maximum 03 follow up visits</td>
+		<td><input type="text" id="de113" name="de113" value = "$!dataValueMap.get( 113 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps114" name="deps114" value = "$!patientDataValueMap.get( 114 )" readonly onkeyup="calCulateAmount114();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount114" name="depsamount114" readonly style="text-align: center;"/></td>
+		
+	</tr>
+
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "2" )</td>
+		<td>Anemia Management of Severely / Moderate Children</td>
+		<td><input type="text" id="de18" name="de18" value = "$!dataValueMap.get( 18 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps108" name="deps108" value = "$!patientDataValueMap.get( 108 )" readonly onkeyup="calCulateAmount108();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount108" name="depsamount108" readonly style="text-align: center;"/></td>
+	</tr>
+
+
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "3" )</td>
+		
+		<td>Identification and Referral of Birth Defect Children from Birth to 05 weeks</td>
+		<td><input type="text" id="de117" name="de117" value = "$!dataValueMap.get( 117 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps118" name="deps118" value = "$!patientDataValueMap.get( 118 )" readonly onkeyup="calCulateAmount118();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount118" name="depsamount118" readonly style="text-align: center;"/></td>
+		
+	</tr>
+
+
+	<tr>
+		<td>&nbsp;</td>
+		<td colspan="3"><b>$i18n.getString( "group_total" )</b></td>
+		<td><input type="text" id="deps394" name="deps394" readonly value = "$!patientDataValueMap.get( 394 )"  style="text-align: center;" /></td>
+	</tr>
+
+	
+	
+	
+	
+	
+<!-- RBSY END -->
+
+<!-- Adolescent Health Start -->
+
+	
+	<tr>
+		<th style="text-align: center;">&nbsp;</th>
+		<th colspan="4">$i18n.getString( "adolescent_health" )</th>
+	</tr>	
+		
+	
+<!-- Move for RBSY Sart 
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "1" )</td>
+		
+		<td>Identification and Referral of Birth Defect Children from Birth to 05 weeks</td>
+		<td><input type="text" id="de117" name="de117" value = "$!dataValueMap.get( 117 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps118" name="deps118" value = "$!patientDataValueMap.get( 118 )" readonly onkeyup="calCulateAmount118();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount118" name="depsamount118" readonly style="text-align: center;"/></td>
+		
+	</tr>
+-->
+<!-- for RBSY end-->	
+	
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "1" )</td>
+		<!--<td>Convening Monthly Meeting with Adoloscent Girls</td>-->
+		<td>Convening Monthly Meeting of Adolescent Girl for creating awareness about Menstrual Hygiene and Health</td>
+		<td><input type="text" id="de119" name="de119" value = "$!dataValueMap.get( 119 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps120" name="deps120" value = "$!patientDataValueMap.get( 120 )" readonly onkeyup="calCulateAmount120();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount120" name="depsamount120" readonly style="text-align: center;"/></td>
+		
+	</tr>
+
+	<tr>
+		<td>&nbsp;</td>
+		<td colspan="3"><b>$i18n.getString( "group_total" )</b></td>
+		<td><input type="text" id="deps131" name="deps131" value = "$!patientDataValueMap.get( 131 )"  readonly style="text-align: center;" /></td>
+	</tr>
+		
+<!-- Adolescent Health End -->
+
+
+<!-- NRHM Additionalities -->
+
+
+	<tr>
+		<th style="text-align: center;">&nbsp;</th>
+		<th colspan="4">$i18n.getString( "nrhm_additionalities" )</th>
+	</tr>
+
+
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "1" )</td>
+		<td>Community Mobilization for VHNDs</td>
+		<td><input type="text" id="de29" name="de29" value = "$!dataValueMap.get( 29 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps92" name="deps92" value = "$!patientDataValueMap.get( 92 )" readonly onkeyup="calCulateAmount92();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount92" name="depsamount92" readonly style="text-align: center;"/></td>
+	</tr>
+
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "2" )</td>
+		<td>Convening Monthly Meeting of VHSNC</td>
+		<td><input type="text" id="de30" name="de30" value = "$!dataValueMap.get( 30 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps93" name="deps93" value = "$!patientDataValueMap.get( 93 )" readonly onkeyup="calCulateAmount93();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount93" name="depsamount93" readonly style="text-align: center;"/></td>
+	</tr>
+
+
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "3" )</td>
+		<td>Birth/ Death Registration (Other than Institutional Cases)</td>
+		<td><input type="text" id="de31" name="de31" value = "$!dataValueMap.get( 31 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps66" name="deps66" value = "$!patientDataValueMap.get( 66 )" readonly onkeyup="calCulateAmount66();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount66" name="depsamount66" readonly style="text-align: center;"/></td>
+	</tr>
+
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "4" )</td>
+		<td>Water Samples to be from Community/School/ AWC taken for Testing</td>
+		<!--<td>Water Samples for Testing</td>-->
+		<td><input type="text" id="de32" name="de32" value = "$!dataValueMap.get( 32 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps94" name="deps94" value = "$!patientDataValueMap.get( 94 )" readonly onkeyup="calCulateAmount94();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount94" name="depsamount94" readonly style="text-align: center;"/></td>
+	</tr>
+
+
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "5" )</td>
+		<td>Monthly Meeting at PHCs</td>
+		<td><input type="text" id="de34" name="de34" value = "$!dataValueMap.get( 34 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps96" name="deps96" value = "$!patientDataValueMap.get( 96 )" readonly onkeyup="calCulateAmount96();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount96" name="depsamount96" readonly style="text-align: center;"/></td>
+	</tr>
+
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "6" )</td>
+		<td>TA/DA for attending Training Programmes</td>
+		<td><input type="text" id="de43" name="de43" value = "$!dataValueMap.get( 43 )" readonly style="text-align: center;" /></td>
+		<td style="text-align: center;" ><input type="text" id="deps95" name="deps95" value = "$!patientDataValueMap.get( 95 )" style="text-align: center;display:none" />
+			 #set( $checkBoxValue = $!patientDataValueMap.get( 95 ) ) 
+			 <input type='checkbox' id="checkboxdeps95" name="checkboxdeps95" value = "true" onclick="checkBoxValueChange();" #if( $checkBoxValue == "1" ) checked #end >
+		</td>
+		<td><input type="text" id="depsamount95" name="depsamount95" readonly style="text-align: center;"/></td>
+	</tr>
+
+	
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "7" )</td>
+		<td>TA/DA for attending Quarterly Award Ceremony + Provision of Lunch (Rs.150+Rs.50)</td>
+		<td><input type="text" id="de387" name="de387" value = "$!dataValueMap.get( 387 )" readonly style="text-align: center;" /></td>
+		<td style="text-align: center;" ><input type="text" id="deps386" name="deps386" value = "$!patientDataValueMap.get( 386 )" style="text-align: center;display:none" />
+			 #set( $checkBoxValue = $!patientDataValueMap.get( 386 ) ) 
+			 <input type='checkbox' id="checkboxdeps386" name="checkboxdeps386" value = "true" onclick="checkBoxValueChange386();" #if( $checkBoxValue == "1" ) checked #end >
+		</td>
+		<td><input type="text" id="depsamount386" name="depsamount386" readonly style="text-align: center;"/></td>
+	</tr>	
+	
+	
+	<tr>
+		<td>&nbsp;</td>
+		<td colspan="3"><b>$i18n.getString( "group_total" )</b></td>
+		<td><input type="text" id="deps132" name="deps132" value = "$!patientDataValueMap.get( 132 )"  readonly style="text-align: center;" /></td>
+	</tr>
+	
+	
+<!-- NRHM Additionalities End -->
+
+
+<!-- JSY (GoI) Start -->
+
+	<tr>
+		<th style="text-align: center;">&nbsp;</th>
+		<!--<th colspan="4">$i18n.getString( "jsy_goi" )</th>-->
+		<th colspan="4">$i18n.getString( "national_health_programmes" )</th>
+	</tr>
+	
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "1" )</td>
+		<!--<td>Facilitation of Pregnant Women belonging to BPL Women for Institutional Delivery and Vaccnination/Immunization of their Children upto 14th week</td>-->
+		<td>Facilitation Rural PW belonging to BPL Women for Institutional Delivery and Vaccination/ Immunization of their children upto 14th week</td>
+		<td><input type="text" id="de2" name="de2" value = "$!dataValueMap.get( 2 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps80" name="deps80" value = "$!patientDataValueMap.get( 80 )" readonly onkeyup="calCulateAmount80();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount80" name="depsamount80" readonly style="text-align: center;"/></td>
+	</tr>	
+
+	
+	
+	
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "2" )</td>
+		<td>Facilitation Urban PW belonging to BPL Women for Institutional Delivery and Vaccination/ Immunization of their children upto 14th week</td>
+		<td><input type="text" id="de392" name="de392" value = "$!dataValueMap.get( 392 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps393" name="deps393" value = "$!patientDataValueMap.get( 393 )" readonly onkeyup="calCulateAmount393();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount393" name="depsamount393" readonly style="text-align: center;"/></td>
+	</tr>	
+	
+	
+	
+	
+	
+	
+	
+	<tr>
+		<td>&nbsp;</td>
+		<td colspan="3"><b>$i18n.getString( "group_total" )</b></td>
+		<td><input type="text" id="deps133" name="deps133" value = "$!patientDataValueMap.get( 133 )"  readonly style="text-align: center;" /></td>
+	</tr>
+
+
+<!-- JSY (GoI) End -->
+
+<!-- RI and FI of Children Start -->
+
+	<tr>
+		<th style="text-align: center;">&nbsp;</th>
+		<th colspan="4">$i18n.getString( "ri_and_fi" )</th>
+	</tr>
+
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "1" )</td>
+		<td>Mobilization of Community for RI</td>
+		<td><input type="text" id="de20" name="de20" value = "$!dataValueMap.get( 20 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps88" name="deps88" value = "$!patientDataValueMap.get( 88 )" readonly onkeyup="calCulateAmount88();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount88" name="depsamount88" readonly style="text-align: center;"/></td>
+	</tr>	
+	
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "2" )</td>
+		<td>Full Immunization of Children upto 01 Year</td>
+		<td><input type="text" id="de22" name="de22" value = "$!dataValueMap.get( 22 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps90" name="deps90" value = "$!patientDataValueMap.get( 90 )" readonly onkeyup="calCulateAmount90();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount90" name="depsamount90" readonly style="text-align: center;"/></td>
+	</tr>
+
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "3" )</td>
+		<td>Full Immunization of Children upto 02 Years</td>
+		<td><input type="text" id="de23" name="de23" value = "$!dataValueMap.get( 23 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps91" name="deps91" value = "$!patientDataValueMap.get( 91 )" readonly onkeyup="calCulateAmount91();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount91" name="depsamount91" readonly style="text-align: center;"/></td>
+	</tr>
+
+
+	<tr>
+		<td>&nbsp;</td>
+		<td colspan="3"><b>$i18n.getString( "group_total" )</b></td>
+		<td><input type="text" id="deps134" name="deps134" value = "$!patientDataValueMap.get( 134 )"  readonly style="text-align: center;" /></td>
+	</tr>
+
+<!-- RI and FI of Children End -->
+
+<!-- Family Welfare Start -->
+
+	<tr>
+		<th style="text-align: center;">&nbsp;</th>
+		<th colspan="4">$i18n.getString( "family_welfare" )</th>
+	</tr>
+
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "1" )</td>
+		<td>Ensuring Spacing of 02 years after marriage for Family Welfare</td>
+		<td><input type="text" id="de24" name="de24" value = "$!dataValueMap.get( 24 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps101" name="deps101" value = "$!patientDataValueMap.get( 101 )" readonly onkeyup="calCulateAmount101();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount101" name="depsamount101" readonly style="text-align: center;"/></td>
+	</tr>
+
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "2" )</td>
+		<td>Ensuring Spacing of 03 years after Birth of Ist Child for FW</td>
+		<td><input type="text" id="de25" name="de25" value = "$!dataValueMap.get( 25 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps102" name="deps102" value = "$!patientDataValueMap.get( 102 )" readonly onkeyup="calCulateAmount102();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount102" name="depsamount102" readonly style="text-align: center;"/></td>
+	</tr>
+
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "3" )</td>
+		<td>Councelling ECs to opt Permanent Limiting Method upto 02 children</td>
+		<td><input type="text" id="de26" name="de26" value = "$!dataValueMap.get( 26 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps103" name="deps103" value = "$!patientDataValueMap.get( 103 )" readonly onkeyup="calCulateAmount103();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount103" name="depsamount103" readonly style="text-align: center;"/></td>
+	</tr>
+
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "4" )</td>
+		<td>Community Mobilization for Tubectomy</td>
+		<td><input type="text" id="de64" name="de64" value = "$!dataValueMap.get( 64 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps97" name="deps97" value = "$!patientDataValueMap.get( 97 )" readonly onkeyup="calCulateAmount97();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount97" name="depsamount97" readonly style="text-align: center;"/></td>
+	</tr>
+
+
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "5" )</td>
+		<td>Community Mobilization for Vasectomy</td>
+		<td><input type="text" id="de65" name="de65" value = "$!dataValueMap.get( 65 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps98" name="deps98" value = "$!patientDataValueMap.get( 98 )" readonly onkeyup="calCulateAmount98();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount98" name="depsamount98" readonly style="text-align: center;"/></td>
+	</tr>
+
+	<tr>
+		<td>&nbsp;</td>
+		<td colspan="3"><b>$i18n.getString( "group_total" )</b></td>
+		<td><input type="text" id="deps135" name="deps135" value = "$!patientDataValueMap.get( 135 )"  readonly style="text-align: center;" /></td>
+	</tr>
+
+<!-- Family Welfare End -->
+
+<!-- Other National Health Programmes -->
+
+	<tr>
+		<th style="text-align: center;">&nbsp;</th>
+		<th colspan="4">$i18n.getString( "other_national_health_programmes" )</th>
+	</tr>
+
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "1" )</td>
+		<td>DOTS Provider under RNTCP </td>
+		<td><input type="text" id="de36" name="de36" value = "$!dataValueMap.get( 36 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps105" name="deps105" value = "$!patientDataValueMap.get( 105 )" readonly onkeyup="calCulateAmount105();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount105" name="depsamount105" readonly style="text-align: center;"/></td>
+	</tr>
+
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "2" )</td>
+		<!--<td>Treatment Provider under NLEP</td>-->
+		<td>Case Detection of Leprosy</td>
+		<td><input type="text" id="de37" name="de37" value = "$!dataValueMap.get( 37 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps106" name="deps106" value = "$!patientDataValueMap.get( 106 )" readonly onkeyup="calCulateAmount106();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount106" name="depsamount106" readonly style="text-align: center;"/></td>
+	</tr>
+	
+	
+	
+	
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "3" )</td>
+		<td>Treatment Management of MB Case</td>
+		<td><input type="text" id="de389" name="de389" value = "$!dataValueMap.get( 389 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps388" name="deps388" value = "$!patientDataValueMap.get( 388 )" readonly onkeyup="calCulateAmount388();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount388" name="depsamount388" readonly style="text-align: center;"/></td>
+	</tr>	
+	
+	
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "4" )</td>
+		<td>Treatment Management of PB Case</td>
+		<td><input type="text" id="de391" name="de391" value = "$!dataValueMap.get( 391 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps390" name="deps390" value = "$!patientDataValueMap.get( 390 )" readonly onkeyup="calCulateAmount390();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount390" name="depsamount390" readonly style="text-align: center;"/></td>
+	</tr>	
+	
+	
+	
+	
+	
+	
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "5" )</td>
+		<td>Testing of Salt Sample under NIDDCP</td>
+		<td><input type="text" id="de35" name="de35" value = "$!dataValueMap.get( 35 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps122" name="deps122" value = "$!patientDataValueMap.get( 122 )" readonly onkeyup="calCulateAmount122();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount122" name="depsamount122" readonly style="text-align: center;"/></td>
+		
+	</tr>	
+		
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "6" )</td>
+		<td>Surveillance Services under NVDCP</td>
+		<td><input type="text" id="de38" name="de38" value = "$!dataValueMap.get( 38 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps107" name="deps107" value = "$!patientDataValueMap.get( 107 )" readonly onkeyup="calCulateAmount107();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount107" name="depsamount107" readonly style="text-align: center;"/></td>
+	</tr>
+
+
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "7" )</td>
+		<td>Monthly Performance Award-I</td>
+		<td><input type="text" id="de40" name="de40" value = "$!dataValueMap.get( 40 )" readonly style="text-align: center;" /></td>
+		<td style="text-align: center;" ><input type="text" id="deps124" name="deps124" value = "$!patientDataValueMap.get( 124 )" style="text-align: center;display:none" />
+			 #set( $checkBoxValue124 = $!patientDataValueMap.get( 124 ) ) 
+			 <input type='checkbox' id="checkboxdeps124" name="checkboxdeps124" value = "true" onclick="checkBoxValueChange124();" #if( $checkBoxValue124 == "1" ) checked #end >
+		</td>
+		<td><input type="text" id="depsamount124" name="depsamount124" readonly style="text-align: center;"/></td>
+	</tr>
+
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "8" )</td>
+		<td>Monthly Performance Award-II</td>
+		<td><input type="text" id="de41" name="de41" value = "$!dataValueMap.get( 41 )" readonly style="text-align: center;" /></td>
+		<td style="text-align: center;" ><input type="text" id="deps126" name="deps126" value = "$!patientDataValueMap.get( 126 )" style="text-align: center;display:none" />
+			 #set( $checkBoxValue126 = $!patientDataValueMap.get( 126 ) ) 
+			 <input type='checkbox' id="checkboxdeps126" name="checkboxdeps126" value = "true" onclick="checkBoxValueChange126();" #if( $checkBoxValue126 == "1" ) checked #end >
+		</td>
+		<td><input type="text" id="depsamount126" name="depsamount126" readonly style="text-align: center;"/></td>
+	</tr>
+
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "9" )</td>
+		<td>Monthly Performance Award-III</td>
+		<td><input type="text" id="de42" name="de42" value = "$!dataValueMap.get( 42 )" readonly style="text-align: center;" /></td>
+		<td style="text-align: center;" ><input type="text" id="deps128" name="deps128" value = "$!patientDataValueMap.get( 128 )" style="text-align: center;display:none" />
+			 #set( $checkBoxValue128 = $!patientDataValueMap.get( 128 ) ) 
+			 <input type='checkbox' id="checkboxdeps128" name="checkboxdeps128" value = "true" onclick="checkBoxValueChange128();" #if( $checkBoxValue128 == "1" ) checked #end >
+		</td>
+		<td><input type="text" id="depsamount128" name="depsamount128" readonly style="text-align: center;"/></td>
+	</tr>
+
+
+	<tr>
+		<td>&nbsp;</td>
+		<td colspan="3"><b>$i18n.getString( "group_total" )</b></td>
+		<td><input type="text" id="deps136" name="deps136" value = "$!patientDataValueMap.get( 136 )"  readonly style="text-align: center;" /></td>
+	</tr>
+
+
+
+
+
+<!--Other National Health Programmes End -->
+
+<!--
+
+
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "13" )</td>
+		<td>Neo-natal/Infant Death Cases Registered</td>
+		<td><input type="text" id="de1" name="de1" value = "$!dataValueMap.get( 1 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps79" name="deps79" value = "$!patientDataValueMap.get( 79 )" onkeyup="calCulateAmount79();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount79" name="depsamount79" readonly style="text-align: center;"/></td>
+	</tr>
+	
+	
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "15" )</td>
+		<td>Home Visits under HBNC Strategy for Birth Preparedness of Pregnant Women</td>
+		<td><input type="text" id="de60" name="de60" value = "$!dataValueMap.get( 60 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps81" name="deps81" value = "$!patientDataValueMap.get( 81 )" onkeyup="calCulateAmount81();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount81" name="depsamount81" readonly style="text-align: center;"/></td>
+	</tr>
+	
+
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "18" )</td>
+		<td>Maternal Death Registration</td>
+		<td><input type="text" id="de17" name="de17" value = "$!dataValueMap.get( 17 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps84" name="deps84" value = "$!patientDataValueMap.get( 84 )" onkeyup="calCulateAmount84();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount84" name="depsamount84" readonly style="text-align: center;"/></td>
+	</tr>	
+
+
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "21" )</td>
+		<td>Cases of Disabled Children Mobilized from Community to Special Disability Camp/DH for treatment</td>
+		<td><input type="text" id="de19" name="de19" value = "$!dataValueMap.get( 19 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps87" name="deps87" value = "$!patientDataValueMap.get( 87 )" onkeyup="calCulateAmount87();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount87" name="depsamount87" readonly style="text-align: center;"/></td>
+	</tr>	
+	
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "23" )</td>
+		<td>Times Provided Services as Vaccine Carrier to Strengthen RI (Alternate Vaccine Delivery)</td>
+		<td><input type="text" id="de21" name="de21" value = "$!dataValueMap.get( 21 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps89" name="deps89" value = "$!patientDataValueMap.get( 89 )" onkeyup="calCulateAmount89();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount89" name="depsamount89" readonly style="text-align: center;"/></td>
+	</tr>
+
+
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "34" )</td>
+		<td>Cases Mobilized for Tubectomy (After 03 Children)</td>
+		<td><input type="text" id="de28" name="de28" value = "$!dataValueMap.get( 28 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps99" name="deps99" value = "$!patientDataValueMap.get( 99 )" onkeyup="calCulateAmount99();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount99" name="depsamount99" readonly style="text-align: center;"/></td>
+	</tr>
+
+
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "35" )</td>
+		<td>Cases Mobilized for Vasectomy (After 03 Children)</td>
+		<td><input type="text" id="de27" name="de27" value = "$!dataValueMap.get( 27 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps100" name="deps100" value = "$!patientDataValueMap.get( 100 )" onkeyup="calCulateAmount100();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount100" name="depsamount100" readonly style="text-align: center;"/></td>
+	</tr>
+
+
+	<tr>
+		<td style="text-align: center;">$i18n.getString( "39" )</td>
+		<td>50 Salt Tests for Iodine Deficiency</td>
+		<td><input type="text" id="de35" name="de35" value = "$!dataValueMap.get( 35 )" readonly style="text-align: center;" /></td>
+		<td><input type="text" id="deps104" name="deps104" value = "$!patientDataValueMap.get( 104 )" onkeyup="calCulateAmount104();" style="text-align: center;"/></td>
+		<td><input type="text" id="depsamount104" name="depsamount104" readonly style="text-align: center;"/></td>
+	</tr>
+
+
+-->
+
+	<tr>
+		<td>&nbsp;</td>
+		<td colspan="3"><b>$i18n.getString( "grand_total" )</b></td>
+		
+		<td><input type="text" id="depstotalamount" name="depstotalamount" readonly style="text-align: center;" /></td>
+		<input type="hidden" id="deps160" name="deps160" >
+	</tr>
+	
+</table>
+
+	&nbsp;&nbsp;<input type="button"  id="saveButton" name="saveButton" value="$i18n.getString( 'save' )"  style="width:100px" onclick="closeAmountDetails();"/>
+</form>
+<script type="text/javascript">
+jQuery( document ).ready( function()
+{
+	
+	//Maternal Health
+	
+	calCulateAmount67();
+	calCulateAmount68();
+	//calCulateAmount69();
+	//calCulateAmount70();
+	calCulateAmount71();
+	calCulateAmount72();
+	calCulateAmount75();
+	calCulateAmount76();
+	calCulateAmount110();
+	calCulateAmount78();
+	calCulateAmount77();
+	calCulateAmount112()
+	calCulateAmount86();
+	
+	
+	
+	//calCulateAmount73();
+	//calCulateAmount74();
+	
+	
+	//Child Health
+	
+	calCulateAmount82();
+	calCulateAmount83();
+	calCulateAmount114();
+	calCulateAmount108();
+	calCulateAmount116();
+	calCulateAmount85();
+	
+	//Adolescent Health
+	
+	calCulateAmount118();
+	calCulateAmount120();
+	
+	// NRHM
+	
+	calCulateAmount92();
+	calCulateAmount93();
+	
+	calCulateAmount66();
+	
+	checkBoxValueChange();
+	checkBoxValueChange386();
+	
+	calCulateAmount94();
+	calCulateAmount95();
+	calCulateAmount96();
+	
+	// JSY
+	
+	calCulateAmount80();
+	calCulateAmount393();
+	
+	
+	// RI and FI Children
+	
+	calCulateAmount88();
+	calCulateAmount90();
+	calCulateAmount91();
+	
+	// Family Welfare
+	
+	calCulateAmount101();
+	calCulateAmount102();
+	calCulateAmount103();
+	calCulateAmount98();
+	calCulateAmount97();
+	
+	// Other National
+	
+	calCulateAmount105();
+	calCulateAmount106();
+	
+	calCulateAmount388();
+	calCulateAmount390();
+	
+	calCulateAmount122();
+	calCulateAmount107();
+	
+	checkBoxValueChange124();
+	checkBoxValueChange126();
+	checkBoxValueChange128();
+	
+	/*
+	calCulateAmount79();
+	
+	
+	calCulateAmount81();
+	
+	calCulateAmount84();
+	
+	
+	calCulateAmount87();
+	
+	calCulateAmount89();
+	
+	calCulateAmount99();
+	calCulateAmount100();
+	
+	calCulateAmount104();
+	
+	*/
+	
+	
+	
+	
+	
+	
+	
+});
+</script>

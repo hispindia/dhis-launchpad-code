@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<school>
+	<id>$encoder.xmlEncode( $school.id )</id>
+	<name>$encoder.xmlEncode( $school.name )</name>
+	<schoolLevel>$encoder.xmlEncode( $schoolLevel )</schoolLevel>
+	<classLevel>$encoder.xmlEncode( $classLevel )</classLevel>
+</school>

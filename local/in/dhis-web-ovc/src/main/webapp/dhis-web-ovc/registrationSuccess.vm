@@ -1,0 +1,101 @@
+
+<div id="registrationSuccessDiv"> 
+<h3>$message</h3>
+
+<table style="background-color:#ECE0F8;" width="100%">
+    <tr><th colspan="6" class="heading-column" style="text-align: center;" >A. Personal Information of the Child</th></tr>
+    <!--  Patient Property : Name-->
+    <tr #alternate( false ) id="trname">
+        <!-- Child First Name -->
+        <td><label for="first_name">$i18n.getString( "child_first_name" )</label></td>
+        <td>$!ovc.getFirstName()</td>
+        <!-- Middle Name -->
+        <td><label for="middle_name">$i18n.getString( "middle_name" )</label></td>
+        <td>$!ovc.getMiddleName()</td>
+        <!-- Sur Name -->
+        <td><label for="sur_name">$i18n.getString( "sur_name" )</label></td>
+        <td>$!ovc.getLastName()</td>      
+    </tr>
+    <!-- Patient : Property Gender  --> 
+    <tr #alternate( false ) id="trgender">
+        <td><label for="gender">$i18n.getString( "gender" )</label></td>
+        <td>$!ovc.gender</td>
+    </tr>
+    <!-- Patient Property : Date of Birth  -->
+    <tr #alternate( false ) id="trdob">
+        <td><label for="date_of_birth">$i18n.getString( "date_of_birth" )</label></td>
+        <td colspan='2'>$format.formatDate($!ovc.birthDate)</td>       
+    </tr>
+    
+
+    <!-- Patient Attribute : Has Birth certificate -->
+    <tr #alternate( false ) id="trattr34">
+        <td>$i18n.getString( "has_birth_certificate" )</td>
+        <td>$!patientAttributeValueMap.get( 34 )</td>
+    </tr>
+
+    <!-- Patient Attribute : HH has NHIF -->
+    <tr #alternate( false ) id="trattr35">
+        <td class='text-column'>$i18n.getString( "hh_has_nhif" )</td>
+        <td>$!patientAttributeValueMap.get( 35 )</td>
+    </tr>
+
+    <!-- Patient Attribute: Community Home Visitor First Name-->
+    <tr #alternate( false ) id="trattr43">
+        <td>$i18n.getString( "community_home_visitor_code" )</td>
+        <td>$!patientAttributeValueMap.get( 43 )</td>
+    </tr>
+
+
+    <tr>
+        <td>&nbsp;</td>
+        <td><a href="javascript:goToOVCHouseHoldAssessmentForm( '$ovc.id','$format.formatDate( $!ovc.registrationDate )' )" title='$i18n.getString( "household_assessment_form" )'><b>$i18n.getString( "household_assessment_details" )</b</a></td>       
+    </tr>
+
+<br />
+    <tr>
+        <td>&nbsp;&nbsp;</td>
+        <td>
+            <!--<input type="button" class="button" value="$i18n.getString( 'back' )" onclick="window.location.href='getSubmittedList.action'"/>-->
+            <!--<input type="button" class="button" value="$i18n.getString( 'back' )" onclick="loadSubmittedOVCList1();"/>-->
+            <input type="button" class="button" value="$i18n.getString( 'back' )" onclick="window.location.href='selectSubmittedOVC.action'"/>
+        </td>
+    </tr>   
+
+</table>
+		
+</div>
+
+<div id='houseHoldAssessmentFormDiv'></div> <!-- OVC HouseHold Assessment Form div --> 
+
+
+
+<table style="background-color:#EFFBEF;" width="100%">
+
+    
+</table>
+
+
+
+
+<script type="text/javascript">
+	
+function goToOVCHouseHoldAssessmentForm( ovcId,registrationDate )
+{	
+	hideById('registrationSuccessDiv');
+	
+	setInnerHTML('houseHoldAssessmentFormDiv', '');
+
+	jQuery('#houseHoldAssessmentFormDiv').load('showOVCHouseHoldAssessmentForm.action',
+		{
+			id:ovcId
+			//selHalfYearlyPeriod:registrationDate
+		}, 
+		function()
+		{
+			showById('houseHoldAssessmentFormDiv');
+		});	
+	
+}	
+
+</script>

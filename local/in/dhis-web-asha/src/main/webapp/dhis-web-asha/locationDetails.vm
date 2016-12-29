@@ -1,0 +1,55 @@
+
+<h3>$i18n.getString( "location_details" )</h3>
+
+<table>
+	<tr>
+		<th colspan="2">$i18n.getString( "details" )</th>
+	</tr>
+		
+	<tr>
+		<td style="width:200px"><label for="organisationUnit">$i18n.getString( "parent_organisation_unit" )</label></td>
+		<td style="width:120px">$!organisationUnit.getName()</td>
+	</tr>
+<!--
+	<tr>
+		<td style="width:200px"><label for="name">$i18n.getString( "parent_organisation_unit_code" )</label></td>
+		<td>$!organisationUnit.getCode()</td>
+	</tr>
+-->
+	<tr>
+		<td style="width:200px"><label for="name">$i18n.getString( "name" )</label></td>
+		<td>$!location.name</td>
+	</tr>
+	<!--
+	<tr>
+		<td><label for="shortName">$i18n.getString( "short_name" ) </label></td>
+		<td>$!location.getShortName()</td>
+	</tr>
+	-->
+	<tr>
+		<td style="width:200px" ><label for="code">$i18n.getString( "code" )</label></td>
+		<td>$!location.code</td>
+	</tr>
+    
+    <!--
+    <tr>
+		<th colspan="2">$i18n.getString( "contact_details" )</th>
+    </tr>
+	<tr>
+		<td><label for="contactPerson">$i18n.getString( "contact_person" ) </label></td>
+		<td>$!location.getContactPerson()</td>
+	</tr>
+	<tr>
+		<td><label for="address">$i18n.getString( "address" ) </label></td>
+		<td>$!location.getAddress()</td>
+	</tr>
+	<tr>
+		<td><label for="email">$i18n.getString( "email" )</label></td>
+		<td>$!location.getEmail()
+	</tr>
+    <tr>
+        <td><label for="phoneNumber">$i18n.getString( "phoneNumber" )</label></td>
+        <td>$!location.getPhoneNumber()
+    </tr>	
+	-->
+</table>

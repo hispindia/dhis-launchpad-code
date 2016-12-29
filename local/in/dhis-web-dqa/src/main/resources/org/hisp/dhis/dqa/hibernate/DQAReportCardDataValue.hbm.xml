@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="org.hisp.dhis.dqa.api.DQAReportCardDataValue" table="dqareportcarddatavalue">
+		
+	<composite-id>
+		<!--<key-many-to-one name="level1"   class="java.lang.String" column="level1id" />
+		<key-many-to-one name="level2"  class="java.lang.String" column="level2id" />      
+		<key-many-to-one name="year"    class="java.lang.String" column="yearid"  />-->
+		
+		<key-property name="level1" column="level1id" length="50" />
+		<key-property name="level2" column="level2id" length="50" />
+		<key-property name="year" column="yearid" length="50" />
+		<key-property name="dqaParameter" column="dqaParametername" />
+		<!--<key-many-to-one name="dqaParameter" class="org.hisp.dhis.dqa.DQAParameter" column="dqaparameterid" foreign-key="fk_dqareportcarddatavalue_dqaparameterid" />-->	
+    </composite-id>
+
+    <property name="value"  type="text" />
+
+	<property name="storedBy" column="storedby" length="100" />
+
+    <property name="timestamp" column="lastupdated" type="date" />			
+		
+	</class>
+		
+</hibernate-mapping>
+ 

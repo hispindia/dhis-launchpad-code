@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+ "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="org.hisp.dhis.school.School" table="school">
+
+    <id name="id" column="schoolid">
+      <generator class="native" />
+    </id>
+    
+    <property name="name" column="name" not-null="true" length="230" />
+
+    <property name="description" column="description" not-null="false" length="255" />	  
+	
+	<!-- OrganisationUnit -->
+	    
+    <many-to-one name="organisationUnit" class="org.hisp.dhis.organisationunit.OrganisationUnit" column="organisationunitid"
+        not-null="true" foreign-key="fk_school_organisationunitid" />
+	
+	
+	<property name="storedBy" column="storedBy" length="100" />
+
+    <property name="lastUpdated" column="lastUpdated" type="date" />
+    
+    <!-- Patient/OVC -->  	
+    <set name="patients" table="school_ovc">
+      <cache usage="read-write" />
+      <key column="schoolid" foreign-key="fk_school_ovc_schoolid" />
+      <many-to-many column="patientid" class="org.hisp.dhis.patient.Patient"
+        foreign-key="fk_school_patientid" />
+    </set>
+    
+  </class>
+</hibernate-mapping>

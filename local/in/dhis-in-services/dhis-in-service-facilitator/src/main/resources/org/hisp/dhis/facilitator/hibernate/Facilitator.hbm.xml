@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+ "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="org.hisp.dhis.facilitator.Facilitator" table="facilitator">
+
+    <id name="id" column="facilitatorid">
+      <generator class="native" />
+    </id>
+    
+	  
+    <property name="name" column="name" not-null="true" length="230" />
+
+	<property name="gender" column="gender" not-null="true" length="5"  />
+	  
+	<property name="contactNumber" column="contactnumber" not-null="false" length="25" />
+	  
+	<!--<property name="address" column="address" type="text" />-->
+	<property name="address" column="address" length="255" />  
+	  
+	<property name="active" not-null="true" column="active"/>  
+	  
+	
+    <!-- OrganisationUnit -->
+	    
+    <many-to-one name="organisationUnit" class="org.hisp.dhis.organisationunit.OrganisationUnit" column="organisationunitid"
+        not-null="true" foreign-key="fk_location_organisationunitid" />
+	  
+	<!-- Patient -->  	
+    <set name="patients" table="facilitator_patient">
+      <cache usage="read-write" />
+      <key column="facilitatorid" foreign-key="fk_facilitator_patient_facilitatorid" />
+      <many-to-many column="patientid" class="org.hisp.dhis.patient.Patient"
+        foreign-key="fk_facilitator_patientid" />
+    </set>
+	  	
+	<property name="code" column="facilitatorcode" length="160" />  
+	  
+  </class>
+</hibernate-mapping>

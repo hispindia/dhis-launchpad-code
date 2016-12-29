@@ -1,0 +1,1081 @@
+## Macro for generating the jQuery validation rules 
+#macro( validate $type $require )
+  #if( $type == "NUMBER" )
+    {validate:{ number:true #if($require), required:true #end }}
+  #elseif( $require )
+    {validate:{required:true}}
+  #end
+#end
+
+<script type="text/javascript">
+
+var maxClassValue = "";
+var selectedClassValue = '$!patientAttributeValueMap.get( 50 )';
+
+var updatePrivilege = "";
+
+#if( $auth.hasAccess( "dhis-web-ovc", "updateovcstatus") )
+	updatePrivilege = "yes";
+#else
+	updatePrivilege = "no";
+#end
+	
+jQuery(document).ready( function(){
+	
+        validation( 'ovcUpdateregistrationFormInApprove', function(form){
+            if( isSubmit && validateUpdateOVCRegistrationInApprove() ) {
+                form.submit(i18n_field_is_required);
+            }
+        }, function( ){
+            isSubmit = true;
+        }); 
+    }); 
+
+</script>
+
+
+<!--<h3>UPDATE OVC BIO DATA FORM - $!organisationUnit.name - System Generated Id : $systemIdentifier - Registration Date :  $format.formatDate($!patient.getRegistrationDate())</h3>-->
+<h3>UPDATE OVC BIO DATA FORM - $!organisationUnit.name - $ovcId - Registration Date :  
+	<input type="text" id="registrationDate" name="registrationDate" value='$format.formatDate($!patient.getRegistrationDate())'"/>
+        <script type="text/javascript">
+        	datePickerValid( 'registrationDate' );
+        </script> 
+</h3>
+<form id="ovcUpdateregistrationFormInApprove" name="ovcUpdateregistrationFormInApprove" action="updateOVCRegistrationData.action" method="post" >
+<input type='hidden' id='approveInsideDashBoard' name='approveInsideDashBoard' value='$approveInsideDashBoard' >
+<table style="background-color:#ECE0F8;" width="100%">
+    <tr><th colspan="6" class="heading-column">Area Details</th></tr>
+
+    <!-- Patient Attribute: -->
+    <tr #alternate( false ) id="trattr291">
+        <!-- Patient Attribute: County -->
+        <td class='text-column'>$i18n.getString( "county" )</td>
+        <!--<td class="input-column" ><input type="text" id="attr291" name="attr291" value = "$!patientAttributeValueMap.get( 291 )" /></td>-->
+        <td class="input-column" ><input type="text" id="attr291" name="attr291" value = "$!organisationUnit.getParent().getParent().getParent().getName()" readonly/></td>
+        
+        <!-- Patient Attribute: District -->
+        <td class='text-column'>$i18n.getString( "district" )</td>
+        <!--<td class="input-column" ><input type="text" id="attr292" name="attr292" value = "$!patientAttributeValueMap.get( 292 )" /></td>-->
+        <td class="input-column" ><input type="text" id="attr292" name="attr292" value = "$!organisationUnit.getParent().getParent().getName()" readonly /></td>
+        
+        <!-- Patient Attribute: Division -->
+        <td class='text-column'>$i18n.getString( "division" )</td>
+        <!--<td class="input-column" ><input type="text" id="attr293" name="attr293" value = "$!patientAttributeValueMap.get( 292 )" /></td>-->
+        <td class="input-column" ><input type="text" id="attr293" name="attr293" value = "$!organisationUnit.getParent().getName()" readonly /></td>
+    </tr>
+
+    <!-- Patient Attribute: -->
+    <tr #alternate( false ) id="trattr41">
+        <!-- Patient Attribute: Location -->
+        
+       <td class='text-column'>$i18n.getString( "location" )</td>
+        <td class="input-column">
+            #set( $attributeValue = $!patientAttributeValueMap.get( 41 ) ) 
+            <select id="attr41" name="attr41" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                 #foreach ($option in $locations )
+                    <option value="$option.name" #if($attributeValue == $option.name ) selected="selected" #end >$option.name</option>
+                 #end
+            </select>
+        </td>        
+
+        <!-- Patient Attribute: Village -->
+        <td class='text-column'>$i18n.getString( "organisation" )</td>
+        <td class="input-column" ><input type="text" id="organisation" name="organisation"  value = "$!organisationUnit.getName()" readonly /></td>
+        <input type='hidden' id='orgUnitId' name='orgUnitId' value = "$!organisationUnit.id" />       
+        
+		<!-- Patient Attribute: Village -->
+        <td class='text-column'>$i18n.getString( "village" )</td>
+        <td class="input-column" ><input type="text" id="attr42" name="attr42" value = "$!patientAttributeValueMap.get( 42 )" /></td>
+    </tr>
+
+    <!-- Patient Attribute: Community Home Visitor First Name-->
+    
+    <!--
+    <tr #alternate( false ) id="trattr43">
+        <td class='text-column'>$i18n.getString( "community_home_visitor_code" )<em title="$i18n.getString( 'required' )" class="required">*</em></td>
+        <td class="input-column"><input type="text" id="attr43" name="attr43" class="{validate:{required:true, rangelength:[4,50]}}" value = "$!patientAttributeValueMap.get( 43 )" /></td>
+    </tr>
+    -->
+    
+     <tr #alternate( false ) id="trattr43">
+        <td class='text-column'>$i18n.getString( "community_home_visitor_code" )<em title="$i18n.getString( 'required' )" class="required">*</em></td>
+        <td class="input-column">
+            #set( $attributeValue = $!patientAttributeValueMap.get( 43 ) ) 
+            <select id="attr43" name="attr43" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                 #foreach ($option in $employeeListCHV )
+                    <option value="$option.code" #if($attributeValue == $option.code ) selected="selected" #end >$option.code</option>
+                 #end
+            </select>
+        </td>
+    </tr>       
+        
+</table>
+
+<table style="background-color:#ECE0F8;" width="100%">
+    <tr><th colspan="6" class="heading-column">A. Personal Information of the Child</th></tr>
+    <!--  Patient Property : Name-->
+    <tr #alternate( false ) id="trname">
+        <!-- Child First Name -->
+        <td class='text-column'><label for="first_name">$i18n.getString( "child_first_name" )<em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+        <td class="input-column" ><input type="text" id="firstName" name="firstName" value="$!patient.getFirstName()" class="{validate:{required:true, unicodechars:true, rangelength:[3,50]}}"/></td>
+        <!-- Middle Name -->
+        <td class='text-column'><label for="middle_name">$i18n.getString( "middle_name" )</label></td>
+        <td class="input-column" ><input type="text" id="middleName" name="middleName" value="$!patient.getMiddleName()"/></td>
+        <!-- Sur Name -->
+        <td class='text-column'><label for="sur_name">$i18n.getString( "sur_name" )</label></td>
+        <td class="input-column" ><input type="text" id="lastName" name="lastName" value="$!patient.getLastName()"/></td>      
+    </tr>
+    <!-- Patient : Property Gender  --> 
+    <tr #alternate( false ) id="trgender">
+        <td class='text-column'><label for="gender">$i18n.getString( "gender" )<em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+        <td class="input-column">
+            <select id="gender" name="gender" class="{validate:{required:true}}">
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="M" #if( $!patient.gender == 'M' ) selected="selected" #end>$i18n.getString( "male" )</option>
+                <option value="F" #if( $!patient.gender == 'F' ) selected="selected" #end>$i18n.getString( "female" )</option>
+            </select>
+        </td>
+    </tr>
+    <!-- Patient Property : Date of Birth  -->
+    <tr #alternate( false ) id="trdob">
+        <td class='text-column'><label for="date_of_birth">$i18n.getString( "date_of_birth" )<em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+        
+		<td class="input-column" colspan='2'>
+            <input type="text" id="dateOfBirth" name="dateOfBirth"  class="{validate:{required:true,dateISO:true}}" value='$format.formatDate($!patient.birthDate)'/>
+			<!--<input type="text" id="dateOfBirth" name="dateOfBirth"  class="{validate:{required:true,dateISO:true}}" value='$format.formatDate($!patient.birthDate)' onchange="calculateAge();"/>-->
+			<script type="text/javascript">
+                datePickerValid( 'dateOfBirth' );
+            </script>    
+        </td>       
+    </tr>   
+    
+
+    <!-- Patient Attribute : Has Birth certificate -->
+    <tr #alternate( false ) id="trattr34">
+        <td class='text-column'>$i18n.getString( "has_birth_certificate" )</td>
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 34 ) )
+            #set( $attributeValue = $!patientAttributeValueMap.get( 34 ) ) 
+            <select id="attr34" name="attr34" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $attributeValue =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $attributeValue=='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>
+        </td>
+    </tr>
+
+    <!-- Patient Attribute : HH has NHIF -->
+    <tr #alternate( false ) id="trattr35">
+        <td class='text-column'>$i18n.getString( "hh_has_nhif" )</td>
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 35 ) )
+            #set( $attributeValue = $!patientAttributeValueMap.get( 35 ) )
+            <select id="attr35" name="attr35" >
+                <option value="">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $attributeValue =='true') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="false" #if( $attributeValue=='false') selected="selected" #end>$i18n.getString( "no" )</option>
+            </select>
+        </td>
+    </tr>
+
+    <!-- Patient Attribute : Orphanhood Status -->
+    <!--
+    <tr #alternate( false ) id="trattr36">
+        <td class='text-column'>$i18n.getString( "orphan_hood_status" )</td>
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 36 ) )
+            #set( $attributeValue = $!patientAttributeValueMap.get( 36 ) )
+            <select id="attr36" name="attr36" >
+                <option value="">[$i18n.getString( "please_select" )]</option>
+                 #foreach ($option in $attribute.attributeOptions )
+                    <option value="$option.id" #if($attributeValue == $option.name) selected="selected" #end>$option.name</option>
+                 #end
+            </select>
+        </td>       
+    </tr>
+	-->
+</table>	
+<table style="background-color:#ECE0F8;" width="100%">	
+	<tr><td colspan="6"><strong>Eligibility Criteria</strong></td></tr>
+
+    <tr #alternate( false ) id="trattr608">
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 608 ) )
+            #set( $attributeValue1 = $!patientAttributeValueMap.get( 608 ) )  
+            <input type='checkbox' id="attr608" name="attr608"  #if( $attributeValue1 =="true" ) checked #end >
+            &nbsp;&nbsp; Father dead
+        </td>
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 614 ) )
+            #set( $attributeValue2 = $!patientAttributeValueMap.get( 614 ) )  
+            <input type='checkbox' id="attr614" name="attr614"  #if( $attributeValue2 =="true" ) checked #end >
+            &nbsp;&nbsp; Child lives on the street
+        </td>
+	
+	   
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 609 ) )
+            #set( $attributeValue3 = $!patientAttributeValueMap.get( 609 ) )
+            <input type='checkbox' id="attr609" name="attr609" #if( $attributeValue3 =="true" ) checked #end >
+            &nbsp;&nbsp; Mother dead
+        </td>
+      </tr>
+      <tr #alternate( false ) id="trattr615">
+      	
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 615 ) )
+            #set( $attributeValue4 = $!patientAttributeValueMap.get( 615 ) )
+            <input type='checkbox' id="attr615" name="attr615" #if( $attributeValue4 =="true" ) checked #end >
+            &nbsp;&nbsp; Child lives in a child headed household
+        </td>                
+
+	
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 610 ) )
+             #set( $attributeValue5 = $!patientAttributeValueMap.get( 610 ) )
+            <input type='checkbox' id="attr610" name="attr610" #if( $attributeValue5 =="true" ) checked #end >
+            &nbsp;&nbsp; Mother and Father dead
+        </td>
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 616 ) )
+             #set( $attributeValue6 = $!patientAttributeValueMap.get( 616 ) )
+            <input type='checkbox' id="attr616" name="attr616" #if( $attributeValue6 =="true" ) checked #end >
+            &nbsp;&nbsp; Child lives with elderly caregiver (60 plus)
+        </td>
+	</tr>
+	<tr #alternate( false ) id="trattr611">
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 611 ) )
+            #set( $attributeValue7 = $!patientAttributeValueMap.get( 611 ) )
+            <input type='checkbox' id="attr611" name="attr611" #if( $attributeValue7 =="true" ) checked #end >
+            &nbsp;&nbsp; Child is HIV positive
+        </td>
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 617 ) )
+            #set( $attributeValue8 = $!patientAttributeValueMap.get( 617 ) )
+            <input type='checkbox' id="attr617" name="attr617" #if( $attributeValue8 =="true" ) checked #end >
+            &nbsp;&nbsp; Child lives in a household affected by HIV
+        </td>           
+    </tr>
+    
+	<tr #alternate( false ) id="trattr612">       
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 612 ) )
+            #set( $attributeValue9 = $!patientAttributeValueMap.get( 612 ) )
+            <input type='checkbox' id="attr612" name="attr612" #if( $attributeValue9 =="true" ) checked #end >
+            &nbsp;&nbsp; Child lives in institution
+        </td>
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 613 ) )
+            #set( $attributeValue10 = $!patientAttributeValueMap.get( 613 ) )
+            <input type='checkbox' id="attr613" name="attr613" #if( $attributeValue10 =="true" ) checked #end >
+            &nbsp;&nbsp; Child lives in a household which has taken an orphan (s)
+        </td>
+        
+	</tr>
+    <tr #alternate( false ) id="trattr618">     
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 618 ) )
+            #set( $attributeValue11 = $!patientAttributeValueMap.get( 618 ) )
+            <input type='checkbox' id="attr618" name="attr618" onclick="childHIVPositive();" #if( $attributeValue11 =="true" ) checked #end >
+            &nbsp;&nbsp; Child is marginalized, stigmatized and discriminated
+        </td>
+        
+		<td class='text-column'>Child is marginalized, stigmatized and discriminated-Specify</td>
+		#set( $attribute = $patientAttributeMap.get( 619 ) )
+        <td class="input-column" ><input type="text" id="attr619" name="attr619" value = "$!patientAttributeValueMap.get( 619 )"/></td>        
+
+    </tr>    
+    
+
+
+
+
+        
+</table>
+
+<table style="background-color:#EFFBEF;" width="100%">
+
+<tr><th colspan="6" class="heading-column">B. Education Details of Child</th></tr>
+    <!-- Patient Attribute : Level in school -->
+	<!--
+    <tr #alternate( false ) id="trattr44">
+        <td class='text-column'>$i18n.getString( "level_in_school" )</td>
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 44 ) )
+            #set( $attributeValue = $!patientAttributeValueMap.get( 44 ) ) 
+            <select id="attr44" name="attr44" onchange="schoolLevelValidation();">
+                <option value="">[$i18n.getString( "please_select" )]</option>
+                 #foreach ($option in $attribute.attributeOptions )
+                    <option value="$option.id" #if($attributeValue == $option.name) selected="selected" #end>$option.name</option>
+                 #end
+            </select>
+        </td>
+    </tr>
+	-->
+    <!-- Patient Attribute: Class -->
+	<!--
+    <tr #alternate( false ) id="trattr50">
+        <td class='text-column'>$i18n.getString( "class" )</td>
+        <td class="input-column" ><input type="text" id="attr50" name="attr50"  value = "$!patientAttributeValueMap.get( 50 )" /></td>
+        
+        
+        <td class='text-column'>$i18n.getString( "name_of_school_institution" )</td>
+        <td class="input-column" ><input type="text" id="attr51" name="attr51" value = "$!patientAttributeValueMap.get( 51 )" /></td>
+    </tr>
+	-->
+	
+	<!-- Patient Attribute: Name of school/institution -->
+	<tr #alternate( false ) id="trattr51">
+      <td class='text-column'>$i18n.getString( "name_of_school_institution" )</td>
+        <td class="input-column">
+            #set( $attributeValue = "")
+			#set( $attributeValue = $!patientAttributeValueMap.get( 51 ) ) 
+           <select id="attr51" name="attr51" onchange="changeSchool();" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+				#foreach ($school in $schools )
+					<option value="$school.name" #if($attributeValue == $school.name ) selected="selected" #end >$school.name</option>
+				#end
+            </select>
+        </td> 
+	</tr>
+	
+	<tr #alternate( false ) id="trattr44">
+		<!-- Patient Attribute : Level in school -->
+		<td class='text-column'>$i18n.getString( "level_in_school" )</td>
+		<input type='hidden' id='school_level_44' name='school_level_44' />
+		<td class="input-column" ><input type="text" id="attr44" name="attr44" value = "$!patientAttributeValueMap.get( 44 )" readonly = "readonly" /></td>
+	</tr>
+	
+	<tr #alternate( false ) id="trattr50">
+		<td class='text-column'>$i18n.getString( "class" )</td>
+		<td class="input-column" >
+			 ##set( $attributeValue = "")
+			 ##set( $attributeValue = $!patientAttributeValueMap.get( 50 ) )
+			<select id="attr50" name="attr50">
+				<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+				 
+			</select	
+		</td>
+	</tr>	
+	
+    <!-- Patient Attribute: Addimission No -->
+    <tr #alternate( false ) id="trattr1764">
+        <td class='text-column'>$i18n.getString( "admin_no" )</td>
+        <td class="input-column" ><input type="text" id="attr1764" name="attr1764" value = "$!patientAttributeValueMap.get( 1764 )" /></td>
+    </tr>	
+	
+	
+	
+</table>
+
+<table style="background-color:#ECE0F8;" width="100%">
+
+<tr><th colspan="6" class="heading-column">C. Child Health Status</th></tr>
+    <!-- Patient Attribute : Child�s HIV status -->
+    <tr #alternate( false ) id="trattr52">
+        <td class='text-column'>$i18n.getString( "childs_hiv_status" )</td>
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 52 ) )
+            #set( $attributeValue = $!patientAttributeValueMap.get( 52 ) ) 
+            <select id="attr52" name="attr52" onchange="hivStatusValidation();" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                 #foreach ($option in $attribute.attributeOptions )
+                    <option value="$option.id" #if($attributeValue == $option.name) selected="selected" #end>$option.name</option>
+                 #end
+            </select>
+        </td>
+    </tr>
+
+    <!-- Patient Attribute : Child ART status -->
+    <tr #alternate( false ) id="trattr56">
+        <td class='text-column'>$i18n.getString( "childs_art_status" )</td>
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 56 ) )
+            #set( $attributeValue = $!patientAttributeValueMap.get( 56 ) ) 
+            <select id="attr56" name="attr56" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                 #foreach ($option in $attribute.attributeOptions )
+                    <option value="$option.id" #if($attributeValue == $option.name) selected="selected" #end>$option.name</option>
+                 #end
+            </select>
+        </td>
+    </tr>
+    
+    <!-- Patient Attribute: Facility Linked to -->
+    <tr #alternate( false ) id="trattr60">
+        <td class='text-column'>$i18n.getString( "facility_linked_to" )</td>
+        <td class="input-column" ><input type="text" id="attr60" name="attr60" value = "$!patientAttributeValueMap.get( 60 )" /></td>
+    </tr>   
+
+    <!-- Patient Attribute : Child Received age appropiate immunization status (Observe Health Card) -->
+    <tr #alternate( false ) id="trattr536">
+        <td class='text-column'>Child Received age appropiate immunization status (Observe Health Card)</td>
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 536 ) ) 
+            <select id="attr536" name="attr536" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                 #foreach ($option in $attribute.attributeOptions )
+                    <option value="$option.id" #if($attributeValue == $option.name) selected="selected" #end>$option.name</option>
+                 #end
+            </select>
+        </td>
+    </tr>
+</table>
+<table style="background-color:#ECE0F8;" width="100%">
+	
+	<tr><td colspan="6"><strong>Child receives services from the other sources(include name where applicable)</strong></td></tr>
+	
+    <tr #alternate( false ) id="trattr620">     
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 620 ) )
+            #set( $attributeValueGov = $!patientAttributeValueMap.get( 620 ) )  
+            <input type='checkbox' id="attr620" name="attr620" onclick="specifyGovernmentName();" #if( $attributeValueGov =="true" ) checked #end >
+            &nbsp;&nbsp;Government ( Specify Name ) &nbsp;&nbsp; &nbsp;&nbsp;
+            <input type="text" id="attr621" name="attr621" value = "$!patientAttributeValueMap.get( 621 )"/>
+        </td>
+        
+        <!--
+		<td class='text-column'>Specify Government Name</td>
+		#set( $attribute = $patientAttributeMap.get( 621 ) )
+        <td class="input-column" ><input type="text" id="attr621" name="attr621" value = "$!patientAttributeValueMap.get( 621 )"/></td>         
+		-->
+    </tr> 
+
+    <tr #alternate( false ) id="trattr622">     
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 622 ) )
+            #set( $attributeValueNGO = $!patientAttributeValueMap.get( 622 ) )
+            <input type='checkbox' id="attr622" name="attr622" onclick="specifyNGOName();" #if( $attributeValueNGO =="true" ) checked #end >
+            &nbsp;&nbsp;NGO ( Specify Name ) &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" id="attr623" name="attr623" value = "$!patientAttributeValueMap.get( 623 )"/>
+        </td>
+        
+        <!--
+		<td class='text-column'>Specify NGO Name</td>
+		#set( $attribute = $patientAttributeMap.get( 623 ) )
+        <td class="input-column" ><input type="text" id="attr623" name="attr623" value = "$!patientAttributeValueMap.get( 623 )"/></td>        
+		-->
+    </tr> 
+
+    <tr #alternate( false ) id="trattr624">     
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 624 ) )
+            #set( $attributeValueCBO = $!patientAttributeValueMap.get( 624 ) )
+            <input type='checkbox' id="attr624" name="attr624" onclick="specifyCBOName();" #if( $attributeValueCBO =="true" ) checked #end >
+            &nbsp;&nbsp;CBO ( Specify Name ) &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" id="attr625" name="attr625" value = "$!patientAttributeValueMap.get( 625 )"/>
+        </td>
+        <!--
+		<td class='text-column'>Specify CBO Name</td>
+		#set( $attribute = $patientAttributeMap.get( 625 ) )
+        <td class="input-column" ><input type="text" id="attr625" name="attr625" value = "$!patientAttributeValueMap.get( 625 )"/></td>     
+		-->
+    </tr>
+
+    <tr #alternate( false ) id="trattr626">     
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 626 ) )
+            #set( $attributeValueNone = $!patientAttributeValueMap.get( 626 ) )
+            <input type='checkbox' id="attr624" name="attr626" #if( $attributeValueNone =="true" ) checked #end >
+            &nbsp;&nbsp;None
+        </td>
+        
+    </tr>
+
+
+    <tr #alternate( false ) id="trattr627">     
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 627 ) )
+            #set( $attributeValueOther = $!patientAttributeValueMap.get( 627 ) )
+            <input type='checkbox' id="attr627" name="attr627" onclick="specifyOthersName();" #if( $attributeValueOther =="true" ) checked #end >
+            &nbsp;&nbsp;Others ( Specify Name ) &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" id="attr628" name="attr628" value = "$!patientAttributeValueMap.get( 628 )"/>
+        </td>
+        <!--
+		<td class='text-column'>Specify Others Name</td>
+		#set( $attribute = $patientAttributeMap.get( 628 ) )
+        <td class="input-column" ><input type="text" id="attr628" name="attr628" value = "$!patientAttributeValueMap.get( 628 )"/></td>    
+		-->
+    </tr>
+
+
+
+
+
+    
+    <!-- Patient Attribute: Child has special needs (Specify) -->
+    <tr #alternate( false ) id="trattr547">
+        <td class='text-column'>Child has special needs (Specify)</td>
+        <td class="input-column" ><input type="text" id="attr547" name="attr547" value = "$!patientAttributeValueMap.get( 547 )" /></td>
+    </tr>    
+    
+</table>
+
+<table style="background-color:#EFFBEF;" width="100%">
+
+<tr><th colspan="6" class="heading-column">D. Details of Parents</th></tr>
+    <!--  Patient Property : Father Name-->
+    <tr #alternate( false ) id="trname">
+        <!-- Father  First Name -->
+        <td class='text-column'><label for="first_name">$i18n.getString( "father_first_name" )</label></td>
+        <td class="input-column" ><input type="text" id="attr61" name="attr61" value = "$!patientAttributeValueMap.get( 61 )" /></td>
+        <!-- Middle Name -->
+        <td class='text-column'><label for="middle_name">$i18n.getString( "middle_name" )</label></td>
+        <td class="input-column" ><input type="text" id="attr294" name="attr294" value = "$!patientAttributeValueMap.get( 294 )" /></td>
+        <!-- Sur Name -->
+        <td class='text-column'><label for="sur_name">$i18n.getString( "sur_name" )</label></td>
+        <td class="input-column" ><input type="text" id="attr295" name="attr295" value = "$!patientAttributeValueMap.get( 295 )" /></td>        
+    </tr>
+
+    <!-- Patient Attribute : If not dead Father�s HIV status -->
+    <tr #alternate( false ) id="trattr62">
+        <td class='text-column'>$i18n.getString( "fathers_hiv_status" )</td>
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 62 ) )
+            #set( $attributeValue = $!patientAttributeValueMap.get( 62 ) ) 
+            <select id="attr62" name="attr62" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                 #foreach ($option in $attribute.attributeOptions )
+                    <option value="$option.id" #if($attributeValue == $option.name) selected="selected" #end>$option.name</option>
+                 #end
+            </select>
+        </td>
+    </tr>   
+
+
+    <!-- Patient Attribute: Father ID Number / Mobile Number -->
+    <tr #alternate( false ) id="trattr60">
+        <td class='text-column'>$i18n.getString( "id_number" )</td>
+        <td class="input-column" ><input type="text" id="attr66" name="attr66" value = "$!patientAttributeValueMap.get( 66 )" /></td>
+        <td class='text-column'>$i18n.getString( "mobile_number" )</td>
+        <td class="input-column" ><input type="text" id="attr67" name="attr67" value = "$!patientAttributeValueMap.get( 67 )" class="{validate:{phone:true}}" /></td>
+    </tr>
+
+    <!-- Patient Attribute : If father dead, cause of death -->
+    <tr #alternate( false ) id="trattr72">
+        <td class='text-column'>$i18n.getString( "fathers_dead" )</td>
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 72 ) )
+            #set( $attributeValue = $!patientAttributeValueMap.get( 72 ) ) 
+            <select id="attr72" name="attr72" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                 #foreach ($option in $attribute.attributeOptions )
+                    <option value="$option.id" #if($attributeValue == $option.name) selected="selected" #end>$option.name</option>
+                 #end
+            </select>
+        </td>
+    </tr>
+
+    <!--  Patient Property : Mother Name-->
+    <tr #alternate( false ) id="tattr76">
+        <!-- Mother First Name -->
+        <td class='text-column'><label for="first_name">$i18n.getString( "mother_first_name" )</label></td>
+        <td class="input-column" ><input type="text" id="attr76" name="attr76" value = "$!patientAttributeValueMap.get( 76 )" /></td>
+        <!-- Middle Name -->
+        <td class='text-column'><label for="middle_name">$i18n.getString( "middle_name" )</label></td>
+        <td class="input-column" ><input type="text" id="attr296" name="attr296" value = "$!patientAttributeValueMap.get( 296 )" /></td>
+        <!-- Sur Name -->
+        <td class='text-column'><label for="sur_name">$i18n.getString( "sur_name" )</label></td>
+        <td class="input-column" ><input type="text" id="attr297" name="attr297"  value = "$!patientAttributeValueMap.get( 297 )" /></td>        
+    </tr>
+
+    <!-- Patient Attribute : If not dead mothers HIV status -->
+    <tr #alternate( false ) id="trattr77">
+        <td class='text-column'>$i18n.getString( "mothers_hiv_status" )</td>
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 77 ) )
+            #set( $attributeValue = $!patientAttributeValueMap.get( 77 ) )
+            <select id="attr77" name="attr77" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                 #foreach ($option in $attribute.attributeOptions )
+                    <option value="$option.id" #if($attributeValue == $option.name) selected="selected" #end>$option.name</option>
+                 #end
+            </select>
+        </td>
+    </tr>   
+
+
+    <!-- Patient Attribute: Mother ID Number / Mobile Number -->
+    <tr #alternate( false ) id="trattr81">
+        <td class='text-column'>$i18n.getString( "id_number" )</td>
+        <td class="input-column" ><input type="text" id="attr81" name="attr81" value = "$!patientAttributeValueMap.get( 81 )" /></td>
+        <td class='text-column'>$i18n.getString( "mobile_number" )</td>
+        <td class="input-column" ><input type="text" id="attr82" name="attr82" value = "$!patientAttributeValueMap.get( 82 )" class="{validate:{phone:true}}" /></td>
+    </tr>
+
+    <!-- Patient Attribute : If mother dead, cause of death -->
+    <tr #alternate( false ) id="trattr83">
+        <td class='text-column'>$i18n.getString( "mothers_dead" )</td>
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 83 ) )
+            #set( $attributeValue = $!patientAttributeValueMap.get( 83 ) )
+            <select id="attr83" name="attr83" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                 #foreach ($option in $attribute.attributeOptions )
+                   <option value="$option.id" #if($attributeValue == $option.name) selected="selected" #end>$option.name</option>
+                 #end
+            </select>
+        </td>
+    </tr>
+
+</table>
+
+<table style="background-color:#ECE0F8;" width="100%">
+
+<tr><th colspan="6" class="heading-column">E. Guardians: Fill Details of Guardian if Child is under a Guardian's Care.</th></tr>
+
+
+    <!--  Patient Property : Guardian  Name-->
+    <tr #alternate( false ) id="tattr87">
+        <!-- Guardian  First Name -->
+        <td class='text-column'><label for="first_name">$i18n.getString( "guardian_first_name" )</label></td>
+        <td class="input-column" ><input type="text" id="attr87" name="attr87" value = "$!patientAttributeValueMap.get( 87 )" /></td>
+        <!-- Middle Name -->
+        <td class='text-column'><label for="middle_name">$i18n.getString( "middle_name" )</label></td>
+        <td class="input-column" ><input type="text" id="attr298" name="attr298" value = "$!patientAttributeValueMap.get( 298 )" /></td>
+        <!-- Sur Name -->
+        <td class='text-column'><label for="sur_name">$i18n.getString( "sur_name" )</label></td>
+        <td class="input-column" ><input type="text" id="attr299" name="attr299" value = "$!patientAttributeValueMap.get( 299 )" /></td>        
+    </tr>
+
+    <!-- Patient Attribute: Guardian ID Number / Mobile Number -->
+    <tr #alternate( false ) id="trattr88">
+        <td class='text-column'>$i18n.getString( "id_number" )</td>
+        <td class="input-column" ><input type="text" id="attr88" name="attr88" value = "$!patientAttributeValueMap.get( 88 )" /></td>
+        <td class='text-column'>$i18n.getString( "mobile_number" )</td>
+        <td class="input-column" ><input type="text" id="attr89" name="attr89" value = "$!patientAttributeValueMap.get( 89 )" class="{validate:{phone:true}}" /></td>
+    </tr>
+
+    <!-- Patient Attribute : Guardian Gender -->
+    <tr #alternate( false ) id="trattr90">
+        <td class='text-column'>$i18n.getString( "guardian_gender" )</td>
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 90 ) )
+            #set( $attributeValue = $!patientAttributeValueMap.get( 90 ) ) 
+            <select id="attr90" name="attr90" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                 #foreach ($option in $attribute.attributeOptions )
+                    <option value="$option.id" #if($attributeValue == $option.name) selected="selected" #end>$option.name</option>
+                 #end
+            </select>
+        </td>
+    </tr>
+
+
+    <!-- Patient Attribute : Guardian age -->
+	<!--
+    <tr #alternate( false ) id="trattr93">
+        <td class='text-column'>$i18n.getString( "guardian_age" )</td>
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 93 ) )
+            #set( $attributeValue = $!patientAttributeValueMap.get( 93 ) )
+            <select id="attr93" name="attr93" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                 #foreach ($option in $attribute.attributeOptions )
+                    <option value="$option.id" #if($attributeValue == $option.name) selected="selected" #end>$option.name</option>
+                 #end
+            </select>
+        </td>
+    </tr>
+	-->
+	
+	<!-- Patient Attribute : Guardian age -->
+    <tr #alternate( false ) id="trattr93">
+        <td class='text-column'>$i18n.getString( "guardian_age" )</td>
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 93 ) )
+            #set( $attributeValueGuardianAge = $!patientAttributeValueMap.get( 93 ) )
+            <select id="attr93" name="attr93" >
+				<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+				<option value="94" #if($attributeValueGuardianAge == "Below 18" ) selected="selected" #end >Below 18</option>
+		 		<option value="95" #if($attributeValueGuardianAge == "19-24" ) selected="selected" #end >19-24</option>
+		 		<option value="96" #if($attributeValueGuardianAge == "25-29" ) selected="selected" #end >25-29</option>
+		 		<option value="97" #if($attributeValueGuardianAge == "30-34" ) selected="selected" #end >30-34</option>
+		 		<option value="98" #if($attributeValueGuardianAge == "35-39" ) selected="selected" #end >35-39</option>
+		 		<option value="99" #if($attributeValueGuardianAge == "40-59" ) selected="selected" #end >40-59</option>
+		 		<option value="100" #if($attributeValueGuardianAge == "60+" ) selected="selected" #end >60+</option>
+            </select>
+        </td>
+    </tr>	
+	
+	
+
+    <!-- Patient Attribute : Relationship to child -->
+	<!--
+    <tr #alternate( false ) id="trattr101">
+        <td class='text-column'>$i18n.getString( "relationship_to_child" )</td>
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 101 ) )
+            #set( $attributeValue = $!patientAttributeValueMap.get( 101 ) ) 
+            <select id="attr101" name="attr101" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                 #foreach ($option in $attribute.attributeOptions )
+                    <option value="$option.id" #if($attributeValue == $option.name) selected="selected" #end>$option.name</option>
+                 #end
+            </select>
+        </td>
+    </tr>
+	-->
+	
+    <!-- Patient Attribute : Relationship to child -->
+    <tr #alternate( false ) id="trattr101">
+        <td class='text-column'>$i18n.getString( "relationship_to_child" )</td>
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 101 ) )
+            #set( $attributeValueRelationshipToChild = $!patientAttributeValueMap.get( 101 ) ) 
+            <select id="attr101" name="attr101" >
+				<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="103" #if($attributeValueRelationshipToChild == "Brother/Sister" ) selected="selected" #end >Brother/Sister</option>
+				<option value="104" #if($attributeValueRelationshipToChild == "Grandmother/Father" ) selected="selected" #end >Grandmother/Father</option>
+				<option value="102" #if($attributeValueRelationshipToChild == "Uncle/Aunty" ) selected="selected" #end >Uncle/Aunty</option>
+				<option value="105" #if($attributeValueRelationshipToChild == "Other" ) selected="selected" #end >Other</option>	
+            </select>
+        </td>
+    </tr>		
+	
+</table>
+<table style="background-color:#EFFBEF;" width="100%">
+
+    <tr><th colspan="6" class="heading-column">F. Care Giver:</th></tr>
+    
+    <!-- Patient Attribute : F. Care Giver: -->
+    <tr #alternate( false ) id="trattr106">
+        <td class='text-column'>$i18n.getString( "care_giver" )</td>
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 106 ) )
+            #set( $attributeValue = $!patientAttributeValueMap.get( 106 ) )
+            <select id="attr106" name="attr106" class='#validate( "default"  $attribute.mandatory )'>
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                 #foreach ($option in $attribute.attributeOptions )
+                    <option value="$option.id" #if($attributeValue == $option.name) selected="selected" #end>$option.name</option>
+                 #end
+            </select>
+        </td>
+    </tr>
+    
+    <!-- Patient Attribute : F. Education level for caregiver: -->
+    <tr #alternate( false ) id="trattr548">
+        <td class='text-column'>Education level for caregiver</td>
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 548 ) )
+            #set( $attributeValue = $!patientAttributeValueMap.get( 548 ) ) 
+            <select id="attr548" name="attr548" class='#validate( "default"  $attribute.mandatory )'>
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                 #foreach ($option in $attribute.attributeOptions )
+                    <option value="$option.id" #if($attributeValue == $option.name) selected="selected" #end>$option.name</option>
+                 #end
+            </select>
+        </td>
+    </tr>
+    
+    
+	<tr><th colspan="6" class="heading-column">Apply the Child Status Index (CSI) Tool</th></tr>
+		
+    <!-- Patient Attribute : Food/Nutrition Food security: -->
+    <tr #alternate( false ) id="trattr553">
+        <td class='text-column'>Food/Nutrition Food security</td>
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 553 ) )
+            #set( $attributeValueFood = $!patientAttributeValueMap.get( 553 ) )  
+            <select id="attr553" name="attr553" class='#validate( "default"  $attribute.mandatory )'>
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                 ##foreach ($option in $attribute.attributeOptions )
+                    <!--<option value="$option.id" #if( $attributeValueFood == $option.name) selected="selected" #end>$option.name</option>-->
+                    <option value="554" #if( $attributeValueFood == "1" ) selected="selected" #end >1</option>
+                    <option value="555" #if( $attributeValueFood == "2" ) selected="selected" #end >2</option>
+                    <option value="556" #if( $attributeValueFood == "3" ) selected="selected" #end >3</option>
+                    <option value="557" #if( $attributeValueFood == "4" ) selected="selected" #end >4</option>
+                 ##end
+            </select>
+        </td>
+    </tr>
+
+
+
+    <!-- Patient Attribute : Shelter/Care Shelter: -->
+    <tr #alternate( false ) id="trattr558">
+        <td class='text-column'>Shelter/Care Shelter</td>
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 558 ) )
+            #set( $attributeValueShelter = $!patientAttributeValueMap.get( 558 ) )
+            <select id="attr558" name="attr558" class='#validate( "default"  $attribute.mandatory )'>
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                 ##foreach ($option in $attribute.attributeOptions )
+                    <!--<option value="$option.id" #if($attributeValueShelter == $option.name) selected="selected" #end>$option.name</option>-->
+                    <option value="559" #if( $attributeValueShelter == "1" ) selected="selected" #end >1</option>
+                    <option value="560" #if( $attributeValueShelter == "2" ) selected="selected" #end >2</option>
+                    <option value="561" #if( $attributeValueShelter == "3" ) selected="selected" #end >3</option>
+                    <option value="562" #if( $attributeValueShelter == "4" ) selected="selected" #end >4</option>
+                 ##end
+            </select>
+        </td>
+    </tr>
+
+    <!-- Patient Attribute : Child Protection Abuse/Exploit: -->
+    <tr #alternate( false ) id="trattr563">
+        <td class='text-column'>Child Protection Abuse/Exploit</td>
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 563 ) ) 
+            #set( $attributeValueAbuse = $!patientAttributeValueMap.get( 563 ) )
+            <select id="attr563" name="attr563" class='#validate( "default"  $attribute.mandatory )'>
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                 ##foreach ($option in $attribute.attributeOptions )
+                    <!--<option value="$option.id" #if( $attributeValueAbuse == $option.name) selected="selected" #end>$option.name</option>-->
+                    <option value="564" #if( $attributeValueAbuse == "1" ) selected="selected" #end >1</option>
+                    <option value="565" #if( $attributeValueAbuse == "2" ) selected="selected" #end >2</option>
+                    <option value="566" #if( $attributeValueAbuse == "3" ) selected="selected" #end >3</option>
+                    <option value="567" #if( $attributeValueAbuse == "4" ) selected="selected" #end >4</option>
+                 ##end
+            </select>
+        </td>
+    </tr>
+
+
+
+
+
+
+    <!-- Patient Attribute : Health Wellness: -->
+    <tr #alternate( false ) id="trattr568">
+        <td class='text-column'>Health Wellness</td>
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 568 ) )
+            #set( $attributeValueWellness = $!patientAttributeValueMap.get( 568 ) )
+            <select id="attr568" name="attr568" class='#validate( "default"  $attribute.mandatory )'>
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                 ##foreach ($option in $attribute.attributeOptions )
+                    <!--<option value="$option.id" #if( $attributeValueWellness == $option.name) selected="selected" #end>$option.name</option>-->
+                    <option value="569" #if( $attributeValueWellness == "1" ) selected="selected" #end >1</option>
+                    <option value="570" #if( $attributeValueWellness == "2" ) selected="selected" #end >2</option>
+                    <option value="571" #if( $attributeValueWellness == "3" ) selected="selected" #end >3</option>
+                    <option value="572" #if( $attributeValueWellness == "4" ) selected="selected" #end >4</option>                    
+                 ##end
+            </select>
+        </td>
+    </tr>
+
+    <!-- Patient Attribute : Psychosocial Emotional: -->
+    <tr #alternate( false ) id="trattr573">
+        <td class='text-column'>Psychosocial Emotional</td>
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 573 ) )
+            #set( $attributeValueEmotional = $!patientAttributeValueMap.get( 573 ) )
+            <select id="attr573" name="attr573" class='#validate( "default"  $attribute.mandatory )'>
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                 ##foreach ($option in $attribute.attributeOptions )
+                    <!--<option value="$option.id" #if($attributeValueEmotional == $option.name) selected="selected" #end>$option.name</option>-->
+                    <option value="574" #if( $attributeValueEmotional == "1" ) selected="selected" #end >1</option>
+                    <option value="575" #if( $attributeValueEmotional == "2" ) selected="selected" #end >2</option>
+                    <option value="576" #if( $attributeValueEmotional == "3" ) selected="selected" #end >3</option>
+                    <option value="577" #if( $attributeValueEmotional == "4" ) selected="selected" #end >4</option>                    
+                 ##end
+            </select>
+        </td>
+    </tr>
+
+    <!-- Patient Attribute : Education Performance: -->
+    <tr #alternate( false ) id="trattr578">
+        <td class='text-column'>Education Performance</td>
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 578 ) )
+            #set( $attributeValuePerformance = $!patientAttributeValueMap.get( 578 ) ) 
+            <select id="attr578" name="attr578" class='#validate( "default"  $attribute.mandatory )'>
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                 ##foreach ($option in $attribute.attributeOptions )
+                    <!--<option value="$option.id" #if($attributeValuePerformance == $option.name) selected="selected" #end>$option.name</option>-->
+                    <option value="579" #if( $attributeValuePerformance == "1" ) selected="selected" #end >1</option>
+                    <option value="580" #if( $attributeValuePerformance == "2" ) selected="selected" #end >2</option>
+                    <option value="581" #if( $attributeValuePerformance == "3" ) selected="selected" #end >3</option>
+                    <option value="582" #if( $attributeValuePerformance == "4" ) selected="selected" #end >4</option>                      
+                 ##end
+            </select>
+        </td>
+    </tr>
+    
+	<tr><th colspan="6" class="heading-column">Child Priority Needs</th></tr>
+
+    <!-- Patient Attribute : Child Priority Needs 1: -->
+    <tr #alternate( false ) id="trattr583">
+        <td class='text-column'>Child Priority Needs 1.</td>
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 583 ) )
+             #set( $attributeValuePriority1 = $!patientAttributeValueMap.get( 583 ) )  
+            <select id="attr583" name="attr583" class='#validate( "default"  $attribute.mandatory )'>
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                 #foreach ($option in $attribute.attributeOptions )
+                    <option value="$option.id" #if($attributeValuePriority1 == $option.name) selected="selected" #end>$option.name</option>
+                 #end
+            </select>
+        </td>
+    </tr>
+
+    <!-- Patient Attribute : Child Priority Needs 2: -->
+    <tr #alternate( false ) id="trattr590">
+        <td class='text-column'>Child Priority Needs 2.</td>
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 590 ) )
+             #set( $attributeValuePriority2 = $!patientAttributeValueMap.get( 590 ) ) 
+            <select id="attr590" name="attr590" class='#validate( "default"  $attribute.mandatory )'>
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                 #foreach ($option in $attribute.attributeOptions )
+                    <option value="$option.id" #if($attributeValuePriority2 == $option.name) selected="selected" #end>$option.name</option>
+                 #end
+            </select>
+        </td>
+    </tr>
+
+    <!-- Patient Attribute : Child Priority Needs 3: -->
+    <tr #alternate( false ) id="trattr597">
+        <td class='text-column'>Child Priority Needs 3.</td>
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 597 ) )
+             #set( $attributeValuePriority3 = $!patientAttributeValueMap.get( 597 ) ) 
+            <select id="attr597" name="attr597" class='#validate( "default"  $attribute.mandatory )'>
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                 #foreach ($option in $attribute.attributeOptions )
+                    <option value="$option.id" #if($attributeValuePriority3 == $option.name) selected="selected" #end>$option.name</option>
+                 #end
+            </select>
+        </td>
+    </tr>
+
+
+
+    
+         
+</table>
+
+<table style="background-color:#ECE0F8;" width="100%">
+
+<!--<tr><th colspan="6" class="heading-column">G. Supervisor</th></tr>-->
+<tr><th colspan="6" class="heading-column">G. OVC Status</th></tr>  
+    <!-- Patient Attribute : G. Supervisor: -->
+    
+     <tr #alternate( true ) id="trattr300" style='display:none' >
+        <td class='text-column'>$i18n.getString( "supervisor" )</td>
+        <td class="input-column">
+            #set( $attributeValue = $!patientAttributeValueMap.get( 300 ) )
+            <select id="attr300" name="attr300" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                 #foreach ($option in $employeeListSupervisior )
+                    <option value="$option.code" #if($attributeValue == $option.code ) selected="selected" #end >$option.code</option>
+                 #end
+            </select>
+        </td>       
+    </tr>        
+     
+    <!--
+    <tr #alternate( false ) id="trattr300">
+        <td class='text-column'>$i18n.getString( "supervisor" )</td>
+        <td class="input-column" ><input type="text" id="attr300" name="attr300" value = "$!patientAttributeValueMap.get( 300 )" /></td> 
+    </tr>
+    -->
+
+<!--<input type="hidden" id="update" name="update" value="no">-->
+   
+#if( $auth.hasAccess( "dhis-web-ovc", "updateovcstatus") )
+    <tr #alternate( false ) id="trattr301">
+        <td class='text-column'>$i18n.getString( "ovc_status" )<em title="$i18n.getString( 'required' )" class="required">*</em></td>
+        <td class="input-column">
+            #set( $attribute = $patientAttributeMap.get( 301 ) )
+            #set( $attributeValue = $!patientAttributeValueMap.get( 301 ) )
+            <select id="attr301" name="attr301" onchange="changeStatus();" class='#validate( "default"  $attribute.mandatory )'>
+                 <option value="303">$i18n.getString( "approve" )</option><!-- Active -->                
+                 <option value="304">$i18n.getString( "reject" )</option><!-- Rejected -->
+            </select>    
+        </td>
+    </tr>
+    <!-- Reason For Rejection -->
+    <tr #alternate( false ) id="trattr404" style="display:none">
+        <td class='text-column'>$i18n.getString( "reason_rejection" )<em title="$i18n.getString( 'required' )" class="required">*</em></td>
+        <td class="input-column" >
+        	<textarea rows="4" cols="45" id="attr404" name="attr404" value = "$!patientAttributeValueMap.get( 404 )" class="{validate:{required:true}}" ></textarea>
+		</td> 
+    </tr>
+    <!--<input type="hidden" id="update" name="update" value="yes">-->
+ 
+<tr style="display:none">
+	<!-- OVC Review Date -->
+    <td>
+		<input type="text" id="attr405" name="attr405"/>
+        <script type="text/javascript">
+        	datePickerValid( 'attr405',true );
+        </script>       
+    </td>    
+</tr>   
+    
+#end
+
+</table>
+<br />
+<br />
+<table style="background-color:#EFFBEF;" width="100%">
+    <tr>
+        <td>&nbsp;&nbsp;</td>
+        <td>
+            <input type="submit" class="button" value="$i18n.getString( 'save' )"/>&nbsp;&nbsp;&nbsp;&nbsp;
+            <!--<input type="button" class="button" value="$i18n.getString( 'back' )" onclick="window.location.href='getApprovedList.action'"/>-->
+            <input type="button" class="button" value="$i18n.getString( 'back' )" onclick="loadApprovedOVCList();"/>
+        </td>
+    </tr>   
+    
+</table>
+
+<table>
+<tr style="display:none">
+    <!--
+	<td>
+		<input type="text" id="registrationDate" name="registrationDate" value='$format.formatDate($!patient.getRegistrationDate())'"/>
+        <script type="text/javascript">
+        	datePickerValid( 'registrationDate' );
+        </script>       
+    </td>    
+    -->
+	<!--
+    
+    <td>
+        <input type="text" id="registrationDate" name="registrationDate"/>
+        <script type="text/javascript">
+            datePickerValid( 'registrationDate', true );
+        </script>    
+    </td>
+    -->
+    <td>$i18n.getString( "orgid" )<input type="text" id="orgUnitId" name="orgUnitId" value="$!organisationUnit.id"/></td>
+    <td>$i18n.getString( "ovcid" )<input type="text" id="ovcId" name="ovcId" value="$!patient.getId()"/></td>
+    <td>$i18n.getString( "programid" )<input type="text" id="programId" name="programId" value="$!program.id"/></td>
+    <td>$i18n.getString( "stageid" )<input type="text" id="programStageId" name="programStageId" value="$!programStage.id"/></td>       
+</tr>
+</table>
+<div id="validateOVCRegistrationInfo"></div>
+</form>
+
+
+
+
+
+<script type="text/javascript">
+    var i18n_child_duplicate = '$encoder.jsEscape( $i18n.getString( "child_duplicate" ) , "'" )';
+    var i18n_age_more_than_18_year = '$encoder.jsEscape( $i18n.getString( "age_more_than_18_year" ) , "'" )';
+</script>
+
+<script language="javascript">
+     //schoolLevelValidation();
+	 
+	 //changeSchool();
+     hivStatusValidation();
+     calculateAge();
+     changeStatus();
+     
+     childHIVPositive();
+    
+     specifyGovernmentName();
+     specifyNGOName();
+     specifyCBOName();
+     specifyOthersName();     
+     
+     
+     
+</script>

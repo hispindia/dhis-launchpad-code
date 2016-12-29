@@ -1,0 +1,130 @@
+
+## Macro for generating the jQuery validation rules 
+#macro( validate $type $require )
+  #if( $type == "NUMBER" )
+    {validate:{ number:true #if($require), required:true #end }}
+  #elseif( $require )
+    {validate:{required:true}}
+  #end
+#end
+
+<script type="text/javascript">
+jQuery(document).ready( function(){
+        validation( 'updateASHAFacilitatorForm', function(form){
+            if( isSubmit && validateAddEmployee() ) {
+                form.submit(i18n_field_is_required);
+            }
+        }, function( ){
+            isSubmit = true;
+        }); 
+    }); 
+
+</script>
+
+<h3>$i18n.getString( "add_asha_facilitator_details" )</h3>
+<form id="updateASHAFacilitatorForm" name="updateASHAFacilitatorForm" method="post" action="updateASHAFacilitator.action"> 
+<table>
+	<tr>
+		<th colspan="2">$i18n.getString( "details" )</th>
+	</tr>
+		
+	<tr>
+		<td style="width:160px"><label for="organisationUnit">$i18n.getString( "organisation_unit" )</label></td>
+		<td style="width:160px">
+			<input type="text" name="orgUnitName" id="orgUnitName" value="$!facilitator.organisationUnit.getName()" style="width:300px" readonly="true"/>
+			<input type="hidden" name="orgUnitId" id="orgUnitId" value="$!facilitator.organisationUnit.getId()" />
+			<input type="hidden" name="facilitatorId" id="facilitatorId" value="$!facilitator.getId()" />
+		</td>
+	</tr>
+
+	<tr>
+		<td style="width:120px"><label for="name">$i18n.getString( "name" ) <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+		<td><input type="text" name="name" id="name" value="$!facilitator.getName()" style="width:300px" class="{validate:{required:true,rangelength:[4,160]}}"/></td>
+	</tr>
+	
+	
+	<tr>
+		<td><label for="contactNumber">$i18n.getString( "contactNumber" )</label></td>
+		<td><input type="text" name="contactNumber" id="contactNumber" style="width:300px" value="$!facilitator.getContactNumber()"/></td>
+	</tr>
+	
+		
+	
+	<tr>
+		<td><label for="address">$i18n.getString( "address" )</label></td>
+		<td><input type="text" name="address" id="address"  value="$!facilitator.getAddress()"  style="width:300px"/></td>
+	</tr>
+	
+	<tr>
+		<td><label for="gender">$i18n.getString( "gender" )<em title="$i18n.getString( "required" )" class="required">*</em></label></td>
+		<td>
+			<select id="gender" name="gender" style="width:300px" class="{validate:{required:true}}">
+				<!--<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>-->
+                <option value="F" #if( $!facilitator.gender == 'F' ) selected="selected" #end>$i18n.getString( "female" )</option>
+                <option value="M" #if( $!facilitator.gender == 'M' ) selected="selected" #end>$i18n.getString( "male" )</option>
+			</select>
+		</td>					
+	</tr>
+
+	<tr>
+		<td><label for="active">$i18n.getString( "active" )</label></td>
+		<td>
+			<input type='checkbox' id="active" name="active" value='true' #if( $facilitator.active ) checked #end>
+		</td>		
+	</tr>
+	
+	<tr>
+		<td>&nbsp;</td>
+		<td>
+			<table>
+					<tr>
+						<th>$i18n.getString( "asha_list" )</th>
+						<th></th>
+						<th>$i18n.getString( "selected_asha_list" )</th>
+					</tr>
+					
+					<tr>
+						<td>
+							<select multiple="multiple" id="availableASHAList" name="availableASHAList" size="9" ondblclick="moveSelectedById( 'availableASHAList', 'selectedASHAList' )"  style="width:300px; height:100%;">
+								#foreach ( $patient in $patients )
+									<option value="$patient.id" title="$patient.getFullName()">$patient.getFullName()</option>
+								#end
+							
+							</select>
+						</td>
+						<td>
+							<input type="button" value="&gt;" style="width:40px" onClick="moveSelectedById( 'availableASHAList', 'selectedASHAList' )"><br/>
+							<input type="button" value="&lt;" style="width:40px" onClick="moveSelectedById( 'selectedASHAList', 'availableASHAList' )"><br/>
+							<input type="button" value="&gt;&gt;" style="width:40px" onClick="moveAllById( 'availableASHAList', 'selectedASHAList' )"><br/>
+							<input type="button" value="&lt;&lt;" style="width:40px" onClick="moveAllById( 'selectedASHAList', 'availableASHAList' )">
+						</td>
+						<td>
+							<select multiple="multiple" id="selectedASHAList" name="selectedASHAList" size="9" ondblclick="moveSelectedById( 'selectedASHAList', 'availableASHAList' )"  style="width:300px; height:100%;">
+								#foreach ( $facilitatorPatient in $facilitatorPatients )
+                  					<option value="$facilitatorPatient.id" title="$facilitatorPatient.getFullName()">$facilitatorPatient.getFullName()</option>
+              					#end   
+							</select>
+						</td>
+					</tr> 
+			</table>
+		</td>
+	</tr>
+	
+	
+	<tr>
+		<td>&nbsp;</td>
+		<td>
+			<input type="submit" name="save" value="$i18n.getString( 'save' )" style="width:150px" />
+			<input type="button" value="$i18n.getString( 'cancel' )" onclick="window.location.href='getASHAFacilitatorList.action'" style="width:150px" />
+		</td>
+	</tr>
+		
+</table>
+
+</form>	
+
+
+<script type="text/javascript">
+
+    var i18n_field_is_required = '$encoder.jsEscape( $i18n.getString( "field_is_required" ) , "'") ';
+</script>

@@ -1,0 +1,37 @@
+<br />
+
+<script>
+
+jQuery(document).ready(function(){
+
+jQuery('#orgUnitTreeContainer').height(100);
+jQuery('#orgUnitTree').height(100);
+       
+});        
+
+
+</script>
+
+#parse( "/dhis-web-commons/ouwt/orgunittreesearch.vm" )
+
+<h2>$i18n.getString( "ovc_management" )&nbsp;</h2>
+	<ul>
+		<li><a href="javascript:registrationForm(); ">$i18n.getString( "new_registration" )&nbsp;</a></li>
+		<li><a href="getSubmittedList.action">$i18n.getString( "submitted" )&nbsp;</a></li>
+	    <li><a href="getApprovedList.action">$i18n.getString( "active" )&nbsp;</a></li>
+	    <li><a href="getRejectedList.action">$i18n.getString( "rejected" )&nbsp;</a></li>
+	</ul>
+	
+<h2>Community Worker Management &nbsp;</h2>
+	<ul>
+		<li><a href="getOrgUnit.action">Community Worker Management &nbsp;</a></li>		
+	</ul>
+	
+<h2>$i18n.getString( "exit_form" )&nbsp;</h2>
+	<ul>
+		<li><a href="#">$i18n.getString( "exit_pending" )&nbsp;</a></li>
+		<li><a href="#">$i18n.getString( "in_active" )&nbsp;</a></li>
+	</ul>
+
+<h2>$i18n.getString( "reports" )&nbsp;</h2>
+

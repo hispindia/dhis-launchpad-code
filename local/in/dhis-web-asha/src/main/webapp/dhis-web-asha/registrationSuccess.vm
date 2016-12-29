@@ -1,0 +1,7 @@
+
+
+<h3>$message</h3>
+
+<div id="registrationSuccess"> 
+	<input type="button" class="button" value="$i18n.getString( 'back' )" onclick="window.location.href='index.action'""/>
+</div>

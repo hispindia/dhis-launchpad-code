@@ -1,0 +1,832 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+	<!-- Home page -->
+	<bean id="org.hisp.dhis.ovc.action.NoAction"
+        class="org.hisp.dhis.ovc.action.NoAction" scope="prototype">
+		<property name="selectionManager" ref="org.hisp.dhis.ouwt.manager.OrganisationUnitSelectionManager" />
+    </bean>
+
+	<!-- Registration -->
+	
+	<bean id="org.hisp.dhis.ovc.registration.GetRegistrationFormAction"
+        class="org.hisp.dhis.ovc.registration.GetRegistrationFormAction" scope="prototype">
+		<!--<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />-->
+		<property name="patientAttributeService" ref="org.hisp.dhis.patient.PatientAttributeService" />
+		<property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+		<!--<property name="programStageService" ref="org.hisp.dhis.program.ProgramStageService" />-->
+		<!--<property name="organisationUnitService" ref="org.hisp.dhis.organisationunit.OrganisationUnitService" />-->
+		<property name="selectionManager" ref="org.hisp.dhis.ouwt.manager.OrganisationUnitSelectionManager" />
+		<property name="employeeService" ref="org.hisp.dhis.employee.EmployeeService" />
+		<property name="locationService" ref="org.hisp.dhis.location.LocationService" />
+		<property name="schoolService" ref="org.hisp.dhis.school.SchoolService" />
+    </bean>	
+
+	<!-- Validation -->	
+	
+	<bean id="org.hisp.dhis.ovc.registration.validateOVCRegistration"
+        class="org.hisp.dhis.ovc.registration.validateOVCRegistration" scope="prototype">
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+    </bean>	
+	
+	<bean id="org.hisp.dhis.ovc.registration.SaveRegistredDataAction"
+        class="org.hisp.dhis.ovc.registration.SaveRegistredDataAction" scope="prototype">
+		<property name="selectionManager" ref="org.hisp.dhis.ouwt.manager.OrganisationUnitSelectionManager" />	
+		<property name="patientAttributeService" ref="org.hisp.dhis.patient.PatientAttributeService" />
+		<property name="patientIdentifierService" ref="org.hisp.dhis.patient.PatientIdentifierService" />
+		<property name="patientAttributeOptionService" ref="org.hisp.dhis.patient.PatientAttributeOptionService" />
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="patientAttributeValueService" ref="org.hisp.dhis.patientattributevalue.PatientAttributeValueService" />
+		<property name="currentUserService" ref="org.hisp.dhis.user.CurrentUserService" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+		<property name="organisationUnitService" ref="org.hisp.dhis.organisationunit.OrganisationUnitService" />
+		<property name="patientIdentifierTypeService" ref="org.hisp.dhis.patient.PatientIdentifierTypeService" />
+		<property name="ovcService" ref="org.hisp.dhis.ovc.util.OVCService" />
+		<property name="schoolService" ref="org.hisp.dhis.school.SchoolService" />
+		<!--<property name="programStageService" ref="org.hisp.dhis.program.ProgramStageService" />
+		<property name="organisationUnitService" ref="org.hisp.dhis.organisationunit.OrganisationUnitService" />
+		<property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+		<property name="programInstanceService" ref="org.hisp.dhis.program.ProgramInstanceService" />
+		<property name="programStageInstanceService" ref="org.hisp.dhis.program.ProgramStageInstanceService" />-->
+			
+    </bean>
+	
+	<bean id="org.hisp.dhis.ovc.registration.GetOVCRegistrationDetailsAction"
+		class="org.hisp.dhis.ovc.registration.GetOVCRegistrationDetailsAction"
+		scope="prototype">
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="patientAttributeValueService" ref="org.hisp.dhis.patientattributevalue.PatientAttributeValueService" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+		<property name="patientIdentifierService" ref="org.hisp.dhis.patient.PatientIdentifierService" />
+		<property name="patientIdentifierTypeService" ref="org.hisp.dhis.patient.PatientIdentifierTypeService" />
+	</bean>	
+	
+	
+	<!-- Update OVC Registration Data Form -->	
+	
+	<bean id="org.hisp.dhis.ovc.registration.ShowUpdateOVCRegistrationFormAction"
+        class="org.hisp.dhis.ovc.registration.ShowUpdateOVCRegistrationFormAction" scope="prototype">
+		<!--<property name="selectionManager" ref="org.hisp.dhis.ouwt.manager.OrganisationUnitSelectionManager" />-->
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="patientAttributeValueService" ref="org.hisp.dhis.patientattributevalue.PatientAttributeValueService" />
+		<property name="patientAttributeService" ref="org.hisp.dhis.patient.PatientAttributeService" />
+		<property name="employeeService" ref="org.hisp.dhis.employee.EmployeeService" />
+		<property name="locationService" ref="org.hisp.dhis.location.LocationService" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+		<property name="patientIdentifierService" ref="org.hisp.dhis.patient.PatientIdentifierService" />
+		<property name="patientIdentifierTypeService" ref="org.hisp.dhis.patient.PatientIdentifierTypeService" />
+		<property name="schoolService" ref="org.hisp.dhis.school.SchoolService" />
+    </bean>	
+
+	<bean id="org.hisp.dhis.ovc.registration.UpdateOVCRegistrationAction"
+        class="org.hisp.dhis.ovc.registration.UpdateOVCRegistrationAction" scope="prototype">
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="patientAttributeService" ref="org.hisp.dhis.patient.PatientAttributeService" />
+		<property name="patientAttributeValueService" ref="org.hisp.dhis.patientattributevalue.PatientAttributeValueService" />
+		<property name="patientAttributeOptionService" ref="org.hisp.dhis.patient.PatientAttributeOptionService" />
+		<property name="schoolService" ref="org.hisp.dhis.school.SchoolService" />
+		<!--<property name="ovcService" ref="org.hisp.dhis.ovc.util.OVCService" />-->
+    </bean>
+		
+	<!-- Submitted OVC -->
+
+	<bean id="org.hisp.dhis.ovc.submitted.action.SelectSubmittedOVCAction"
+        class="org.hisp.dhis.ovc.submitted.action.SelectSubmittedOVCAction" scope="prototype">
+        <property name="selectionManager" ref="org.hisp.dhis.ouwt.manager.OrganisationUnitSelectionManager" />
+		<property name="patientAttributeService" ref="org.hisp.dhis.patient.PatientAttributeService" />
+		<property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+    </bean> 
+	
+		
+	
+	
+	<bean id="org.hisp.dhis.ovc.submitted.action.GetSubmittedListAction"
+        class="org.hisp.dhis.ovc.submitted.action.GetSubmittedListAction" scope="prototype">
+        <property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="selectionManager" ref="org.hisp.dhis.ouwt.manager.OrganisationUnitSelectionManager" />
+		<property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+		<property name="patientIdentifierService" ref="org.hisp.dhis.patient.PatientIdentifierService" />
+		<property name="patientIdentifierTypeService" ref="org.hisp.dhis.patient.PatientIdentifierTypeService" />
+    </bean> 
+
+	
+	
+	<!-- Remove OVC -->
+	<bean id="org.hisp.dhis.ovc.submitted.action.RemoveOVCAction"
+		class="org.hisp.dhis.ovc.submitted.action.RemoveOVCAction"
+		scope="prototype">
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+	</bean>		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- Approved OVC -->
+	
+	<bean id="org.hisp.dhis.ovc.approved.action.SelectApprovedOVCAction"
+        class="org.hisp.dhis.ovc.approved.action.SelectApprovedOVCAction" scope="prototype">
+        <property name="selectionManager" ref="org.hisp.dhis.ouwt.manager.OrganisationUnitSelectionManager" />
+		<property name="patientAttributeService" ref="org.hisp.dhis.patient.PatientAttributeService" />
+		<property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+		<property name="organisationUnitService" ref="org.hisp.dhis.organisationunit.OrganisationUnitService" />
+    </bean>		
+	
+	
+    <bean id="org.hisp.dhis.ovc.approved.action.GetApprovedListAction"
+        class="org.hisp.dhis.ovc.approved.action.GetApprovedListAction" scope="prototype">
+        <property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+        <property name="selectionManager" ref="org.hisp.dhis.ouwt.manager.OrganisationUnitSelectionManager" />
+		<property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+		<property name="patientAttributeValueService" ref="org.hisp.dhis.patientattributevalue.PatientAttributeValueService" />
+		<property name="ovcService" ref="org.hisp.dhis.ovc.util.OVCService" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+		<property name="organisationUnitService" ref="org.hisp.dhis.organisationunit.OrganisationUnitService" />
+		<property name="patientIdentifierService" ref="org.hisp.dhis.patient.PatientIdentifierService" />
+		<property name="patientIdentifierTypeService" ref="org.hisp.dhis.patient.PatientIdentifierTypeService" />
+    </bean> 
+
+    <bean id="org.hisp.dhis.ovc.approved.action.GetOVCDetailsAction"
+        class="org.hisp.dhis.ovc.approved.action.GetOVCDetailsAction"
+        scope="prototype">
+        <property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+        <property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+        <property name="patientIdentifierService" ref="org.hisp.dhis.patient.PatientIdentifierService" />
+        <property name="patientIdentifierTypeService" ref="org.hisp.dhis.patient.PatientIdentifierTypeService" />
+        <property name="patientAttributeValueService" ref="org.hisp.dhis.patientattributevalue.PatientAttributeValueService" />
+		<property name="ovcService" ref="org.hisp.dhis.ovc.util.OVCService" />
+    </bean> 
+
+
+	<!-- Show OVC Exit Form-->
+    <bean id="org.hisp.dhis.ovc.approved.action.ShowOVCExitFormAction"
+        class="org.hisp.dhis.ovc.approved.action.ShowOVCExitFormAction" scope="prototype">
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="patientAttributeValueService" ref="org.hisp.dhis.patientattributevalue.PatientAttributeValueService" />
+		<property name="patientAttributeService" ref="org.hisp.dhis.patient.PatientAttributeService" />
+		<property name="selectionManager" ref="org.hisp.dhis.ouwt.manager.OrganisationUnitSelectionManager" />
+		<property name="employeeService" ref="org.hisp.dhis.employee.EmployeeService" />
+		<property name="locationService" ref="org.hisp.dhis.location.LocationService" />
+    </bean> 	
+
+	<!-- Save OVC Exit Form Data -->
+	<bean id="org.hisp.dhis.ovc.approved.action.SaveOVCExitFormDataAction"
+        class="org.hisp.dhis.ovc.approved.action.SaveOVCExitFormDataAction" scope="prototype">
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="patientAttributeService" ref="org.hisp.dhis.patient.PatientAttributeService" />
+		<property name="patientAttributeValueService" ref="org.hisp.dhis.patientattributevalue.PatientAttributeValueService" />
+		<property name="patientAttributeOptionService" ref="org.hisp.dhis.patient.PatientAttributeOptionService" />
+		<property name="patientAttributeGroupService" ref="org.hisp.dhis.patient.PatientAttributeGroupService" />
+		<property name="currentUserService" ref="org.hisp.dhis.user.CurrentUserService" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+		<property name="organisationUnitService" ref="org.hisp.dhis.organisationunit.OrganisationUnitService" />
+		
+		
+		
+    </bean>	
+	
+		
+	<!-- Exit Pending List OVC -->	
+	
+	<bean id="org.hisp.dhis.ovc.exitpending.action.SelectExitPendingOVCAction"
+        class="org.hisp.dhis.ovc.exitpending.action.SelectExitPendingOVCAction" scope="prototype">
+        <property name="selectionManager" ref="org.hisp.dhis.ouwt.manager.OrganisationUnitSelectionManager" />
+		<property name="patientAttributeService" ref="org.hisp.dhis.patient.PatientAttributeService" />
+		<property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+    </bean>     
+	
+	
+	
+	<bean id="org.hisp.dhis.ovc.exitpending.action.GetExitPendingListAction"
+        class="org.hisp.dhis.ovc.exitpending.action.GetExitPendingListAction" scope="prototype">
+        <property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+        <property name="selectionManager" ref="org.hisp.dhis.ouwt.manager.OrganisationUnitSelectionManager" />
+		<property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+		<property name="patientAttributeValueService" ref="org.hisp.dhis.patientattributevalue.PatientAttributeValueService" />
+    </bean> 	
+	
+	<!-- Update OVC Exit Form -->
+	
+	<bean id="org.hisp.dhis.ovc.exitpending.action.ShowUpdateOVCExitFormAction"
+        class="org.hisp.dhis.ovc.exitpending.action.ShowUpdateOVCExitFormAction" scope="prototype">
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="patientAttributeValueService" ref="org.hisp.dhis.patientattributevalue.PatientAttributeValueService" />
+		<property name="patientAttributeService" ref="org.hisp.dhis.patient.PatientAttributeService" />
+		<property name="selectionManager" ref="org.hisp.dhis.ouwt.manager.OrganisationUnitSelectionManager" />
+		<property name="employeeService" ref="org.hisp.dhis.employee.EmployeeService" />
+		<property name="locationService" ref="org.hisp.dhis.location.LocationService" />
+    </bean>
+	
+	
+	
+	
+	
+	<!-- Inactive OVC List  -->	
+	
+	
+	<bean id="org.hisp.dhis.ovc.inactive.action.SelectInActiveOVCAction"
+        class="org.hisp.dhis.ovc.inactive.action.SelectInActiveOVCAction" scope="prototype">
+        <property name="selectionManager" ref="org.hisp.dhis.ouwt.manager.OrganisationUnitSelectionManager" />
+		<property name="patientAttributeService" ref="org.hisp.dhis.patient.PatientAttributeService" />
+		<property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />		
+    </bean> 	
+	
+	
+    <bean id="org.hisp.dhis.ovc.inactive.action.GetOVCInActiveListAction"
+        class="org.hisp.dhis.ovc.inactive.action.GetOVCInActiveListAction" scope="prototype">
+        <property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+        <property name="selectionManager" ref="org.hisp.dhis.ouwt.manager.OrganisationUnitSelectionManager" />
+		<property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+		<property name="patientAttributeValueService" ref="org.hisp.dhis.patientattributevalue.PatientAttributeValueService" />
+    </bean>	
+	
+		
+    <!-- Rejected OVC -->
+	
+	<bean id="org.hisp.dhis.ovc.rejected.action.SelectRejectedOVCAction"
+        class="org.hisp.dhis.ovc.rejected.action.SelectRejectedOVCAction" scope="prototype">
+        <property name="selectionManager" ref="org.hisp.dhis.ouwt.manager.OrganisationUnitSelectionManager" />
+		<property name="patientAttributeService" ref="org.hisp.dhis.patient.PatientAttributeService" />
+		<property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+    </bean>	
+	
+	
+	
+	
+    <bean id="org.hisp.dhis.ovc.rejected.action.GetRejectedListAction"
+        class="org.hisp.dhis.ovc.rejected.action.GetRejectedListAction" scope="prototype">
+        <property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+        <property name="selectionManager" ref="org.hisp.dhis.ouwt.manager.OrganisationUnitSelectionManager" />
+		<property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+		<property name="patientAttributeValueService" ref="org.hisp.dhis.patientattributevalue.PatientAttributeValueService" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+		<property name="patientIdentifierService" ref="org.hisp.dhis.patient.PatientIdentifierService" />
+		<property name="patientIdentifierTypeService" ref="org.hisp.dhis.patient.PatientIdentifierTypeService" />
+    </bean> 
+
+	<!-- Employee -->
+	
+	<!-- Display List of Employee -->
+	<bean id="org.hisp.dhis.ovc.employee.GetEmployeeListAction"
+        class="org.hisp.dhis.ovc.employee.GetEmployeeListAction" scope="prototype">
+		<property name="employeeService" ref="org.hisp.dhis.employee.EmployeeService" />
+		<property name="selectionManager" ref="org.hisp.dhis.ouwt.manager.OrganisationUnitSelectionManager" />
+    </bean>	
+	
+	<!-- Add Employee Form --> 
+	<bean id="org.hisp.dhis.ovc.employee.ShowAddEmployeeFormAction"
+        class="org.hisp.dhis.ovc.employee.ShowAddEmployeeFormAction" scope="prototype">
+		<property name="organisationUnitService" ref="org.hisp.dhis.organisationunit.OrganisationUnitService" />
+		<property name="employeeService" ref="org.hisp.dhis.employee.EmployeeService" />
+    </bean>	
+	
+	<!-- Employee Validation during Addition or Updation of Employee -->	
+	<bean id="org.hisp.dhis.ovc.employee.ValidateEmployeeAction"
+        class="org.hisp.dhis.ovc.employee.ValidateEmployeeAction" scope="prototype">
+		<property name="employeeService" ref="org.hisp.dhis.employee.EmployeeService" />
+		<property name="organisationUnitService" ref="org.hisp.dhis.organisationunit.OrganisationUnitService" />
+    </bean>	
+	
+	
+	<!-- Add Employee -->	
+	<bean id="org.hisp.dhis.ovc.employee.AddEmployeeAction"
+        class="org.hisp.dhis.ovc.employee.AddEmployeeAction" scope="prototype">
+		<property name="employeeService" ref="org.hisp.dhis.employee.EmployeeService" />
+		<property name="organisationUnitService" ref="org.hisp.dhis.organisationunit.OrganisationUnitService" />
+    </bean>	
+	
+	<!-- Update Employee Form -->
+	<bean id="org.hisp.dhis.ovc.employee.ShowEmployeeUpdateFormAction"
+        class="org.hisp.dhis.ovc.employee.ShowEmployeeUpdateFormAction" scope="prototype">
+		<property name="employeeService" ref="org.hisp.dhis.employee.EmployeeService" />		
+    </bean>		
+	
+	<!-- Update Employee -->
+	<bean id="org.hisp.dhis.ovc.employee.UpdateEmployeeAction"
+        class="org.hisp.dhis.ovc.employee.UpdateEmployeeAction" scope="prototype">
+		<property name="employeeService" ref="org.hisp.dhis.employee.EmployeeService" />
+    </bean>		
+	
+	<!-- Get Employee Details -->
+	<bean id="org.hisp.dhis.ovc.employee.GetOVCEmployeeDetailsAction"
+        class="org.hisp.dhis.ovc.employee.GetOVCEmployeeDetailsAction" scope="prototype">
+		<property name="employeeService" ref="org.hisp.dhis.employee.EmployeeService" />
+    </bean>			
+
+	<!-- Remove Employee -->
+	<bean id="org.hisp.dhis.ovc.employee.RemoveEmployeeAction"
+        class="org.hisp.dhis.ovc.employee.RemoveEmployeeAction" scope="prototype">
+		<property name="employeeService" ref="org.hisp.dhis.employee.EmployeeService" />
+    </bean>	
+		
+	<!--
+	<bean id="org.hisp.dhis.ovc.employee.BeforeEditEmployeeAction"
+        class="org.hisp.dhis.ovc.employee.BeforeEditEmployeeAction" scope="prototype">
+		<property name="employeeService" ref="org.hisp.dhis.employee.EmployeeService" />		
+    </bean>	
+	<bean id="org.hisp.dhis.ovc.employee.EditEmployeeAction"
+        class="org.hisp.dhis.ovc.employee.EditEmployeeAction" scope="prototype">
+		<property name="employeeService" ref="org.hisp.dhis.employee.EmployeeService" />
+		<property name="organisationUnitService" ref="org.hisp.dhis.organisationunit.OrganisationUnitService" />
+    </bean>
+	-->
+	
+	
+	<!-- Location -->
+	
+	<!-- Display List of Location -->
+	<bean id="org.hisp.dhis.ovc.location.GetLocationListAction"
+        class="org.hisp.dhis.ovc.location.GetLocationListAction" scope="prototype">
+		<property name="selectionManager" ref="org.hisp.dhis.ouwt.manager.OrganisationUnitSelectionManager" />
+		<property name="locationService" ref="org.hisp.dhis.location.LocationService" />
+    </bean>	
+
+	<!-- Add Location Form --> 
+	<bean id="org.hisp.dhis.ovc.location.ShowAddLocationFormAction"
+        class="org.hisp.dhis.ovc.location.ShowAddLocationFormAction" scope="prototype">
+		<property name="organisationUnitService" ref="org.hisp.dhis.organisationunit.OrganisationUnitService" />
+		<property name="locationService" ref="org.hisp.dhis.location.LocationService" />
+    </bean>	
+
+	<!-- Location Validation during Addition or Updation of Location -->	
+	<bean id="org.hisp.dhis.ovc.location.ValidateLocationAction"
+        class="org.hisp.dhis.ovc.location.ValidateLocationAction" scope="prototype">
+		<property name="locationService" ref="org.hisp.dhis.location.LocationService" />
+		<property name="organisationUnitService" ref="org.hisp.dhis.organisationunit.OrganisationUnitService" />
+    </bean>		
+	
+	<!-- Add Location --> 
+	<bean id="org.hisp.dhis.ovc.location.AddLocationAction"
+        class="org.hisp.dhis.ovc.location.AddLocationAction" scope="prototype">
+		<property name="locationService" ref="org.hisp.dhis.location.LocationService" />
+		<property name="organisationUnitService" ref="org.hisp.dhis.organisationunit.OrganisationUnitService" />
+    </bean>		
+				
+
+	<!-- Update Location Form --> 
+	<bean id="org.hisp.dhis.ovc.location.ShowLocationUpdateFormAction"
+        class="org.hisp.dhis.ovc.location.ShowLocationUpdateFormAction" scope="prototype">
+		<property name="locationService" ref="org.hisp.dhis.location.LocationService" />
+    </bean>	
+		
+	<!-- Update Location --> 
+	<bean id="org.hisp.dhis.ovc.location.UpdateLocationAction"
+        class="org.hisp.dhis.ovc.location.UpdateLocationAction" scope="prototype">
+		<property name="locationService" ref="org.hisp.dhis.location.LocationService" />
+    </bean>	
+
+	<!-- Get Location Details -->
+	<bean id="org.hisp.dhis.ovc.location.GetLocationDetailsAction"
+        class="org.hisp.dhis.ovc.location.GetLocationDetailsAction" scope="prototype">
+		<property name="locationService" ref="org.hisp.dhis.location.LocationService" />
+    </bean>
+	
+	
+	<!-- Remove Location --> 
+	<bean id="org.hisp.dhis.ovc.location.RemoveLocationAction"
+        class="org.hisp.dhis.ovc.location.RemoveLocationAction" scope="prototype">
+		<property name="locationService" ref="org.hisp.dhis.location.LocationService" />
+    </bean>	
+
+<!-- Location End -->
+
+	<!-- School Management -->
+	
+	<!-- Display List of School -->
+	<bean id="org.hisp.dhis.ovc.school.GetSchoolListAction"
+        class="org.hisp.dhis.ovc.school.GetSchoolListAction" scope="prototype">
+		<property name="selectionManager" ref="org.hisp.dhis.ouwt.manager.OrganisationUnitSelectionManager" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+		<property name="organisationUnitGroupService" ref="org.hisp.dhis.organisationunit.OrganisationUnitGroupService" />
+		<property name="schoolService" ref="org.hisp.dhis.school.SchoolService" />
+    </bean>
+
+	<!-- Add School Form -->
+	<bean id="org.hisp.dhis.ovc.school.ShowAddSchoolFormAction"
+        class="org.hisp.dhis.ovc.school.ShowAddSchoolFormAction" scope="prototype">
+		<property name="organisationUnitService" ref="org.hisp.dhis.organisationunit.OrganisationUnitService" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+		<property name="patientAttributeGroupService" ref="org.hisp.dhis.patient.PatientAttributeGroupService" />
+    </bean>
+
+
+	<!-- Add School --> 
+	<bean id="org.hisp.dhis.ovc.school.AddSchoolAction"
+        class="org.hisp.dhis.ovc.school.AddSchoolAction" scope="prototype">
+		<property name="organisationUnitService" ref="org.hisp.dhis.organisationunit.OrganisationUnitService" />
+		<property name="patientAttributeGroupService" ref="org.hisp.dhis.patient.PatientAttributeGroupService" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+		<property name="patientAttributeOptionService" ref="org.hisp.dhis.patient.PatientAttributeOptionService" />
+		<property name="schoolService" ref="org.hisp.dhis.school.SchoolService" />
+		<property name="currentUserService" ref="org.hisp.dhis.user.CurrentUserService" />
+    </bean>
+
+
+	<!-- Update School Form --> 
+	<bean id="org.hisp.dhis.ovc.school.ShowSchoolUpdateFormAction"
+        class="org.hisp.dhis.ovc.school.ShowSchoolUpdateFormAction" scope="prototype">
+		<property name="schoolService" ref="org.hisp.dhis.school.SchoolService" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+		<property name="patientAttributeGroupService" ref="org.hisp.dhis.patient.PatientAttributeGroupService" />
+		<property name="ovcService" ref="org.hisp.dhis.ovc.util.OVCService" />
+    </bean>	
+
+
+	<!-- Update School --> 
+	<bean id="org.hisp.dhis.ovc.school.UpdateSchoolAction"
+        class="org.hisp.dhis.ovc.school.UpdateSchoolAction" scope="prototype">
+		<property name="patientAttributeGroupService" ref="org.hisp.dhis.patient.PatientAttributeGroupService" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+		<property name="patientAttributeOptionService" ref="org.hisp.dhis.patient.PatientAttributeOptionService" />
+		<property name="schoolService" ref="org.hisp.dhis.school.SchoolService" />
+		<property name="currentUserService" ref="org.hisp.dhis.user.CurrentUserService" />
+		<property name="schoolDetailsService" ref="org.hisp.dhis.school.SchoolDetailsService" />
+    </bean>
+
+
+	<!-- Remove School --> 
+	<bean id="org.hisp.dhis.ovc.school.RemoveSchoolAction"
+        class="org.hisp.dhis.ovc.school.RemoveSchoolAction" scope="prototype">
+		<property name="schoolService" ref="org.hisp.dhis.school.SchoolService" />
+		<property name="schoolDetailsService" ref="org.hisp.dhis.school.SchoolDetailsService" />
+    </bean>
+
+
+	<!-- Get School Details -->
+	<bean id="org.hisp.dhis.ovc.school.GetSchoolDetailsAction"
+        class="org.hisp.dhis.ovc.school.GetSchoolDetailsAction" scope="prototype">
+		<property name="schoolService" ref="org.hisp.dhis.school.SchoolService" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+		<property name="patientAttributeGroupService" ref="org.hisp.dhis.patient.PatientAttributeGroupService" />
+		<property name="ovcService" ref="org.hisp.dhis.ovc.util.OVCService" />
+    </bean>
+    
+    
+	<!-- School Validation during Addition or Updation of School -->
+	<bean id="org.hisp.dhis.ovc.school.ValidateSchoolAction"
+        class="org.hisp.dhis.ovc.school.ValidateSchoolAction" scope="prototype">
+		<property name="schoolService" ref="org.hisp.dhis.school.SchoolService" />
+		<property name="organisationUnitService" ref="org.hisp.dhis.organisationunit.OrganisationUnitService" />
+    </bean>    
+
+
+	<!-- Get School Data value -->
+	<bean id="org.hisp.dhis.ovc.school.GetSchoolDetailAction"
+        class="org.hisp.dhis.ovc.school.GetSchoolDetailAction" scope="prototype">
+		<property name="schoolService" ref="org.hisp.dhis.school.SchoolService" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+		<property name="ovcService" ref="org.hisp.dhis.ovc.util.OVCService" />
+		<!--<property name="selectionManager" ref="org.hisp.dhis.ouwt.manager.OrganisationUnitSelectionManager" />-->
+		<property name="organisationUnitService" ref="org.hisp.dhis.organisationunit.OrganisationUnitService" />
+    </bean>
+
+
+	<!-- Get SchoolFeeDetails Data value -->
+	<bean id="org.hisp.dhis.ovc.school.ShowSchoolFeeDetailsFormAction"
+        class="org.hisp.dhis.ovc.school.ShowSchoolFeeDetailsFormAction" scope="prototype">
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+		<property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+		<property name="ovcService" ref="org.hisp.dhis.ovc.util.OVCService" />
+		<property name="programInstanceService" ref="org.hisp.dhis.program.ProgramInstanceService" />
+		<property name="schoolService" ref="org.hisp.dhis.school.SchoolService" />
+    </bean>
+
+
+	<!-- Load  School Fee Details Data Entry Form --> 
+	<bean id="org.hisp.dhis.ovc.school.LoadSchoolFeeDetailsDataEntryFormAction"
+        class="org.hisp.dhis.ovc.school.LoadSchoolFeeDetailsDataEntryFormAction" scope="prototype">
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+		<property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+		<property name="programStageService" ref="org.hisp.dhis.program.ProgramStageService" />
+		<property name="ovcService" ref="org.hisp.dhis.ovc.util.OVCService" />
+		<property name="schoolService" ref="org.hisp.dhis.school.SchoolService" />
+		<property name="patientAttributeValueService" ref="org.hisp.dhis.patientattributevalue.PatientAttributeValueService" />
+		<property name="patientIdentifierTypeService" ref="org.hisp.dhis.patient.PatientIdentifierTypeService" />
+		<property name="patientIdentifierService" ref="org.hisp.dhis.patient.PatientIdentifierService" />
+    </bean>
+
+
+	<!-- Save School Fee Details Data Entry Form Data --> 
+	<bean id="org.hisp.dhis.ovc.school.SaveSchoolFeeDetailsDataAction"
+        class="org.hisp.dhis.ovc.school.SaveSchoolFeeDetailsDataAction" scope="prototype">
+		<property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+		<property name="programStageService" ref="org.hisp.dhis.program.ProgramStageService" />
+		<property name="ovcService" ref="org.hisp.dhis.ovc.util.OVCService" />
+		<property name="programInstanceService" ref="org.hisp.dhis.program.ProgramInstanceService" />
+		<property name="programStageInstanceService" ref="org.hisp.dhis.program.ProgramStageInstanceService" />
+		<property name="currentUserService" ref="org.hisp.dhis.user.CurrentUserService" />
+		<property name="patientDataValueService" ref="org.hisp.dhis.patientdatavalue.PatientDataValueService" />
+		<property name="schoolService" ref="org.hisp.dhis.school.SchoolService" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+    </bean>
+    
+    
+ 	<!-- School Details Report Form -->
+	<bean id="org.hisp.dhis.ovc.school.ShowSchoolDetailsReportFormAction"
+        class="org.hisp.dhis.ovc.school.ShowSchoolDetailsReportFormAction" scope="prototype">
+		<property name="schoolService" ref="org.hisp.dhis.school.SchoolService" />
+		<property name="periodService" ref="org.hisp.dhis.period.PeriodService" />
+    </bean>   
+    
+  	<!--  School Details Report -->
+	<bean id="org.hisp.dhis.ovc.school.GenerateSchoolDetailsReoprtAction"
+        class="org.hisp.dhis.ovc.school.GenerateSchoolDetailsReoprtAction" scope="prototype">
+		<property name="schoolService" ref="org.hisp.dhis.school.SchoolService" />
+		<property name="ovcService" ref="org.hisp.dhis.ovc.util.OVCService" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+		<property name="patientIdentifierTypeService" ref="org.hisp.dhis.patient.PatientIdentifierTypeService" />
+		<property name="patientAttributeValueService" ref="org.hisp.dhis.patientattributevalue.PatientAttributeValueService" />
+		<property name="patientIdentifierService" ref="org.hisp.dhis.patient.PatientIdentifierService" />
+		<property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+		<property name="programStageService" ref="org.hisp.dhis.program.ProgramStageService" />
+		<property name="patientAttributeGroupService" ref="org.hisp.dhis.patient.PatientAttributeGroupService" />
+    </bean>   
+    
+    
+    
+    
+    
+    
+
+<!-- OVC Form (1 A)	-->
+	
+	<!-- Show OVC Form 1A -->
+	<bean id="org.hisp.dhis.ovc.form1A.ShowOVCForm1AAction"
+        class="org.hisp.dhis.ovc.form1A.ShowOVCForm1AAction" scope="prototype">
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+		<property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+		<property name="programInstanceService" ref="org.hisp.dhis.program.ProgramInstanceService" />
+		<property name="ovcService" ref="org.hisp.dhis.ovc.util.OVCService" />
+		<property name="patientAttributeValueService" ref="org.hisp.dhis.patientattributevalue.PatientAttributeValueService" />
+		<property name="periodService" ref="org.hisp.dhis.period.PeriodService" />
+    </bean>	
+	
+
+	<!-- Load OVC Form 1A Data Entry-->
+	<bean id="org.hisp.dhis.ovc.form1A.LoadOVCForm1ADataEntryFormAction"
+        class="org.hisp.dhis.ovc.form1A.LoadOVCForm1ADataEntryFormAction" scope="prototype">
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+		<property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+		<property name="programStageService" ref="org.hisp.dhis.program.ProgramStageService" />
+		<property name="ovcService" ref="org.hisp.dhis.ovc.util.OVCService" />
+		<!--<property name="programInstanceService" ref="org.hisp.dhis.program.ProgramInstanceService" />
+		<property name="programStageInstanceService" ref="org.hisp.dhis.program.ProgramStageInstanceService" />-->
+		<property name="employeeService" ref="org.hisp.dhis.employee.EmployeeService" />
+		<property name="patientAttributeValueService" ref="org.hisp.dhis.patientattributevalue.PatientAttributeValueService" />
+		
+    </bean>		
+		
+	<!-- Show View OVC Form 1A -->
+	<bean id="org.hisp.dhis.ovc.form1A.ShowOVCForm1AForViewAction"
+        class="org.hisp.dhis.ovc.form1A.ShowOVCForm1AForViewAction" scope="prototype">
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="employeeService" ref="org.hisp.dhis.employee.EmployeeService" />
+		<property name="patientAttributeValueService" ref="org.hisp.dhis.patientattributevalue.PatientAttributeValueService" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+		<property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+		<property name="programStageService" ref="org.hisp.dhis.program.ProgramStageService" />
+		<property name="ovcService" ref="org.hisp.dhis.ovc.util.OVCService" />
+    </bean>	
+			
+	<!-- Save OVC DataEntry Form Data -->
+	<bean id="org.hisp.dhis.ovc.form1A.SaveOVCForm1ADataAction"
+        class="org.hisp.dhis.ovc.form1A.SaveOVCForm1ADataAction" scope="prototype">
+		<property name="programStageService" ref="org.hisp.dhis.program.ProgramStageService" />
+		<property name="programStageInstanceService" ref="org.hisp.dhis.program.ProgramStageInstanceService" />
+		<property name="currentUserService" ref="org.hisp.dhis.user.CurrentUserService" />
+		<property name="patientDataValueService" ref="org.hisp.dhis.patientdatavalue.PatientDataValueService" />
+		<property name="programInstanceService" ref="org.hisp.dhis.program.ProgramInstanceService" />
+		<property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+		<!--<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />-->
+		<property name="ovcService" ref="org.hisp.dhis.ovc.util.OVCService" />
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />	
+    </bean>		
+		
+
+<!-- OVC Care Giver Form	-->
+	
+	<!-- Show OVC Care Giver Form -->
+	<bean id="org.hisp.dhis.ovc.caregiver.ShowOVCCareGiverFormAction"
+        class="org.hisp.dhis.ovc.caregiver.ShowOVCCareGiverFormAction" scope="prototype">
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+		<property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+		<property name="programInstanceService" ref="org.hisp.dhis.program.ProgramInstanceService" />
+		<property name="ovcService" ref="org.hisp.dhis.ovc.util.OVCService" />
+		<property name="patientAttributeValueService" ref="org.hisp.dhis.patientattributevalue.PatientAttributeValueService" />
+		<property name="periodService" ref="org.hisp.dhis.period.PeriodService" />
+    </bean>	
+
+
+	<!-- Load OVC DataEntry Care Giver Form --> 
+	<bean id="org.hisp.dhis.ovc.caregiver.LoadOVCCareGiverDataEntryFormAction"
+        class="org.hisp.dhis.ovc.caregiver.LoadOVCCareGiverDataEntryFormAction" scope="prototype">
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+		<property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+		<property name="programStageService" ref="org.hisp.dhis.program.ProgramStageService" />
+		<property name="ovcService" ref="org.hisp.dhis.ovc.util.OVCService" />
+		<!--<property name="programInstanceService" ref="org.hisp.dhis.program.ProgramInstanceService" />
+		<property name="programStageInstanceService" ref="org.hisp.dhis.program.ProgramStageInstanceService" />-->
+		<property name="employeeService" ref="org.hisp.dhis.employee.EmployeeService" />
+		<property name="patientAttributeValueService" ref="org.hisp.dhis.patientattributevalue.PatientAttributeValueService" />
+		
+    </bean>
+
+
+	<!-- Save OVC Care Giver DataEntry Form Data -->
+	<bean id="org.hisp.dhis.ovc.caregiver.SaveOVCCareGiverDataAction"
+        class="org.hisp.dhis.ovc.caregiver.SaveOVCCareGiverDataAction" scope="prototype">
+		<property name="programStageService" ref="org.hisp.dhis.program.ProgramStageService" />
+		<property name="programStageInstanceService" ref="org.hisp.dhis.program.ProgramStageInstanceService" />
+		<property name="currentUserService" ref="org.hisp.dhis.user.CurrentUserService" />
+		<property name="patientDataValueService" ref="org.hisp.dhis.patientdatavalue.PatientDataValueService" />
+		<property name="programInstanceService" ref="org.hisp.dhis.program.ProgramInstanceService" />
+		<property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+		<!--<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />-->
+		<property name="ovcService" ref="org.hisp.dhis.ovc.util.OVCService" />
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />	
+    </bean>
+
+
+
+
+
+
+
+
+<!-- OVC Household Assessment Form	-->
+	
+	<!-- OVC Household Assessment Form -->
+	
+	<bean id="org.hisp.dhis.ovc.household.ShowOVCHouseholdAssessmentFormAction"
+        class="org.hisp.dhis.ovc.household.ShowOVCHouseholdAssessmentFormAction" scope="prototype">
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+		<property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+		<property name="ovcService" ref="org.hisp.dhis.ovc.util.OVCService" />
+		<property name="programInstanceService" ref="org.hisp.dhis.program.ProgramInstanceService" />
+		<property name="currentUserService" ref="org.hisp.dhis.user.CurrentUserService" />
+    </bean>	
+		
+	<!-- Load OVC Household Assessment Data Entry Form -->
+	<bean id="org.hisp.dhis.ovc.household.LoadOVCHouseholdAssessmentDataEntryFormAction"
+        class="org.hisp.dhis.ovc.household.LoadOVCHouseholdAssessmentDataEntryFormAction" scope="prototype">
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+		<property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+		<property name="programStageService" ref="org.hisp.dhis.program.ProgramStageService" />
+		<property name="ovcService" ref="org.hisp.dhis.ovc.util.OVCService" />
+    </bean>			
+	
+	<!-- Save Household Assessment Data Entry Form Data --> 
+	<bean id="org.hisp.dhis.ovc.household.SaveOVCHouseholdAssessmentDataAction"
+        class="org.hisp.dhis.ovc.household.SaveOVCHouseholdAssessmentDataAction" scope="prototype">
+		<property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+		<property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+		<property name="programStageService" ref="org.hisp.dhis.program.ProgramStageService" />
+		<property name="ovcService" ref="org.hisp.dhis.ovc.util.OVCService" />
+		<property name="programInstanceService" ref="org.hisp.dhis.program.ProgramInstanceService" />
+		<property name="programStageInstanceService" ref="org.hisp.dhis.program.ProgramStageInstanceService" />
+		<property name="currentUserService" ref="org.hisp.dhis.user.CurrentUserService" />
+		<property name="patientDataValueService" ref="org.hisp.dhis.patientdatavalue.PatientDataValueService" />
+    </bean>				
+	
+<!-- Custom Report -->
+	
+	
+	<!-- Report List --> 
+	<bean id="org.hisp.dhis.ovc.report.action.ReportListAction"
+        class="org.hisp.dhis.ovc.report.action.ReportListAction" scope="prototype">
+		<property name="customReportService" ref="org.hisp.dhis.customreports.CustomReportService" />
+		<property name="organisationUnitGroupService" ref="org.hisp.dhis.organisationunit.OrganisationUnitGroupService" />
+    </bean>	
+	
+	<!-- Add New Report Form-->
+	<bean id="org.hisp.dhis.ovc.report.action.ShowAddReportFormAction"
+        class="org.hisp.dhis.ovc.report.action.ShowAddReportFormAction" scope="prototype">
+		<property name="patientAttributeService" ref="org.hisp.dhis.patient.PatientAttributeService" />
+		<property name="organisationUnitGroupService" ref="org.hisp.dhis.organisationunit.OrganisationUnitGroupService" />
+    </bean>	
+	
+	<!-- Save Report-->
+	<bean id="org.hisp.dhis.ovc.report.action.SaveReportAction"
+        class="org.hisp.dhis.ovc.report.action.SaveReportAction" scope="prototype">
+		<property name="patientAttributeService" ref="org.hisp.dhis.patient.PatientAttributeService" />
+		<property name="customReportService" ref="org.hisp.dhis.customreports.CustomReportService" />
+		<property name="customReportDesignService" ref="org.hisp.dhis.customreports.CustomReportDesignService" />
+		<property name="customReportFilterService" ref="org.hisp.dhis.customreports.CustomReportFilterService" />
+		<property name="currentUserService" ref="org.hisp.dhis.user.CurrentUserService" />
+    </bean>	
+		
+			
+	<!-- Select OrgUnit and Period Form -->
+	
+	<bean id="org.hisp.dhis.ovc.report.action.ShowOrgUnitAndPeriodSelectionFormAction"
+        class="org.hisp.dhis.ovc.report.action.ShowOrgUnitAndPeriodSelectionFormAction" scope="prototype">
+    </bean>		
+		
+	<!--  Namebased Report generation -->
+    <bean id="org.hisp.dhis.ovc.report.action.GenerateNameBasedReportAction"
+        class="org.hisp.dhis.ovc.report.action.GenerateNameBasedReportAction" scope="prototype">
+        <property name="customReportService" ref="org.hisp.dhis.customreports.CustomReportService" />
+        <property name="organisationUnitService" ref="org.hisp.dhis.organisationunit.OrganisationUnitService" />
+        <property name="organisationUnitGroupService" ref="org.hisp.dhis.organisationunit.OrganisationUnitGroupService" />
+        <property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+        <property name="patientAttributeService" ref="org.hisp.dhis.patient.PatientAttributeService" />
+        <property name="patientAttributeValueService" ref="org.hisp.dhis.patientattributevalue.PatientAttributeValueService" />
+        <property name="selectionManager" ref="org.hisp.dhis.ouwt.manager.OrganisationUnitSelectionManager" />
+        <!--<property name="ovcService" ref="org.hisp.dhis.ovc.util.OVCService" />-->
+        <property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+		<property name="patientIdentifierService" ref="org.hisp.dhis.patient.PatientIdentifierService" />
+		<property name="patientIdentifierTypeService" ref="org.hisp.dhis.patient.PatientIdentifierTypeService" />
+		<!--<property name="selectionTreeManager" ref="org.hisp.dhis.oust.manager.SelectionTreeManager" />-->
+    </bean> 
+
+	
+	<!-- Remove Namebased Report -->
+    <bean id="org.hisp.dhis.ovc.report.action.RemoveNameBasedReportAction"
+        class="org.hisp.dhis.ovc.report.action.RemoveNameBasedReportAction" scope="prototype">
+        <property name="customReportService" ref="org.hisp.dhis.customreports.CustomReportService" />
+		<property name="customReportDesignService" ref="org.hisp.dhis.customreports.CustomReportDesignService" />
+		<property name="customReportFilterService" ref="org.hisp.dhis.customreports.CustomReportFilterService" />
+    </bean>	
+	
+
+	<!-- Update Report Form-->
+    <bean id="org.hisp.dhis.ovc.report.action.ShowUpdateReportFormAction"
+        class="org.hisp.dhis.ovc.report.action.ShowUpdateReportFormAction" scope="prototype">
+        <property name="customReportService" ref="org.hisp.dhis.customreports.CustomReportService" />
+        <property name="patientAttributeService" ref="org.hisp.dhis.patient.PatientAttributeService" />
+    </bean>	
+
+
+	<!-- OVC Aggregation Query Form-->
+    <bean id="org.hisp.dhis.ovc.aggregationreport.action.RunAggregationQueryFormAction"
+        class="org.hisp.dhis.ovc.aggregationreport.action.RunAggregationQueryFormAction" scope="prototype">
+        <property name="periodService" ref="org.hisp.dhis.period.PeriodService" />
+    </bean>
+
+
+	<!-- OVC Aggregation Query Result-->
+    <bean id="org.hisp.dhis.ovc.aggregationreport.action.RunAggregationQueryAction"
+        class="org.hisp.dhis.ovc.aggregationreport.action.RunAggregationQueryAction" scope="prototype">
+        <property name="selectionTreeManager" ref="org.hisp.dhis.oust.manager.SelectionTreeManager" />
+        <property name="organisationUnitService" ref="org.hisp.dhis.organisationunit.OrganisationUnitService" />
+        <property name="organisationUnitGroupService" ref="org.hisp.dhis.organisationunit.OrganisationUnitGroupService" />
+        <property name="aggregationConditionService" ref="org.hisp.dhis.caseaggregation.CaseAggregationConditionService" />
+        <property name="ovcAggregationService" ref="org.hisp.dhis.ovc.util.OVCAggregationService" />
+        <property name="periodService" ref="org.hisp.dhis.period.PeriodService" />
+        <property name="optionService" ref="org.hisp.dhis.option.OptionService" />
+    </bean>
+			
+	<!-- OVC Util -->
+	<bean id="org.hisp.dhis.ovc.util.OVCService"
+        class="org.hisp.dhis.ovc.util.OVCService"
+        scope="prototype">
+        <property name="jdbcTemplate" ref="jdbcTemplate" />
+        <property name="schoolService" ref="org.hisp.dhis.school.SchoolService" />
+        <property name="patientService" ref="org.hisp.dhis.patient.PatientService" />
+        <property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+		<property name="patientIdentifierService" ref="org.hisp.dhis.patient.PatientIdentifierService" />
+		<property name="patientIdentifierTypeService" ref="org.hisp.dhis.patient.PatientIdentifierTypeService" />
+    </bean>     
+	
+	<bean id="org.hisp.dhis.ovc.util.OVCAggregationService"
+        class="org.hisp.dhis.ovc.util.OVCAggregationService"
+        scope="prototype">
+        <property name="jdbcTemplate" ref="jdbcTemplate" />
+        <!--<property name="dataElementCategoryService" ref="org.hisp.dhis.dataelement.DataElementCategoryService" />-->
+       	<property name="currentUserService" ref="org.hisp.dhis.user.CurrentUserService" />
+       	<property name="periodStore" ref="org.hisp.dhis.period.PeriodStore" />
+    </bean>	
+	
+	<!--  pre/next period -->
+	<bean id="org.hisp.dhis.ovc.period.action.LoadNextPrePeriodsAction"
+        class="org.hisp.dhis.ovc.period.action.LoadNextPrePeriodsAction"
+        scope="prototype">
+    </bean>	
+			
+</beans>

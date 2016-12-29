@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+	<!-- School Store -->
+	<bean id="org.hisp.dhis.school.SchoolStore"
+		class="org.hisp.dhis.school.hibernate.HiberateSchoolStore">
+		<property name="clazz" value="org.hisp.dhis.school.School" />
+		<property name="sessionFactory" ref="sessionFactory"/>
+		<property name="cacheable" value="true" />
+	</bean>
+
+	<!-- School Service -->
+	<bean id="org.hisp.dhis.school.SchoolService"
+		class="org.hisp.dhis.school.DefaultSchoolService">
+		<property name="schoolStore" ref="org.hisp.dhis.school.SchoolStore"/>
+		<property name="schoolDetailsService" ref="org.hisp.dhis.school.SchoolDetailsService"/>
+	</bean>
+	
+	
+	
+	<!-- School Details Store -->
+	<bean id="org.hisp.dhis.school.SchoolDetailsStore"
+		class="org.hisp.dhis.school.hibernate.HiberateSchoolDetailsStore">
+		<property name="clazz" value="org.hisp.dhis.school.SchoolDetails" />
+		<property name="sessionFactory" ref="sessionFactory" />
+		<!--<property name="jdbcTemplate" ref="jdbcTemplate" />-->
+	</bean>	
+
+	<!-- School Details Service -->
+	<bean
+		id="org.hisp.dhis.school.SchoolDetailsService"
+		class="org.hisp.dhis.school.DefaultSchoolDetailsService">
+		<property name="schoolDetailsStore"
+			ref="org.hisp.dhis.school.SchoolDetailsStore" />
+	</bean>
+
+	
+
+	
+	
+	
+	
+	
+	
+	<!-- Deletion Handlers -->
+		
+</beans>

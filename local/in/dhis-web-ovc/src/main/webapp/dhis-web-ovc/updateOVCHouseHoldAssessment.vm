@@ -1,0 +1,165 @@
+## Macro for generating the jQuery validation rules 
+#macro( validate $type $require )
+  #if( $type == "NUMBER" )
+    {validate:{ number:true #if($require), required:true #end }}
+  #elseif( $require )
+    {validate:{required:true}}
+  #end
+#end
+<style>
+    #overlay {
+    z-index:9998;
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    width:100%;
+    background:#000;
+    opacity:0.45;
+    -moz-opacity:0.45;
+    filter:alpha(opacity=45);
+    visibility:hidden;   
+    }
+    #overlayImg{ width: 50px; height: 50px; z-index: 9999; position: absolute; left:50%}
+</style>
+<div id="overlay">
+    <div id="overlayImg"><img  width="50" height="50" src="images/ajax-loader.gif" style="margin:auto;position:fixed;top: 50%;left: 50%;"/></div>
+</div>
+
+<script type="text/javascript" src="javascript/ovcHouseHoldAssessmentDataEntryForm.js"></script>
+
+<script type="text/javascript">
+	var i18n_select_period = '$encoder.jsEscape( $i18n.getString( "select_period" ) , "'")';
+	
+var addHouseHoldPrivilege = "";	
+
+#if( $auth.hasAccess( "dhis-web-ovc", "showOVCHouseHoldAssessmentForm") )
+	addHouseHoldPrivilege = "yes";
+#else
+	addHouseHoldPrivilege = "no";
+#end	
+
+
+var updateHouseHoldPrivilege = "";
+
+#if( $auth.hasAccess( "dhis-web-ovc", "showOVCHouseHoldAssessmentUpdateForm") )
+	updateHouseHoldPrivilege = "yes";
+#else
+	updateHouseHoldPrivilege = "no";
+#end	
+
+//alert( "Add  " + addHouseHoldPrivilege + "-- Update " + updateHouseHoldPrivilege );
+
+	
+	
+	
+</script>
+
+<script>
+    
+	jQuery(document).ready( function(){
+	currentDiv = 'updateOVCHouseHoldAssessmentDataEntryForm';
+	isSubmit = true;
+    jQuery("#updateOVCHouseHoldAssessmentDataEntryForm").validate({
+		meta:"validate"
+		,errorElement:"span"
+		,submitHandler: function(form)
+		{
+        	if( isSubmit ) 
+            {
+            	updateOVCHouseHoldAssessmentData();
+            }
+		}
+    	});
+    }); 
+    
+</script>
+
+<form id="updateOVCHouseHoldAssessmentDataEntryForm" name="updateOVCHouseHoldAssessmentDataEntryForm" method="post" >	
+<div>
+	<input type="hidden" id="organisationUnitId" name="organisationUnitId" value="$!patient.organisationUnit.id">
+	<input type="hidden" id="ovcId" name="ovcId" value="$!patient.id">
+	<input type="hidden" id="programInstanceId" name="programInstanceId" value="$!programInstanceId">
+</div>
+
+<table style="background-color:#ECE0F8;" width="20%">
+<!--
+	<tr>
+		<td class="heading-column"><label for="selectedPeriodId">$i18n.getString( "period" )</label></td>
+		<td class="input-column" >
+			<select id="selectedPeriodId" name="selectedPeriodId" style="width:220px" onchange="loadOVCHouseHoldAssessmentDataEntryForm()">
+				<option value="-1">[$i18n.getString( "please_select" )]</option>
+				#foreach( $period in $periods )
+    				    <option value="$period.getExternalId()">$encoder.htmlEncode( $period.name )</option>
+    			    #end
+			</select>
+		</td>
+	</tr>	
+</table>
+-->
+
+#parse( "/dhis-web-commons/loader/loader.vm" )
+<div id='OVCHouseHoldAssessmentDataEntryFormDiv'></div> <!-- OVC HouseHold Assessment DataEntry Form -->  	
+
+<p>
+	<input type="button"  value="$i18n.getString( 'Cancel' )" style="width:100px" onclick="loadApprovedOVCList();"/>
+	<!--<input type="button"  value="$i18n.getString( 'Cancel' )" style="width:100px" onclick="window.location.href='getApprovedList.action'"/>-->&nbsp;&nbsp;
+	&nbsp;&nbsp;
+	
+	<!--<input type="submit"  id="saveButton" name="saveButton" value="$i18n.getString( 'save' )" style="width:100px"/>-->
+	
+	
+	#if( $addPrivilege == "yes" )
+		<input type="submit"  id="saveButton" name="saveButton" value="$i18n.getString( 'save' )" style="width:100px"/>
+	
+	#elseif( $updatePrivilege == "yes" )
+		<input type="submit"  id="saveButton" name="saveButton" value="$i18n.getString( 'save' )" style="width:100px"/>
+	#else
+		<input type="submit"  id="saveButton" name="saveButton" value="$i18n.getString( 'save' )" disabled="disabled" style="width:100px"/>
+	#end
+	
+	
+	<!--<input type="submit"  id="saveButton" name="saveButton" value="$i18n.getString( 'save' )" disabled="disabled" style="width:100px"/>-->
+	
+	
+	<!--
+	#if( $auth.hasAccess( "dhis-web-ovc", "showOVCHouseHoldAssessmentUpdateForm") )
+		<input type="submit"  id="saveButton" name="saveButton" value="$i18n.getString( 'save' )" disabled="disabled" style="width:100px"/>
+	#end
+	-->
+	
+</p>
+
+
+</form>
+
+<script type="text/javascript">
+jQuery( document ).ready( function()
+{
+	loadOVCHouseHoldAssessmentDataEntryForm();
+});
+
+/*
+function onloadMethod()
+{
+	var periodDropDownId = document.getElementById("selectedPeriodId");
+	
+	#if( "$!selHalfYearlyPeriod" == "" )
+		return;
+	#end
+	
+	for( var i = 0; i < periodDropDownId.options.length; i++ )
+	{
+		if( periodDropDownId.options[i].value == '$!selHalfYearlyPeriod' )
+		{
+			periodDropDownId.options[i].selected = true;
+			loadOVCHouseHoldAssessmentDataEntryForm();
+			break;
+		}
+	}		
+}
+
+onloadMethod();
+*/
+
+</script>

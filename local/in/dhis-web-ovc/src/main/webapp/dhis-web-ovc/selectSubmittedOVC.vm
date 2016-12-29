@@ -1,0 +1,94 @@
+<!--<div id='areaInformationDiv'>-->
+#if( $ovcStatus == "NONE" )
+<!--<h3>$i18n.getString( "submitted_list" )</h3>-->
+
+<!--
+<table>
+<tr>
+<td>    
+<table style="background-color:#ECE0F8;" width="100%">
+    <tr><th colspan="2" class="heading-column">$i18n.getString( "area_info" )</th>
+    
+    </tr>
+
+    <tr>
+        <td class='text-column'>$i18n.getString( "Country" )</td>
+        <td class="input-column" >$!organisationUnit.getParent().getParent().getParent().getParent().getParent().getName()</td>
+    </tr>
+
+    <tr>
+        <td class='text-column'>$i18n.getString( "Province" )</td>
+        <td class="input-column" >$!organisationUnit.getParent().getParent().getParent().getParent().getName()</td>
+    </tr>
+
+    <tr>
+        <td class='text-column'>$i18n.getString( "County" )</td>
+        <td class="input-column" >$!organisationUnit.getParent().getParent().getParent().getName()</td>
+    </tr>
+    
+    <tr>
+        <td class='text-column'>$i18n.getString( "District" )</td>
+        <td class="input-column" >$!organisationUnit.getParent().getParent().getName()</td>
+    </tr>
+          
+</table>    
+</td>
+<td valign="top">
+<table style="background-color:#EFFBEF;" width="100%">
+    <tr><th colspan="6" class="heading-column">$i18n.getString( "cbo_details" )</th></tr>
+
+    <tr>
+        <td class='text-column'>$i18n.getString( "CBO Name" )</td>
+        <td class="input-column" >$!organisationUnit.getName()</td>
+    </tr>
+
+    <tr>
+        <td class='text-column'>$i18n.getString( "total_submitted_ovc" )</td>
+        <td class="input-column" >$!total</td>
+    </tr>          
+</table>
+
+<td valign="top">
+<table style="background-color:#EFFBEF;" width="100%">
+    <tr><td colspan="6" class="heading-column">&nbsp;</td></tr>
+	
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+    </tr>
+
+    <tr>
+        <td>&nbsp;</td>
+        <td><input type="button" style='width:130px' id='filterBtn' value='$i18n.getString( "filter" )' onclick="jQuery('#advanced-search').toggle();"></td>
+    </tr>          
+</table>
+
+</td>
+</tr>
+</table>
+</div>
+ -->
+<div id='searchDiv'>
+	#parse( "dhis-web-ovc/searchOVCCriteria.vm" )
+</div>
+
+<div id='listOVCSubmittedDiv'></div> <!-- List All Submitted OVC -->
+<div id='registrationSuccessDiv'></div> <!-- Registration Success -->
+<div id='updateOVCRegistrationFormDiv'></div> <!-- Update OVC Registration Form -->
+
+
+#parse( "/dhis-web-commons/loader/loader.vm" )
+#else
+	<h4>$ovcStatus</h4>
+#end
+
+<script type="text/javascript">
+	
+	setFieldValue('startDueDate','');
+	setFieldValue('endDueDate','');
+	
+	isAjax = true;
+	contentDiv = '';
+	
+	listAllSubmittedOVC();
+</script>

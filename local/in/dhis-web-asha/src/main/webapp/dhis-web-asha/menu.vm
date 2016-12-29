@@ -1,0 +1,152 @@
+
+<script type="text/javascript">
+	
+	var selOUID = "";
+	
+	jQuery(document).ready(function(){
+	
+	jQuery('#orgUnitTreeContainer').height(150);
+	jQuery('#orgUnitTree').height(150);
+		   
+	});
+	
+	function organisationUnitSelected( orgUnits, orgUnitNames )
+	{   
+		document.getElementById('selectedOrgunitID').value = orgUnits;
+		selOUID = orgUnits;
+		
+		//setFieldValue("selectedOrgunitText", orgUnitNames[0]);
+		//setFieldValue("orgunitName", orgUnitNames[0]);
+	}
+
+	selection.setListenerFunction( organisationUnitSelected );
+
+	function callAction( actionName )
+	{
+		/*
+		if( selOUID == "" )
+		{
+			showWarningMessage( i18n_please_select_orgUnit );
+		}
+		
+		else
+		{	
+			hideById('addUpdateASHAProfileDiv');
+			hideById('ashaFacilitatorListDiv');
+			hideById('locationListDiv');
+			hideById('ashaMasterChartReportDiv');
+			
+			$( '#ashaManagementDiv' ).load( actionName+".action", 
+			{ 
+				orgUnitId : selOUID
+			},
+			function()
+			{
+				showById('ashaManagementDiv');
+			});
+			
+			
+			
+		}
+		
+		*/
+		
+		
+		window.location.href = actionName+".action?orgUnitId=" + selOUID;
+		
+	}
+
+
+	function callActionFacilitator( actionName )
+	{	
+		/*
+		if( selOUID == "" )
+		{
+			showWarningMessage( i18n_please_select_orgUnit );
+		}
+		else
+		{
+			window.location.href = actionName+".action?orgUnitId=" + selOUID;
+			
+		}
+		
+		*/
+		
+		window.location.href = actionName+".action?orgUnitId=" + selOUID;
+		
+	}
+
+	
+	function callActionLocation( actionName )
+	{
+		/*
+		if( selOUID == "" )
+		{
+			showWarningMessage( i18n_please_select_orgUnit );
+		}
+		else
+		{
+			window.location.href = actionName+".action?orgUnitId=" + selOUID;
+			
+		}
+		*/
+		
+		window.location.href = actionName+".action?orgUnitId=" + selOUID;
+	}	
+	
+	
+	function callActionMasterChartReport( actionName )
+	{
+		
+		window.location.href = actionName+".action?orgUnitId=" + selOUID;
+	}		
+	
+	
+</script>
+
+#parse( "/dhis-web-commons/ouwt/orgunittreesearch.vm" )
+
+<h2>$i18n.getString( "asha_management" )&nbsp;</h2>
+	<ul>
+		<li><a href="javascript:callAction( 'selectASHA' )">$i18n.getString( "asha_list" )&nbsp;</a></li>
+		<!--<li><a href="javascript:callAction( 'getRegisteredASHAList' )">$i18n.getString( "asha_list" )&nbsp;</a></li>-->
+		<!--<li><a href="javascript:callAction( 'getASHAFacilitatorForm' )">$i18n.getString( "asha_facilitator" )&nbsp;</a></li>-->
+		<li><a href="javascript:callActionFacilitator( 'getASHAFacilitatorList' )">$i18n.getString( "asha_facilitator_list" )&nbsp;</a></li>
+	</ul>
+
+	
+<h2>$i18n.getString( "location_management" )&nbsp;</h2>
+	<ul>
+		<li><a href="javascript:callActionLocation( 'getLocationList' )">$i18n.getString( "location_management" )&nbsp;</a></li>		
+	</ul>	
+	
+
+<h2>$i18n.getString( "performance_incentive" )&nbsp;</h2>
+	<ul>
+		<li><a href="showASHAPerformanceIncentiveForm.action">$i18n.getString( "performance_incentive" )&nbsp;</a></li>
+	</ul>
+	
+	
+<h2>$i18n.getString( "reports" )&nbsp;</h2>
+	<ul>
+		<li><a href="javascript:callActionMasterChartReport( 'getASHAMasterChartReport' )">$i18n.getString( "asha_master_chart_report" )&nbsp;</a></li>
+		<li><a href="javascript:callAction( 'getASHAOutcomeMonitoringReport' )">$i18n.getString( "asha_outcome_monitoring_report" )&nbsp;</a></li>
+		<li><a href="javascript:callAction( 'getASHAPaymentStatusReportForm' )">$i18n.getString( "asha_payment_status_report" )&nbsp;</a></li>
+	</ul>
+ 
+<h2>$i18n.getString( "resource" )&nbsp;</h2>
+	<ul>
+		<li><a href="getResourceList.action">$i18n.getString( "resource" )&nbsp;</a></li>
+	</ul>	
+	
+	
+<!--<li><a href="displayViewDocumentForm.action">$i18n.getString( "resource" )&nbsp;</a></li>-->
+	
+	<!--
+	<ul>
+        <li><a href="javascript:callAction( 'getASHAOutcomeMonitoringReport' )">$i18n.getString( "asha_outcome_monitoring_report" )&nbsp;</a></li>
+    </ul>
+    <ul>
+        <li><a href="javascript:callAction( 'getASHAPaymentStatusReportForm' )">$i18n.getString( "asha_payment_status_report" )&nbsp;</a></li>
+    </ul>
+	-->

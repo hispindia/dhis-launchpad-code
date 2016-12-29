@@ -1,0 +1,34 @@
+
+<h2>Data Integration</h2>
+<ul>
+    <li>Data Import</li>
+    <ul>
+        <li>
+            <a href = "excelImportForm.action">Data Import From Excel</a>
+        </li>
+<!--        <li>
+            <a href = "portalDataImportForm.action">Data Import From Portal</a>
+        </li>
+        <li>
+            <a href = "tcsDataImportForm.action">Import XML From TNHMIS</a>
+        </li>
+-->        
+    </ul>        
+ </ul>       
+<ul>
+     <li>Downloads</li>  
+     <ul>   
+        <li>
+            <a href = "exportExcelFile.action?fileType=phc" target="_blank">Format for PHC/CHC/DH/SDH</a>
+        </li>        
+        <li>
+            <a href = "exportExcelFile.action?fileType=sc" target="_blank">Format for SC</a>
+        </li>
+        <li>
+            <a href = "exportExcelFile.action?fileType=sopphc" target="_blank">SOP PHC 22-10-2012</a>
+        </li>
+        <li>
+            <a href = "exportExcelFile.action?fileType=sopsc" target="_blank">SOP SC 22-10-2012</a>
+        </li>                
+     </ul>   
+</ul>

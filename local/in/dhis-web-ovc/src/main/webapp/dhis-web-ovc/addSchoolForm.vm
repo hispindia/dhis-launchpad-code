@@ -1,0 +1,113 @@
+## Macro for generating the jQuery validation rules 
+#macro( validate $type $require )
+  #if( $type == "NUMBER" )
+	{validate:{ number:true #if($require), required:true #end }}
+  #elseif( $require )
+	{validate:{required:true}}
+  #end
+#end
+
+
+
+<script type="text/javascript">
+jQuery(document).ready( function(){
+        validation( 'addSchoolForm', function(form){
+            if( isSubmit && validateAddSchool() ) {
+                form.submit( i18n_field_is_required );
+            }
+        }, function( ){
+            isSubmit = true;
+        }); 
+    }); 
+
+</script>
+
+<h3>$i18n.getString( "add_new_school_details" )</h3>
+
+<form id="addSchoolForm" name="addSchoolForm" action="addSchool.action" method="post" class="inputForm">
+
+<table>
+	<tr>
+		<th colspan="2">$i18n.getString( "details" )</th>
+	</tr>
+
+	<tr>
+		<td style="width:200px"><label for="organisationUnit">$i18n.getString( "parent_organisation_unit" )</label></td>
+		<td style="width:120px">
+			<input type="text" name="orgUnitName" id="orgUnitName" value="$!organisationUnit.getName()" style="width:300px" readonly="true"/>
+			<input type="hidden" name="orgUnitId" id="orgUnitId" value="$!organisationUnit.getId()" />
+		</td>
+	</tr>
+
+	<tr>
+		<td style="width:200px"><label for="name">$i18n.getString( "name" ) <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+		<td><input type="text" id="name" name="name" class="{validate:{required:true,rangelength:[4,160]}}"/></td>
+	</tr>
+
+	<tr>
+		<td style="width:200px"><label for="description">$i18n.getString( "description" )</label></td>
+		<td style="width:120px"><input type="text" id="description" name="description" class="{validate:{required:false,rangelength:[4,250]}}"/></td>
+	</tr>	
+	
+	
+<!-- PATIENT ATTRIBUTES IN GROUP-->	
+	
+	#if( $!patientAttributes || $patientAttributes.size() > 0 ) 
+			<tr><th colspan="2" class="heading-column">$i18n.getString( "ovc_school_details" )</th></tr>
+	#end
+
+	#foreach( $attribute in $patientAttributes )
+		
+		#if( $attribute )
+			#set($value = "")
+			<tr>
+				<td style="width:200px"><label>$encoder.htmlEncode($attribute.displayName) #if($attribute.mandatory) <em title="$i18n.getString( 'required' )" class="required">*</em> #end</label></td>
+				<td style="width:120px">
+					#if( $attribute.valueType == "bool" )
+						<select id="attr$attribute.id" name="attr$attribute.id" > 
+							<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+							<option value="true">$i18n.getString( "yes" )</option>
+							<option value="false">$i18n.getString( "no" )</option>
+						</select>                
+					#elseif( $attribute.valueType == "trueOnly" )
+						<input type='checkbox' value="true" id="attr$attribute.id" name="attr$attribute.id"  checked > 
+					#elseif( $attribute.valueType == "date" )
+						<input type="text" id="attr$attribute.id" name="attr$attribute.id"  class=' #validate( "default"  $attribute.mandatory )'/>
+						<script type="text/javascript">
+							datePickerValid( 'attr$attribute.id', false, false );
+						</script>                    
+					#elseif( $attribute.valueType == "combo" )  
+						<select  id="attr$attribute.id"  name="attr$attribute.id" class='#validate( "default"  $attribute.mandatory )'>
+							<option value="">[$i18n.getString( "please_select" )]</option>
+							#foreach ($option in $attribute.attributeOptions )
+								<option value="$option.id">$option.name</option>
+							#end
+						</select>
+					#else
+						<input type="text" id="attr$attribute.id" name="attr$attribute.id" class="{validate:{required:$attribute.mandatory #if($attribute.valueType=='NUMBER'),number:true #end }}" />
+					#end
+				</td>		
+			</tr>
+		#end		
+	#end	
+
+	<tr>
+		<td style="height:15px" colspan="2"></td>
+	</tr>	
+	
+	<tr>
+		<td>&nbsp;</td>
+		<td>
+			<input type="submit" name="save" value="$i18n.getString( 'add' )" style="width:150px" />
+			<input type="button" value="$i18n.getString( 'cancel' )" onclick="window.location.href='getSchoolList.action'" style="width:150px" />
+		</td>
+	</tr>	
+	
+</table>
+
+</form>
+
+<span id="message"></span>
+<script type="text/javascript">
+    var i18n_field_is_required = '$encoder.jsEscape( $i18n.getString( "field_is_required" ) , "'") ';
+</script>

@@ -1,0 +1,34 @@
+
+#if( $ovcStatus == "NONE" )
+
+<div id='searchDiv'>
+	#parse( "dhis-web-ovc/searchApprovedOVCCriteria.vm" )
+</div>
+
+<input type='hidden' id='selectOrgUnitInsideDashBoard' name='selectOrgUnitInsideDashBoard' value='$!organisationUnit.id' >
+
+
+<div id='listOVCApprovedDiv'></div> <!-- List All Approved OVC -->
+<div id='updateOVCRegistrationFormInApproveDiv'></div> <!-- Update OVC Registration Form in Approve -->
+<div id='ovcExitFormDiv'></div> <!-- OVC Exit Form -->
+<div id='ovcForm1ADiv'></div> <!-- OVC Form (1 A) -->
+<div id='ovcHouseHoldAssessmentFormDiv'></div> <!-- OVC HouseHold Assessment Form div --> 
+<div id="detailsInfo">
+
+
+
+#parse( "/dhis-web-commons/loader/loader.vm" )
+#else
+	<h4>$ovcStatus</h4>
+#end
+
+<script type="text/javascript">
+	
+	setFieldValue('startDueDate','');
+	setFieldValue('endDueDate','');
+	
+	isAjax = true;
+	contentDiv = '';
+	
+	listAllApprovedOVC();
+</script>

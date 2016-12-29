@@ -1,0 +1,48 @@
+
+<style type="text/css" media="print">
+div#control {
+  display: none;
+}
+
+h3#dataset_report_header {
+  display: none;
+}
+
+#download_buttons {
+  display: none;
+}
+
+#shareForm {
+  display: none;
+}  
+
+.gridTable {
+    width: 100%;
+}
+</style>
+
+<style type="text/css">
+div#control {
+  margin-bottom: 15px;
+}
+
+div.inputSection {
+  padding-top: 7px;
+  padding-bottom: 5px;
+}
+</style>
+
+<div id="criteria" class="inputCriteria" style="width:320px;height:200px;">	
+	<div class="inputSection">
+		<label><strong>$i18n.getString( "data_input_page" )</strong></label><br /><br />
+		<input type="button" value='$i18n.getString( "goto_dataentry" )' style="width:300px;height:30px" onclick='javascript:location.href="../dhis-web-dataentry/index.action"' /> <br/><br/>
+		<input type="button" value='$i18n.getString( "create_dataelement" )' style="width:300px;height:30px" onclick="redirectFunction( '../dhis-web-maintenance-datadictionary/showAddDataElementForm.action' )" />
+	</div>
+</div>
+
+<script>
+	function redirectFunction( redirectURL )
+	{
+		location.href = redirectURL;
+	}	
+</script>

@@ -1,0 +1,24 @@
+
+#if( $ovcStatus == "NONE" )
+
+<div id='searchDiv'>
+	#parse( "dhis-web-ovc/searchOVCInActiveCriteria.vm" )
+</div>
+
+<div id='listOVCInActivedDiv'></div> <!-- List All Inactive OVC -->
+
+#parse( "/dhis-web-commons/loader/loader.vm" )
+#else
+	<h4>$ovcStatus</h4>
+#end
+
+<script type="text/javascript">
+	
+	setFieldValue('startDueDate','');
+	setFieldValue('endDueDate','');
+	
+	isAjax = true;
+	contentDiv = '';
+	
+	listAllInActiveOVC();
+</script>

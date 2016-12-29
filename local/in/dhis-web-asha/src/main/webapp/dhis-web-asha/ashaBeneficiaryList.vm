@@ -1,0 +1,101 @@
+
+<h3>$i18n.getString( "asha_beneficiary_List" )</h3>
+
+
+<div id='ASHABeneficiaryListDiv'>
+<table class="mainPageTable">
+	<tr>
+		<td>
+			<table class="listTable" id="listTable"> 
+				<colgroup>
+					<col width="30"/>
+					<col />
+					<!--<col />-->
+					<col />
+					<col/>
+					<col/>
+					<col/>
+					<col width="80"/>
+				</colgroup>   
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>$i18n.getString( "beneficiary_name" )</th>
+						<!--<th>$i18n.getString( "gender" )</th>-->
+						<th>$i18n.getString( "father_husband_name" )</th>
+						<th>$i18n.getString( "beneficiary_identifier" )</th> 
+						<th class="{sorter: false}">$i18n.getString( "service_given" )</th>
+						<th>$i18n.getString( "incentive_amount" )</th>
+						<th class="{sorter: false}" align="center">$i18n.getString( "operations" )</th>
+					</tr>
+				</thead>
+				<tbody id="list">   
+					#set( $count=1 )
+					#foreach( $beneficiary in $beneficiaryList )
+						
+						<tr id="tr${beneficiary.id}">
+							<td>
+								$count
+							</td>
+							
+							<td>$encoder.htmlEncode( $!beneficiary.name)</td>
+							<!--<td>$i18n.getString( $!beneficiary.gender )</td>-->
+							<td>$encoder.htmlEncode( $!beneficiary.getFatherName() )</td>
+							<td>$encoder.htmlEncode( $!beneficiary.getIdentifier() )</td>
+							<td>$encoder.htmlEncode( $!beneficiary.getDataElement().getName() )</td>
+							<td>$encoder.htmlEncode( $!beneficiary.getPrice() )</td>
+							<td>
+								#if( $update == "YES" )
+									<a href="javascript:showUpdateASHABeneficiaryForm( '$beneficiary.id','$beneficiary.getPeriod().getId()', '$beneficiary.getPatient().getId()' ,'$selectedPeriodId' )" title='$i18n.getString( "edit_beneficiary" )'><img src="images/edit_foto.png" alt='$i18n.getString( "edit_beneficiary" )'></a>
+									<a href="javascript:removeASHABeneficiary( '$beneficiary.id', '$encoder.jsEncode( $beneficiary.name )' ,'$beneficiary.getPeriod().getId()', '$beneficiary.getPatient().getId()', '$selectedPeriodId' )" title='$i18n.getString( "remove" )'><img src="images/deleteRed.png" alt='$i18n.getString( "remove" )'></a>
+								#end
+								
+								
+								<!--
+								<a href="javascript:showUpdateASHAAttributesTrainingForm( '$patient.id' , 'training')" title='$i18n.getString( "add_update_training_details" )'><img src="images/training.png" alt='$i18n.getString( "add_update_traning_details" )'></a>
+								<a href="javascript:showUpdateASHAAttributesSkillsForm( '$patient.id' , 'Skills')" title='$i18n.getString( "add_update_skill_details" )'><img src="images/Skills.png" alt='$i18n.getString( "add_update_skill_details" )'></a>
+								<a href="javascript:showUpdateASHAAttributesIECForm( '$patient.id' , 'iec')" title='$i18n.getString( "add_update_iec_details" )'><img src="images/iec.png" alt='$i18n.getString( "add_update_iec_details" )'></a>
+								
+								<a href="javascript:showAddASHABeneficiaryForm( '$patient.id' )" title='$i18n.getString( "add_asha_Beneficiary" )'><img src="images/performance.png" alt='$i18n.getString( "add_asha_Beneficiary" )'></a>
+								
+								
+								
+								<a href="javascript:showASHADetails( '$patient.id' )" title='$i18n.getString( "asha_details" )'><img src="../images/information.png" alt='$i18n.getString( "patient_details_and_history" )'></a>
+								-->
+							</td>                               
+						</tr>
+						#set($count = $count + 1)
+					#end
+				</tbody>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+            <p></p>
+            <div class="paging-container">
+                ##parse( "/dhis-web-commons/paging/paging.vm" )
+            </div>
+        </td>
+    </tr>
+</table>
+
+ <div id="detailsInfo"></div>
+    <span id="message"></span>
+</div>
+
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        setTableStyles();
+        //tableSorter( 'listTable' ); 
+    });
+    
+    jQuery(document).ready(function(){	
+		tableSorter( 'listTable' );	
+	});
+    
+    
+    var i18n_asha_details = '$encoder.jsEscape( $i18n.getString( "asha_details" ) , "'" )';
+    var i18n_confirm_delete = '$encoder.jsEscape( $i18n.getString( "confirm_delete_asha" ) , "'" )';
+</script>
+		

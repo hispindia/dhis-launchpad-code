@@ -1,0 +1,539 @@
+<script type="text/javascript" src="javascript/addASHA.js"></script>
+## Macro for generating the jQuery validation rules 
+#macro( validate $type $require )
+  #if( $type == "NUMBER" )
+  	{validate:{ number:true #if($require), required:true #end }}
+  #elseif( $type == "string" )
+  	{validate:{ alphanumeric:true #if($require), required:true #end }}
+  #elseif( $require )
+  	{validate:{required:true}}
+  #end
+#end
+<table style="background-color:#ECE0F8;" width="100%">
+<tr style='display:none'>
+	<td class='text-column'><label for="registration_date">$i18n.getString( "registration_date" )<em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+	<td class="input-column" colspan='2'>
+		<input type="text" id="registrationDate" name="registrationDate" class="{validate:{required:true}}"/>
+		<script type="text/javascript">
+			datePickerValid( 'registrationDate', true );
+		</script>    
+	</td>		
+</tr>
+
+<tr>
+	<td class='text-column'><label for="fullName">$i18n.getString( "full_name_asha" )<em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+	<td class="input-column">
+		<input type="text" id="fullName" name="fullName" class="{validate:{required:true, unicodechars:true, rangelength:[7,50]}}"/>
+	</td>
+</tr>
+
+<tr style='display:none'>
+	<td class='text-column'><label for="gender">$i18n.getString( "gender" )<em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+	<td class="input-column">
+		<select id="gender" name="gender" class="{validate:{required:true}}" readonly >
+			<option value="F">$i18n.getString( "female" )</option>
+		</select>
+	</td>		
+</tr>
+
+<tr>
+	<td class='text-column'><label for="birthDate">$i18n.getString( "date_of_birth" )<em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+	<td class="input-column">	
+		<select id='dobType' name="dobType" style='width:120px' onchange='dobTypeOnChange("addASHAProfileForm")' >
+			<!--<option value="V" selected>$i18n.getString( "verified" )</option>-->
+			<!--<option value="D" >$i18n.getString( "declared" )</option>-->
+			<option value="A" >$i18n.getString( "approximated" )</option>
+			<option value="D" >$i18n.getString( "declared" )</option>
+		</select>
+		<input type="text" id="age" name="age" placeholder="Enter age in years..." class="{validate:{number:true}}" style="width:136px;display:none;" onchange="ageValidation();"/>
+		<input type="text" id="birthDate" name="birthDate" style='width:136px;' onchange="dobValidation();"/>
+		<input id="memberValidator" class="hidden {validate:{required:true}}"/>
+	</td>
+	
+    <td style="display:none">
+		<input type="text" id="bobOfASHA" name="bobOfASHA"/>
+    </td>	
+	
+	
+</tr>
+	<tr>
+		<td class='text-column'><label for="phoneNumber">$i18n.getString( "phoneNumber" )</label></td>
+		<td class="input-column">
+			<input type="text" id="phoneNumber" name="phoneNumber" #if( $!patient.phoneNumber ) value="$!patient.phoneNumber" #else value="$!phoneNumberAreaCode" #end class="{validate:{phone:true,rangelength:[10,10]}}"/>
+			<!--<input type="text" id="phoneNumber" name="phoneNumber" #if( $!patient.phoneNumber ) value="$!patient.phoneNumber" #else value="$!phoneNumberAreaCode" #end class="{validate:{phone:true}}"/>-->		
+		</td>
+	</tr>
+<tr>
+	<td></td>
+	<td><input type="button" class='button' id='checkDuplicateBtn' name='checkDuplicateBtn' value="$i18n.getString('check_duplicate')" /></td>
+</tr>
+</table>
+<!-- ASHA Profile Attribute --> 
+<table style="background-color:#EFFBEF;" width="100%">
+	<!--<tr bgcolor="#00FFFF"><td colspan="2" class="heading-column"><font color="#OOOOOO"><strong>$attributeGroup.name</strong></font></td></tr>-->
+	<tr><th colspan="2" class="heading-column"><strong>$attributeGroup.name</strong></th></tr>
+ 	<!--  ASHA Attribute :  -->
+	<tr #alternate( false ) id="trattr2">
+		<!-- Name of Husband /Father  -->
+	    <td class='text-column'>Name of Husband /Father</td>
+	    <td class="input-column" ><input type="text" id="attr2" name="attr2" class="{validate:{required:false ,unicodechars:true }}" /></td>
+	</tr> 
+	   	
+	<tr #alternate( true ) id="trattr3">
+		<!-- Address of ASHA -->
+		<td class='text-column'>Address of ASHA</td>
+		<td class="input-column" ><input type="text" id="attr3" name="attr3" class="{validate:{required:false ,alphanumeric:true }}" /></td>
+	</tr>
+
+	<tr #alternate( false ) id="trattr5">	    
+		<!-- Mohalla / Ward No. of ASHA -->
+		<td class='text-column'>Mohalla / Ward No.</td>
+		<td class="input-column" ><input type="text" id="attr5" name="attr5" class="{validate:{required:false ,alphanumeric:true }}" /></td>
+	</tr>    
+
+   	<!--
+	<tr #alternate( true ) id="trattr6">	    
+		
+		<td class='text-column'>Village</td>
+		<td class="input-column" ><input type="text" id="attr6" name="attr6" class="{validate:{required:false ,unicodechars:true }}" /></td>
+	</tr>	
+	-->
+	<tr #alternate( true ) id="trattr6">	    
+		<!-- Village of ASHA -->
+		<td class='text-column'>Village</td>
+		<td class="input-column">
+            <select id="attr6" name="attr6">
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                 #foreach ($option in $locations )
+                    <option value="$option.name" >$option.name</option>
+                 #end
+            </select>
+        </td>			
+	</tr>		
+	
+
+	<tr #alternate( false ) id="trattr7">	    
+		<!-- Post Office of ASHA -->
+		<td class='text-column'>Post Office</td>
+		<td class="input-column" ><input type="text" id="attr7" name="attr7" class="{validate:{required:false ,unicodechars:true }}" /></td>
+	</tr>
+
+	<tr #alternate( true ) id="trattr8">	    
+		<!-- PIN Code of ASHA -->
+		<td class='text-column'>PIN Code</td>
+		<td class="input-column" ><input type="text" id="attr8" name="attr8" value = "$!organisationUnit.code" /></td>
+	</tr>
+	
+	
+	<tr #alternate( false ) id="trattr9">	    
+		<!-- Aadhar Number of ASHA -->
+		<td class='text-column'>Aadhar Number</td>
+		<td class="input-column" ><input type="text" id="attr9" name="attr9" class="{validate:{required:false ,number:true}}" /></td>
+	</tr>	
+
+	<tr #alternate( true ) id="trattr35">	    
+		<!-- Phone Number (Specify Detail)  of ASHA -->
+		<td class='text-column'>Phone Number (Specify Detail)</td>
+		<td class="input-column" >
+			#set( $attribute = $patientAttributeMap.get( 35 ) ) 	
+			<select id="attr35" name="attr35">
+			 	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+			 	#foreach ($option in $attribute.attributeOptions )
+			 		<option value="$option.id" >$option.name</option>
+	 			#end
+ 			</select>
+ 		</td>	
+	</tr>
+	
+	<tr #alternate( false ) id="trattr10">	    
+		<!-- Phone Number of ASHA -->
+		<td class='text-column'>Phone Number</td>
+		<td class="input-column" >
+			<!--<input type="text" id="attr10" name="attr10" class="{validate:{required:false ,number:true,rangelength:[10,10]}}" />-->
+			<input type="text" id="attr10" name="attr10" class="{validate:{required:false ,alphanumeric:true}}" />
+		</td>
+	</tr>
+
+
+	<tr #alternate( true ) id="trattr12">	    
+		<!-- Educational level of ASHA -->
+		<td class='text-column'>Educational level</td>
+		<td class="input-column" >
+			#set( $attribute = $patientAttributeMap.get( 12 ) ) 	
+			<select id="attr12" name="attr12">
+			 	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+			 	##foreach ($option in $attribute.attributeOptions )
+			 		<option value="2" >Post Graduate/ Any Other</option>
+			 		<option value="5" >Graduate</option>
+			 		<option value="4" >10+2</option>
+			 		<option value="3" >Matriculation</option>
+			 		<option value="6" >Middle School</option>
+			 		<option value="7" >Primary</option>
+			 		<option value="1" >Illiterate</option>
+			 		<option value="192" >Any Other</option>
+	 			##end
+ 			</select>
+ 		</td>
+	</tr>
+
+	<tr #alternate( false ) id="trattr192"> 
+		<!-- If Any Other, Please Specify -->
+		<td class='text-column'>If Any Other, Please Specify</td>
+		<td class="input-column" ><input type="text" id="attr192" name="attr192" /></td>
+	</tr>
+
+	<tr #alternate( false ) id="trattr13">	    
+		<!-- Caste of ASHA -->
+		<td class='text-column'>Caste</td>
+		<td class="input-column" >
+			#set( $attribute = $patientAttributeMap.get( 13 ) ) 	
+			<select id="attr13" name="attr13" class='#validate( "default"  $attribute.mandatory )'>
+			 	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+			 	##foreach ($option in $attribute.attributeOptions )
+			 		<option  value="9" >General</option>
+			 		<option value="11" >SC</option>
+			 		<option value="10" >OBC</option>
+			 		<option value="8" >Others</option>
+	 			##end
+ 			</select>
+ 		</td>
+	</tr>
+
+	<tr #alternate( true ) id="trattr14">	    
+		<!-- Marital Status  of ASHA -->
+		<td class='text-column'>Marital Status</td>
+		<td class="input-column" >
+			#set( $attribute = $patientAttributeMap.get( 14 ) ) 	
+			<select id="attr14" name="attr14" class='#validate( "default"  $attribute.mandatory )'>
+			 	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+			 	##foreach ($option in $attribute.attributeOptions )
+			 		<option value="12" >Married</option>
+			 		<option value="14" >Unmarried</option>
+			 		<option value="15" >Widow</option>
+			 		<option value="13" >Married but currently Single</option>
+	 			##end
+ 			</select>
+ 		</td>
+	</tr>
+
+	<tr #alternate( false ) id="trattr10">	    
+		<!-- Date of Joining as ASHA -->
+		<td class='text-column'>Date of Joining as ASHA</td>
+		#set( $attributeDate = $patientAttributeMap.get( 15 ) )
+		<td class="input-column" ><input type="text" id="attr15" name="attr15" class=' #validate( "default"  $attributeDate.mandatory )' onchange="validateDateOfJoining();"/>
+			<script type="text/javascript">
+				datePickerValid( 'attr15' );
+			</script>
+		</td>
+	</tr>
+
+	<tr #alternate( true ) id="trattr18">	    
+		<!-- Name of Area / Mohalla where ASHA is allocated -->
+		<td class='text-column'>Name of Allocated Area/Mohalla of ASHA</td>
+		<td class="input-column" ><input type="text" id="attr18" name="attr18" class="{validate:{required:false ,unicodechars:true}}" /></td>
+	</tr>
+
+	<tr #alternate( false ) id="trattr19">	    
+		<!-- Population currently covered by ASHA  -->
+		<td class='text-column'>Population currently covered by ASHA</td>
+		<td class="input-column" ><input type="text" id="attr19" name="attr19" class="{validate:{required:false ,number:true}}" /></td>
+	</tr>
+
+	<!-- Identity Card issued from NRHM  -->
+	<!--
+	<tr #alternate( true ) id="trattr17">	    
+		<td class='text-column'>Identity Card issued from NRHM</td>
+		<td class="input-column" >
+			#set( $attribute = $patientAttributeMap.get( 17 ) ) 
+            <select id="attr17" name="attr17" class='#validate( "default"  $attribute.mandatory )'>
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true">$i18n.getString( "yes" )</option>
+                <option value="false">$i18n.getString( "no" )</option>
+            </select>
+		</td>
+	</tr>
+	-->
+	
+	<tr #alternate( false ) id="trattr26">	    
+		<!-- Bank Account of ASHA opened  -->
+		<td class='text-column'>Bank Account of ASHA opened</td>
+		<td class="input-column" >
+			#set( $attribute = $patientAttributeMap.get( 26 ) ) 
+            <select id="attr26" name="attr26" class='#validate( "default"  $attribute.mandatory )' onchange="bankAccountStatus();">
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true">$i18n.getString( "yes" )</option>
+                <option value="false">$i18n.getString( "no" )</option>
+            </select>
+		</td>
+	</tr>	
+
+	<tr #alternate( true ) id="trattr27">	    
+		<!-- If Yes, Mention Name of the Bank   -->
+		<td class='text-column'>If Yes, Mention Name of the Bank</td>
+		<td class="input-column" ><input type="text" id="attr27" name="attr27" class="{validate:{required:false ,unicodechars:true}}" /></td>
+	</tr>
+
+	<tr #alternate( false ) id="trattr28">	    
+		<!-- Account Number    -->
+		<td class='text-column'>Account Number</td>
+		<td class="input-column" ><input type="text" id="attr28" name="attr28" class="{validate:{required:false ,alphanumeric:true}}" /></td>
+	</tr>
+
+
+	<tr #alternate( true ) id="trattr29">	    
+		<!-- Branch Name -->
+		<td class='text-column'>Branch Name</td>
+		<td class="input-column" ><input type="text" id="attr29" name="attr29" class="{validate:{required:false ,unicodechars:true}}" /></td>
+	</tr>
+	
+	<!-- RTGS Status -->
+	<!--
+	<tr #alternate( false ) id="trattr30">	    
+		<td class='text-column'>RTGS Status</td>
+		<td class="input-column" >
+			#set( $attribute = $patientAttributeMap.get( 30 ) ) 
+            <select id="attr30" name="attr30" class='#validate( "default"  $attribute.mandatory )' onchange="rtgsStatus();">
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true">$i18n.getString( "yes" )</option>
+                <option value="false">$i18n.getString( "no" )</option>
+            </select>
+		</td>
+	</tr>
+	-->
+	<tr #alternate( true ) id="trattr186">	    
+		<!-- If Yes, Enter RTGS Code    -->
+		<!--<td class='text-column'>If Yes, Enter RTGS/IFSC Code</td>-->
+		<td class='text-column'>IFSC Code</td>
+		<td class="input-column" ><input type="text" id="attr186" name="attr186" class="{validate:{required:false ,alphanumeric:true}}" /></td>
+	</tr>	
+		
+	<!-- Shifted to ASHA Facilitator Screen -->
+	<!-- Status of Self Appraisal submitted by ASHA for the current month -->
+	
+	<!--
+	<tr #alternate( false ) id="trattr20">	    
+		<td class='text-column'><b>Status of Self Appraisal submitted by ASHA for the current month</b></td>
+		<td class="input-column" >
+			#set( $attribute = $patientAttributeMap.get( 20 ) ) 
+            <select id="attr20" name="attr20" class="{validate:{required:true}}">
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true">$i18n.getString( "yes" )</option>
+                <option value="false">$i18n.getString( "no" )</option>
+            </select>
+		</td>
+	</tr>		
+	-->	
+	
+	<!-- If Yes, Status of Payment -->
+	<!--
+	<tr #alternate( true ) id="trattr21">	    
+		<td class='text-column'>If Yes, Status of Payment</td>
+		<td class="input-column" >
+			#set( $attribute = $patientAttributeMap.get( 21 ) ) 	
+			<select id="attr21" name="attr21" class='#validate( "default"  $attribute.mandatory )'>
+			 	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+			 	#foreach ($option in $attribute.attributeOptions )
+			 		<option value="$option.id" >$option.name</option>
+	 			#end
+ 			</select>
+ 		</td>
+	</tr>
+	-->
+	
+	<!-- If Pending, Reason for the same -->
+	
+	<!--
+	<tr #alternate( false ) id="trattr22">	    
+		<td class='text-column'>If Pending, Reason for the same</td>
+		<td class="input-column" ><input type="text" id="attr22" name="attr22" class="{validate:{required:false ,unicodechars:true}}" /></td>
+	</tr>
+	-->
+	
+	
+	
+	
+	<!-- Other source of Income --><!-- Other source of Income --><!-- Remove from Screen -->
+	<!--
+	<tr #alternate( true ) id="trattr23">	    
+		
+		<td class='text-column'>Other source of Income</td>
+		<td class="input-column" >
+			#set( $attribute = $patientAttributeMap.get( 23 ) ) 
+            <select id="attr23" name="attr23" class='#validate( "default"  $attribute.mandatory )'>
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true">$i18n.getString( "yes" )</option>
+                <option value="false">$i18n.getString( "no" )</option>
+            </select>
+		</td>
+	</tr>
+	-->
+	<!-- If Yes, Mention the Source -->
+	<!--
+	<tr #alternate( false ) id="trattr24">	    
+		<td class='text-column'>If Yes, Mention the Source</td>
+		<td class="input-column" >
+			#set( $attribute = $patientAttributeMap.get( 24 ) ) 	
+			<select id="attr24" name="attr24" class='#validate( "default"  $attribute.mandatory )'>
+			 	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+			 	#foreach ($option in $attribute.attributeOptions )
+			 		<option value="$option.id" >$option.name</option>
+	 			#end
+ 			</select>
+ 		</td>
+	</tr>
+	-->
+	<!-- Annual Income of ASHA from other sources -->
+	<!--
+	<tr #alternate( true ) id="trattr25">	    
+		<td class='text-column'>Annual Income of ASHA from other sources</td>
+		<td class="input-column" >
+			#set( $attribute = $patientAttributeMap.get( 25 ) ) 	
+			<select id="attr25" name="attr25" class='#validate( "default"  $attribute.mandatory )'>
+			 	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+			 	#foreach ($option in $attribute.attributeOptions )
+			 		<option value="$option.id" >$option.name</option>
+	 			#end
+ 			</select>
+ 		</td>
+	</tr>
+	-->
+	
+	
+	
+	<!-- Is ASHA a Member of Any Other Organisation -->
+	<tr #alternate( true ) id="trattr183">	    
+		<td class='text-column'>Is ASHA a Member of Any Other Organisation</td>
+		<td class="input-column" >
+			#set( $attribute = $patientAttributeMap.get( 183 ) ) 
+            <select id="attr183" name="attr183" class='#validate( "default"  $attribute.mandatory )'>
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true">$i18n.getString( "yes" )</option>
+                <option value="false">$i18n.getString( "no" )</option>
+            </select>
+		</td>
+	</tr>
+
+	
+	<!-- If Yes, Select the Organisation  -->
+	<tr #alternate( false ) id="trattr184">	    
+		<td class='text-column'>If Yes, Select the Organisation</td>
+		<td class="input-column" >
+			#set( $attribute = $patientAttributeMap.get( 184 ) ) 	
+			<select id="attr184" name="attr184" class='#validate( "default"  $attribute.mandatory )'>
+			 	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+			 	##foreach ($option in $attribute.attributeOptions )
+			 		<option value="37" >NGO</option>
+			 		<option value="38" >PRI</option>
+			 		<option value="39" >SMS</option>
+			 		<option value="40" >SHG</option>
+			 		<option value="41" >Other</option>
+	 			##end
+ 			</select>
+ 		</td>
+	</tr>
+	
+	<!-- Recommendation letter of VHSNC / VLC /Panchayat -->
+	<tr #alternate( false ) id="trattr16">	    
+		<td class='text-column'>Recommendation letter of VHSNC / VLC /Panchayat</td>
+		<td class="input-column" >
+			#set( $attribute = $patientAttributeMap.get( 16 ) ) 
+            <select id="attr16" name="attr16" class='#validate( "default"  $attribute.mandatory )'>
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true">$i18n.getString( "yes" )</option>
+                <option value="false">$i18n.getString( "no" )</option>
+            </select>
+		</td>
+	</tr>
+
+	
+	
+	
+	
+	<!-- Shifted to ASHA Facilitator Screen -->	
+	
+	<!-- Working Status of ASHA -->
+	<!--
+	<tr #alternate( true ) id="trattr31">	    
+		<td class='text-column'>Working Status of ASHA</td>
+		<td class="input-column" >
+			#set( $attribute = $patientAttributeMap.get( 31 ) ) 	
+			<select id="attr31" name="attr31" class='#validate( "default"  $attribute.mandatory )'>
+			 	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+			 	#foreach ($option in $attribute.attributeOptions )
+			 		<option value="$option.id" >$option.name</option>
+	 			#end
+ 			</select>
+ 		</td>
+	</tr>
+	-->
+	
+	<!-- If Inactive, Reason for Inactiveness  -->
+	<!--
+	<tr #alternate( false ) id="trattr185">	    
+		<td class='text-column'>If Inactive, Reason for Inactiveness</td>
+		<td class="input-column" >
+			#set( $attribute = $patientAttributeMap.get( 185 ) ) 	
+			<select id="attr185" name="attr185" class='#validate( "default"  $attribute.mandatory )'>
+			 	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+			 	#foreach ($option in $attribute.attributeOptions )
+			 		<option value="$option.id" >$option.name</option>
+	 			#end
+ 			</select>
+ 		</td>
+	</tr>
+	-->
+	
+	<!-- If inactive since last 3 months, are any steps taken to make her active or for her removal -->
+	<!--	
+	<tr #alternate( true ) id="trattr32">	    
+		<td class='text-column'>If inactive since last 3 months, any steps taken to make her active or for her removal</td>
+		<td class="input-column" >
+			#set( $attribute = $patientAttributeMap.get( 32 ) ) 
+            <select id="attr32" name="attr32" class='#validate( "default"  $attribute.mandatory )'>
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="191">$i18n.getString( "yes" )</option>
+                <option value="192">$i18n.getString( "no" )</option>
+                <option value="193">NA</option>
+                
+            </select>
+		</td>
+	</tr>
+	-->
+	
+	
+	<!-- Since When stopped working as ASHA -->
+	<!--
+	<tr #alternate( false ) id="trattr33">	    
+		<td class='text-column'>Since When stopped working as ASHA</td>
+		#set( $attributeDate = $patientAttributeMap.get( 33 ) )
+		<td class="input-column" ><input type="text" id="attr33" name="attr33" class=' #validate( "default"  $attributeDate.mandatory )'/>
+			<script type="text/javascript">
+				datePickerValid( 'attr33' );
+			</script>
+		</td>
+	</tr>
+	-->
+	
+	<!-- If Removed, Reason for Removal  -->
+	<!--
+	<tr #alternate( true ) id="trattr34">	    
+		<td class='text-column'>If Removed, Reason for Removal</td>
+		<td class="input-column" ><input type="text" id="attr34" name="attr34" class="{validate:{required:false ,unicodechars:true}}" /></td>
+	</tr>
+	-->
+	
+	
+</table>
+
+
+
+
+<script type="text/javascript">
+	dobTypeOnChange("addASHAProfileForm");
+	//ageValidation();
+	//dobValidation();
+	
+	//rtgsStatus();
+	bankAccountStatus();
+	
+</script>

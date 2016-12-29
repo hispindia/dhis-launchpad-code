@@ -1,0 +1,31 @@
+
+<h2>$i18n.getString( "ovc_management" )&nbsp;</h2>
+    <ul>
+        <li><a href="javascript:callAction( 'getRegistrationForm' )">$i18n.getString( "new_registration" )&nbsp;</a></li>
+        <li><a href="javascript:callAction( 'selectSubmittedOVC' )">$i18n.getString( "submitted" )&nbsp;</a></li>
+        <li><a href="javascript:callAction( 'selectApprovedOVC' )">$i18n.getString( "active" )&nbsp;</a></li>
+        <li><a href="javascript:callAction( 'selectRejectedOVC' )">$i18n.getString( "rejected" )&nbsp;</a></li>
+    </ul>
+
+<h2>$i18n.getString( "community_worker_management" )</h2>
+	<ul>
+		<li><a href="javascript:callAction( 'getEmployeeList' )">$i18n.getString( "community_worker_management" )&nbsp;</a></li>		
+	</ul>
+
+<h2>$i18n.getString( "location_management" )&nbsp;</h2>
+	<ul>
+		<li><a href="javascript:callAction( 'getLocationList' )">$i18n.getString( "location_management" )&nbsp;</a></li>
+		<li><a href="javascript:callAction( 'getSchoolList' )">$i18n.getString( "school_management" )&nbsp;</a></li>
+	</ul>
+	
+<h2>$i18n.getString( "exit_management" )&nbsp;</h2>
+    <ul>
+        <li><a href="javascript:callAction( 'selectExitPendingOVC' )">$i18n.getString( "exit_pending" )&nbsp;</a></li>
+        <li><a href="javascript:callAction( 'selectInActiveOVC' )">$i18n.getString( "in_active" )&nbsp;</a></li>
+    </ul>
+
+<h2>$i18n.getString( "reports" )&nbsp;</h2>
+    <ul>
+        <li><a href = "customReportManagement.action">$i18n.getString( "custom_report" )&nbsp;</a></li>
+		<li><a href="runAggregationQueryForm.action">$i18n.getString( "manual_aggregation" )</a></li>
+    </ul>

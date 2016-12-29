@@ -1,0 +1,13 @@
+
+<input type="hidden" id='selectedOrgunitID' value="$!organisationUnit.id" />
+<div id ="ovcManagementDiv" >
+	<h3>$i18n.getString( "ovc_management" )</h3>
+	<div id="selectedOrgUnit" style='display:none' > 
+		<input type="text" id='orgunitName' readonly="readonly" #if( $organisationUnit ) value="$encoder.htmlEncode( $organisationUnit.name )" #else value="[$i18n.getString( 'please_select_orgUnit' )]" #end >
+		<input type="text" id='selectedOrgunitText' value="$!organisationUnit.name" >
+	</div>
+</div>
+<!--<div id='updateOVCRegistrationFormDiv'></div>--> <!-- Update OVC Registration Form -->
+<script>
+	var i18n_please_select_orgUnit = '$encoder.jsEscape( $i18n.getString( "please_select_orgUnit" ) , "'")';
+</script>

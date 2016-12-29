@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+	<!-- Service & Store -->	
+	<bean id="org.hisp.dhis.dqa.api.DQAReportService" class="org.hisp.dhis.dqa.impl.DefaultDQAReportService">
+		<property name="aggregationService" ref="org.hisp.dhis.aggregation.AggregationService"/>
+		<property name="organisationUnitService" ref="org.hisp.dhis.organisationunit.OrganisationUnitService"/>
+		<property name="dataValueService" ref="org.hisp.dhis.datavalue.DataValueService"/>
+		<property name="expressionService" ref="org.hisp.dhis.expression.ExpressionService"/>
+		<property name="dataElementCategoryService" ref="org.hisp.dhis.dataelement.DataElementCategoryService"/>
+		<property name="periodService" ref="org.hisp.dhis.period.PeriodService"/>
+		<property name="aggregatedDataValueService" ref="org.hisp.dhis.aggregation.AggregatedDataValueService"/>
+		<property name="analyticsService" ref="org.hisp.dhis.analytics.AnalyticsService"/>
+		<property name="dataElementService" ref="org.hisp.dhis.dataelement.DataElementService" />
+	<property name="constantService" ref="org.hisp.dhis.constant.ConstantService" />
+	</bean>
+	<bean id="org.hisp.dhis.dqa.api.DQADimensionStore" class="org.hisp.dhis.dqa.impl.hibernate.HibernateDQADimensionStore">
+		<property name="clazz" value="org.hisp.dhis.dqa.api.DQADimension"/>
+		<property name="sessionFactory" ref="sessionFactory"/>
+		<property name="cacheable" value="true"/>
+	</bean>
+	<bean id="org.hisp.dhis.dqa.api.DQAParameterStore" class="org.hisp.dhis.dqa.impl.hibernate.HibernateDQAParameterStore">
+		<property name="clazz" value="org.hisp.dhis.dqa.api.DQAParameter"/>
+		<property name="sessionFactory" ref="sessionFactory"/>
+		<property name="cacheable" value="true"/>
+	</bean>
+	<bean id="org.hisp.dhis.dqa.api.DQAReportCardDataValueStore" class="org.hisp.dhis.dqa.impl.hibernate.HibernateDQAReportCardDataValueStore">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="org.hisp.dhis.dqa.api.DQADimensionService" class="org.hisp.dhis.dqa.impl.DefaultDQADimensionService">
+		<property name="dqaDimensionStore" ref="org.hisp.dhis.dqa.api.DQADimensionStore"/>
+		<property name="i18nService" ref="org.hisp.dhis.i18n.I18nService"/>
+	</bean>
+	<bean id="org.hisp.dhis.dqa.api.DQAParameterService" class="org.hisp.dhis.dqa.impl.DefaultDQAParameterService">
+		<property name="dqaParameterStore" ref="org.hisp.dhis.dqa.api.DQAParameterStore"/>
+		<property name="i18nService" ref="org.hisp.dhis.i18n.I18nService"/>
+	</bean>
+	<bean id="org.hisp.dhis.dqa.api.DQAReportCardDataValueService" class="org.hisp.dhis.dqa.impl.DefaultDQAReportCardDataValueService">
+		<property name="dqaReportCardDataValueStore" ref="org.hisp.dhis.dqa.api.DQAReportCardDataValueStore"/>
+	</bean>
+
+	
+	<!-- Action  -->
+	
+	<bean id="org.hisp.dhis.dqa.action.NoAction" class="org.hisp.dhis.dqa.action.NoAction" scope="prototype">
+    </bean>
+    
+	<bean
+		id="org.hisp.dhis.dqa.action.ViewWHOSettingsFormAction"
+		class="org.hisp.dhis.dqa.action.ViewWHOSettingsFormAction"
+		scope="prototype">
+		<property name="dqaParameterService" ref="org.hisp.dhis.dqa.api.DQAParameterService" />
+		<property name="reportTableService" ref="org.hisp.dhis.reporttable.ReportTableService" />
+		<property name="dataElementService" ref="org.hisp.dhis.dataelement.DataElementService" />
+		<property name="categoryService" ref="org.hisp.dhis.dataelement.DataElementCategoryService" />
+		<property name="indicatorService" ref="org.hisp.dhis.indicator.IndicatorService" />
+		<property name="periodService" ref="org.hisp.dhis.period.PeriodService" />
+		<property name="organisationUnitGroupService" ref="org.hisp.dhis.organisationunit.OrganisationUnitGroupService" />
+		<property name="dataSetService" ref="org.hisp.dhis.dataset.DataSetService" />
+		<property name="selectionTreeManager" ref="org.hisp.dhis.oust.manager.SelectionTreeManager" />
+		<property name="validationRuleService" ref="org.hisp.dhis.validation.ValidationRuleService" />
+		<property name="organisationUnitService" ref="org.hisp.dhis.organisationunit.OrganisationUnitService" />
+	</bean>
+
+    <bean id="org.hisp.dhis.dqa.action.SaveDQAParametersAction"
+        class="org.hisp.dhis.dqa.action.SaveDQAParametersAction"
+        scope="prototype">
+        <property name="dqaParameterService" ref="org.hisp.dhis.dqa.api.DQAParameterService" />
+    </bean>
+
+	<bean id="org.hisp.dhis.dqa.action.ReportCardFormAction"
+		class="org.hisp.dhis.dqa.action.ReportCardFormAction"
+		scope="prototype">
+		<property name="dataSetService" ref="org.hisp.dhis.dataset.DataSetService" />
+		<property name="organisationUnitService" ref="org.hisp.dhis.organisationunit.OrganisationUnitService" />
+		<property name="selectionTreeManager" ref="org.hisp.dhis.oust.manager.SelectionTreeManager" />
+		<property name="dqaReportService" ref="org.hisp.dhis.dqa.api.DQAReportService" />
+		<property name="periodService" ref="org.hisp.dhis.period.PeriodService" />
+	</bean>
+
+    <bean id="org.hisp.dhis.dqa.action.ReportCardOutputAction"
+        class="org.hisp.dhis.dqa.action.ReportCardOutputAction"
+        scope="prototype">
+        <property name="organisationUnitService" ref="org.hisp.dhis.organisationunit.OrganisationUnitService" />
+		<property name="dqaReportService" ref="org.hisp.dhis.dqa.api.DQAReportService" />
+         <property name="dqaParameterService" ref="org.hisp.dhis.dqa.api.DQAParameterService" />
+        <property name="aggregationService" ref="org.hisp.dhis.aggregation.AggregationService" />
+		<property name="indicatorService" ref="org.hisp.dhis.indicator.IndicatorService" />
+		<property name="currentUserService" ref="org.hisp.dhis.user.CurrentUserService" />
+		<property name="dqaReportCardDataValueService" ref="org.hisp.dhis.dqa.api.DQAReportCardDataValueService" />		
+		<property name="periodService" ref="org.hisp.dhis.period.PeriodService" />
+		<property name="expressionService" ref="org.hisp.dhis.expression.ExpressionService" />
+		<property name="dataValueService" ref="org.hisp.dhis.datavalue.DataValueService" />
+		<property name="dataElementCategoryService" ref="org.hisp.dhis.dataelement.DataElementCategoryService" />
+		<property name="dataElementService" ref="org.hisp.dhis.dataelement.DataElementService" />
+		<property name="dataSetService" ref="org.hisp.dhis.dataset.DataSetService" />
+		<property name="completeDataSetRegistrationService" ref="org.hisp.dhis.dataset.CompleteDataSetRegistrationService" />
+    <property name="analyticsService" ref="org.hisp.dhis.analytics.AnalyticsService"/>
+		    <property name="organisationUnitGroupService" ref="org.hisp.dhis.organisationunit.OrganisationUnitGroupService"/>
+	</bean>
+  
+	 <bean id="org.hisp.dhis.dqa.action.ManageDQAIndicators"
+        class="org.hisp.dhis.dqa.action.ManageDQAIndicators"
+        scope="prototype">
+       	<property name="indicatorService" ref="org.hisp.dhis.indicator.IndicatorService" />
+    </bean>
+	
+	
+	
+	
+</beans>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+ "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="org.hisp.dhis.employee.Employee" table="employee">
+
+	<id name="id" column="employeeid">
+      <generator class="native" />
+    </id>
+    
+    <property name="surname" not-null="false" length="160" />
+    
+    <property name="firstName" column="firstname" not-null="true" length="160" />
+    
+    <property name="lastName" column="lastname" not-null="false" length="160" />
+	  
+	<property name="gender" column="gender" not-null="true" length="5"  />  
+	
+	<property name="code" column="employeecode" not-null="true" length="160" />
+	
+	<property name="jobTitle" column="jobtitle" not-null="true" length="50" />
+
+	<property name="phoneNumber" column="phonenumber" not-null="false" length="25" />
+
+    <property name="email" column="email" not-null="false" length="160" />
+    
+	<many-to-one name="organisationUnit" class="org.hisp.dhis.organisationunit.OrganisationUnit" column="organisationunitid"
+      not-null="true" foreign-key="fk_employee_organisationunitid" />
+	
+  </class>
+</hibernate-mapping>

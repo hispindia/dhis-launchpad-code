@@ -1,0 +1,128 @@
+<script type="text/javascript" src="javascript/facilitatorDataEntry.js"></script>
+<script type="text/javascript">
+	
+	var i18n_select_period = '$encoder.jsEscape( $i18n.getString( "select_period" ) , "'")';
+	var i18n_please_select = '$encoder.jsEscape( $i18n.getString( "please_select" ) , "'")';
+	var i18n_please_select_asha = '$encoder.jsEscape( $i18n.getString( "please_select_asha" ) , "'")';
+	
+</script>
+
+<style>
+    #overlay {
+    z-index:9998;
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    width:100%;
+    background:#000;
+    opacity:0.45;
+    -moz-opacity:0.45;
+    filter:alpha(opacity=45);
+    visibility:hidden;   
+    }
+    #overlayImg{ width: 50px; height: 50px; z-index: 9999; position: absolute; left:50%}
+</style>
+<div id="overlay">
+    <div id="overlayImg"><img  width="50" height="50" src="images/ajax-loader.gif" style="margin:auto;position:fixed;top: 50%;left: 50%;"/></div>
+</div>
+
+
+
+<script>
+    
+	jQuery(document).ready( function(){
+	currentDiv = 'facilitatorDataEntryForm';
+	isSubmit = true;
+    jQuery("#facilitatorDataEntryForm").validate({
+		meta:"validate"
+		,errorElement:"span"
+		,submitHandler: function(form)
+		{
+        	if( isSubmit ) 
+            {
+            	saveASHAFacilitatorDataEntryForm();
+            }
+		}
+    	});
+    }); 
+    
+</script>
+
+
+
+<h3>$i18n.getString( "asha_facilitator_dataentry" )</h3>
+
+<form id="facilitatorDataEntryForm" name="facilitatorDataEntryForm" method="post" >	
+<div>
+	<input type="hidden" name="orgUnitId" id="orgUnitId" value="$!facilitator.organisationUnit.getId()" />
+	<input type="hidden" name="facilitatorId" id="facilitatorId" value="$!facilitator.getId()" />
+	<input type="hidden" name="dataSetId" id="dataSetId" value="$!dataSet.getId()" />
+</div>
+
+<div class="inputCriteria" style="width:570px;height:145px;">
+<table>
+	<tr>
+		<td><label for="orgUnitName">$i18n.getString( "organisation_unit" )</label></td>
+		<td><input type="text" id="orgUnitName" name = "orgUnitName" readonly="readonly" value="$!facilitator.organisationUnit.getName()" style="width:367px"></td>
+	</tr>
+	<tr>
+		<td><label for="name">$i18n.getString( "facilitator_name" )</label></td>
+		<td><input type="text" id="name" name = "name" readonly="readonly" value="$!facilitator.name" style="width:367px"></td>
+	</tr>
+
+			
+	<tr>
+		<td><label for="selectedDataSetId">$i18n.getString( "dataset" )</label></td>
+		<td><input type="text" id="dataSetName" name ="dataSetName" readonly="readonly" value="$!dataSet.name" style="width:367px"></td>
+	</tr>
+	
+	<tr>
+		<td><label for="selectedPeriodId">$i18n.getString( "period" )</label></td>
+		<td>
+			<select id="selectedPeriodId" name="selectedPeriodId" style="width:370px" onchange="loadFacilitatorASHAList()">
+				<option value="-1">[$i18n.getString( "please_select" )]</option>
+				#foreach( $period in $periods )
+    				    <option value="$period.getExternalId()">$encoder.htmlEncode( $period.name )</option>
+    			    #end
+			</select>
+			&nbsp;&nbsp;<a href="javascript:ashaFacilitatorFormat1Report()">$i18n.getString( "asha_facilitator_format_report" )&nbsp;</a>
+		</td>
+	</tr>
+
+	<tr>
+		<td><label for="selectedASHAId">$i18n.getString( "asha" )</label></td>
+		<td>
+			<select id="selectedASHAId" name="selectedASHAId" style="width:370px" onchange="loadASHAFacilitatorDataEntryForm()" >
+				<option value="-1">[$i18n.getString( "please_select" )]</option>
+				<!--
+				#foreach( $patient in $patients )
+    				    <option value="$patient.id">$encoder.htmlEncode( $patient.getFullName() )</option>
+    			#end
+				-->
+			</select>
+		</td>
+	</tr>	
+	
+</table>
+</div>
+
+#parse( "/dhis-web-commons/loader/loader.vm" )
+<div id='ashaFacilitatorDataEntryFormDiv'></div> <!-- DataEntry Form -->  	
+
+
+<p>
+	<input type="button"  value="$i18n.getString( 'Cancel' )" style="width:100px" onclick="window.location.href='getASHAFacilitatorList.action'"/>&nbsp;&nbsp;
+	&nbsp;&nbsp;<input type="submit"  id="saveButton" name="saveButton" value="$i18n.getString( 'save' )" disabled="disabled" style="width:100px"/>
+</p>
+
+<div id='ashaPerFormanceListDiv'></div><!--List of ASHA With Performance Score -->
+
+
+</form>
+
+<script type="text/javascript">
+jQuery( document ).ready( function()
+{
+});
+</script>

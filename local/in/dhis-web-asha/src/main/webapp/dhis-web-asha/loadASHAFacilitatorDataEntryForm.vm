@@ -1,0 +1,335 @@
+<!--
+<table  width="100%">
+	#if ( $dataElements.size() > 0 && $patients.size() > 0 )
+		<tr>
+        	<th style="width:250px;text-align: center">$i18n.getString( "dataElements" )</th>
+				#foreach($patient in $patients )
+                	<th style="width:250px;text-align: center">$patient.getFullName()</th>
+                #end
+		</tr>
+ 
+		<br />
+ 
+       	#foreach($dataElement in $dataElements )
+      		<tr>
+            	<td>
+            		<div style="width:250px; overflow:hidden;text-align: left">
+            			$dataElement.getFormNameFallback()
+		            </div>
+            	</td>
+            		#foreach( $patient in $patients )
+	                    #set( $valueMapId =  $dataElement.id + ':' + $patient.id )
+                        #set( $dataValue = "" )
+                        #set( $dataValue = $!facilitatorDataValueMap.get( $valueMapId ) )
+                    		<td style="width:250px;overflow-x:scroll;text-align: center">
+                    			<div style="width:250px;overflow-x:scroll;text-align: center">
+                    				<input type="text" name="dataelement$valueMapId" id="dataelement$valueMapId" style="text-align: center;" value="$!dataValue"/>
+			                   	</div>
+                    		</td>
+                    #end
+			</tr>
+		#end
+	#else
+
+	<h3>No Any One ASHA Linked with this Facilitator</h3>  
+ 
+	#end
+</table>
+-->
+<!-- code for frezz dataelement  name columan -->
+
+<!--
+	#if ( $dataElements.size() > 0 && $patients.size() > 0 )
+		
+		<div style="overflow: hidden;width:25%;float:left;"> 
+	 		<table width="100%" cellspacing="0" cellpadding="0"> 
+	 			<tbody>
+	 				<tr>
+						<th style="width:24%;text-align: center;">$i18n.getString( "dataElements" )</th>						
+	  				</tr>
+	  				#foreach($dataElement in $dataElements )
+					<tr>
+						<td style="width:24%;height:60px;text-align: left;" >$dataElement.getFormNameFallback()</td>
+					</tr>
+				#end
+	 			</tbody>
+ 			</table>	
+		</div>
+	<div style="overflow-x:scroll;width:75%;float:right;">
+		<table width="100%" cellspacing="0" cellpadding="0">
+				<tr>
+				#foreach($patient in $patients )
+                	<th style="width:250px;text-align: center">$patient.getFullName()</th>
+                #end
+                </tr>
+				#foreach($dataElement in $dataElements )
+					<tr>
+						#foreach( $patient in $patients )
+							#set( $valueMapId =  $dataElement.id + ':' + $patient.id )
+							#set( $dataValue = "" )
+							#set( $dataValue = $!facilitatorDataValueMap.get( $valueMapId ) )
+							<td style="text-align: center;height:60px;"><input type="text" name="dataelement$valueMapId" id="dataelement$valueMapId" style="text-align: center;" value="$!dataValue"/></td>
+						#end
+					</tr>
+				#end
+			</table>
+	</div>
+	#else
+	
+	<h3>No Any One ASHA Linked with this Facilitator</h3>  
+		
+	#end
+		
+-->
+		
+
+## Macro for generating the jQuery validation rules 
+#macro( validate $type $require )
+  #if( $type == "NUMBER" || $type == "number" )
+    {validate:{ number:true #if($require), required:true #end }}
+  
+	#elseif( $type == "int" )
+  	{validate:{ integer:true #if($require), required:true #end }}
+  	
+  	#elseif( $type == "positiveNumber" )
+  	{validate:{ positive_integer:true #if($require), required:true #end }}
+  	
+	#elseif( $type == "negativeNumber" )
+  	{validate:{ negative_integer:true #if($require), required:true #end }}
+  
+  
+  #elseif( $require )
+    {validate:{required:true}}
+  #end
+#end
+
+
+<!-- ASHA Attributes Details -->
+<table style="background-color:#EFFBEF;" width="75%">
+
+	<!-- Status of Self Appraisal submitted by ASHA for the current month -->
+	
+	<tr #alternate( false ) id="trattr20">	    
+		<td width="75%" class='text-column'>Status of Self Appraisal submitted by ASHA for the current month</td>
+		<td width="25%" class="input-column" >
+			#set( $attribute = $patientAttributeMap.get( 20 ) )
+			#set( $attributeValueStatus = $!patientAttributeValueMap.get( 20 ) )
+            <select id="attr20" name="attr20" class="{validate:{required:true}}" style="width:100%" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="true" #if( $attributeValueStatus =='true') selected="selected" #end >$i18n.getString( "yes" )</option>
+                <option value="false" #if( $attributeValueStatus=='false') selected="selected" #end >$i18n.getString( "no" )</option>
+            </select>
+		</td>
+	</tr>		
+	
+	
+	<!-- If Yes, Status of Payment -->
+	
+	<tr #alternate( true ) id="trattr21">	    
+		<td width="75%" class='text-column'>If Yes, Status of Payment</td>
+		<td width="25%" class="input-column" >
+			#set( $attribute = $patientAttributeMap.get( 21 ) )
+			#set( $attributeValuePayment = $!patientAttributeValueMap.get( 21 ) )	
+			<select id="attr21" name="attr21" class='#validate( "default"  $attribute.mandatory )' style="width:100%" >
+			 	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+			 	#foreach ($option in $attribute.attributeOptions )
+			 		<option value="$option.id" #if($attributeValuePayment == $option.name ) selected="selected" #end >$option.name</option>
+	 			#end
+ 			</select>
+ 		</td>
+	</tr>
+	
+	
+	<!-- If Pending, Reason for the same -->
+	
+	<tr #alternate( false ) id="trattr22">	    
+		<td width="75%" class='text-column'>If Pending, Reason for the same</td>
+		<td width="25%" class="input-column" ><input type="text" id="attr22" name="attr22" style="width:99%" class="{validate:{required:false ,unicodechars:true}}" value = "$!patientAttributeValueMap.get( 22 )" /></td>
+	</tr>
+	
+	
+	<!-- Working Status of ASHA -->
+	
+	<tr #alternate( true ) id="trattr31">	    
+		<td width="75%" class='text-column'>Working Status of ASHA</td>
+		<td width="25%" class="input-column" >
+			#set( $attribute = $patientAttributeMap.get( 31 ) )
+			#set( $attributeValueWorking = $!patientAttributeValueMap.get( 31 ) )	
+			<select id="attr31" name="attr31" class='#validate( "default"  $attribute.mandatory )' style="width:100%" >
+			 	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+			 	#foreach ($option in $attribute.attributeOptions )
+			 		<option value="$option.id" #if($attributeValueWorking == $option.name ) selected="selected" #end >$option.name</option>
+	 			#end
+ 			</select>
+ 		</td>
+	</tr>
+	
+	
+	<!-- If Inactive, Reason for Inactiveness  -->
+	
+	<tr #alternate( false ) id="trattr185">	    
+		<td width="75%" class='text-column'>If Inactive, Reason for Inactiveness</td>
+		<td width="25%" class="input-column" >
+			#set( $attribute = $patientAttributeMap.get( 185 ) )
+			#set( $attributeValueInactive = $!patientAttributeValueMap.get( 185 ) )	
+			<select id="attr185" name="attr185" class='#validate( "default"  $attribute.mandatory )' style="width:100%" >
+			 	<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+			 	#foreach ($option in $attribute.attributeOptions )
+			 		<option value="$option.id" #if($attributeValueInactive == $option.name ) selected="selected" #end >$option.name</option>
+	 			#end
+ 			</select>
+ 		</td>
+	</tr>
+	
+
+
+
+
+	<!-- If inactive since last 3 months, are any steps taken to make her active or for her removal -->
+	
+	<tr #alternate( true ) id="trattr32">	    
+		<td width="75%" class='text-column'>If inactive since last 3 months, any steps taken to make her active or for her removal</td>
+		<td width="25%" class="input-column" >
+			#set( $attribute = $patientAttributeMap.get( 32 ) )
+			#set( $attributeValueremoval = $!patientAttributeValueMap.get( 32 ) )
+            <select id="attr32" name="attr32" class='#validate( "default"  $attribute.mandatory )' style="width:100%" >
+                <option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+                <option value="191" #if( $attributeValueremoval =='Yes') selected="selected" #end>$i18n.getString( "yes" )</option>
+                <option value="192" #if( $attributeValueremoval =='No') selected="selected" #end>$i18n.getString( "no" )</option>
+                <option value="193" #if( $attributeValueremoval =='NA') selected="selected" #end>NA</option>
+            </select>
+		</td>
+	</tr>
+	
+	
+	<!-- Since When stopped working as ASHA -->
+	
+	<tr #alternate( false ) id="trattr33">	    
+		<td width="75%" class='text-column'>Since When stopped working as ASHA</td>
+		#set( $attributeDate = $patientAttributeMap.get( 33 ) )
+		<td width="25%" class="input-column" ><input type="text" id="attr33" name="attr33" style="width:99%" class=' #validate( "default"  $attributeDate.mandatory )'value = "$!patientAttributeValueMap.get( 33 )" /></td>
+		<script type="text/javascript">
+			datePickerValid( 'attr33' );
+		</script> 
+	</tr>
+	
+	
+	<!-- If Removed, Reason for Removal  -->
+	
+	<tr #alternate( true ) id="trattr34">	    
+		<td style="width:75%" class='text-column'>If Removed, Reason for Removal</td>
+		<td style="width:25%" class="input-column" ><input type="text" id="attr34" style="width:99%" name="attr34" class="{validate:{required:false ,unicodechars:true}}" value = "$!patientAttributeValueMap.get( 34 )" /></td>
+	</tr>
+	
+	
+</table>	
+
+
+<!-- DATAELEMENTS WITH SECTIONS-->
+#set( $tabIndex = 1 )
+#if( $sections.size() > 0 )
+	#foreach( $section in $sections )
+		<table class="formSection" width="75%">
+			<tr><td>&nbsp;</td><td>&nbsp;</td></tr>	
+			<tr bgcolor="#285C91">
+				<td width="75%"><font color="#FFFFFF"><strong>$encoder.htmlEncode( $section.name )</strong></font></td>
+				<td width="25%"><font color="#FFFFFF"><strong>Value</strong></font></td>
+			</tr><br />
+		
+		#if ( $section.dataElements.size() > 0 )
+			
+			#set( $mark = false )
+			#foreach($dataElement in $section.dataElements )
+			##set( $valueMapId = $organisationUnit.id + ':' + $period.id + ':' + $dataElement.id )
+			#set( $dataValue = "" )
+			#set( $facilitatorDataValue = $!facilitatorDataValueMap.get( $dataElement.id ) )
+				<tr #alternate($mark)>
+					<!--#set( $dataEntryId = "${dataElement.id}" )-->
+					<td width="75%"><label>$dataElement.getFormNameFallback() </label></td>
+					<td>
+						#if( $dataElement.type == "bool" )
+							<select name="dataelement$dataElement.id"  id="dataelement$dataElement.id"  tabindex="$tabIndex" width="25%">  
+								<option value="">[$i18n.getString( "please_select" )]</option>            
+								<option value="Yes" #if( $facilitatorDataValue  == "Yes" ) selected="selected" #end >$i18n.getString( "yes" )</option>
+								<option value="No" #if( $facilitatorDataValue == "No") selected="selected" #end >$i18n.getString( "no" )</option>
+							</select>                
+						#elseif( $dataElement.type == "date" )
+							<input type="text" id="dataelement$dataElement.id" name="dataelement$dataElement.id" value="$!facilitatorDataValue" tabindex="$tabIndex" width="25%"> 
+								<script type="text/javascript">
+						  	 		datePickerValid( 'dataelement${dataElement.id}' );
+								</script>                    
+						
+						#elseif( $!dataElement.optionSet )
+							<select name="dataelement$dataElement.id"  id="dataelement$dataElement.id"  tabindex="$tabIndex" width="25%">  
+								<!--<option value="">[$i18n.getString( "please_select" )]</option>-->
+								#foreach ($option in $dataElement.optionSet.options )
+									<option value="$option" #if($facilitatorDataValue == $option ) selected="selected" #end>$option</option>
+								#end	
+							</select>                						
+						
+						#else 
+							<input type="text" id="dataelement$dataElement.id" name="dataelement$dataElement.id" value="$!facilitatorDataValue" tabindex="$tabIndex" width="25%" #if($dataElement.type =='number') class="{validate:{number:true}}" #elseif($dataElement.type =='int') class="{validate:{integer:true}}" #elseif($dataElement.type =='positiveNumber') class="{validate:{positive_integer:true}}" #elseif($dataElement.type =='negativeNumber') class="{validate:{negative_integer:true}}" #end/>
+						#end
+					</td>		
+				</tr>
+			#set( $tabIndex = $tabIndex + 1 )
+			#set( $mark = !$mark)	
+			#end
+		#end
+	</table>		
+	<br>	
+#end
+	
+#else	
+<!-- DATAELEMENTS WITH NO SECTIONS-->
+<table class="formSection" width="100%">
+
+	<tr bgcolor="#285C91">
+		<td width="75%"><font color="#FFFFFF"><strong>$encoder.htmlEncode( $dataSet.getShortName() )</strong></font></td>
+		<td width="25%"><font color="#FFFFFF"><strong>Value</strong></font></td>
+	</tr>	
+<br />
+#set( $tabIndex = 1 )
+#if ( $dataElements.size() > 0)
+	#set( $mark = false )
+	#foreach($dataElement in $dataElements )
+	##set( $valueMapId = $organisationUnit.id + ':' + $period.id + ':' + $dataElement.id )
+	#set( $dataValue = "" )
+	#set( $facilitatorDataValue = $!facilitatorDataValueMap.get( $dataElement.id ) )
+		<tr #alternate($mark)>
+			<!--#set( $dataEntryId = "${dataElement.id}" )-->
+			<td width="75%"><label>$dataElement.getFormNameFallback()</label></td>
+			<td>
+				#if( $dataElement.type == "bool" )
+					<select name="dataelement$dataElement.id"  id="dataelement$dataElement.id"  tabindex="$tabIndex" width="25%">  
+						<option value="">[$i18n.getString( "please_select" )]</option>            
+						<option value="Yes" #if( $facilitatorDataValue  == "Yes" ) selected="selected" #end >$i18n.getString( "yes" )</option>
+						<option value="No" #if( $facilitatorDataValue == "No") selected="selected" #end >$i18n.getString( "no" )</option>
+					</select>                
+				#elseif( $dataElement.type == "date" )
+						<input type="text" id="dataelement$dataElement.id" name="dataelement$dataElement.id" value="$!facilitatorDataValue" tabindex="$tabIndex" width="25%"> 
+						<script type="text/javascript">
+						   datePickerValid( 'dataelement${dataElement.id}' );
+						</script>                    
+				
+				#elseif( $!dataElement.optionSet )
+					<select name="dataelement$dataElement.id"  id="dataelement$dataElement.id"  tabindex="$tabIndex" width="25%">  
+						<!--<option value="">[$i18n.getString( "please_select" )]</option>-->
+						#foreach ($option in $dataElement.optionSet.options )
+							<option value="$option" #if($facilitatorDataValue == $option ) selected="selected" #end>$option</option>
+						#end	
+					</select>				
+				
+				#else 
+					<input type="text" id="dataelement$dataElement.id" name="dataelement$dataElement.id" value="$!facilitatorDataValue" tabindex="$tabIndex" width="25%" #if($dataElement.type =='number') class="{validate:{number:true}}" #elseif($dataElement.type =='int') class="{validate:{integer:true}}" #elseif($dataElement.type =='positiveNumber') class="{validate:{positive_integer:true}}" #elseif($dataElement.type =='negativeNumber') class="{validate:{negative_integer:true}}" #end/>
+				#end
+			</td>		
+		</tr>
+	#set( $tabIndex = $tabIndex + 1 )
+	#set( $mark = !$mark)	
+	#end
+#end
+</table>
+	
+#end
+

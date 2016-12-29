@@ -1,0 +1,836 @@
+
+## Macro for generating the jQuery validation rules 
+#macro( validate $type $require )
+  #if( $type == "NUMBER" )
+  	{validate:{ number:true #if($require), required:true #end }}
+  #elseif( $type == "string" )
+  	{validate:{ alphanumeric:true #if($require), required:true #end }}
+  #elseif( $require )
+  	{validate:{required:true}}
+  #end
+#end
+
+<input type="hidden" id="programStageId" name="programStageId" value="$!programStage.id">
+
+<input type="hidden" id="programStageInstanceId" name="programStageInstanceId" value="$!programStageInstanceId">
+
+<table  width="75%">
+<input type='hidden' id='updationDate' name='updationDate' value = "$!selectedPeriod" />	
+	<!--
+	style="text-align: center;"
+	programStage : $!programStage.id
+	
+	programStageInstanceId : $!programStageInstanceId
+	
+	programStageDataElements Size : $programStageDataElements.size()
+	
+	patientDataValueMap size : $patientDataValueMap.size()
+	
+	patientAttributeValueMap size : $patientAttributeValueMap.size()
+	
+	$selectedPeriod
+	
+	-->
+	
+	<tr>
+		<th >Training</th>
+		<!--<th>&nbsp;</th>-->
+		<th colspan="2" >Status</th>
+		<!--<td>&nbsp;</td>-->
+		<th>&nbsp;</th>
+	</tr>
+
+	
+	<tr>
+		<td>Module I</td>
+		<!--<td>&nbsp;</td>-->
+		<td colspan="2">
+			
+			#set( $dataElement = "")
+			#set( $valueList = "")
+			
+			#set( $dataElement = $dataElementMap.get( 181 ) )
+			#set( $valueList = $!patientDataValueMap.get( 181 ) )
+			##set $titleValue = Date of last Updation : $valueList.get( 1 )
+			
+			<select id="deps181" name="deps181" disabled = "disabled"  title="Date of last Updation : $!valueList.get( 1 )" onchange="selectTrainingStatus( 'checkbox181', 'checkbox211', 'deps181', 'deps211', 'pa36', 'pa37', 'updationDate');" >
+				<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+				#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+					#if($optionVal == $valueList.get( 0 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+			</select>
+		</td>
+		<!--<td style="display:none;"><input type="text" id="deps211" name="deps211" value = "$!selectedPeriod" /></td>-->
+		<td>
+			<input type='checkbox' id='checkbox181' name='checkbox181' onchange="selectTrainingStatus( 'checkbox181', 'checkbox211', 'deps181', 'deps211', 'pa36', 'pa37', 'updationDate');"/>
+			<input type='hidden' id='checkbox211' name='checkbox211' value="false" />
+			<input type='hidden' id='deps211' name='deps211' />
+			<input type='hidden' id='pa36' name='pa36' value = "$!patientAttributeValueMap.get( 36 )" />
+			<input type='hidden' id='pa37' name='pa37' value = "$!patientAttributeValueMap.get( 37 )" />
+			
+		
+		</td>
+	</tr>	
+	
+	
+	<tr>
+		<td>Module II-IV</td>
+		<!--<td>&nbsp;</td>-->
+		<td colspan="2">
+			
+			#set( $dataElement = "")
+			#set( $valueList = "")
+			
+			#set( $dataElement = $dataElementMap.get( 182 ) )
+			#set( $valueList = $!patientDataValueMap.get( 182 ) )
+			##set $titleValue = Date of last Updation : $valueList.get( 1 )
+			
+			<select id="deps182" name="deps182" disabled = "disabled" title="Date of last Updation : $!valueList.get( 1 )" onchange="selectTrainingStatus( 'checkbox181', 'checkbox200', 'deps181', 'deps211', 'pa36', 'pa37', 'updationDate');" >
+				<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+				#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+					#if($optionVal == $valueList.get( 0 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+			</select>
+		</td>
+		<!--<td style="display:none;"><input type="text" id="deps200:105" name="deps200:105" value = "$!selectedPeriod" /></td>-->
+		<td><input type='checkbox' id='checkbox182' name='checkbox182' onchange="selectTrainingStatus( 'checkbox182','checkbox200', 'deps182', 'deps200', 'pa38', 'pa105', 'updationDate' );"/>
+			
+			<input type='hidden' id='checkbox200' name='checkbox200' value="false" />
+			<input type='hidden' id='deps200' name='deps200' />
+			<input type='hidden' id='pa38' name='pa38' value = "$!patientAttributeValueMap.get( 38 )" />
+			<input type='hidden' id='pa105' name='pa105' value = "$!patientAttributeValueMap.get( 105 )" />
+			
+		</td>
+	</tr>		
+
+	
+	
+	
+	<tr>
+		<td>Module V</td>
+		<!--<td>&nbsp;</td>-->
+		<td colspan="2">
+			
+			#set( $dataElement = "")
+			#set( $valueList = "")
+			
+			#set( $dataElement = $dataElementMap.get( 183 ) )
+			#set( $valueList = $!patientDataValueMap.get( 183 ) )
+			##set $titleValue = Date of last Updation : $valueList.get( 1 )
+			
+			<select id="deps183" name="deps183" disabled = "disabled" title="Date of last Updation : $!valueList.get( 1 )" onchange="selectTrainingStatus( 'checkbox181', 'checkbox201', 'deps181', 'deps211', 'pa36', 'pa37', 'updationDate');" >
+				<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+				#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+					#if($optionVal == $valueList.get( 0 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+			</select>
+		</td>
+		<!--<td style="display:none;"><input type="text" id="deps201:106" name="deps201:106" value = "$!selectedPeriod" /></td>-->
+		<td><input type='checkbox' id='checkbox183' name='checkbox183' onchange="selectTrainingStatus( 'checkbox183','checkbox201', 'deps183', 'deps201', 'pa39', 'pa106', 'updationDate' );"/>
+		
+			<input type='hidden' id='checkbox201' name='checkbox201' value="false" />
+			<input type='hidden' id='deps201' name='deps201' />
+			<input type='hidden' id='pa39' name='pa39' value = "$!patientAttributeValueMap.get( 39 )" />
+			<input type='hidden' id='pa106' name='pa106' value = "$!patientAttributeValueMap.get( 106 )" />
+		
+		
+		</td>
+	</tr>
+	
+
+	<tr>
+		<td>Integrated Module I-V</td>
+		<!--<td>&nbsp;</td>-->
+		<td colspan="2">
+		
+			#set( $dataElement = "")
+			#set( $valueList = "")
+			
+			#set( $dataElement = $dataElementMap.get( 212 ) )
+			#set( $valueList = $!patientDataValueMap.get( 212 ) )
+			##set $titleValue = Date of last Updation : $valueList.get( 1 )
+			
+			<select id="deps212" name="deps212" disabled = "disabled" title="Date of last Updation : $!valueList.get( 1 )"  onchange="selectTrainingStatus( 'checkbox181', 'checkbox192','deps181', 'deps211', 'pa36', 'pa37', 'updationDate');">
+				<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+				#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+					#if($optionVal == $valueList.get( 0 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+			</select>
+		</td>
+		<!--<td style="display:none;"><input type="text" id="deps192:187" name="deps192:187" value = "$!selectedPeriod" /></td>-->
+		<td><input type='checkbox' id='checkbox212' name='checkbox212' onchange="selectTrainingStatus( 'checkbox212', 'checkbox192','deps212', 'deps192', 'pa175', 'pa187', 'updationDate' );"/>
+		
+			<input type='hidden' id='checkbox192' name='checkbox192' value="false" />
+			<input type='hidden' id='deps192' name='deps192' />
+			<input type='hidden' id='pa175' name='pa175' value = "$!patientAttributeValueMap.get( 175 )" />
+			<input type='hidden' id='pa187' name='pa187' value = "$!patientAttributeValueMap.get( 187 )" />
+		
+		
+		</td>
+	</tr>	
+	
+	
+	<tr>
+		<td>HBPNC Round I</td>
+		<!--<td>&nbsp;</td>-->
+		<td colspan="2">
+			
+			#set( $dataElement = "")
+			#set( $valueList = "")
+			
+			#set( $dataElement = $dataElementMap.get( 186 ) )
+			#set( $valueList = $!patientDataValueMap.get( 186 ) )
+			##set $titleValue = Date of last Updation : $valueList.get( 1 )
+			
+			<select id="deps186" name="deps186" disabled = "disabled" title="Date of last Updation : $!valueList.get( 1 )" onchange="selectTrainingStatus( 'checkbox181', 'checkbox193', 'deps181', 'deps211', 'pa36', 'pa37', 'updationDate');">
+				<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+				#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+					#if($optionVal == $valueList.get( 0 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+			</select>
+		</td>
+		
+		
+		
+		<!--<td style="display:none;"><input type="text" id="deps193" name="deps192:187" value = "$!selectedPeriod" /></td>-->
+		<td>
+			<input type='checkbox' id='checkbox186' name='checkbox212' onchange="selectTrainingStatus( 'checkbox186', 'checkbox193' ,'deps186', 'deps193', 'pa42', 'pa110', 'updationDate' );"/>
+			
+			<input type='hidden' id='checkbox193' name='checkbox193' value="false" />
+			<input type='hidden' id='deps193' name='deps193' />
+			<input type='hidden' id='pa42' name='pa42' value = "$!patientAttributeValueMap.get( 42 )" />
+			<input type='hidden' id='pa110' name='pa110' value = "$!patientAttributeValueMap.get( 110 )" />
+		</td>
+		
+	</tr>	
+	
+	
+	<tr>
+		<td>HBPNC Round II</td>
+		<!--<td>&nbsp;</td>-->
+		<td colspan="2">
+			
+			#set( $dataElement = "")
+			#set( $valueList = "")
+			
+			#set( $dataElement = $dataElementMap.get( 187 ) )
+			#set( $valueList = $!patientDataValueMap.get( 187 ) )
+			
+			<select id="deps187" name="deps187" disabled = "disabled" title="Date of last Updation : $!valueList.get( 1 )" onchange="selectTrainingStatus( 'checkbox187','checkbox197', 'deps187' , 'deps197', 'pa43', 'pa111', 'updationDate' );">
+				<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+				#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+					#if($optionVal == $valueList.get( 0 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+			</select>
+		</td>
+		<!--<td style="display:none;"><input type="text" id="deps197:111" name="deps197:111" value = "$!selectedPeriod" /></td>-->
+		<td><input type='checkbox' id='checkbox187' name='checkbox187' onchange="selectTrainingStatus( 'checkbox187','checkbox197', 'deps187' , 'deps197', 'pa43', 'pa111', 'updationDate' );"/>
+		
+			<input type='hidden' id='checkbox197' name='checkbox197' value="false" />
+			<input type='hidden' id='deps197' name='deps197' />
+			<input type='hidden' id='pa43' name='pa43' value = "$!patientAttributeValueMap.get( 43 )" />
+			<input type='hidden' id='pa111' name='pa111' value = "$!patientAttributeValueMap.get( 111 )" />
+		
+		</td>
+	</tr>	
+	
+
+	<tr>
+		<td>Module VI-VII Round I</td>
+		<!--<td>&nbsp;</td>-->
+		<td colspan="2">
+			
+			#set( $dataElement = "")
+			#set( $valueList = "")
+			
+			#set( $dataElement = $dataElementMap.get( 188 ) )
+			#set( $valueList = $!patientDataValueMap.get( 188 ) )
+			
+			<select id="deps188" name="deps188" disabled = "disabled" title="Date of last Updation : $!valueList.get( 1 )" onchange="selectTrainingStatus( 'checkbox188','checkbox197', 'deps188' , 'deps205', 'pa43', 'pa204', 'updationDate' );">
+				<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+				#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+					#if($optionVal == $valueList.get( 0 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+			</select>
+		</td>
+		<!--<td style="display:none;"><input type="text" id="deps197:111" name="deps197:111" value = "$!selectedPeriod" /></td>-->
+		<td><input type='checkbox' id='checkbox188' name='checkbox188' onchange="selectTrainingStatus( 'checkbox188','checkbox197', 'deps188' , 'deps205', 'pa43', 'pa204', 'updationDate' );"/>
+		
+			<input type='hidden' id='checkbox205' name='checkbox205' value="false" />
+			<input type='hidden' id='deps205' name='deps205' />
+			<input type='hidden' id='pa200' name='pa200' value = "$!patientAttributeValueMap.get( 200 )" />
+			<input type='hidden' id='pa204' name='pa204' value = "$!patientAttributeValueMap.get( 204 )" />
+		
+		</td>
+	</tr>		
+	
+	
+	<tr>
+		<td>Module VI-VII Round II</td>
+		<!--<td>&nbsp;</td>-->
+		<td colspan="2">
+			
+			#set( $dataElement = "")
+			#set( $valueList = "")
+			
+			#set( $dataElement = $dataElementMap.get( 189 ) )
+			#set( $valueList = $!patientDataValueMap.get( 189 ) )
+			
+			<select id="deps189" name="deps189" disabled = "disabled" title="Date of last Updation : $!valueList.get( 1 )" onchange="selectTrainingStatus( 'checkbox189','checkbox206', 'deps189' , 'deps206', 'pa201', 'pa205', 'updationDate' );">
+				<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+				#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+					#if($optionVal == $valueList.get( 0 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+			</select>
+		</td>
+		<!--<td style="display:none;"><input type="text" id="deps197:111" name="deps197:111" value = "$!selectedPeriod" /></td>-->
+		<td><input type='checkbox' id='checkbox189' name='checkbox189' onchange="selectTrainingStatus( 'checkbox189','checkbox206', 'deps189' , 'deps206', 'pa201', 'pa205', 'updationDate' );"/>
+		
+			<input type='hidden' id='checkbox206' name='checkbox206' value="false" />
+			<input type='hidden' id='deps206' name='deps206' />
+			<input type='hidden' id='pa201' name='pa201' value = "$!patientAttributeValueMap.get( 201 )" />
+			<input type='hidden' id='pa205' name='pa205' value = "$!patientAttributeValueMap.get( 205 )" />
+		
+		</td>
+	</tr>		
+		
+	
+	
+	<tr>
+		<td>Module VI-VII Round III</td>
+		<!--<td>&nbsp;</td>-->
+		<td colspan="2">
+			
+			#set( $dataElement = "")
+			#set( $valueList = "")
+			
+			#set( $dataElement = $dataElementMap.get( 190 ) )
+			#set( $valueList = $!patientDataValueMap.get( 190 ) )
+			
+			<select id="deps190" name="deps190" disabled = "disabled" title="Date of last Updation : $!valueList.get( 1 )" onchange="selectTrainingStatus( 'checkbox190','checkbox207', 'deps190' , 'deps207', 'pa202', 'pa206', 'updationDate' );">
+				<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+				#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+					#if($optionVal == $valueList.get( 0 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+			</select>
+		</td>
+		<!--<td style="display:none;"><input type="text" id="deps197:111" name="deps197:111" value = "$!selectedPeriod" /></td>-->
+		<td><input type='checkbox' id='checkbox190' name='checkbox190' onchange="selectTrainingStatus( 'checkbox190','checkbox207', 'deps190' , 'deps207', 'pa202', 'pa206', 'updationDate' );"/>
+		
+			<input type='hidden' id='checkbox207' name='checkbox207' value="false" />
+			<input type='hidden' id='deps207' name='deps207' />
+			<input type='hidden' id='pa202' name='pa202' value = "$!patientAttributeValueMap.get( 202 )" />
+			<input type='hidden' id='pa206' name='pa206' value = "$!patientAttributeValueMap.get( 206 )" />
+		
+		</td>
+	</tr>		
+	
+	<tr>
+		<td>Module VI-VII Round IV</td>
+		<!--<td>&nbsp;</td>-->
+		<td colspan="2">
+			
+			#set( $dataElement = "")
+			#set( $valueList = "")
+			
+			#set( $dataElement = $dataElementMap.get( 191 ) )
+			#set( $valueList = $!patientDataValueMap.get( 191 ) )
+			
+			<select id="deps191" name="deps191" disabled = "disabled" title="Date of last Updation : $!valueList.get( 1 )" onchange="selectTrainingStatus( 'checkbox191','checkbox208', 'deps191' , 'deps208', 'pa203', 'pa207', 'updationDate' );">
+				<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+				#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+					#if($optionVal == $valueList.get( 0 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+			</select>
+		</td>
+		<!--<td style="display:none;"><input type="text" id="deps197:111" name="deps197:111" value = "$!selectedPeriod" /></td>-->
+		<td><input type='checkbox' id='checkbox191' name='checkbox191' onchange="selectTrainingStatus( 'checkbox191','checkbox208', 'deps191' , 'deps208', 'pa203', 'pa207', 'updationDate' );"/>
+		
+			<input type='hidden' id='checkbox208' name='checkbox208' value="false" />
+			<input type='hidden' id='deps208' name='deps208' />
+			<input type='hidden' id='pa203' name='pa203' value = "$!patientAttributeValueMap.get( 203 )" />
+			<input type='hidden' id='pa207' name='pa207' value = "$!patientAttributeValueMap.get( 207 )" />
+		
+		</td>
+	</tr>			
+	
+	<tr>
+		<td>Module VIII</td>
+		<!--<td>&nbsp;</td>-->
+		<td colspan="2">
+			
+			#set( $dataElement = "")
+			#set( $valueList = "")
+			
+			#set( $dataElement = $dataElementMap.get( 185 ) )
+			#set( $valueList = $!patientDataValueMap.get( 185 ) )
+			
+			<select id="deps185" name="deps185" disabled = "disabled" title="Date of last Updation : $!valueList.get( 1 )" onchange="selectTrainingStatus( 'checkbox185','checkbox204', 'deps185' , 'deps204', 'pa198', 'pa199', 'updationDate' );">
+				<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+				#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+					#if($optionVal == $valueList.get( 0 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+			</select>
+		</td>
+		<!--<td style="display:none;"><input type="text" id="deps197:111" name="deps197:111" value = "$!selectedPeriod" /></td>-->
+		<td><input type='checkbox' id='checkbox185' name='checkbox185' onchange="selectTrainingStatus( 'checkbox185','checkbox204', 'deps185' , 'deps204', 'pa198', 'pa199', 'updationDate' );"/>
+		
+			<input type='hidden' id='checkbox204' name='checkbox204' value="false" />
+			<input type='hidden' id='deps204' name='deps204' />
+			<input type='hidden' id='pa198' name='pa198' value = "$!patientAttributeValueMap.get( 198 )" />
+			<input type='hidden' id='pa199' name='pa199' value = "$!patientAttributeValueMap.get( 199 )" />
+		
+		</td>
+	</tr>
+	
+	
+
+	<tr>
+		<td>HIV/AIDS Training</td>
+		<!--<td>&nbsp;</td>-->
+		<td colspan="2">
+			
+			#set( $dataElement = "")
+			#set( $valueList = "")
+			
+			#set( $dataElement = $dataElementMap.get( 176 ) )
+			#set( $valueList = $!patientDataValueMap.get( 176 ) )
+			
+			<select id="deps176" name="deps176" disabled = "disabled" title="Date of last Updation : $!valueList.get( 1 )"  onchange="selectTrainingStatus( 'checkbox176','checkbox198', 'deps176' , 'deps198', 'pa44', 'pa112', 'updationDate' );">
+				<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+				#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+					#if($optionVal == $valueList.get( 0 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+			</select>
+		</td>
+		<!--<td style="display:none;"><input type="text" id="deps197:111" name="deps197:111" value = "$!selectedPeriod" /></td>-->
+		<td><input type='checkbox' id='checkbox176' name='checkbox176' onchange="selectTrainingStatus( 'checkbox176','checkbox198', 'deps176' , 'deps198', 'pa44', 'pa112', 'updationDate' );"/>
+		
+			<input type='hidden' id='checkbox198' name='checkbox198' value="false" />
+			<input type='hidden' id='deps198' name='deps198' />
+			<input type='hidden' id='pa44' name='pa44' value = "$!patientAttributeValueMap.get( 44 )" />
+			<input type='hidden' id='pa112' name='pa112' value = "$!patientAttributeValueMap.get( 112 )" />
+		
+		</td>
+	</tr>
+	
+	
+
+	<tr>
+		<td>Menstrual Hygiene Training</td>
+		<!--<td>&nbsp;</td>-->
+		<td colspan="2">
+			
+			#set( $dataElement = "")
+			#set( $valueList = "")
+			
+			#set( $dataElement = $dataElementMap.get( 177 ) )
+			#set( $valueList = $!patientDataValueMap.get( 177 ) )
+			
+			<select id="deps177" name="deps177" disabled = "disabled" title="Date of last Updation : $!valueList.get( 1 )" onchange="selectTrainingStatus( 'checkbox177','checkbox199', 'deps177' , 'deps199', 'pa45', 'pa113', 'updationDate' );">
+				<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+				#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+					#if($optionVal == $valueList.get( 0 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+			</select>
+		</td>
+		<!--<td style="display:none;"><input type="text" id="deps197:111" name="deps197:111" value = "$!selectedPeriod" /></td>-->
+		<td><input type='checkbox' id='checkbox177' name='checkbox177' onchange="selectTrainingStatus( 'checkbox177','checkbox199', 'deps177' , 'deps199', 'pa45', 'pa113', 'updationDate' );"/>
+		
+			<input type='hidden' id='checkbox199' name='checkbox199' value="false" />
+			<input type='hidden' id='deps199' name='deps199' />
+			<input type='hidden' id='pa45' name='pa45' value = "$!patientAttributeValueMap.get( 45 )" />
+			<input type='hidden' id='pa113' name='pa113' value = "$!patientAttributeValueMap.get( 113 )" />
+		
+		</td>
+	</tr>
+		
+	
+
+	<tr>
+		<td>RTI/STI Training</td>
+		<!--<td>&nbsp;</td>-->
+		<td colspan="2">
+			
+			#set( $dataElement = "")
+			#set( $valueList = "")
+			
+			#set( $dataElement = $dataElementMap.get( 180 ) )
+			#set( $valueList = $!patientDataValueMap.get( 180 ) )
+			
+			<select id="deps180" name="deps180" disabled = "disabled" title="Date of last Updation : $!valueList.get( 1 )" onchange="selectTrainingStatus( 'checkbox180','checkbox195', 'deps180' , 'deps195', 'pa46', 'pa114', 'updationDate' );">
+				<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+				#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+					#if($optionVal == $valueList.get( 0 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+			</select>
+		</td>
+		<!--<td style="display:none;"><input type="text" id="deps197:111" name="deps197:111" value = "$!selectedPeriod" /></td>-->
+		<td><input type='checkbox' id='checkbox180' name='checkbox180' onchange="selectTrainingStatus( 'checkbox180','checkbox195', 'deps180' , 'deps195', 'pa46', 'pa114', 'updationDate' );"/>
+		
+			<input type='hidden' id='checkbox195' name='checkbox195' value="false" />
+			<input type='hidden' id='deps195' name='deps195' />
+			<input type='hidden' id='pa46' name='pa46' value = "$!patientAttributeValueMap.get( 46 )" />
+			<input type='hidden' id='pa114' name='pa114' value = "$!patientAttributeValueMap.get( 114 )" />
+		
+		</td>
+	</tr>	
+	
+	
+
+	<tr>
+		<td>RNTCP Training</td>
+		<!--<td>&nbsp;</td>-->
+		<td colspan="2">
+			
+			#set( $dataElement = "")
+			#set( $valueList = "")
+			
+			#set( $dataElement = $dataElementMap.get( 179 ) )
+			#set( $valueList = $!patientDataValueMap.get( 179 ) )
+			
+			<select id="deps179" name="deps179" disabled = "disabled" title="Date of last Updation : $!valueList.get( 1 )" onchange="selectTrainingStatus( 'checkbox179','checkbox194', 'deps179' , 'deps194', 'pa47', 'pa115', 'updationDate' );">
+				<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+				#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+					#if($optionVal == $valueList.get( 0 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+			</select>
+		</td>
+		<!--<td style="display:none;"><input type="text" id="deps197:111" name="deps197:111" value = "$!selectedPeriod" /></td>-->
+		<td><input type='checkbox' id='checkbox179' name='checkbox179'  onchange="selectTrainingStatus( 'checkbox179','checkbox194', 'deps179' , 'deps194', 'pa47', 'pa115', 'updationDate' );"/>
+		
+			<input type='hidden' id='checkbox194' name='checkbox194' value="false" />
+			<input type='hidden' id='deps194' name='deps194' />
+			<input type='hidden' id='pa47' name='pa47' value = "$!patientAttributeValueMap.get( 47 )" />
+			<input type='hidden' id='pa115' name='pa115' value = "$!patientAttributeValueMap.get( 115 )" />
+		
+		</td>
+	</tr>		
+	
+	
+
+	
+	<tr>
+		<td>Family Planning Training</td>
+		<!--<td>&nbsp;</td>-->
+		<td colspan="2">
+			
+			#set( $dataElement = "")
+			#set( $valueList = "")
+			
+			#set( $dataElement = $dataElementMap.get( 175 ) )
+			#set( $valueList = $!patientDataValueMap.get( 175 ) )
+			
+			<select id="deps175" name="deps175" disabled = "disabled" title="Date of last Updation : $!valueList.get( 1 )" onchange="selectTrainingStatus( 'checkbox175','checkbox196', 'deps175' , 'deps196', 'pa48', 'pa116', 'updationDate' );">
+				<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+				#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+					#if($optionVal == $valueList.get( 0 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+			</select>
+		</td>
+		<!--<td style="display:none;"><input type="text" id="deps197:111" name="deps197:111" value = "$!selectedPeriod" /></td>-->
+		<td><input type='checkbox' id='checkbox175' name='checkbox175' onchange="selectTrainingStatus( 'checkbox175','checkbox196', 'deps175' , 'deps196', 'pa48', 'pa116', 'updationDate' );"/>
+		
+			<input type='hidden' id='checkbox196' name='checkbox196' value="false" />
+			<input type='hidden' id='deps196' name='deps196' />
+			<input type='hidden' id='pa48' name='pa48' value = "$!patientAttributeValueMap.get( 48 )" />
+			<input type='hidden' id='pa116' name='pa116' value = "$!patientAttributeValueMap.get( 116 )" />
+		
+		</td>
+	</tr>		
+	
+	
+	<tr>
+		<td>Pulse Polio Training</td>
+		<!--<td>&nbsp;</td>-->
+		<td colspan="2">
+			
+			#set( $dataElement = "")
+			#set( $valueList = "")
+			
+			#set( $dataElement = $dataElementMap.get( 178 ) )
+			#set( $valueList = $!patientDataValueMap.get( 178 ) )
+			
+			<select id="deps178" name="deps178" disabled = "disabled" title="Date of last Updation : $!valueList.get( 1 )" onchange="selectTrainingStatus( 'checkbox178','checkbox213', 'deps178' , 'deps213', 'pa49', 'pa117', 'updationDate' );">
+				<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+				#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+					#if($optionVal == $valueList.get( 0 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+			</select>
+		</td>
+		<!--<td style="display:none;"><input type="text" id="deps197:111" name="deps197:111" value = "$!selectedPeriod" /></td>-->
+		<td><input type='checkbox' id='checkbox178' name='checkbox178' onchange="selectTrainingStatus( 'checkbox178','checkbox213', 'deps178' , 'deps213', 'pa49', 'pa117', 'updationDate' );"/>
+		
+			<input type='hidden' id='checkbox213' name='checkbox213' value="false" />
+			<input type='hidden' id='deps213' name='deps213' />
+			<input type='hidden' id='pa49' name='pa49' value = "$!patientAttributeValueMap.get( 49 )" />
+			<input type='hidden' id='pa117' name='pa117' value = "$!patientAttributeValueMap.get( 117 )" />
+		
+		</td>
+	</tr>			
+
+	<tr>
+		<td>Any Other Training 1</td>
+		<td>
+			#set( $dataElement = "")
+			#set( $valueList = "")
+			
+			#set( $dataElement = $dataElementMap.get( 223 ) )
+			#set( $valueList = $!patientDataValueMap.get( 223 ) )
+			
+			<input type="text" id="deps223" name="deps223" value = "$!valueList.get( 0 )" title="Date of last Updation : $!valueList.get( 1 )" onkeyup="selectAnyOtherTrainingStatus( 'checkbox209','checkbox210', 'checkbox223', 'deps209' , 'deps210', 'deps223', 'pa51', 'pa119', 'pa224', 'updationDate' );" disabled = "disabled"  />
+		</td>
+		
+		<td>
+			
+			#set( $dataElement = "")
+			#set( $valueList = "")
+			
+			#set( $dataElement = $dataElementMap.get( 209 ) )
+			#set( $valueList = $!patientDataValueMap.get( 209 ) )
+			
+			<select id="deps209" name="deps209" disabled = "disabled" title="Date of last Updation : $!valueList.get( 1 )" onchange="selectAnyOtherTrainingStatus( 'checkbox209','checkbox210', 'checkbox223', 'deps209' , 'deps210', 'deps223', 'pa51', 'pa119', 'pa224', 'updationDate' );">
+				<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+				#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+					#if($optionVal == $valueList.get( 0 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+			</select>
+		</td>
+		<!--<td style="display:none;"><input type="text" id="deps197:111" name="deps197:111" value = "$!selectedPeriod" /></td>-->
+		<td><input type='checkbox' id='checkbox209' name='checkbox209' onchange="selectAnyOtherTrainingStatus( 'checkbox209','checkbox210', 'checkbox223', 'deps209' , 'deps210', 'deps223', 'pa51', 'pa119', 'pa224', 'updationDate' );"/>
+		
+			<input type='hidden' id='checkbox210' name='checkbox210' value="false" />
+			<input type='hidden' id='deps210' name='deps210' />
+			
+			<input type='hidden' id='checkbox223' name='checkbox223' value="false" />
+			
+			<input type='hidden' id='pa51' name='pa51' value = "$!patientAttributeValueMap.get( 51 )" />
+			<input type='hidden' id='pa119' name='pa119' value = "$!patientAttributeValueMap.get( 119 )" />
+			<input type='hidden' id='pa224' name='pa224' value = "$!patientAttributeValueMap.get( 224 )" />
+			
+		
+		</td>
+	</tr>	
+
+	
+	
+	<tr>
+		<td>Any Other Training 2</td>
+		<td>
+			#set( $dataElement = "")
+			#set( $valueList = "")
+			
+			#set( $dataElement = $dataElementMap.get( 214 ) )
+			#set( $valueList = $!patientDataValueMap.get( 214 ) )
+			
+			<input type="text" id="deps214" name="deps214" value = "$!valueList.get( 0 )" title="Date of last Updation : $!valueList.get( 1 )" onkeyup="selectAnyOtherTrainingStatus( 'checkbox217','checkbox220', 'checkbox214', 'deps217' , 'deps220', 'deps214', 'pa215', 'pa218', 'pa221', 'updationDate' );" disabled = "disabled"  />
+		</td>
+		
+		<td>
+			#set( $dataElement = "")
+			#set( $valueList = "")
+			
+			#set( $dataElement = $dataElementMap.get( 217 ) )
+			#set( $valueList = $!patientDataValueMap.get( 217 ) )
+			
+			<select id="deps217" name="deps217" disabled = "disabled" title="Date of last Updation : $!valueList.get( 1 )" onchange="selectAnyOtherTrainingStatus( 'checkbox217','checkbox220', 'checkbox214', 'deps217' , 'deps220', 'deps214', 'pa215', 'pa218', 'pa221', 'updationDate' );">
+				<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+				#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+					#if($optionVal == $valueList.get( 0 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+			</select>
+		</td>
+		<!--<td style="display:none;"><input type="text" id="deps197:111" name="deps197:111" value = "$!selectedPeriod" /></td>-->
+		<td><input type='checkbox' id='checkbox217' name='checkbox217' onchange="selectAnyOtherTrainingStatus( 'checkbox217','checkbox220', 'checkbox214', 'deps217' , 'deps220', 'deps214', 'pa215', 'pa218', 'pa221', 'updationDate' );"/>
+		
+			<input type='hidden' id='checkbox220' name='checkbox220' value="false" />
+			<input type='hidden' id='deps220' name='deps220' />
+			
+			
+			<input type='hidden' id='checkbox214' name='checkbox214' value="false" />
+			
+			<input type='hidden' id='pa215' name='pa215' value = "$!patientAttributeValueMap.get( 215 )" />
+			<input type='hidden' id='pa218' name='pa218' value = "$!patientAttributeValueMap.get( 218 )" />
+			<input type='hidden' id='pa221' name='pa221' value = "$!patientAttributeValueMap.get( 221 )" />
+			
+		
+		</td>
+	</tr>	
+	
+	
+
+	<tr>
+		<td>Any Other Training 3</td>
+		<td>
+			#set( $dataElement = "")
+			#set( $valueList = "")
+			
+			#set( $dataElement = $dataElementMap.get( 215 ) )
+			#set( $valueList = $!patientDataValueMap.get( 215 ) )
+			
+			<input type="text" id="deps215" name="deps215" value = "$!valueList.get( 0 )" title="Date of last Updation : $!valueList.get( 1 )" onkeyup="selectAnyOtherTrainingStatus( 'checkbox218','checkbox221', 'checkbox215', 'deps218' , 'deps221', 'deps215', 'pa216', 'pa219', 'pa222', 'updationDate' );" disabled = "disabled"  />
+		</td>
+		
+		<td>
+			#set( $dataElement = "")
+			#set( $valueList = "")
+			
+			#set( $dataElement = $dataElementMap.get( 218 ) )
+			#set( $valueList = $!patientDataValueMap.get( 218 ) )
+			
+			<select id="deps218" name="deps218" disabled = "disabled"  title="Date of last Updation : $!valueList.get( 1 )" onchange="selectAnyOtherTrainingStatus( 'checkbox218','checkbox221', 'checkbox215', 'deps218' , 'deps221', 'deps215', 'pa216', 'pa219', 'pa222', 'updationDate' );">
+				<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+				#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+					#if($optionVal == $valueList.get( 0 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+			</select>
+		</td>
+		<!--<td style="display:none;"><input type="text" id="deps197:111" name="deps197:111" value = "$!selectedPeriod" /></td>-->
+		<td><input type='checkbox' id='checkbox218' name='checkbox218' onchange="selectAnyOtherTrainingStatus( 'checkbox218','checkbox221', 'checkbox215', 'deps218' , 'deps221', 'deps215', 'pa216', 'pa219', 'pa222', 'updationDate' );"/>
+		
+			<input type='hidden' id='checkbox221' name='checkbox221' value="false" />
+			<input type='hidden' id='deps221' name='deps221' />
+			
+			
+			<input type='hidden' id='checkbox215' name='checkbox215' value="false" />
+			
+			<input type='hidden' id='pa216' name='pa216' value = "$!patientAttributeValueMap.get( 216 )" />
+			<input type='hidden' id='pa219' name='pa219' value = "$!patientAttributeValueMap.get( 219 )" />
+			<input type='hidden' id='pa222' name='pa222' value = "$!patientAttributeValueMap.get( 222 )" />
+			
+		
+		</td>
+	</tr>	
+		
+	
+	
+	<tr>
+		<td>Any Other Training 4</td>
+		<td>
+			#set( $dataElement = "")
+			#set( $valueList = "")
+			
+			#set( $dataElement = $dataElementMap.get( 216 ) )
+			#set( $valueList = $!patientDataValueMap.get( 216 ) )
+			
+			<input type="text" id="deps216" name="deps216" value = "$!valueList.get( 0 )" title="Date of last Updation : $!valueList.get( 1 )" onkeyup="selectAnyOtherTrainingStatus( 'checkbox219','checkbox222', 'checkbox216', 'deps219' , 'deps222', 'deps216', 'pa217', 'pa220', 'pa223', 'updationDate' );" disabled = "disabled"  />
+		</td>
+		
+		<td>
+			#set( $dataElement = "")
+			#set( $valueList = "")
+			
+			#set( $dataElement = $dataElementMap.get( 219 ) )
+			#set( $valueList = $!patientDataValueMap.get( 219 ) )
+			
+			<select id="deps219" name="deps219" disabled = "disabled" title="Date of last Updation : $!valueList.get( 1 )" onchange="selectAnyOtherTrainingStatus( 'checkbox219','checkbox222', 'checkbox216', 'deps219' , 'deps222', 'deps216', 'pa217', 'pa220', 'pa223', 'updationDate' );">
+				<option value="" selected="selected">[$i18n.getString( "please_select" )]</option>
+				#foreach( $optionVal in $dataElement.optionSet.getOptions() )
+					#if($optionVal == $valueList.get( 0 ))
+						<option value="$optionVal" selected = "selected">$optionVal</option>
+					#else 
+						<option value="$optionVal" >$optionVal</option>
+					#end
+            	#end
+			</select>
+		</td>
+		<!--<td style="display:none;"><input type="text" id="deps197:111" name="deps197:111" value = "$!selectedPeriod" /></td>-->
+		<td><input type='checkbox' id='checkbox219' name='checkbox219' onchange="selectAnyOtherTrainingStatus( 'checkbox219','checkbox222', 'checkbox216', 'deps219' , 'deps222', 'deps216', 'pa217', 'pa220', 'pa223', 'updationDate' );"/>
+		
+			<input type='hidden' id='checkbox222' name='checkbox222' value="false" />
+			<input type='hidden' id='deps222' name='deps222' />
+			
+			
+			<input type='hidden' id='checkbox216' name='checkbox216' value="false" />
+			
+			<input type='hidden' id='pa217' name='pa217' value = "$!patientAttributeValueMap.get( 217 )" />
+			<input type='hidden' id='pa220' name='pa220' value = "$!patientAttributeValueMap.get( 220 )" />
+			<input type='hidden' id='pa223' name='pa223' value = "$!patientAttributeValueMap.get( 223 )" />
+			
+		
+		</td>
+	</tr>	
+			
+	
+	
+</table>	
