@@ -1,0 +1,19 @@
+#if( $auth.hasAccess( "dhis-web-caseentry", "anonymousRegistration" ) )
+<h2>$i18n.getString( "data_entry" )&nbsp;</h2>
+#end
+<ul>
+	#if( $auth.hasAccess( "dhis-web-caseentry", "anonymousRegistration" ) )
+		<li><a href="anonymousRegistration.action">$i18n.getString( "anonymous_events" )</a></li>
+	#end
+</ul>
+
+#if( $auth.hasAccess( "dhis-web-caseentry", "reportSelect" ) 
+	|| $auth.hasAccess( "dhis-web-caseentry", "generateTabularReport" ) )	
+<h2>$i18n.getString( "reports" )&nbsp;</h2>
+#end
+<ul>
+	#if( $auth.hasAccess( "dhis-web-caseentry", "generateTabularReport" ) )
+	<li><a href="app/index.html"> $i18n.getString( "tabular_report" )&nbsp;</a></li>
+	#end
+</ul>
+

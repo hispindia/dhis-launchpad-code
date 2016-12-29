@@ -1,0 +1,47 @@
+#set( $baseLayersSize = $baseLayers.size() )
+#set( $overlaysSize = $overlays.size() )
+#set( $rootNodesSize = $rootNodes.size() )
+#if($callback)$!{callback}
+(
+#end
+{
+  "contextPath":"$!{contextPath}",
+  "systemSettings": {
+    "infrastructuralDataElementGroup": "$!{infrastructuralDataElementGroup.uid}",
+    "infrastructuralPeriodType": "$!{infrastructuralPeriodType.name}"
+  },
+  "overlays": [
+#foreach( $overlay in $overlays )
+    {
+      "data": {
+        "id": "$!{overlay.id}",
+        "name": "$!encoder.jsonEncode( ${overlay.name} )",
+        "url": "$!encoder.jsonEncode( ${overlay.url} )",
+        "fillColor": "$!encoder.jsonEncode( ${overlay.fillColor} )",
+        "fillOpacity": "$!{overlay.fillOpacity}",
+        "strokeColor": "$!encoder.jsonEncode( ${overlay.strokeColor} )",
+        "strokeWidth": "$!{overlay.strokeWidth}"
+      }
+    }#if( $velocityCount < $overlaysSize ),#end
+#end
+  ],
+  "user": {
+  	"id":"$!currentUser.uid",
+  	"name":"$currentUser.name",
+    "isAdmin": $auth.hasAccess( "dhis-web-mapping", "deleteMapLegendSet" )
+  },
+  "rootNodes": [
+#foreach( $node in $rootNodes )  
+	{
+	  "id": "$!{node.uid}",
+	  "text": "$!encoder.jsonEncode( ${node.name} )",
+	  "level": 1,
+	  "hasChildrenWithCoordinates": $!{node.hasChildrenWithCoordinates()},
+	  "expanded": true
+    }#if( $velocityCount < $rootNodesSize ),#end
+#end
+  ]
+}
+#if($callback)
+)
+#end

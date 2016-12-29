@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+
+<!-- Excel Import details like the xml mapping for import (ID) the name displayed at import (Name) the frequency (type) the the kind of report we are importing (model)
+The excel file name to be checked for verification (fileName) and finally the xml file that we use to check if we are importing the correct report (checkerFileName) -->
+
+<ImportSheets>
+                                <BDImportSheet>
+				        <xmlTemplateName>nwfgorbd.xml</xmlTemplateName>
+					<displayName>MISM Weekly Offtake Report</displayName>
+					<periodType>Daily</periodType>
+                                        <checkerTemplateName>Off.T.31(Ka).xls</checkerTemplateName>
+					<checkerRangeForHeader>0,1-0,1</checkerRangeForHeader>
+					<checkerRangeForData>48,0-70,0</checkerRangeForData>
+                                        <sheetNo>0</sheetNo>
+				</BDImportSheet>
+
+                                 <BDImportSheet>				
+				        <xmlTemplateName>DailyReportNew.xml</xmlTemplateName>
+					<displayName>Daily-Report(New)2012</displayName>
+					<periodType>Daily</periodType>
+                                        <checkerTemplateName>Daily Reports.xls</checkerTemplateName>
+					<checkerRangeForHeader>0,3-0,1</checkerRangeForHeader>
+					<checkerRangeForData>0,0-0,0</checkerRangeForData>
+                                        <sheetNo>0</sheetNo>
+				</BDImportSheet>
+                                
+                                <BDImportSheet>			
+				        <xmlTemplateName>DhakaWRP.xml</xmlTemplateName>
+					<displayName>DHAKA-WRP Report</displayName>
+					<periodType>Daily</periodType>
+                                        <checkerTemplateName>dhaka_wrp.xls</checkerTemplateName>
+					<checkerRangeForHeader>0,0-0,0</checkerRangeForHeader>
+					<checkerRangeForData>0,0-0,0</checkerRangeForData>
+                                        <sheetNo>0</sheetNo>
+				</BDImportSheet>
+
+</ImportSheets>

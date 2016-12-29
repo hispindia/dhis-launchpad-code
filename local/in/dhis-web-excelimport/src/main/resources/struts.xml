@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+  <!-- use the DHIS web portal default -->
+  <include file="dhis-web-commons.xml"/>
+
+    <package name="dhis-web-excelimport" extends="dhis-web-commons"
+        namespace="/dhis-web-excelimport">
+        
+        <action name="index" class="org.hisp.dhis.excelimport.action.NoAction">
+            <result name="success" type="velocity">/main.vm</result>
+            <param name="page">/dhis-web-excelimport/welcome.vm</param>
+            <param name="menu">/dhis-web-excelimport/menu.vm</param>
+        </action>
+
+        <action name="schedulerControlAction"
+                class="org.hisp.dhis.excelimport.action.ControlScheduledTasksAction">
+            <result name="success" type="velocity">/main.vm</result>
+            <param name="page">/dhis-web-excelimport/schedulerControl.vm</param>
+            <param name="menu">/dhis-web-excelimport/menu.vm</param>
+        </action>
+
+        <action name="turnOffEmailDataImportSchedulerAction"
+                class="org.hisp.dhis.excelimport.action.TurnOffEmailDataImportSchedulerAction">
+            <result name="success" type="redirect">schedulerControlAction.action</result>
+        </action>
+
+        <action name="turnOnEmailDataImportSchedulerAction"
+                class="org.hisp.dhis.excelimport.action.TurnOnEmailDataImportSchedulerAction">
+            <result name="success" type="redirect">schedulerControlAction.action</result>
+        </action>
+
+        <action name="turnOffFetchWebDataSchedulerAction"
+                class="org.hisp.dhis.excelimport.action.TurnOffPriceWebServiceSchedulerAction">
+            <result name="success" type="redirect">schedulerControlAction.action</result>
+        </action>
+
+        <action name="turnOnFetchWebDataSchedulerAction"
+                class="org.hisp.dhis.excelimport.action.TurnOnPriceWebServiceSchedulerAction">
+            <result name="success" type="redirect">schedulerControlAction.action</result>
+        </action>
+        
+        <action name="excelImportForm"
+            class="org.hisp.dhis.excelimport.action.ExcelImportFormAction">
+            <result name="success" type="velocity">/main.vm</result>
+            <param name="page">/dhis-web-excelimport/excelImportForm.vm</param>
+            <param name="menu">/dhis-web-excelimport/menuWithTree.vm</param>
+            <param name="javascripts">
+                ../dhis-web-commons/ouwt/ouwt.js,../dhis-web-commons/lists/lists.js,javascript/reports.js,javascript/reports.js,javascript/hashtable.js
+                 ,../dhis-web-commons/util/validate/jquery.validate.js,../dhis-web-commons/util/jquery.metadata.js
+                ,../dhis-web-commons/util/validate/additional-methods.js,../dhis-web-commons/util/validate/messages_locale.js</param>
+            <param name="stylesheets">css/StylesForTags.css</param>
+            <interceptor-ref name="organisationUnitTreeStack"/>
+        </action>
+        
+        <action name="excelResultForm" class="org.hisp.dhis.excelimport.action.ExcelImportResultAction">
+            <result name="success" type="velocity">/main.vm</result>
+            <param name="page">/dhis-web-excelimport/responseStatus.vm</param>
+            <param name="menu">/dhis-web-excelimport/menu.vm</param>
+            <interceptor-ref name="fileUploadStack"/>
+        </action>
+
+        <action name="rejectImport"
+            class="org.hisp.dhis.excelimport.action.RejectAction">
+            <result name="success" type="velocity">/main.vm</result>
+            <param name="page">/dhis-web-excelimport/invalidReport.vm</param>
+            <param name="menu">/dhis-web-excelimport/menuWithTree.vm</param>
+            <param name="javascripts">
+                ../dhis-web-commons/ouwt/ouwt.js,../dhis-web-commons/lists/lists.js,javascript/reports.js,javascript/reports.js,javascript/hashtable.js</param>
+            <param name="stylesheets">css/StylesForTags.css</param>
+            <interceptor-ref name="organisationUnitTreeStack"/>
+            <interceptor-ref name="fileUploadStack"/>
+        </action>
+
+    <!-- Portal Data Import -->
+    <action name="portalDataImportForm"
+        class="org.hisp.dhis.excelimport.portal.action.PortalExcelImportFormAction">
+        <result name="success" type="velocity">/main.vm</result>
+        <param name="page">/dhis-web-excelimport/portalDataImportForm.vm</param>
+        <param name="menu">/dhis-web-excelimport/menu.vm</param>
+        <param name="javascripts">javascript/hashtable.js</param>
+        <param name="stylesheets">css/StylesForTags.css</param>
+    </action>
+
+    <action name="portalExcelImportResult" class="org.hisp.dhis.excelimport.portal.action.PortalExcelImportResultAction">
+        <result name="success" type="velocity">/main.vm</result>
+        <param name="page">/dhis-web-excelimport/portalDataImportResult.vm</param>
+        <param name="menu">/dhis-web-excelimport/menu.vm</param>
+        <interceptor-ref name="fileUploadStack"/>
+    </action>
+
+    <!-- BDExcel Data Import -->
+        <action name="BDDataImportForm"
+                class="org.hisp.dhis.excelimport.fsnisdataimport.action.FSNISExcelImportFormAction">
+            <result name="success" type="velocity">/main.vm</result>
+            <param name="page">/dhis-web-excelimport/BDDataImportForm.vm</param>
+            <param name="menu">/dhis-web-excelimport/menu.vm</param>
+            <param name="javascripts">javascript/hashtable.js</param>
+            <param name="stylesheets">css/StylesForTags.css</param>
+        </action>
+
+        <action name="BDExcelImportResult" class="org.hisp.dhis.excelimport.fsnisdataimport.action.FSNISExcelImportResultAction">
+            <result name="success" type="velocity">/main.vm</result>
+            <param name="page">/dhis-web-excelimport/BDDataImportResult.vm</param>
+            <param name="menu">/dhis-web-excelimport/menu.vm</param>
+            <interceptor-ref name="fileUploadStack"/>
+        </action>
+
+        <action name="filedownload" method="download" class="org.hisp.dhis.excelimport.fsnisdataimport.action.FSNISExcelImportResultAction">
+            <result name="download" type="stream">
+                <param name="contentType">application/octet-stream</param>
+                <param name="inputName">fileInputStream</param>
+                <param name="contentDisposition">attachment;filename=%{filename}</param>
+                <param name="bufferSize">4096</param>
+            </result>
+            <result name="error" type="redirectAction">erroraction</result>
+        </action>
+
+
+      <!-- Dynamic Excel Import -->
+
+        <action name="DynamicExcelImportForm"
+                class="org.hisp.dhis.excelimport.dynamicExcelImport.action.DynamicExcelImportFormAction">
+            <result name="success" type="velocity">/main.vm</result>
+            <param name="page">/dhis-web-excelimport/DynamicExcelImportForm.vm</param>
+            <param name="menu">/dhis-web-excelimport/menu.vm</param>
+            <param name="javascripts">javascript/hashtable.js</param>
+            <param name="stylesheets">css/StylesForTags.css</param>
+        </action>
+
+        <action name="DynamicExcelImportResult" class="org.hisp.dhis.excelimport.dynamicExcelImport.action.DynamicExcelImportResultAction">
+            <result name="success" type="velocity">/main.vm</result>
+            <param name="page">/dhis-web-excelimport/DynamicExcelImportResult.vm</param>
+            <param name="menu">/dhis-web-excelimport/menu.vm</param>
+            <interceptor-ref name="fileUploadStack"/>
+        </action>
+
+        <action name="filedownload" method="download" class="DynamicExcelImportResultAction">
+            <result name="download" type="stream">
+                <param name="contentType">application/octet-stream</param>
+                <param name="inputName">fileInputStream</param>
+                <param name="contentDisposition">attachment;filename=%{filename}</param>
+                <param name="bufferSize">4096</param>
+            </result>
+            <result name="error" type="redirectAction">erroraction</result>
+        </action>
+
+
+        <!-- TCS Data Import -->
+    <action name="tcsDataImportForm"
+        class="org.hisp.dhis.excelimport.tcs.action.TCSXmlImportFormAction">
+        <result name="success" type="velocity">/main.vm</result>
+        <param name="page">/dhis-web-excelimport/tcsDataImportForm.vm</param>
+        <param name="menu">/dhis-web-excelimport/menu.vm</param>
+        <param name="stylesheets">css/StylesForTags.css</param>
+        <param name="requiredAuthorities">F_DATAINTEGRATION_TNHMIS</param>
+    </action>
+    <action name="tcsXmlImportResult" class="org.hisp.dhis.excelimport.tcs.action.TCSXmlImportResultAction">
+        <result name="success" type="velocity">/main.vm</result>
+        <param name="page">/dhis-web-excelimport/tcsDataImportResult.vm</param>
+        <param name="menu">/dhis-web-excelimport/menu.vm</param>
+        <interceptor-ref name="fileUploadStack"/>
+    </action>
+
+    <!-- AJAX Requests -->
+        <action name="getDataElements"
+            class="org.hisp.dhis.excelimport.action.GetDataElementsAction">
+            <result name="success" type="velocity-xml">/dhis-web-excelimport/responseDataElement.vm</result>
+            <param name="onExceptionReturn">plainTextError</param>
+        </action>
+
+        <action name="getPeriods"
+            class="org.hisp.dhis.excelimport.action.GetPeriodsAction">
+            <result name="success" type="velocity-xml">/dhis-web-excelimport/responsePeriod.vm</result>
+            <param name="onExceptionReturn">plainTextError</param>
+        </action>
+
+        <action name="getReports"
+            class="org.hisp.dhis.excelimport.action.GetReportsAction">
+            <result name="success" type="velocity-xml">/dhis-web-excelimport/responseImportReport.vm</result>
+            <param name="javascripts">../dhis-web-commons/ouwt/ouwt.js,javascript/reports.js,../dhis-web-commons/lists/lists.js,javascript/hashtable.js</param>
+            <param name="onExceptionReturn">plainTextError</param>
+        </action>
+
+        <action name="getOrgUnitDetails"
+            class="org.hisp.dhis.excelimport.action.GetOrgUnitsAction">
+            <result name="success" type="velocity-xml">/dhis-web-excelimport/responseOrgUnit.vm</result>
+            <param name="onExceptionReturn">plainTextError</param>
+        </action>
+
+    </package>
+</struts>

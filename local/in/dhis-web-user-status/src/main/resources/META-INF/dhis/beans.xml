@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+
+	<!-- Common Action  -->
+	
+	<bean id="org.hisp.dhis.userstatus.action.HomePageAction"
+        class="org.hisp.dhis.userstatus.action.HomePageAction"
+        scope="prototype">
+    </bean>
+
+    <bean id="org.hisp.dhis.userstatus.action.ExportToExcelAction"
+          class="org.hisp.dhis.userstatus.action.ExportToExcelAction"
+          scope="prototype">
+    </bean>
+
+    <bean id="org.hisp.dhis.userstatus.action.LastLoginReportAction"
+          class="org.hisp.dhis.userstatus.action.LastLoginReportAction"
+          scope="prototype">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+          </bean>
+
+    <bean id="org.hisp.dhis.userstatus.action.DataUpdateSummaryFormAction"
+          class="org.hisp.dhis.userstatus.action.DataUpdateSummaryFormAction"
+          scope="prototype">
+        <property name="dataSetService" ref="org.hisp.dhis.dataset.DataSetService"/>
+        <property name="userService" ref="org.hisp.dhis.user.UserService"/>
+            </bean>
+
+    <bean id="org.hisp.dhis.userstatus.action.DataUpdateSummaryByUserAction"
+          class="org.hisp.dhis.userstatus.action.DataUpdateSummaryByUserAction"
+          scope="prototype">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+        <property name="userService" ref="org.hisp.dhis.user.UserService"/>
+        <property name="dataSetService" ref="org.hisp.dhis.dataset.DataSetService"/>
+    </bean>
+
+    <bean id="org.hisp.dhis.userstatus.action.UserUpdateSummaryByDataSetsAction"
+          class="org.hisp.dhis.userstatus.action.UserUpdateSummaryByDataSetsAction"
+          scope="prototype">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+        <property name="userService" ref="org.hisp.dhis.user.UserService"/>
+        <property name="dataSetService" ref="org.hisp.dhis.dataset.DataSetService"/>
+    </bean>
+
+    <bean id="org.hisp.dhis.userstatus.util.SendDataStatusEmail"
+          class="org.hisp.dhis.userstatus.util.SendDataStatusEmail"
+          scope="prototype">
+    </bean>
+
+    <bean id="org.hisp.dhis.userstatus.util.ConstructStatusMailContentAction"
+          class="org.hisp.dhis.userstatus.util.ConstructStatusMailContentAction"
+          scope="prototype">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+        <property name="userService" ref="org.hisp.dhis.user.UserService"/>
+        <property name="dataSetService" ref="org.hisp.dhis.dataset.DataSetService"/>
+        <property name="configurationService" ref="org.hisp.dhis.config.ConfigurationService"/>
+
+    </bean>
+
+    <!-- SCHEDULER FOR MAIL ALERT -->
+
+    <task:scheduled-tasks>
+        <!--
+        <task:scheduled ref="org.hisp.dhis.userstatus.util.ConstructStatusMailContentAction" method="constructMessage" cron="0 0 8 ? * MON,TUE,WED,THU,SUN" />
+        -->
+
+        <task:scheduled ref="org.hisp.dhis.userstatus.util.ConstructStatusMailContentAction" method="constructMessage" cron="0 0 8 ? * MON,TUE,WED,THU,SUN" />
+    </task:scheduled-tasks>
+
+
+</beans>

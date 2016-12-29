@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<include file="dhis-web-commons.xml"/>
+	
+	<package name="dhis-web-user-status" extends="dhis-web-commons"
+		namespace="/dhis-web-user-status">
+		
+		<!-- Index action -->
+		<action name="index"
+            class="org.hisp.dhis.userstatus.action.HomePageAction">
+            <result name="success" type="velocity">/main.vm</result>
+			<param name="page">/dhis-web-user-status/welcome.vm</param>
+			<param name="menu">/dhis-web-user-status/menu.vm</param>
+	    </action>
+
+        <action name="exportToWorkBook" class="org.hisp.dhis.userstatus.action.ExportToExcelAction">
+            <result name="success" type="stream">
+                <param name="contentType">application/vnd.ms-excel</param>
+                <param name="inputName">inputStream</param>
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+                <param name="bufferSize">1024</param>
+            </result>
+        </action>
+
+        <action name="getLoginReport"
+                class="org.hisp.dhis.userstatus.action.LastLoginReportAction">
+            <result name="success" type="velocity">/main.vm</result>
+            <param name="page">/dhis-web-user-status/loginReport.vm</param>
+            <param name="hideMenu">true</param>
+        </action>
+
+        <action name="updateSummaryForm"
+                class="org.hisp.dhis.userstatus.action.DataUpdateSummaryFormAction">
+            <result name="success" type="velocity">/main.vm</result>
+            <param name="page">/dhis-web-user-status/updateSummaryForm.vm</param>
+            <param name="menu">/dhis-web-user-status/menu.vm</param>
+        </action>
+
+        <action name="updateSummaryByUser"
+                class="org.hisp.dhis.userstatus.action.DataUpdateSummaryByUserAction">
+            <result name="success" type="velocity">/main.vm</result>
+            <param name="page">/dhis-web-user-status/updateSummaryByUserResult.vm</param>
+            <param name="hideMenu">true</param>
+        </action>
+
+        <action name="updateSummaryByDataSet"
+                class="org.hisp.dhis.userstatus.action.UserUpdateSummaryByDataSetsAction">
+            <result name="success" type="velocity">/main.vm</result>
+            <param name="page">/dhis-web-user-status/updateSummaryByDataSetsResult.vm</param>
+            <param name="hideMenu">true</param>
+        </action>
+		
+	</package>
+	
+</struts>

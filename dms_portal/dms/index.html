@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <meta charset="UTF-8">
+
+    <title>FPMU Public Data Portal</title>
+
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/strapped.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="css/bootstrap-multiselect.css" rel="stylesheet" type=
+            "text/css">
+    <link href="css/tablecloth.css" rel="stylesheet" type="text/css">
+    <link href="css/lionbars.css" rel="stylesheet">
+    <link href="css/jquery.dataTables.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap-select.min.css" rel="stylesheet" type="text/css">
+    <link href="css/selectize.css" rel="stylesheet" type="text/css">
+
+
+    <script src="js/jquery.js" type="text/javascript"></script>
+    <script src="js/typeahead.bundle.js" type="text/javascript"></script>
+    <script src="js/moment.min.js" type="text/javascript"></script>
+    <script src="js/bootstrap.js" type="text/javascript"></script>
+    <script src="js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+    <script src="js/jquery.tablecloth.js" type="text/javascript"></script>
+    <script src="js/jquery.tablesorter.js" type="text/javascript"></script>
+    <script src="js/bootstrap-multiselect.js" type="text/javascript"></script>
+    <script src="js/jquery.lionbars.0.3.js" type="text/javascript"></script>
+    <script src="js/jquery.dataTables.js" type="text/javascript"></script>
+    <script src="js/bootstrap-select.min.js" type="text/javascript"></script>
+    <script src="js/moment.min.js" type="text/javascript"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="js/selectize.js"></script>
+    <script src="js/themes/sand-signika.js"></script>
+    <script src="js/jquery.zrssfeed.js"></script>
+    <script src="js/jquery.newsTicker.js"></script>
+    <script src="js/dmsPortal.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#rssContent').rssfeed('https://news.google.com.bd/news?q=food+security&output=rss', {
+                limit: 20
+            });
+
+            $('#rssContent').newsTicker({
+                row_height: 48,
+                max_rows: 2,
+                speed: 600,
+                direction: 'up',
+                duration: 4000,
+                autostart: 1,
+                pauseOnHover: 0,
+                start: function() {
+                    console.log('newsTicker just started !');
+                },
+                pause: function() {
+                    console.log('newsTicker has been paused.');
+                }
+            });
+        });
+    </script>
+
+</head>
+
+<body data-twttr-rendered="true" style="background-color: #F0F3F5">
+
+<div class="main" id="main">
+    <div class="grid" id="header">
+        <div class="span8" id="logo">
+            <div class="partner">
+                <p class="first animated fadeInUp floatLeft">Food Security and Nutrition Data Portal</p>
+
+                <p class="second animated fadeInUp floatLeft">Food Planning Monitoring Unit (FPMU), Ministry of Food,
+                    People's Republic of Bangladesh</p>
+
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid" id="navigation">
+        <div class="menu style-1">
+            <ul class="menu">
+                <li class="green customMenu"><a class="navTitle" href="/dms/index.html">Portal Home</a></li>
+                <li class="customMenu"><a class="navTitle" href="/dms/portal.html">Simple Search</a></li>
+                <li class="customMenu"><a class="navTitle" href="/dms/advanced.html">Advanced Search</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="grid" id="content">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="promoBox" id="infoBox">
+                    <div class="head">
+                        <div class="heading">
+                            About the Portal&nbsp;
+                            <span class="glyphicon glyphicon-bullhorn"></span>
+                        </div>
+                    </div>
+                    <div class="body">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-7">
+                <div class="promoBox" id="updateBox">
+                    <div class="head">
+                        <div class="heading">
+                            Update History&nbsp;
+                            <span class="glyphicon glyphicon-record"></span>
+                        </div>
+                    </div>
+                    <div class="body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="promoBox" id="sourceBox">
+                    <div class="head">
+                        <div class="heading">
+                            Useful Links
+                            <span class="glyphicon glyphicon-bookmark"></span>
+                        </div>
+                    </div>
+                    <div class="body">
+                        <p><strong>Government of Bangladesh</strong></p>
+                        <ul>
+                            <li><a href="http://www.fd.gov.bd/" target="_blank">Ministry of Food and Disaster Management</a></li>
+                            <li><a href="http://www.moa.gov.bd/">Ministry of Agriculture</a></li>
+                            <li><a href="http://www.mofl.gov.bd">Ministry of Fisheries and Livestock</a></li>
+                            <li><a href="http://www.mohfw.gov.bd/">Ministry of Health and Family Welfare</a>&nbsp;</li>
+                            <li><a href="http://www.mowr.gov.bd/">Ministry of Water Resources</a></li>
+                            <li><a href="http://www.bbs.gov.bd/Home.aspx">Bureau of Statistics</a></li>
+                        </ul>
+                        <p><strong>United Nations</strong></p>
+                        <ul>
+                            <li><a href="http://www.fao.org/">Food and Agriculture Organization (FAO) of the United Nations</a></li>
+                            <li><a href="http://www.fao.org/world/regional/rap/en/">FAO Regional Office Asia and Pacific</a></li>
+                            <li><a href="http://www.fao.org/countryprofiles/index.asp?iso3=BGD">FAO in Bangladesh</a></li>
+                            <li><a href="http://www.wfp.org/">World Food Programme</a></li>
+                            <li><a href="http://www.un-bd.org/">UN in Bangladesh</a></li>
+                        </ul>
+                        <p><strong>Developing Partners</strong></p>
+                        <ul>
+                            <li><a href="http://ec.europa.eu/europeaid/index_en.htm">European Union</a></li>
+                            <li><a href="http://www.eudelbangladesh.org/en/projects/index.htm">European Commission&rsquo;s Delegation to Bangladesh</a></li>
+                            <li><a href="http://www.usaid.gov">USAID</a></li>
+                            <li><a href="http://www.usaid.gov/bd/">USAID in Bangladesh</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="promoBox" id="newsBox">
+                    <div class="head">
+                        <div class="heading">
+                            Food Security News&nbsp;
+                            <span class="glyphicon glyphicon-globe"></span>
+                        </div>
+                    </div>
+                    <div class="body" id="rssContent">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="clear"></div>
+
+    <div class="grid" id="footer">
+    </div>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,2026 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Fortnightly Report Writeup Page</title>
+    <style type="text/css">
+        <!--
+        .style24 {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            font-size: small;
+        }
+
+        .style26 {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: small;
+        }
+
+        .style39 {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .style40 {
+            color: #009933
+        }
+
+        .style42 {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            font-size: small;
+            color: #0066CC;
+            font-style: italic;
+        }
+
+        .style44 {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .style46 {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .style48 {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            font-style: italic;
+        }
+
+        .style64 {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .style68 {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 13px;
+        }
+
+        .style69 {
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .style74 {
+            font-size: 13px
+        }
+       -->
+    </style>
+</head>
+
+<body>
+<form id="fortnightlyForm" name="fortnightlyForm" action="saveFortnightlyComments.action" method="post">
+<table width="70%" align="center">
+    <tr>
+        <td height="38" bgcolor="99FF99">
+            <div align="center" class="style39">Fortnightly Foodgrain Outlook</div>
+        </td>
+    </tr>
+    <tr>
+        <td><span class="style24"><em>Issue No. </em> <input type="text" id="FR_TEXT_1" name="FR_TEXT_1"
+                                                             value="$outputResultMap.get('FR_TEXT_1')"/></span></td>
+    </tr>
+    <tr>
+        <td><span class="style24" style="float:left">Report Publication Day $outputResultMap.get('date')</span> <span
+                class="style24"
+                style="float:right">Report Generation Day $outputResultMap.get('reportGeneratedDate')</span></td>
+    </tr>
+    <tr>
+        <td>
+            <div align="center" class="style24">HIGHLIGHTS</div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+        <!--<div id="FR_TEXT_2" name="FR_TEXT_2" class="textarea" contenteditable><ul> <li> $outputResultMap.get('FR_TEXT_2')<br/> </li></ul> </div> -->
+        <textarea id="FR_TEXT_2" name="FR_TEXT_2" rows="4" cols="120">$outputResultMap.get('FR_TEXT_2')</textarea>
+        </td> 
+    </tr>
+    <tr>
+        <td>
+            <div align="center" class="style24">SUMMARY</div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div align="left" class="style24">RICE PRICE</div>
+        </td>
+    </tr>
+    <tr>
+        <td><textarea id="FR_TEXT_3" name="FR_TEXT_3" rows="1" cols="120">$outputResultMap.get('FR_TEXT_3')</textarea>
+        </td>
+    </tr>
+    <tr>
+        <td><span class="style24">ATTA PRICE</span></td>
+    </tr>
+    <tr>
+        <td><textarea id="FR_TEXT_4" name="FR_TEXT_4" rows="1" cols="120">$outputResultMap.get('FR_TEXT_4')</textarea>
+        </td>
+    </tr>
+    <tr>
+        <td><span class="style24">INTERNATIONAL RICE PRICE</span></td>
+    </tr>
+    <tr>
+        <td><textarea id="FR_TEXT_5" name="FR_TEXT_5" rows="1" cols="120">$outputResultMap.get('FR_TEXT_5')</textarea>
+        </td>
+    </tr>
+    <tr>
+        <td><span class="style24">INTERNATIONAL WHEAT PRICES</span></td>
+    </tr>
+    <tr>
+        <td><textarea id="FR_TEXT_6" name="FR_TEXT_6" rows="1" cols="120">$outputResultMap.get('FR_TEXT_6')</textarea>
+        </td>
+    </tr>
+    <tr>
+        <td><span class="style24">RICE TRADE PROSPECTS</span></td>
+    </tr>
+    <tr>
+        <td><textarea id="FR_TEXT_7" name="FR_TEXT_7" rows="1" cols="120">$outputResultMap.get('FR_TEXT_7')</textarea>
+        </td>
+    </tr>
+    <tr>
+        <td><span class="style24">WHEAT TRADE PROSPECTS</span></td>
+    </tr>
+    <tr>
+        <td><textarea id="FR_TEXT_8" name="FR_TEXT_8" rows="1" cols="120">$outputResultMap.get('FR_TEXT_8')</textarea>
+        </td>
+    </tr>
+    <tr>
+        <td><span class="style24">RICE IMPORTS</span></td>
+    </tr>
+    <tr>
+        <td><textarea id="FR_TEXT_9" name="FR_TEXT_9" rows="1" cols="120">$outputResultMap.get('FR_TEXT_9')</textarea>
+        </td>
+    </tr>
+    <tr>
+        <td><span class="style24">WHEAT IMPORTS</span></td>
+    </tr>
+    <tr>
+        <td><textarea id="FR_TEXT_10" name="FR_TEXT_10" rows="1"
+                      cols="120">$outputResultMap.get('FR_TEXT_10')</textarea></td>
+    </tr>
+    <tr>
+        <td><span class="style24">GOVERNMENT INTERVENTION</span></td>
+    </tr>
+    <tr>
+        <td><textarea id="FR_TEXT_11" name="FR_TEXT_11" rows="1"
+                      cols="120">$outputResultMap.get('FR_TEXT_11')</textarea></td>
+    </tr>
+    <tr>
+        <td><span class="style24">GOVERNMENT STOCK</span></td>
+    </tr>
+    <tr>
+        <td><textarea id="FR_TEXT_12" name="FR_TEXT_12" rows="1"
+                      cols="120">$outputResultMap.get('FR_TEXT_12')</textarea></td>
+    </tr>
+    <tr>
+        <td><span class="style24">SEASONAL CROP PROCUREMENT</span></td>
+    </tr>
+    <tr>
+        <td><textarea id="FR_TEXT_13" name="FR_TEXT_13" rows="1"
+                      cols="120">$outputResultMap.get('FR_TEXT_13')</textarea></td>
+    </tr>
+    <tr>
+        <td align="center"><span class="style24"><em><span class="style40">Food Planning and Monitoring Unit (FPMU), Food Division, Ministry of Food and Disaster Management, in collaboration with <br/> FAO National Food Policy Capacity Strengthening Programme (NFPCSP)</span><br/>
+        </em></span></td>
+    </tr>
+    <tr>
+        <td align="center"><span class="style42"><a href="http://www.mofdm.gov.bd/">http://www.mofdm.gov.bd/</a>  &amp; <a href="http://www.nfpcsp.org/">http://www.nfpcsp.org/</a></span></td>
+    </tr>
+</table>
+<br/>
+
+<table width="70%" align="center">
+<tr bgcolor="99FF99">
+    <td height="29" colspan="2"><span class="style44">1. Domestic prices: Coarse Rice and Atta</span></td>
+</tr>
+<tr>
+    <td><span class="style46">Figure 1. Change in prices of Coarse Rice  (Dhaka) </span><br/>
+        <img src="imageAction.action?imagePath=$outputResultMap.get('fortnightlychart1path')" alt="image1" height="220"
+             width="400"/></td>
+    <td><span class="style24">Figure 2. Change in prices of Atta (Dhaka)</span><br/><img
+            src="imageAction.action?imagePath=$outputResultMap.get('fortnightlychart2path')" alt="image1" height="220"
+            width="400"/></td>
+</tr>
+<tr>
+    <td><span class="style48">Source: Department of Agricultural Marketing  (DAM)</span></td>
+    <td><span class="style48">Source: Department of Agricultural Marketing  (DAM)</span></td>
+</tr>
+<tr>
+    <td width="50%">
+        <span class="style46">Table 1. Rice and Atta price changes( Dhaka    city)</span>
+        <table width="100%" height="238" border="1" cellpadding="0" cellspacing="0">
+            <tr>
+                <td colspan="2" rowspan="2" class="style26">
+                    <div align="center" class="style64">Price <br/> (Tk/kg)</div>
+                </td>
+                <td colspan="3" class="style26">
+                    <div align="center" class="style64">Change in %</div>
+                </td>
+            </tr>
+            <tr>
+                <td width="24%" class="style26">
+                    <div align="center" class="style64">Over last fortnight</div>
+                </td>
+                <td width="24%" class="style26">
+                    <div align="center" class="style64">Over last month</div>
+                </td>
+                <td width="24%" class="style26">
+                    <div align="center" class="style64">Over last year</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5" class="style26">
+                    <div align="center" class="style64">RICE</div>
+                </td>
+            </tr>
+            <tr>
+                <td width="13%" class="style26">
+                    <div align="center" class="style68">Retail</div>
+                </td>
+                <td width="15%" class="style26">
+                    <div align="center" class="style68">$outputResultMap.get('table1rice1') </div>
+                </td>
+                <td class="style26">
+                    <div align="center" class="style68">$outputResultMap.get('table1calc1')</div>
+                </td>
+                <td class="style26">
+                    <div align="center" class="style68">$outputResultMap.get('table1calc3')</div>
+                </td>
+                <td class="style26">
+                    <div align="center" class="style68">$outputResultMap.get('table1calc5')</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="style26">
+                    <div align="center" class="style68">Wholesale</div>
+                </td>
+                <td class="style26">
+                    <div align="center" class="style68">$outputResultMap.get('table1rice2') </div>
+                </td>
+                <td class="style26">
+                    <div align="center" class="style68">$outputResultMap.get('table1calc2')</div>
+                </td>
+                <td class="style26">
+                    <div align="center" class="style68">$outputResultMap.get('table1calc4')</div>
+                </td>
+                <td class="style26">
+                    <div align="center" class="style68">$outputResultMap.get('table1calc6')</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5" class="style26">
+                    <div align="center" class="style68"><strong>ATTA</strong></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="style26">
+                    <div align="center" class="style68">Retail</div>
+                </td>
+                <td class="style26">
+                    <div align="center" class="style68">$outputResultMap.get('table1atta1') </div>
+                </td>
+                <td class="style26">
+                    <div align="center" class="style68">$outputResultMap.get('table1calc7')</div>
+                </td>
+                <td class="style26">
+                    <div align="center" class="style68">$outputResultMap.get('table1calc9')</div>
+                </td>
+                <td class="style26">
+                    <div align="center" class="style68">$outputResultMap.get('table1calc11')</div>
+                </td>
+            </tr>
+            <tr>
+                <td height="32" class="style26">
+                    <div align="center" class="style68">Wholesale</div>
+                </td>
+                <td class="style26">
+                    <div align="center" class="style68">$outputResultMap.get('table1atta2') </div>
+                </td>
+                <td class="style26">
+                    <div align="center" class="style68">$outputResultMap.get('table1calc8')</div>
+                </td>
+                <td class="style26">
+                    <div align="center" class="style68">$outputResultMap.get('table1calc10')</div>
+                </td>
+                <td class="style26">
+                    <div align="center" class="style68">$outputResultMap.get('table1calc12')</div>
+                </td>
+            </tr>
+        </table>
+        <span class="style48">Source: DAM; Arrows indicate the direction of price change: red if a more than a 5% annual or 1% monthly/fortnightly rise, green if more than a 5% annual or a 1% monthly/fortnightly decrease, yellow otherwise.</span>
+    </td>
+    <td width="50%">
+        <p>&nbsp;</p>
+
+        <p><span class="style46">RICE</span><br/>
+            <textarea id="FR_TEXT_14" name="FR_TEXT_14" rows="4" cols="50">$outputResultMap.get('FR_TEXT_14')</textarea>
+        </p>
+
+        <p><span class="style46">ATTA</span><br/>
+            <textarea id="FR_TEXT_15" name="FR_TEXT_15" rows="7" cols="50">$outputResultMap.get('FR_TEXT_15')</textarea>
+            <br/>
+            <br/>
+            <br/>
+        </p></td>
+</tr>
+<tr bgcolor="99FF99">
+    <td height="30" colspan="2"><span class="style44">2. International prices</span></td>
+</tr>
+<tr>
+    <td><span class="style46">Figure 3. Rice wholesale price in Dhaka and relevant International markets</span><br/>
+        <img src="imageAction.action?imagePath=$outputResultMap.get('fortnightlychart3path')" alt="image1" height="220"
+             width="400"/></td>
+    <td><span class="style46">Figure 4. Wheat wholesale price in Dhaka and relevant International markets</span><br/>
+        <img src="imageAction.action?imagePath=$outputResultMap.get('fortnightlychart4path')" alt="image1" height="220"
+             width="400"/></td>
+</tr>
+<tr>
+    <td colspan="2"><span class="style48">Source: Average fob price; RICE: MIS, DG Food; Government of India, Ministry of Consumer Affairs Food and Public Distribution, Department of Consumer Affairs, USDA, <br/> GAIN Report Price Monitoring Cell, WHEAT: MIS, DG Food; FAO, International Commodity Prices.</span>
+    </td>
+</tr>
+<tr>
+    <td width="50%" height="235">
+        <p>
+            Interpretaion Table for Figure3&nbsp;</p>
+   ## Interpretation Table 3& 4 modified by ganesh 
+        <table border="1" cellpadding="1" cellspacing="1" style="width: 600px;">
+            <thead>
+            <tr>
+                <th scope="row" style="background-color: rgb(204, 204, 204);">
+                    Commodity(RICE)
+                </th>
+               <th scope="col" style="background-color: rgb(204, 204, 204);">
+                    <span style="background-color: rgb(204, 204, 204);">Price in the current fortnight (USD/MT)</span>
+                </th>
+                <th scope="col" style="background-color: rgb(204, 204, 204);">
+                    <span style="background-color: rgb(204, 204, 204);">Price in the previous fortnight (USD/MT)</span>
+                </th>
+                <th scope="col" style="background-color: rgb(204, 204, 204);">
+                    <span style="background-color: rgb(204, 204, 204);">Change over last fortnight(%) in USD/MT</span>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">
+                    Dhaka City Wholesale
+                </th>
+                <td>$outputResultMap.get('ittable3rwc')</td>
+                <td>$outputResultMap.get('ittable3rwlf')</td>
+                <td>$outputResultMap.get('ittable3rw')</td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    Thai 5% Parboiled
+                </th>
+                <td>$outputResultMap.get('ittable3tc')</td>
+                <td>$outputResultMap.get('ittable3tlf')</td>
+                <td>$outputResultMap.get('ittable3t')</td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    Pakistan 5% Parboiled
+                </th>
+                <td>$outputResultMap.get('ittable3pc')</td>
+                <td>$outputResultMap.get('ittable3plf')</td>
+                <td>$outputResultMap.get('ittable3p')</td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    India 5% Parboiled
+                </th>
+                <td>$outputResultMap.get('ittable3ic')</td>
+                <td>$outputResultMap.get('ittable3ilf')</td>
+                <td>$outputResultMap.get('ittable3i')</td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    Kolkata Wholesale PB
+                </th>
+                <td>$outputResultMap.get('ittable3kwc')</td>
+                <td>$outputResultMap.get('ittable3kwlf')</td>
+                <td>$outputResultMap.get('ittable3kw')</td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    Vietnam 5% Parboiled
+                </th>
+                <td>$outputResultMap.get('ittable3vc')</td>
+                <td>$outputResultMap.get('ittable3vlf')</td>
+                <td>$outputResultMap.get('ittable3v')</td>
+            </tr>
+            </tbody>
+        </table>
+        <p>
+            Interpretation Table for Figure 4</p>
+        <table border="1" cellpadding="1" cellspacing="1" style="width: 600px;">
+            <thead>
+            <tr>
+                <th scope="row" style="background-color: rgb(204, 204, 204);">
+                    Commodity(WHEAT)
+                </th>
+                <th scope="col" style="background-color: rgb(204, 204, 204);">
+                    <span style="background-color: rgb(204, 204, 204);">Price in the current fortnight (USD/MT)</span>
+                </th>
+                <th scope="col" style="background-color: rgb(204, 204, 204);">
+                    <span style="background-color: rgb(204, 204, 204);">Price in the previous fortnight (USD/MT)</span>
+                </th>
+                <th scope="col" style="background-color: rgb(204, 204, 204);">
+                    <span style="background-color: rgb(204, 204, 204);">Change over last fortnight(%) in USD/MT</span>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">
+                    Dhaka City Wholesale
+                </th>
+                <td>$outputResultMap.get('ittable3wwc')</td>
+                <td>$outputResultMap.get('ittable3wwlf')</td>
+                <td>$outputResultMap.get('ittable3ww')</td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    Russia Deep-Sea Port
+                </th>
+                 <td>$outputResultMap.get('ittable3rc')</td>
+                 <td>$outputResultMap.get('ittable3rlf')</td>
+                 <td>$outputResultMap.get('ittable3r')</td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    US SRW, US Gulf Port
+                </th>
+                <td>$outputResultMap.get('ittable3src')</td>
+                <td>$outputResultMap.get('ittable3srlf')</td>
+                <td>$outputResultMap.get('ittable3sr')</td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    Ukraine, Deep-Sea Port
+                </th>
+                <td>$outputResultMap.get('ittable3uc')</td>
+                <td>$outputResultMap.get('ittable3ulf')</td>
+                <td>$outputResultMap.get('ittable3u')</td>
+            </tr>
+            </tbody>
+        </table>
+        <span class="style46">Table2.Chicago Board of Trade SRW Futures (USD/MT)</span>
+        <table width="100%" height="117" border="1" cellpadding="0" cellspacing="0">
+            <tr>
+                <td class="style26">
+                    <div align="center"><span class="style64">Closing Price</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style64">$outputResultMap.get('table2month1disp')</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style64">$outputResultMap.get('table2month2disp')</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style64">$outputResultMap.get('table2month3disp')</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style64">$outputResultMap.get('table2month4disp')</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style64">$outputResultMap.get('table2month5disp')</span></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="style26">
+                    <div align="center"><span class="style68">$outputResultMap.get('table2date2disp')</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style68">$outputResultMap.get('table2data6')</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style68">$outputResultMap.get('table2data7')</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style68">$outputResultMap.get('table2data8')</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style68">$outputResultMap.get('table2data9')</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style68">$outputResultMap.get('table2data10')</span></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="style26">
+                    <div align="center"><span class="style68">$outputResultMap.get('table2date1disp')</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style68">$outputResultMap.get('table2data1')</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style68">$outputResultMap.get('table2data2')</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style68">$outputResultMap.get('table2data3')</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style68">$outputResultMap.get('table2data4')</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style68">$outputResultMap.get('table2data5')</span></div>
+                </td>
+            </tr>
+            <tr>
+                <td height="21" class="style26">
+                    <div align="center"><span class="style68">change</span></div>
+                </td>
+                <td class="style68">
+                    <div align="center"></div>
+                </td>
+                <td class="style68">
+                    <div align="center"></div>
+                </td>
+                <td class="style68">
+                    <div align="center"></div>
+                </td>
+                <td class="style68">RICEA
+                    <div align="center"></div>
+                </td>
+                <td class="style68">
+                    <div align="center"></div>
+                </td>
+            </tr>
+        </table>
+        <p class="style46">Table 3.Kansas Board of Trade HRW Futures (USD/MT)</p>
+        <table width="100%" height="123" border="1" cellpadding="0" cellspacing="0">
+            <tr>
+                <td class="style26">
+                    <div align="center"><span class="style69">Closing Price</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style69">$outputResultMap.get('table2month1disp')</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style69">$outputResultMap.get('table2month2disp')</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style69">$outputResultMap.get('table2month3disp')</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style69">$outputResultMap.get('table2month4disp')</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style69">$outputResultMap.get('table2month5disp')</span></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="style26">
+                    <div align="center"><span class="style74">$outputResultMap.get('table2date2disp')</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style74">$outputResultMap.get('table3data6')</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style74">$outputResultMap.get('table3data7')</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style74">$outputResultMap.get('table3data8')</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style74">$outputResultMap.get('table3data9')</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style74">$outputResultMap.get('table3data10')</span></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="style26">
+                    <div align="center"><span class="style74">$outputResultMap.get('table2date1disp')</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style74">$outputResultMap.get('table3data1')</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style74">$outputResultMap.get('table3data2')</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style74">$outputResultMap.get('table3data3')</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style74">$outputResultMap.get('table3data4')</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style74">$outputResultMap.get('table3data5')</span></div>
+                </td>
+            </tr>
+            <tr>
+                <td height="21" class="style26">
+                    <div align="center"><span class="style74">change</span></div>
+                </td>
+                <td class="style68">
+                    <div align="center"></div>
+                </td>
+                <td class="style68">
+                    <div align="center"></div>
+                </td>
+                <td class="style68">
+                    <div align="center"></div>
+                </td>
+                <td class="style68">
+                    <div align="center"></div>
+                </td>
+                <td class="style68">
+                    <div align="center"></div>
+                </td>
+            </tr>
+        </table>
+        <span class="style48">Source: U.S. Wheat Associates Weekly Price Report Conversion rates: 1USD/bu = 36.743 USD/MT</span>
+    </td>
+    <td width="50%">
+        <p><span class="style46">RICE</span><br/>
+            <textarea id="FR_TEXT_16" name="FR_TEXT_16" rows="25" cols="50">$outputResultMap.get('FR_TEXT_16')</textarea>
+        </p>
+
+        <p><span class="style46">WHEAT</span><br/>
+            <textarea id="FR_TEXT_17" name="FR_TEXT_17" rows="15" cols="50">$outputResultMap.get('FR_TEXT_17')</textarea>
+        </p>
+
+        <p><span class="style46">ADDITIONAL COMMENT</span><br/>
+            <textarea id="FR_TEXT_27" name="FR_TEXT_27" rows="10
+            " cols="50">$outputResultMap.get('FR_TEXT_27')</textarea>
+        </p>
+    </td>
+</tr>
+
+<tr bgcolor="99FF99">
+    <td height="32" colspan="2"><span class="style44">3. Global Production and Stocks</span></td>
+</tr>
+<tr>
+    <td width="50%">
+        <span class="style46">Table 4. Rice world production and stocks (million MT)</span>
+        <table width="100%" height="102" border="1" cellpadding="0" cellspacing="0">
+            <tr>
+                <td class="style68">
+                    <div align="center"></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style69">$outputResultMap.get('table4data1')</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style69">$outputResultMap.get('table4data2') estimate</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style69">$outputResultMap.get('table4data3') forecast</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style69">Change $outputResultMap.get('table4data2')
+                        over $outputResultMap.get('table4data3')</span></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="style26">
+                    <div align="center"><span class="style74">Production</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style74">$outputResultMap.get('table4data4')</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style74">$outputResultMap.get('table4data5')</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style74">$outputResultMap.get('table4data6')</span></div>
+                </td>
+                <td class="style68">
+                    <div align="center"></div>
+                </td>
+            </tr>
+            <tr>
+                <td height="33" class="style26">
+                    <div align="center"><span class="style74">Ending stocks</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style74">$outputResultMap.get('table4data7')</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style74">$outputResultMap.get('table4data8')</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style74">$outputResultMap.get('table4data9')</span></div>
+                </td>
+                <td class="style68">
+                    <div align="center"></div>
+                </td>
+            </tr>
+        </table>
+        <span class="style48">Source: $outputResultMap.get('table4data10') , $outputResultMap.get('table4data11')</span><br/>
+        <br/>
+
+        <span class="style46">Table 5. Wheat world production and stocks (million MT)</span>
+        <table width="100%" height="90" border="1" cellpadding="0" cellspacing="0">
+            <tr>
+                <td class="style68">
+                    <div align="center"></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style69">$outputResultMap.get('table5data1')</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style69">$outputResultMap.get('table5data2') estimate</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style69">$outputResultMap.get('table5data3') forecast</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style69">Change $outputResultMap.get('table5data3')
+                        over $outputResultMap.get('table5data2')</span></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="style26">
+                    <div align="center"><span class="style74">Production</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style74">$outputResultMap.get('table5data4')</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style74">$outputResultMap.get('table5data5')</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style74">$outputResultMap.get('table5data6')</span></div>
+                </td>
+                <td class="style68">
+                    <div align="center"></div>
+                </td>
+            </tr>
+            <tr>
+                <td height="28" class="style26">
+                    <div align="center"><span class="style74">Ending stocks</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style74">$outputResultMap.get('table5data7')</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style74">$outputResultMap.get('table5data8')</span></div>
+                </td>
+                <td class="style26">
+                    <div align="center"><span class="style74">$outputResultMap.get('table5data9')</span></div>
+                </td>
+                <td class="style68">
+                    <div align="center"></div>
+                </td>
+            </tr>
+        </table>
+        <span class="style48">Source: $outputResultMap.get('table5data10') , $outputResultMap.get('table5data11')</span>
+    </td>
+    <td width="50%"><p><span class="style46">RICE</span><br/>
+        <textarea id="FR_TEXT_18" name="FR_TEXT_18" rows="6" cols="50">$outputResultMap.get('FR_TEXT_18')</textarea>
+    </p>
+
+        <p><span class="style46">WHEAT</span><br/>
+            <textarea id="FR_TEXT_19" name="FR_TEXT_19" rows="6" cols="50">$outputResultMap.get('FR_TEXT_19')</textarea>
+        </p></td>
+</tr>
+
+<tr bgcolor="99FF99">
+    <td height="36" colspan="2"><span class="style44">4. Trade prospects</span></td>
+</tr>
+<tr>
+    <td width="50%">
+        <span class="style46">Table 6. Main rice annual exporters (million MT, milled)</span>
+        <table width="100%" height="216" border="1" cellpadding="0" cellspacing="0">
+            <tr>
+                <td class="style68">
+                    <div align="center"></div>
+                </td>
+                <td class="style64">
+                    <div align="center">$outputResultMap.get('table6data1')</div>
+                </td>
+                <td class="style64">
+                    <div align="center">$outputResultMap.get('table6data2') estimated</div>
+                </td>
+                <td class="style64">
+                    <div align="center">$outputResultMap.get('table6data1') - $outputResultMap.get('table6data2')
+                        change
+                    </div>
+                </td>
+                <td class="style64">
+                    <div align="center">$outputResultMap.get('table6data3') projected</div>
+                </td>
+                <td class="style64">
+                    <div align="center">$outputResultMap.get('table6data2') - $outputResultMap.get('table6data3')
+                        change
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="style68">
+                    <div align="center">Thailand</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table6data4')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table6data5')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table6calc1')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table6data6')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table6calc2')</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="style68">
+                    <div align="center">Vietnam</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table6data7')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table6data8')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table6calc3')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table6data9')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table6calc4')</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="style68">
+                    <div align="center">USA</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table6data10')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table6data11')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table6calc5')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table6data12')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table6calc6')</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="style68">
+                    <div align="center">Pakistan</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table6data13')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table6data14')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table6calc7')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table6data15')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table6calc8')</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="style68">
+                    <div align="center">India</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table6data16')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table6data17')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table6calc9')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table6data18')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table6calc10')</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="style68">
+                    <div align="center">Others</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table6data22')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table6data23')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table6calc13')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table6data24')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table6calc14')</div>
+                </td>
+            </tr>
+            <tr>
+                <td height="32" class="style64">
+                    <div align="center">World total</div>
+                </td>
+                <td class="style64">
+                    <div align="center">$outputResultMap.get('table6data19')</div>
+                </td>
+                <td class="style64">
+                    <div align="center">$outputResultMap.get('table6data20')</div>
+                </td>
+                <td class="style64">
+                    <div align="center">$outputResultMap.get('table6calc11')</div>
+                </td>
+                <td class="style64">
+                    <div align="center">$outputResultMap.get('table6data21')</div>
+                </td>
+                <td class="style64">
+                    <div align="center">$outputResultMap.get('table6calc12')</div>
+                </td>
+            </tr>
+        </table>
+        <p class="style46">Table 7. Main wheat annual exporters (million MT) </p>
+        <table width="100%" height="262" border="1" cellpadding="0" cellspacing="0">
+            <tr>
+                <td height="38" class="style26">
+                    <div align="center"></div>
+                </td>
+                <td class="style64">
+                    <div align="center">$outputResultMap.get('table7data1')</div>
+                </td>
+                <td class="style64">
+                    <div align="center">$outputResultMap.get('table7data2') estimated</div>
+                </td>
+                <td class="style64">
+                    <div align="center">$outputResultMap.get('table7data1') - $outputResultMap.get('table7data2')
+                        change
+                    </div>
+                </td>
+                <td class="style64">
+                    <div align="center">$outputResultMap.get('table7data3') projected</div>
+                </td>
+                <td class="style64">
+                    <div align="center">$outputResultMap.get('table7data2') - $outputResultMap.get('table7data3')
+                        change
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="style68">
+                    <div align="center">USA</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table7data4')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table7data5')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table7calc1')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table7data6')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table7calc2')</div>
+                </td>
+            </tr>
+            <tr>
+                <td height="34" class="style68">
+                    <div align="center">European Union</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table7data7')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table7data8')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table7calc3')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table7data9')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table7calc4')</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="style68">
+                    <div align="center">Canada</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table7data10')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table7data11')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table7calc5')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table7data12')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table7calc6')</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="style68">
+                    <div align="center">Australia</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table7data13')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table7data14')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table7calc7')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table7data15')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table7calc8')</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="style68">
+                    <div align="center">UKraine</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table7data16')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table7data17')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table7calc9')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table7data18')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table7calc10')</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="style68">
+                    <div align="center">Russia</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table7data19')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table7data20')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table7calc11')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table7data21')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table7calc12')</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="style68">
+                    <div align="center">Others</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table7data25')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table7data26')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table7calc15')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table7data27')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table7calc16')</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="style64">
+                    <div align="center">World total</div>
+                </td>
+                <td class="style64">
+                    <div align="center">$outputResultMap.get('table7data22')</div>
+                </td>
+                <td class="style64">
+                    <div align="center">$outputResultMap.get('table7data23')</div>
+                </td>
+                <td class="style64">
+                    <div align="center">$outputResultMap.get('table7calc13')</div>
+                </td>
+                <td class="style64">
+                    <div align="center">$outputResultMap.get('table7data24')</div>
+                </td>
+                <td class="style64">
+                    <div align="center">$outputResultMap.get('table7calc14')</div>
+                </td>
+            </tr>
+        </table>
+
+        <span class="style48">Source: $outputResultMap.get('table7data28') , $outputResultMap.get('table7data29') for rice and wheat; arrows indicate the Direction of export quantity change: Red is more than 10% change from previous year, green more than 5% and yellow less than 5% change.</span>
+    </td>
+    <td width="50%">
+        <p><span class="style46">RICE</span><br/>
+            <textarea id="FR_TEXT_20" name="FR_TEXT_20" rows="12"
+                      cols="50">$outputResultMap.get('FR_TEXT_20')</textarea>
+        </p>
+
+        <p>&nbsp;</p>
+
+        <p><span class="style46">WHEAT</span><br/>
+            <textarea id="FR_TEXT_21" name="FR_TEXT_21" rows="11"
+                      cols="50">$outputResultMap.get('FR_TEXT_21')</textarea>
+        </p>
+
+        <p><span class="style46">ADDITIONAL COMMENT</span><br/>
+            <textarea id="FR_TEXT_28" name="FR_TEXT_28" rows="2
+            " cols="50">$outputResultMap.get('FR_TEXT_28')</textarea>
+        </p>
+
+        </p></td>
+</tr>
+
+<tr bgcolor="99FF99">
+    <td height="29" colspan="2"><span class="style44">5. Imports</span></td>
+</tr>
+<tr>
+    <td width="50%">
+        <span class="style46">Figure 5.Rice imports (in '000 MT)</span><br/>
+        <img src="imageAction.action?imagePath=$outputResultMap.get('fortnightlychart5path')" alt="image1" height="220"
+             width="400"/><br/>
+        <span class="style46">Figure 6. Wheat imports (in '000 MT)</span><br/>
+        <img src="imageAction.action?imagePath=$outputResultMap.get('fortnightlychart6path')" alt="image1" height="220"
+             width="400"/></td>
+    <td width="50%">
+
+    <p>
+        &nbsp;</p>
+    <p>
+        <u><strong>Interpretation Table for Figure 5 &amp; 6</strong></u></p>
+    <table border="1" height="auto" width="auto">
+        <thead>
+        <tr>
+            <th scope="col" style="text-align: center;">
+                <strong>Commodity</strong></th>
+            <th colspan="5" rowspan="1" scope="col" style="text-align: center;">
+                <strong>Rice</strong></th>
+            <th colspan="5" rowspan="1" scope="col" style="text-align: center;">
+                <strong>Wheat</strong></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">
+                &nbsp;</th>
+            <td colspan="2" rowspan="1" style="text-align: center;">
+                <strong>Govt.</strong></td>
+            <td colspan="2" rowspan="1" style="text-align: center;">
+                <strong>Private</strong></td>
+            <td style="text-align: center;">
+                <strong>Total</strong></td>
+            <td colspan="2" rowspan="1" style="text-align: center;">
+                <strong>Govt.</strong></td>
+            <td colspan="2" rowspan="1" style="text-align: center;">
+                <strong>Private</strong></td>
+            <td style="text-align: center;">
+                <strong>Total</strong></td>
+        </tr>
+        <tr>
+            <th scope="row">
+                &nbsp;</th>
+            <td style="text-align: center;">
+                <strong>Amount</strong></td>
+            <td style="text-align: center;">
+                <strong>% of Total</strong></td>
+            <td style="text-align: center;">
+                <strong>Amount</strong></td>
+            <td style="text-align: center;">
+                <strong>% of Total</strong></td>
+            <td style="text-align: center;">
+                <strong>Amount</strong></td>
+            <td style="text-align: center;">
+                <strong>Amount&nbsp;</strong></td>
+            <td style="text-align: center;">
+                <strong>% of Total</strong></td>
+            <td style="text-align: center;">
+                <strong>Amount</strong></td>
+            <td style="text-align: center;">
+                <strong>% of Total</strong></td>
+            <td style="text-align: center;">
+                <strong>Amount</strong></td>
+        </tr>
+        <tr>
+            <th scope="row">
+                a. Total import upto latest fortnight()</th>
+            <td>
+                $outputResultMap.get("ittable56rgalfcfy")</td>
+            <td>
+                $outputResultMap.get("ittable56ptrglfcfy")</td>
+            <td>
+                $outputResultMap.get("ittable56rpalfcfy")</td>
+            <td>
+                $outputResultMap.get("ittable56ptrplfcfy")</td>
+            <td>
+                $outputResultMap.get("ittable56tralfcfy")</td>
+            <td>
+                $outputResultMap.get("ittable56wgalfcfy")</td>
+            <td>
+                $outputResultMap.get("ittable56ptwglfcfy")</td>
+            <td>
+                $outputResultMap.get("ittable56wpalfcfy")</td>
+            <td>
+                $outputResultMap.get("ittable56ptwplfcfy")</td>
+            <td>
+                $outputResultMap.get("ittable56twalfcfy")</td>
+        </tr>
+        <tr>
+            <th scope="row">
+                b. Total import upto previous fortnight()</th>
+            <td>
+                $outputResultMap.get("ittable56rgapfcfy")</td>
+            <td>
+                $outputResultMap.get("ittable56ptrgpfcfy")</td>
+            <td>
+                $outputResultMap.get("ittable56rpapfcfy")</td>
+            <td>
+                $outputResultMap.get("ittable56ptrppfcfy")</td>
+            <td>
+                $outputResultMap.get("ittable56trapfcfy")</td>
+            <td>
+                $outputResultMap.get("ittable56wgapfcfy")</td>
+            <td>
+                $outputResultMap.get("ittable56ptwgpfcfy")</td>
+            <td>
+                $outputResultMap.get("ittable56wpapfcfy")</td>
+            <td>
+                $outputResultMap.get("ittable56ptwppfcfy")</td>
+            <td>
+                $outputResultMap.get("ittable56twapfcfy")</td>
+        </tr>
+        <tr>
+            <th scope="row">
+                c. Total import upto the latest fortnight date in the previous fiscal year()</th>
+            <td>
+                $outputResultMap.get("ittable56rgalfpfy")</td>
+            <td>
+                $outputResultMap.get("ittable56ptrglfpfy")</td>
+            <td>
+                $outputResultMap.get("ittable56rpalfpfy")</td>
+            <td>
+                $outputResultMap.get("ittable56ptrplfpfy")</td>
+            <td>
+                $outputResultMap.get("ittable56tralfpfy")</td>
+            <td>
+                $outputResultMap.get("ittable56wgalfpfy")</td>
+            <td>
+                $outputResultMap.get("ittable56ptwglfpfy")</td>
+            <td>
+                $outputResultMap.get("ittable56wpalfpfy")</td>
+            <td>
+                $outputResultMap.get("ittable56ptwplfpfy")</td>
+            <td>
+                $outputResultMap.get("ittable56twalfpfy")</td>
+        </tr>
+
+        <tr>
+            <th scope="row">
+                (a-b)</th>
+            <td>
+                $outputResultMap.get("ittable56rgadiff")</td>
+            <td>
+                $outputResultMap.get("ittable56ptrgdiff")</td>
+            <td>
+                $outputResultMap.get("ittable56rpadiff")</td>
+            <td>
+                $outputResultMap.get("ittable56ptrpdiff")</td>
+            <td>
+                $outputResultMap.get("ittable56tradiff")</td>
+            <td>
+                $outputResultMap.get("ittable56wgadiff")</td>
+            <td>
+                $outputResultMap.get("ittable56ptwgdiff")</td>
+            <td>
+                $outputResultMap.get("ittable56wpadiff")</td>
+            <td>
+                $outputResultMap.get("ittable56ptwpdiff")</td>
+            <td>
+                $outputResultMap.get("ittable56twadiff")</td>
+        </tr>
+        <tr>
+            <th scope="row">
+                (a-c)</th>
+            <td>
+                $outputResultMap.get("ittable56rgadiffpy")</td>
+            <td>
+                $outputResultMap.get("ittable56ptrgdiffpy")</td>
+            <td>
+                $outputResultMap.get("ittable56rpadiffpy")</td>
+            <td>
+                $outputResultMap.get("ittable56ptrpdiffpy")</td>
+            <td>
+                $outputResultMap.get("ittable56tradiffpy")</td>
+            <td>
+                $outputResultMap.get("ittable56wgadiffpy")</td>
+            <td>
+                $outputResultMap.get("ittable56ptwgdiffpy")</td>
+            <td>
+                $outputResultMap.get("ittable56wpadiffpy")</td>
+            <td>
+                $outputResultMap.get("ittable56ptwpdiffpy")</td>
+            <td>
+                $outputResultMap.get("ittable56twadiffpy")</td>
+        </tr>
+        </tbody>
+    </table>
+    <p>
+        &nbsp;</p>
+    <p>
+
+        <p><span class="style46">RICE</span><br/>
+            <textarea id="FR_TEXT_22" name="FR_TEXT_22" rows="8" cols="50">$outputResultMap.get('FR_TEXT_22')</textarea>
+        </p>
+
+        <p><span class="style24">WHEAT</span><br/>
+            <textarea id="FR_TEXT_23" name="FR_TEXT_23" rows="8" cols="50">$outputResultMap.get('FR_TEXT_23')</textarea>
+        </p>
+
+        <p class="style46">Table 8: LC situation</p>
+        <table border="1" cellspacing="0" cellpadding="0" width="500">
+            <tr>
+                <td rowspan="2" class="style64">
+                    <div align="center">Period</div>
+                </td>
+                <td colspan="2" class="style64">
+                    <div align="center">L. C. opened</div>
+                </td>
+                <td colspan="2" class="style64">
+                    <div align="center">L. C. Settled</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="style64">
+                    <div align="center">Rice</div>
+                </td>
+                <td class="style64">
+                    <div align="center">Wheat</div>
+                </td>
+                <td class="style64">
+                    <div align="center">Rice</div>
+                </td>
+                <td class="style64">
+                    <div align="center">Wheat</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table8data1disp')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table8data3')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table8data4')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table8data5')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table8data6')</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="style68">
+                    <div align="center">Cumulative month, $outputResultMap.get('table8data2disp')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table8data7')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table8data8')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table8data9')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table8data10')</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="style68">
+                    <div align="center">Cumulative year(starting 1 July)</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table8data11')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table8data12')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table8data13')</div>
+                </td>
+                <td class="style68">
+                    <div align="center">$outputResultMap.get('table8data14')</div>
+                </td>
+            </tr>
+        </table>
+        <span class="style48">Source: Bangladesh Bank</span><br/></td>
+</tr>
+<tr bgcolor="99FF99">
+    <td height="35" colspan="2"><span class="style44">6. Government intervention</span></td>
+</tr>
+<tr>
+<td width="50%">
+    <span class="style46">Figure7. Rice and wheat distributed through PFDS and yearly target in thousand MT</span><br/>
+    <img src="imageAction.action?imagePath=$outputResultMap.get('fortnightlychart7path')" alt="image1" height="220"
+         width="400"/><br/>
+    <span class="style46">Figure: 8 $outputResultMap.get('seasonal_crop') Target, Contracts and agreement </span><br/>
+    <img src="imageAction.action?imagePath=$outputResultMap.get('fortnightlychart8path')" alt="image1" height="220"
+         width="400"/></td>
+<td width="50%">
+
+<p>
+    &nbsp;</p>
+
+<p>
+<u>Interpretation Table for Figure 7</u></p>
+
+<!--
+<table border="1" height="auto" width="auto">
+<thead>
+<tr>
+    <th scope="row">
+        &nbsp;</th>
+    <th scope="col">
+        &nbsp;</th>
+    <th scope="col">
+        RICE
+    </th>
+    <th scope="col">
+        &nbsp;</th>
+    <th scope="col">
+        WHEAT
+    </th>
+    <th scope="col">
+        TOTAL
+    </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+    <th scope="row">
+        &nbsp;</th>
+    <td style="background-color: rgb(255, 255, 153);">
+        <strong> PDFS FY Target</strong></td>
+    <td style="background-color: rgb(255, 255, 153);">
+        $outputResultMap.get("ittable7rfy")</td>
+    <td style="background-color: rgb(255, 255, 153);">
+        &nbsp;</td>
+    <td style="background-color: rgb(255, 255, 153);">
+        $outputResultMap.get("ittable7wfy")</td>
+    <td style="background-color: rgb(255, 255, 153);">
+        $outputResultMap.get("ittable7tfgfy")</td>
+</tr>
+<tr>
+    <th scope="row">
+        Monetized
+    </th>
+    <td>
+        EP
+    </td>
+    <td>
+        $outputResultMap.get("ittable7rep")</td>
+    <td>
+        &nbsp;</td>
+    <td>
+        $outputResultMap.get("ittable7wep")</td>
+    <td>
+        $outputResultMap.get("ittable7tfgep")</td>
+</tr>
+<tr>
+    <th scope="row">
+        Monetized
+    </th>
+    <td>
+        OP
+    </td>
+    <td>
+        $outputResultMap.get("ittable7rop")</td>
+    <td>
+        &nbsp;</td>
+    <td>
+        $outputResultMap.get("ittable7wop")</td>
+    <td>
+        $outputResultMap.get("ittable7tfgop")</td>
+</tr>
+<tr>
+    <th scope="row">
+        Monetized
+    </th>
+    <td>
+        LEI
+    </td>
+    <td>
+        $outputResultMap.get("ittable7rlei")</td>
+    <td>
+        &nbsp;</td>
+    <td>
+        $outputResultMap.get("ittable7wlei")</td>
+    <td>
+        $outputResultMap.get("ittable7tfglei")</td>
+</tr>
+<tr>
+    <th scope="row">
+        Monetized
+    </th>
+    <td>
+        OMS
+    </td>
+    <td>
+        $outputResultMap.get("ittable7roms")</td>
+    <td>
+        &nbsp;</td>
+    <td>
+        $outputResultMap.get("ittable7woms")</td>
+    <td>
+        $outputResultMap.get("ittable7tfgoms")</td>
+</tr>
+<tr>
+    <th scope="row">
+        Monetized
+    </th>
+    <td>
+        FP
+    </td>
+    <td>
+        $outputResultMap.get("ittable7rfp")</td>
+    <td>
+        &nbsp;</td>
+    <td>
+        $outputResultMap.get("ittable7wfp")</td>
+    <td>
+        $outputResultMap.get("ittable7tfgfp")</td>
+</tr>
+<tr>
+    <th scope="row">
+        Monetized
+    </th>
+    <td>
+        4<sup>th&nbsp;</sup>Class Employees
+    </td>
+    <td>
+        $outputResultMap.get("ittable7r4ce")</td>
+    <td>
+        &nbsp;</td>
+    <td>
+        $outputResultMap.get("ittable7w4ce")</td>
+    <td>
+        $outputResultMap.get("ittable7tfg4ce")</td>
+</tr>
+<tr>
+    <th scope="row">
+        Monetized
+    </th>
+    <td>
+        Garments
+    </td>
+    <td>
+        $outputResultMap.get("ittable7rgt")</td>
+    <td>
+        &nbsp;</td>
+    <td>
+        $outputResultMap.get("ittable7wgt")</td>
+    <td>
+        $outputResultMap.get("ittable7tfggt")</td>
+</tr>
+<tr>
+    <th scope="row">
+        Monetized
+    </th>
+    <td>
+        Others
+    </td>
+    <td>
+        $outputResultMap.get("ittable7rmothr")</td>
+    <td>
+        &nbsp;</td>
+    <td>
+        $outputResultMap.get("ittable7wmothr")</td>
+    <td>
+        $outputResultMap.get("ittable7tfgmothr")</td>
+</tr>
+<tr>
+    <th scope="row">
+        Non-Monetized
+    </th>
+    <td>
+        Food for Work
+    </td>
+    <td>
+        $outputResultMap.get("ittable7rffw")</td>
+    <td>
+        &nbsp;</td>
+    <td>
+        $outputResultMap.get("ittable7wffw")</td>
+    <td>
+        $outputResultMap.get("ittable7tfgffw")</td>
+</tr>
+<tr>
+    <th scope="row">
+        Non-Monetized
+    </th>
+    <td>
+        Test Relief
+    </td>
+    <td>
+        $outputResultMap.get("ittable7rtr")</td>
+    <td>
+        &nbsp;</td>
+    <td>
+        $outputResultMap.get("ittable7wtr")</td>
+    <td>
+        $outputResultMap.get("ittable7tfgtr")</td>
+</tr>
+<tr>
+    <th scope="row">
+        Non-Monetized
+    </th>
+    <td>
+        VGF
+    </td>
+    <td>
+        $outputResultMap.get("ittable7rvgf")</td>
+    <td>
+        &nbsp;</td>
+    <td>
+        $outputResultMap.get("ittable7wvgf")</td>
+    <td>
+        $outputResultMap.get("ittable7tfgvgf")</td>
+</tr>
+<tr>
+    <th scope="row">
+        Non-Monetized
+    </th>
+    <td>
+        VGD
+    </td>
+    <td>
+        $outputResultMap.get("ittable7rvgd")</td>
+    <td>
+        &nbsp;</td>
+    <td>
+        $outputResultMap.get("ittable7wvgd")</td>
+    <td>
+        $outputResultMap.get("ittable7tfgvgd")</td>
+</tr>
+<tr>
+    <th scope="row">
+        Non-Monetized
+    </th>
+    <td>
+        School Feeding
+    </td>
+    <td>
+    </td>
+    <td>
+        &nbsp;</td>
+    <td>
+        $outputResultMap.get("ittable7wsf")</td>
+    <td>
+        $outputResultMap.get("ittable7tfgsf")</td>
+</tr>
+<tr>
+    <th scope="row">
+        Non-Monetized
+    </th>
+    <td>
+        GR
+    </td>
+    <td>
+        $outputResultMap.get("ittable7rgr")</td>
+    <td>
+        &nbsp;</td>
+    <td>
+        $outputResultMap.get("ittable7wgr")</td>
+    <td>
+        $outputResultMap.get("ittable7tfggr")</td>
+</tr>
+<tr>
+    <th scope="row">
+        Non-Monetized
+    </th>
+    <td>
+        Others
+    </td>
+    <td>
+        $outputResultMap.get("ittable7rnothr")</td>
+    <td>
+        &nbsp;</td>
+    <td>
+        $outputResultMap.get("ittable7wnothr")</td>
+    <td>
+        $outputResultMap.get("ittable7tfgnothr")</td>
+</tr>
+<tr>
+    <th scope="row">
+        &nbsp;</th>
+    <td>
+        Total
+    </td>
+    <td>
+        $outputResultMap.get("ittable7rst")</td>
+    <td>
+    </td>
+    <td>
+        $outputResultMap.get("ittable7wst")</td>
+    <td>
+        $outputResultMap.get("ittable7stcumltv")
+    </td>
+</tr>
+</tbody>
+</table>
+-->
+
+<table   border="1" height="auto" width="auto">
+<tbody>
+<tr>
+<td style="text-align: center;">&nbsp;</td>
+<td style="text-align: center;">&nbsp;Distribution Channel wise</td>
+<td style="text-align: center;">&nbsp;Distribution in Latest Fortnight<br /><br /><br />(a)</td>
+<td style="text-align: center;">Distribution in Previous Fortnight<br /><br />(b)<br />&nbsp;</td>
+<td style="text-align: center;">Cumulative of Distribution till Latest Fortnight.<br />(c)<br />&nbsp;</td>
+<td style="text-align: center;">Cumulative of Distribution till the Previous Fortnight before.<br />(d)<br />&nbsp;</td>
+<td style="text-align: center;">&nbsp;Target/Budget of this Year<br /><br />(e)</td>
+<td style="text-align: center;">Percentage of target Achieved<br /><br />(F=(c/e)*100)<br />&nbsp;</td>
+</tr>
+<tr>
+<td rowspan="11">
+<h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RICE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4>
+</td>
+<td bgcolor="yellow">&nbsp;Total</td>
+<td bgcolor="yellow">&nbsp;$outputResultMap.get("ittable7total_1r") </td>
+<td bgcolor="yellow">&nbsp;$outputResultMap.get("ittable7total_2r") </td>
+<td bgcolor="yellow">&nbsp;$outputResultMap.get("ittable7total_3r") </td>
+<td bgcolor="yellow">&nbsp;$outputResultMap.get("ittable7total_4r") </td>
+<td bgcolor="yellow">&nbsp;$outputResultMap.get("ittable7total_5r")</td>
+<td bgcolor="yellow">&nbsp;$outputResultMap.get("ittable7total_6r")</td>
+</tr>
+<tr>
+<td>&nbsp;EP</td>
+<td>&nbsp;$outputResultMap.get("ittable7rep") </td>
+<td>&nbsp;$outputResultMap.get("ittable7rep_pfd") </td>
+<td>&nbsp;$outputResultMap.get("ittable7repcfD") </td>
+<td>&nbsp;$outputResultMap.get("ittable7reppfD") </td>
+<td>&nbsp;$outputResultMap.get("ittable7reptarget") </td>
+<td>&nbsp;$outputResultMap.get("ittable7rep_ptg") </td>
+</tr>
+<tr>
+<td>&nbsp;OP</td>
+<td>&nbsp;$outputResultMap.get("ittable7rop") </td>
+<td>&nbsp;$outputResultMap.get("ittable7rop_pfd") </td>
+<td>&nbsp;$outputResultMap.get("ittable7ropcfD") </td>
+<td>&nbsp;$outputResultMap.get("ittable7roppfD") </td>
+<td>&nbsp;$outputResultMap.get("ittable7roptarget") </td>
+<td>&nbsp;$outputResultMap.get("ittable7rop_ptg") </td>
+</tr>
+<tr>
+<td>&nbsp;LEI</td>
+<td>&nbsp;$outputResultMap.get("ittable7rlei") </td>
+<td>&nbsp;$outputResultMap.get("ittable7rlei_pfd") </td>
+<td>&nbsp;$outputResultMap.get("ittable7rleicfD") </td>
+<td>&nbsp;$outputResultMap.get("ittable7rleipfD") </td>
+<td>&nbsp;$outputResultMap.get("ittable7rleitarget") </td>
+<td>&nbsp;$outputResultMap.get("ittable7rlei_ptg") </td>
+</tr>
+<tr>
+<td>&nbsp;OMS</td>
+<td>&nbsp;$outputResultMap.get("ittable7roms") </td>
+<td>&nbsp;$outputResultMap.get("ittable7roms_pfd") </td>
+<td>&nbsp;$outputResultMap.get("ittable7romscfD") </td>
+<td>&nbsp;$outputResultMap.get("ittable7romspfD") </td>
+<td>&nbsp;$outputResultMap.get("ittable7romstarget") </td>
+<td>&nbsp;$outputResultMap.get("ittable7roms_ptg") </td>
+</tr>
+<tr>
+<td>&nbsp;FFW</td>
+<td>&nbsp;$outputResultMap.get("ittable7rffw") </td>
+<td>&nbsp;$outputResultMap.get("ittable7rffw_pfd") </td>
+<td>&nbsp;$outputResultMap.get("ittable7rffwcfD") </td>
+<td>&nbsp;$outputResultMap.get("ittable7rffwpfD")</td>
+<td>&nbsp;$outputResultMap.get("ittable7rffwtarget") </td>
+<td>&nbsp;$outputResultMap.get("ittable7rffw_ptg") </td>
+</tr>
+<tr>
+<td>&nbsp;TR</td>
+<td>&nbsp;$outputResultMap.get("ittable7rtr") </td>
+<td>&nbsp;$outputResultMap.get("ittable7rtr_pfd") </td>
+<td>&nbsp;$outputResultMap.get("ittable7rtrcfD") </td>
+<td>&nbsp;$outputResultMap.get("ittable7rtrpfD") </td>
+<td>&nbsp;$outputResultMap.get("ittable7rtrtarget") </td>
+<td>&nbsp;$outputResultMap.get("ittable7rtr_ptg") </td>
+</tr>
+<tr>
+<td>&nbsp;VGF</td>
+<td>&nbsp;$outputResultMap.get("ittable7rvgf") </td>
+<td>&nbsp;$outputResultMap.get("ittable7rvgf_pfd") </td>
+<td>&nbsp;$outputResultMap.get("ittable7rvgfcfD") </td>
+<td>&nbsp;$outputResultMap.get("ittable7rvgfpfD")</td>
+<td>&nbsp;$outputResultMap.get("ittable7rvgftarget") </td>
+<td>&nbsp;$outputResultMap.get("ittable7rvgf_ptg") </td>
+</tr>
+<tr>
+<td>&nbsp;VGD</td>
+<td>&nbsp;$outputResultMap.get("ittable7rvgd") </td>
+<td>&nbsp;$outputResultMap.get("ittable7rvgd_pfd") </td>
+<td>&nbsp;$outputResultMap.get("ittable7rvgdcfD") </td>
+<td>&nbsp;$outputResultMap.get("ittable7rvgdpfD") </td>
+<td>&nbsp;$outputResultMap.get("ittable7rvgdtarget") </td>
+<td>&nbsp;$outputResultMap.get("ittable7rvgd_ptg") </td>
+</tr>
+<tr>
+<td>&nbsp;GR</td>
+<td>&nbsp;$outputResultMap.get("ittable7rgr") </td>
+<td>&nbsp;$outputResultMap.get("ittable7rgr_pfd") </td>
+<td>&nbsp;$outputResultMap.get("ittable7rgrcfD") </td>
+<td>&nbsp;$outputResultMap.get("ittable7rgrpfD") </td>
+<td>&nbsp;$outputResultMap.get("ittable7rgrtarget") </td>
+<td>&nbsp;$outputResultMap.get("ittable7rgr_ptg") </td>
+</tr>
+<tr>
+<td>&nbsp;Others</td>
+<td>&nbsp;$outputResultMap.get("ittable7rnothr") </td>
+<td>&nbsp;$outputResultMap.get("ittable7rnothr_pfd") </td>
+<td>&nbsp;$outputResultMap.get("ittable7rnothrcfD") </td>
+<td>&nbsp;$outputResultMap.get("ittable7rnothrpfD")</td>
+<td>&nbsp;$outputResultMap.get("ittable7rothertarget") </td>
+<td>&nbsp;$outputResultMap.get("ittable7rnothr_ptg") </td>
+</tr>
+<tr>
+<td rowspan="12">
+<h4>WHEAT</h4>
+</td>
+<td bgcolor="yellow">&nbsp;Total</td>
+<td bgcolor="yellow">&nbsp;$outputResultMap.get("ittable7total_1w") </td>
+<td bgcolor="yellow">&nbsp;$outputResultMap.get("ittable7total_2w") </td>
+<td bgcolor="yellow">&nbsp;$outputResultMap.get("ittable7total_3w") </td>
+<td bgcolor="yellow">&nbsp;$outputResultMap.get("ittable7total_4w") </td>
+<td bgcolor="yellow">&nbsp;$outputResultMap.get("ittable7total_5w")</td>
+<td bgcolor="yellow">&nbsp;$outputResultMap.get("ittable7total_6w")</td>
+</tr>
+<tr>
+<td>&nbsp;EP</td>
+<td>&nbsp;$outputResultMap.get("ittable7wep") </td>
+<td>&nbsp;$outputResultMap.get("ittable7wep_pfd") </td>
+<td>&nbsp;$outputResultMap.get("ittable7wepcfD") </td>
+<td>&nbsp;$outputResultMap.get("ittable7weppfD") </td>
+<td>&nbsp;$outputResultMap.get("ittable7weptarget") </td>
+<td>&nbsp;$outputResultMap.get("ittable7wep_ptg") </td>
+</tr>
+<tr>
+<td>&nbsp;OP</td>
+<td>&nbsp;$outputResultMap.get("ittable7wop") </td>
+<td>&nbsp;$outputResultMap.get("ittable7wop_pfd") </td>
+<td>&nbsp;$outputResultMap.get("ittable7wopcfD") </td>
+<td>&nbsp;$outputResultMap.get("ittable7woppfD") </td>
+<td>&nbsp;$outputResultMap.get("ittable7woptarget") </td>
+<td>&nbsp;$outputResultMap.get("ittable7wop_ptg") </td>
+</tr>
+<tr>
+<td>&nbsp;LEI</td>
+<td>&nbsp;$outputResultMap.get("ittable7wlei") </td>
+<td>&nbsp;$outputResultMap.get("ittable7wlei_pfd") </td>
+<td>&nbsp;$outputResultMap.get("ittable7wleicfD") </td>
+<td>&nbsp;$outputResultMap.get("ittable7wleipfD") </td>
+<td>&nbsp;$outputResultMap.get("ittable7wleitarget")</td>
+<td>&nbsp;$outputResultMap.get("ittable7wlei_ptg") </td>
+</tr>
+<tr>
+<td>&nbsp;OMS</td>
+<td>&nbsp;$outputResultMap.get("ittable7woms") </td>
+<td>&nbsp;$outputResultMap.get("ittable7woms_pfd") </td>
+<td>&nbsp;$outputResultMap.get("ittable7womscfD") </td>
+<td>&nbsp;$outputResultMap.get("ittable7womspfD") </td>
+<td>&nbsp;$outputResultMap.get("ittable7womstarget")</td>
+<td>&nbsp;$outputResultMap.get("ittable7woms_ptg") </td>
+</tr>
+<tr>
+<td>&nbsp;FFW</td>
+<td>&nbsp;$outputResultMap.get("ittable7wffw") </td>
+<td>&nbsp;$outputResultMap.get("ittable7wffw_pfd") </td>
+<td>&nbsp;$outputResultMap.get("ittable7wffwcfD") </td>
+<td>&nbsp;$outputResultMap.get("ittable7wffwpfD") </td>
+<td>&nbsp;$outputResultMap.get("ittable7wffwtarget")</td>
+<td>&nbsp;$outputResultMap.get("ittable7wffw_ptg") </td>
+</tr>
+<tr>
+<td>&nbsp;TR</td>
+<td>&nbsp;$outputResultMap.get("ittable7wtr") </td>
+<td>&nbsp;$outputResultMap.get("ittable7wtr_pfd") </td>
+<td>&nbsp;$outputResultMap.get("ittable7wtrcfD") </td>
+<td>&nbsp;$outputResultMap.get("ittable7wtrpfD") </td>
+<td>&nbsp;$outputResultMap.get("ittable7wtrtarget")</td>
+<td>&nbsp;$outputResultMap.get("ittable7wtr_ptg") </td>
+</tr>
+<tr>
+<td>&nbsp;VGF</td>
+<td>&nbsp;$outputResultMap.get("ittable7wvgf") </td>
+<td>&nbsp;$outputResultMap.get("ittable7wvgf_pfd") </td>
+<td>&nbsp;$outputResultMap.get("ittable7wvgfcfD") </td>
+<td>&nbsp;$outputResultMap.get("ittable7wvgfpfD") </td>
+<td>&nbsp;$outputResultMap.get("ittable7wvgftarget")</td>
+<td>&nbsp;$outputResultMap.get("ittable7wvgf_ptg") </td>
+</tr>
+<tr>
+<td>&nbsp;VGD</td>
+<td>&nbsp;$outputResultMap.get("ittable7wvgd") </td>
+<td>&nbsp;$outputResultMap.get("ittable7wvgd_pfd") </td>
+<td>&nbsp;$outputResultMap.get("ittable7wvgdcfD") </td>
+<td>&nbsp;$outputResultMap.get("ittable7wvgdpfD") </td>
+<td>&nbsp;$outputResultMap.get("ittable7wvgdtarget")</td>
+<td>&nbsp;$outputResultMap.get("ittable7wvgd_ptg") </td>
+</tr>
+<!-- <tr>
+<td>&nbsp;GR</td>
+<td>&nbsp;$outputResultMap.get("ittable7wgr") </td>
+<td>&nbsp;$outputResultMap.get("ittable7wgr_pfd") </td>
+<td>&nbsp;$outputResultMap.get("ittable7wgrcf") </td>
+<td>&nbsp;$outputResultMap.get("ittable7wgrpf") </td>
+<td>&nbsp;--- </td>
+<td>&nbsp;$outputResultMap.get("ittable7wgr_ptg") </td>
+</tr> -->
+<tr>
+<td>&nbsp;School Feeding</td>
+<td>&nbsp;$outputResultMap.get("ittable7wsf") </td>
+<td>&nbsp;$outputResultMap.get("ittable7wsf_pfd") </td>
+<td>&nbsp;$outputResultMap.get("ittable7wsfcfD") </td>
+<td>&nbsp;$outputResultMap.get("ittable7wsfpfD") </td>
+<td>&nbsp;$outputResultMap.get("ittable7wsftarget")</td>
+<td>&nbsp;$outputResultMap.get("ittable7wsf_ptg") </td>
+</tr>
+<tr>
+<td>&nbsp;Others</td>
+<td>&nbsp;$outputResultMap.get("ittable7wnothr") </td>
+<td>&nbsp;$outputResultMap.get("ittable7wnothr_pfd") </td>
+<td>&nbsp;$outputResultMap.get("ittable7wnothrcfD") </td>
+<td>&nbsp;$outputResultMap.get("ittable7wnothrpfD") </td>
+<td>&nbsp;$outputResultMap.get("ittable7wothertarget")</td>
+<td>&nbsp;$outputResultMap.get("ittable7wnothr_ptg") </td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+
+
+<p><span class="style46">PUBLIC FOOD DISTRIBUTION</span><br/>
+    <textarea id="FR_TEXT_24" name="FR_TEXT_24" rows="8" cols="50">$outputResultMap.get('FR_TEXT_24')</textarea>
+</p>
+
+<p><span class="style46">PUBLIC STOCKS</span><br/>
+    <textarea id="FR_TEXT_25" name="FR_TEXT_25" rows="6" cols="50">$outputResultMap.get('FR_TEXT_25')</textarea>
+</p>
+
+<p><br/>
+    <span class="style46">$outputResultMap.get('seasonal_crop') PROCUREMENT</span><br/>
+    <textarea id="FR_TEXT_26" name="FR_TEXT_26" rows="8" cols="50">$outputResultMap.get('FR_TEXT_26')</textarea>
+    <br/>
+</p></td>
+</tr>
+<tr align="center">
+    <td colspan="2"><input type="submit" name="generate" value="Save Comments"
+                           style="width:180px; background-color:#666666; color:white;"/></td>
+</tr>
+</table>
+</form>
+</body>
+</html>

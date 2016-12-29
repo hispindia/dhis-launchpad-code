@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<!-- Excel Import details like the xml mapping for import (ID) the name displayed at import (Name) the frequency (type) the the kind of report we are importing (model)
+The excel file name to be checked for verification (fileName) and finally the xml file that we use to check if we are importing the correct report (checkerFileName) -->
+
+<ImportSheets>
+                                 <BDImportSheet>				
+				        <xmlTemplateName>DailyReport(Aman).xml</xmlTemplateName>
+					<displayName>MISM Summary(Aman)</displayName>
+					<periodType>Daily</periodType>
+                                        <checkerTemplateName>Daily-Report.xls</checkerTemplateName>
+					<checkerRangeForHeader>0,3-0,1</checkerRangeForHeader>
+					<checkerRangeForData>0,0-0,0</checkerRangeForData>
+                                        <sheetNo>0</sheetNo>
+				  </BDImportSheet>
+				  <BDImportSheet>				
+				        <xmlTemplateName>DailyReport(Boro).xml</xmlTemplateName>
+					<displayName>MISM Summary(Boro)</displayName>
+					<periodType>Daily</periodType>
+                                        <checkerTemplateName>Daily-Report.xls</checkerTemplateName>
+					<checkerRangeForHeader>0,3-0,1</checkerRangeForHeader>
+					<checkerRangeForData>0,0-0,0</checkerRangeForData>
+                                        <sheetNo>0</sheetNo>
+				  </BDImportSheet>
+</ImportSheets>

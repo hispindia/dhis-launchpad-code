@@ -1,0 +1,180 @@
+
+## Macro for generating the jQuery validation rules 
+#macro( validate $type $require )
+  #if( $type == "NUMBER" || $type == "number" )
+    {validate:{ number:true #if($require), required:true #end }}
+  
+	#elseif( $type == "int" )
+  	{validate:{ integer:true #if($require), required:true #end }}
+  	
+  	#elseif( $type == "positiveNumber" )
+  	{validate:{ positive_integer:true #if($require), required:true #end }}
+  	
+	#elseif( $type == "negativeNumber" )
+  	{validate:{ negative_integer:true #if($require), required:true #end }}
+  
+  #elseif( $require )
+    {validate:{required:true}}
+  #end
+#end
+
+<script type="text/javascript">
+jQuery(document).ready( function(){
+	
+    $("#ckbCheckAll").click(function () {
+    
+		$(".checkBoxClass").attr('checked', this.checked);
+	
+    });
+
+    currentDiv = 'latestAnonymousDataForm';
+    isSubmit = true;
+    
+    jQuery("#latestAnonymousDataForm").validate({
+             meta:"validate"
+            ,errorElement:"span"
+            ,submitHandler: function(form)
+                {
+                    if( isSubmit ) 
+                    {
+						saveDataInPatientDataValue();
+                    }
+                }
+        });
+}); 
+
+//datePickerValid('deps${valueMapId}',false );
+
+</script>
+
+<style>
+	
+/* tables */
+table.tablesorter {
+    font-family:arial;
+    background-color: #CDCDCD;
+    margin:10px 0pt 15px;
+    font-size: 8pt;
+    width: 100%;
+    text-align: left;
+}
+table.tablesorter thead tr th, table.tablesorter tfoot tr th {
+    background-color: #e6EEEE;
+    border: 1px solid #FFF;
+    font-size: 8pt;
+    padding: 4px;
+}
+table.tablesorter thead tr .header {
+    background-image: url(bg.gif);
+    background-repeat: no-repeat;
+    background-position: center right;
+    cursor: pointer;
+}
+table.tablesorter tbody td {
+    color: #3D3D3D;
+    padding: 4px;
+    background-color: #FFF;
+    vertical-align: top;
+}
+table.tablesorter tbody tr.odd td {
+    background-color:#F0F0F6;
+}
+table.tablesorter thead tr .headerSortUp {
+    background-image: url(asc.gif);
+}
+table.tablesorter thead tr .headerSortDown {
+    background-image: url(desc.gif);
+}
+table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+background-color: #8dbdd8;
+}
+
+table.tablesorter td:hover {
+ background-color: #ffff99;
+}
+
+table.tablesorter tr.odd td:hover {
+ background-color: #ffff99;
+}
+	
+</style>
+
+<form id="latestAnonymousDataForm" name="latestAnonymousDataForm" method="post" >
+
+#set( $tabIndex = 1 )
+#if ( $programStageInstanceIds.size() > 0 )
+
+    <table >
+		<tr>
+			<td style="text-align: left;width:100px">$i18n.getString( "report_date" )</td>
+			<td><input type="text"  name="currentDate" id="currentDate" style="text-align: left;width:100px" >
+        		<script type="text/javascript">
+        			datePickerValid( 'currentDate', true );
+        		 </script>
+    		</td>	 
+		</tr>
+    </table>	
+	<table class="tablesorter" id="table1">
+		<thead >
+        
+    	<tr bgcolor="#CBDDEB">
+    		<th style="text-align: center;width:100px">Sl No</th>
+    		#foreach( $programStageDataElement in $programStageDataElements )
+    			#if( $programStageDataElement.dataElement.type == "date" )
+					<th style="text-align: left;width:100px">$programStageDataElement.getDataElement().getName()(yyyy-mm-dd)</th>
+				#else
+					<th style="text-align: left;width:100px">$programStageDataElement.getDataElement().getName()</th>
+				#end	
+    		#end	
+    		<th style="text-align: center;width:100px">Select All<input type="checkbox" id="ckbCheckAll" /></th>
+    	</tr>
+        </thead>
+		<tbody>
+    	#set( $mark = false )
+    	#set( $count=1 )
+    	#foreach($programStageInstanceId in $programStageInstanceIds )
+    		<tr #alternate($mark)>
+    			 <td style="text-align: center;width:100px" >$count</td>
+    			#foreach($programStageDataElement in $programStageDataElements )
+    				#set( $valueMapId =  $programStageInstanceId + ':' + $programStageDataElement.getDataElement().id )
+    				#set( $patientDataValue = "" )
+    				#set( $patientDataValue = $!patientDataValueMap.get( $valueMapId ) )
+    				<td>
+						#if( $programStageDataElement.dataElement.type == "date" )							
+							<input type="text" name="deps$valueMapId" id="deps$valueMapId"  value="$!patientDataValue" tabindex="$tabIndex" style="text-align: center;width:100px" class="{validate:{dateISO:true}}"/> 
+								<script type="text/javascript">
+									//datePickerValid( 'deps$programStageInstanceId' + ':' + '$programStageDataElement.dataElement.id' );
+									datePickerValid('deps${valueMapId}',false );
+								</script> 
+						#else		
+							<input type="text" name="deps$valueMapId" id="deps$valueMapId" value="$!patientDataValue" tabindex="$tabIndex" style="text-align: center;width:100px" #if($programStageDataElement.getDataElement().type =='number') class="{validate:{number:true}}" #elseif($programStageDataElement.getDataElement().type =='int') class="{validate:{integer:true}}" #elseif($programStageDataElement.getDataElement().type =='positiveNumber') class="{validate:{positive_integer:true}}" #elseif($programStageDataElement.getDataElement().type =='negativeNumber') class="{validate:{negative_integer:true}}" #end/>
+						#end					
+					</td>
+				#end
+				<td style="text-align: center;width:100px" >
+					#set( $checkboxId = $programStageInstanceId)
+					<input type="checkbox" class="checkBoxClass" id="checkbox$checkboxId" name="checkbox$checkboxId" />
+				</td>
+    		</tr>
+    		#set( $tabIndex = $tabIndex + 1 )
+    		#set( $mark = !$mark)
+    		#set($count = $count + 1)
+    	#end
+		</tbody>
+	</table>
+#end
+
+<p>
+    <input type="button"  value="$i18n.getString( 'Cancel' )" style="width:100px" onclick="closewindow();"/>&nbsp;&nbsp;
+    &nbsp;&nbsp;<input type="submit"  id="saveButton" name="saveButton" value="$i18n.getString( 'save' )"  style="width:100px"/>
+</p>
+
+
+</form>
+	
+<script>
+    $(document).ready(function()
+    { 
+        $("#table1").tablesorter( {widgets: ['zebra'], headers: { 10:{sorter: false}}} );                          
+    });
+</script>

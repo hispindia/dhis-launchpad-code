@@ -1,0 +1,23 @@
+
+<a href="index.action"><h2>$i18n.getString( "Program_DashBoard" )</h2></a>
+
+
+#parse( "/dhis-web-commons/ouwt/orgunittreesearch.vm" ) 
+
+<script type="text/javascript">
+
+	selection.setListenerFunction( orgUnitHasBeenSelected );
+
+	function orgUnitHasBeenSelected( orgUnitIds )
+	{
+		if( orgUnitIds == null || orgUnitIds == "" )
+		{
+			return;
+		}
+		if( orgUnitIds != null )
+		{
+			getOUDeatilsForGADataElements(orgUnitIds);
+		}       
+	}
+
+</script>

@@ -1,0 +1,392 @@
+
+<!--Dynamic DataElement Mapping for Bagladesh National Weekly Food grains Offtake Report Template -->
+
+<excel-import>
+ <sheet-info type="seq_len" len="22"/>
+ <sheet-info type="date_cell" row="4" col="17"/>
+ <import-info>
+
+ <!--PADDY-->
+   
+   <dMap exlTag="EP(Paddy)" seq_num="3" ouCode="8" deID="401.6"/>
+   <dMap exlTag="EP(Paddy)" seq_num="6" ouCode="3" deID="401.6"/>
+   <dMap exlTag="EP(Paddy)" seq_num="9" ouCode="7" deID="401.6"/>
+   <dMap exlTag="EP(Paddy)" seq_num="12" ouCode="6" deID="401.6"/>
+   <dMap exlTag="EP(Paddy)" seq_num="15" ouCode="5" deID="401.6"/>
+   <dMap exlTag="EP(Paddy)" seq_num="18" ouCode="4" deID="401.6"/>
+   <dMap exlTag="EP(Paddy)" seq_num="20" ouCode="9" deID="401.6"/>
+
+   <dMap exlTag="OP(Paddy)" seq_num="3" ouCode="8" deID="402.6"/>
+   <dMap exlTag="OP(Paddy)" seq_num="6" ouCode="3" deID="402.6"/>
+   <dMap exlTag="OP(Paddy)" seq_num="9" ouCode="7" deID="402.6"/>
+   <dMap exlTag="OP(Paddy)" seq_num="12" ouCode="6" deID="402.6"/>
+   <dMap exlTag="OP(Paddy)" seq_num="15" ouCode="5" deID="402.6"/>
+   <dMap exlTag="OP(Paddy)" seq_num="18" ouCode="4" deID="402.6"/>
+   <dMap exlTag="OP(Paddy)" seq_num="20" ouCode="9" deID="402.6"/>
+
+   <dMap exlTag="LE(Paddy)" seq_num="3" ouCode="8" deID="403.6"/>
+   <dMap exlTag="LE(Paddy)" seq_num="6" ouCode="3" deID="403.6"/>
+   <dMap exlTag="LE(Paddy)" seq_num="9" ouCode="7" deID="403.6"/>
+   <dMap exlTag="LE(Paddy)" seq_num="12" ouCode="6" deID="403.6"/>
+   <dMap exlTag="LE(Paddy)" seq_num="15" ouCode="5" deID="403.6"/>
+   <dMap exlTag="LE(Paddy)" seq_num="18" ouCode="4" deID="403.6"/>
+   <dMap exlTag="LE(Paddy)" seq_num="20" ouCode="9" deID="403.6"/>
+
+   <dMap exlTag="Fair Price(Paddy)" seq_num="3" ouCode="8" deID="405.6"/>
+   <dMap exlTag="Fair Price(Paddy)" seq_num="6" ouCode="3" deID="405.6"/>
+   <dMap exlTag="Fair Price(Paddy)" seq_num="9" ouCode="7" deID="405.6"/>
+   <dMap exlTag="Fair Price(Paddy)" seq_num="12" ouCode="6" deID="405.6"/>
+   <dMap exlTag="Fair Price(Paddy)" seq_num="15" ouCode="5" deID="405.6"/>
+   <dMap exlTag="Fair Price(Paddy)" seq_num="18" ouCode="4" deID="405.6"/>
+   <dMap exlTag="Fair Price(Paddy)" seq_num="20" ouCode="9" deID="405.6"/>   
+   
+   <dMap exlTag="4th Class Emp.(Paddy)" seq_num="3" ouCode="8" deID="407.6"/>
+   <dMap exlTag="4th Class Emp.(Paddy)" seq_num="6" ouCode="3" deID="407.6"/>
+   <dMap exlTag="4th Class Emp.(Paddy)" seq_num="9" ouCode="7" deID="407.6"/>
+   <dMap exlTag="4th Class Emp.(Paddy)" seq_num="12" ouCode="6" deID="407.6"/>
+   <dMap exlTag="4th Class Emp.(Paddy)" seq_num="15" ouCode="5" deID="407.6"/>
+   <dMap exlTag="4th Class Emp.(Paddy)" seq_num="18" ouCode="4" deID="407.6"/>
+   <dMap exlTag="4th Class Emp.(Paddy)" seq_num="20" ouCode="9" deID="407.6"/>
+
+   <dMap exlTag="CREDIT SALE(Paddy)" seq_num="3" ouCode="8" deID="409.6"/>
+   <dMap exlTag="CREDIT SALE(Paddy)" seq_num="6" ouCode="3" deID="409.6"/>
+   <dMap exlTag="CREDIT SALE(Paddy)" seq_num="9" ouCode="7" deID="409.6"/>
+   <dMap exlTag="CREDIT SALE(Paddy)" seq_num="12" ouCode="6" deID="409.6"/>
+   <dMap exlTag="CREDIT SALE(Paddy)" seq_num="15" ouCode="5" deID="409.6"/>
+   <dMap exlTag="CREDIT SALE(Paddy)" seq_num="18" ouCode="4" deID="409.6"/>
+   <dMap exlTag="CREDIT SALE(Paddy)" seq_num="20" ouCode="9" deID="409.6"/>
+
+   <dMap exlTag="FFW(Paddy)" seq_num="3" ouCode="8" deID="411.6"/>
+   <dMap exlTag="FFW(Paddy)" seq_num="6" ouCode="3" deID="411.6"/>
+   <dMap exlTag="FFW(Paddy)" seq_num="9" ouCode="7" deID="411.6"/>
+   <dMap exlTag="FFW(Paddy)" seq_num="12" ouCode="6" deID="411.6"/>
+   <dMap exlTag="FFW(Paddy)" seq_num="15" ouCode="5" deID="411.6"/>
+   <dMap exlTag="FFW(Paddy)" seq_num="18" ouCode="4" deID="411.6"/>
+   <dMap exlTag="FFW(Paddy)" seq_num="20" ouCode="9" deID="411.6"/>
+
+   <dMap exlTag="TR(Paddy)" seq_num="3" ouCode="8" deID="412.6"/>
+   <dMap exlTag="TR(Paddy)" seq_num="6" ouCode="3" deID="412.6"/>
+   <dMap exlTag="TR(Paddy)" seq_num="9" ouCode="7" deID="412.6"/>
+   <dMap exlTag="TR(Paddy)" seq_num="12" ouCode="6" deID="412.6"/>
+   <dMap exlTag="TR(Paddy)" seq_num="15" ouCode="5" deID="412.6"/>
+   <dMap exlTag="TR(Paddy)" seq_num="18" ouCode="4" deID="412.6"/>
+   <dMap exlTag="TR(Paddy)" seq_num="20" ouCode="9" deID="412.6"/>
+
+   <dMap exlTag="VGF(Paddy)" seq_num="3" ouCode="8" deID="414.6"/>
+   <dMap exlTag="VGF(Paddy)" seq_num="6" ouCode="3" deID="414.6"/>
+   <dMap exlTag="VGF(Paddy)" seq_num="9" ouCode="7" deID="414.6"/>
+   <dMap exlTag="VGF(Paddy)" seq_num="12" ouCode="6" deID="414.6"/>
+   <dMap exlTag="VGF(Paddy)" seq_num="15" ouCode="5" deID="414.6"/>
+   <dMap exlTag="VGF(Paddy)" seq_num="18" ouCode="4" deID="414.6"/>
+   <dMap exlTag="VGF(Paddy)" seq_num="20" ouCode="9" deID="414.6"/>
+
+   <dMap exlTag="VGD(Paddy)" seq_num="3" ouCode="8" deID="413.6"/>
+   <dMap exlTag="VGD(Paddy)" seq_num="6" ouCode="3" deID="413.6"/>
+   <dMap exlTag="VGD(Paddy)" seq_num="9" ouCode="7" deID="413.6"/>
+   <dMap exlTag="VGD(Paddy)" seq_num="12" ouCode="6" deID="413.6"/>
+   <dMap exlTag="VGD(Paddy)" seq_num="15" ouCode="5" deID="413.6"/>
+   <dMap exlTag="VGD(Paddy)" seq_num="18" ouCode="4" deID="413.6"/>
+   <dMap exlTag="VGD(Paddy)" seq_num="20" ouCode="9" deID="413.6"/>
+
+   <dMap exlTag="GR(Paddy)" seq_num="3" ouCode="8" deID="415.6"/>
+   <dMap exlTag="GR(Paddy)" seq_num="6" ouCode="3" deID="415.6"/>
+   <dMap exlTag="GR(Paddy)" seq_num="9" ouCode="7" deID="415.6"/>
+   <dMap exlTag="GR(Paddy)" seq_num="12" ouCode="6" deID="415.6"/>
+   <dMap exlTag="GR(Paddy)" seq_num="15" ouCode="5" deID="415.6"/>
+   <dMap exlTag="GR(Paddy)" seq_num="18" ouCode="4" deID="415.6"/>
+   <dMap exlTag="GR(Paddy)" seq_num="20" ouCode="9" deID="415.6"/>
+
+   <dMap exlTag="OTHERS M(Paddy)" seq_num="3" ouCode="8" deID="410.6"/>
+   <dMap exlTag="OTHERS M(Paddy)" seq_num="6" ouCode="3" deID="410.6"/>
+   <dMap exlTag="OTHERS M(Paddy)" seq_num="9" ouCode="7" deID="410.6"/>
+   <dMap exlTag="OTHERS M(Paddy)" seq_num="12" ouCode="6" deID="410.6"/>
+   <dMap exlTag="OTHERS M(Paddy)" seq_num="15" ouCode="5" deID="410.6"/>
+   <dMap exlTag="OTHERS M(Paddy)" seq_num="18" ouCode="4" deID="410.6"/>
+   <dMap exlTag="OTHERS M(Paddy)" seq_num="20" ouCode="9" deID="410.6"/>
+
+   <dMap exlTag="OTHERS NM(Paddy)" seq_num="3" ouCode="8" deID="416.6"/>
+   <dMap exlTag="OTHERS NM(Paddy)" seq_num="6" ouCode="3" deID="416.6"/>
+   <dMap exlTag="OTHERS NM(Paddy)" seq_num="9" ouCode="7" deID="416.6"/>
+   <dMap exlTag="OTHERS NM(Paddy)" seq_num="12" ouCode="6" deID="416.6"/>
+   <dMap exlTag="OTHERS NM(Paddy)" seq_num="15" ouCode="5" deID="416.6"/>
+   <dMap exlTag="OTHERS NM(Paddy)" seq_num="18" ouCode="4" deID="416.6"/>
+   <dMap exlTag="OTHERS NM(Paddy)" seq_num="20" ouCode="9" deID="416.6"/>
+   
+   <dMap exlTag="OMS(Paddy)" seq_num="3" ouCode="8" deID="404.6"/>
+   <dMap exlTag="OMS(Paddy)" seq_num="6" ouCode="3" deID="404.6"/>
+   <dMap exlTag="OMS(Paddy)" seq_num="9" ouCode="7" deID="404.6"/>
+   <dMap exlTag="OMS(Paddy)" seq_num="12" ouCode="6" deID="404.6"/>
+   <dMap exlTag="OMS(Paddy)" seq_num="15" ouCode="5" deID="404.6"/>
+   <dMap exlTag="OMS(Paddy)" seq_num="18" ouCode="4" deID="404.6"/>
+   <dMap exlTag="OMS(Paddy)" seq_num="20" ouCode="9" deID="404.6"/>
+
+ <!--Rice-->
+   
+   <dMap exlTag="EP(Rice)" seq_num="3" ouCode="8" deID="367.6"/>
+   <dMap exlTag="EP(Rice)" seq_num="6" ouCode="3" deID="367.6"/>
+   <dMap exlTag="EP(Rice)" seq_num="9" ouCode="7" deID="367.6"/>
+   <dMap exlTag="EP(Rice)" seq_num="12" ouCode="6" deID="367.6"/>
+   <dMap exlTag="EP(Rice)" seq_num="15" ouCode="5" deID="367.6"/>
+   <dMap exlTag="EP(Rice)" seq_num="18" ouCode="4" deID="367.6"/>
+   <dMap exlTag="EP(Rice)" seq_num="20" ouCode="9" deID="367.6"/>
+
+   <dMap exlTag="OP(Rice)" seq_num="3" ouCode="8" deID="368.6"/>
+   <dMap exlTag="OP(Rice)" seq_num="6" ouCode="3" deID="368.6"/>
+   <dMap exlTag="OP(Rice)" seq_num="9" ouCode="7" deID="368.6"/>
+   <dMap exlTag="OP(Rice)" seq_num="12" ouCode="6" deID="368.6"/>
+   <dMap exlTag="OP(Rice)" seq_num="15" ouCode="5" deID="368.6"/>
+   <dMap exlTag="OP(Rice)" seq_num="18" ouCode="4" deID="368.6"/>
+   <dMap exlTag="OP(Rice)" seq_num="20" ouCode="9" deID="368.6"/>
+
+   <dMap exlTag="LE(Rice)" seq_num="3" ouCode="8" deID="369.6"/>
+   <dMap exlTag="LE(Rice)" seq_num="6" ouCode="3" deID="369.6"/>
+   <dMap exlTag="LE(Rice)" seq_num="9" ouCode="7" deID="369.6"/>
+   <dMap exlTag="LE(Rice)" seq_num="12" ouCode="6" deID="369.6"/>
+   <dMap exlTag="LE(Rice)" seq_num="15" ouCode="5" deID="369.6"/>
+   <dMap exlTag="LE(Rice)" seq_num="18" ouCode="4" deID="369.6"/>
+   <dMap exlTag="LE(Rice)" seq_num="20" ouCode="9" deID="369.6"/>
+
+   <dMap exlTag="Fair Price(Rice)" seq_num="3" ouCode="8" deID="371.6"/>
+   <dMap exlTag="Fair Price(Rice)" seq_num="6" ouCode="3" deID="371.6"/>
+   <dMap exlTag="Fair Price(Rice)" seq_num="9" ouCode="7" deID="371.6"/>
+   <dMap exlTag="Fair Price(Rice)" seq_num="12" ouCode="6" deID="371.6"/>
+   <dMap exlTag="Fair Price(Rice)" seq_num="15" ouCode="5" deID="371.6"/>
+   <dMap exlTag="Fair Price(Rice)" seq_num="18" ouCode="4" deID="371.6"/>
+   <dMap exlTag="Fair Price(Rice)" seq_num="20" ouCode="9" deID="371.6"/>
+   
+   <dMap exlTag="4th class Emp.(Rice)" seq_num="3" ouCode="8" deID="373.6"/>
+   <dMap exlTag="4th class Emp.(Rice)" seq_num="6" ouCode="3" deID="373.6"/>
+   <dMap exlTag="4th class Emp.(Rice)" seq_num="9" ouCode="7" deID="373.6"/>
+   <dMap exlTag="4th class Emp.(Rice)" seq_num="12" ouCode="6" deID="373.6"/>
+   <dMap exlTag="4th class Emp.(Rice)" seq_num="15" ouCode="5" deID="373.6"/>
+   <dMap exlTag="4th class Emp.(Rice)" seq_num="18" ouCode="4" deID="373.6"/>
+   <dMap exlTag="4th class Emp.(Rice)" seq_num="20" ouCode="9" deID="373.6"/>
+
+   <dMap exlTag="CREDIT SALE(Rice)" seq_num="3" ouCode="8" deID="375.6"/>
+   <dMap exlTag="CREDIT SALE(Rice)" seq_num="6" ouCode="3" deID="375.6"/>
+   <dMap exlTag="CREDIT SALE(Rice)" seq_num="9" ouCode="7" deID="375.6"/>
+   <dMap exlTag="CREDIT SALE(Rice)" seq_num="12" ouCode="6" deID="375.6"/>
+   <dMap exlTag="CREDIT SALE(Rice)" seq_num="15" ouCode="5" deID="375.6"/>
+   <dMap exlTag="CREDIT SALE(Rice)" seq_num="18" ouCode="4" deID="375.6"/>
+   <dMap exlTag="CREDIT SALE(Rice)" seq_num="20" ouCode="9" deID="375.6"/>
+
+   <dMap exlTag="FFW(Rice)" seq_num="3" ouCode="8" deID="377.6"/>
+   <dMap exlTag="FFW(Rice)" seq_num="6" ouCode="3" deID="377.6"/>
+   <dMap exlTag="FFW(Rice)" seq_num="9" ouCode="7" deID="377.6"/>
+   <dMap exlTag="FFW(Rice)" seq_num="12" ouCode="6" deID="377.6"/>
+   <dMap exlTag="FFW(Rice)" seq_num="15" ouCode="5" deID="377.6"/>
+   <dMap exlTag="FFW(Rice)" seq_num="18" ouCode="4" deID="377.6"/>
+   <dMap exlTag="FFW(Rice)" seq_num="20" ouCode="9" deID="377.6"/>
+
+   <dMap exlTag="TR(Rice)" seq_num="3" ouCode="8" deID="378.6"/>
+   <dMap exlTag="TR(Rice)" seq_num="6" ouCode="3" deID="378.6"/>
+   <dMap exlTag="TR(Rice)" seq_num="9" ouCode="7" deID="378.6"/>
+   <dMap exlTag="TR(Rice)" seq_num="12" ouCode="6" deID="378.6"/>
+   <dMap exlTag="TR(Rice)" seq_num="15" ouCode="5" deID="378.6"/>
+   <dMap exlTag="TR(Rice)" seq_num="18" ouCode="4" deID="378.6"/>
+   <dMap exlTag="TR(Rice)" seq_num="20" ouCode="9" deID="378.6"/>
+
+   <dMap exlTag="VGF(Rice)" seq_num="3" ouCode="8" deID="380.6"/>
+   <dMap exlTag="VGF(Rice)" seq_num="6" ouCode="3" deID="380.6"/>
+   <dMap exlTag="VGF(Rice)" seq_num="9" ouCode="7" deID="380.6"/>
+   <dMap exlTag="VGF(Rice)" seq_num="12" ouCode="6" deID="380.6"/>
+   <dMap exlTag="VGF(Rice)" seq_num="15" ouCode="5" deID="380.6"/>
+   <dMap exlTag="VGF(Rice)" seq_num="18" ouCode="4" deID="380.6"/>
+   <dMap exlTag="VGF(Rice)" seq_num="20" ouCode="9" deID="380.6"/>
+
+   <dMap exlTag="VGD(Rice)" seq_num="3" ouCode="8" deID="379.6"/>
+   <dMap exlTag="VGD(Rice)" seq_num="6" ouCode="3" deID="379.6"/>
+   <dMap exlTag="VGD(Rice)" seq_num="9" ouCode="7" deID="379.6"/>
+   <dMap exlTag="VGD(Rice)" seq_num="12" ouCode="6" deID="379.6"/>
+   <dMap exlTag="VGD(Rice)" seq_num="15" ouCode="5" deID="379.6"/>
+   <dMap exlTag="VGD(Rice)" seq_num="18" ouCode="4" deID="379.6"/>
+   <dMap exlTag="VGD(Rice)" seq_num="20" ouCode="9" deID="379.6"/>
+
+   <dMap exlTag="GR(Rice)" seq_num="3" ouCode="8" deID="381.6"/>
+   <dMap exlTag="GR(Rice)" seq_num="6" ouCode="3" deID="381.6"/>
+   <dMap exlTag="GR(Rice)" seq_num="9" ouCode="7" deID="381.6"/>
+   <dMap exlTag="GR(Rice)" seq_num="12" ouCode="6" deID="381.6"/>
+   <dMap exlTag="GR(Rice)" seq_num="15" ouCode="5" deID="381.6"/>
+   <dMap exlTag="GR(Rice)" seq_num="18" ouCode="4" deID="381.6"/>
+   <dMap exlTag="GR(Rice)" seq_num="20" ouCode="9" deID="381.6"/>
+
+   <dMap exlTag="GARMENTS(Rice)" seq_num="3" ouCode="8" deID="374.6"/>
+   <dMap exlTag="GARMENTS(Rice)" seq_num="6" ouCode="3" deID="374.6"/>
+   <dMap exlTag="GARMENTS(Rice)" seq_num="9" ouCode="7" deID="374.6"/>
+   <dMap exlTag="GARMENTS(Rice)" seq_num="12" ouCode="6" deID="374.6"/>
+   <dMap exlTag="GARMENTS(Rice)" seq_num="15" ouCode="5" deID="374.6"/>
+   <dMap exlTag="GARMENTS(Rice)" seq_num="18" ouCode="4" deID="374.6"/>
+   <dMap exlTag="GARMENTS(Rice)" seq_num="20" ouCode="9" deID="374.6"/>
+  
+   <dMap exlTag="Freedom Fighter(Rice)" seq_num="3" ouCode="8" deID="372.6"/>
+   <dMap exlTag="Freedom Fighter(Rice)" seq_num="6" ouCode="3" deID="372.6"/>
+   <dMap exlTag="Freedom Fighter(Rice)" seq_num="9" ouCode="7" deID="372.6"/>
+   <dMap exlTag="Freedom Fighter(Rice)" seq_num="12" ouCode="6" deID="372.6"/>
+   <dMap exlTag="Freedom Fighter(Rice)" seq_num="15" ouCode="5" deID="372.6"/>
+   <dMap exlTag="Freedom Fighter(Rice)" seq_num="18" ouCode="4" deID="372.6"/>
+   <dMap exlTag="Freedom Fighter(Rice)" seq_num="20" ouCode="9" deID="372.6"/>
+
+   <dMap exlTag="OTHERS M(Rice)" seq_num="3" ouCode="8" deID="376.6"/>
+   <dMap exlTag="OTHERS M(Rice)" seq_num="6" ouCode="3" deID="376.6"/>
+   <dMap exlTag="OTHERS M(Rice)" seq_num="9" ouCode="7" deID="376.6"/>
+   <dMap exlTag="OTHERS M(Rice)" seq_num="12" ouCode="6" deID="376.6"/>
+   <dMap exlTag="OTHERS M(Rice)" seq_num="15" ouCode="5" deID="376.6"/>
+   <dMap exlTag="OTHERS M(Rice)" seq_num="18" ouCode="4" deID="376.6"/>
+   <dMap exlTag="OTHERS M(Rice)" seq_num="20" ouCode="9" deID="376.6"/>
+
+   <dMap exlTag="OTHERS NM(Rice)" seq_num="3" ouCode="8" deID="382.6"/>
+   <dMap exlTag="OTHERS NM(Rice)" seq_num="6" ouCode="3" deID="382.6"/>
+   <dMap exlTag="OTHERS NM(Rice)" seq_num="9" ouCode="7" deID="382.6"/>
+   <dMap exlTag="OTHERS NM(Rice)" seq_num="12" ouCode="6" deID="382.6"/>
+   <dMap exlTag="OTHERS NM(Rice)" seq_num="15" ouCode="5" deID="382.6"/>
+   <dMap exlTag="OTHERS NM(Rice)" seq_num="18" ouCode="4" deID="382.6"/>
+   <dMap exlTag="OTHERS NM(Rice)" seq_num="20" ouCode="9" deID="382.6"/>
+
+   <dMap exlTag="OMS (Rice)" seq_num="3" ouCode="8" deID="370.6"/>
+   <dMap exlTag="OMS (Rice)" seq_num="6" ouCode="3" deID="370.6"/>
+   <dMap exlTag="OMS (Rice)" seq_num="9" ouCode="7" deID="370.6"/>
+   <dMap exlTag="OMS (Rice)" seq_num="12" ouCode="6" deID="370.6"/>
+   <dMap exlTag="OMS (Rice)" seq_num="15" ouCode="5" deID="370.6"/>
+   <dMap exlTag="OMS (Rice)" seq_num="18" ouCode="4" deID="370.6"/>
+   <dMap exlTag="OMS (Rice)" seq_num="20" ouCode="9" deID="370.6"/> 
+
+ <!--Wheat-->
+   
+   <dMap exlTag="EP(Wheat)" seq_num="3" ouCode="8" deID="383.6"/>
+   <dMap exlTag="EP(Wheat)" seq_num="6" ouCode="3" deID="383.6"/>
+   <dMap exlTag="EP(Wheat)" seq_num="9" ouCode="7" deID="383.6"/>
+   <dMap exlTag="EP(Wheat)" seq_num="12" ouCode="6" deID="383.6"/>
+   <dMap exlTag="EP(Wheat)" seq_num="15" ouCode="5" deID="383.6"/>
+   <dMap exlTag="EP(Wheat)" seq_num="18" ouCode="4" deID="383.6"/>
+   <dMap exlTag="EP(Wheat)" seq_num="20" ouCode="9" deID="383.6"/>
+
+   <dMap exlTag="OP(Wheat)" seq_num="3" ouCode="8" deID="384.6"/>
+   <dMap exlTag="OP(Wheat)" seq_num="6" ouCode="3" deID="384.6"/>
+   <dMap exlTag="OP(Wheat)" seq_num="9" ouCode="7" deID="384.6"/>
+   <dMap exlTag="OP(Wheat)" seq_num="12" ouCode="6" deID="384.6"/>
+   <dMap exlTag="OP(Wheat)" seq_num="15" ouCode="5" deID="384.6"/>
+   <dMap exlTag="OP(Wheat)" seq_num="18" ouCode="4" deID="384.6"/>
+   <dMap exlTag="OP(Wheat)" seq_num="20" ouCode="9" deID="384.6"/>
+
+   <dMap exlTag="LE(Wheat)" seq_num="3" ouCode="8" deID="385.6"/>
+   <dMap exlTag="LE(Wheat)" seq_num="6" ouCode="3" deID="385.6"/>
+   <dMap exlTag="LE(Wheat)" seq_num="9" ouCode="7" deID="385.6"/>
+   <dMap exlTag="LE(Wheat)" seq_num="12" ouCode="6" deID="385.6"/>
+   <dMap exlTag="LE(Wheat)" seq_num="15" ouCode="5" deID="385.6"/>
+   <dMap exlTag="LE(Wheat)" seq_num="18" ouCode="4" deID="385.6"/>
+   <dMap exlTag="LE(Wheat)" seq_num="20" ouCode="9" deID="385.6"/>
+
+   <dMap exlTag="Fair Price(Wheat)" seq_num="3" ouCode="8" deID="387.6"/>
+   <dMap exlTag="Fair Price(Wheat)" seq_num="6" ouCode="3" deID="387.6"/>
+   <dMap exlTag="Fair Price(Wheat)" seq_num="9" ouCode="7" deID="387.6"/>
+   <dMap exlTag="Fair Price(Wheat)" seq_num="12" ouCode="6" deID="387.6"/>
+   <dMap exlTag="Fair Price(Wheat)" seq_num="15" ouCode="5" deID="387.6"/>
+   <dMap exlTag="Fair Price(Wheat)" seq_num="18" ouCode="4" deID="387.6"/>
+   <dMap exlTag="Fair Price(Wheat)" seq_num="20" ouCode="9" deID="387.6"/>
+   
+   <dMap exlTag="4th Class Emp.(Wheat)" seq_num="3" ouCode="8" deID="389.6"/>
+   <dMap exlTag="4th Class Emp.(Wheat)" seq_num="6" ouCode="3" deID="389.6"/>
+   <dMap exlTag="4th Class Emp.(Wheat)" seq_num="9" ouCode="7" deID="389.6"/>
+   <dMap exlTag="4th Class Emp.(Wheat)" seq_num="12" ouCode="6" deID="389.6"/>
+   <dMap exlTag="4th Class Emp.(Wheat)" seq_num="15" ouCode="5" deID="389.6"/>
+   <dMap exlTag="4th Class Emp.(Wheat)" seq_num="18" ouCode="4" deID="389.6"/>
+   <dMap exlTag="4th Class Emp.(Wheat)" seq_num="20" ouCode="9" deID="389.6"/>
+
+   <dMap exlTag="CREDIT SALE(Wheat)" seq_num="3" ouCode="8" deID="391.6"/>
+   <dMap exlTag="CREDIT SALE(Wheat)" seq_num="6" ouCode="3" deID="391.6"/>
+   <dMap exlTag="CREDIT SALE(Wheat)" seq_num="9" ouCode="7" deID="391.6"/>
+   <dMap exlTag="CREDIT SALE(Wheat)" seq_num="12" ouCode="6" deID="391.6"/>
+   <dMap exlTag="CREDIT SALE(Wheat)" seq_num="15" ouCode="5" deID="391.6"/>
+   <dMap exlTag="CREDIT SALE(Wheat)" seq_num="18" ouCode="4" deID="391.6"/>
+   <dMap exlTag="CREDIT SALE(Wheat)" seq_num="20" ouCode="9" deID="391.6"/>
+
+   <dMap exlTag="FFW(Wheat)" seq_num="3" ouCode="8" deID="393.6"/>
+   <dMap exlTag="FFW(Wheat)" seq_num="6" ouCode="3" deID="393.6"/>
+   <dMap exlTag="FFW(Wheat)" seq_num="9" ouCode="7" deID="393.6"/>
+   <dMap exlTag="FFW(Wheat)" seq_num="12" ouCode="6" deID="393.6"/>
+   <dMap exlTag="FFW(Wheat)" seq_num="15" ouCode="5" deID="393.6"/>
+   <dMap exlTag="FFW(Wheat)" seq_num="18" ouCode="4" deID="393.6"/>
+   <dMap exlTag="FFW(Wheat)" seq_num="20" ouCode="9" deID="393.6"/>
+
+   <dMap exlTag="TR(Wheat)" seq_num="3" ouCode="8" deID="394.6"/>
+   <dMap exlTag="TR(Wheat)" seq_num="6" ouCode="3" deID="394.6"/>
+   <dMap exlTag="TR(Wheat)" seq_num="9" ouCode="7" deID="394.6"/>
+   <dMap exlTag="TR(Wheat)" seq_num="12" ouCode="6" deID="394.6"/>
+   <dMap exlTag="TR(Wheat)" seq_num="15" ouCode="5" deID="394.6"/>
+   <dMap exlTag="TR(Wheat)" seq_num="18" ouCode="4" deID="394.6"/>
+   <dMap exlTag="TR(Wheat)" seq_num="20" ouCode="9" deID="394.6"/>
+
+   <dMap exlTag="VGF(Wheat)" seq_num="3" ouCode="8" deID="396.6"/>
+   <dMap exlTag="VGF(Wheat)" seq_num="6" ouCode="3" deID="396.6"/>
+   <dMap exlTag="VGF(Wheat)" seq_num="9" ouCode="7" deID="396.6"/>
+   <dMap exlTag="VGF(Wheat)" seq_num="12" ouCode="6" deID="396.6"/>
+   <dMap exlTag="VGF(Wheat)" seq_num="15" ouCode="5" deID="396.6"/>
+   <dMap exlTag="VGF(Wheat)" seq_num="18" ouCode="4" deID="396.6"/>
+   <dMap exlTag="VGF(Wheat)" seq_num="20" ouCode="9" deID="396.6"/>
+
+   <dMap exlTag="VGD(Wheat)" seq_num="3" ouCode="8" deID="395.6"/>
+   <dMap exlTag="VGD(Wheat)" seq_num="6" ouCode="3" deID="395.6"/>
+   <dMap exlTag="VGD(Wheat)" seq_num="9" ouCode="7" deID="395.6"/>
+   <dMap exlTag="VGD(Wheat)" seq_num="12" ouCode="6" deID="395.6"/>
+   <dMap exlTag="VGD(Wheat)" seq_num="15" ouCode="5" deID="395.6"/>
+   <dMap exlTag="VGD(Wheat)" seq_num="18" ouCode="4" deID="395.6"/>
+   <dMap exlTag="VGD(Wheat)" seq_num="20" ouCode="9" deID="395.6"/>
+
+   <dMap exlTag="GR(Wheat)" seq_num="3" ouCode="8" deID="397.6"/>
+   <dMap exlTag="GR(Wheat)" seq_num="6" ouCode="3" deID="397.6"/>
+   <dMap exlTag="GR(Wheat)" seq_num="9" ouCode="7" deID="397.6"/>
+   <dMap exlTag="GR(Wheat)" seq_num="12" ouCode="6" deID="397.6"/>
+   <dMap exlTag="GR(Wheat)" seq_num="15" ouCode="5" deID="397.6"/>
+   <dMap exlTag="GR(Wheat)" seq_num="18" ouCode="4" deID="397.6"/>
+   <dMap exlTag="GR(Wheat)" seq_num="20" ouCode="9" deID="397.6"/>
+
+   <dMap exlTag="School Feeding(Wheat)" seq_num="3" ouCode="8" deID="400.6"/>
+   <dMap exlTag="School Feeding(Wheat)" seq_num="6" ouCode="3" deID="400.6"/>
+   <dMap exlTag="School Feeding(Wheat)" seq_num="9" ouCode="7" deID="400.6"/>
+   <dMap exlTag="School Feeding(Wheat)" seq_num="12" ouCode="6" deID="400.6"/>
+   <dMap exlTag="School Feeding(Wheat)" seq_num="15" ouCode="5" deID="400.6"/>
+   <dMap exlTag="School Feeding(Wheat)" seq_num="18" ouCode="4" deID="400.6"/>
+   <dMap exlTag="School Feeding(Wheat)" seq_num="20" ouCode="9" deID="400.6"/>
+
+   <dMap exlTag="Garment(Wheat)" seq_num="3" ouCode="8" deID="390.6"/>
+   <dMap exlTag="Garment(Wheat)" seq_num="6" ouCode="3" deID="390.6"/>
+   <dMap exlTag="Garment(Wheat)" seq_num="9" ouCode="7" deID="390.6"/>
+   <dMap exlTag="Garment(Wheat)" seq_num="12" ouCode="6" deID="390.6"/>
+   <dMap exlTag="Garment(Wheat)" seq_num="15" ouCode="5" deID="390.6"/>
+   <dMap exlTag="Garment(Wheat)" seq_num="18" ouCode="4" deID="390.6"/>
+   <dMap exlTag="Garment(Wheat)" seq_num="20" ouCode="9" deID="390.6"/>
+
+   <dMap exlTag="Freedom Fighter(Wheat)" seq_num="3" ouCode="8" deID="388.6"/>
+   <dMap exlTag="Freedom Fighter(Wheat)" seq_num="6" ouCode="3" deID="388.6"/>
+   <dMap exlTag="Freedom Fighter(Wheat)" seq_num="9" ouCode="7" deID="388.6"/>
+   <dMap exlTag="Freedom Fighter(Wheat)" seq_num="12" ouCode="6" deID="388.6"/>
+   <dMap exlTag="Freedom Fighter(Wheat)" seq_num="15" ouCode="5" deID="388.6"/>
+   <dMap exlTag="Freedom Fighter(Wheat)" seq_num="18" ouCode="4" deID="388.6"/>
+   <dMap exlTag="Freedom Fighter(Wheat)" seq_num="20" ouCode="9" deID="388.6"/>
+   
+   <dMap exlTag="OTHERS M(Wheat)" seq_num="3" ouCode="8" deID="392.6"/>
+   <dMap exlTag="OTHERS M(Wheat)" seq_num="6" ouCode="3" deID="392.6"/>
+   <dMap exlTag="OTHERS M(Wheat)" seq_num="9" ouCode="7" deID="392.6"/>
+   <dMap exlTag="OTHERS M(Wheat)" seq_num="12" ouCode="6" deID="392.6"/>
+   <dMap exlTag="OTHERS M(Wheat)" seq_num="15" ouCode="5" deID="392.6"/>
+   <dMap exlTag="OTHERS M(Wheat)" seq_num="18" ouCode="4" deID="392.6"/>
+   <dMap exlTag="OTHERS M(Wheat)" seq_num="20" ouCode="9" deID="392.6"/>
+
+   <dMap exlTag="OTHERS NM(Wheat)" seq_num="3" ouCode="8" deID="398.6"/>
+   <dMap exlTag="OTHERS NM(Wheat)" seq_num="6" ouCode="3" deID="398.6"/>
+   <dMap exlTag="OTHERS NM(Wheat)" seq_num="9" ouCode="7" deID="398.6"/>
+   <dMap exlTag="OTHERS NM(Wheat)" seq_num="12" ouCode="6" deID="398.6"/>
+   <dMap exlTag="OTHERS NM(Wheat)" seq_num="15" ouCode="5" deID="398.6"/>
+   <dMap exlTag="OTHERS NM(Wheat)" seq_num="18" ouCode="4" deID="398.6"/>
+   <dMap exlTag="OTHERS NM(Wheat)" seq_num="20" ouCode="9" deID="398.6"/>
+
+   <dMap exlTag="OMS/F.M(Wheat)" seq_num="3" ouCode="8" deID="386.6"/>
+   <dMap exlTag="OMS/F.M(Wheat)" seq_num="6" ouCode="3" deID="386.6"/>
+   <dMap exlTag="OMS/F.M(Wheat)" seq_num="9" ouCode="7" deID="386.6"/>
+   <dMap exlTag="OMS/F.M(Wheat)" seq_num="12" ouCode="6" deID="386.6"/>
+   <dMap exlTag="OMS/F.M(Wheat)" seq_num="15" ouCode="5" deID="386.6"/>
+   <dMap exlTag="OMS/F.M(Wheat)" seq_num="18" ouCode="4" deID="386.6"/>
+   <dMap exlTag="OMS/F.M(Wheat)" seq_num="20" ouCode="9" deID="386.6"/>    
+
+ </import-info>
+</excel-import>

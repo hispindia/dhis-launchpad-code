@@ -1,0 +1,157 @@
+
+
+<script>
+	
+	function onSubmitFunction( redirectAction )
+	{
+		if( redirectAction == "EXPORTTOWORKBOOK" )
+		{
+			document.getElementById('htmlCode').value = document.getElementById('formResult').innerHTML;
+			document.viewDataResult.action = "exportToWorkBook.action";
+			document.viewDataResult.target = '_blank';
+            document.viewDataResult.submit();
+		}
+		else
+		{
+            document.viewDataResult.action = "saveDataVerification.action";
+			document.viewDataResult.target = '_self';
+            document.viewDataResult.submit();		
+		}
+	}
+	
+	function exportToWorkBook()
+    {
+		document.getElementById('htmlCode').value = document.getElementById('formResult').innerHTML;
+        return true;
+	}
+	
+	function showVerifyDataPopup( )
+	{
+		document.getElementById("verifyDiv").style.display = 'block'; 
+	}
+	
+	function hideverifyDataPopup()
+	{
+		document.getElementById("verifyDiv").style.display = 'none'; 
+	}
+	
+	function verifyDataPopup1( ) 
+	{
+		var dataSetId = document.getElementById('dataSetId').value;
+		var startDate = document.getElementById('startDate').value;
+		var endDate = document.getElementById('endDate').value;
+		var orgUnitIds = document.getElementById('orgUnitIds').value;
+		var headingMessage = document.getElementById('headingMessage').value;
+	
+		var url = 'verifyDataForm.action?dataSetId=' + dataSetId + "&startDate=" + startDate + "&endDate=" +endDate+ "&orgUnitIds=" +orgUnitIds +"&headingMessage='"+ headingMessage +"'";
+		$('#contentDataRecord').dialog('destroy').remove();
+		$('<div id="contentDataRecord">' ).load(url).dialog({
+			title: 'Verify Data Form',
+			maximize: true, 
+			closable: true,
+			modal:true,
+			overlay:{background:'#000000', opacity:0.1},
+			width: 500,
+			height: 550
+		});
+	}
+</script>
+
+<h4>View data for the dataset: $headingMessage</h4>
+
+<form id="viewDataResult" name="viewDataResult" method="post" >
+
+	<input type="hidden" name="dataSetId" id="dataSetId" value="$datasetId" />
+	<input type="hidden" name="startDate" id="startDate" value="$startDate" />
+	<input type="hidden" name="endDate" id="endDate" value="$endDate" />
+	<input type="hidden" name="orgUnitIds" id="orgUnitIds" value="$orgUnitIdsByComma" />
+	<input type="hidden" name="headingMessage" id="headingMessage" value="$headingMessage" />
+
+	<input type="hidden" name="htmlCode" id="htmlCode" />
+	
+	<div align="left" class="NormalB">
+		<input type="submit" name="ExportToWorkBook" value="Export To WorkBook" onclick="javascript:onSubmitFunction( 'EXPORTTOWORKBOOK' )" style="width:180px; background-color:#666666; color:white; height: 25px;" />
+        <input type="button" name="Verify" value=" Verify " onclick="javascript:showVerifyDataPopup()" style="width:180px; background-color:#666666; color:white; height: 25px;" />
+	</div>
+
+	<br/><br/>
+	<!--<div id="verifyDiv" name="verifyDiv" align="left">-->
+        <table align="center" width="40%" id="verifyDiv" name="verifyDiv" bgcolor="#CEF6CE" style=" border-collapse: collapse; margin-top: 0;display:none" cellpadding="5" cellspacing="0"  border="0">
+            <tr align="right">
+                <td><a href="javascript:hideverifyDataPopup()">Close[X]</a></td>
+			</tr>
+			<tr>
+				<td>
+					<strong>Verify Status:</strong><br/>
+					<select id="verifyStatus" name="verifyStatus" style="width:330px">
+						<option value="Data is valid">Data is valid</option>
+						<option value="Data needs to be corrected">Data needs to be corrected</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<strong>Comments/Remarks:</strong><br/>
+					<textarea id="remarks" name="remarks" rows="3" cols="50"></textarea>
+				</td>
+			</tr>
+            <tr>
+                <td>
+					<input type="button" name="Submit" value=" Submit " onclick="javascript:onSubmitFunction( 'SAVEDATAVERIFICATION' )" style="width:180px; background-color:#666666; color:white; height: 25px;" />					
+                </td>
+            </tr>			
+		</table>
+	<!--</div>-->
+	<br/><br/>
+
+	<div id="formResult" align="left">
+		<table align="left" style="white-space: nowrap; border-collapse: collapse; margin-top: 0;" cellpadding="0" cellspacing="0"  border=1>
+			<tr align="center">
+				<td>&nbsp;</td>
+				#foreach ( $orgUnit in $orgUnitList )
+					#set( $dataViewPeriodMap = $dataViewResultMap.get( $orgUnit ) ) 
+					<td colspan="$dataViewPeriodMap.size()">$orgUnit.name</td>			 
+				#end
+			</tr>
+			<tr align="center">
+				<td>&nbsp;</td>
+				#foreach ( $orgUnit in $orgUnitList )
+					#set( $dataViewPeriodMap = $dataViewResultMap.get( $orgUnit ) )
+					#set( $dataViewPeriodMapKey = $dataViewPeriodMap.keySet() )					
+					#foreach ( $period in $periodList )
+						#if( $dataViewPeriodMapKey.contains( $period ) )
+						<td>$period.name</td>
+						#end
+					#end                      
+				#end
+			</tr>
+
+			#set( $mark = 0 )
+			#foreach( $dataElement in $dataElementList )
+				#foreach( $optionCombo in $dataElement.categoryCombo.getOptionCombos() )
+					<tr style="#if( $mark == 1 )background-color:#e0e0e0;#end" >
+						<td>$dataElement.name - $optionCombo.name</td>
+						#foreach ( $orgUnit in $orgUnitList )
+							#set( $dataViewPeriodMap = $dataViewResultMap.get( $orgUnit ) )
+							#set( $dataViewPeriodMapKey = $dataViewPeriodMap.keySet() )
+							
+							##foreach ( $period in $dataViewPeriodMapKey )
+							#foreach ( $period in $periodList )
+								#if( $dataViewPeriodMapKey.contains( $period ) )
+									#set( $availableRawDataMap = $dataViewPeriodMap.get( $period ) ) 
+									<td align="center">$!availableRawDataMap.get( "$dataElement.id:$optionCombo.id" )</td>
+								#end	
+							#end
+						#end			
+					</tr>
+					#if( $mark == 1 )
+						#set( $mark = 0 )
+					#else
+						#set( $mark = 1 )
+					#end
+				#end					
+			#end
+		</table>
+	</div>		
+
+</form>

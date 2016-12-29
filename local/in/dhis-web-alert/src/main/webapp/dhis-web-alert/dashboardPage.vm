@@ -1,0 +1,726 @@
+<script>
+leftBar.hideAnimated();
+</script>
+
+<script>
+
+
+function closePic(id)
+{
+	var pic = document.getElementById (id);
+	pic.style.display = "none";
+}
+
+function chartpopup(divID)
+{
+  window.onscroll = function () { document.getElementById(divID).style.top = document.body.scrollTop; };
+  document.getElementById(divID).style.display = "block";
+  document.getElementById(divID).style.top = document.body.scrollTop;
+}
+
+
+function mychartfunction2(mydata,xdata,left,title,ytitle,xtitle,render,chartid,windowid,posx,c,popupid)
+{
+	var chart;
+	$(document).ready(function() {
+		chart = new Highcharts.Chart({
+			chart: {
+				renderTo: chartid,
+				borderColor: '#0000FF',
+                borderWidth: 3,
+                height: 340,
+                width: 400,
+                
+                events: {
+		            click: function() {
+		                    chartpopup(popupid);
+		                    }
+		            },
+		       
+                zoomType: 'x',
+				type: 'column'
+			},
+			title: {
+				text: title
+			},
+			subtitle: 
+			{
+                text: c
+            },
+			xAxis: {
+				categories: xdata,
+				title: {
+					text: xtitle
+				}
+			},
+			yAxis: {
+				min: 0,
+				title: {
+					text: ytitle
+				}
+			},
+			
+			tooltip: {
+				formatter: function() {
+					return ''+
+						this.x +': '+ this.y;
+				}
+			},
+			plotOptions: {
+				column: {
+					pointPadding: 0.2,
+					borderWidth: 0
+				},
+				showInLegend: true
+			},
+		    series:mydata
+		});
+	});
+			        
+}
+
+
+
+function mychartfunction3(mydata,xdata,left,title,ytitle,xtitle,render,chartid,windowid,posx,c,popupid)
+{
+	var chart;
+	$(document).ready(function() {
+		chart = new Highcharts.Chart({
+			chart: {
+				renderTo: popupid,
+				events: 
+				{
+	            	load: function() 
+	            	{
+	                	this.renderer.image('images/close.png',992,10,25,20)
+	                    .on('click', function() {
+	                        closePic(popupid)
+	                    })
+	                    .css({
+	                        cursor: 'pointer'
+	                    })
+	                    .attr({
+	                        zIndex: -100
+	                    })
+	                    .add();
+	            	   
+	        	    }
+	    	    },
+                zoomType: 'x',
+				type: 'column'
+			},
+			title: {
+				text: title
+			},
+			subtitle: 
+			{
+                text: c
+            },
+			xAxis: {
+				categories: xdata,
+				title: {
+					text: xtitle
+				}
+			},
+			yAxis: {
+				min: 0,
+				title: {
+					text: ytitle
+				}
+			},
+			
+			tooltip: {
+				formatter: function() {
+					return ''+
+						this.x +': '+ this.y;
+				}
+			},
+			
+			exporting: {
+	        	enableImages: true
+	    	},
+			plotOptions: {
+				column: {
+					pointPadding: 0.2,
+					borderWidth: 0
+				},
+				showInLegend: true
+			},
+		    series:mydata
+		});
+	});
+			        
+}
+
+
+
+function mypiechartfunction2(mydata,title,chartid,org,c,popupid)
+{
+	var chart;
+    $(document).ready(function() {
+        chart = new Highcharts.Chart({
+           chart: {
+				renderTo: chartid,
+				events: {
+		            click: function() {
+		                    chartpopup(popupid);
+		                    }
+		            },
+		       
+				borderColor: '#0000FF',
+                borderWidth: 3,
+                height: 340,
+                width: 400
+			},
+            title: {
+                text: title
+            },
+            subtitle: {
+                text: org + c
+           },
+            tooltip: {
+                formatter: function() {
+                    return '<b>'+ this.point.name +'</b>: '+ this.y ;
+                }
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+    					enabled: true,
+    					color: '#000000',
+    					connectorColor: '#000000',
+    					formatter: function() {
+    						return '<b>'+ Math.round(this.y*Math.pow(10,2))/Math.pow(10,2);
+    					}
+    				},
+                    showInLegend: true
+                }
+            
+            },
+            series: [{
+                type: 'pie',
+                name: 'Indicator share',
+                data:mydata
+            }]
+        });
+    });
+    
+}
+
+function mypiechartfunction3(mydata,title,chartid,org,c,popupid)
+{
+	var chart;
+    $(document).ready(function() {
+        chart = new Highcharts.Chart({
+           chart: {
+				renderTo: popupid,
+				events: 
+				{
+	            	load: function() 
+	            	{
+	                	this.renderer.image('images/close.png',992,10,25,20)
+	                    .on('click', function() {
+	                        closePic(popupid)
+	                    })
+	                    .css({
+	                        cursor: 'pointer'
+	                    })
+	                    .attr({
+	                        zIndex: -100
+	                    })
+	                    .add();
+	            	   
+	        	    }
+	    	    },
+				
+			},
+            title: {
+                text: title
+            },
+            subtitle: {
+                text: org + c
+           },
+            tooltip: {
+                formatter: function() {
+                    return '<b>'+ this.point.name +'</b>: '+ this.y ;
+                }
+            },
+            exporting: {
+	        	enableImages: true
+	    	},
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+    					enabled: true,
+    					color: '#000000',
+    					connectorColor: '#000000',
+    					formatter: function() {
+    						return '<b>'+ Math.round(this.y*Math.pow(10,2))/Math.pow(10,2);
+    					}
+    				},
+                    showInLegend: true
+                }
+            
+            },
+            series: [{
+                type: 'pie',
+                name: 'Indicator share',
+                data:mydata
+            }]
+        });
+    });
+    
+}
+
+</script>
+
+<!DOCTYPE html>
+<html>
+
+<body class="main" onMouseMove="mouser(event);">
+<div id="dragger" class="real_monkey" onMouseDown="mouse_down('dragger')" onMouseUp="mouse_up()"
+
+<div id="wrapper">
+  <div id="tabContainer">
+    <div class="tabs">
+      <ul>
+        <li id="tabHeader_0">  Summary  </li>
+      
+     	 #foreach($program in $programs)
+      	<li id= tabHeader_$program.id>   $program.name   </li>
+     	 #end
+     	 
+      </ul>
+    </div>
+    
+    <div class="tabscontent">
+      <div class="tabpage" id="tabpage_0">
+        <h2>Page 1</h2>
+        <p>Page showing summary of all programs together...
+        <br />
+        <br />
+        jsfjkahfkjakgf
+        </p>
+      </div>
+      
+      
+      
+      #foreach($program in $programs)
+      <div class="tabpage" id= tabpage_$program.id style="overflow: hidden">
+        <p><br /></p>
+        <CENTER>
+        <TABLE CLASS="MYTABLE" CELLPADDING=30px>
+		    <CAPTION CLASS="MYTABLE" align='center'> $program.name Program Summary ($orgUnit)</CAPTION>
+		    
+		    <THEAD >
+		      <TR CLASS="MYTABLE" >
+		        <TH CLASS="MYTABLE">Total Patient<br />Registered</TH>
+		        <TH CLASS="MYTABLE">Total <br />  Enrolled</TH>
+		        <TH CLASS="MYTABLE">Previous Day <br />Enrolment</TH>
+		        <TH CLASS="MYTABLE">Previous Week <br />Enrolment</TH>
+		        <TH CLASS="MYTABLE">Previous Month <br />Enrolment</TH>
+		      </TR>
+		    </THEAD>
+    
+		    <TBODY>
+		      <TR CLASS="MYTABLE" > 
+		        <TD CLASS="MYTABLE"> $patients.size() </TD>
+		        <TD CLASS="MYTABLE"> $enroll.get($program) </TD>
+		        <TD CLASS="MYTABLE"> $prv_day_enroll.get($program) </TD>
+		        <TD CLASS="MYTABLE"> $prv_week_enroll.get($program) </TD>
+		        <TD CLASS="MYTABLE"> $prv_month_enroll.get($program) </TD>
+		      </TR>
+		  
+		    </TBODY>
+  		</TABLE>
+  		</CENTER>
+  		
+  		<p> <br /></p> 
+  		<p>
+  		
+  		#foreach($programDashboard in $programDashboards )
+  		#if($program.id==$programDashboard.getProgram().getId())
+  			#if($programDashboard.getType().contentEquals( "chart" ))
+  				#if(!$programDashboard.getChartType().contentEquals( "service_wise" )) 
+  						
+  						<DIV id= chart$programDashboard.getId() style="position: relative; float:left; top: 10px; left: 10px; width: 423px; height: 430px; margin-bottom:-50px;margin-right:5px">
+  						
+  						
+  						
+						<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>				
+						<script src="highcharts/js/highcharts.js"></script>
+						<script src="highcharts/js/modules/exporting.js"></script>
+					    
+					    <script>
+					    
+							var dsh = '$xlist';
+							var dshlist = dsh.split(":::");
+							var st = dshlist[$sequence.get($programDashboard)]
+						    var x = st.split(",");
+						    var title = '$programDashboard.getName()';
+						    var xtitle ="test";
+						    var render = "tabpage_" + '$programDashboard.getProgram().getId()';
+						    var chartid = "chart" + '$programDashboard.getId()';
+						    var popupid = "popup" + '$programDashboard.getId()';
+						    var windowid = "window" + '$programDashboard.getId()';
+						    var posx= $programDashboard.getId();
+						    var c;
+						   	if($programDashboard.getChartType().contentEquals( "facility_wise" ))
+						   	{
+						   		xtitle ="Children of Organisation Unit : "; 
+						   		var b ='$programDashboard.getOrganisationUnit().getDisplayName()';
+						   		xtitle = xtitle + b;
+						   		c = "Period: " +'$programDashboard.getTime()' + " " + '$programDashboard.getTimetype()';
+						   		
+						   	}
+						   	else
+						   	{
+						   		var b2 = '$programDashboard.getTimetype()';
+						   		xtitle =" of a Year, Organisation Unit: ";
+						   		var b1 ='$programDashboard.getOrganisationUnit().getDisplayName()';
+						   		xtitle= b2 + xtitle+ b1;
+						   		c=""
+						   	}
+						    var ytitle = "Indicator Value";
+						    var v = $indicatorvaluelist.get($sequence.get($programDashboard));
+						
+						    var  mydata= [];
+						    var left=[];
+						    var bottom=['name'];
+						    var f=['name'];
+						   
+						    var i;
+						    var j;
+						    var check =0;
+						    
+						    var dsh1 = '$ylist';
+							var dshlist1 = dsh1.split(":::");
+							var st1 = dshlist1[$sequence.get($programDashboard)]
+						    var z = st1.split(",,,");
+		    				var xdata=[];
+		    				
+		    				for(i = 0;i<$xaxis.get($sequence.get($programDashboard)).size();i++)
+							{
+								xdata.push(x[i]);
+							}
+		    				
+		    										    	
+					    	for(i = 1;i<$yaxis.get($sequence.get($programDashboard)).size();i++)
+						    {
+						   		
+						    	var dict={};
+						    	
+						    	dict['name']=z[i];
+						    	
+						    	var myarr=[]
+						    	
+						    	for(j=0;j<$xaxis.get($sequence.get($programDashboard)).size();j++)
+						    	{
+						    		
+						    		myarr.push(v[j][i-1]);
+						    		
+						    	}
+						    	
+						    	dict['data']=myarr;
+						    	mydata.push(dict);
+						    	
+						    }
+							   
+							   
+				
+							mychartfunction2(mydata,xdata,left,title,ytitle,xtitle,render,chartid,windowid,posx,c,popupid);
+							   		
+					
+								    
+					    </script>
+					    
+						</DIV>
+						
+						
+						
+						<DIV id= popup$programDashboard.getId() >
+  						<DIV class="modalBackground">
+						</DIV>
+  						
+  						
+						<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>				
+						<script src="highcharts/js/highcharts.js"></script>
+						<script src="highcharts/js/modules/exporting.js"></script>
+					    
+					    <script>
+					    
+							var dsh = '$xlist';
+							var dshlist = dsh.split(":::");
+							var st = dshlist[$sequence.get($programDashboard)]
+						    var x = st.split(",");
+						    var title = '$programDashboard.getName()';
+						    var xtitle ="test";
+						    var render = "tabpage_" + '$programDashboard.getProgram().getId()';
+						    var chartid = "chart" + '$programDashboard.getId()';
+						    var popupid = "popup" + '$programDashboard.getId()';
+						    var windowid = "window" + '$programDashboard.getId()';
+						    var posx= $programDashboard.getId();
+						    var c;
+						   	if($programDashboard.getChartType().contentEquals( "facility_wise" ))
+						   	{
+						   		xtitle ="Children of Organisation Unit : "; 
+						   		var b ='$programDashboard.getOrganisationUnit().getDisplayName()';
+						   		xtitle = xtitle + b;
+						   		c = "Period: " +'$programDashboard.getTime()' + " " + '$programDashboard.getTimetype()';
+						   		
+						   	}
+						   	else
+						   	{
+						   		var b2 = '$programDashboard.getTimetype()';
+						   		xtitle =" of a Year, Organisation Unit: ";
+						   		var b1 ='$programDashboard.getOrganisationUnit().getDisplayName()';
+						   		xtitle= b2 + xtitle+ b1;
+						   		c=""
+						   	}
+						    var ytitle = "Indicator Value";
+						    var v = $indicatorvaluelist.get($sequence.get($programDashboard));
+						
+						    var  mydata= [];
+						    var left=[];
+						    var bottom=['name'];
+						    var f=['name'];
+						   
+						    var i;
+						    var j;
+						    var check =0;
+						    
+						    var dsh1 = '$ylist';
+							var dshlist1 = dsh1.split(":::");
+							var st1 = dshlist1[$sequence.get($programDashboard)]
+						    var z = st1.split(",,,");
+		    				var xdata=[];
+		    				
+		    				for(i = 0;i<$xaxis.get($sequence.get($programDashboard)).size();i++)
+							{
+								xdata.push(x[i]);
+							}
+		    				
+		    										    	
+					    	for(i = 1;i<$yaxis.get($sequence.get($programDashboard)).size();i++)
+						    {
+						   		
+						    	var dict={};
+						    	
+						    	dict['name']=z[i];
+						    	
+						    	var myarr=[]
+						    	
+						    	for(j=0;j<$xaxis.get($sequence.get($programDashboard)).size();j++)
+						    	{
+						    		
+						    		myarr.push(v[j][i-1]);
+						    		
+						    	}
+						    	
+						    	dict['data']=myarr;
+						    	mydata.push(dict);
+						    	
+						    }
+							   
+							   
+				
+							mychartfunction3(mydata,xdata,left,title,ytitle,xtitle,render,chartid,windowid,posx,c,popupid);
+							   		
+					
+								    
+					    </script>
+					    
+						</DIV>
+	    		
+					<style type="text/css">
+					
+					body
+					{
+					  margin: 0px;
+					}
+					
+					#popup$programDashboard.getId()
+					{
+					  margin-top: 10%;
+					  display: none;
+					  position: fixed;
+					  width: 80%;
+					  height: 82%;
+					  left: 10%;
+					  border: solid 5px black;
+					  z-index: 2000;
+					}
+					
+					#divclose
+					{
+						z-index: 9999;
+					}
+					</style>
+																
+	    		#end
+	    	
+	    		#if($programDashboard.getChartType().contentEquals( "service_wise" )) 
+  						
+  						<DIV id= chart$programDashboard.getId() style="position: relative; float:left; top: 10px; left: 10px; width: 423px; height: 430px; margin-bottom:-50px;margin-right:5px">
+  						
+  						
+  						
+						<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>				
+						<script src="highcharts/js/highcharts.js"></script>
+						<script src="highcharts/js/modules/exporting.js"></script>
+					    
+					    <script>
+					    
+					    	var i;
+							var title = '$programDashboard.getName()';
+						    var chartid = "chart" + '$programDashboard.getId()';
+						    var mydata=[];
+							var dsh1 = '$serviceylist';
+							var dshlist1 = dsh1.split(":::");
+							var st1 = dshlist1[$sequence.get($programDashboard)];
+							var popupid = "popup" + '$programDashboard.getId()';
+						    var z = st1.split(",,,");
+							var v = $servicevalue.get($sequence.get($programDashboard)); 
+							var org ="Organisation Unit : " + '$programDashboard.getOrganisationUnit().getDisplayName()';
+						   	var c = " Period: " + '$programDashboard.getTime()' + " " + '$programDashboard.getTimetype()';
+						 
+							for(i = 0;i<$serviceyaxis.get($sequence.get($programDashboard)).size();i++)
+							{
+								var myarr=[];
+								myarr.push(z[i]);
+								myarr.push(v[i]);
+								mydata.push(myarr);
+							}		
+						
+							mypiechartfunction2(mydata,title,chartid,org,c,popupid);
+						    
+								    
+					    </script>
+					    
+						</DIV>
+	    		
+	    				<DIV id= popup$programDashboard.getId() >
+  						
+  						<DIV class="modalBackground">
+						</DIV>
+  						  						
+						<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>				
+						<script src="highcharts/js/highcharts.js"></script>
+						<script src="highcharts/js/modules/exporting.js"></script>
+					    
+					    <script>
+					    
+					    	var i;
+							var title = '$programDashboard.getName()';
+						    var chartid = "chart" + '$programDashboard.getId()';
+						    var mydata=[];
+							var dsh1 = '$serviceylist';
+							var dshlist1 = dsh1.split(":::");
+							var st1 = dshlist1[$sequence.get($programDashboard)];
+							var popupid = "popup" + '$programDashboard.getId()';
+						    var z = st1.split(",,,");
+							var v = $servicevalue.get($sequence.get($programDashboard)); 
+							var org ="Organisation Unit : " + '$programDashboard.getOrganisationUnit().getDisplayName()';
+						   	var c = " Period: " + '$programDashboard.getTime()' + " " + '$programDashboard.getTimetype()';
+						 
+							for(i = 0;i<$serviceyaxis.get($sequence.get($programDashboard)).size();i++)
+							{
+								var myarr=[];
+								myarr.push(z[i]);
+								myarr.push(v[i]);
+								mydata.push(myarr);
+							}		
+						
+							mypiechartfunction3(mydata,title,chartid,org,c,popupid);
+						    
+								    
+					    </script>
+					    
+						</DIV>
+	    		
+	    				<style type="text/css">
+					
+						body
+						{
+						  margin: 0px;
+						}
+						
+						#popup$programDashboard.getId()
+						{
+						  margin-top: 10%;
+						  display: none;
+						  position: fixed;
+						  width: 80%;
+						  height: 82%;
+						  left: 10%;
+						  border: solid 5px black;
+						  z-index: 2000;
+						}
+						
+						#divclose
+						{
+							z-index: 9999;
+						}
+					    </style>
+			
+	    		
+	    		#end
+	    				
+	    		
+	    		
+    		#end
+    		
+    		#if($programDashboard.getType().contentEquals( "table" ))
+    		
+    		 <CENTER>
+                <TABLE CLASS="PRGTABLE" CELLPADDING=30px>
+                    <CAPTION CLASS="PRGTABLE" align='center'>$programDashboard.getName()</CAPTION>
+                    
+                    <THEAD >
+                      <TR CLASS="PRGTABLE" >
+                      	<TH CLASS="PRGTABLE"></TH>
+                      	#foreach($y in $yaxis.get($sequence.get($programDashboard)))
+	                      	#if(!$y.contentEquals( "name" ))
+	                        	<TH CLASS="PRGTABLE">$y</TH>
+	                      	#end
+                      	#end
+                      </TR>
+                    </THEAD>
+            
+                    <TBODY>
+                    
+               	    #foreach($m in $map.get($sequence.get($programDashboard)))
+	               	  	<TR CLASS="PRGTABLE"> 
+	               	  		<TD CLASS="PRGTABLE1" >$xaxis.get($sequence.get($programDashboard)).get($m)</TD>
+	                        #foreach($ind_val in $indicatorvaluelist.get($sequence.get($programDashboard)).get($m))                     	
+	                        		<TD CLASS="PRGTABLE"> $ind_val </TD>                   	
+	                      	#end	                      	
+	                    </TR> 
+                    #end
+              
+                    </TBODY>
+ 					
+             
+                  </TABLE>
+           </CENTER>
+           <p> <br /> </p> 
+   		#end
+    		
+  		#end
+  		#end
+  		
+  		
+  		</p>
+  		
+  		<p><br /> <br /> <br /> <br />  <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /></p>
+      </div>
+      #end
+    </div>
+  </div>
+</div>
+</body>
+</html>

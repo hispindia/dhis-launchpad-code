@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <meta charset="UTF-8">
+
+    <title>FPMU Public Data Portal</title>
+
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/strapped.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="css/bootstrap-multiselect.css" rel="stylesheet" type=
+            "text/css">
+    <link href="css/tablecloth.css" rel="stylesheet" type="text/css">
+    <link href="css/jquery.dataTables.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap-select.min.css" rel="stylesheet" type="text/css">
+    <link href="css/selectize.css" rel="stylesheet" type="text/css">
+    <link href="css/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css">
+
+
+    <script src="js/jquery.js" type="text/javascript"></script>
+    <script src="js/typeahead.bundle.js" type="text/javascript"></script>
+    <script src="js/moment.min.js" type="text/javascript"></script>
+    <script src="js/bootstrap.js" type="text/javascript"></script>
+    <script src="js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+    <script src="js/jquery.tablecloth.js" type="text/javascript"></script>
+    <script src="js/jquery.tablesorter.js" type="text/javascript"></script>
+    <script src="js/bootstrap-multiselect.js" type="text/javascript"></script>
+    <script src="js/jquery.lionbars.0.3.js" type="text/javascript"></script>
+    <script src="js/jquery.dataTables.js" type="text/javascript"></script>
+    <script src="js/bootstrap-select.min.js" type="text/javascript"></script>
+    <script src="js/moment.min.js" type="text/javascript"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/modules/exporting.js"></script>
+    <script src="js/selectize.js"></script>
+    <script src="js/themes/sand-signika.js"></script>
+    <script src="js/jquery.base64.js"></script>
+    <script src="js/html2canvas.js"></script>
+    <script src="js/jquery.mousewheel.js"></script>
+    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="js/excellentexport.js"></script>
+    <script src="js/advanced.js"></script>
+
+
+</head>
+
+<body data-twttr-rendered="true" style="background-color: #F0F3F5">
+
+<div class="main" id="main">
+<div class="grid" id="header">
+    <div class="col-md-1" style="margin: 0px; padding-left: 0px; padding-right: 0px; padding-top: 2px;">
+        <a class="pull-left" href="http://www.nfpcsp.org" style="padding-bottom: 6px">
+            <img src="images/145px-Emblem_of_the_Provisional_Government_of_the_People's_Republic_of_Bangladesh.svg.png" style="width: 70px;height: 70px;">
+        </a>
+    </div>
+    <div class="col-lg-11" id="logo" style="margin: 0px;padding: 0px">
+        <div class="partner">
+            <p class="first animated fadeInUp floatLeft">Food Security and Nutrition Data Portal</p>
+
+            <p class="second animated fadeInUp floatLeft">Food Planning Monitoring Unit (FPMU), Ministry of Food,
+                People's Republic of Bangladesh</p>
+
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+
+<div class="grid" id="navigation">
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+            <li><a class="navTitle" href="/dms/portal.html"
+                   style="color: white;font-weight: bold;">Simple Search</a></li>
+            <li><a class="navTitle" href="/dms/advanced.html" style="color: white;font-weight: bold;background-color: #843534">Advanced
+                Search</a></li>
+            <li><a class="navTitle" href="/dms/about.html" style="color: white;font-weight: bold;">About Portal</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: white;font-weight: bold">FPMU</a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a class="navTitle" href="http://www.nfpcsp.org">Home</a></li>
+                    <li><a class="navTitle" href="/dms/news.html">News & Updates</a></li>
+                    <li><a class="navTitle" href="http://www.nfpcsp.org/agridrupal/about-library">Online Library</a></li>
+                </ul>
+            </li>
+            <li><a class="navTitle" href="http://fsnis.nfpcsp.org/fsnis" title="Data Management System" style="color: white;font-weight: bold">DMS</a></li>
+            <li><a class="navTitle" href="/dms/links.html" style="color: white;font-weight: bold;">Useful Links</a></li>
+            <li><a class="navTitle" href="/dms/contact.html" style="color: white;font-weight: bold">Contact Us</a></li>
+        </ul>
+    </div>
+</div>
+
+
+
+<div class="grid" id="content">
+
+
+<div class="promoBox" id="formBox">
+
+<div class="body">
+<form id="portalForm" name="portalSearchForm">
+    <div class="row">
+        <div class="promoBox" id="filterBox"
+             style="margin-left: 16px;margin-right: 16px;margin-bottom: 10px; box-shadow:none">
+            <div class="head">
+                <div class="heading">
+                    Select Filters
+                    <span class="glyphicon glyphicon-filter"></span>
+
+                    <div class="floatRight" id="resetDiv">
+                        <button class="btn-link" type="reset" id="resetBtn">
+                            Reset Selections
+                            <span class="glyphicon glyphicon-refresh"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="body">
+                <div class="row">
+
+                    <div class="col-md-9">
+                        <div class="well">
+                            <div class="filterHeader">
+                                What
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <select class="selectpicker" data-style=
+                                            "btn-primary" id="groupSelect">
+                                        <option value="">
+                                            Select Group
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                </div>
+                                <div class="col-md-5">
+                                    <select class="selectpicker" data-style=
+                                            "btn-primary" id="subGroupSelect">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="well">
+                            <div class="filterHeader">
+                                Frequency
+                            </div>
+                            <div id="frequencyMenu">
+                                <select class="selectpicker" data-style=
+                                        "btn-primary" id="frequencySelect">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="well" style="padding-bottom: 20px;">
+                            <div class="filterHeader">
+                                Where
+                            </div>
+                            <select class="multiselect" id="locationFilter"
+                                    multiple="multiple">
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row" id="itemListSearchContainer" style="display: block;margin-top: 10px">
+
+        <div class="col-md-6">
+
+            <div class="promoBox" id="listContainer"
+                 style="box-shadow:none;">
+                <div class="head">
+                    <div class="heading">
+                        Select Item from list&nbsp;
+                        <span class="glyphicon glyphicon-list"></span>
+                        <span class="badge pull-right" id="itemCount"></span>
+                    </div>
+                </div>
+
+                <div class="body" id="listBox">
+                    <ul id="filteredList">
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="col-md-6">
+
+            <div class="row">
+                <div class="promoBox" id="searchBox"
+                     style="box-shadow:none;">
+                    <div class="head">
+                        <div class="heading">
+                            <bold>OR</bold>
+                            Type item name here&nbsp;
+                            <span class="glyphicon glyphicon-search"></span>
+                        </div>
+                    </div>
+
+                    <div class="body">
+                        <div class='container-fluid' id="bloodhound" style="margin-bottom: 0px;">
+                            <input class="form-control" id="typeahead" placeholder="Type item name"
+                                   style="width: 550px;font-weight: bold"
+                                   type="text">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            </br>
+
+            <div class="row" id="dateContainer" style="margin-top: 100">
+                <div class="promoBox" style="box-shadow:none;">
+
+                    <div class="head">
+                        <div class="heading">
+                            Select date range&nbsp;
+                            <span class="glyphicon glyphicon-time"></span>
+                        </div>
+                    </div>
+
+                    <div class="body">
+                        <div class="row" style="margin-top: 10px">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class='input-group date' id=
+                                            'datetimepicker5'>
+                                        <span class="input-group-addon">From</span>
+                                        <input class="form-control" id="dateInput1"
+                                               type='text' style="font-weight: bold" placeholder="Select start date">
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar">
+                                                </span>
+                                            </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class='input-group date' id=
+                                            'datetimepicker6'>
+                                        <span class="input-group-addon">To</span>
+                                        <input class="form-control" id="dateInput2"
+                                               type='text' style="font-weight: bold" placeholder="Select end date">
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar">
+                                                </span>
+                                            </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 20px">
+                <a href="#graphcontainer">
+                    <button class="btn btn-primary" id=
+                            "viewDataButton" type="button" >View
+                    </button>
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+
+</form>
+</div>
+</div>
+
+
+<div class="row">
+
+    <div class="col-md-3">
+        <div class="optionTab" id="sidebar">
+            <div class="promoBox" id="infoBox">
+                <div class="head">
+                    <div class="heading">
+                        Export Data&nbsp;
+                        <span class="glyphicon glyphicon-download-alt"></span>
+                    </div>
+                </div>
+
+                <div class="body">
+
+                    <div class="row" style="margin-top: 6px; margin-right: 6px; margin-bottom: 10px">
+                        <div class="col-md-12">
+                            <a download="Table.xls" href="#graphcontainer" onclick="return ExcellentExport.excel(this, 'dataTable', 'Sheet Name Here');">
+                                <button class="btn-primary btn" type="button">
+                                    Export to Excel
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top: 6px; margin-right: 6px; margin-bottom: 10px">
+                        <div class="col-md-12">
+                            <a download="Table.csv" href="#graphcontainer" onclick="return ExcellentExport.csv(this, 'dataTable');">
+                                <button class="btn-primary btn" type="button">
+                                    Export to CSV
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!--
+                    <div class="row" style="margin-top: 6px; margin-right: 6px; margin-bottom: 10px">
+                        <a href="#" class="export">Export Table data into Excel</a>
+                    </div>
+                    -->
+
+                </div>
+
+
+                <div id="metaInfoTab" style="display: none;font-weight: bold">
+
+                    <div class="head">
+                        <div class="heading">
+                            Meta Info &nbsp;
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                        </div>
+                    </div>
+
+                    <div class="body">
+                        <ul class="nav nav-pills" id="metaInfoList">
+                        </ul>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-9">
+        <div id="mainContent">
+            <div class="box" id="statistic" style="padding-bottom: 5px;">
+                <div id="dataContainer">
+                    <div class="container" id="graphcontainer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div id="tableContainer" style="display: none">
+    <table id="dataTable">
+    </table>
+</div>
+
+
+</div>
+
+<div class="clear"></div>
+
+<div class="grid" id="footer"></div>
+
+</div>
+
+</body>
+
+</html>

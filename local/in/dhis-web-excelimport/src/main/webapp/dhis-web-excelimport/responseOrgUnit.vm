@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<orgunits>
+	<orgUnit>
+		<id>$orgUnit.id</id>
+		<name>$encoder.xmlEncode( $orgUnit.getShortName() )</name>
+		<level>$ouLevel</level>
+	</orgUnit>
+</orgunits>

@@ -1,0 +1,8 @@
+
+<a href="index.action"><h2>$i18n.getString("view_data")</h2></a>
+
+<ul>
+    <li><a href = "../dhis-web-alert/viewDataForDataSets.action">$i18n.getString("view_data_dataset")</a></li>
+    <li><a href = "searchFormAction.action">$i18n.getString("search_data_single")</a></li>
+    <li><a href = "getValueFormAction.action">$i18n.getString("serach_data_multiple")</a></li>
+</ul>

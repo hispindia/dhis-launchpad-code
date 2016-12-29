@@ -1,0 +1,237 @@
+<head>
+    <style>
+        body {
+            font-family: georgia;
+            font-size: 12px;
+        }
+
+        table {
+            *border-collapse: collapse; /* IE7 and lower */
+            border-spacing: 0;
+            width: 100%;
+        }
+
+        .bordered {
+            border: solid #ccc 1px;
+            -moz-border-radius: 6px;
+            -webkit-border-radius: 6px;
+            border-radius: 6px;
+            -webkit-box-shadow: 0 1px 1px #ccc;
+            -moz-box-shadow: 0 1px 1px #ccc;
+            box-shadow: 0 1px 1px #ccc;
+        }
+
+        .bordered tr:hover {
+            background: #fbf8e9;
+            -o-transition: all 0.1s ease-in-out;
+            -webkit-transition: all 0.1s ease-in-out;
+            -moz-transition: all 0.1s ease-in-out;
+            -ms-transition: all 0.1s ease-in-out;
+            transition: all 0.1s ease-in-out;
+        }
+
+        .bordered td, .bordered th {
+            border-left: 1px solid #ccc;
+            border-top: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .bordered th {
+            background-color: #dce9f9;
+            background-image: -webkit-gradient(linear, left top, left bottom, from(#ebf3fc), to(#dce9f9));
+            background-image: -webkit-linear-gradient(top, #ebf3fc, #dce9f9);
+            background-image: -moz-linear-gradient(top, #ebf3fc, #dce9f9);
+            background-image: -ms-linear-gradient(top, #ebf3fc, #dce9f9);
+            background-image: -o-linear-gradient(top, #ebf3fc, #dce9f9);
+            background-image: linear-gradient(top, #ebf3fc, #dce9f9);
+            -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, .8) inset;
+            -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, .8) inset;
+            box-shadow: 0 1px 0 rgba(255, 255, 255, .8) inset;
+            border-top: none;
+            text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
+        }
+
+        .bordered td
+        {
+            height: 5px;
+        }
+
+        .bordered td:first-child, .bordered th:first-child {
+            border-left: none;
+        }
+
+        .bordered th:first-child {
+            -moz-border-radius: 6px 0 0 0;
+            -webkit-border-radius: 6px 0 0 0;
+            border-radius: 6px 0 0 0;
+        }
+
+        .bordered th:last-child {
+            -moz-border-radius: 0 6px 0 0;
+            -webkit-border-radius: 0 6px 0 0;
+            border-radius: 0 6px 0 0;
+        }
+
+        .bordered th:only-child {
+            -moz-border-radius: 6px 6px 0 0;
+            -webkit-border-radius: 6px 6px 0 0;
+            border-radius: 6px 6px 0 0;
+        }
+
+        .bordered tr:last-child td:first-child {
+            -moz-border-radius: 0 0 0 6px;
+            -webkit-border-radius: 0 0 0 6px;
+            border-radius: 0 0 0 6px;
+        }
+
+        .bordered tr:last-child td:last-child {
+            -moz-border-radius: 0 0 6px 0;
+            -webkit-border-radius: 0 0 6px 0;
+            border-radius: 0 0 6px 0;
+        }
+
+        select {
+            padding: 3px;
+            margin: 0;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            border-radius: 4px;
+            -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+            -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+            box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+            background: #f8f8f8;
+            color: #888;
+            border: none;
+            outline: none;
+            display: inline-block;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            cursor: pointer;
+        }
+
+        input {
+            padding: 3px;
+            margin: 0;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            border-radius: 4px;
+            -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+            -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+            box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+            background: #f8f8f8;
+            color: #888;
+            border: none;
+            outline: none;
+            display: inline-block;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            position: absolute;
+        }
+
+        button {
+            padding: 3px;
+            margin: 0;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            border-radius: 4px;
+            -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+            -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+            box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+            background: #f8f8f8;
+            color: #888;
+            border: none;
+            outline: none;
+            display: inline-block;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            position: relative;
+        }
+
+    </style>
+
+    <script type="text/javascript" src="/path/to/jquery-latest.js"></script>
+    <script type="text/javascript" src="/path/to/jquery.tablesorter.js"></script>
+    <script>
+        $(document).ready(function () {
+                    $("#myTable").tablesorter();
+                }
+        );
+    </script>
+    <script>
+        function exportToWorkBook() {
+            document.getElementById('htmlCode').value = document.getElementById('formResult').innerHTML;
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+
+<form id="GetBackForm" method="post" action="searchFormAction.action">
+    <input name="Back to Form" type="submit" value="Back">
+</form>
+
+<form id="viewDataResult" name="viewDataResult" action="exportToWorkBook.action" method="post"
+      onsubmit="return exportToWorkBook()" target="_newtab">
+
+    <input type="hidden" name="htmlCode" id="htmlCode"/>
+
+    <br>
+    <br>
+
+    <div align="left">
+        <input type="submit" name="ExportToWorkBook" value="Export To WorkBook"/>
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+    <div id="formResult" align="left">
+
+
+        <table id="mdData" class="bordered">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>$DataElementName</th>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <th>$description</th>
+            </tr>
+            </thead>
+        </table>
+
+        <br>
+        <br>
+        <br>
+
+        <table id="myTable" class="bordered">
+            <thead>
+            <tr>
+                <th>Geographical Location</th>
+                <th>Category</th>
+                <th>Period</th>
+                <th>Value</th>
+            </tr>
+            </thead>
+            <tbody>
+                #foreach( $object in $resultList )
+                <tr>
+                    <td>$object.orgUnit</td>
+                    <td>$object.category</td>
+                    <td>$object.period</td>
+                    <td>$object.value</td>
+                </tr>
+                #end
+            </tbody>
+        </table>
+
+</form>
+
+<body>

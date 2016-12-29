@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <meta charset="UTF-8">
+
+    <title>FPMU Public Data Portal</title><!--Style-sheets-->
+
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/strapped.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="css/bootstrap-multiselect.css" rel="stylesheet" type=
+            "text/css">
+    <link href="css/tablecloth.css" rel="stylesheet" type="text/css">
+    <link href="css/lionbars.css" rel="stylesheet">
+    <link href="css/jquery.dataTables.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap-select.min.css" rel="stylesheet" type="text/css">
+    <link href="css/selectize.css" rel="stylesheet" type="text/css">
+
+
+    <script src="js/jquery.js" type="text/javascript"></script>
+    <script src="js/typeahead.bundle.js" type="text/javascript"></script>
+    <script src="js/moment.min.js" type="text/javascript"></script>
+    <script src="js/bootstrap.js" type="text/javascript"></script>
+    <script src="js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+    <script src="js/jquery.tablecloth.js" type="text/javascript"></script>
+    <script src="js/jquery.tablesorter.js" type="text/javascript"></script>
+    <script src="js/bootstrap-multiselect.js" type="text/javascript"></script>
+    <script src="js/jquery.lionbars.0.3.js" type="text/javascript"></script>
+    <script src="js/jquery.dataTables.js" type="text/javascript"></script>
+    <script src="js/bootstrap-select.min.js" type="text/javascript"></script>
+    <script src="js/moment.min.js" type="text/javascript"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="js/selectize.js"></script>
+    <script src="js/themes/sand-signika.js"></script>
+    <script src="js/jquery.zrssfeed.js"></script>
+    <script src="js/dmsPortal.js"></script>
+
+</head>
+
+<body data-twttr-rendered="true" style="background-color: #F0F3F5">
+
+<div class="main" id="main">
+    <div class="grid" id="header">
+        <div class="col-md-1" style="margin: 0px; padding-left: 0px; padding-right: 0px; padding-top: 2px;">
+            <a class="pull-left" href="http://www.nfpcsp.org" style="padding-bottom: 6px">
+                <img src="images/145px-Emblem_of_the_Provisional_Government_of_the_People's_Republic_of_Bangladesh.svg.png" style="width: 70px;height: 70px;">
+            </a>
+        </div>
+        <div class="col-lg-11" id="logo" style="margin: 0px;padding: 0px">
+            <div class="partner">
+                <p class="first animated fadeInUp floatLeft">Food Security and Nutrition Data Portal</p>
+
+                <p class="second animated fadeInUp floatLeft">Food Planning Monitoring Unit (FPMU), Ministry of Food,
+                    People's Republic of Bangladesh</p>
+
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid" id="navigation">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a class="navTitle" href="/dms/portal.html"
+                       style="color: white;font-weight: bold;">Simple Search</a></li>
+                <li><a class="navTitle" href="/dms/advanced.html" style="color: white;font-weight: bold;">Advanced
+                    Search</a></li>
+                <li><a class="navTitle" href="/dms/about.html" style="color: white;font-weight: bold;">About Portal</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: white;font-weight: bold">FPMU</a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a class="navTitle" href="http://www.nfpcsp.org">Home</a></li>
+                        <li><a class="navTitle" href="/dms/news.html">News & Updates</a></li>
+                        <li><a class="navTitle" href="http://www.nfpcsp.org/agridrupal/about-library">Online Library</a></li>
+                    </ul>
+                </li>
+                <li><a class="navTitle" href="http://fsnis.nfpcsp.org/fsnis" title="Data Management System" style="color: white;font-weight: bold">DMS</a></li>
+                <li><a class="navTitle" href="/dms/links.html" style="color: white;font-weight: bold;">Useful Links</a></li>
+                <li><a class="navTitle" href="/dms/contact.html" style="color: white;font-weight: bold;background-color: #843534">Contact Us</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+
+    <div class="grid" id="content">
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="promoBox" id="contactBox">
+                    <div class="head">
+                        <div class="heading">
+                            Contact&nbsp;
+                            <span class="glyphicon glyphicon-map-marker"></span>
+                            <div id="resetDiv" ></div>
+                        </div>
+                    </div>
+                    <div class="body" style="color: #4F4F4F;font-weight: bold">
+
+                        <p><strong style="font-size: 16px;margin-top: 20px">Project Office at the Food Planning and Monitoring Unit (FPMU)</strong></p>
+
+                        <div class="well-lg" style="padding:0px 15px 0px">
+                            <p>Ministry of Food and Disaster Management</p>
+
+                            <p>Khaddya Bhaban (Ground floor)</p>
+
+                            <p>16 Abdul Ghani Road Dhaka-1000, Bangladesh</p>
+
+                            <p>Tel. 7171271</p>
+
+                            <p>Email:
+                                <a href="mailto:info@nfpcsp.org" style="color: #808080; font-weight:bold">info@nfpcsp.org</a>
+                            </p>
+
+                            <p>For&nbsp;Research Grants:
+                                <a href="mailto:rga@nfpcsp.org" style="color: #808080; font-weight:bold">rgs@nfpcsp.org</a>
+                            </p>
+                        </div>
+
+                        <br>
+                        <br>
+
+                        <p><strong style="font-size: 16px;margin-top: 20px">Sign up to our mailing list </strong></p>
+
+                        <div class="well-lg" style="padding:0px 15px 0px">
+                            <p>Stay informed of NFPCSP's work by
+                                <a style="color: #808080; font-weight:bold" href="http://www.nfpcsp.org/agridrupal/sign-mailing-list">filling&nbsp;in
+                                    your contact information here
+                                </a>
+                                . To know more about the information products of FAO's Economic
+                                and Social Development Department, visit
+                                <a style="color: #808080; font-weight:bold"href="http://www.fao.org/economic/connect">ES&nbsp;Connect
+                                </a>.
+                            </p>
+                        </div>
+
+                        <br>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="promoBox" id="FeedbackFormContainer" style="color: #4F4F4F">
+                    <div class="head">
+                        <div class="heading">
+                            Feedback&nbsp;
+                            <span class="glyphicon glyphicon-inbox"></span>
+                        </div>
+                    </div>
+                    <div class="body" style="">
+                        <form role="form">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input style="font-weight: bold" type="text" class="form-control" id="name" placeholder="Enter name">
+                            </div>
+                            <div class="form-group">
+                                <label for="number">Contact Number</label>
+                                <input style="font-weight: bold" type="tel" class="form-control" id="number" placeholder="Enter phone number">
+                            </div>
+                            <div class="form-group">
+                                <label for="InputEmail1">Email address</label>
+                                <input style="font-weight: bold" type="email" class="form-control" id="InputEmail1" placeholder="Enter email">
+                            </div>
+                            <div class="form-group">
+                                <label for="org">Organisation</label>
+                                <input style="font-weight: bold" type="text" class="form-control" id="org" placeholder="Enter Organisation Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="comment">Comments</label>
+                                <textarea style="font-weight: bold" class="form-control" id="comment" placeholder="Enter comments"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-default" style="color: #ffffff">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+
+    <div class="clear"></div>
+
+    <div class="grid" id="footer"></div>
+
+</div>
+
+</body>
+
+</html>

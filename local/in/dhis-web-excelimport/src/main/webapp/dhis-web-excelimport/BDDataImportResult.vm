@@ -1,0 +1,21 @@
+<div>
+    <h3>Food Security Data Import Result</h3>
+    <input type="button" value="Back" onclick="window.location.href='BDDataImportForm.action'"/>
+</div>
+
+<hr/>
+
+<center>
+    <span id="message" style="display:block">
+        $message
+        <br/>
+        #if($showDownloadButton)
+            <br/>
+         <form action="filedownload.action">
+             <input type="hidden" id="downloadTemplateName" name="downloadTemplateName" value=$checkTemplateName/>
+             <input type="submit" value="Download Template"/>
+         </form>
+        <br/>
+        #end
+    </span>
+</center>

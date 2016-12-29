@@ -1,0 +1,826 @@
+<dfreport>
+
+<dfeeds>
+	 <dfeed colno="0" rowno="5" sheetno="0" fcode="4" datasetid="28" type="CMCY"/>
+         <dfeed colno="0" rowno="6" sheetno="0" fcode="6" datasetid="3" type="CMCY"/>
+         <dfeed colno="0" rowno="7" sheetno="0" fcode="5" datasetid="2" type="CMCY"/>
+         <dfeed colno="0" rowno="8" sheetno="0" fcode="7" datasetid="1" type="CMCY"/>
+         <dfeed colno="0" rowno="9" sheetno="0" fcode="12" datasetid="29" type="CMCY"/>
+         <dfeed colno="0" rowno="10" sheetno="0" fcode="11" datasetid="30" type="CMCY"/>
+</dfeeds>
+
+<org-codes>
+
+<!--Immunisation Distributed-->
+
+          <org-code colno="1" rowno="95" sheetno="0" oucode="7" expression="[68.1]" type="CCMCY"/>
+          <org-code colno="1" rowno="96" sheetno="0" oucode="7" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          <org-code colno="2" rowno="95" sheetno="0" oucode="5" expression="[68.1]" type="CCMCY"/>
+          <org-code colno="2" rowno="96" sheetno="0" oucode="5" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          <org-code colno="3" rowno="95" sheetno="0" oucode="6" expression="[68.1]" type="CCMCY"/>
+          <org-code colno="3" rowno="96" sheetno="0" oucode="4" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          <org-code colno="4" rowno="95" sheetno="0" oucode="12" expression="[68.1]" type="CCMCY"/>
+          <org-code colno="4" rowno="96" sheetno="0" oucode="11" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          <org-code colno="5" rowno="95" sheetno="0" oucode="6" expression="[68.1]" type="CCMCY"/>
+          <org-code colno="5" rowno="96" sheetno="0" oucode="4" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          <org-code colno="6" rowno="95" sheetno="0" oucode="12" expression="[68.1]" type="CCMCY"/>
+          <org-code colno="6" rowno="96" sheetno="0" oucode="11" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          
+
+          <org-code colno="1" rowno="97" sheetno="0" oucode="7" expression="[69.1]" type="CCMCY"/>
+          <org-code colno="1" rowno="98" sheetno="0" oucode="5" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          <org-code colno="2" rowno="97" sheetno="0" oucode="6" expression="[69.1]" type="CCMCY"/>
+          <org-code colno="2" rowno="98" sheetno="0" oucode="4" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          <org-code colno="3" rowno="97" sheetno="0" oucode="12" expression="[69.1]" type="CCMCY"/>
+          <org-code colno="3" rowno="98" sheetno="0" oucode="11" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          <org-code colno="4" rowno="97" sheetno="0" oucode="7" expression="[69.1]" type="CCMCY"/>
+          <org-code colno="4" rowno="98" sheetno="0" oucode="5" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          <org-code colno="5" rowno="97" sheetno="0" oucode="6" expression="[69.1]" type="CCMCY"/>
+          <org-code colno="5" rowno="98" sheetno="0" oucode="4" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          <org-code colno="6" rowno="97" sheetno="0" oucode="12" expression="[69.1]" type="CCMCY"/>
+          <org-code colno="6" rowno="98" sheetno="0" oucode="11" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          
+
+          <org-code colno="1" rowno="99" sheetno="0" oucode="7" expression="[1509.1]+[72.1]+[75.1]+[78.1]" type="CCMCY"/>
+          <org-code colno="1" rowno="100" sheetno="0" oucode="5" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          <org-code colno="2" rowno="99" sheetno="0" oucode="6" expression="[1509.1]+[72.1]+[75.1]+[78.1]" type="CCMCY"/>
+          <org-code colno="2" rowno="100" sheetno="0" oucode="4" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          <org-code colno="3" rowno="99" sheetno="0" oucode="12" expression="[1509.1]+[72.1]+[75.1]+[78.1]" type="CCMCY"/>
+          <org-code colno="3" rowno="100" sheetno="0" oucode="11" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          <org-code colno="4" rowno="99" sheetno="0" oucode="7" expression="[1509.1]+[72.1]+[75.1]+[78.1]" type="CCMCY"/>
+          <org-code colno="4" rowno="100" sheetno="0" oucode="5" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          <org-code colno="5" rowno="99" sheetno="0" oucode="6" expression="[1509.1]+[72.1]+[75.1]+[78.1]" type="CCMCY"/>
+          <org-code colno="5" rowno="100" sheetno="0" oucode="4" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          <org-code colno="6" rowno="99" sheetno="0" oucode="12" expression="[1509.1]+[72.1]+[75.1]+[78.1]" type="CCMCY"/>
+          <org-code colno="6" rowno="100" sheetno="0" oucode="11" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+
+
+          <org-code colno="1" rowno="101" sheetno="0" oucode="7" expression="[79.1]" type="CCMCY"/>
+          <org-code colno="1" rowno="102" sheetno="0" oucode="5" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          <org-code colno="2" rowno="101" sheetno="0" oucode="6" expression="[79.1]" type="CCMCY"/>
+          <org-code colno="2" rowno="102" sheetno="0" oucode="4" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          <org-code colno="3" rowno="101" sheetno="0" oucode="12" expression="[79.1]" type="CCMCY"/>
+          <org-code colno="3" rowno="102" sheetno="0" oucode="11" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          <org-code colno="4" rowno="101" sheetno="0" oucode="7" expression="[79.1]" type="CCMCY"/>
+          <org-code colno="4" rowno="102" sheetno="0" oucode="5" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          <org-code colno="5" rowno="101" sheetno="0" oucode="6" expression="[79.1]" type="CCMCY"/>
+          <org-code colno="5" rowno="102" sheetno="0" oucode="4" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          <org-code colno="6" rowno="101" sheetno="0" oucode="12" expression="[79.1]" type="CCMCY"/>
+          <org-code colno="6" rowno="102" sheetno="0" oucode="11" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+
+
+          <org-code colno="1" rowno="103" sheetno="0" oucode="7" expression="[83.1]" type="CCMCY"/>
+          <org-code colno="1" rowno="104" sheetno="0" oucode="5" expression="[([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          <org-code colno="2" rowno="103" sheetno="0" oucode="6" expression="[83.1]" type="CCMCY"/>
+          <org-code colno="2" rowno="104" sheetno="0" oucode="4" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          <org-code colno="3" rowno="103" sheetno="0" oucode="12" expression="[83.1]" type="CCMCY"/>
+          <org-code colno="3" rowno="104" sheetno="0" oucode="11" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          <org-code colno="4" rowno="103" sheetno="0" oucode="7" expression="[83.1]" type="CCMCY"/>
+          <org-code colno="4" rowno="104" sheetno="0" oucode="5" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          <org-code colno="5" rowno="103" sheetno="0" oucode="6" expression="[83.1]" type="CCMCY"/>
+          <org-code colno="5" rowno="104" sheetno="0" oucode="4" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          <org-code colno="6" rowno="103" sheetno="0" oucode="12" expression="[83.1]" type="CCMCY"/>
+          <org-code colno="6" rowno="104" sheetno="0" oucode="11" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100]" type="CMCY"/>
+
+
+
+          <org-code colno="1" rowno="105" sheetno="0" oucode="7" expression="[82.1]" type="CCMCY"/>
+          <org-code colno="1" rowno="106" sheetno="0" oucode="5" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          <org-code colno="2" rowno="105" sheetno="0" oucode="6" expression="[82.1]" type="CCMCY"/>
+          <org-code colno="2" rowno="106" sheetno="0" oucode="4" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          <org-code colno="3" rowno="105" sheetno="0" oucode="12" expression="[82.1]" type="CCMCY"/>
+          <org-code colno="3" rowno="106" sheetno="0" oucode="11" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          <org-code colno="4" rowno="105" sheetno="0" oucode="7" expression="[83.1]" type="CCMCY"/>
+          <org-code colno="4" rowno="106" sheetno="0" oucode="5" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          <org-code colno="5" rowno="105" sheetno="0" oucode="6" expression="[83.1]" type="CCMCY"/>
+          <org-code colno="5" rowno="106" sheetno="0" oucode="4" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          <org-code colno="6" rowno="105" sheetno="0" oucode="12" expression="[83.1]" type="CCMCY"/>
+          <org-code colno="6" rowno="106" sheetno="0" oucode="11" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+
+
+          <org-code colno="1" rowno="107" sheetno="0" oucode="7" expression="[84.1]" type="CCMCY"/>
+          <org-code colno="1" rowno="108" sheetno="0" oucode="5" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          <org-code colno="2" rowno="107" sheetno="0" oucode="6" expression="[84.1]" type="CCMCY"/>
+          <org-code colno="2" rowno="108" sheetno="0" oucode="4" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          <org-code colno="3" rowno="107" sheetno="0" oucode="12" expression="[84.1]" type="CCMCY"/>
+          <org-code colno="3" rowno="108" sheetno="0" oucode="11" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          <org-code colno="4" rowno="107" sheetno="0" oucode="7" expression="[84.1]" type="CCMCY"/>
+          <org-code colno="4" rowno="108" sheetno="0" oucode="5" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          <org-code colno="5" rowno="107" sheetno="0" oucode="6" expression="[84.1]" type="CCMCY"/>
+          <org-code colno="5" rowno="108" sheetno="0" oucode="4" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          <org-code colno="6" rowno="107" sheetno="0" oucode="12" expression="[84.1]" type="CCMCY"/>
+          <org-code colno="6" rowno="108" sheetno="0" oucode="11" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+
+
+          <org-code colno="1" rowno="109" sheetno="0" oucode="7" expression="[87.1]" type="CCMCY"/>
+          <org-code colno="1" rowno="110" sheetno="0" oucode="5" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          <org-code colno="2" rowno="109" sheetno="0" oucode="6" expression="[87.1]" type="CCMCY"/>
+          <org-code colno="2" rowno="110" sheetno="0" oucode="4" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          <org-code colno="3" rowno="109" sheetno="0" oucode="12" expression="[87.1]" type="CCMCY"/>
+          <org-code colno="3" rowno="110" sheetno="0" oucode="11" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          <org-code colno="4" rowno="109" sheetno="0" oucode="7" expression="[87.1]" type="CCMCY"/>
+          <org-code colno="4" rowno="110" sheetno="0" oucode="5" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          <org-code colno="5" rowno="109" sheetno="0" oucode="6" expression="[87.1]" type="CCMCY"/>
+          <org-code colno="5" rowno="110" sheetno="0" oucode="4" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          <org-code colno="6" rowno="109" sheetno="0" oucode="12" expression="[87.1]" type="CCMCY"/>
+          <org-code colno="6" rowno="110" sheetno="0" oucode="11" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+
+
+          <org-code colno="1" rowno="111" sheetno="0" oucode="7" expression="[7.1]+[8.1]" type="CCMCY"/>
+          <org-code colno="1" rowno="112" sheetno="0" oucode="5" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          <org-code colno="2" rowno="111" sheetno="0" oucode="6" expression="[7.1]+[8.1]" type="CCMCY"/>
+          <org-code colno="2" rowno="112" sheetno="0" oucode="4" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          <org-code colno="3" rowno="111" sheetno="0" oucode="12" expression="[7.1]+[8.1]" type="CCMCY"/>
+          <org-code colno="3" rowno="112" sheetno="0" oucode="11" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          <org-code colno="4" rowno="111" sheetno="0" oucode="7" expression="[7.1]+[8.1]" type="CCMCY"/>
+          <org-code colno="4" rowno="112" sheetno="0" oucode="5" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          <org-code colno="5" rowno="111" sheetno="0" oucode="6" expression="[7.1]+[8.1]" type="CCMCY"/>
+          <org-code colno="5" rowno="112" sheetno="0" oucode="4" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+          <org-code colno="6" rowno="111" sheetno="0" oucode="12" expression="[7.1]+[8.1]" type="CCMCY"/>
+          <org-code colno="6" rowno="112" sheetno="0" oucode="11" expression="([68.1]/([69.1]+[1509.1]+[72.1]+[75.1]+[78.1]+[79.1]+[83.1]+[82.1]+[84.1]+[87.1]+[7.1]+[8.1]))*100" type="CMCY"/>
+
+<!--Health Facility-->
+          
+          <org-code colno="1" rowno="119" sheetno="0" oucode="7" expression="[130.1]" type="CCMCY"/>
+          <org-code colno="1" rowno="120" sheetno="0" oucode="5" expression="[130.1]" type="CCMCY"/>
+          <org-code colno="1" rowno="121" sheetno="0" oucode="6" expression="[130.1]" type="CCMCY"/>
+          <org-code colno="1" rowno="122" sheetno="0" oucode="4" expression="[130.1]" type="CCMCY"/>
+          <org-code colno="1" rowno="123" sheetno="0" oucode="12" expression="[130.1]" type="CCMCY"/>
+          <org-code colno="1" rowno="125" sheetno="0" oucode="11" expression="[130.1]" type="CCMCY"/>
+          
+          <org-code colno="18" rowno="119" sheetno="0" oucode="7" expression="[130.1]" type="CMCY"/>
+          <org-code colno="18" rowno="120" sheetno="0" oucode="5" expression="[130.1]" type="CMCY"/>
+          <org-code colno="18" rowno="121" sheetno="0" oucode="6" expression="[130.1]" type="CMCY"/>
+          <org-code colno="18" rowno="122" sheetno="0" oucode="4" expression="[130.1]" type="CMCY"/>
+          <org-code colno="18" rowno="123" sheetno="0" oucode="12" expression="[130.1]" type="CMCY"/>
+          <org-code colno="18" rowno="125" sheetno="0" oucode="11" expression="[130.1]" type="CMCY"/>
+
+
+
+
+
+          <org-code colno="3" rowno="119" sheetno="0" oucode="7" expression="[123.1]+[124.1]+[125.1]+[126.1]" type="CCMCY"/>
+          <org-code colno="3" rowno="120" sheetno="0" oucode="5" expression="[123.1]+[124.1]+[125.1]+[126.1]" type="CCMCY"/>
+          <org-code colno="3" rowno="121" sheetno="0" oucode="6" expression="[123.1]+[124.1]+[125.1]+[126.1]" type="CCMCY"/>
+          <org-code colno="3" rowno="122" sheetno="0" oucode="4" expression="[123.1]+[124.1]+[125.1]+[126.1]" type="CCMCY"/>
+          <org-code colno="3" rowno="123" sheetno="0" oucode="12" expression="[123.1]+[124.1]+[125.1]+[126.1]" type="CCMCY"/>
+          <org-code colno="3" rowno="125" sheetno="0" oucode="11" expression="[123.1]+[124.1]+[125.1]+[126.1]" type="CCMCY"/>
+
+          <org-code colno="20" rowno="119" sheetno="0" oucode="7" expression="[123.1]+[124.1]+[125.1]+[126.1]" type="CMCY"/>
+          <org-code colno="20" rowno="120" sheetno="0" oucode="5" expression="[123.1]+[124.1]+[125.1]+[126.1]" type="CMCY"/>
+          <org-code colno="20" rowno="121" sheetno="0" oucode="6" expression="[123.1]+[124.1]+[125.1]+[126.1]" type="CMCY"/>
+          <org-code colno="20" rowno="122" sheetno="0" oucode="4" expression="[123.1]+[124.1]+[125.1]+[126.1]" type="CMCY"/>
+          <org-code colno="20" rowno="123" sheetno="0" oucode="12" expression="[123.1]+[124.1]+[125.1]+[126.1]" type="CMCY"/>
+          <org-code colno="20" rowno="125" sheetno="0" oucode="11" expression="[123.1]+[124.1]+[125.1]+[126.1]" type="CMCY"/>
+
+
+
+         
+          <org-code colno="5" rowno="119" sheetno="0" oucode="7" expression="[129.1]" type="CCMCY"/>
+          <org-code colno="5" rowno="120" sheetno="0" oucode="5" expression="[129.1]" type="CCMCY"/>
+          <org-code colno="5" rowno="121" sheetno="0" oucode="6" expression="[129.1]" type="CCMCY"/>
+          <org-code colno="5" rowno="122" sheetno="0" oucode="4" expression="[129.1]" type="CCMCY"/>
+          <org-code colno="5" rowno="123" sheetno="0" oucode="12" expression="[129.1]" type="CCMCY"/>
+          <org-code colno="5" rowno="125" sheetno="0" oucode="11" expression="[129.1]" type="CCMCY"/>
+
+          <org-code colno="22" rowno="119" sheetno="0" oucode="7" expression="[129.1]" type="CMCY"/>
+          <org-code colno="22" rowno="120" sheetno="0" oucode="5" expression="[129.1]" type="CMCY"/>
+          <org-code colno="22" rowno="121" sheetno="0" oucode="6" expression="[129.1]" type="CMCY"/>
+          <org-code colno="22" rowno="122" sheetno="0" oucode="4" expression="[129.1]" type="CMCY"/>
+          <org-code colno="22" rowno="123" sheetno="0" oucode="12" expression="[129.1]" type="CMCY"/>
+          <org-code colno="22" rowno="125" sheetno="0" oucode="11" expression="[129.1]" type="CMCY"/>
+
+
+
+
+          <org-code colno="7" rowno="119" sheetno="0" oucode="7" expression="[127.1]+[128.1]" type="CCMCY"/>
+          <org-code colno="7" rowno="120" sheetno="0" oucode="5" expression="[127.1]+[128.1]" type="CCMCY"/>
+          <org-code colno="7" rowno="121" sheetno="0" oucode="6" expression="[127.1]+[128.1]" type="CCMCY"/>
+          <org-code colno="7" rowno="122" sheetno="0" oucode="4" expression="[127.1]+[128.1]" type="CCMCY"/>
+          <org-code colno="7" rowno="123" sheetno="0" oucode="12" expression="[127.1]+[128.1]" type="CCMCY"/>
+          <org-code colno="7" rowno="125" sheetno="0" oucode="11" expression="[127.1]+[128.1]" type="CCMCY"/>
+
+          <org-code colno="24" rowno="119" sheetno="0" oucode="7" expression="[127.1]+[128.1]" type="CMCY"/>
+          <org-code colno="24" rowno="120" sheetno="0" oucode="5" expression="[127.1]+[128.1]" type="CMCY"/>
+          <org-code colno="24" rowno="121" sheetno="0" oucode="6" expression="[127.1]+[128.1]" type="CMCY"/>
+          <org-code colno="24" rowno="122" sheetno="0" oucode="4" expression="[127.1]+[128.1]" type="CMCY"/>
+          <org-code colno="24" rowno="123" sheetno="0" oucode="12" expression="[127.1]+[128.1]" type="CMCY"/>
+          <org-code colno="24" rowno="125" sheetno="0" oucode="11" expression="[127.1]+[128.1]" type="CMCY"/>
+
+
+
+
+
+          <org-code colno="9" rowno="119" sheetno="0" oucode="7" expression="[131.1]" type="CCMCY"/>
+          <org-code colno="9" rowno="120" sheetno="0" oucode="5" expression="[131.1]" type="CCMCY"/>
+          <org-code colno="9" rowno="121" sheetno="0" oucode="6" expression="[131.1]" type="CCMCY"/>
+          <org-code colno="9" rowno="122" sheetno="0" oucode="4" expression="[131.1]" type="CCMCY"/>
+          <org-code colno="9" rowno="123" sheetno="0" oucode="12" expression="[131.1]" type="CCMCY"/>
+          <org-code colno="9" rowno="125" sheetno="0" oucode="11" expression="[131.1]" type="CCMCY"/>
+
+          <org-code colno="26" rowno="119" sheetno="0" oucode="7" expression="[131.1]" type="CMCY"/>
+          <org-code colno="26" rowno="120" sheetno="0" oucode="5" expression="[131.1]" type="CMCY"/>
+          <org-code colno="26" rowno="121" sheetno="0" oucode="6" expression="[131.1]" type="CMCY"/>
+          <org-code colno="26" rowno="122" sheetno="0" oucode="4" expression="[131.1]" type="CMCY"/>
+          <org-code colno="26" rowno="123" sheetno="0" oucode="12" expression="[131.1]" type="CMCY"/>
+          <org-code colno="26" rowno="125" sheetno="0" oucode="11" expression="[131.1]" type="CMCY"/>
+
+
+
+ 
+
+          <org-code colno="11" rowno="119" sheetno="0" oucode="7" expression="[132.1]" type="CCMCY"/>
+          <org-code colno="11" rowno="120" sheetno="0" oucode="5" expression="[132.1]" type="CCMCY"/>
+          <org-code colno="11" rowno="121" sheetno="0" oucode="6" expression="[132.1]" type="CCMCY"/>
+          <org-code colno="11" rowno="122" sheetno="0" oucode="4" expression="[132.1]" type="CCMCY"/>
+          <org-code colno="11" rowno="123" sheetno="0" oucode="12" expression="[132.1]" type="CCMCY"/>
+          <org-code colno="11" rowno="125" sheetno="0" oucode="11" expression="[132.1]" type="CCMCY"/>   
+
+          <org-code colno="28" rowno="119" sheetno="0" oucode="7" expression="[132.1]" type="CMCY"/>
+          <org-code colno="28" rowno="120" sheetno="0" oucode="5" expression="[132.1]" type="CMCY"/>
+          <org-code colno="28" rowno="121" sheetno="0" oucode="6" expression="[132.1]" type="CMCY"/>
+          <org-code colno="28" rowno="122" sheetno="0" oucode="4" expression="[132.1]" type="CMCY"/>
+          <org-code colno="28" rowno="123" sheetno="0" oucode="12" expression="[132.1]" type="CMCY"/>
+          <org-code colno="28" rowno="125" sheetno="0" oucode="11" expression="[132.1]" type="CMCY"/>   
+
+                   
+
+<!--Lab Services-->
+
+          <org-code colno="1" rowno="130" sheetno="0" oucode="7" expression="[134.1]" type="CCMCY"/>
+          <org-code colno="1" rowno="131" sheetno="0" oucode="5" expression="[134.1]" type="CCMCY"/>
+          <org-code colno="1" rowno="132" sheetno="0" oucode="6" expression="[134.1]" type="CCMCY"/>
+          <org-code colno="1" rowno="133" sheetno="0" oucode="4" expression="[134.1]" type="CCMCY"/>
+          <org-code colno="1" rowno="134" sheetno="0" oucode="12" expression="[134.1]" type="CCMCY"/>
+          <org-code colno="1" rowno="136" sheetno="0" oucode="11" expression="[134.1]" type="CCMCY"/>
+          
+          <org-code colno="18" rowno="130" sheetno="0" oucode="7" expression="[134.1]" type="CMCY"/>
+          <org-code colno="18" rowno="131" sheetno="0" oucode="5" expression="[134.1]" type="CMCY"/>
+          <org-code colno="18" rowno="132" sheetno="0" oucode="6" expression="[134.1]" type="CMCY"/>
+          <org-code colno="18" rowno="133" sheetno="0" oucode="4" expression="[134.1]" type="CMCY"/>
+          <org-code colno="18" rowno="134" sheetno="0" oucode="12" expression="[134.1]" type="CMCY"/>
+          <org-code colno="18" rowno="136" sheetno="0" oucode="11" expression="[134.1]" type="CMCY"/>
+
+
+
+          
+          <org-code colno="3" rowno="130" sheetno="0" oucode="7" expression="[136.1]+[138.1]+[140.1]" type="CCMCY"/>
+          <org-code colno="3" rowno="131" sheetno="0" oucode="5" expression="[136.1]+[138.1]+[140.1]" type="CCMCY"/>
+          <org-code colno="3" rowno="132" sheetno="0" oucode="6" expression="[136.1]+[138.1]+[140.1]" type="CCMCY"/>
+          <org-code colno="3" rowno="133" sheetno="0" oucode="4" expression="[136.1]+[138.1]+[140.1]" type="CCMCY"/>
+          <org-code colno="3" rowno="134" sheetno="0" oucode="12" expression="[136.1]+[138.1]+[140.1]" type="CCMCY"/>
+          <org-code colno="3" rowno="136" sheetno="0" oucode="11" expression="[136.1]+[138.1]+[140.1]" type="CCMCY"/>
+          
+          <org-code colno="20" rowno="130" sheetno="0" oucode="7" expression="[136.1]+[138.1]+[140.1]" type="CMCY"/>
+          <org-code colno="20" rowno="131" sheetno="0" oucode="5" expression="[136.1]+[138.1]+[140.1]" type="CMCY"/>
+          <org-code colno="20" rowno="132" sheetno="0" oucode="6" expression="[136.1]+[138.1]+[140.1]" type="CMCY"/>
+          <org-code colno="20" rowno="133" sheetno="0" oucode="4" expression="[136.1]+[138.1]+[140.1]" type="CMCY"/>
+          <org-code colno="20" rowno="134" sheetno="0" oucode="12" expression="[136.1]+[138.1]+[140.1]" type="CMCY"/>
+          <org-code colno="20" rowno="136" sheetno="0" oucode="11" expression="[136.1]+[138.1]+[140.1]" type="CMCY"/>
+
+
+
+
+          <org-code colno="5" rowno="130" sheetno="0" oucode="7" expression="[142.1]" type="CCMCY"/>
+          <org-code colno="5" rowno="131" sheetno="0" oucode="5" expression="[142.1]" type="CCMCY"/>
+          <org-code colno="5" rowno="132" sheetno="0" oucode="6" expression="[142.1]" type="CCMCY"/>
+          <org-code colno="5" rowno="133" sheetno="0" oucode="4" expression="[142.1]" type="CCMCY"/>
+          <org-code colno="5" rowno="134" sheetno="0" oucode="12" expression="[142.1]" type="CCMCY"/>
+          <org-code colno="5" rowno="136" sheetno="0" oucode="11" expression="[142.1]" type="CCMCY"/>
+
+          <org-code colno="22" rowno="130" sheetno="0" oucode="7" expression="[142.1]" type="CMCY"/>
+          <org-code colno="22" rowno="131" sheetno="0" oucode="5" expression="[142.1]" type="CMCY"/>
+          <org-code colno="22" rowno="132" sheetno="0" oucode="6" expression="[142.1]" type="CMCY"/>
+          <org-code colno="22" rowno="133" sheetno="0" oucode="4" expression="[142.1]" type="CMCY"/>
+          <org-code colno="22" rowno="134" sheetno="0" oucode="12" expression="[142.1]" type="CMCY"/>
+          <org-code colno="22" rowno="136" sheetno="0" oucode="11" expression="[142.1]" type="CMCY"/>
+
+
+
+          <org-code colno="7" rowno="130" sheetno="0" oucode="7" expression="[145.1]+[146.1]+[147.1]+[148.1]+[149.1]" type="CCMCY"/>
+          <org-code colno="7" rowno="131" sheetno="0" oucode="5" expression="[145.1]+[146.1]+[147.1]+[148.1]+[149.1]" type="CCMCY"/>
+          <org-code colno="7" rowno="132" sheetno="0" oucode="6" expression="[145.1]+[146.1]+[147.1]+[148.1]+[149.1]" type="CCMCY"/>
+          <org-code colno="7" rowno="133" sheetno="0" oucode="4" expression="[145.1]+[146.1]+[147.1]+[148.1]+[149.1]" type="CCMCY"/>
+          <org-code colno="7" rowno="134" sheetno="0" oucode="12" expression="[145.1]+[146.1]+[147.1]+[148.1]+[149.1]" type="CCMCY"/>
+          <org-code colno="7" rowno="136" sheetno="0" oucode="11" expression="[145.1]+[146.1]+[147.1]+[148.1]+[149.1]" type="CCMCY"/>
+
+          <org-code colno="24" rowno="130" sheetno="0" oucode="7" expression="[145.1]+[146.1]+[147.1]+[148.1]+[149.1]" type="CMCY"/>
+          <org-code colno="24" rowno="131" sheetno="0" oucode="5" expression="[145.1]+[146.1]+[147.1]+[148.1]+[149.1]" type="CMCY"/>
+          <org-code colno="24" rowno="132" sheetno="0" oucode="6" expression="[145.1]+[146.1]+[147.1]+[148.1]+[149.1]" type="CMCY"/>
+          <org-code colno="24" rowno="133" sheetno="0" oucode="4" expression="[145.1]+[146.1]+[147.1]+[148.1]+[149.1]" type="CMCY"/>
+          <org-code colno="24" rowno="134" sheetno="0" oucode="12" expression="[145.1]+[146.1]+[147.1]+[148.1]+[149.1]" type="CMCY"/>
+          <org-code colno="24" rowno="136" sheetno="0" oucode="11" expression="[145.1]+[146.1]+[147.1]+[148.1]+[149.1]" type="CMCY"/>
+
+
+          
+          <org-code colno="9" rowno="130" sheetno="0" oucode="7" expression="[150.1]" type="CCMCY"/>
+          <org-code colno="9" rowno="131" sheetno="0" oucode="5" expression="[150.1]" type="CCMCY"/>
+          <org-code colno="9" rowno="132" sheetno="0" oucode="6" expression="[150.1]" type="CCMCY"/>
+          <org-code colno="9" rowno="133" sheetno="0" oucode="4" expression="[150.1]" type="CCMCY"/>
+          <org-code colno="9" rowno="134" sheetno="0" oucode="12" expression="[150.1]" type="CCMCY"/>
+          <org-code colno="9" rowno="136" sheetno="0" oucode="11" expression="[150.1]" type="CCMCY"/>
+
+          <org-code colno="26" rowno="130" sheetno="0" oucode="7" expression="[150.1]" type="CMCY"/>
+          <org-code colno="26" rowno="131" sheetno="0" oucode="5" expression="[150.1]" type="CMCY"/>
+          <org-code colno="26" rowno="132" sheetno="0" oucode="6" expression="[150.1]" type="CMCY"/>
+          <org-code colno="26" rowno="133" sheetno="0" oucode="4" expression="[150.1]" type="CMCY"/>
+          <org-code colno="26" rowno="134" sheetno="0" oucode="12" expression="[150.1]" type="CMCY"/>
+          <org-code colno="26" rowno="136" sheetno="0" oucode="11" expression="[150.1]" type="CMCY"/>
+
+</org-codes>
+
+<de-codes>
+   <!--Month-->
+       <de-code colno="1" rowno="3" sheetno="0" stype="dataelement" type="CMCY">PERIOD-MONTH</de-code>
+  
+   <!--DISTRICT-->       
+        <de-code colno="4" rowno="3" sheetno="0" stype="dataelement" type="CMCY">FACILITY</de-code>
+   
+   <!--Unmet ANC Registration-->       
+        <de-code colno="0" rowno="37" sheetno="0" stype="dataelement" type="CCMCY">([913]+[914]/12)-[460]</de-code>
+        <de-code colno="1" rowno="37" sheetno="0" stype="dataelement" type="CMCY">((([913]+[914])/12-[460])/[460])*100</de-code>
+   <!--ANC 3 checkups-->       
+        <de-code colno="2" rowno="37" sheetno="0" stype="dataelement" type="CCMCY">[463]</de-code>
+        <de-code colno="3" rowno="37" sheetno="0" stype="dataelement" type="CMCY">([463]/[460])*100</de-code>
+   <!--ANC 100 IFA tablets-->       
+        <de-code colno="4" rowno="37" sheetno="0" stype="dataelement" type="CCMCY">[466]</de-code>
+        <de-code colno="5" rowno="37" sheetno="0" stype="dataelement" type="CMCY">([466]/[460])*100</de-code>
+   <!--ANC TT2/Booster dose-->       
+        <de-code colno="6" rowno="37" sheetno="0" stype="dataelement" type="CCMCY">[465]</de-code>
+        <de-code colno="7" rowno="37" sheetno="0" stype="dataelement" type="CMCY">([465]/[460])*100</de-code>
+   <!--No of ANC with Hypertension (BP>140/90) (Cummulative)-->       
+        <de-code colno="0" rowno="39" sheetno="0" stype="dataelement" type="CCMCY">[467]</de-code>
+   <!--No of ANC with Hb level <  11 tested (Cummulative)-->       
+        <de-code colno="1" rowno="39" sheetno="0" stype="dataelement" type="CCMCY">[469]</de-code>
+   <!--No of ANC with Hb level <  7 treated (Cummulative)-->       
+        <de-code colno="3" rowno="39" sheetno="0" stype="dataelement" type="CCMCY">[470]</de-code>
+   <!-- No Eclampsia cases managed during delivery (Cummulative)-->       
+        <de-code colno="5" rowno="39" sheetno="0" stype="dataelement" type="CCMCY">[468]</de-code>
+   
+ <!-- Deliveries Status ( absolute figure & % against total deliveries)-->
+
+   <!--Home SBA (Cummulative)-->       
+        <de-code colno="0" rowno="42" sheetno="0" stype="dataelement" ougroup="NA" type="CCMCY">[471]</de-code>
+        <de-code colno="0" rowno="44" sheetno="0" stype="dataelement" ougroup="NA" type="CMCY">([471]/([471]+[472]))*100</de-code>
+   <!--Home Non-SBA (Cummulative)-->       
+        <de-code colno="1" rowno="42" sheetno="0" stype="dataelement" type="CCMCY">[472]</de-code>
+        <de-code colno="1" rowno="44" sheetno="0" stype="dataelement" type="CMCY">([472]/([471]+[472]))*100</de-code>
+   <!--Institutional (Cummulative)-->       
+        <de-code colno="3" rowno="42" sheetno="0" stype="dataelement" type="CCMCY">[475]+[479]+[476]+[477]+[480]+[478]+[1135]</de-code>
+        <de-code colno="3" rowno="44" sheetno="0" stype="dataelement" type="CMCY">(([475]+[479]+[476]+[477]+[480]+[478]+[1135])/([471]+[479]+[476]+[477]+[480]+[478]+[1135]+[472]+[475]))*100</de-code>
+        <de-code colno="5" rowno="44" sheetno="0" stype="dataelement" type="CMCY">(([471]+[479]+[476]+[477]+[480]+[478]+[1135]+[472]+[475])/([1719]/12))*100</de-code>
+ 
+
+<!-- C sections & Complicated Deliveries (absolute and % against total deliveries)Facility wise  percentage of C sections & Complicated Deliveries against total deliveries-->
+ 
+<!--Total Delivery at-->
+   <!--PHC-->       
+        <de-code colno="1" rowno="48" sheetno="0" stype="dataelement" type="CMCY">[477]</de-code>
+        <de-code colno="1" rowno="49" sheetno="0" stype="dataelement" type="CMCY">([477]/([478]+[479]+[480]+[475]+[1135]+[476]))*100</de-code>
+   <!--CHC-->       
+        <de-code colno="2" rowno="48" sheetno="0" stype="dataelement" type="CMCY">[478]</de-code>
+        <de-code colno="2" rowno="49" sheetno="0" stype="dataelement" type="CMCY">([478]/([478]+[479]+[480]+[475]+[1135]+[476]))*100</de-code>
+   <!--SDH/DH-->       
+        <de-code colno="3" rowno="48" sheetno="0" stype="dataelement" type="CMCY">[479]</de-code>
+        <de-code colno="3" rowno="49" sheetno="0" stype="dataelement" type="CMCY">([479]/([478]+[479]+[480]+[475]+[1135]+[476]))*100</de-code>
+   <!--OTHER STATE INST.-->       
+        <de-code colno="4" rowno="48" sheetno="0" stype="dataelement" type="CCMCY">[480]</de-code>
+        <de-code colno="4" rowno="49" sheetno="0" stype="dataelement" type="CMCY">([480]/([478]+[479]+[480]+[475]+[1135]+[476]))*100</de-code>
+   <!--PUBLIC INST. DELIVERY-->       
+        <de-code colno="5" rowno="48" sheetno="0" stype="dataelement" type="CCMCY">[476]+[477]+[478]+[479]+[480]</de-code>
+        <de-code colno="5" rowno="49" sheetno="0" stype="dataelement" type="CMCY">([[476]+[477]+[478]+[479]+[480]/([478]+[479]+[480]+[475]+[1135]+[476]))*100</de-code>
+   <!--PRIVATE-->       
+        <de-code colno="6" rowno="48" sheetno="0" stype="dataelement" type="CCMCY">[1135]</de-code>
+        <de-code colno="6" rowno="49" sheetno="0" stype="dataelement" type="CMCY">([1135]/([478]+[479]+[480]+[475]+[1135]+[476]))*100</de-code>
+   
+<!--C Section Reported-->
+   <!--PHC-->       
+        <de-code colno="1" rowno="50" sheetno="0" stype="dataelement" type="CMCY">[488]</de-code>
+        <de-code colno="1" rowno="51" sheetno="0" stype="dataelement" type="CMCY">([488]/([489]+[490]+[491]+[492]+[488]+[489]+[490]+[491]))*100</de-code>
+   <!--CHC-->       
+        <de-code colno="2" rowno="50" sheetno="0" stype="dataelement" type="CMCY">[489]</de-code>
+        <de-code colno="2" rowno="51" sheetno="0" stype="dataelement" type="CMCY">([489]/([489]+[490]+[491]+[492]+[488]+[489]+[490]+[491]))*100</de-code>
+   <!--SDH/DH-->       
+        <de-code colno="3" rowno="50" sheetno="0" stype="dataelement" type="CMCY">[490]</de-code>
+        <de-code colno="3" rowno="51" sheetno="0" stype="dataelement" type="CMCY">([490]/([489]+[490]+[491]+[492]+[488]+[489]+[490]+[491]))*100</de-code>
+   <!--OTHER STATE INST.-->       
+        <de-code colno="4" rowno="50" sheetno="0" stype="dataelement" type="CMCY">[491]</de-code>
+        <de-code colno="4" rowno="51" sheetno="0" stype="dataelement" type="CMCY">([491]/([489]+[490]+[491]+[492]+[488]+[489]+[490]+[491]))*100</de-code>
+   <!--PUBLIC INST. DELIVERY-->       
+        <de-code colno="5" rowno="50" sheetno="0" stype="dataelement" type="CMCY">[488]+[489]+[490]+[491]</de-code>
+        <de-code colno="5" rowno="51" sheetno="0" stype="dataelement" type="CMCY">([488]+[489]+[490]+[491]/([489]+[490]+[491]+[492]+[475]))*100</de-code>
+   <!--PRIVATE-->       
+        <de-code colno="6" rowno="50" sheetno="0" stype="dataelement" type="CMCY">[492]</de-code>
+        <de-code colno="6" rowno="51" sheetno="0" stype="dataelement" type="CMCY">([492]/([489]+[490]+[491]+[492]+[475]))*100</de-code>
+   
+<!--Pregnant Women with Obstetric Complicated attended facility-->
+   <!--PHC-->       
+        <de-code colno="1" rowno="52" sheetno="0" stype="dataelement" type="CMCY">[505]</de-code>
+        <de-code colno="1" rowno="53" sheetno="0" stype="dataelement" type="CMCY">([505]/([506]+[507]+[505]+[508]+[509]))*100</de-code>
+   <!--CHC-->       
+        <de-code colno="2" rowno="52" sheetno="0" stype="dataelement" type="CMCY">[506]</de-code>
+        <de-code colno="2" rowno="53" sheetno="0" stype="dataelement" type="CMCY">([506]/([506]+[507]+[505]+[508]+[509]))*100</de-code>
+   <!--SDH/DH-->       
+        <de-code colno="3" rowno="52" sheetno="0" stype="dataelement" type="CMCY">[507]</de-code>
+        <de-code colno="3" rowno="53" sheetno="0" stype="dataelement" type="CMCY">([507]/([506]+[507]+[505]+[508]+[509]))*100</de-code>
+   <!--OTHER STATE INST.-->       
+        <de-code colno="4" rowno="52" sheetno="0" stype="dataelement" type="CMCY">[508]</de-code>
+        <de-code colno="4" rowno="53" sheetno="0" stype="dataelement" type="CMCY">([1150]/([506]+[507]+[505]+[508]+[509]))*100</de-code>
+   <!--PUBLIC INST. DELIVERY-->       
+        <de-code colno="5" rowno="52" sheetno="0" stype="dataelement" type="CMCY">[508]+[507]+[506]+[505]</de-code>
+        <de-code colno="5" rowno="53" sheetno="0" stype="dataelement" type="CMCY">([508]+[507]+[506]+[505]/([506]+[507]+[508]+[509]+[505]))*100</de-code>
+   <!--PRIVATE-->      
+        <de-code colno="6" rowno="52" sheetno="0" stype="dataelement" type="CMCY">[509]</de-code>
+        <de-code colno="6" rowno="53" sheetno="0" stype="dataelement" type="CMCY">([509]/([506]+[507]+[505]+[508]+[509]))*100</de-code>
+   
+<!--No. of Complicated Delivery Treated with any interventions-->       
+   <!--PHC       
+        <de-code colno="1" rowno="56" sheetno="0" stype="dataelement" type="CMCY">[]</de-code>
+        <de-code colno="1" rowno="57" sheetno="0" stype="dataelement" type="CMCY">[]</de-code>
+   CHC       
+        <de-code colno="2" rowno="56" sheetno="0" stype="dataelement" type="CMCY">[]</de-code>
+        <de-code colno="2" rowno="57" sheetno="0" stype="dataelement" type="CMCY">[]</de-code>
+   SDH/DH       
+        <de-code colno="3" rowno="56" sheetno="0" stype="dataelement" type="CMCY">[]</de-code>
+        <de-code colno="3" rowno="57" sheetno="0" stype="dataelement" type="CMCY">[]</de-code>
+   OTHER STATE INST.       
+        <de-code colno="4" rowno="56" sheetno="0" stype="dataelement" type="CMCY">[]</de-code>
+        <de-code colno="4" rowno="57" sheetno="0" stype="dataelement" type="CMCY">[]</de-code>
+   PUBLIC INST. DELIVERY       
+        <de-code colno="5" rowno="56" sheetno="0" stype="dataelement" type="CMCY">[]</de-code>
+        <de-code colno="5" rowno="57" sheetno="0" stype="dataelement" type="CMCY">[]</de-code>
+   PRIVATE       
+        <de-code colno="6" rowno="56" sheetno="0" stype="dataelement" type="CMCY">[]</de-code>
+        <de-code colno="6" rowno="57" sheetno="0" stype="dataelement" type="CMCY">[]</de-code>
+   -->
+
+<!--Complicated Delivery Treated with any interventions-->       
+   <!--IV Antibiotics-->       
+        <de-code colno="1" rowno="60" sheetno="0" stype="dataelement" type="CMCY">[510]</de-code>
+        <de-code colno="1" rowno="61" sheetno="0" stype="dataelement" type="CMCY">([510]/([510]+[511]+[512]+[513]))*100</de-code>
+   <!--IV antihypertensive/Magsulph injection-->       
+        <de-code colno="2" rowno="60" sheetno="0" stype="dataelement" type="CMCY">[511]</de-code>
+        <de-code colno="2" rowno="61" sheetno="0" stype="dataelement" type="CMCY">([511]/([510]+[511]+[512]+[513]))*100</de-code>
+   <!--IV Oxytocis-->      
+        <de-code colno="3" rowno="60" sheetno="0" stype="dataelement" type="CMCY">[512]</de-code>
+        <de-code colno="3" rowno="61" sheetno="0" stype="dataelement" type="CMCY">([512]/([510]+[511]+[512]+[513]))*100</de-code>
+   <!--Blood Transfusion -->       
+        <de-code colno="4" rowno="60" sheetno="0" stype="dataelement" type="CMCY">[513]</de-code>
+        <de-code colno="4" rowno="61" sheetno="0" stype="dataelement" type="CMCY">([513]/([510]+[511]+[512]+[513]))*100</de-code>
+   
+<!--Total Deliveries-->
+   <!--Home-->
+        <de-code colno="1" rowno="64" sheetno="0" stype="dataelement" type="CCMCY">[471]+[472]</de-code>
+   <!--Public Inst.-->
+        <de-code colno="1" rowno="65" sheetno="0" stype="dataelement" type="CCMCY">[475]+[479]+[476]+[477]+[480]+[478]</de-code>
+   <!--Accr. Private Inst.-->
+        <de-code colno="1" rowno="66" sheetno="0" stype="dataelement" type="CCMCY">[1135]</de-code>
+
+<!--Total Deliveries-->
+   <!--Home-->
+        <de-code colno="3" rowno="64" sheetno="0" stype="dataelement" type="CCMCY">[474]</de-code>
+   <!--Public Inst.-->
+        <de-code colno="3" rowno="65" sheetno="0" stype="dataelement" type="CCMCY">[482]</de-code>
+   <!--Accr. Private Inst.-->
+        <de-code colno="3" rowno="66" sheetno="0" stype="dataelement" type="CCMCY">[485]</de-code>
+   
+<!--Pregnancy Outcomes-->       
+   <!--Total Expected Live birth monthly  (Cummulative)-->       
+        <de-code colno="0" rowno="69" sheetno="0" stype="dataelement" type="CCMCY">[1771]/12</de-code>        
+   <!--Total Live birth reported (Cummulative)-->       
+        <de-code colno="1" rowno="69" sheetno="0" stype="dataelement" type="CCMCY">[493]+[494]</de-code>
+        <de-code colno="1" rowno="70" sheetno="0" stype="dataelement" type="CMCY">(([1771]-([493]+[494]))/[1771])*100</de-code>
+   <!--Live Birth - females (Cummulative)-->       
+        <de-code colno="2" rowno="69" sheetno="0" stype="dataelement" type="CCMCY">[494]</de-code>
+        <de-code colno="2" rowno="70" sheetno="0" stype="dataelement" type="CMCY">([494]/([494]+[493]))*100</de-code>
+   <!--Live Birth - males (Cummulative)-->       
+        <de-code colno="3" rowno="69" sheetno="0" stype="dataelement" type="CCMCY">[493]</de-code>
+        <de-code colno="3" rowno="70" sheetno="0" stype="dataelement" type="CMCY">([493]/([494]+[493]))*100</de-code>
+   <!--Still birth (Cummulative)-->       
+        <de-code colno="4" rowno="69" sheetno="0" stype="dataelement" type="CCMCY">[495]</de-code>
+        <de-code colno="4" rowno="70" sheetno="0" stype="dataelement" type="CMCY">([495]/([494]+[493]))*100</de-code>
+   <!--Abortions (Spontaneous/inducted) Cummulative)-->       
+        <de-code colno="5" rowno="69" sheetno="0" stype="dataelement" type="CCMCY">[496]</de-code>
+        <de-code colno="5" rowno="70" sheetno="0" stype="dataelement" type="CMCY">([496]/((([913]+[914])/12)))*100</de-code>
+
+   
+   
+   <!--MTP Less than 12 weeks  (Cummulative)-->       
+        <de-code colno="0" rowno="72" sheetno="0" stype="dataelement" type="CCMCY">[517]</de-code>
+   <!--MTP More than 12 weeks  (Cummulative)-->       
+        <de-code colno="1" rowno="72" sheetno="0" stype="dataelement" type="CCMCY">[518]</de-code>
+   <!--MTPs conducted at Pvt. Inst  (Cummulative)-->       
+        <de-code colno="4" rowno="72" sheetno="0" stype="dataelement" type="CCMCY">[519]</de-code>
+
+
+
+   <!-- Total OPD -->       
+        <de-code colno="0" rowno="75" sheetno="0" stype="dataelement" type="CMCY">[634]</de-code>
+   <!--Total RTI/STI cases-->       
+        <de-code colno="1" rowno="75" sheetno="0" stype="dataelement" type="CMCY">[520]+[521]</de-code>
+
+   
+
+<!--Facility wise % of Sterilisations & IUDs-->
+ <!--NSV-->
+        <de-code colno="2" rowno="78" sheetno="0" stype="dataelement" type="CCMCY">[523]</de-code>
+        <de-code colno="3" rowno="78" sheetno="0" stype="dataelement" type="CCMCY">[524]</de-code>
+        <de-code colno="4" rowno="78" sheetno="0" stype="dataelement" type="CCMCY">[525]</de-code>
+        <de-code colno="5" rowno="78" sheetno="0" stype="dataelement" type="CCMCY">[526]</de-code>
+        <de-code colno="6" rowno="78" sheetno="0" stype="dataelement" type="CCMCY">[527]</de-code>
+<!--Laparoscopic-->
+        <de-code colno="2" rowno="79" sheetno="0" stype="dataelement" type="CCMCY">[528]</de-code>
+        <de-code colno="3" rowno="79" sheetno="0" stype="dataelement" type="CCMCY">[529]</de-code>
+        <de-code colno="4" rowno="79" sheetno="0" stype="dataelement" type="CCMCY">[530]</de-code>
+        <de-code colno="5" rowno="79" sheetno="0" stype="dataelement" type="CCMCY">[531]</de-code>
+        <de-code colno="6" rowno="79" sheetno="0" stype="dataelement" type="CCMCY">[532]</de-code>
+<!--MiniLap-->
+        <de-code colno="2" rowno="80" sheetno="0" stype="dataelement" type="CCMCY">[533]</de-code>
+        <de-code colno="3" rowno="80" sheetno="0" stype="dataelement" type="CCMCY">[534]</de-code>
+        <de-code colno="4" rowno="80" sheetno="0" stype="dataelement" type="CCMCY">[535]</de-code>
+        <de-code colno="5" rowno="80" sheetno="0" stype="dataelement" type="CCMCY">[536]</de-code>
+        <de-code colno="6" rowno="80" sheetno="0" stype="dataelement" type="CCMCY">[537]</de-code>
+<!--Post Partum-->
+        <de-code colno="2" rowno="81" sheetno="0" stype="dataelement" type="CCMCY">[538]</de-code>
+        <de-code colno="3" rowno="81" sheetno="0" stype="dataelement" type="CCMCY">[539]</de-code>
+        <de-code colno="4" rowno="81" sheetno="0" stype="dataelement" type="CCMCY">[540]</de-code>
+        <de-code colno="5" rowno="81" sheetno="0" stype="dataelement" type="CCMCY">[541]</de-code>
+        <de-code colno="6" rowno="81" sheetno="0" stype="dataelement" type="CCMCY">[542]</de-code>
+<!--IUD inserted-->
+        <de-code colno="1" rowno="82" sheetno="0" stype="dataelement" type="CCMCY">([543]/([543]+[544]+[545]+[546]+[547]+[548]))*100</de-code>
+        <de-code colno="2" rowno="82" sheetno="0" stype="dataelement" type="CCMCY">([544]/([543]+[544]+[545]+[546]+[547]+[548]))*100</de-code>
+        <de-code colno="3" rowno="82" sheetno="0" stype="dataelement" type="CCMCY">([545]/([543]+[544]+[545]+[546]+[547]+[548]))*100</de-code>
+        <de-code colno="4" rowno="82" sheetno="0" stype="dataelement" type="CCMCY">([546]/([543]+[544]+[545]+[546]+[547]+[548]))*100</de-code>
+        <de-code colno="5" rowno="82" sheetno="0" stype="dataelement" type="CCMCY">([547]/([543]+[544]+[545]+[546]+[547]+[548]))*100</de-code>
+        <de-code colno="6" rowno="82" sheetno="0" stype="dataelement" type="CCMCY">([548]/([543]+[544]+[545]+[546]+[547]+[548]))*100</de-code>
+
+<!--FP Methods (Month)-->
+   <!--NSV Conducted-->       
+        <de-code colno="1" rowno="85" sheetno="0" stype="dataelement" type="CMCY">[523]+[524]+[525]+[526]+[527]</de-code>
+   <!--Laparoscopic conducted-->       
+        <de-code colno="1" rowno="86" sheetno="0" stype="dataelement" type="CMCY">[1145]+[531]+[528]+[530]+[532]</de-code>
+   <!--MiniLap conducted-->       
+        <de-code colno="1" rowno="87" sheetno="0" stype="dataelement" type="CMCY">[533]+[534]+[535]+[536]+[537]</de-code>
+   <!--Post Partum conducted-->       
+        <de-code colno="1" rowno="88" sheetno="0" stype="dataelement" type="CMCY">[538]+[539]+[540]+[541]+[542]</de-code>
+   <!--IUD inserted-->       
+        <de-code colno="1" rowno="89" sheetno="0" stype="dataelement" type="CMCY">[543]+[544]+[545]+[546]+[547]+[548]</de-code>
+   <!--Condom Distributed-->       
+        <de-code colno="1" rowno="90" sheetno="0" stype="dataelement" type="CMCY">[551]</de-code>
+   <!--Oral Pills Distributed-->       
+        <de-code colno="1" rowno="91" sheetno="0" stype="dataelement" type="CMCY">[550]</de-code>
+          
+        <de-code colno="1" rowno="92" sheetno="0" stype="dataelement" type="CMCY">[552]</de-code>
+   <!--Emergency Contraceptive Pills Distributed-->       
+        <de-code colno="1" rowno="93" sheetno="0" stype="dataelement" type="CMCY">[553]</de-code>      
+
+
+<!--FP Methods(Cummulative)-->
+   <!--NSV Conducted-->       
+        <de-code colno="2" rowno="85" sheetno="0" stype="dataelement" type="CCMCY">[523]+[524]+[525]+[526]+[527]</de-code>
+   <!--Laparoscopic conducted-->       
+        <de-code colno="2" rowno="86" sheetno="0" stype="dataelement" type="CCMCY">[1145]+[531]+[528]+[530]+[532]</de-code>
+   <!--MiniLap conducted-->       
+        <de-code colno="2" rowno="87" sheetno="0" stype="dataelement" type="CCMCY">[533]+[534]+[535]+[536]+[537]</de-code>
+   <!--Post Partum conducted-->       
+        <de-code colno="2" rowno="88" sheetno="0" stype="dataelement" type="CCMCY">[538]+[539]+[540]+[541]+[542]</de-code>
+   <!--IUD inserted-->       
+        <de-code colno="2" rowno="89" sheetno="0" stype="dataelement" type="CCMCY">[543]+[544]+[545]+[546]+[547]+[548]</de-code>
+   <!--Condom Distributed-->       
+        <de-code colno="2" rowno="90" sheetno="0" stype="dataelement" type="CCMCY">[551]</de-code>
+   <!--Oral Pills Distributed-->       
+        <de-code colno="2" rowno="91" sheetno="0" stype="dataelement" type="CCMCY">[550]</de-code>
+      
+        <de-code colno="2" rowno="92" sheetno="0" stype="dataelement" type="CCMCY">[552]</de-code>
+   <!--Emergency Contraceptive Pills Distributed-->       
+        <de-code colno="1" rowno="93" sheetno="0" stype="dataelement" type="CCMCY">[553]</de-code>  
+
+<!--Immunisation-->       
+   <!--Total Expected Live birth monthly  (Cummulative)-->       
+        <de-code colno="0" rowno="115" sheetno="0" stype="dataelement" type="CCMCY">[1771]/12</de-code>
+   <!--Total Full Immunised Children (Cummulative)-->       
+        <de-code colno="1" rowno="115" sheetno="0" stype="dataelement" type="CCMCY">[573]+[574]</de-code>
+        <de-code colno="2" rowno="115" sheetno="0" stype="dataelement" type="CMCY">(([573]+[574])/([1771]/12))*100</de-code>
+   <!--DPT3 - BCG Drop Out Rate-->       
+        <de-code colno="3" rowno="115" sheetno="0" stype="dataelement" type="CMCY">(([561]-[564])/[561])</de-code>
+   <!--DPT3 - DPT1 Drop Out Rate-->       
+        <de-code colno="4" rowno="115" sheetno="0" stype="dataelement" type="CCMCY">(([562]-[564])/[562])</de-code>
+   <!--Measles - DPT3 Drop out rate-->       
+        <de-code colno="5" rowno="115" sheetno="0" stype="dataelement" type="CCMCY">(([562]-[572])/[562])</de-code>
+   
+
+<!--HIV-->       
+   <!--Total HIV Positive Case (Cummulative)-->       
+        <de-code colno="0" rowno="139" sheetno="0" stype="dataelement" type="CCMCY">[645]+[646]+[647]</de-code>
+   <!--Total HIV Positive Case  Male (Cummulative)-->       
+        <de-code colno="1" rowno="139" sheetno="0" stype="dataelement" type="CCMCY">[645]</de-code>
+   <!--Total HIV Positive Case  Female Non ANC (Cummulative)-->       
+        <de-code colno="2" rowno="139" sheetno="0" stype="dataelement" type="CCMCY">[646]</de-code>
+   <!--Total HIV Positive Case  Female ANC (Cummulative)-->       
+        <de-code colno="3" rowno="139" sheetno="0" stype="dataelement" type="CCMCY">[647]</de-code>
+   <!--Plasmodium Vivax test positive-->       
+        <de-code colno="4" rowno="139" sheetno="0" stype="dataelement" type="CCMCY">[653]</de-code>
+   <!--Plasmodium Falciparum test positive-->       
+        <de-code colno="5" rowno="139" sheetno="0" stype="dataelement" type="CCMCY">[654]</de-code>
+
+
+   <!--Infant Deaths within 24 hrs of birth-->       
+        <de-code colno="3" rowno="154" sheetno="0" stype="dataelement" type="CCMCY">[763]+[764]</de-code>
+   <!--Infant Deaths between 24hrs & under 1 week-->       
+        <de-code colno="3" rowno="155" sheetno="0" stype="dataelement" type="CCMCY">[1138]+[1139]</de-code>
+   <!--Infant Deaths between under 1 month-->       
+        <de-code colno="3" rowno="156" sheetno="0" stype="dataelement" type="CCMCY">[1140]+[1141]</de-code>
+   <!--Infant Deaths between under 1 Year-->       
+        <de-code colno="3" rowno="157" sheetno="0" stype="dataelement" type="CCMCY">[1142]+[1143]</de-code>
+   <!--Infant Deaths between under 5 Year-->       
+        <de-code colno="3" rowno="159" sheetno="0" stype="dataelement" type="CCMCY">[1144]+[1145]</de-code>
+
+<!--Morbidity and Mortality Details-->
+   <!--Diphtheria -->
+        <de-code colno="0" rowno="144" sheetno="0" stype="dataelement" type="CCMCY">[603]</de-code>
+   <!--Pertussis-->
+        <de-code colno="1" rowno="144" sheetno="0" stype="dataelement" type="CCMCY">[604]</de-code>
+   <!--Tetanus Neonatorum -->
+        <de-code colno="2" rowno="144" sheetno="0" stype="dataelement" type="CCMCY">[605]</de-code>
+   <!--Tetanus Other -->
+        <de-code colno="3" rowno="144" sheetno="0" stype="dataelement" type="CCMCY">[606]</de-code>
+   <!--Polio -->
+        <de-code colno="4" rowno="144" sheetno="0" stype="dataelement" type="CCMCY">[607]</de-code>
+   <!--Measles -->
+        <de-code colno="5" rowno="144" sheetno="0" stype="dataelement" type="CCMCY">[608]</de-code>
+   
+   <!--Diarrhoea and dehydration-->
+        <de-code colno="0" rowno="146" sheetno="0" stype="dataelement" type="CCMCY">[609]</de-code>
+   <!--Malaria-->
+        <de-code colno="1" rowno="146" sheetno="0" stype="dataelement" type="CCMCY">[610]</de-code>
+   <!--Number admitted with Respiratory Infections  -->
+        <de-code colno="4" rowno="146" sheetno="0" stype="dataelement" type="CCMCY">[611]</de-code>
+
+<!--Mortality-->
+   <!--Communicable Disease -->
+       <de-code colno="5" rowno="149" sheetno="0" stype="dataelement" type="CCMCY">[]</de-code>
+   <!--Non Communicable Disease -->
+       <de-code colno="5" rowno="150" sheetno="0" stype="dataelement" type="CCMCY">[]</de-code>
+   <!--Injuries-->
+       <de-code colno="5" rowno="151" sheetno="0" stype="dataelement" type="CCMCY">[]</de-code>
+   <!--Others-->
+       <de-code colno="5" rowno="152" sheetno="0" stype="dataelement" type="CCMCY">[865]</de-code>
+
+<!--Cause of Neonatal Death-->
+   <!--Sepsis-->
+       <de-code colno="1" rowno="162" sheetno="0" stype="dataelement" type="CCMCY">[767]+[768]</de-code>
+       <de-code colno="1" rowno="163" sheetno="0" stype="dataelement" type="CCMCY">[791]+[792]</de-code>
+   <!--Asphyxia-->
+       <de-code colno="2" rowno="162" sheetno="0" stype="dataelement" type="CCMCY">[771]+[772]</de-code>
+       <de-code colno="2" rowno="163" sheetno="0" stype="dataelement" type="CCMCY">[793]+[794]</de-code>
+   <!--LBW-->
+       <de-code colno="3" rowno="162" sheetno="0" stype="dataelement" type="CCMCY">[775]+[776]</de-code>
+       <de-code colno="3" rowno="163" sheetno="0" stype="dataelement" type="CCMCY">[795]+[796]</de-code>
+   <!--Others-->
+       <de-code colno="4" rowno="162" sheetno="0" stype="dataelement" type="CCMCY">[779]+[780]</de-code>
+       <de-code colno="4" rowno="163" sheetno="0" stype="dataelement" type="CCMCY">[797]+[798]</de-code>
+
+<!--Cause of Infant Death-->
+   <!--Pneumonia-->
+       <de-code colno="1" rowno="167" sheetno="0" stype="dataelement" type="CCMCY">[781]+[782]</de-code>
+       <de-code colno="1" rowno="168" sheetno="0" stype="dataelement" type="CCMCY">[799]+[800]</de-code>
+   <!--Diarrhoea-->
+       <de-code colno="2" rowno="167" sheetno="0" stype="dataelement" type="CCMCY">[783]+[784]</de-code>
+       <de-code colno="2" rowno="168" sheetno="0" stype="dataelement" type="CCMCY">[801]+[802]</de-code>
+   <!--Fever-->
+       <de-code colno="3" rowno="167" sheetno="0" stype="dataelement" type="CCMCY">[785]+[786]</de-code>
+       <de-code colno="3" rowno="168" sheetno="0" stype="dataelement" type="CCMCY">[803]+[804]</de-code>
+   <!--Measles-->
+       <de-code colno="4" rowno="167" sheetno="0" stype="dataelement" type="CCMCY">[787]+[788]</de-code>
+       <de-code colno="4" rowno="168" sheetno="0" stype="dataelement" type="CCMCY">[805]+[806]</de-code>
+   <!--Others-->
+       <de-code colno="5" rowno="167" sheetno="0" stype="dataelement" type="CCMCY">[785]+[786]</de-code>
+       <de-code colno="5" rowno="168" sheetno="0" stype="dataelement" type="CCMCY">[807]+[808]</de-code>
+
+<!--Maternal Deaths & Causes-Infant Mortality Indicators-->
+   <!--Abortion -->
+       <de-code colno="4" rowno="172" sheetno="0" stype="dataelement" type="CCMCY">[857]</de-code>
+   <!--Obstructed/prolonged labour-->
+       <de-code colno="4" rowno="173" sheetno="0" stype="dataelement" type="CCMCY">[858]</de-code>
+   <!--Severe hypertension/fits-->
+       <de-code colno="4" rowno="174" sheetno="0" stype="dataelement" type="CCMCY">[860]</de-code>
+   <!--Bleeding-->
+       <de-code colno="4" rowno="175" sheetno="0" stype="dataelement" type="CCMCY">[865]</de-code>
+   <!--High Fever -->
+       <de-code colno="4" rowno="176" sheetno="0" stype="dataelement" type="CCMCY">[863]</de-code>
+   <!--Other Causes -->
+       <de-code colno="4" rowno="177" sheetno="0" stype="dataelement" type="CCMCY">[861]</de-code>
+
+<!--Cause of deaths above 6 yrs of age-->
+   <!--Diarrhoeal Diseases-->
+       <de-code colno="1" rowno="181" sheetno="0" stype="dataelement" type="CCMCY">[809]+[810]</de-code>
+       <de-code colno="2" rowno="181" sheetno="0" stype="dataelement" type="CCMCY">[825]+[826]</de-code>
+       <de-code colno="3" rowno="181" sheetno="0" stype="dataelement" type="CCMCY">[841]+[842]</de-code>
+   <!--Tuberculosis-->
+       <de-code colno="1" rowno="182" sheetno="0" stype="dataelement" type="CCMCY">[811]+[812]</de-code>
+       <de-code colno="2" rowno="182" sheetno="0" stype="dataelement" type="CCMCY">[827]+[828]</de-code>
+       <de-code colno="3" rowno="182" sheetno="0" stype="dataelement" type="CCMCY">[843]+[844]</de-code>
+   <!--Respiratory Diseases other than TB-->
+       <de-code colno="1" rowno="183" sheetno="0" stype="dataelement" type="CCMCY">[813]+[814]</de-code>
+       <de-code colno="2" rowno="183" sheetno="0" stype="dataelement" type="CCMCY">[829]+[830]</de-code>
+       <de-code colno="3" rowno="183" sheetno="0" stype="dataelement" type="CCMCY">[845]+[846]</de-code>
+   <!--Malaria -->
+       <de-code colno="1" rowno="184" sheetno="0" stype="dataelement" type="CCMCY">[815]+[816]</de-code>
+       <de-code colno="2" rowno="184" sheetno="0" stype="dataelement" type="CCMCY">[831]+[832]</de-code>
+       <de-code colno="3" rowno="184" sheetno="0" stype="dataelement" type="CCMCY">[847]+[848]</de-code>
+   <!--Other fever Related-->
+       <de-code colno="1" rowno="185" sheetno="0" stype="dataelement" type="CCMCY">[817]+[818]</de-code>
+       <de-code colno="2" rowno="185" sheetno="0" stype="dataelement" type="CCMCY">[833]+[834]</de-code>
+       <de-code colno="3" rowno="185" sheetno="0" stype="dataelement" type="CCMCY">[849]+[850]</de-code>
+   <!--HIV/AIDS-->
+       <de-code colno="1" rowno="186" sheetno="0" stype="dataelement" type="CCMCY">[819]+[820]</de-code>
+       <de-code colno="2" rowno="186" sheetno="0" stype="dataelement" type="CCMCY">[835]+[836]</de-code>
+       <de-code colno="3" rowno="186" sheetno="0" stype="dataelement" type="CCMCY">[851]+[852]</de-code>
+   <!--Heart Disease/ Hypertension related -->
+       <de-code colno="1" rowno="187" sheetno="0" stype="dataelement" type="CCMCY">[821]+[822]</de-code>
+       <de-code colno="2" rowno="187" sheetno="0" stype="dataelement" type="CCMCY">[837]+[838]</de-code>
+       <de-code colno="3" rowno="187" sheetno="0" stype="dataelement" type="CCMCY">[853]+[854]</de-code>
+   <!--Neurological Disease including strokes -->
+       <de-code colno="1" rowno="188" sheetno="0" stype="dataelement" type="CCMCY">[823]+[824]</de-code>
+       <de-code colno="2" rowno="188" sheetno="0" stype="dataelement" type="CCMCY">[839]+[840]</de-code>
+       <de-code colno="3" rowno="188" sheetno="0" stype="dataelement" type="CCMCY">[855]+[856]</de-code>
+   <!--Trauma/Accidents/ Burn Cases-->
+       <de-code colno="1" rowno="189" sheetno="0" stype="dataelement" type="CCMCY">[866]+[867]</de-code>
+       <de-code colno="2" rowno="189" sheetno="0" stype="dataelement" type="CCMCY">[872]+[873]</de-code>
+       <de-code colno="3" rowno="189" sheetno="0" stype="dataelement" type="CCMCY">[878]+[879]</de-code>
+   <!--Suicide -->
+       <de-code colno="1" rowno="190" sheetno="0" stype="dataelement" type="CCMCY">[868]+[869]</de-code>
+       <de-code colno="2" rowno="190" sheetno="0" stype="dataelement" type="CCMCY">[874]+[875]</de-code>
+       <de-code colno="3" rowno="190" sheetno="0" stype="dataelement" type="CCMCY">[880]+[881]</de-code>
+   <!--Animal Bites & Stings-->
+       <de-code colno="1" rowno="191" sheetno="0" stype="dataelement" type="CCMCY">[870]+[871]</de-code>
+       <de-code colno="2" rowno="191" sheetno="0" stype="dataelement" type="CCMCY">[876]+[877]</de-code>
+       <de-code colno="3" rowno="191" sheetno="0" stype="dataelement" type="CCMCY">[882]+[883]</de-code>
+   <!--Known Acute Disease-->
+       <de-code colno="1" rowno="192" sheetno="0" stype="dataelement" type="CCMCY">[884]+[885]</de-code>
+       <de-code colno="2" rowno="192" sheetno="0" stype="dataelement" type="CCMCY">[890]+[891]</de-code>
+       <de-code colno="3" rowno="192" sheetno="0" stype="dataelement" type="CCMCY">[896]+[897]</de-code>
+   <!--Known Chronic Disease-->
+       <de-code colno="1" rowno="193" sheetno="0" stype="dataelement" type="CCMCY">[886]+[887]</de-code>
+       <de-code colno="2" rowno="193" sheetno="0" stype="dataelement" type="CCMCY">[892]+[893]</de-code>
+       <de-code colno="3" rowno="193" sheetno="0" stype="dataelement" type="CCMCY">[898]+[899]</de-code>
+   <!--Causes not known -->
+       <de-code colno="1" rowno="194" sheetno="0" stype="dataelement" type="CCMCY">[888]+[889]</de-code>
+       <de-code colno="2" rowno="194" sheetno="0" stype="dataelement" type="CCMCY">[894]+[895]</de-code>
+       <de-code colno="3" rowno="194" sheetno="0" stype="dataelement" type="CCMCY">[900]+[901]</de-code>
+
+</de-codes>
+
+</dfreport>

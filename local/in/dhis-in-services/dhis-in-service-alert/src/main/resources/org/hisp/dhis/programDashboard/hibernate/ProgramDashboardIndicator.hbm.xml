@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+<class name="org.hisp.dhis.programDashboard.ProgramDashboardIndicator" table="programdashboardIndicator">
+
+	<cache usage="read-write" />
+
+    <id name="id" column="programdashboardindicatorid">
+      <generator class="native" />
+    </id>
+    
+	<many-to-one name="programDashboard" class="org.hisp.dhis.programDashboard.ProgramDashboard" column="programdashboardid"
+      foreign-key="fk_programdashboardindicator_programdashboardid" />
+   
+   <many-to-one name="indicator" class="org.hisp.dhis.indicator.Indicator" column="indicatorid"
+      foreign-key="fk_programdashboardindicator_indicatorid" />
+   
+
+  </class> 
+</hibernate-mapping>

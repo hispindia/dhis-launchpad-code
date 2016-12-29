@@ -1,0 +1,57 @@
+
+<script>
+	function reportFinancialYear()
+	{
+		var quarter = document.getElementById("reportQuarter");
+		var selectedYear = document.getElementById("selectedYear");
+		var reportYear = document.getElementById("reportYear");
+		
+		if(quarter.options[quarter.selectedIndex].value == "q1" || quarter.options[quarter.selectedIndex].value == "q2")
+		{
+			var year_array=selectedYear.value.split("-");			
+			reportYear.value = year_array[1];
+			
+		}
+		else if(quarter.options[quarter.selectedIndex].value == "q3" || quarter.options[quarter.selectedIndex].value == "q4")
+		{
+				var year_array=selectedYear.value.split("-");				
+				reportYear.value = year_array[0];
+		}		
+		return true;		
+	}
+	
+</script>
+
+<form id="quarterlyForm" name="quarterlyForm" action="generateQuarterlyReport.action" method="post" target="_blank" onsubmit="return reportFinancialYear()">          
+ <table>
+ 	<tr>
+	 	 <input type="hidden" name="reportYear" id="reportYear"/>
+ 		 <td class="NormalB">
+                                <b><label for="selectedYear">Year</label></b><br/>
+                                <select name="selectedYear" id="selectedYear" style="width:150px;">
+                           			#foreach($year in $yearsList)
+                   				 		<option value="$year">$year</option>
+                					#end
+                           		</select>
+                                
+          </td>
+          <td class="NormalB">
+                                <b><label for="reportQuarter">Quarter</label></b><br/>
+                                <select name="reportQuarter" id="reportQuarter" style="width:200px;">
+                           			<option value="q3">Q 1 (Jul-Sep)</option> 
+                           			<option value="q4">Q 2 (Oct-Dec)</option>
+                           			<option value="q1">Q 3 (Jan-Mar)</option>
+                           			<option value="q2">Q 4 (Apr-Jun)</option>
+                           		</select>
+                                
+          </td>
+          </tr>
+          
+          
+	       <tr>
+	       	<td><br/><br/>
+	       		<input type="submit" name="generate" value="Generate Report"/>
+	       	</td>
+       	</tr>
+</table>
+ </form>

@@ -1,0 +1,1106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Daily Report Writeup Page</title>
+    </head>
+    
+    <body>
+        <form id="dailyForm" name="dailyForm" action="saveDailyReportComments.action" method="post" >
+            <font face="arial">	
+            <table>
+            	<tr >
+            		<td colspan="2" align="center"><h2>Daily Food Situation Report</h2></td>
+	            </tr>
+                <tr >
+                    <td align="left">Report Generation Date: $!outputResultMap.get('generatedYear')</td>
+                    <td align="right">Report Published: $!outputResultMap.get('date')</td>
+                </tr>
+            </table>
+            
+            <table cellspacing="0" cellpadding="0" border="1">
+				<col width="46">
+				<col width="197">
+				<col width="68">
+                <tr height="21">
+                    <td height="27" colspan="3" bgcolor="#CCCCCC"><div align="center"><strong>Summary</strong></div></td>
+                </tr>
+                <tr height="21">
+                    <td width="51" height="33" bgcolor="#CCCCCC"><div align="center"><strong>SL. No.</strong></div></td>
+                    <td width="286" bgcolor="#CCCCCC"><div align="center"><strong>Assessment Indicators</strong></div></td>
+                    <td width="512" bgcolor="#CCCCCC"><div align="center"><strong>Description</strong></div></td>
+                </tr>
+                <tr height="21">
+                    <td height="100"><div align="center">1</div></td>
+                    <td><div align="center">Public Stock Situation</div></td>
+                    <td><textarea name="DR_TEXT_1" rows="5" cols="60" id=" DR_TEXT_1">$!outputResultMap.get('DR_TEXT_1')</textarea></td>
+                </tr>
+                <tr height="21">
+                    <td height="100"><div align="center">2</div></td>
+                    <td><div align="center">Market Price in Dhaka</div></td>
+                    <td><textarea name="DR_TEXT_2" cols="60" rows="5" id=" DR_TEXT_2">$!outputResultMap.get('DR_TEXT_2')</textarea></td>
+                </tr>
+                <tr height="21">
+                    <td height="100"><div align="center">3</div></td>
+                    <td><div align="center">Import Situation</div></td>
+                    <td><textarea name="DR_TEXT_3" cols="60" rows="5" id=" DR_TEXT_3">$!outputResultMap.get('DR_TEXT_3')</textarea></td>
+                </tr>
+                <tr height="21">
+                    <td height="100"><div align="center">4</div></td>
+                    <td><div align="center">Internal Procurement</div></td>
+                    <td><textarea name="DR_TEXT_4" cols="60" rows="5" id=" DR_TEXT_4">$!outputResultMap.get('DR_TEXT_4')</textarea></td>
+                </tr>
+                <tr height="21">
+                    <td height="100"><div align="center">5</div></td>
+                    <td><div align="center">Foodgrain in Chittagong Sea Port</div></td>
+                    <td><textarea name="DR_TEXT_5" cols="60" rows="5" id=" DR_TEXT_5">$!outputResultMap.get('DR_TEXT_5')</textarea></td>
+                </tr>
+                <tr height="21">
+                    <td height="100"><div align="center">6</div></td>
+                    <td><div align="center">International Foodgrain Market Prices</div></td>
+                    <td><textarea name="DR_TEXT_6" cols="60" rows="5" id=" DR_TEXT_6">$!outputResultMap.get('DR_TEXT_6')</textarea></td>
+                </tr>
+                <tr height="21">
+                    <td height="100"><div align="center">7</div></td>
+                    <td><div align="center">Potential Import Prices of Foodgrain</div></td>
+                    <td><textarea name="DR_TEXT_7" cols="60" rows="5" id=" DR_TEXT_7">$!outputResultMap.get('DR_TEXT_7')</textarea></td>
+                </tr>
+                <tr height="21">
+                    <td height="100"><div align="center">8</div></td>
+                    <td><div align="center">Letters of Credit Situation</div></td>
+                    <td><textarea name="DR_TEXT_8" cols="60" rows="5" id=" DR_TEXT_8">$!outputResultMap.get('DR_TEXT_8')</textarea></td>
+                </tr>
+                <tr height="21">
+                    <td height="100"><div align="center">9</div></td>
+                    <td><div align="center">Government Distribution</div></td>
+                    <td><textarea name="DR_TEXT_9" cols="60" rows="5" id=" DR_TEXT_9">$!outputResultMap.get('DR_TEXT_9')</textarea></td>
+                </tr>
+            </table>
+
+            <p><strong>1 Public Stock Situation</strong></p>
+            <table cellspacing="0" cellpadding="0" border="1">
+                <col width="64" span="6">
+                <tr height="32" align="center">
+                    <td colspan="3" bgcolor="#CCCCCC"><div align="center"><strong>Public Storage Stock as Recorded on <br/>$!outputResultMap.get('table1date1')</strong></div></td>
+                    <td colspan="3" bgcolor="#CCCCCC"><div align="center"><strong>Public Storage Stock as Recorded on <br/>$!outputResultMap.get('table1date2')</strong></div></td>
+                </tr>
+                <tr height="21" align="center">
+                    <td width="139" height="21" bgcolor="#CCCCCC"><div align="center"><strong>Rice</strong></div></td>
+                    <td width="115" bgcolor="#CCCCCC"><div align="center"><strong>Wheat</strong></div></td>
+                    <td width="124" bgcolor="#CCCCCC"><div align="center"><strong>Total</strong></div></td>
+                    <td width="168" bgcolor="#CCCCCC"><div align="center"><strong>Rice</strong></div></td>
+                    <td width="132" bgcolor="#CCCCCC"><div align="center"><strong>Wheat</strong></div></td>
+                    <td width="170" bgcolor="#CCCCCC"><div align="center"><strong>Total</strong></div></td>
+                </tr>
+                <tr height="21" align="center">
+                    <td height="21" width="139">$!outputResultMap.get('table1rice1')</td>
+                    <td width="115">$!outputResultMap.get('table1wheat1')</td>
+                    <td width="124">$!outputResultMap.get('table1total1')</td>
+				    <td width="168">$!outputResultMap.get('table1rice2')</td>
+				    <td width="132">$!outputResultMap.get('table1wheat2')</td>
+				    <td width="170">$!outputResultMap.get('table1total2')</td>
+                </tr>
+            </table>
+            <p><textarea name="DR_TEXT_10" rows="5" cols="100" id=" DR_TEXT_10">$!outputResultMap.get('DR_TEXT_10')</textarea></p>
+            
+            <p><strong>2 Market Price Situation of Dhaka City</strong></p>
+            <table cellspacing="0" cellpadding="0" border="1">
+                <tr height="20">
+                    <td width="105" rowspan="3" bgcolor="#CCCCCC"><div align="center"><strong>Name of Commodity</strong></div></td>
+                    <td colspan="4" bgcolor="#CCCCCC"><div align="center"><strong>Today's Price<br/>$!outputResultMap.get('table2date1')</strong></div></td>
+                    <td colspan="4" bgcolor="#CCCCCC"><div align="center"><strong>Price of Last Week<br/>$!outputResultMap.get('table2date2')</strong></div></td>
+                    <td colspan="4" bgcolor="#CCCCCC"><div align="center"><strong>Percentage change (+/-)</strong></div></td>
+                </tr>
+				<tr height="21">
+				    <td colspan="2" bgcolor="#CCCCCC"><div align="center"><strong>Wholesale</strong></div></td>
+				    <td colspan="2" bgcolor="#CCCCCC"><div align="center"><strong>Retail</strong></div></td>
+				    <td colspan="2" bgcolor="#CCCCCC"><div align="center"><strong>Wholesale</strong></div></td>
+				    <td colspan="2" bgcolor="#CCCCCC"><div align="center"><strong>Retail</strong></div></td>
+				    <td colspan="2" bgcolor="#CCCCCC"><div align="center"><strong>Wholesale</strong></div></td>
+				    <td colspan="2" bgcolor="#CCCCCC"><div align="center"><strong>Retail</strong></div></td>
+				</tr>
+				<tr height="21">
+				    <td width="35" bgcolor="#CCCCCC"><div align="center"><strong>Min</strong></div></td>
+				    <td width="64" bgcolor="#CCCCCC"><div align="center"><strong>Max</strong></div></td>
+				    <td width="64" bgcolor="#CCCCCC"><div align="center"><strong>Min</strong></div></td>
+				    <td width="64" bgcolor="#CCCCCC"><div align="center"><strong>Max</strong></div></td>
+				    <td width="64" bgcolor="#CCCCCC"><div align="center"><strong>Min</strong></div></td>
+				    <td width="64" bgcolor="#CCCCCC"><div align="center"><strong>Max</strong></div></td>
+				    <td width="64" bgcolor="#CCCCCC"><div align="center"><strong>Min</strong></div></td>
+				    <td width="64" bgcolor="#CCCCCC"><div align="center"><strong>Max</strong></div></td>
+				    <td width="64" bgcolor="#CCCCCC"><div align="center"><strong>Min</strong></div></td>
+				    <td width="64" bgcolor="#CCCCCC"><div align="center"><strong>Max</strong></div></td>
+				    <td width="64" bgcolor="#CCCCCC"><div align="center"><strong>Min</strong></div></td>
+				    <td width="54" bgcolor="#CCCCCC"><div align="center"><strong>Max</strong></div></td>
+				</tr>
+				<tr height="66">
+				    <td width="105" height="66" bgcolor="#CCCCCC"><div align="center"><strong>Rice - Fine-Minicate, Nazir</strong></div></td>
+				    <td width="35">$!outputResultMap.get('table2rice1')</td>
+				    <td width="64">$!outputResultMap.get('table2rice2')</td>
+				    <td width="64">$!outputResultMap.get('table2rice3')</td>
+				    <td width="64">$!outputResultMap.get('table2rice4')</td>
+				    <td width="64">$!outputResultMap.get('table2ricelw1')</td>
+				    <td width="64">$!outputResultMap.get('table2ricelw2')</td>
+				    <td width="64">$!outputResultMap.get('table2ricelw3')</td>
+				    <td width="64">$!outputResultMap.get('table2ricelw4')</td>
+				    <td width="64">&nbsp;</td>
+				    <td width="64">&nbsp;</td>
+				    <td width="64">&nbsp;</td>
+				    <td width="54">&nbsp;</td>
+				</tr>
+				<tr height="82">
+				    <td width="105" height="82" bgcolor="#CCCCCC"><strong></strong><div align="center"><strong>Rice- Medium-Br -28, Parija, Haski</strong></div></td>
+				    <td width="35">$!outputResultMap.get('table2rice5')</td>
+				    <td width="64">$!outputResultMap.get('table2rice6')</td>
+				    <td width="64">$!outputResultMap.get('table2rice7')</td>
+				    <td width="64">$!outputResultMap.get('table2rice8')</td>
+				    <td width="64">$!outputResultMap.get('table2ricelw5')</td>
+				    <td width="64">$!outputResultMap.get('table2ricelw6')</td>
+				    <td width="64">$!outputResultMap.get('table2ricelw7')</td>
+				    <td width="64">$!outputResultMap.get('table2ricelw8')</td>
+				    <td width="64">&nbsp;</td>
+				    <td width="64">&nbsp;</td>
+				    <td width="64">&nbsp;</td>
+				    <td width="54">&nbsp;</td>
+				</tr>
+				<tr height="82">
+				    <td width="105" height="82" bgcolor="#CCCCCC"><div align="center"><strong>Rice - Coarse-BR - 8, 11, Guti, Sharna</strong></div></td>
+				    <td width="35">$!outputResultMap.get('table2rice9')</td>
+				    <td width="64">$!outputResultMap.get('table2rice10')</td>
+				    <td width="64">$!outputResultMap.get('table2rice11')</td>
+				    <td width="64">$!outputResultMap.get('table2rice12')</td>
+				    <td width="64">$!outputResultMap.get('table2ricelw9')</td>
+				    <td width="64">$!outputResultMap.get('table2ricelw10')</td>
+				    <td width="64">$!outputResultMap.get('table2ricelw11')</td>
+				    <td width="64">$!outputResultMap.get('table2ricelw12')</td>
+				    <td width="64">&nbsp;</td>
+				    <td width="64">&nbsp;</td>
+				    <td width="64">&nbsp;</td>
+				    <td width="54">&nbsp;</td>
+				</tr>
+				<tr height="34">
+				    <td width="105" height="34" bgcolor="#CCCCCC"><div align="center"><strong>Atta - Loose</strong></div></td>
+				    <td width="35">$!outputResultMap.get('table2atta1')</td>
+				    <td width="64">$!outputResultMap.get('table2atta2')</td>
+				    <td width="64">$!outputResultMap.get('table2atta3')</td>
+				    <td width="64">$!outputResultMap.get('table2atta4')</td>
+				    <td width="64">$!outputResultMap.get('table2attalw1')</td>
+				    <td width="64">$!outputResultMap.get('table2attalw2')</td>
+				    <td width="64">$!outputResultMap.get('table2attalw3')</td>
+				    <td width="64">$!outputResultMap.get('table2attalw4')</td>
+				    <td width="64">&nbsp;</td>
+				    <td width="64">&nbsp;</td>
+				    <td width="64">&nbsp;</td>
+				    <td width="54">&nbsp;</td>
+				</tr>
+            </table>
+            <p><textarea name="DR_TEXT_11" rows="5" cols="100" id=" DR_TEXT_11">$!outputResultMap.get('DR_TEXT_11')</textarea></p>
+            
+            <p><strong>3 Import Situation</strong></p>
+            <table width="867" cellpadding="0" cellspacing="0" border="1">
+                <col width="64" span="10">
+                <tr height="24">
+                    <td width="61" height="24" bgcolor="#CCCCCC"><div align="center"><strong>Type of Import</strong></div></td>
+                    <td colspan="3" bgcolor="#CCCCCC"><div align="center"><strong>Daily Import <br/>$!outputResultMap.get('table3date1')</strong></div></td>
+                    <td colspan="3" bgcolor="#CCCCCC"><div align="center"><strong>Cumulative Import in Current Fiscal Year</strong></div></td>
+                    <td colspan="3" bgcolor="#CCCCCC"><div align="center"><strong>Total Import in Last Fiscal Year</strong></div></td>
+                </tr>
+				<tr height="21">
+				    <td width="61" height="21" bgcolor="#CCCCCC"><div align="center"></div></td>
+				    <td width="67" bgcolor="#CCCCCC"><div align="center"><strong>Rice</strong></div></td>
+				    <td width="62" bgcolor="#CCCCCC"><div align="center"><strong>Wheat</strong></div></td>
+				    <td width="81" bgcolor="#CCCCCC"><div align="center"><strong>Total</strong></div></td>
+				    <td width="68" bgcolor="#CCCCCC"><div align="center"><strong>Rice</strong></div></td>
+				    <td width="92" bgcolor="#CCCCCC"><div align="center"><strong>Wheat</strong></div></td>
+				    <td width="86" bgcolor="#CCCCCC"><div align="center"><strong>Total</strong></div></td>
+				    <td width="99" bgcolor="#CCCCCC"><div align="center"><strong>Rice</strong></div></td>
+				    <td width="102" bgcolor="#CCCCCC"><div align="center"><strong>Wheat</strong></div></td>
+				    <td width="127" bgcolor="#CCCCCC"><div align="center"><strong>Total</strong></div></td>
+				</tr>
+				<tr height="21" align="center">
+				    <td align="left" width="61" height="21" bgcolor="#CCCCCC"><strong>Public</strong></td>
+				    <td width="67">$!outputResultMap.get('table3data1')</td>
+				    <td width="62">$!outputResultMap.get('table3data2')</td>
+				    <td width="81">&nbsp;</td>
+				    <td width="68">$!outputResultMap.get('table3datacla1')</td>
+				    <td width="92">$!outputResultMap.get('table3datacla2')</td>
+				    <td width="86">&nbsp;</td>
+				    <td width="99">$!outputResultMap.get('table3datac1')</td>
+				    <td width="102">$!outputResultMap.get('table3datac2')</td>
+				    <td width="127">&nbsp;</td>
+				</tr>
+				<tr height="21" align="center">
+				    <td align="left" width="61" height="21" bgcolor="#CCCCCC"><strong>Private</strong></td>
+				    <td width="67">$!outputResultMap.get('table3data3')</td>
+				    <td width="62">$!outputResultMap.get('table3data4')</td>
+				    <td width="81">&nbsp;</td>
+				    <td width="68">$!outputResultMap.get('table3datacla3')</td>
+				    <td width="92">$!outputResultMap.get('table3datacla4')</td>
+				    <td width="86">&nbsp;</td>
+				    <td width="99">$!outputResultMap.get('table3datac3')</td>
+				    <td width="102">$!outputResultMap.get('table3datac4')</td>
+				    <td width="127">&nbsp;</td>
+				</tr>
+				<tr height="21" align="center">
+				    <td align="left" width="61" height="21" bgcolor="#CCCCCC"><strong>Total</strong></td>
+				    <td width="67">&nbsp;</td>
+				    <td width="62">&nbsp;</td>
+				    <td width="81">&nbsp;</td>
+				    <td width="68">&nbsp;</td>
+				    <td width="92">&nbsp;</td>
+				    <td width="86">&nbsp;</td>
+				    <td width="99">&nbsp;</td>
+				    <td width="102">&nbsp;</td>
+				    <td width="127">&nbsp;</td>
+				</tr>
+            </table>
+            <p><textarea name="DR_TEXT_12" rows="5" cols="100" id=" DR_TEXT_12">$!outputResultMap.get('DR_TEXT_12')</textarea></p>
+            
+            <p><strong>4 Internal Procurement</strong></p>
+            <table width="882" cellpadding="0" cellspacing="0" border="1">
+                <col width="78" />
+                <col width="64" span="6" />
+                <col width="94" />
+                <col width="160" />
+                <tr height="73">
+                    <td width="78" height="94" rowspan="2" bgcolor="#CCCCCC"><div align="center"><strong>Commodity</strong></div></td>
+                    <td colspan="2" bgcolor="#CCCCCC"><div align="center"><strong>Target</strong></div></td>
+                    <td width="85" rowspan="2" bgcolor="#CCCCCC"><div align="center"><strong>Daily Procurement</strong></div></td>
+                    <td colspan="2" bgcolor="#CCCCCC"><div align="center"><strong>Procurement of Last Fiscal Year From Current Season<br/>$!outputResultMap.get('prevfiscalyear')</strong></div></td>
+                    <td colspan="2" bgcolor="#CCCCCC"><div align="center"><strong>Cumulative Procurement of Current Fiscal Year<br/>$!outputResultMap.get('curfiscalyear')</strong></div></td>
+                    <td width="175" bgcolor="#CCCCCC"><div align="center"><strong>Seasonal Cumulative Total<br/>$!outputResultMap.get('curfiscalyear')</strong></div></td>
+                </tr>
+				<tr height="21">
+				    <td width="54" height="21" bgcolor="#CCCCCC"><div align="center"><strong>Period</strong></div></td>
+				    <td width="107" bgcolor="#CCCCCC"><div align="center"><strong>Quantity</strong></div></td>
+				    <td width="54" bgcolor="#CCCCCC"><div align="center"><strong>Period</strong></div></td>
+				    <td width="107" bgcolor="#CCCCCC"><div align="center"><strong>Quantity</strong></div></td>
+				    <td width="67" bgcolor="#CCCCCC"><div align="center"><strong>Period</strong></div></td>
+				    <td width="135" bgcolor="#CCCCCC"><div align="center"><strong>Quantity</strong></div></td>
+				</tr>
+				<tr height="20">
+				    <td width="78" height="41" bordercolor="#CCCCCC"><div align="center"><strong>Rice Aman</strong></div></td>
+				    <td>$!outputResultMap.get('table4ricea1')-<br/>$!outputResultMap.get('table4ricea2')</td>
+				    <td>$!outputResultMap.get('table4ricea3')</td>
+				    <td>$!outputResultMap.get('table4ricea4')</td>
+				    <td>$!outputResultMap.get('table4ricea7')</td>
+				    <td>$!outputResultMap.get('table4ricea9')</td>
+				    <td>$!outputResultMap.get('table4ricea8')</td>
+				    <td>$!outputResultMap.get('table4ricea10')</td>
+				    <td>$!outputResultMap.get('table4ricea9')-<br/>$!outputResultMap.get('table4ricea10')</td>
+				</tr>
+				<tr height="20">
+				    <td width="78" height="41" bordercolor="#CCCCCC"><div align="center"><strong>Paddy Aman</strong></div></td>
+				    <td>$!outputResultMap.get('table4paddya1')-<br/>$!outputResultMap.get('table4paddya2')</td>
+				    <td>$!outputResultMap.get('table4paddya3')</td>
+				    <td>$!outputResultMap.get('table4paddya4')</td>
+				    <td>$!outputResultMap.get('table4paddya7')</td>
+				    <td>$!outputResultMap.get('table4paddya7')-<br/>$!outputResultMap.get('table4paddya9')</td>
+				    <td>$!outputResultMap.get('table4paddya8')</td>
+				    <td>$!outputResultMap.get('table4paddya8')-<br/>$!outputResultMap.get('table4paddya10')</td>
+				    <td>$!outputResultMap.get('table4paddya9')-<br/>$!outputResultMap.get('table4paddya10')</td>
+				</tr>  
+				<tr height="33">
+				    <td width="78" height="33" bordercolor="#CCCCCC"><div align="center"><strong>Total Rice Aman</strong></div></td>
+				    <td>&nbsp;</td>
+				    <td>$!outputResultMap.get('table4ricea3')-<br/>$!outputResultMap.get('table4paddya3')</td>
+				    <td>$!outputResultMap.get('table4ricea4')-<br/>$!outputResultMap.get('table4paddya4')</td>
+				    <td>&nbsp;</td>
+				    <td>$!outputResultMap.get('table4paddya9')-<br/>$!outputResultMap.get('table4ricea9')</td>
+				    <td>&nbsp;</td>
+				    <td>&nbsp;</td>
+				    <td>&nbsp;</td>
+				</tr>
+				<tr height="20">
+				    <td height="41" bordercolor="#CCCCCC"><div align="center"><strong>Rice Boro</strong></div></td>
+				    <td>$!outputResultMap.get('table4riceb1')-<br/>$!outputResultMap.get('table4riceb2')</td>
+				    <td>$!outputResultMap.get('table4riceb3')</td>
+				    <td>$!outputResultMap.get('table4riceb4')</td>
+				    <td>$!outputResultMap.get('table4riceb7')</td>
+				    <td>$!outputResultMap.get('table4riceb9')</td>
+				    <td>$!outputResultMap.get('table4riceb8')</td>
+				    <td>$!outputResultMap.get('table4riceb10')</td>
+				    <td>$!outputResultMap.get('table4riceb10')</td>
+				</tr>  
+				<tr height="20">
+				    <td height="41" bordercolor="#CCCCCC"><div align="center"><strong>Paddy Boro</strong></div></td>
+				    <td>$!outputResultMap.get('table4paddyb1')-<br/>$!outputResultMap.get('table4paddyb2')</td>
+				    <td>$!outputResultMap.get('table4paddyb3')</td>
+				    <td>$!outputResultMap.get('table4paddyb4')</td>
+				    <td>$!outputResultMap.get('table4paddyb7')</td>
+				    <td>$!outputResultMap.get('table4paddyb7')-<br/>$!outputResultMap.get('table4paddyb9')</td>
+				    <td>$!outputResultMap.get('table4paddyb8')</td>
+				    <td>$!outputResultMap.get('table4paddyb8')-<br/>$!outputResultMap.get('table4paddyb10')</td>
+				    <td>$!outputResultMap.get('table4paddyb9')-<br/>$!outputResultMap.get('table4paddyb10')</td>
+				</tr> 
+				<tr height="33">
+				    <td width="78" height="33" bordercolor="#CCCCCC"><div align="center"><strong>Total Rice Boro</strong></div></td>
+				    <td>&nbsp;</td>
+				    <td>$!outputResultMap.get('table4riceb3')-<br/>$!outputResultMap.get('table4paddyb3')</td>
+				    <td>$!outputResultMap.get('table4riceb4')-<br/>$!outputResultMap.get('table4paddyb4')</td>
+				    <td>&nbsp;</td>
+				    <td>&nbsp;</td>
+				    <td>&nbsp;)</td>
+				    <td>$!outputResultMap.get('table4riceb10')-<br/>$!outputResultMap.get('table4paddyb10')</td>
+				    <td>&nbsp;</td>
+				</tr>
+				<tr height="20">
+				    <td height="41" bordercolor="#CCCCCC"><div align="center"><strong>Wheat</strong></div></td>
+				    <td>$!outputResultMap.get('table4wheat1')-<br/>$!outputResultMap.get('table4wheat2')</td>
+				    <td>$!outputResultMap.get('table4wheat3')</td>
+				    <td>$!outputResultMap.get('table4wheat4')</td>
+				    <td>$!outputResultMap.get('table4wheat7')</td>
+				    <td>$!outputResultMap.get('table4wheat7')-<br/>$!outputResultMap.get('table4wheat9')</td>
+				    <td>$!outputResultMap.get('table4wheat8')</td>
+				    <td>$!outputResultMap.get('table4wheat8')-<br/>$!outputResultMap.get('table4wheat10')</td>
+				    <td>$!outputResultMap.get('table4wheat9')-<br/>$!outputResultMap.get('table4wheat10')</td>
+				</tr>
+				<tr height="33">
+				    <td width="78" height="33" bordercolor="#CCCCCC"><div align="center"><strong>Total Food Grain</strong></div></td>
+				    <td>&nbsp;</td>
+				    <td>&nbsp;</td>
+				    <td>&nbsp;</td>
+				    <td>&nbsp;</td>
+				    <td>&nbsp;</td>
+				    <td>&nbsp;</td>
+				    <td>&nbsp;</td>
+				    <td>&nbsp;</td>
+				</tr>
+			</table>
+            <p><textarea name="DR_TEXT_13" rows="5" cols="100" id=" DR_TEXT_13">$!outputResultMap.get('DR_TEXT_13')</textarea></p>
+
+            <p><strong>5 Movement of Foodgrain by River </strong></p>
+            <table cellspacing="0" cellpadding="0" border="1">
+				<col width="81" />
+				<col width="67" />
+				<col width="89" />
+				<col width="47" />
+				<col width="71" />
+				<col width="57" />
+				<col width="63" />
+				<col width="60" />
+				<tr height="20">
+				    <td width="89" height="61" bgcolor="#CCCCCC"><div align="center"><strong>Name of Port</strong></div></td>
+				    <td width="82" bgcolor="#CCCCCC"><div align="center"><strong>Consignee</strong></div></td>
+				    <td width="100" bgcolor="#CCCCCC"><div align="center"><strong>Mother Vessel</strong></div></td>
+				    <td width="115" bgcolor="#CCCCCC"><div align="center"><strong>Date of Arrival</strong></div></td>
+				    <td width="115" bgcolor="#CCCCCC"><div align="center"><strong>Commodity</strong></div></td>
+				    <td width="101" bgcolor="#CCCCCC"><div align="center"><strong>Total Quantity</strong></div></td>
+				    <td width="125" bgcolor="#CCCCCC"><div align="center"><strong>Lighters Unloading</strong></div></td>
+				    <td width="139" bgcolor="#CCCCCC"><div align="center"><strong>Quantity to be Released</strong></div></td>
+				</tr>
+				<tr height="21">
+				    <td height="21" width="89">$!outputResultMap.get('table5d1')</td>
+				    <td width="82">$!outputResultMap.get('table5d2')</td>
+				    <td width="100">$!outputResultMap.get('table5d3')</td>
+				    <td width="115">$!outputResultMap.get('table5d4')</td>
+				    <td width="115">$!outputResultMap.get('table5d5')</td>
+				    <td width="101">$!outputResultMap.get('table5d6')</td>
+				    <td width="125">$!outputResultMap.get('table5d7')</td>
+				    <td width="139">$!outputResultMap.get('table5d8')</td>
+				</tr>
+				<tr height="21">
+				    <td height="21" width="89">$!outputResultMap.get('table5d9')</td>
+				    <td width="82">$!outputResultMap.get('table5d10')</td>
+				    <td width="100">$!outputResultMap.get('table5d11')</td>
+				    <td width="115">$!outputResultMap.get('table5d12')</td>
+				    <td width="115">$!outputResultMap.get('table5d13')</td>
+				    <td width="101">$!outputResultMap.get('table5d14')</td>
+				    <td width="125">$!outputResultMap.get('table5d15')</td>
+				    <td width="139">$!outputResultMap.get('table5d16')</td>
+				</tr>
+				<tr height="21">
+				    <td height="21" width="89">$!outputResultMap.get('table5d17')</td>
+				    <td width="82">$!outputResultMap.get('table5d18')</td>
+				    <td width="100">$!outputResultMap.get('table5d19')</td>
+				    <td width="115">$!outputResultMap.get('table5d20')</td>
+				    <td width="115">$!outputResultMap.get('table5d21')</td>
+				    <td width="101">$!outputResultMap.get('table5d22')</td>
+				    <td width="125">$!outputResultMap.get('table5d23')</td>
+				    <td width="139">$!outputResultMap.get('table5d24')</td>
+				</tr>
+				<tr height="21">
+				    <td height="21" width="89">$!outputResultMap.get('table5d25')</td>
+				    <td width="82">$!outputResultMap.get('table5d26')</td>
+				    <td width="100">$!outputResultMap.get('table5d27')</td>
+				    <td width="115">$!outputResultMap.get('table5d28')</td>
+				    <td width="115">$!outputResultMap.get('table5d29')</td>
+				    <td width="101">$!outputResultMap.get('table5d30')</td>
+				    <td width="125">$!outputResultMap.get('table5d31')</td>
+				    <td width="139">$!outputResultMap.get('table5d32')</td>
+				</tr>
+				<tr height="21">
+				    <td height="21" width="89">$!outputResultMap.get('table5d33')</td>
+				    <td width="82">$!outputResultMap.get('table5d34')</td>
+				    <td width="100">$!outputResultMap.get('table5d35')</td>
+				    <td width="115">$!outputResultMap.get('table5d36')</td>
+				    <td width="115">$!outputResultMap.get('table5d37')</td>
+				    <td width="101">$!outputResultMap.get('table5d38')</td>
+				    <td width="125">$!outputResultMap.get('table5d39')</td>
+				    <td width="139">$!outputResultMap.get('table5d40')</td>
+				</tr>
+				<tr height="21">
+				    <td height="21" width="89">$!outputResultMap.get('table5d41')</td>
+				    <td width="82">$!outputResultMap.get('table5d42')</td>
+				    <td width="100">$!outputResultMap.get('table5d43')</td>
+				    <td width="115">$!outputResultMap.get('table5d44')</td>
+				    <td width="115">$!outputResultMap.get('table5d45')</td>
+				    <td width="101">$!outputResultMap.get('table5d46')</td>
+				    <td width="125">$!outputResultMap.get('table5d47')</td>
+				    <td width="139">$!outputResultMap.get('table5d48')</td>
+				</tr>
+				<tr height="21">
+				    <td height="21" width="89">$!outputResultMap.get('table5d49')</td>
+				    <td width="82">$!outputResultMap.get('table5d50')</td>
+				    <td width="100">$!outputResultMap.get('table5d51')</td>
+				    <td width="115">$!outputResultMap.get('table5d52')</td>
+				    <td width="115">$!outputResultMap.get('table5d53')</td>
+				    <td width="101">$!outputResultMap.get('table5d54')</td>
+				    <td width="125">$!outputResultMap.get('table5d55')</td>
+				    <td width="139">$!outputResultMap.get('table5d56')</td>
+				</tr>
+				<tr height="21">
+				    <td height="21" colspan="5" bgcolor="#CCCCCC"><div align="right"><strong>Total</strong></div></td>
+				    <td width="101" bgcolor="#CCCCCC">$!outputResultMap.get('table5total1')</td>
+				    <td width="125" bgcolor="#CCCCCC">$!outputResultMap.get('table5total2')</td>
+				    <td width="139" bgcolor="#CCCCCC">$!outputResultMap.get('table5total3')</td>
+				</tr>
+            </table>
+
+            <p><textarea name="DR_TEXT_14" rows="5" cols="100" id=" DR_TEXT_14">$!outputResultMap.get('DR_TEXT_14')</textarea></p>
+            <p><strong>6 International Market Price of Food Grain</strong></p>
+            <table cellspacing="0" cellpadding="0" border="1">
+				<col width="63" />
+				<col width="130" />
+				<col width="54" />
+				<col width="43" />
+				<col width="77" />
+				<col width="33" />
+				<col width="61" />
+				<col width="73" />
+				<col width="76" />
+				<tr height="66">
+				    <td width="67" height="66" bgcolor="#CCCCCC"><div align="center"><strong>Foodgrain</strong></div></td>
+				    <td width="130" bgcolor="#CCCCCC"><div align="center"><strong>Type</strong></div></td>
+				    <td width="70" bgcolor="#CCCCCC"><div align="center"><strong>Country</strong></div></td>
+				    <td width="40" bgcolor="#CCCCCC"><div align="center"><strong>Date</strong></div></td>
+				    <td width="93" bgcolor="#CCCCCC"><div align="center"><strong>Daily FoB Price</strong></div></td>
+				    <td width="64" bgcolor="#CCCCCC"><div align="center"><strong>Date</strong></div></td>
+				    <td width="136" bgcolor="#CCCCCC"><div align="center"><strong>FoB Price of Last Week</strong></div></td>
+				    <td width="131" bgcolor="#CCCCCC"><div align="center"><strong>Percentage Change</strong></div></td>
+				    <td width="133" bgcolor="#CCCCCC"><div align="center"><strong>FoB Price Last Year</strong></div></td>
+				</tr>
+				<tr height="21">
+				    <td width="67" height="167" rowspan="7" bgcolor="#CCCCCC"><div align="center"><strong>RICE</strong></div></td>
+				    <td width="130" rowspan="2" bgcolor="#CCCCCC"><div align="center"><strong>5% Broken    Parboil Rice</strong></div></td>
+				    <td width="70" bgcolor="#CCCCCC"><div align="center"><strong>India</strong></div></td>
+				    <td width="40">$!outputResultMap.get('table6date1.1')</td>
+				    <td width="93">$!outputResultMap.get('table6prindia2')</td>
+				    <td width="64">$!outputResultMap.get('table6date1.2')</td>
+				    <td width="136">$!outputResultMap.get('table6prindia4')</td>
+				    <td width="131">$!outputResultMap.get('table6prindia4')</td>
+				    <td width="133">$!outputResultMap.get('table6prindia5')</td>
+				</tr>
+				<tr height="21">
+				    <td width="70" height="21" bgcolor="#CCCCCC"><div align="center"><strong>Pakistan</strong></div></td>
+				    <td width="40">$!outputResultMap.get('table6date1.1')</td>
+				    <td width="93">$!outputResultMap.get('table6prpak2')</td>
+				    <td width="64">$!outputResultMap.get('table6date1.2')</td>
+				    <td width="136">$!outputResultMap.get('table6prpak4')</td>
+				    <td width="131">$!outputResultMap.get('table6prpak4')</td>
+				    <td width="133">$!outputResultMap.get('table6prpak5')</td>
+				</tr>
+				<tr height="21">
+				    <td width="130" height="84" rowspan="4" bgcolor="#CCCCCC"><div align="center"><strong>5%Broken White Rice</strong></div></td>
+				    <td width="70" bgcolor="#CCCCCC"><div align="center"><strong>Thailand</strong></div></td>
+				    <td width="40">$!outputResultMap.get('table6date2.1')</td>
+				    <td width="93">$!outputResultMap.get('table6wrthai2')</td>
+				    <td width="64">$!outputResultMap.get('table6date2.2')</td>
+				    <td width="136">$!outputResultMap.get('table6wrthai4')</td>
+				    <td width="131">$!outputResultMap.get('table6wrthai2')</td>
+				    <td width="133">$!outputResultMap.get('table6wrthai5.l')</td>
+				</tr>
+				<tr height="21">
+				    <td width="70" height="21" bgcolor="#CCCCCC"><div align="center"><strong>Vietnam</strong></div></td>
+				    <td width="40">$!outputResultMap.get('table6date2.1')</td>
+				    <td width="93">$!outputResultMap.get('table6wrviet2')</td>
+				    <td width="64">$!outputResultMap.get('table6date2.2')</td>
+				    <td width="136">$!outputResultMap.get('table6wrviet4')</td>
+				    <td width="131">$!outputResultMap.get('table6wrviet2')</td>
+				    <td width="133">$!outputResultMap.get('table6wrviet5')</td>
+				</tr>
+				<tr height="21">
+				    <td width="70" height="21" bgcolor="#CCCCCC"><div align="center"><strong>India</strong></div></td>
+				    <td width="40">$!outputResultMap.get('table6date2.1')</td>
+				    <td width="93">$!outputResultMap.get('table6wrindia2')</td>
+				    <td width="64">$!outputResultMap.get('table6date2.2')</td>
+				    <td width="136">$!outputResultMap.get('table6wrindia4')</td>
+				    <td width="131">$!outputResultMap.get('table6wrindia4')</td>
+				    <td width="133">$!outputResultMap.get('table6wrindia5')</td>
+				</tr>
+				<tr height="21">
+				    <td width="70" height="21" bgcolor="#CCCCCC"><div align="center"><strong>Pakistan</strong></div></td>
+				    <td width="40">$!outputResultMap.get('table6date2.1')</td>
+				    <td width="93">$!outputResultMap.get('table6wrpak2')</td>
+				    <td width="64">$!outputResultMap.get('table6date2.2')</td>
+				    <td width="136">$!outputResultMap.get('table6wrpak4')</td>
+				    <td width="131">&nbsp;</td>
+				    <td width="133">$!outputResultMap.get('table6wrpak5')</td>
+				</tr>
+				<tr height="41">
+				    <td width="130" height="41" bgcolor="#CCCCCC"><div align="center"><strong>15%Broken White Rice</strong></div></td>
+				    <td width="70" bgcolor="#CCCCCC"><div align="center"><strong>Vietnam</strong></div></td>
+				    <td width="40">$!outputResultMap.get('table6date2.1')</td>
+				    <td width="93">$!outputResultMap.get('table6wrvietp2')</td>
+				    <td width="64">$!outputResultMap.get('table6date2.2')</td>
+				    <td width="136">$!outputResultMap.get('table6wrvietp4')</td>
+				    <td width="131">&nbsp;</td>
+				    <td width="133">$!outputResultMap.get('table6wrvietp5')</td>
+				</tr>
+				<tr height="31">
+				    <td width="67" height="84" rowspan="3" bgcolor="#CCCCCC"><div align="center"><strong>WHEAT</strong></div></td>
+				    <td width="130" rowspan="2" bgcolor="#CCCCCC"><div align="center"><strong>Milling    Wheat (Southern Region-Deep Sea Port)</strong></div></td>
+				    <td width="70" bgcolor="#CCCCCC"><div align="center"><strong>Russia</strong></div></td>
+				    <td width="40">$!outputResultMap.get('table6date3.1')</td>
+				    <td width="93">$!outputResultMap.get('table6mwrus2')</td>
+				    <td width="64">$!outputResultMap.get('table6date3.2')</td>
+				    <td width="136">$!outputResultMap.get('table6mwrus4')</td>
+				    <td width="131">$!outputResultMap.get('table6mwrus4')</td>
+				    <td width="133">$!outputResultMap.get('table6mwrus5')</td>
+				</tr>
+				<tr height="21">
+				    <td width="70" height="21" bgcolor="#CCCCCC"><div align="center"><strong>Ukraine</strong></div></td>
+				    <td width="40">$!outputResultMap.get('table6date3.1')</td>
+				    <td width="93">$!outputResultMap.get('table6mwukra2')</td>
+				    <td width="64">$!outputResultMap.get('table6date3.2')</td>
+				    <td width="136">$!outputResultMap.get('table6mwukra4')</td>
+				    <td width="131">$!outputResultMap.get('table6mwukra4')</td>
+				    <td width="133">$!outputResultMap.get('table6mwrus5')</td>
+				</tr>
+				<tr height="32">
+				    <td width="130" height="32" bgcolor="#CCCCCC"><div align="center"><strong>US (Soft Red Winter)</strong></div></td>
+				    <td width="70" bgcolor="#CCCCCC"><div align="center"><strong>United States</strong></div></td>
+				    <td width="40">$!outputResultMap.get('table6date4.1')</td>
+				    <td width="93">$!outputResultMap.get('table6wus2')</td>
+				    <td width="64">$!outputResultMap.get('table6date4.2')</td>
+				    <td width="136">$!outputResultMap.get('table6wus4')</td>
+				    <td width="131">$!outputResultMap.get('table6wus4')</td>
+				    <td width="133">$!outputResultMap.get('table6wus5')</td>
+				</tr>
+			</table>
+
+            <p><textarea name="DR_TEXT_15" rows="5" cols="100" id=" DR_TEXT_15">$!outputResultMap.get('DR_TEXT_15')</textarea></p>
+            <p><strong>7 Potential Price of Importable Food Grain</strong></p>
+            <table cellspacing="0" cellpadding="0" border="1">
+				<col width="63" />
+				<col width="120" />
+				<col width="83" />
+				<col width="71" />
+				<col width="110" />
+				<col width="86" />
+				<col width="99" />
+				<col width="101" />
+				<tr height="66">
+				    <td width="67" height="66" bgcolor="#CCCCCC"><div align="center"><strong>Foodgrain</strong></div></td>
+				    <td width="120" bgcolor="#CCCCCC"><div align="center"><strong>Type</strong></div></td>
+				    <td width="90" bgcolor="#CCCCCC"><div align="center"><strong>Country</strong></div></td>
+				    <td width="71" bgcolor="#CCCCCC"><div align="center"><strong>Price on</strong></div></td>
+				    <td width="110" bgcolor="#CCCCCC"><div align="center"><strong>FOB Price of Current Week</strong></div></td>
+				    <td width="130" bgcolor="#CCCCCC"><div align="center"><strong>Estimated Shipping &amp; Others Expenditure*</strong></div></td>
+				    <td width="121" bgcolor="#CCCCCC"><div align="center"><strong>Estimated Expenses upto Arrival of Ships at Sea Port</strong></div></td>
+				    <td width="159" bgcolor="#CCCCCC"><div align="center"><strong>Import Parity Price at Dhaka City (Tk/Kg)</strong></div></td>
+				</tr>
+				<tr height="21">
+				    <td height="160" rowspan="7" bgcolor="#CCCCCC"><div align="center"><strong>RICE</strong></div></td>
+				    <td width="120" rowspan="2" bgcolor="#CCCCCC"><div align="center"><strong>5% Broken    Parboil Rice</strong></div></td>
+				    <td bgcolor="#CCCCCC"><div align="center"><strong>India</strong></div></td>
+				    <td>$!outputResultMap.get('table7prindia1')</td>
+				    <td>$!outputResultMap.get('table7prindia2')</td>
+				    <td>$!outputResultMap.get('table7prindia3')</td>
+				    <td>&nbsp;</td>
+				    <td>$!outputResultMap.get('table7prindia3')</td>
+				</tr>
+				<tr height="21">
+				    <td height="21" bgcolor="#CCCCCC"><div align="center"><strong>Pakistan</strong></div></td>
+				    <td>$!outputResultMap.get('table7prpak1')</td>
+				    <td>$!outputResultMap.get('table7prpak2')</td>
+				    <td>$!outputResultMap.get('table7prpak3')</td>
+				    <td>&nbsp;</td>
+				    <td>$!outputResultMap.get('table7dollar')</td>
+				</tr>
+				<tr height="21">
+				    <td width="120" height="84" rowspan="4" bgcolor="#CCCCCC"><div align="center"><strong>5% Broken White Rice</strong></div></td>
+				    <td bgcolor="#CCCCCC"><div align="center"><strong>Thailand</strong></div></td>
+				    <td>$!outputResultMap.get('table7wrthai1')</td>
+				    <td>$!outputResultMap.get('table7wrthai2')</td>
+				    <td>$!outputResultMap.get('table7wrthai3')</td>
+				    <td>&nbsp;</td>
+				    <td>$!outputResultMap.get('table7wrthai3')</td>
+				</tr>
+				<tr height="21">
+				    <td height="21" bgcolor="#CCCCCC"><div align="center"><strong>Vietnam</strong></div></td>
+				    <td>$!outputResultMap.get('table7wrviet1')</td>
+				    <td>$!outputResultMap.get('table7wrviet2')</td>
+				    <td>$!outputResultMap.get('table7wrviet3')</td>
+				    <td>&nbsp;</td>
+				    <td>$!outputResultMap.get('table7wrviet3')</td>
+				</tr>
+				<tr height="21">
+				    <td height="21" bgcolor="#CCCCCC"><div align="center"><strong>India</strong></div></td>
+				    <td>$!outputResultMap.get('table7wrindia1')</td>
+				    <td>$!outputResultMap.get('table7wrindia2')</td>
+				    <td>$!outputResultMap.get('table7wrindia3')</td>
+				    <td>&nbsp;</td>
+				    <td>&nbsp;</td>
+				</tr>
+				<tr height="21">
+				    <td height="21" bgcolor="#CCCCCC"><div align="center"><strong>Pakistan</strong></div></td>
+				    <td>$!outputResultMap.get('table7wrpak1')</td>
+				    <td>$!outputResultMap.get('table7wrpak2')</td>
+				    <td>$!outputResultMap.get('table7wrpak3')</td>
+				    <td>&nbsp;</td>
+				    <td>&nbsp;</td>
+				</tr>
+				<tr height="34">
+				    <td width="120" height="34" bgcolor="#CCCCCC"><div align="center"><strong>15% Broken White Rice</strong></div></td>
+				    <td bgcolor="#CCCCCC"><div align="center"><strong>Vietnam</strong></div></td>
+				    <td>$!outputResultMap.get('table7wrvietp1')</td>
+				    <td>$!outputResultMap.get('table7wrvietp2')</td>
+				    <td>$!outputResultMap.get('table7wrvietp3')</td>
+				    <td>&nbsp;</td>
+				    <td>&nbsp;</td>
+				</tr>
+				<tr height="21">
+				    <td height="114" rowspan="3" bgcolor="#CCCCCC"><div align="center"><strong>WHEAT</strong></div></td>
+				    <td width="120" rowspan="2" bgcolor="#CCCCCC"><div align="center"><strong>Milling    Wheat (Southern Region-Deep Sea Port)</strong></div></td>
+				    <td bgcolor="#CCCCCC"><div align="center"><strong>Russia</strong></div></td>
+				    <td>$!outputResultMap.get('table7mwrus1')</td>
+				    <td>$!outputResultMap.get('table7mwrus2')</td>
+				    <td>$!outputResultMap.get('table7mwrus3')</td>
+				    <td>$!outputResultMap.get('table7mwrus3')</td>
+				    <td>&nbsp;</td>
+				</tr>
+				<tr height="48">
+				    <td height="48" bgcolor="#CCCCCC"><div align="center"><strong>Ukraine</strong></div></td>
+				    <td>$!outputResultMap.get('table7mwukra1')</td>
+				    <td>$!outputResultMap.get('table7mwukra2')</td>
+				    <td>$!outputResultMap.get('table7mwukra3')</td>
+				    <td>&nbsp;</td>
+				    <td>&nbsp;</td>
+				</tr>
+				<tr height="45">
+				    <td width="120" height="45" bgcolor="#CCCCCC"><div align="center"><strong>US (Soft Red Winter)</strong></div></td>
+				    <td bgcolor="#CCCCCC"><div align="center"><strong>United States</strong></div></td>
+				    <td>$!outputResultMap.get('table7wus1')</td>
+				    <td>$!outputResultMap.get('table7wus2')</td>
+				    <td>$!outputResultMap.get('table7wus3')</td>
+				    <td>&nbsp;</td>
+				    <td>&nbsp;</td>
+				</tr>
+			</table>
+			
+			<p><textarea name="DR_TEXT_16" rows="5" cols="100" id=" DR_TEXT_16">$!outputResultMap.get('DR_TEXT_16')</textarea></p>
+            <p><strong>8 LC. Price Situation</strong></p>
+			<table cellspacing="0" cellpadding="0" border="1">  
+				<tr height="32">
+				    <td width="64" height="53" rowspan="2" bgcolor="#CCCCCC"><div align="center"><strong>Duration</strong></div></td>
+				    <td colspan="2" bgcolor="#CCCCCC"><div align="center"><strong>Letters of Credit - Opened</strong></div></td>
+				    <td colspan="2" bgcolor="#CCCCCC"><div align="center"><strong>Letters of Credit - Settled</strong></div></td>
+				    <td colspan="2" bgcolor="#CCCCCC"><div align="center"><strong>Letters of Credit - Outstanding Value (in million US $)</strong></div></td>
+				</tr>
+				<tr height="21">
+				    <td width="88" height="21" bgcolor="#CCCCCC"><div align="center"><strong>Rice</strong></div></td>
+				    <td width="87" bgcolor="#CCCCCC"><div align="center"><strong>Wheat</strong></div></td>
+				    <td width="85" bgcolor="#CCCCCC"><div align="center"><strong>Rice</strong></div></td>
+				    <td width="85" bgcolor="#CCCCCC"><div align="center"><strong>Wheat</strong></div></td>
+				    <td width="215" bgcolor="#CCCCCC"><div align="center"><strong>Rice</strong></div></td>
+				    <td width="246" bgcolor="#CCCCCC"><div align="center"><strong>Wheat</strong></div></td>
+				</tr>
+				<tr height="21">
+				    <td>$!outputResultMap.get('date1')</td>
+				    <td>$!outputResultMap.get('datavalue1')</td>
+				    <td>$!outputResultMap.get('datavalue2')</td>
+				    <td>$!outputResultMap.get('datavalue3')</td>
+				    <td>$!outputResultMap.get('datavalue4')</td>
+				    <td>$!outputResultMap.get('datavalue5')</td>
+				    <td>$!outputResultMap.get('datavalue6')</td>
+				</tr>
+				<tr height="21">
+				    <td>$!outputResultMap.get('date2')</td>
+				    <td>$!outputResultMap.get('datavalue7')</td>
+				    <td>$!outputResultMap.get('datavalue8')</td>
+				    <td>$!outputResultMap.get('datavalue9')</td>
+				    <td>$!outputResultMap.get('datavalue10')</td>
+				    <td>$!outputResultMap.get('datavalue11')</td>
+				    <td>$!outputResultMap.get('datavalue12')</td>
+				</tr>
+				<tr height="21">
+				    <td>$!outputResultMap.get('date3')</td>
+				    <td>$!outputResultMap.get('datavalue13')</td>
+				    <td>$!outputResultMap.get('datavalue14')</td>
+				    <td>$!outputResultMap.get('datavalue15')</td>
+				    <td>$!outputResultMap.get('datavalue16')</td>
+				    <td>$!outputResultMap.get('datavalue17')</td>
+				    <td>$!outputResultMap.get('datavalue18')</td>
+				</tr>
+				<tr height="21">
+				    <td>$!outputResultMap.get('date4')</td>
+				    <td>$!outputResultMap.get('datavalue19')</td>
+				    <td>$!outputResultMap.get('datavalue20')</td>
+				    <td>$!outputResultMap.get('datavalue21')</td>
+				    <td>$!outputResultMap.get('datavalue22')</td>
+				    <td>$!outputResultMap.get('datavalue23')</td>
+				    <td>$!outputResultMap.get('datavalue24')</td>
+				</tr>
+				<tr height="21">
+				    <td>$!outputResultMap.get('date5')</td>
+				    <td>$!outputResultMap.get('datavalue25')</td>
+				    <td>$!outputResultMap.get('datavalue26')</td>
+				    <td>$!outputResultMap.get('datavalue27')</td>
+				    <td>$!outputResultMap.get('datavalue28')</td>
+				    <td>$!outputResultMap.get('datavalue29')</td>
+				    <td>$!outputResultMap.get('datavalue30')</td>
+				</tr>
+				<tr height="21">
+				    <td>$!outputResultMap.get('date6')</td>
+				    <td>$!outputResultMap.get('datavalue31')</td>
+				    <td>$!outputResultMap.get('datavalue32')</td>
+				    <td>$!outputResultMap.get('datavalue33')</td>
+				    <td>$!outputResultMap.get('datavalue34')</td>
+				    <td>$!outputResultMap.get('datavalue35')</td>
+				    <td>$!outputResultMap.get('datavalue36')</td>
+				</tr>
+				<tr height="21">
+				    <td>$!outputResultMap.get('date7')</td>
+				    <td>$!outputResultMap.get('datavalue37')</td>
+				    <td>$!outputResultMap.get('datavalue38')</td>
+				    <td>$!outputResultMap.get('datavalue39')</td>
+				    <td>$!outputResultMap.get('datavalue40')</td>
+				    <td>$!outputResultMap.get('datavalue41')</td>
+				    <td>$!outputResultMap.get('datavalue42')</td>
+				</tr>
+				<tr height="21">
+				    <td>$!outputResultMap.get('date8')</td>
+				    <td>$!outputResultMap.get('datavalue43')</td>
+				    <td>$!outputResultMap.get('datavalue44')</td>
+				    <td>$!outputResultMap.get('datavalue45')</td>
+				    <td>$!outputResultMap.get('datavalue46')</td>
+				    <td>$!outputResultMap.get('datavalue47')</td>
+				    <td>$!outputResultMap.get('datavalue48')</td>
+				</tr>
+				<tr height="21">
+				    <td>$!outputResultMap.get('date9')</td>
+				    <td>$!outputResultMap.get('datavalue49')</td>
+				    <td>$!outputResultMap.get('datavalue50')</td>
+				    <td>$!outputResultMap.get('datavalue51')</td>
+				    <td>$!outputResultMap.get('datavalue52')</td>
+				    <td>$!outputResultMap.get('datavalue53')</td>
+				    <td>$!outputResultMap.get('datavalue54')</td>
+				</tr>
+				<tr height="21">
+				    <td>$!outputResultMap.get('date10')</td>
+				    <td>$!outputResultMap.get('datavalue55')</td>
+				    <td>$!outputResultMap.get('datavalue56')</td>
+				    <td>$!outputResultMap.get('datavalue57')</td>
+				    <td>$!outputResultMap.get('datavalue58')</td>
+				    <td>$!outputResultMap.get('datavalue59')</td>
+				    <td>$!outputResultMap.get('datavalue60')</td>
+				</tr>
+				<tr height="21">
+				    <td>$!outputResultMap.get('date11')</td>
+				    <td>$!outputResultMap.get('datavalue61')</td>
+				    <td>$!outputResultMap.get('datavalue62')</td>
+				    <td>$!outputResultMap.get('datavalue63')</td>
+				    <td>$!outputResultMap.get('datavalue64')</td>
+				    <td>$!outputResultMap.get('datavalue65')</td>
+				    <td>$!outputResultMap.get('datavalue66')</td>
+				</tr>
+				<tr height="21">
+				    <td>$!outputResultMap.get('date12')</td>
+				    <td>$!outputResultMap.get('datavalue67')</td>
+				    <td>$!outputResultMap.get('datavalue68')</td>
+				    <td>$!outputResultMap.get('datavalue69')</td>
+				    <td>$!outputResultMap.get('datavalue70')</td>
+				    <td>$!outputResultMap.get('datavalue71')</td>
+				    <td>$!outputResultMap.get('datavalue72')</td>
+				</tr>
+			</table>
+
+            <p><textarea name="DR_TEXT_17" rows="5" cols="100" id=" DR_TEXT_17">$!outputResultMap.get('DR_TEXT_17')</textarea></p>
+            <p><strong>9 Public Distribution</strong></p>
+			<table cellspacing="0" cellpadding="0" border="1">
+				<col width="64" span="2" />
+				<col width="32" />
+				<col width="44" />
+				<col width="35" />
+				<col width="32" />
+				<col width="44" />
+				<col width="35" />
+				<col width="32" />
+				<col width="44" />
+				<col width="35" />
+				<tr height="72">
+				    <td height="134" colspan="2" rowspan="3" bgcolor="#CCCCCC"><div align="center"><strong>Channel</strong></div></td>
+				    <td colspan="3" bgcolor="#CCCCCC"><div align="center"><strong>Weekly Public Distribution</strong></div></td>
+				    <td colspan="3" bgcolor="#CCCCCC"><div align="center"><strong>Cumulative Distribution in Present Fiscal Year</strong></div></td>
+				    <td colspan="3" bgcolor="#CCCCCC"><div align="center"><strong>Cumulative Distribution in Previous Fiscal Year</strong></div></td>
+				</tr>
+				<tr height="41">
+				    <td height="41" colspan="3" bgcolor="#CCCCCC"><div align="center"><strong>04/10/2013 - 10/10/2013</strong></div></td>
+				    <td colspan="3" bgcolor="#CCCCCC"><div align="center"><strong>1/07/2013-10/10/2013</strong></div></td>
+				    <td colspan="3" bgcolor="#CCCCCC"><div align="center"><strong>1/07/2012-10/10/2012</strong></div></td>
+				</tr>
+				<tr height="21">
+				    <td width="49" height="21" bgcolor="#CCCCCC"><div align="center"><strong>Rice</strong></div></td>
+				    <td width="67" bgcolor="#CCCCCC"><div align="center"><strong>Wheat</strong></div></td>
+				    <td width="68" bgcolor="#CCCCCC"><div align="center"><strong>Total</strong></div></td>
+				    <td width="83" bgcolor="#CCCCCC"><div align="center"><strong>Rice</strong></div></td>
+				    <td width="114" bgcolor="#CCCCCC"><div align="center"><strong>Wheat</strong></div></td>
+				    <td width="82" bgcolor="#CCCCCC"><div align="center"><strong>Total</strong></div></td>
+				    <td width="144" bgcolor="#CCCCCC"><div align="center"><strong>Rice</strong></div></td>
+				    <td width="147" bgcolor="#CCCCCC"><div align="center"><strong>Wheat</strong></div></td>
+				    <td width="47" bgcolor="#CCCCCC"><div align="center"><strong>Total</strong></div></td>
+				</tr>
+				<tr height="34">
+				    <td width="101" height="336" rowspan="10" bgcolor="#CCCCCC"><div align="center"><strong>MONETIZED</strong></div></td>
+				    <td width="77" bgcolor="#CCCCCC"><div align="center"><strong>Essential Priority</strong></div></td>
+				    <td width="49">$!outputResultMap.get('table9datar1')</td>
+				    <td width="67">$!outputResultMap.get('table9dataw1')</td>
+				    <td width="68">$!outputResultMap.get('table9dataw1')</td>
+				    <td width="83">$!outputResultMap.get('table9datarc1')</td>
+				    <td width="114">$!outputResultMap.get('table9datawc1')</td>
+				    <td width="82">$!outputResultMap.get('table9datawc1')</td>
+				    <td width="144">$!outputResultMap.get('table9datarcp1')</td>
+				    <td width="147">$!outputResultMap.get('table9datawcp1')</td>
+				    <td width="47">$!outputResultMap.get('table9datawcp1')</td>
+				</tr>
+				<tr height="34">
+				    <td width="77" height="34" bgcolor="#CCCCCC"><div align="center"><strong>Other Priorities</strong></div></td>
+				    <td width="49">$!outputResultMap.get('table9datar2')</td>
+				    <td width="67">$!outputResultMap.get('table9dataw2')</td>
+				    <td width="68">$!outputResultMap.get('table9dataw2')</td>
+				    <td width="83">$!outputResultMap.get('table9datarc2')</td>
+				    <td width="114">$!outputResultMap.get('table9datawc2')</td>
+				    <td width="82">$!outputResultMap.get('table9datawc2')</td>
+				    <td width="144">$!outputResultMap.get('table9datarcp2')</td>
+				    <td width="147">$!outputResultMap.get('table9datawcp2')</td>
+				    <td width="47">$!outputResultMap.get('table9datawcp2')</td>
+				</tr>
+				<tr height="50">
+				    <td width="77" height="50" bgcolor="#CCCCCC"><div align="center"><strong>Large Employer Industries</strong></div></td>
+				    <td width="49">$!outputResultMap.get('table9datar3')</td>
+				    <td width="67">$!outputResultMap.get('table9dataw3')</td>
+				    <td width="68">$!outputResultMap.get('table9dataw3')</td>
+				    <td width="83">$!outputResultMap.get('table9datarc3')</td>
+				    <td width="114">$!outputResultMap.get('table9datawc3')</td>
+				    <td width="82">$!outputResultMap.get('table9datawc3')</td>
+				    <td width="144">$!outputResultMap.get('table9datarcp3')</td>
+				    <td width="147">$!outputResultMap.get('table9datawcp3')</td>
+				    <td width="47">$!outputResultMap.get('table9datawcp3')</td>
+				</tr>
+				<tr height="50">
+				    <td width="77" height="50" bgcolor="#CCCCCC"><div align="center"><strong>Open Market Sales</strong></div></td>
+				    <td width="49">$!outputResultMap.get('table9datar4')</td>
+				    <td width="67">$!outputResultMap.get('table9dataw4')</td>
+				    <td width="68">$!outputResultMap.get('table9dataw4')</td>
+				    <td width="83">$!outputResultMap.get('table9datarc4')</td>
+				    <td width="114">$!outputResultMap.get('table9datawc4')</td>
+				    <td width="82">$!outputResultMap.get('table9datawc4')</td>
+				    <td width="144">$!outputResultMap.get('table9datarcp4')</td>
+				    <td width="147">$!outputResultMap.get('table9datawcp4')</td>
+				    <td width="47">$!outputResultMap.get('table9datawcp4')</td>
+				</tr>
+				<tr height="21">
+				    <td width="77" height="21" bgcolor="#CCCCCC"><div align="center"><strong>Fair Price</strong></div></td>
+				    <td width="49">$!outputResultMap.get('table9datar5')</td>
+				    <td width="67">$!outputResultMap.get('table9dataw5')</td>
+				    <td width="68">$!outputResultMap.get('table9dataw5')</td>
+				    <td width="83">$!outputResultMap.get('table9datarc5')</td>
+				    <td width="114">$!outputResultMap.get('table9datawc5')</td>
+				    <td width="82">$!outputResultMap.get('table9datawc5')</td>
+				    <td width="144">$!outputResultMap.get('table9datarcp5')</td>
+				    <td width="147">$!outputResultMap.get('table9datawcp5')</td>
+				    <td width="47">$!outputResultMap.get('table9datawcp5')</td>
+				</tr>
+				<tr height="50">
+				    <td width="77" height="50" bgcolor="#CCCCCC"><div align="center"><strong>4th Class Employees</strong></div></td>
+				    <td width="49">$!outputResultMap.get('table9datar6')</td>
+				    <td width="67">$!outputResultMap.get('table9dataw6')</td>
+				    <td width="68">$!outputResultMap.get('table9dataw6')</td>
+				    <td width="83">$!outputResultMap.get('table9datarc6')</td>
+				    <td width="114">$!outputResultMap.get('table9datawc6')</td>
+				    <td width="82">$!outputResultMap.get('table9datawc6')</td>
+				    <td width="144">$!outputResultMap.get('table9datarcp6')</td>
+				    <td width="147">$!outputResultMap.get('table9datawcp6')</td>
+				    <td width="47">$!outputResultMap.get('table9datawcp6')</td>
+				</tr>
+				<tr height="34">
+				    <td width="77" height="34" bgcolor="#CCCCCC"><div align="center"><strong>Freedom Fighter</strong></div></td>
+				    <td width="49">$!outputResultMap.get('table9datar7')</td>
+				    <td width="67">$!outputResultMap.get('table9dataw7')</td>
+				    <td width="68">$!outputResultMap.get('table9dataw7')</td>
+				    <td width="83">$!outputResultMap.get('table9datarc7')</td>
+				    <td width="114">$!outputResultMap.get('table9datawc7')</td>
+				    <td width="82">$!outputResultMap.get('table9datawc7')</td>
+				    <td width="144">$!outputResultMap.get('table9datarcp7')</td>
+				    <td width="147">$!outputResultMap.get('table9datawcp7')</td>
+				    <td width="47">$!outputResultMap.get('table9datawcp7')</td>
+				</tr>
+				<tr height="21">
+				    <td width="77" height="21" bgcolor="#CCCCCC"><div align="center"><strong>Garments</strong></div></td>
+				    <td width="49">$!outputResultMap.get('table9datar8')</td>
+				    <td width="67">$!outputResultMap.get('table9dataw8')</td>
+				    <td width="68">$!outputResultMap.get('table9dataw8')</td>
+				    <td width="83">$!outputResultMap.get('table9datarc8')</td>
+				    <td width="114">$!outputResultMap.get('table9datawc8')</td>
+				    <td width="82">$!outputResultMap.get('table9datawc8')</td>
+				    <td width="144">$!outputResultMap.get('table9datarcp8')</td>
+				    <td width="147">$!outputResultMap.get('table9datawcp8')</td>
+				    <td width="47">$!outputResultMap.get('table9datawcp8')</td>
+				</tr>
+				<tr height="21">
+				    <td width="77" height="21" bgcolor="#CCCCCC"><div align="center"><strong>Others</strong></div></td>
+				    <td width="49">$!outputResultMap.get('table9datar9')</td>
+				    <td width="67">$!outputResultMap.get('table9dataw9')</td>
+				    <td width="68">$!outputResultMap.get('table9dataw9')</td>
+				    <td width="83">$!outputResultMap.get('table9datarc9')</td>
+				    <td width="114">$!outputResultMap.get('table9datawc9')</td>
+				    <td width="82">$!outputResultMap.get('table9datawc9')</td>
+				    <td width="144">$!outputResultMap.get('table9datarcp9')</td>
+				    <td width="147">$!outputResultMap.get('table9datawcp9')</td>
+				    <td width="47">$!outputResultMap.get('table9datawcp9')</td>
+				</tr>
+				<tr height="21">
+				    <td width="77" height="21" bgcolor="#CCCCCC"><div align="center"><strong>Sub Total</strong></div></td>
+				    <td width="49">&nbsp;</td>
+				    <td width="67">&nbsp;</td>
+				    <td width="68">&nbsp;</td>
+				    <td width="83">&nbsp;</td>
+				    <td width="114">&nbsp;</td>
+				    <td width="82">&nbsp;</td>
+				    <td width="144">&nbsp;</td>
+				    <td width="147">&nbsp;</td>
+				    <td width="47">&nbsp;</td>
+				</tr>
+				<tr height="34">
+				    <td width="101" height="269" rowspan="9" bgcolor="#CCCCCC"><div align="center"><strong>NON-MONETIZED</strong></div></td>
+				    <td width="77" bgcolor="#CCCCCC"><div align="center"><strong>Food for Work</strong></div></td>
+				    <td width="49">$!outputResultMap.get('table9datar10')</td>
+				    <td width="67">$!outputResultMap.get('table9dataw10')</td>
+				    <td width="68">$!outputResultMap.get('table9dataw10')</td>
+				    <td width="83">$!outputResultMap.get('table9datarc10')</td>
+				    <td width="114">$!outputResultMap.get('table9datawc10')</td>
+				    <td width="82">$!outputResultMap.get('table9datawc10')</td>
+				    <td width="144">$!outputResultMap.get('table9datarcp10')</td>
+				    <td width="147">$!outputResultMap.get('table9datawcp10')</td>
+				    <td width="47">$!outputResultMap.get('table9datawcp10')</td>
+				</tr>
+				<tr height="34">
+				    <td width="77" height="34" bgcolor="#CCCCCC"><div align="center"><strong>Test Relief</strong></div></td>
+				    <td width="49">$!outputResultMap.get('table9datar11')</td>
+				    <td width="67">$!outputResultMap.get('table9dataw11')</td>
+				    <td width="68">$!outputResultMap.get('table9dataw11')</td>
+				    <td width="83">$!outputResultMap.get('table9datarc11')</td>
+				    <td width="114">$!outputResultMap.get('table9datawc11')</td>
+				    <td width="82">$!outputResultMap.get('table9datawc11')</td>
+				    <td width="144">$!outputResultMap.get('table9datarcp11')</td>
+				    <td width="147">$!outputResultMap.get('table9datawcp11')</td>
+				    <td width="47">$!outputResultMap.get('table9datawcp11')</td>
+				</tr>
+				<tr height="50">
+				    <td width="77" height="50" bgcolor="#CCCCCC"><div align="center"><strong>Vulnerable Group Feeding</strong></div></td>
+				    <td width="49">$!outputResultMap.get('table9datar12')</td>
+				    <td width="67">$!outputResultMap.get('table9dataw12')</td>
+				    <td width="68">$!outputResultMap.get('table9dataw12')</td>
+				    <td width="83">$!outputResultMap.get('table9datarc12')</td>
+				    <td width="114">$!outputResultMap.get('table9datawc12')</td>
+				    <td width="82">$!outputResultMap.get('table9datawc12')</td>
+				    <td width="144">$!outputResultMap.get('table9datarcp12')</td>
+				    <td width="147">$!outputResultMap.get('table9datawcp12')</td>
+				    <td width="47">$!outputResultMap.get('table9datawcp12')</td>
+				</tr>
+				<tr height="34">
+				    <td width="77" height="34" bgcolor="#CCCCCC"><div align="center"><strong>Vulnerable Group</strong></div></td>
+				    <td width="49">$!outputResultMap.get('table9datar13')</td>
+				    <td width="67">$!outputResultMap.get('table9dataw13')</td>
+				    <td width="68">$!outputResultMap.get('table9dataw13')</td>
+				    <td width="83">$!outputResultMap.get('table9datarc13')</td>
+				    <td width="114">$!outputResultMap.get('table9datawc13')</td>
+				    <td width="82">$!outputResultMap.get('table9datawc13')</td>
+				    <td width="144">$!outputResultMap.get('table9datarcp13')</td>
+				    <td width="147">$!outputResultMap.get('table9datawcp13')</td>
+				    <td width="47">$!outputResultMap.get('table9datawcp13')</td>
+				</tr>
+				<tr height="20">
+				    <td width="77" height="20" bgcolor="#CCCCCC"><div align="center"><strong>School</strong></div></td>
+				    <td rowspan="2" width="49">&nbsp;</td>
+				    <td rowspan="2" width="67">$!outputResultMap.get('table9dataw16')</td>
+				    <td rowspan="2" width="68">$!outputResultMap.get('table9dataw16')</td>
+				    <td rowspan="2" width="83">&nbsp;</td>
+				    <td rowspan="2" width="114">$!outputResultMap.get('table9datawc16')</td>
+				    <td rowspan="2" width="82">$!outputResultMap.get('table9datawc16')</td>
+				    <td rowspan="2" width="144">&nbsp;</td>
+				    <td rowspan="2" width="147">$!outputResultMap.get('table9datawcp16')</td>
+				    <td rowspan="2" width="47">$!outputResultMap.get('table9datawcp16')</td>
+				</tr>
+				<tr height="21">
+				    <td width="77" height="21" bgcolor="#CCCCCC"><div align="center"><strong>Feeding</strong></div></td>
+				  </tr>
+				<tr height="34">
+				    <td width="77" height="34" bgcolor="#CCCCCC"><div align="center"><strong>Gratious Relief</strong></div></td>
+				    <td width="49">$!outputResultMap.get('table9datar14')</td>
+				    <td width="67">$!outputResultMap.get('table9dataw14')</td>
+				    <td width="68">$!outputResultMap.get('table9dataw14')</td>
+				    <td width="83">$!outputResultMap.get('table9datarc14')</td>
+				    <td width="114">$!outputResultMap.get('table9datawc14')</td>
+				    <td width="82">$!outputResultMap.get('table9datawc14')</td>
+				    <td width="144">$!outputResultMap.get('table9datarcp14')</td>
+				    <td width="147">$!outputResultMap.get('table9datawcp14')</td>
+				    <td width="47">$!outputResultMap.get('table9datawcp14')</td>
+				</tr>
+				<tr height="21">
+				    <td width="77" height="21" bgcolor="#CCCCCC"><div align="center"><strong>Others</strong></div></td>
+				    <td width="49">$!outputResultMap.get('table9datar15')</td>
+				    <td width="67">$!outputResultMap.get('table9dataw15')</td>
+				    <td width="68">$!outputResultMap.get('table9dataw15')</td>
+				    <td width="83">$!outputResultMap.get('table9datarc15')</td>
+				    <td width="114">$!outputResultMap.get('table9datawc15')</td>
+				    <td width="82">$!outputResultMap.get('table9datawc15')</td>
+				    <td width="144">$!outputResultMap.get('table9datarcp15')</td>
+				    <td width="147">$!outputResultMap.get('table9datawcp15')</td>
+				    <td width="47">$!outputResultMap.get('table9datawcp15')</td>
+				</tr>
+				<tr height="21">
+				    <td width="77" height="21" bgcolor="#CCCCCC"><div align="center"><strong>Sub-Total</strong></div></td>
+				    <td width="49">&nbsp;</td>
+				    <td width="67">&nbsp;</td>
+				    <td width="68">&nbsp;</td>
+				    <td width="83">&nbsp;</td>
+				    <td width="114">&nbsp;</td>
+				    <td width="82">&nbsp;</td>
+				    <td width="144">&nbsp;</td>
+				    <td width="147">&nbsp;</td>
+				    <td width="47">&nbsp;</td>
+				</tr>
+				<tr height="21">
+				    <td height="21" colspan="2" bgcolor="#CCCCCC"><div align="center"><strong>Grand Total</strong></div></td>
+				    <td width="49">&nbsp;</td>
+				    <td width="67">&nbsp;</td>
+				    <td width="68">&nbsp;</td>
+				    <td width="83">&nbsp;</td>
+				    <td width="114">&nbsp;</td>
+				    <td width="82">&nbsp;</td>
+				    <td width="144">&nbsp;</td>
+				    <td width="147">&nbsp;</td>
+				    <td width="47">&nbsp;</td>
+				</tr>
+			</table>
+            <p><textarea name="DR_TEXT_18" rows="5" cols="100" id=" DR_TEXT_18">$!outputResultMap.get('DR_TEXT_18')</textarea></p>
+
+			<table>
+			    <tr align="center"><td><input type="submit" name="generate" value="Save Comments" style="width:180px; background-color:#666666; color:white;"/> </td> </tr>     
+			</table>
+        </font>
+    </form>
+</body>
+</html>

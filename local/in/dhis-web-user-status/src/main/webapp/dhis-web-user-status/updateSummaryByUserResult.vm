@@ -1,0 +1,647 @@
+<h3>Data Update Summary</h3>
+
+<head>
+<style>
+a {
+    color: #3162C5;
+    text-decoration: none;
+    font-family: LiberationSansRegular, arial, sans-serif;
+    line-height: 140%;
+    font-size: 15px;
+    margin: 2px;
+    padding: 2px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.contentProviderTable {
+    width: 295px;
+}
+
+.contentProviderTable td {
+    border-bottom: 1px solid #CAD5E5;
+    padding-bottom: 3px;
+    padding-top: 3px;
+}
+
+#contentDiv {
+    position: relative;
+    top: 44px;
+}
+
+.removeIcon {
+    padding: 2px 2px 1px;
+}
+
+.linkArea {
+    border: 1px solid #D0D0D0;
+    height: 196px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    padding: 1px;
+    width: 295px;
+}
+
+.linkArea div {
+    position: absolute;
+}
+
+.chartArea {
+    border: 1px solid #D0D0D0;
+    height: 310px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    padding: 1px;
+    width: 310px;
+}
+
+.chartArea div {
+    position: absolute;
+}
+
+.buttonArea {
+    margin-bottom: 2px;
+}
+
+.labelText {
+    color: #999999;
+    font-size: 16px;
+    padding: 40px 0 0 30px;
+    width: 230px;
+}
+
+#dashboardMenu {
+    margin-top: 6px;
+    position: absolute;
+}
+
+#dashboardControl {
+    border-right: 0 none;
+    box-shadow: 0 1px 1px 0 #F1F1F1;
+    left: 20px;
+    margin-top: 48px;
+    position: absolute;
+}
+
+.horizontalMenu ul {
+    list-style-type: none;
+    margin: 0;
+}
+
+.horizontalMenu li {
+    float: left;
+}
+
+#searchDiv {
+    border: 1px solid #AAAAAA;
+    height: 22px;
+    left: 411px;
+    padding: 5px 6px 0;
+    position: absolute;
+    width: 556px;
+}
+
+#searchField {
+    border: 0 none;
+    font-size: 10pt;
+    margin: 0;
+    outline: medium none;
+    padding: 0;
+    vertical-align: top;
+    width: 100%;
+}
+
+#hitDiv {
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #BBBBBB;
+    border-left: 1px solid #BBBBBB;
+    border-right: 1px solid #BBBBBB;
+    display: none;
+    left: 411px;
+    margin-top: 29px;
+    overflow: hidden;
+    position: absolute;
+    width: 568px;
+    z-index: 20;
+}
+
+#hitDiv ul {
+    list-style-type: none;
+}
+
+#hitDiv a {
+    display: block;
+    padding: 7px 6px 7px 12px;
+    width: 100%;
+}
+
+#hitDiv a:hover {
+    background-color: #EEEEEE;
+    text-decoration: none;
+}
+
+#shareForm {
+    display: none;
+}
+
+#shareHelpForm {
+    display: none;
+    padding: 5px 35px;
+}
+
+#shareHelpForm li {
+    margin-bottom: 10px;
+}
+
+#shareHelpForm a {
+    color: #3567CD;
+    outline: medium none;
+}
+
+#shareHelpLink {
+    color: #3567CD;
+    cursor: pointer;
+}
+
+#chartView {
+    display: none;
+    margin: 0;
+    padding: 0;
+}
+
+.interpretationArea {
+    border: 1px solid #CCCCCC;
+    height: 125px;
+    margin: 10px 4px 6px;
+    overflow: auto;
+    padding: 4px 0 0 6px;
+    resize: none;
+    width: 510px;
+}
+
+.interpretationButton {
+    height: 24px;
+    margin: 0 0 6px 4px;
+    width: 120px;
+}
+
+.interpretationCommentHeader {
+    border-bottom: 1px solid #FFFFFF;
+    border-top: 1px solid #FFFFFF;
+    margin: 1px 0 12px;
+    padding: 7px 0 5px;
+}
+
+a.alert, .alert {
+    color: #E92B2B;
+}
+
+.plainList {
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.plainList td {
+    border-bottom: 1px solid #C0C0C0;
+    cursor: pointer;
+}
+
+.unread td {
+    background-color: #EBF0F6;
+}
+
+.messageDiv {
+    border-bottom: 1px solid #CCCCCC;
+    padding-bottom: 22px;
+    padding-left: 38px;
+    padding-top: 16px;
+    width: 700px;
+}
+
+.messageText {
+    padding: 8px 0;
+}
+
+.messageTopDiv {
+    border-bottom: 1px solid #CCCCCC;
+    padding-bottom: 35px;
+    padding-top: 10px;
+    width: 700px;
+}
+
+.messageBottomDiv {
+    border-top: 1px solid #CCCCCC;
+    margin-bottom: 50px;
+    margin-top: 20px;
+    padding-bottom: 15px;
+    padding-top: 18px;
+    width: 700px;
+}
+
+.messageMetaData {
+    color: #666666;
+    display: none;
+    padding-top: 10px;
+}
+
+.messageSymbol {
+    float: left;
+    margin-top: 8px;
+}
+
+.replyArea {
+    border: 1px solid #CCCCCC;
+    height: 80px;
+    overflow: auto;
+    padding: 5px 6px;
+    resize: none;
+    width: 530px;
+}
+
+.replyDiv {
+    margin-top: 15px;
+}
+
+div#selectionTree {
+    height: 200px;
+}
+
+.grey {
+    color: #555555;
+}
+
+.userLink {
+    font-size: 10pt;
+}
+
+#interpretationFeed {
+    border-top: 1px solid #CCCCCC;
+    width: 600px;
+}
+
+#shareLink {
+    color: #777777;
+    font-size: 11pt;
+    margin-bottom: 9px;
+}
+
+.interpretationContainer {
+    border-bottom: 1px solid #CCCCCC;
+    padding: 24px 10px;
+    width: 590px;
+}
+
+.interpretation {
+    margin-left: 48px;
+}
+
+.interpretationSymbol {
+    float: left;
+}
+
+.interpretationName {
+    margin-bottom: 7px;
+}
+
+.interpretationText {
+    margin-bottom: 16px;
+}
+
+.interpretationChart {
+    margin-bottom: 16px;
+}
+
+.interpretationCommentArea {
+    background-color: #E9EDEF;
+    border-radius: 3px 3px 3px 3px;
+    margin-top: 10px;
+    padding: 18px 20px 14px;
+}
+
+.commentArea {
+    border: 1px solid #CCCCCC;
+    height: 18px;
+    overflow: auto;
+    padding: 4px 0 0 6px;
+    resize: none;
+    width: 360px;
+}
+
+.commentButton {
+    float: right;
+    height: 24px;
+    margin: 1px 0 0 5px;
+    width: 120px;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.greyButtonLink {
+    background-color: #F3F3F3;
+    border: 1px solid #AAAAAA;
+    border-radius: 3px 3px 3px 3px;
+    color: #606060 !important;
+    font-family: LiberationSansBold, arial;
+    font-size: 13px;
+    height: 25px;
+    margin-right: 4px;
+    padding: 6px 12px;
+    text-decoration: none !important;
+}
+
+.greyButtonLink:hover {
+    background-color: #F8F8F8;
+    text-decoration: none;
+}
+
+.blueButtonLink {
+    background-color: #427DB8;
+    border: 1px solid #3D77B3;
+    border-radius: 3px 3px 3px 3px;
+    color: #FFFFFF !important;
+    font-family: LiberationSansBold, arial;
+    font-size: 13px;
+    height: 25px;
+    margin-right: 4px;
+    padding: 6px 12px;
+    text-decoration: none !important;
+}
+
+.blueButtonLink:hover {
+    background-color: #3674B3;
+    text-decoration: none;
+}
+
+#userHeader {
+    color: #303030;
+    display: inline-block;
+    font-size: 14pt;
+    margin-left: 36px;
+    padding: 3px 0 15px;
+}
+
+#userProfileLink {
+    display: inline-block;
+    margin-left: 200px;
+    position: relative;
+    top: -3px;
+}
+
+#userCover {
+    border-top: 1px solid #CCCCCC;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+#userInfo {
+    margin-bottom: 14px;
+    margin-left: 36px;
+    overflow: hidden;
+}
+
+#userInfoLink {
+    margin-left: 40px;
+}
+
+.userRow {
+    display: block;
+    margin-top: 5px;
+}
+
+.userLabel {
+    color: #777777;
+    display: inline-block;
+    font-size: 11pt;
+    padding-right: 20px;
+    text-align: right;
+    vertical-align: top;
+    width: 110px;
+}
+
+.userValue {
+    display: inline-block;
+    font-size: 11pt;
+    max-width: 510px;
+}
+
+#profileInterpretationHeader {
+    border-bottom: 1px solid #CCCCCC;
+    font-size: 9pt;
+    margin-left: 40px;
+    margin-top: 15px;
+    padding-bottom: 8px;
+    width: 610px;
+}
+
+#profileInterpretationFeed {
+    margin-left: 38px;
+    width: 610px;
+}
+
+table {
+    *border-collapse: collapse; /* IE7 and lower */
+    border-spacing: 0;
+    width: 100%;
+}
+
+.bordered {
+    border: solid #ccc 1px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 1px 1px #ccc;
+    -moz-box-shadow: 0 1px 1px #ccc;
+    box-shadow: 0 1px 1px #ccc;
+}
+
+.bordered tr:hover {
+    background: #fbf8e9;
+    -o-transition: all 0.1s ease-in-out;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+}
+
+.bordered td, .bordered th {
+    border-left: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+.bordered th {
+    background-color: #dce9f9;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#ebf3fc), to(#dce9f9));
+    background-image: -webkit-linear-gradient(top, #ebf3fc, #dce9f9);
+    background-image: -moz-linear-gradient(top, #ebf3fc, #dce9f9);
+    background-image: -ms-linear-gradient(top, #ebf3fc, #dce9f9);
+    background-image: -o-linear-gradient(top, #ebf3fc, #dce9f9);
+    background-image: linear-gradient(top, #ebf3fc, #dce9f9);
+    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, .8) inset;
+    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, .8) inset;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, .8) inset;
+    border-top: none;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
+}
+
+.bordered td:first-child, .bordered th:first-child {
+    border-left: none;
+}
+
+.bordered th:first-child {
+    -moz-border-radius: 6px 0 0 0;
+    -webkit-border-radius: 6px 0 0 0;
+    border-radius: 6px 0 0 0;
+}
+
+.bordered th:last-child {
+    -moz-border-radius: 0 6px 0 0;
+    -webkit-border-radius: 0 6px 0 0;
+    border-radius: 0 6px 0 0;
+}
+
+.bordered th:only-child {
+    -moz-border-radius: 6px 6px 0 0;
+    -webkit-border-radius: 6px 6px 0 0;
+    border-radius: 6px 6px 0 0;
+}
+
+.bordered tr:last-child td:first-child {
+    -moz-border-radius: 0 0 0 6px;
+    -webkit-border-radius: 0 0 0 6px;
+    border-radius: 0 0 0 6px;
+}
+
+.bordered tr:last-child td:last-child {
+    -moz-border-radius: 0 0 6px 0;
+    -webkit-border-radius: 0 0 6px 0;
+    border-radius: 0 0 6px 0;
+}
+
+select {
+    padding: 3px;
+    margin: 0;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    background: #f8f8f8;
+    color: #888;
+    border: none;
+    outline: none;
+    display: inline-block;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+}
+
+input {
+    padding: 3px;
+    margin: 0;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    background: #f8f8f8;
+    color: #888;
+    border: none;
+    outline: none;
+    display: inline-block;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    position: absolute;
+}
+
+button {
+    padding: 3px;
+    margin: 0;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    background: #f8f8f8;
+    color: #888;
+    border: none;
+    outline: none;
+    display: inline-block;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    position: relative;
+}
+
+
+</style>
+
+</head>
+
+<body>
+<a href="../dhis-web-dashboard-integration/profile.action?id=$UID">
+    <img src="images/user_small.png">
+</a>
+<a href="../dhis-web-dashboard-integration/profile.action?id=$UID">$userName</a>
+
+<hr size="1" style="color: #3674B3">
+
+<div id="formResult" align="left">
+
+    <div id="userInfo">
+        <div class="userRow">
+            <div class="userLabel">User Created</div>
+            <div class="userValue">$dateCreated</div>
+        </div>
+        <div class="userRow">
+            <div class="userLabel">Datasets Assigned</div>
+            <div class="userValue">$dataSetsAssigned</div>
+        </div>
+        <div class="userRow">
+            <div class="userLabel">Geographical Locations</div>
+            <div class="userValue">$OrgUnits</div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+
+    <table id="inventoryTable" class="bordered">
+
+        <thead>
+        <tr>
+            <th>S. No</th>
+            <th>Dataset</th>
+            <th>Updated On</th>
+            <th>Data Entered For</th>
+        </tr>
+        </thead>
+        <tbody>
+            #foreach( $dataInfo in $infoList )
+            <tr>
+                <td>$dataInfo.serialNumber</td>
+                <td>$dataInfo.dataSetName</td>
+                <td>$dataInfo.updatedOn</td>
+                <td>$dataInfo.DataEnteredFor</td>
+            </tr>
+            #end
+        <tbody>
+        <tfoot>
+        </tfoot>
+    </table>
+</div>
+
+
+</body>

@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+
+<!-- DataElementMapping for Bagladesh National Weekly Food grains Offtake Report Template -->
+
+<excel-import>
+
+ <period-info sheetno = "0" rowno = "1" colno = "1" format="DAILY-REPORT"/>
+
+ <import-info> 
+ <!--Stock -->
+ <!--Stock in Storage-->
+    <cell-info sheetno = "0" rowno = "8" colno = "4" type= "OU-DE" oucode="2" >253.1</cell-info>
+   <cell-info sheetno = "0" rowno = "8" colno = "5" type= "OU-DE" oucode="2" >265.1</cell-info>
+   <cell-info sheetno = "0" rowno = "8" colno = "6" type= "OU-DE" oucode="2" >421.1</cell-info>
+   
+   <!--Distribution-->
+   <!--Daily Distribution-->
+    <cell-info sheetno = "0" rowno = "10" colno = "4" type= "OU-DE" oucode="2" >254.1</cell-info>
+   <cell-info sheetno = "0" rowno = "10" colno = "5" type= "OU-DE" oucode="2" >266.1</cell-info>
+   <cell-info sheetno = "0" rowno = "10" colno = "6" type= "OU-DE" oucode="2" >422.1</cell-info>
+   
+   <!--Internal Procurement (Aman 2012)-->
+   <!--Daily Procurement -->
+       <cell-info sheetno = "0" rowno = "14" colno = "4" type= "OU-DE" oucode="2">255.1</cell-info>
+       <cell-info sheetno = "0" rowno = "14" colno = "6" type= "OU-DE" oucode="2" >423.1</cell-info>
+   
+   <!--Internal Procurement (Wheat-2012)-->
+   <!--Daily Procurement--> 
+   <cell-info sheetno = "0" rowno = "19" colno = "5" type= "OU-DE" oucode="2" >267.1</cell-info>
+  
+   
+   <!--Agreement (Aman-2012)-->   
+   <!--Daily Agreement-->   
+   <cell-info sheetno = "0" rowno = "24" colno = "4" type= "OU-DE" oucode="2" >256.1</cell-info>
+   <cell-info sheetno = "0" rowno = "24" colno = "5" type= "OU-DE" oucode="2" >268.1</cell-info>
+   <cell-info sheetno = "0" rowno = "24" colno = "6" type= "OU-DE" oucode="2" >424.1</cell-info>
+   
+   <!--Public Import (Cash)-->
+   <!--Daily Int'l Procurement (Cash)-->
+   <cell-info sheetno = "0" rowno = "27" colno = "4" type= "OU-DE" oucode="2" >261.1</cell-info>
+   <cell-info sheetno = "0" rowno = "27" colno = "5" type= "OU-DE" oucode="2" >269.1</cell-info>
+   <cell-info sheetno = "0" rowno = "27" colno = "6" type= "OU-DE" oucode="2" >425.1</cell-info>
+   
+   <!--Public Import ( Aid)-->
+   <!--Daily Int'l Aid /Grant-->
+   <cell-info sheetno = "0" rowno = "30" colno = "4" type= "OU-DE" oucode="2" >262.1</cell-info>
+   <cell-info sheetno = "0" rowno = "30" colno = "5" type= "OU-DE" oucode="2" >270.1</cell-info>
+   <cell-info sheetno = "0" rowno = "30" colno = "6" type= "OU-DE" oucode="2" >426.1</cell-info>
+   
+   <!--Private Import-->
+   <!--Daily Private Import -->
+   <cell-info sheetno = "0" rowno = "33" colno = "4" type= "OU-DE" oucode="2" >263.1</cell-info>
+   <cell-info sheetno = "0" rowno = "33" colno = "5" type= "OU-DE" oucode="2" >271.1</cell-info>
+   <cell-info sheetno = "0" rowno = "33" colno = "6" type= "OU-DE" oucode="2" >427.1</cell-info>
+   
+   <!--Stock in Floating Vessel-->
+   <cell-info sheetno = "0" rowno = "35" colno = "4" type= "OU-DE" oucode="2" >264.1</cell-info>
+   <cell-info sheetno = "0" rowno = "35" colno = "5" type= "OU-DE" oucode="2" >272.1</cell-info>
+   <cell-info sheetno = "0" rowno = "35" colno = "6" type= "OU-DE" oucode="2" >428.1</cell-info> 
+ 
+  </import-info>
+
+</excel-import>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<include file="dhis-web-commons.xml"/>
+	
+	<package name="dhis-web-data-access" extends="dhis-web-commons"
+		namespace="/dhis-web-data-access">
+
+		<!-- Index action -->
+		<action name="index" class="org.hisp.dhis.dataaccess.action.HomePageAction">
+			<result name="viewdatapage" type="redirect">viewDataForDataSets.action</result>
+		</action>
+        
+       
+		<action name="exportToWorkBook" class="org.hisp.dhis.dataaccess.action.ExportToExcelAction">
+            <result name="success" type="stream">
+                <param name="contentType">application/vnd.ms-excel</param>
+                <param name="inputName">inputStream</param>
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+                <param name="bufferSize">1024</param>
+            </result>
+        </action>
+				
+		<!-- Index action -->
+		<action name="index" class="org.hisp.dhis.dataaccess.action.NoAction">
+            <result name="success" type="velocity">/main.vm</result>
+            <param name="page">/dhis-web-data-access/blank.vm</param>
+            <param name="menu">/dhis-web-data-access/menuForViewData.vm</param>
+		</action>
+
+        <!--Data Inventory Status Action-->
+        <action name="dataInventoryAction" class="org.hisp.dhis.dataaccess.action.DataInventoryStatusAction">
+            <result name="success" type="velocity">/main.vm</result>
+            <param name="page">/dhis-web-data-access/DisplayInventoryStatus.vm</param>
+            <param name="hideMenu">true</param>
+        </action>
+
+        <!--Data Inventory Form Action-->
+        <action name="dataInventoryFormAction" class="org.hisp.dhis.dataaccess.action.DataInventoryStatusFormAction">
+            <result name="success" type="velocity">/main.vm</result>
+            <param name="page">/dhis-web-data-access/DisplayInventoryStatusForm.vm</param>
+            <param name="hideMenu">true</param>
+        </action>
+
+        <!--Data Search Form Action-->
+        <action name="searchFormAction" class="org.hisp.dhis.dataaccess.action.SearchByDataelements">
+            <result name="success" type="velocity">/main.vm</result>
+            <param name="page">/dhis-web-data-access/searchForm.vm</param>
+            <param name="menu">/dhis-web-data-access/menuForViewData.vm</param>
+        </action>
+
+        <action name="getStartEndDate" class="org.hisp.dhis.dataaccess.action.SearchStartEndDateAction">
+            <result name="success" type="velocity">/main.vm</result>
+            <param name="page">/dhis-web-data-access/searchDateForm.vm</param>
+            <param name="menu">/dhis-web-data-access/menuForViewData.vm</param>
+        </action>
+
+        <action name="getResultTable" class="org.hisp.dhis.dataaccess.action.GetSearchDataResultAction">
+            <result name="success" type="velocity">/main.vm</result>
+            <param name="page">/dhis-web-data-access/searchResult.vm</param>
+            <param name="hideMenu">true</param>
+        </action>
+
+
+        <action name="getValueFormAction" class="org.hisp.dhis.dataaccess.action.GetDataValuesFormAction">
+            <result name="success" type="velocity">/main.vm</result>
+            <param name="page">/dhis-web-data-access/getValueForm.vm</param>
+            <param name="menu">/dhis-web-data-access/menuForViewData.vm</param>
+        </action>
+
+        <action name="getValueResultAction" class="org.hisp.dhis.dataaccess.action.GetDataValuesAction">
+            <result name="success" type="velocity">/main.vm</result>
+            <param name="page">/dhis-web-data-access/getValueResult.vm</param>
+            <param name="hideMenu">true</param>
+        </action>
+
+	</package>
+
+    <package name="jsonExtension" namespace="/" extends="json-default">
+        <action name="getJSONResult"
+                class="org.hisp.dhis.dataaccess.action.JSONDataAction">
+            <result type="json" />
+        </action>
+    </package>
+	
+</struts>

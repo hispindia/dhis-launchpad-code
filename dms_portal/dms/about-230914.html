@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <meta charset="UTF-8">
+
+    <title>FPMU Public Data Portal</title><!--Style-sheets-->
+
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/strapped.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="css/bootstrap-multiselect.css" rel="stylesheet" type=
+            "text/css">
+    <link href="css/tablecloth.css" rel="stylesheet" type="text/css">
+    <link href="css/lionbars.css" rel="stylesheet">
+    <link href="css/jquery.dataTables.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap-select.min.css" rel="stylesheet" type="text/css">
+    <link href="css/selectize.css" rel="stylesheet" type="text/css">
+
+
+    <script src="js/jquery.js" type="text/javascript"></script>
+    <script src="js/typeahead.bundle.js" type="text/javascript"></script>
+    <script src="js/moment.min.js" type="text/javascript"></script>
+    <script src="js/bootstrap.js" type="text/javascript"></script>
+    <script src="js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+    <script src="js/jquery.tablecloth.js" type="text/javascript"></script>
+    <script src="js/jquery.tablesorter.js" type="text/javascript"></script>
+    <script src="js/bootstrap-multiselect.js" type="text/javascript"></script>
+    <script src="js/jquery.lionbars.0.3.js" type="text/javascript"></script>
+    <script src="js/jquery.dataTables.js" type="text/javascript"></script>
+    <script src="js/bootstrap-select.min.js" type="text/javascript"></script>
+    <script src="js/moment.min.js" type="text/javascript"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="js/selectize.js"></script>
+    <script src="js/themes/sand-signika.js"></script>
+    <script src="js/dmsPortal.js"></script>
+
+</head>
+
+<body data-twttr-rendered="true" style="background-color: #F0F3F5">
+
+<div class="main" id="main">
+    <div class="grid" id="header">
+        <div class="col-md-1" style="margin: 0px; padding-left: 0px; padding-right: 0px; padding-top: 2px;">
+            <a class="pull-left" href="http://www.nfpcsp.org" style="padding-bottom: 6px">
+                <img src="images/145px-Emblem_of_the_Provisional_Government_of_the_People's_Republic_of_Bangladesh.svg.png" style="width: 70px;height: 70px;">
+            </a>
+        </div>
+        <div class="col-lg-11" id="logo" style="margin: 0px;padding: 0px">
+            <div class="partner">
+                <p class="first animated fadeInUp floatLeft">Food Security and Nutrition Data Portal</p>
+
+                <p class="second animated fadeInUp floatLeft">Food Planning Monitoring Unit (FPMU), Ministry of Food,
+                    People's Republic of Bangladesh</p>
+
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid" id="navigation">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a class="navTitle" href="/dms/portal.html"
+                       style="color: white;font-weight: bold;">Simple Search</a></li>
+                <li><a class="navTitle" href="/dms/advanced.html" style="color: white;font-weight: bold;">Advanced
+                    Search</a></li>
+                <li><a class="navTitle" href="/dms/about.html" style="color: white;font-weight: bold;background-color: #843534">About Portal</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: white;font-weight: bold">FPMU</a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a class="navTitle" href="http://www.nfpcsp.org">Home</a></li>
+                        <li><a class="navTitle" href="/dms/news.html">News & Updates</a></li>
+                        <li><a class="navTitle" href="http://www.nfpcsp.org/agridrupal/about-library">Online Library</a></li>
+                    </ul>
+                </li>
+                <li><a class="navTitle" href="http://fsnis.nfpcsp.org/fsnis" title="Data Management System" style="color: white;font-weight: bold">DMS</a></li>
+                <li><a class="navTitle" href="/dms/links.html" style="color: white;font-weight: bold;">Useful Links</a></li>
+                <li><a class="navTitle" href="/dms/contact.html" style="color: white;font-weight: bold">Contact Us</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+
+    <div class="grid" id="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="promoBox" id="infoBox" style="background-image: url(/images/foodMarket.jpg)">
+                    <div class="head">
+                        <div class="heading">
+                            About the Portal&nbsp;
+                            <span class="glyphicon glyphicon-bullhorn"></span>
+                        </div>
+                    </div>
+                    <div class="body">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="promoBox" id="fpmuInfoBox" style="background-image: url(/images/foodMarket.jpg)">
+                    <div class="head">
+                        <div class="heading">
+                            FPMU&nbsp;
+                            <span class="glyphicon glyphicon-bullhorn"></span>
+                        </div>
+                    </div>
+                    <div class="body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="promoBox" id="nfpcspInfoBox" style="background-image: url(/images/foodMarket.jpg)">
+                    <div class="head">
+                        <div class="heading">
+                            NFPCSP&nbsp;
+                            <span class="glyphicon glyphicon-bullhorn"></span>
+                        </div>
+                    </div>
+                    <div class="body">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+
+    <div class="grid" id="footer"></div>
+
+</div>
+
+</body>
+
+</html>

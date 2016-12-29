@@ -1,0 +1,1537 @@
+<?xml version="1.0"?>
+
+<!-- Fortnightly Report -->
+
+<report>
+
+<!-- common data -->
+
+	<!-- current fortnight start date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcelldata1" celltype="date" aggtype="ONE_PERIOD" period="CURRENT_FORTNIGHT_START_DATE" orgunit="NA" dataelement="NA" />
+	<!-- current fortnight end date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcelldata2" celltype="date" aggtype="ONE_PERIOD" period="CURRENT_FORTNIGHT_END_DATE" orgunit="NA" dataelement="NA" />
+
+	<!-- fortnight-1 start date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcelldata3" celltype="date" aggtype="ONE_PERIOD" period="CURRENT_FORTNIGHT1_START_DATE" orgunit="NA" dataelement="NA" />
+	<!-- fortnight-1 end date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcelldata4" celltype="date" aggtype="ONE_PERIOD" period="CURRENT_FORTNIGHT1_END_DATE" orgunit="NA" dataelement="NA" />
+
+	<!-- fortnight-2 start date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcelldata5" celltype="date" aggtype="ONE_PERIOD" period="CURRENT_FORTNIGHT2_START_DATE" orgunit="NA" dataelement="NA" />
+	<!-- fortnight-2 end date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcelldata6" celltype="date" aggtype="ONE_PERIOD" period="CURRENT_FORTNIGHT2_END_DATE" orgunit="NA" dataelement="NA" />
+	
+	<!-- selected report date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcelldata7" celltype="date" aggtype="ONE_PERIOD" period="CURRENT_REPORT_DATE" orgunit="NA" dataelement="NA" />
+
+<!-- ************** Table 1.Rice and Atta price changes (Dhaka city) ******************  -->	
+
+	<!-- Price on x date tk/kg Public Stock: Available date for current fiscal year -->
+	<reportcell datatype = "text"  name="table1date1" celltype="date" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="197.2" /> 
+	
+<!--<reportcell datatype = "text"  name="table1date1" celltype="date_multipledes" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="197,198261,262,425,426,269,270,263,427,271" />-->
+	
+	<!-- Market Price Rice (Coarse) Retail for Available date for current fiscal year -->
+	<reportcell datatype = "number"  name="table1rice1" celltype="data" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="(([198.2]+[198.3])/2)" />
+	<!-- Market Price Rice (Coarse) Wholesale for Available date for current fiscal year -->
+	<reportcell datatype = "number"  name="table1rice2" celltype="data" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="( ( ([197.2]/100) + ([197.3]/100) )/2 )" />
+	
+	<!-- Market Price Rice (Coarse) Retail for Last fortnight -->
+	<reportcell datatype = "number"  name="table1rice3" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_FORTNIGHT_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="table1date1--(([198.2]+[198.3])/2)" />
+	<!-- Market Price Rice (Coarse) Wholesale for Last fortnight -->
+	<reportcell datatype = "number"  name="table1rice4" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_FORTNIGHT_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="table1date1--( ( ([197.2]/100) + ([197.3]/100) )/2 )" />
+
+	<!--*****************************-->
+	<!-- Market Price Rice (Coarse) Retail change over Last fortnight -->
+	<reportcell datatype = "number"  name="table1calc1" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="( ([table1rice1]-[table1rice3]) / [table1rice3] ) * 100" />
+	<!-- Market Price Rice (Coarse) Wholesale change over Last fortnight -->
+	<reportcell datatype = "number"  name="table1calc2" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="( ([table1rice2]-[table1rice4]) / [table1rice4] ) * 100" />
+	<!--*****************************-->
+	
+	<!-- Market Price Rice (Coarse) Retail for Last month -->
+	<reportcell datatype = "number"  name="table1rice5" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_MONTH_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="table1date1--(([198.2]+[198.3])/2)" />
+	<!-- Market Price Rice (Coarse) Wholesale for Last month -->
+	<reportcell datatype = "number"  name="table1rice6" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_MONTH_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="table1date1--( ( ([197.2]/100) + ([197.3]/100) )/2 )" />
+
+	<!--*****************************-->
+	<!-- Market Price Rice (Coarse) Retail change over Last month -->
+	<reportcell datatype = "number"  name="table1calc3" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="( ([table1rice1]-[table1rice5]) / [table1rice5] ) * 100" />
+	<!-- Market Price Rice (Coarse) Wholesale change over Last month -->
+	<reportcell datatype = "number"  name="table1calc4" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="( ([table1rice2]-[table1rice6]) / [table1rice6] ) * 100" />
+	<!--*****************************-->
+	
+	<!-- Market Price Rice (Coarse) Retail for Last year -->
+	<reportcell datatype = "number"  name="table1rice7" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_PREVIOUS_FISCAL_YEAR" orgunit="10" dataelement="table1date1--(([198.2]+[198.3])/2)" />
+	<!-- Market Price Rice (Coarse) Wholesale for Last year -->
+	<reportcell datatype = "number"  name="table1rice8" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_PREVIOUS_FISCAL_YEAR" orgunit="10" dataelement="table1date1--( ( ([197.2]/100) + ([197.3]/100) )/2 )" />
+
+	<!--*****************************-->
+	<!-- Market Price Rice (Coarse) Retail change over Last year -->
+	<reportcell datatype = "number"  name="table1calc5" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="( ([table1rice1]-[table1rice7]) / [table1rice7] ) * 100" />
+	<!-- Market Price Rice (Coarse) Wholesale change over Last year -->
+	<reportcell datatype = "number"  name="table1calc6" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="( ([table1rice2]-[table1rice8]) / [table1rice8] ) * 100" />
+	<!--*****************************-->
+	
+	<!-- Market Price Atta Retail for Available date for current fiscal year -->
+	<reportcell datatype = "number"  name="table1atta1" celltype="data" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="(([246.2]+[246.3])/2)" />
+	<!-- Market Price Atta Wholesale for Available date for current fiscal year -->
+	<reportcell datatype = "number"  name="table1atta2" celltype="data" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="( ( ([245.2]/100) + ([245.3]/100) )/2 )" />
+
+	<!-- Market Price Atta Retail for Last fortnight -->
+	<reportcell datatype = "number"  name="table1atta3" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_FORTNIGHT_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="table1date1--(([246.2]+[246.3])/2)" />
+	<!-- Market Price Atta Wholesale for Last fortnight -->
+	<reportcell datatype = "number"  name="table1atta4" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_FORTNIGHT_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="table1date1--( ( ([245.2]/100) + ([245.3]/100) )/2 )" />
+
+	<!--*****************************-->
+	<!-- Market Price Atta Retail change over Last fortnight -->
+	<reportcell datatype = "number"  name="table1calc7" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="( ([table1atta1]-[table1atta3]) / [table1atta3] ) * 100" />
+	<!-- Market Price Atta Wholesale change over Last fortnight -->
+	<reportcell datatype = "number"  name="table1calc8" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="( ([table1atta2]-[table1atta4]) / [table1atta4] ) * 100" />
+	<!--*****************************-->
+
+	
+	<!-- Market Price Atta Retail for Last month -->
+	<reportcell datatype = "number"  name="table1atta5" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_MONTH_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="table1date1--(([246.2]+[246.3])/2)" />
+	<!-- Market Price Atta Wholesale for Last month -->
+	<reportcell datatype = "number"  name="table1atta6" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_MONTH_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="table1date1--( ( ([245.2]/100) + ([245.3]/100) )/2 )" />
+	
+	<!--*****************************-->
+	<!-- Market Price Atta Retail change over Last month -->
+	<reportcell datatype = "number"  name="table1calc9" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="( ([table1atta1]-[table1atta5]) / [table1atta5] ) * 100" />
+	<!-- Market Price Atta Wholesale change over Last month -->
+	<reportcell datatype = "number"  name="table1calc10" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="( ([table1atta2]-[table1atta6]) / [table1atta6] ) * 100" />
+	<!--*****************************-->
+
+	<!-- Market Price Atta Retail for Last year -->
+	<reportcell datatype = "number"  name="table1atta7" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_PREVIOUS_FISCAL_YEAR" orgunit="10" dataelement="table1date1--(([246.2]+[246.3])/2)" />
+	<!-- Market Price Atta Wholesale for Last year -->
+	<reportcell datatype = "number"  name="table1atta8" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_PREVIOUS_FISCAL_YEAR" orgunit="10" dataelement="table1date1--( ( ([245.2]/100) + ([245.3]/100) )/2 )" />
+
+	<!--*****************************-->
+	<!-- Market Price Atta Retail change over Last month -->
+	<reportcell datatype = "number"  name="table1calc11" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="( ([table1atta1]-[table1atta7]) / [table1atta7] ) * 100" />
+	<!-- Market Price Atta Wholesale change over Last month -->
+	<reportcell datatype = "number"  name="table1calc12" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="( ([table1atta2]-[table1atta8]) / [table1atta8] ) * 100" />
+	<!--*****************************-->
+
+	
+<!-- ************** Table2.Chicago Board of Trade SRW Futures (USD/MT) ******************  -->	
+
+	<!-- current week date -->
+	<reportcell datatype = "text"  name="table2date1" celltype="date" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="718.10" />
+	<!-- last week date -->
+	<reportcell datatype = "text"  name="table2date2" celltype="date" aggtype="ONE_PERIOD" period="LAST_WEEK_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="718.10" />
+	
+	<!-- Month1 name -->
+	<reportcell datatype = "text"  name="table2month1" celltype="datedata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="[718.10]" />
+	<!-- Month2 name -->
+	<reportcell datatype = "text"  name="table2month2" celltype="datedata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="[718.12]" />
+	<!-- Month3 name -->
+	<reportcell datatype = "text"  name="table2month3" celltype="datedata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="[718.14]" />
+	<!-- Month4 name -->
+	<reportcell datatype = "text"  name="table2month4" celltype="datedata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="[718.11]" />
+	<!-- Month5 name -->
+	<reportcell datatype = "text"  name="table2month5" celltype="datedata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="[718.13]" />
+
+	<!-- Month1 value for current week -->
+	<reportcell datatype = "number"  name="table2data1" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table2date1--([719.10]*36.73)" />
+	<!-- Month2 value for current week -->
+	<reportcell datatype = "number"  name="table2data2" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table2date1--([719.12]*36.73)" />
+	<!-- Month3 value for current week -->
+	<reportcell datatype = "number"  name="table2data3" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table2date1--([719.14]*36.73)" />
+	<!-- Month4 value for current week -->
+	<reportcell datatype = "number"  name="table2data4" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table2date1--([719.11]*36.73)" />
+	<!-- Month5 value for current week -->
+	<reportcell datatype = "number"  name="table2data5" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table2date1--([719.13]*36.73)" />
+
+	<!-- Month1 value for last week -->
+	<reportcell datatype = "number"  name="table2data6" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table2date2--([719.10]*36.73)" />
+	<!-- Month2 value for last week -->
+	<reportcell datatype = "number"  name="table2data7" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table2date2--([719.12]*36.73)" />
+	<!-- Month3 value for last week -->
+	<reportcell datatype = "number"  name="table2data8" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table2date2--([719.14]*36.73)" />
+	<!-- Month4 value for last week -->
+	<reportcell datatype = "number"  name="table2data9" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table2date2--([719.11]*36.73)" />
+	<!-- Month5 value for last week -->
+	<reportcell datatype = "number"  name="table2data10" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table2date2--([719.13]*36.73)" />
+
+<!-- ************** Table 3.Kansas Board of Trade HRW Futures (USD/MT) ******************  -->	
+
+	<!-- current week date -->
+	<reportcell datatype = "text"  name="table3date1" celltype="date" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="718.10" />
+	<!-- last week date -->
+	<reportcell datatype = "text"  name="table3date2" celltype="date" aggtype="ONE_PERIOD" period="LAST_WEEK_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="718.10" />
+	
+	<!-- Month1 name -->
+	<reportcell datatype = "text"  name="table3month1" celltype="datedata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="[718.10]" />
+	<!-- Month2 name -->
+	<reportcell datatype = "text"  name="table3month2" celltype="datedata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="[718.12]" />
+	<!-- Month3 name -->
+	<reportcell datatype = "text"  name="table3month3" celltype="datedata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="[718.14]" />
+	<!-- Month4 name -->
+	<reportcell datatype = "text"  name="table3month4" celltype="datedata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="[718.11]" />
+	<!-- Month5 name -->
+	<reportcell datatype = "text"  name="table3month5" celltype="datedata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="[718.13]" />
+
+	<!-- Month1 value for current week -->
+	<reportcell datatype = "number"  name="table3data1" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table3date1--([720.10]*36.73)" />
+	<!-- Month2 value for current week -->
+	<reportcell datatype = "number"  name="table3data2" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table3date1--([720.12]*36.73)" />
+	<!-- Month3 value for current week -->
+	<reportcell datatype = "number"  name="table3data3" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table3date1--([720.14]*36.73)" />
+	<!-- Month4 value for current week -->
+	<reportcell datatype = "number"  name="table3data4" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table3date1--([720.11]*36.73)" />
+	<!-- Month5 value for current week -->
+	<reportcell datatype = "number"  name="table3data5" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table3date1--([720.13]*36.73)" />
+
+	<!-- Month1 value for last week -->
+	<reportcell datatype = "number"  name="table3data6" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table3date2--([720.10]*36.73)" />
+	<!-- Month2 value for last week -->
+	<reportcell datatype = "number"  name="table3data7" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table3date2--([720.12]*36.73)" />
+	<!-- Month3 value for last week -->
+	<reportcell datatype = "number"  name="table3data8" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table3date2--([720.14]*36.73)" />
+	<!-- Month4 value for last week -->
+	<reportcell datatype = "number"  name="table3data9" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table3date2--([720.11]*36.73)" />
+	<!-- Month5 value for last week -->
+	<reportcell datatype = "number"  name="table3data10" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table3date2--([720.13]*36.73)" />
+
+<!-- ************** Table 4. Rice world production and stocks (million MT) ******************  -->	
+	<!-- current date -->
+	<reportcell datatype = "text"  name="table4date1" celltype="date" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="723.17" />
+	<!-- current year for Rice world production and stock -->
+	<reportcell datatype = "text"  name="table4data1" celltype="formula_use_for_startdate_textdata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table4date1--[723.17]" />
+	<!-- estimate year for Rice world production and stock -->
+	<reportcell datatype = "text"  name="table4data2" celltype="formula_use_for_startdate_textdata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table4date1--[723.16]" />
+	<!-- forecast year for Rice world production and stock -->
+	<reportcell datatype = "text"  name="table4data3" celltype="formula_use_for_startdate_textdata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table4date1--[723.15]" />
+
+	<!-- rice world production data for current year -->
+	<reportcell datatype = "number"  name="table4data4" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table4date1--([730.17])" />
+	<!-- rice world production data for estimate year -->
+	<reportcell datatype = "number"  name="table4data5" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table4date1--([730.16])" />
+	<!-- rice world production data for forecast year -->
+	<reportcell datatype = "number"  name="table4data6" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table4date1--([730.15])" />
+
+	<!-- rice world Ending stocks data for current year -->
+	<reportcell datatype = "number"  name="table4data7" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table4date1--([731.17])" />
+	<!-- rice world Ending stocks data for estimate year -->
+	<reportcell datatype = "number"  name="table4data8" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table4date1--([731.16])" />
+	<!-- rice world Ending stocks data for forecast year -->
+	<reportcell datatype = "number"  name="table4data9" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table4date1--([731.15])" />
+
+	<!-- Data Source  -->
+	<reportcell datatype = "text"  name="table4data10" celltype="formula_use_for_startdate_textdata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table4date1--[721.1]" />
+	<!-- World Market and Trade Report Date -->
+	<reportcell datatype = "text"  name="table4data11" celltype="formula_use_for_startdate_textdata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table4date1--[722.1]" />
+	
+<!-- ************** Table 5. Wheat world production and stocks (million MT) ******************  -->	
+	<!-- current date -->
+	<reportcell datatype = "text"  name="table5date1" celltype="date" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="723.17" />
+	<!-- current year for Wheat world production and stock -->
+	<reportcell datatype = "text"  name="table5data1" celltype="formula_use_for_startdate_textdata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table5date1--[723.17]" />
+	<!-- estimate year for Wheat world production and stock -->
+	<reportcell datatype = "text"  name="table5data2" celltype="formula_use_for_startdate_textdata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table5date1--[723.16]" />
+	<!-- forecast year for Wheat world production and stock -->
+	<reportcell datatype = "text"  name="table5data3" celltype="formula_use_for_startdate_textdata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table5date1--[723.15]" />
+
+	<!-- Wheat world production data for current year -->
+	<reportcell datatype = "number"  name="table5data4" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table5date1--([739.17])" />
+	<!-- Wheat world production data for estimate year -->
+	<reportcell datatype = "number"  name="table5data5" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table5date1--([739.16])" />
+	<!-- Wheat world production data for forecast year -->
+	<reportcell datatype = "number"  name="table5data6" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table5date1--([739.15])" />
+
+	<!-- Wheat world Ending stocks data for current year -->
+	<reportcell datatype = "number"  name="table5data7" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table5date1--([740.17])" />
+	<!-- Wheat world Ending stocks data for estimate year -->
+	<reportcell datatype = "number"  name="table5data8" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table5date1--([740.16])" />
+	<!-- Wheat world Ending stocks data for forecast year -->
+	<reportcell datatype = "number"  name="table5data9" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table5date1--([740.15])" />
+
+	<!-- Data Source  -->
+	<reportcell datatype = "text"  name="table5data10" celltype="formula_use_for_startdate_textdata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table5date1--[721.1]" />
+	<!-- World Market and Trade Report Date -->
+	<reportcell datatype = "text"  name="table5data11" celltype="formula_use_for_startdate_textdata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table5date1--[722.1]" />
+
+<!-- ************** Table 6. Main rice annual exporters (million MT, milled) ******************  -->	
+	<!-- current date -->
+	<reportcell datatype = "text"  name="table6date1" celltype="date" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="723.17" />
+	
+	<!-- current year for Rice Annual exporters -->
+	<reportcell datatype = "text"  name="table6data1" celltype="formula_use_for_startdate_textdata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date1--[723.17]" />
+	<!-- estimate year for Rice Annual exporters -->
+	<reportcell datatype = "text"  name="table6data2" celltype="formula_use_for_startdate_textdata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date1--[723.16]" />
+	<!-- forecast year for Rice Annual exporters -->
+	<reportcell datatype = "text"  name="table6data3" celltype="formula_use_for_startdate_textdata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date1--[723.15]" />
+	
+	<!-- Thailand current year for Rice Annual exporters data -->
+	<reportcell datatype = "number"  name="table6data4" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date1--([724.17])" />
+	<!-- Thailand estimate year for Rice Annual exporters data -->
+	<reportcell datatype = "number"  name="table6data5" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date1--([724.16])" />
+	<!-- Thailand forecast year for Rice Annual exporters data -->
+	<reportcell datatype = "number"  name="table6data6" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date1--([724.15])" />
+	
+	<!--************************************************-->
+	<!-- Thailand current year and estimate year change -->
+	<reportcell datatype = "number"  name="table6calc1" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="( ([table6data5]-[table6data4]) / [table6data4] ) * 100" />
+	<!-- Thailand estimate year and forecast year change -->
+	<reportcell datatype = "number"  name="table6calc2" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="( ([table6data6]-[table6data5]) / [table6data5] ) * 100" />
+	<!--************************************************-->
+	
+	<!-- Vietnam current year for Rice Annual exporters data -->
+	<reportcell datatype = "number"  name="table6data7" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date1--([725.17])" />
+	<!-- Vietnam estimate year for Rice Annual exporters data -->
+	<reportcell datatype = "number"  name="table6data8" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date1--([725.16])" />
+	<!-- Vietnam forecast year for Rice Annual exporters data -->
+	<reportcell datatype = "number"  name="table6data9" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date1--([725.15])" />
+
+	<!--************************************************-->
+	<!-- Vietnam current year and estimate year change -->
+	<reportcell datatype = "number"  name="table6calc3" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="( ([table6data8]-[table6data7]) / [table6data7] ) * 100" />
+	<!-- Vietnam estimate year and forecast year change -->
+	<reportcell datatype = "number"  name="table6calc4" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="( ([table6data9]-[table6data8]) / [table6data8] ) * 100" />
+	<!--************************************************-->
+
+	<!-- USA current year for Rice Annual exporters data -->
+	<reportcell datatype = "number"  name="table6data10" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date1--([726.17])" />
+	<!-- USA estimate year for Rice Annual exporters data -->
+	<reportcell datatype = "number"  name="table6data11" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date1--([726.16])" />
+	<!-- USA forecast year for Rice Annual exporters data -->
+	<reportcell datatype = "number"  name="table6data12" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date1--([726.15])" />
+
+	<!--************************************************-->
+	<!-- USA current year and estimate year change -->
+	<reportcell datatype = "number"  name="table6calc5" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="( ([table6data11]-[table6data10]) / [table6data10] ) * 100" />
+	<!-- USA estimate year and forecast year change -->
+	<reportcell datatype = "number"  name="table6calc6" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="( ([table6data12]-[table6data11]) / [table6data11] ) * 100" />
+	<!--************************************************-->
+
+	<!-- Pakistan current year for Rice Annual exporters data -->
+	<reportcell datatype = "number"  name="table6data13" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date1--([727.17])" />
+	<!-- Pakistan estimate year for Rice Annual exporters data -->
+	<reportcell datatype = "number"  name="table6data14" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date1--([727.16])" />
+	<!-- Pakistan forecast year for Rice Annual exporters data -->
+	<reportcell datatype = "number"  name="table6data15" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date1--([727.15])" />
+
+	<!--************************************************-->
+	<!-- Pakistan current year and estimate year change -->
+	<reportcell datatype = "number"  name="table6calc7" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="( ([table6data14]-[table6data13]) / [table6data13] ) * 100" />
+	<!-- Pakistan estimate year and forecast year change -->
+	<reportcell datatype = "number"  name="table6calc8" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="( ([table6data15]-[table6data14]) / [table6data14] ) * 100" />
+	<!--************************************************-->
+
+	<!-- India current year for Rice Annual exporters data -->
+	<reportcell datatype = "number"  name="table6data16" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date1--([728.17])" />
+	<!-- India estimate year for Rice Annual exporters data -->
+	<reportcell datatype = "number"  name="table6data17" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date1--([728.16])" />
+	<!-- India forecast year for Rice Annual exporters data -->
+	<reportcell datatype = "number"  name="table6data18" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date1--([728.15])" />
+
+	<!--************************************************-->
+	<!-- India current year and estimate year change -->
+	<reportcell datatype = "number"  name="table6calc9" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="( ([table6data17]-[table6data16]) / [table6data16] ) * 100" />
+	<!-- India estimate year and forecast year change -->
+	<reportcell datatype = "number"  name="table6calc10" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="( ([table6data18]-[table6data17]) / [table6data17] ) * 100" />
+	<!--************************************************-->
+
+	<!-- World current year for Rice Annual exporters data -->
+	<reportcell datatype = "number"  name="table6data19" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date1--([729.17])" />
+	<!-- World estimate year for Rice Annual exporters data -->
+	<reportcell datatype = "number"  name="table6data20" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date1--([729.16])" />
+	<!-- World forecast year for Rice Annual exporters data -->
+	<reportcell datatype = "number"  name="table6data21" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date1--([729.15])" />
+
+	<!--************************************************-->
+	<!-- World current year and estimate year change -->
+	<reportcell datatype = "number"  name="table6calc11" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="( ([table6data20]-[table6data19]) / [table6data19] ) * 100" />
+	<!-- World estimate year and forecast year change -->
+	<reportcell datatype = "number"  name="table6calc12" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="( ([table6data21]-[table6data20]) / [table6data20] ) * 100" />
+	<!--************************************************-->
+	
+	<!-- Others current year for Rice Annual exporters data -->
+	<reportcell datatype = "number"  name="table6data22" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="([table6data19]-([table6data4]+[table6data7]+[table6data10]+[table6data13]+[table6data16]))" />
+	<!-- Others estimate year for Rice Annual exporters data -->
+	<reportcell datatype = "number"  name="table6data23" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="([table6data20]-([table6data5]+[table6data8]+[table6data11]+[table6data14]+[table6data17]))" />
+	<!-- Others forecast year for Rice Annual exporters data -->
+	<reportcell datatype = "number"  name="table6data24" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="([table6data21]-([table6data6]+[table6data9]+[table6data12]+[table6data15]+[table6data18]))" />
+
+	<!--************************************************-->
+	<!-- Others current year and estimate year change -->
+	<reportcell datatype = "number"  name="table6calc13" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="( ([table6data23]-[table6data22]) / [table6data22] ) * 100" />
+	<!-- Others estimate year and forecast year change -->
+	<reportcell datatype = "number"  name="table6calc14" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="( ([table6data24]-[table6data23]) / [table6data23] ) * 100" />
+	<!--************************************************-->
+	
+	<!-- Data Source  -->
+	<reportcell datatype = "text"  name="table6data25" celltype="formula_use_for_startdate_textdata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date1--[721.1]" />
+	<!-- World Market and Trade Report Date -->
+	<reportcell datatype = "text"  name="table6data26" celltype="formula_use_for_startdate_textdata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date1--[722.1]" />
+
+
+<!-- ************** Table 7. Main wheat annual exporters (million MT, milled) ******************  -->	
+	<!-- current date -->
+	<reportcell datatype = "text"  name="table7date1" celltype="date" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="723.17" />
+	
+	<!-- current year for Wheat Annual exporters -->
+	<reportcell datatype = "text"  name="table7data1" celltype="formula_use_for_startdate_textdata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table7date1--[723.17]" />
+	<!-- estimate year for Wheat Annual exporters -->
+	<reportcell datatype = "text"  name="table7data2" celltype="formula_use_for_startdate_textdata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table7date1--[723.16]" />
+	<!-- forecast year for Wheat Annual exporters -->
+	<reportcell datatype = "text"  name="table7data3" celltype="formula_use_for_startdate_textdata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table7date1--[723.15]" />
+	
+	<!-- USA  current year for Wheat Annual exporters data -->
+	<reportcell datatype = "number"  name="table7data4" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table7date1--([732.17])" />
+	<!-- USA estimate year for Wheat Annual exporters data -->
+	<reportcell datatype = "number"  name="table7data5" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table7date1--([732.16])" />
+	<!-- USA forecast year for Wheat Annual exporters data -->
+	<reportcell datatype = "number"  name="table7data6" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table7date1--([732.15])" />
+
+	<!--************************************************-->
+	<!-- USA current year and estimate year change -->
+	<reportcell datatype = "number"  name="table7calc1" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="( ([table7data5]-[table7data4]) / [table7data4] ) * 100" />
+	<!-- USA estimate year and forecast year change -->
+	<reportcell datatype = "number"  name="table7calc2" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="( ([table7data6]-[table7data5]) / [table7data5] ) * 100" />
+	<!--************************************************-->
+	
+	<!-- European Union current year for Wheat Annual exporters data -->
+	<reportcell datatype = "number"  name="table7data7" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table7date1--([733.17])" />
+	<!-- European Union estimate year for Wheat Annual exporters data -->
+	<reportcell datatype = "number"  name="table7data8" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table7date1--([733.16])" />
+	<!-- European Union forecast year for Wheat Annual exporters data -->
+	<reportcell datatype = "number"  name="table7data9" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table7date1--([733.15])" />
+
+	<!--************************************************-->
+	<!-- European Union current year and estimate year change -->
+	<reportcell datatype = "number"  name="table7calc3" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="( ([table7data8]-[table7data7]) / [table7data7] ) * 100" />
+	<!-- European Union estimate year and forecast year change -->
+	<reportcell datatype = "number"  name="table7calc4" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="( ([table7data9]-[table7data8]) / [table7data8] ) * 100" />
+	<!--************************************************-->
+
+	<!-- Canada current year for Wheat Annual exporters data -->
+	<reportcell datatype = "number"  name="table7data10" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table7date1--([734.17])" />
+	<!-- Canada estimate year for Wheat Annual exporters data -->
+	<reportcell datatype = "number"  name="table7data11" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table7date1--([734.16])" />
+	<!-- Canada forecast year for Wheat Annual exporters data -->
+	<reportcell datatype = "number"  name="table7data12" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table7date1--([734.15])" />
+
+	<!--************************************************-->
+	<!-- Canada current year and estimate year change -->
+	<reportcell datatype = "number"  name="table7calc5" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="( ([table7data11]-[table7data10]) / [table7data10] ) * 100" />
+	<!-- Canada estimate year and forecast year change -->
+	<reportcell datatype = "number"  name="table7calc6" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="( ([table7data12]-[table7data11]) / [table7data11] ) * 100" />
+	<!--************************************************-->
+	
+	<!-- Australia current year for Wheat Annual exporters data -->
+	<reportcell datatype = "number"  name="table7data13" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table7date1--([735.17])" />
+	<!-- Australia estimate year for Wheat Annual exporters data -->
+	<reportcell datatype = "number"  name="table7data14" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table7date1--([735.16])" />
+	<!-- Australia forecast year for Wheat Annual exporters data -->
+	<reportcell datatype = "number"  name="table7data15" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table7date1--([735.15])" />
+
+	<!--************************************************-->
+	<!-- Australia current year and estimate year change -->
+	<reportcell datatype = "number"  name="table7calc7" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="( ([table7data14]-[table7data13]) / [table7data13] ) * 100" />
+	<!-- Australia estimate year and forecast year change -->
+	<reportcell datatype = "number"  name="table7calc8" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="( ([table7data15]-[table7data14]) / [table7data14] ) * 100" />
+	<!--************************************************-->
+
+	<!-- Ukraine current year for Wheat Annual exporters data -->
+	<reportcell datatype = "number"  name="table7data16" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table7date1--([736.17])" />
+	<!-- Ukraine estimate year for Wheat Annual exporters data -->
+	<reportcell datatype = "number"  name="table7data17" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table7date1--([736.16])" />
+	<!-- Ukraine forecast year for Wheat Annual exporters data -->
+	<reportcell datatype = "number"  name="table7data18" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table7date1--([736.15])" />
+
+	<!--************************************************-->
+	<!-- Ukraine current year and estimate year change -->
+	<reportcell datatype = "number"  name="table7calc9" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="( ([table7data17]-[table7data16]) / [table7data16] ) * 100" />
+	<!-- Ukraine estimate year and forecast year change -->
+	<reportcell datatype = "number"  name="table7calc10" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="( ([table7data18]-[table7data17]) / [table7data17] ) * 100" />
+	<!--************************************************-->
+
+	<!-- Russia current year for Wheat Annual exporters data -->
+	<reportcell datatype = "number"  name="table7data19" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table7date1--([737.17])" />
+	<!-- Russia estimate year for Wheat Annual exporters data -->
+	<reportcell datatype = "number"  name="table7data20" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table7date1--([737.16])" />
+	<!-- Russia forecast year for Wheat Annual exporters data -->
+	<reportcell datatype = "number"  name="table7data21" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table7date1--([737.15])" />
+
+	<!--************************************************-->
+	<!-- Russia current year and estimate year change -->
+	<reportcell datatype = "number"  name="table7calc11" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="( ([table7data20]-[table7data19]) / [table7data19] ) * 100" />
+	<!-- Russia estimate year and forecast year change -->
+	<reportcell datatype = "number"  name="table7calc12" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="( ([table7data21]-[table7data20]) / [table7data20] ) * 100" />
+	<!--************************************************-->
+
+	<!-- World current year for Wheat Annual exporters data -->
+	<reportcell datatype = "number"  name="table7data22" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table7date1--([738.17])" />
+	<!-- World estimate year for Wheat Annual exporters data -->
+	<reportcell datatype = "number"  name="table7data23" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table7date1--([738.16])" />
+	<!-- World forecast year for Wheat Annual exporters data -->
+	<reportcell datatype = "number"  name="table7data24" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table7date1--([738.15])" />
+
+	<!--************************************************-->
+	<!-- World current year and estimate year change -->
+	<reportcell datatype = "number"  name="table7calc13" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="( ([table7data23]-[table7data22]) / [table7data22] ) * 100" />
+	<!-- World estimate year and forecast year change -->
+	<reportcell datatype = "number"  name="table7calc14" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="( ([table7data24]-[table7data23]) / [table7data23] ) * 100" />
+	<!--************************************************-->
+
+	<!-- Others current year for Wheat Annual exporters data -->
+	<reportcell datatype = "number"  name="table7data25" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="([table7data22]-([table7data4]+[table7data7]+[table7data10]+[table7data13]+[table7data16]+[table7data19]))" />
+	<!-- Others estimate year for Wheat Annual exporters data -->
+	<reportcell datatype = "number"  name="table7data26" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="([table7data23]-([table7data5]+[table7data8]+[table7data11]+[table7data14]+[table7data17]+[table7data20]))" />
+	<!-- Others forecast year for Wheat Annual exporters data -->
+	<reportcell datatype = "number"  name="table7data27" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="([table7data24]-([table7data6]+[table7data9]+[table7data12]+[table7data15]+[table7data18]+[table7data21]))" />
+
+	<!--************************************************-->
+	<!-- Others current year and estimate year change -->
+	<reportcell datatype = "number"  name="table7calc15" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="( ([table7data26]-[table7data25]) / [table7data25] ) * 100" />
+	<!-- Others estimate year and forecast year change -->
+	<reportcell datatype = "number"  name="table7calc16" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="( ([table7data27]-[table7data26]) / [table7data26] ) * 100" />
+	<!--************************************************-->
+
+	<!-- Data Source  -->
+	<reportcell datatype = "text"  name="table7data28" celltype="formula_use_for_startdate_textdata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table7date1--[721.1]" />
+	<!-- World Market and Trade Report Date -->
+	<reportcell datatype = "text"  name="table7data29" celltype="formula_use_for_startdate_textdata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table7date1--[722.1]" />
+
+<!-- ************** Table 8. LC situation (in 000 MT) ******************  -->
+	<!-- Current date -->
+	
+	<reportcell datatype = "text"  name="table8date1" celltype="date_multipledes_with_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcelldata2--reportcelldata1--357,360,358,361" />
+
+       <reportcell datatype = "text"  name="table8lastdate" celltype="date_multipledes" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcelldata7--357,360,358,361" />
+
+       <reportcell datatype = "text"  name="table8fornightlystartdate" celltype="date_multipledes" aggtype="ONE_PERIOD" period="LAST_FORTNIGHT_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="table8lastdate" />
+
+	<!-- Letter of Credit start date -->
+	<reportcell datatype = "text"  name="table8data1" celltype="formula_use_for_startdate_textdata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="table8date1--[439.1]" />
+	<!-- Letter of Credit end date -->
+	<reportcell datatype = "text"  name="table8data2" celltype="formula_use_for_startdate_textdata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="table8date1--[440.1]" />
+
+	<!-- Letter of credit Opened Rice data for current date -->	
+	<reportcell datatype = "number"  name="table8data3" celltype="formula_use_for_startdate_and_enddate" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="table8fornightlystartdate--table8lastdate--([357.1]*100)" />
+        
+	<!-- Letter of credit Opened Wheat data for current date -->
+	<reportcell datatype = "number"  name="table8data4" celltype="formula_use_for_startdate_and_enddate" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="table8fornightlystartdate--table8lastdate--([360.1]*100)" />
+	
+        <!-- Letter of credit settled Rice data for current date -->	
+	<reportcell datatype = "number"  name="table8data5" celltype="formula_use_for_startdate_and_enddate" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="table8fornightlystartdate--table8lastdate--([358.1]*100)" />
+	
+        <!-- Letter of credit settled Wheat data for current date -->
+	<reportcell datatype = "number"  name="table8data6" celltype="formula_use_for_startdate_and_enddate" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="table8fornightlystartdate--table8lastdate--([361.1]*100)" />
+
+	<!-- Letter of credit Opened Rice cumulative data for current month -->
+	<reportcell datatype = "number"  name="table8data7" celltype="formula_use_for_startdate" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_FOR_CURRENT_MONTH" orgunit="2" dataelement="table8lastdate--([357.1]*100)" />
+	<!-- Letter of credit Opened Wheat cumulative data for current date -->
+	<reportcell datatype = "number"  name="table8data8" celltype="formula_use_for_startdate" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_FOR_CURRENT_MONTH" orgunit="2" dataelement="table8lastdate--([360.1]*100)" />
+	<!-- Letter of credit settled Rice cumulative data for current date -->
+	<reportcell datatype = "number"  name="table8data9" celltype="formula_use_for_startdate" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_FOR_CURRENT_MONTH" orgunit="2" dataelement="table8lastdate--([358.1]*100)" />
+	<!-- Letter of credit settled Wheat cumulative data for current date -->
+	<reportcell datatype = "number"  name="table8data10" celltype="formula_use_for_startdate" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_FOR_CURRENT_MONTH" orgunit="2" dataelement="table8lastdate--([361.1]*100)" />
+	
+
+	<!-- Letter of credit Opened Rice cumulative data for current year -->	
+	<reportcell datatype = "number"  name="table8data11" celltype="data" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([357.1]*100)" />
+	<!-- Letter of credit Opened Wheat cumulative data for current year -->	
+	<reportcell datatype = "number"  name="table8data12" celltype="data" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([360.1]*100)" />
+	<!-- Letter of credit settled Rice cumulative data for current year -->	
+	<reportcell datatype = "number"  name="table8data13" celltype="data" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([358.1]*100)" />
+	<!-- Letter of credit settled Wheat cumulative data for current year -->	
+	<reportcell datatype = "number"  name="table8data14" celltype="data" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([361.1]*100)" />
+
+
+
+
+
+
+<!-- ************** Table 3 Percentage Change  ******************  -->	
+
+	<!-- Rice Dhaka city wholesale Price on x date tk/kg Public Stock: Available date for current fiscal year -->
+	<reportcell datatype = "text"  name="ittable3rwdate" celltype="date" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="197.2" />	
+	<!-- Market Price Rice (Coarse) Wholesale for Available date for current fiscal year -->
+	<reportcell datatype = "number" name="ittable3rwc" celltype="data" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="( ( ([197.2]/100) + ([197.3]/100) )/2 )" />
+	<!-- Market Price Rice (Coarse) Wholesale for Last fortnight -->
+	<reportcell datatype = "number"  name="ittable3rwlf" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_FORTNIGHT_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="ittable3rwdate--( ( ([197.2]/100) + ([197.3]/100) )/2 )" />
+	<!-- Market Price Rice (Coarse) Wholesale change over Last fortnight -->
+	<reportcell datatype = "number"  name="ittable3rw" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="( ([ittable3rwc]-[ittable3rwlf]) / [ittable3rwlf] ) * 100" />
+
+        <!-- Thai 5"% Price on x date tk/kg Public Stock: Available date for current fiscal year -->
+	<reportcell datatype = "text"  name="ittable3tdate" celltype="date" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="713.1" />	
+	<!-- Market Price Thai5% for Available date for current fiscal year -->
+	<reportcell datatype = "number" name="ittable3tc" celltype="data" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="[713.1]" />
+	<!-- Market Price Thai 5% for Last fortnight -->
+	<reportcell datatype = "number"  name="ittable3tlf" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_FORTNIGHT_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="ittable3tdate--([713.1])" />
+	<!-- Market Price Thai 5% change over Last fortnight -->
+	<reportcell datatype = "number"  name="ittable3t" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="( ([ittable3tc]-[ittable3tlf]) / [ittable3tlf] ) * 100" />
+
+        <!--Pakistan 5% Price on x date tk/kg Public Stock: Available date for current fiscal year -->
+	<reportcell datatype = "text"  name="ittable3pdate" celltype="date" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="715.1" />	
+	<!-- Market Price Pakistan 5% for Available date for current fiscal year -->
+	<reportcell datatype = "number" name="ittable3pc" celltype="data" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="[715.1]" />
+	<!-- Market Price Pakistan 5% for Last fortnight -->
+	<reportcell datatype = "number"  name="ittable3plf" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_FORTNIGHT_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="ittable3pdate--([715.1])" />
+	<!-- Market Price Pakistan 5% change over Last fortnight -->
+	<reportcell datatype = "number"  name="ittable3p" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="( ([ittable3pc]-[ittable3plf]) / [ittable3plf] ) * 100" />
+
+        <!--India 5% Price on x date tk/kg Public Stock: Available date for current fiscal year -->
+	<reportcell datatype = "text"  name="ittable3idate" celltype="date" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="716.1" />	
+	<!-- Market Price India 5% for Available date for current fiscal year -->
+	<reportcell datatype = "number" name="ittable3ic" celltype="data" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="[716.1]" />
+	<!-- Market Price India 5% for Last fortnight -->
+	<reportcell datatype = "number"  name="ittable3ilf" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_FORTNIGHT_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="ittable3idate--([716.1])" />
+	<!-- Market Price India 5% change over Last fortnight -->
+	<reportcell datatype = "number"  name="ittable3i" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="( ([ittable3ic]-[ittable3ilf]) / [ittable3ilf] ) * 100" />
+
+       <!-- Kolkata wholesale Price on x date tk/kg Public Stock: Available date for current fiscal year -->
+	<reportcell datatype = "text"  name="ittable3kwdate" celltype="date" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="710.1" />	
+	<!-- Market Price Kolkata Wholesale for Available date for current fiscal year -->
+	<reportcell datatype = "number" name="ittable3kwc" celltype="data" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="[710.1]" />
+	<!-- Market Price Kolkata wholesale for Last fortnight -->
+	<reportcell datatype = "number"  name="ittable3kwlf" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_FORTNIGHT_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="ittable3kwdate--([710.1])" />
+	<!-- Market Price kolkata wholesale change over Last fortnight -->
+	<reportcell datatype = "number"  name="ittable3kw" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="( ([ittable3kwc]-[ittable3kwlf]) / [ittable3kwlf] ) * 100" />
+
+
+        <!-- Vietnam 5% Price on x date tk/kg Public Stock: Available date for current fiscal year -->
+	<reportcell datatype = "text"  name="ittable3vdate" celltype="date" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="714.1" />	
+	<!-- Market Price Thai5% for Available date for current fiscal year -->
+	<reportcell datatype = "number" name="ittable3vc" celltype="data" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="[714.1]" />
+	<!-- Market Price Vietnam 5% for Last fortnight -->
+	<reportcell datatype = "number"  name="ittable3vlf" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_FORTNIGHT_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="ittable3vdate--([714.1])" />
+	<!-- Market Price Vietnam 5% change over Last fortnight -->
+	<reportcell datatype = "number"  name="ittable3v" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="( ([ittable3vc]-[ittable3vlf]) / [ittable3vlf] ) * 100" />
+
+
+<!-- ***************************** Table 4 Percentage Change  ******************  -->	
+
+	<!-- Wheat Dhaka city wholesale Price on x date tk/kg Public Stock: Available date for current fiscal year -->
+	<reportcell datatype = "text"  name="ittable3wwdate" celltype="date" aggtype="ONE_PERIOD" 
+	 period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="243.2" />	
+	<!-- Market Price Wheat Dhaka city Wholesale for Available date for current fiscal year -->
+	<reportcell datatype = "number" name="ittable3wwc" celltype="data" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="( ( ([243.2]/100) + ([243.3]/100) )/2 )" />
+	<!-- Market Price Wheat Wholesale for Last fortnight -->
+	<reportcell datatype = "number"  name="ittable3wwlf" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_FORTNIGHT_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="ittable3wwdate--( ( ([243.2]/100) + ([243.3]/100) )/2 )" />
+	<!-- Market Price Wheat Wholesale change over Last fortnight -->
+	<reportcell datatype = "number"  name="ittable3ww" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="( ([ittable3wwc]-[ittable3wwlf]) / [ittable3wwlf] ) * 100" />
+
+        <!-- Russia wheat Price on x date tk/kg Public Stock: Available date for current fiscal year -->
+	<reportcell datatype = "text"  name="ittable3rdate" celltype="date" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="353.1" />	
+	<!-- Market Price Russia wheat for Available date for current fiscal year -->
+	<reportcell datatype = "number" name="ittable3rc" celltype="data" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="[353.1]" />
+	<!-- Market Price Russia wheat for Last fortnight -->
+	<reportcell datatype = "number"  name="ittable3rlf" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_FORTNIGHT_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="ittable3rdate--([353.1])" />
+	<!-- Market Price Russia wheat change over Last fortnight -->
+	<reportcell datatype = "number"  name="ittable3r" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="( ([ittable3rc]-[ittable3rlf]) / [ittable3rlf] ) * 100" />
+
+
+
+        <!-- Soft red winter wheat Price on x date tk/kg Public Stock: Available date for current fiscal year -->
+	<reportcell datatype = "text"  name="ittable3srdate" celltype="date" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="356.1" />	
+	<!-- Market Price Soft red winter wheat for Available date for current fiscal year -->
+	<reportcell datatype = "number" name="ittable3src" celltype="data" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="[356.1]" />
+	<!-- Market Price Soft red winter wheat for Last fortnight -->
+	<reportcell datatype = "number"  name="ittable3srlf" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_FORTNIGHT_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="ittable3srdate--([356.1])" />
+	<!-- Market Price Soft red winter wheat change over Last fortnight -->
+	<reportcell datatype = "number"  name="ittable3sr" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="( ([ittable3src]-[ittable3srlf]) / [ittable3srlf] ) * 100" />
+
+
+
+	<!-- Ukraine wheat Price on x date tk/kg Public Stock: Available date for current fiscal year -->
+	<reportcell datatype = "text"  name="ittable3udate" celltype="date" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="355.1" />	
+	<!-- Market Price Ukraine wheat for Available date for current fiscal year -->
+	<reportcell datatype = "number" name="ittable3uc" celltype="data" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="[355.1]" />
+	<!-- Market Price Ukraine wheat for Last fortnight -->
+	<reportcell datatype = "number"  name="ittable3ulf" celltype="formula_use_for_startdate" aggtype="ONE_PERIOD" period="LAST_FORTNIGHT_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="ittable3udate--([355.1])" />
+	<!-- Market Price Ukraine wheat change over Last fortnight -->
+	<reportcell datatype = "number"  name="ittable3u" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="( ([ittable3uc]-[ittable3ulf]) / [ittable3ulf] ) * 100" />
+
+
+<!-- ***************************** Table 7 Change  ******************  -->	
+
+	<!-- Rice Distributed through PFDS: Latest Fortnight available data -->
+	<reportcell datatype = "number" name="ittable7rfycf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([741.1]+[742.1]+[743.1]+[744.1]+[745.1]+[746.1]+[747.1]+[748.1]+[749.1]+[750.1])" />
+	<!-- Rice Distributed through PFDS: Previous Fortnight available data -->
+	<reportcell datatype = "number"  name="ittable7rfypf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_PREVIOUS_FORTNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([741.1]+[742.1]+[743.1]+[744.1]+[745.1]+[746.1]+[747.1]+[748.1]+[749.1]+[750.1] )" />
+	<!-- Rice Distributed through PFDS FY Target: Latest Fortnight -->
+	<reportcell datatype = "number"  name="ittable7rfy" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="([ittable7rfycf]-[ittable7rfypf])" />
+
+    	
+	<!-- Wheat Distributed through PFDS: Latest Fortnight available data -->
+	<reportcell datatype = "number" name="ittable7wfycf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([751.1]+[752.1]+[753.1]+[754.1]+[755.1]+[756.1]+[757.1]+[758.1]+[759.1]+[760.1])" />
+	<!-- Wheat Distributed through PFDS: Previous Fortnight available data -->
+	<reportcell datatype = "number"  name="ittable7wfypf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_PREVIOUS_FORTNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="( [751.1]+[752.1]+[753.1]+[754.1]+[755.1]+[756.1]+[757.1]+[758.1]+[759.1]+[760.1] )" />
+	<!-- Wheat Distributed through PFDS FY Target: Latest Fortnight -->
+	<reportcell datatype = "number"  name="ittable7wfy" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="([ittable7wfycf]-[ittable7wfypf])" />
+
+    <reportcell datatype = "number"  name="ittable7tfgfy" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="([ittable7rfy]+[ittable7wfy])" />
+
+<!-- Rice Distributed through PFDS EP: Latest Fortnight available data -->
+	<reportcell datatype = "number" name="ittable7repcf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[401.6])+(0.65*[401.7])+[367.6]+[367.7]+(0.65*[409.6])+(0.65*[409.7])+[375.6]+[375.7])" />
+	<!-- Rice Distributed through PFDS EP: Previous Fortnight available data -->
+	<reportcell datatype = "number"  name="ittable7reppf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_PREVIOUS_FORTNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[401.6])+(0.65*[401.7])+[367.6]+[367.7]+(0.65*[409.6])+(0.65*[409.7])+[375.6]+[375.7])" />
+
+<reportcell datatype = "number"  name="ittable7repcfD" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="DIST_AVAILABLE_IN_PREVIOUS_FORTNIGHT" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7repcf])/1000)" />
+
+<reportcell datatype = "number"  name="ittable7reppfD" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="DIST_AVAILABLE_IN_PREVIOUS_FORTNIGHT" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7reppf])/1000)" />
+
+	<reportcell datatype = "number"  name="ittable7rep" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7repcf]-[ittable7reppf])/1000)" />
+
+<reportcell datatype = "number" name="ittable7repcf_pfd" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_FORTHNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[401.6])+(0.65*[401.7])+[367.6]+[367.7]+(0.65*[409.6])+(0.65*[409.7])+[375.6]+[375.7])" />
+	
+	<reportcell datatype = "number"  name="ittable7reppf_pfd" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_OF_LAST_FORTHNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[401.6])+(0.65*[401.7])+[367.6]+[367.7]+(0.65*[409.6])+(0.65*[409.7])+[375.6]+[375.7])" />
+	
+	<reportcell datatype = "number"  name="ittable7rep_pfd" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="DIST_AVAILABLE_IN_PREVIOUS_FORTNIGHT" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7repcf_pfd]-[ittable7reppf_pfd])/1000)" />
+
+
+    <!-- Wheat Distributed through PFDS EP: Latest Fortnight available date for current fiscal year -->
+	
+	<!-- Wheat Distributed through PFDS EP: Latest Fortnight available data -->
+	<reportcell datatype = "number" name="ittable7wepcf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([383.6]+[383.7]+[391.6]+[391.7])" />
+	<!-- Wheat Distributed through PFDS EP: Previous Fortnight available data -->
+	<reportcell datatype = "number"  name="ittable7weppf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_PREVIOUS_FORTNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([383.6]+[383.7]+[391.6]+[391.7])" />
+	<!-- Wheat Distributed through PFDS EP: Latest Fortnight -->
+	<reportcell datatype = "number"  name="ittable7wep" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wepcf]-[ittable7weppf])/1000)" />
+
+<reportcell datatype = "number"  name="ittable7wepcfD" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wepcf])/1000)" />
+
+<reportcell datatype = "number"  name="ittable7weppfD" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7weppf])/1000)" />
+
+<reportcell datatype = "number" name="ittable7wepcf_pfd" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_FORTHNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([383.6]+[383.7]+[391.6]+[391.7])" />
+	
+	<reportcell datatype = "number"  name="ittable7weppf_pfd" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_OF_LAST_FORTHNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([383.6]+[383.7]+[391.6]+[391.7])" />
+	
+	<reportcell datatype = "number"  name="ittable7wep_pfd" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="DIST_AVAILABLE_IN_PREVIOUS_FORTNIGHT" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wepcf_pfd]-[ittable7weppf_pfd])/1000)" />
+
+    <reportcell datatype = "number"  name="ittable7tfgep" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="([ittable7rep]+[ittable7wep])" />
+
+
+        <!--START HERE-->
+
+	<!-- Rice Distributed through PFDS OP: Latest Fortnight available date for current fiscal year -->
+	
+	<!-- Rice Distributed through PFDS OP: Latest Fortnight available data -->
+	<reportcell datatype = "number" name="ittable7ropcf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[402.6])+(0.65*[402.7])+[368.6]+[368.7])" />
+	<!-- Rice Distributed through PFDS OP: Previous Fortnight available data -->
+	<reportcell datatype = "number"  name="ittable7roppf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_PREVIOUS_FORTNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[402.6])+(0.65*[402.7])+[368.6]+[368.7])" />
+	<!-- Rice Distributed through PFDS OP: Latest Fortnight -->
+	<reportcell datatype = "number"  name="ittable7rop" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7ropcf]-[ittable7roppf])/1000)" />
+
+<reportcell datatype = "number"  name="ittable7ropcfD" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7ropcf])/1000)" />
+
+<reportcell datatype = "number"  name="ittable7roppfD" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7roppf])/1000)" />
+
+
+<reportcell datatype = "number" name="ittable7ropcf_pfd" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_FORTHNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[402.6])+(0.65*[402.7])+[368.6]+[368.7])" />
+	
+	<reportcell datatype = "number"  name="ittable7roppf_pfd" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_OF_LAST_FORTHNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[402.6])+(0.65*[402.7])+[368.6]+[368.7]))" />
+	
+	<reportcell datatype = "number"  name="ittable7rop_pfd" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="DIST_AVAILABLE_IN_PREVIOUS_FORTNIGHT" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7ropcf_pfd]-[ittable7roppf_pfd])/1000)" />
+
+    
+	
+	
+	<!-- Wheat Distributed through PFDS OP: Latest Fortnight available date for current fiscal year -->
+		
+	<!-- Wheat Distributed through PFDS OP: Latest Fortnight available data -->
+	<reportcell datatype = "number" name="ittable7wopcf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([384.6]+[384.7])" />
+	<!-- Wheat Distributed through PFDS OP: Previous Fortnight available data -->
+	<reportcell datatype = "number"  name="ittable7woppf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_PREVIOUS_FORTNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([384.6]+[384.7])" />
+	<!-- Wheat Distributed through PFDS OP: Latest Fortnight -->
+	<reportcell datatype = "number"  name="ittable7wop" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wopcf]-[ittable7woppf])/1000)" />
+
+<reportcell datatype = "number"  name="ittable7wopcfD" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wopcf])/1000)" />
+
+<reportcell datatype = "number"  name="ittable7woppfD" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7woppf])/1000)" />
+
+
+    <reportcell datatype = "number"  name="ittable7tfgop" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7rop]+[ittable7wop])/1000)" />
+
+	<!-- Wheat Distributed through PFDS OP: Latest Fortnight available data -->
+	<reportcell datatype = "number" name="ittable7wopcf_pfd" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_FORTHNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([384.6]+[384.7])" />
+	<!-- Wheat Distributed through PFDS OP: Previous Fortnight available data -->
+	<reportcell datatype = "number"  name="ittable7woppf_pfd" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_OF_LAST_FORTHNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([384.6]+[384.7])" />
+	<!-- Wheat Distributed through PFDS OP: Latest Fortnight -->
+	<reportcell datatype = "number"  name="ittable7wop_pfd" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="DIST_AVAILABLE_IN_PREVIOUS_FORTNIGHT" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wopcf_pfd]-[ittable7woppf_pfd])/1000)" />
+	
+	
+	
+	<!-- Rice Distributed through PFDS LEI: Latest Fortnight available date for current fiscal year -->
+	
+	<!-- Rice Distributed through PFDS LEI: Latest Fortnight available data -->
+	<reportcell datatype = "number" name="ittable7rleicf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[403.6])+(0.65*[403.7])+[369.6]+[369.7])" />
+	<!-- Rice Distributed through PFDS LEI: Previous Fortnight available data -->
+	<reportcell datatype = "number"  name="ittable7rleipf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_PREVIOUS_FORTNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[403.6])+(0.65*[403.7])+[369.6]+[369.7])" />
+	<!-- Rice Distributed through PFDS LEI: Latest Fortnight -->
+	<reportcell datatype = "number"  name="ittable7rlei" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7rleicf]-[ittable7rleipf])/1000)" />
+
+
+<reportcell datatype = "number"  name="ittable7rleicfD" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7rleicf])/1000)" />
+
+<reportcell datatype = "number"  name="ittable7rleipfD" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7rleipf])/1000)" />
+
+
+
+<!-- Rice Distributed through PFDS LEI: Latest Fortnight available data -->
+	<reportcell datatype = "number" name="ittable7rleicf_pfd" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_FORTHNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[403.6])+(0.65*[403.7])+[369.6]+[369.7])" />
+	<!-- Rice Distributed through PFDS LEI: Previous Fortnight available data -->
+	<reportcell datatype = "number"  name="ittable7rleipf_pfd" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_OF_LAST_FORTHNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[403.6])+(0.65*[403.7])+[369.6]+[369.7])" />
+	<!-- Rice Distributed through PFDS LEI: Latest Fortnight -->
+	<reportcell datatype = "number"  name="ittable7rlei_pfd" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="DIST_AVAILABLE_IN_PREVIOUS_FORTNIGHT" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7rleicf_pfd]-[ittable7rleipf_pfd])/1000)" />
+
+    
+	
+	
+	<!-- Wheat Distributed through PFDS LEI: Latest Fortnight available date for current fiscal year -->
+	
+	<!-- Wheat Distributed through PFDS LEI: Latest Fortnight available data -->
+	<reportcell datatype = "number" name="ittable7wleicf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([385.6]+[385.7])" />
+	<!-- Wheat Distributed through PFDS LEI: Previous Fortnight available data -->
+	<reportcell datatype = "number"  name="ittable7wleipf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_PREVIOUS_FORTNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([385.6]+[385.7])" />
+	<!-- Wheat Distributed through PFDS LEI: Latest Fortnight -->
+	<reportcell datatype = "number"  name="ittable7wlei" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wleicf]-[ittable7wleipf])/1000)" />
+
+<reportcell datatype = "number"  name="ittable7wleicfD" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wleicf])/1000)" />
+
+<reportcell datatype = "number"  name="ittable7wleipfD" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wleipf])/1000)" />
+
+    <reportcell datatype = "number"  name="ittable7tfglei" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="([ittable7rlei]+[ittable7wlei])" />
+    
+<reportcell datatype = "number" name="ittable7wleicf_pfd" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_FORTHNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([385.6]+[385.7])" />
+	<!-- Wheat Distributed through PFDS LEI: Previous Fortnight available data -->
+	<reportcell datatype = "number"  name="ittable7wleipf_pfd" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_OF_LAST_FORTHNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([385.6]+[385.7])" />
+	<!-- Wheat Distributed through PFDS LEI: Latest Fortnight -->
+	<reportcell datatype = "number"  name="ittable7wlei_pfd" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="DIST_AVAILABLE_IN_PREVIOUS_FORTNIGHT" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wleicf_pfd]-[ittable7wleipf_pfd])/1000)" />
+	
+	
+	<!-- Rice Distributed through PFDS OMS: Latest Fortnight available date for current fiscal year -->
+	
+<!-- Rice Distributed through PFDS OMS: Latest Fortnight available data -->
+	<reportcell datatype = "number" name="ittable7romscf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[404.6])+(0.65*[404.7])+(0.65*[405.6])+(0.65*[405.7])+(0.65*[406.6])+(0.65*[406.7])+(0.65*[407.6])+(0.65*[407.7])+[370.6]+[370.7]+[371.6]+[371.7]+[372.6]+[372.7]+[373.6]+[373.7])" />
+	<!-- Rice Distributed through PFDS OMS: Previous Fortnight available data -->
+	<reportcell datatype = "number"  name="ittable7romspf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_PREVIOUS_FORTNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[404.6])+(0.65*[404.7])+(0.65*[405.6])+(0.65*[405.7])+(0.65*[406.6])+(0.65*[406.7])+(0.65*[407.6])+(0.65*[407.7])+[370.6]+[370.7]+[371.6]+[371.7]+[372.6]+[372.7]+[373.6]+[373.7])" />
+	<!-- Rice Distributed through PFDS OMS: Latest Fortnight -->
+	<reportcell datatype = "number"  name="ittable7roms" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7romscf]-[ittable7romspf])/1000)" />
+
+<reportcell datatype = "number"  name="ittable7romscfD" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7romscf])/1000)" />
+
+<reportcell datatype = "number"  name="ittable7romspfD" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7romspf])/1000)" />
+
+<reportcell datatype = "number" name="ittable7romscf_pfd" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_FORTHNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[404.6])+(0.65*[404.7])+(0.65*[405.6])+(0.65*[405.7])+(0.65*[406.6])+(0.65*[406.7])+(0.65*[407.6])+(0.65*[407.7])+[370.6]+[370.7]+[371.6]+[371.7]+[372.6]+[372.7]+[373.6]+[373.7])" />
+	
+	<reportcell datatype = "number"  name="ittable7romspf_pfd" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_OF_LAST_FORTHNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="--((0.65*[404.6])+(0.65*[404.7])+(0.65*[405.6])+(0.65*[405.7])+(0.65*[406.6])+(0.65*[406.7])+(0.65*[407.6])+(0.65*[407.7])+[370.6]+[370.7]+[371.6]+[371.7]+[372.6]+[372.7]+[373.6]+[373.7])" />
+	
+	<reportcell datatype = "number"  name="ittable7roms_pfd" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="DIST_AVAILABLE_IN_PREVIOUS_FORTNIGHT" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7romscf_pfd]-[ittable7romspf_pfd])/1000)" />
+
+	
+	<!-- Wheat Distributed through PFDS OMS: Latest Fortnight available date for current fiscal year -->
+	
+	<!-- Wheat Distributed through PFDS OMS: Latest Fortnight available data -->
+	<reportcell datatype = "number" name="ittable7womscf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([386.6]+[386.7]+[387.6]+[387.7]+[388.6]+[388.7]+[389.6]+[389.7])" />
+	<!-- Wheat Distributed through PFDS OMS: Previous Fortnight available data -->
+	<reportcell datatype = "number"  name="ittable7womspf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_PREVIOUS_FORTNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([386.6]+[386.7]+[387.6]+[387.7]+[388.6]+[388.7]+[389.6]+[389.7])" />
+	<!-- Wheat Distributed through PFDS OMS: Latest Fortnight -->
+	<reportcell datatype = "number"  name="ittable7woms" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7womscf]-[ittable7womspf])/1000)" />
+
+<reportcell datatype = "number"  name="ittable7womscfD" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7womscf])/1000)" />
+
+<reportcell datatype = "number"  name="ittable7womspfD" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7womspf])/1000)" />
+
+
+<reportcell datatype = "number" name="ittable7womscf_pfd" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_FORTHNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([386.6]+[386.7]+[387.6]+[387.7]+[388.6]+[388.7]+[389.6]+[389.7])" />
+	
+	<reportcell datatype = "number"  name="ittable7womspf_pfd" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_OF_LAST_FORTHNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="--([386.6]+[386.7]+[387.6]+[387.7]+[388.6]+[388.7]+[389.6]+[389.7])" />
+	
+	<reportcell datatype = "number"  name="ittable7woms_pfd" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="DIST_AVAILABLE_IN_PREVIOUS_FORTNIGHT" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7womscf_pfd]-[ittable7womspf_pfd])/1000)" />
+
+
+    <reportcell datatype = "number"  name="ittable7tfgoms" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="([ittable7roms]+[ittable7woms])" />
+
+
+
+	
+	<!-- Rice Distributed through PFDS FP: Latest Fortnight available date for current fiscal year -->
+	
+	<!-- Rice Distributed through PFDS FP: Latest Fortnight available data -->
+	<reportcell datatype = "number" name="ittable7rfpcf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[405.6])+(0.65*[405.7])+[371.6]+[371.7])" />
+	<!-- Rice Distributed through PFDS FP: Previous Fortnight available data -->
+	<reportcell datatype = "number"  name="ittable7rfppf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_PREVIOUS_FORTNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[405.6])+(0.65*[405.7])+[371.6]+[371.7])" />
+	<!-- Rice Distributed through PFDS FP Target: Latest Fortnight -->
+	<reportcell datatype = "number"  name="ittable7rfp" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="([ittable7rfpcf]-[ittable7rfppf])" />
+
+    
+	
+	
+	<!-- Wheat Distributed through PFDS FP: Latest Fortnight available date for current fiscal year -->
+	
+	<!-- Wheat Distributed through PFDS FP: Latest Fortnight available data -->
+	<reportcell datatype = "number" name="ittable7wfpcf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([387.6]+[387.7])" />
+	<!-- Wheat Distributed through PFDS FP: Previous Fortnight available data -->
+	<reportcell datatype = "number"  name="ittable7wfppf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_PREVIOUS_FORTNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([387.6]+[387.7])" />
+	<!-- Wheat Distributed through PFDS FP: Latest Fortnight -->
+	<reportcell datatype = "number"  name="ittable7wfp" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="([ittable7wfpcf]-[ittable7wfppf])" />
+
+    <reportcell datatype = "number"  name="ittable7tfgfp" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="([ittable7rfp]+[ittable7wfp])" />
+
+	
+	
+	
+	
+	<!-- Rice Distributed through PFDS 4CE: Latest Fortnight available date for current fiscal year -->
+	
+	<!-- Rice Distributed through PFDS 4CE: Latest Fortnight available data -->
+	<reportcell datatype = "number" name="ittable7r4cecf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[407.6])+(0.65*[407.7])+[373.6]+[373.7])" />
+	<!-- Rice Distributed through PFDS 4CE: Previous Fortnight available data -->
+	<reportcell datatype = "number"  name="ittable7r4cepf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_PREVIOUS_FORTNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[407.6])+(0.65*[407.7])+[373.6]+[373.7])" />
+	<!-- Rice Distributed through PFDS 4CE: Latest Fortnight -->
+	<reportcell datatype = "number"  name="ittable7r4ce" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="([ittable7r4cecf]-[ittable7r4cepf])" />
+
+  
+  
+  
+    <!-- Wheat Distributed through PFDS 4CE: Latest Fortnight available date for current fiscal year -->
+	
+	<!-- Wheat Distributed through PFDS 4CE: Latest Fortnight available data -->
+	<reportcell datatype = "number" name="ittable7w4cecf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([389.6]+[389.7])" />
+	<!-- Wheat Distributed through PFDS 4CE: Previous Fortnight available data -->
+	<reportcell datatype = "number"  name="ittable7w4cepf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_PREVIOUS_FORTNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([389.6]+[389.7])" />
+	<!-- Wheat Distributed through PFDS 4CE: Latest Fortnight -->
+	<reportcell datatype = "number"  name="ittable7w4ce" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="([ittable7w4cecf]-[ittable7w4cepf])" />
+
+    <reportcell datatype = "number"  name="ittable7tfg4ce" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="([ittable7r4ce]+[ittable7w4ce])" />
+	
+	
+	
+	
+	<!-- Rice Distributed through PFDS GT: Latest Fortnight available date for current fiscal year -->
+	
+	<!-- Rice Distributed through PFDS GT: Latest Fortnight available data -->
+	<reportcell datatype = "number" name="ittable7rgtcf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[408.6])+(0.65*[408.7])+[374.6]+[374.7])" />
+	<!-- Rice Distributed through PFDS GT: Previous Fortnight available data -->
+	<reportcell datatype = "number"  name="ittable7rgtpf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_PREVIOUS_FORTNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[408.6])+(0.65*[408.7])+[374.6]+[374.7])" />
+	<!-- Rice Distributed through PFDS GT: Latest Fortnight -->
+	<reportcell datatype = "number"  name="ittable7rgt" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="([ittable7rgtcf]-[ittable7rgtpf])" />
+
+		
+	
+	
+	
+    <!-- Wheat Distributed through PFDS GT: Latest Fortnight available date for current fiscal year -->
+	
+	<!-- Wheat Distributed through PFDS GT: Latest Fortnight available data -->
+	<reportcell datatype = "number" name="ittable7wgtcf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([390.6]+[390.7])" />
+	<!-- Wheat Distributed through PFDS GT: Previous Fortnight available data -->
+	<reportcell datatype = "number"  name="ittable7wgtpf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_PREVIOUS_FORTNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([390.6]+[390.7])" />
+	<!-- Wheat Distributed through PFDS GT: Latest Fortnight -->
+	<reportcell datatype = "number"  name="ittable7wgt" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="([ittable7wgtcf]-[ittable7wgtpf])" />
+
+    <reportcell datatype = "number"  name="ittable7tfggt" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="([ittable7rgt]+[ittable7wgt])" />
+
+	
+	
+	
+	<!-- Rice Distributed through PFDS MOTHR: Latest Fortnight available date for current fiscal year -->
+	
+	<!-- Rice Distributed through PFDS MOTHR: Latest Fortnight available data -->
+	<reportcell datatype = "number" name="ittable7rmothrcf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[410.6])+(0.65*[410.7])+[376.6]+[376.7])" />
+	<!-- Rice Distributed through PFDS MOTHR: Previous Fortnight available data -->
+	<reportcell datatype = "number"  name="ittable7rmothrpf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_PREVIOUS_FORTNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[410.6])+(0.65*[410.7])+[376.6]+[376.7])" />
+	<!-- Rice Distributed through PFDS MOTHR: Latest Fortnight -->
+	<reportcell datatype = "number"  name="ittable7rmothr" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="([ittable7rmothrcf]-[ittable7rmothrpf])" />
+
+	
+	
+    <!-- Wheat Distributed through PFDS MOTHR: Latest Fortnight available date for current fiscal year -->
+	
+	<!-- Wheat Distributed through PFDS MOTHR: Latest Fortnight available data -->
+	<reportcell datatype = "number" name="ittable7wmothrcf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([392.6]+[392.7])" />
+	<!-- Wheat Distributed through PFDS MOTHR: Previous Fortnight available data -->
+	<reportcell datatype = "number"  name="ittable7wmothrpf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_PREVIOUS_FORTNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([392.6]+[392.7])" />
+	<!-- Wheat Distributed through PFDS MOTHR: Latest Fortnight -->
+	<reportcell datatype = "number"  name="ittable7wmothr" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="([ittable7wmothrcf]-[ittable7wmothrpf])" />
+
+    <reportcell datatype = "number"  name="ittable7tfgmothr" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="([ittable7rmothr]+[ittable7wmothr])" />
+
+	
+	
+	
+    <!-- Rice Distributed through PFDS FFW: Latest Fortnight available date for current fiscal year -->
+	
+	<!-- Rice Distributed through PFDS FFW: Latest Fortnight available data -->
+	<reportcell datatype = "number" name="ittable7rffwcf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[411.6])+(0.65*[411.7])+[377.6]+[377.7])" />
+	<!-- Rice Distributed through PFDS FFW: Previous Fortnight available data -->
+	<reportcell datatype = "number"  name="ittable7rffwpf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_PREVIOUS_FORTNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[411.6])+(0.65*[411.7])+[377.6]+[377.7])" />
+	<!-- Rice Distributed through PFDS FFW: Latest Fortnight -->
+	<reportcell datatype = "number"  name="ittable7rffw" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7rffwcf]-[ittable7rffwpf])/1000)" />
+
+<reportcell datatype = "number"  name="ittable7rffwcfD" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7rffwcf])/1000)" />
+
+<reportcell datatype = "number"  name="ittable7rffwpfD" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7rffwpf])/1000)" />
+
+
+<!-- Rice Distributed through PFDS FFW: Latest Fortnight available data -->
+	<reportcell datatype = "number" name="ittable7rffwcf_pfd" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_FORTHNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[411.6])+(0.65*[411.7])+[377.6]+[377.7])" />
+	<!-- Rice Distributed through PFDS FFW: Previous Fortnight available data -->
+	<reportcell datatype = "number"  name="ittable7rffwpf_pfd" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_OF_LAST_FORTHNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[411.6])+(0.65*[411.7])+[377.6]+[377.7])" />
+	<!-- Rice Distributed through PFDS FFW: Latest Fortnight -->
+	<reportcell datatype = "number"  name="ittable7rffw_pfd" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="DIST_AVAILABLE_IN_PREVIOUS_FORTNIGHT" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7rffwcf_pfd]-[ittable7rffwpf_pfd])/1000)" />
+	
+	
+    <!-- Wheat Distributed through PFDS FFW: Latest Fortnight available date for current fiscal year -->
+	
+	<!-- Wheat Distributed through PFDS FFW: Latest Fortnight available data -->
+	<reportcell datatype = "number" name="ittable7wffwcf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([393.6]+[393.7])" />
+	<!-- Wheat Distributed through PFDS FFW: Previous Fortnight available data -->
+	<reportcell datatype = "number"  name="ittable7wffwpf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_PREVIOUS_FORTNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([393.6]+[393.7])" />
+	<!-- Wheat Distributed through PFDS FFW: Latest Fortnight -->
+	<reportcell datatype = "number"  name="ittable7wffw" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wffwcf]-[ittable7wffwpf])/1000)" />
+
+<reportcell datatype = "number"  name="ittable7wffwcfD" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wffwcf])/1000)" />
+
+<reportcell datatype = "number"  name="ittable7wffwpfD" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wffwpf])/1000)" />
+
+
+
+    <reportcell datatype = "number"  name="ittable7tfgffw" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="([ittable7rffw]+[ittable7wffw])" />
+
+
+<reportcell datatype = "number" name="ittable7wffwcf_pfd" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_FORTHNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([393.6]+[393.7])" />
+	<!-- Wheat Distributed through PFDS FFW: Previous Fortnight available data -->
+	<reportcell datatype = "number"  name="ittable7wffwpf_pfd" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_OF_LAST_FORTHNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([393.6]+[393.7])" />
+	<!-- Wheat Distributed through PFDS FFW: Latest Fortnight -->
+	<reportcell datatype = "number"  name="ittable7wffw_pfd" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="DIST_AVAILABLE_IN_PREVIOUS_FORTNIGHT" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wffwcf_pfd]-[ittable7wffwpf_pfd])/1000)" />
+
+  
+
+    <!-- Rice Distributed through PFDS TR: Latest Fortnight available date for current fiscal year -->
+	
+	<!-- Rice Distributed through PFDS TR: Latest Fortnight available data -->
+	<reportcell datatype = "number" name="ittable7rtrcf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[412.6])+(0.65*[412.7])+[378.6]+[378.7])" />
+	<!-- Rice Distributed through PFDS TR: Previous Fortnight available data -->
+	<reportcell datatype = "number"  name="ittable7rtrpf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_PREVIOUS_FORTNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[412.6])+(0.65*[412.7])+[378.6]+[378.7])" />
+	<!-- Rice Distributed through PFDS TR: Latest Fortnight -->
+	<reportcell datatype = "number"  name="ittable7rtr" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7rtrcf]-[ittable7rtrpf])/1000)" />
+
+<reportcell datatype = "number"  name="ittable7rtrcfD" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7rtrcf])/1000)" />
+
+<reportcell datatype = "number"  name="ittable7rtrpfD" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7rtrpf])/1000)" />
+
+
+	<reportcell datatype = "number" name="ittable7rtrcf_pfd" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_FORTHNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[412.6])+(0.65*[412.7])+[378.6]+[378.7])" />
+	<!-- Rice Distributed through PFDS TR: Previous Fortnight available data -->
+	<reportcell datatype = "number"  name="ittable7rtrpf_pfd" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_OF_LAST_FORTHNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[412.6])+(0.65*[412.7])+[378.6]+[378.7])" />
+	<!-- Rice Distributed through PFDS TR: Latest Fortnight -->
+	<reportcell datatype = "number"  name="ittable7rtr_pfd" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="DIST_AVAILABLE_IN_PREVIOUS_FORTNIGHT" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7rtrcf_pfd]-[ittable7rtrpf_pfd])/1000)" />
+
+	
+	
+	<!-- Wheat Distributed through PFDS TR: Latest Fortnight available date for current fiscal year -->
+	
+	<!-- Wheat Distributed through PFDS TR: Latest Fortnight available data -->
+	<reportcell datatype = "number" name="ittable7wtrcf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([394.6]+[394.7])" />
+	<!-- Wheat Distributed through PFDS TR: Previous Fortnight available data -->
+	<reportcell datatype = "number"  name="ittable7wtrpf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_PREVIOUS_FORTNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([394.6]+[394.7])" />
+	<!-- Wheat Distributed through PFDS TR: Latest Fortnight -->
+	<reportcell datatype = "number"  name="ittable7wtr" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wtrcf]-[ittable7wtrpf])/1000)" />
+
+<reportcell datatype = "number"  name="ittable7wtrcfD" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wtrcf])/1000)" />
+
+<reportcell datatype = "number"  name="ittable7wtrpfD" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wtrpf])/1000)" />
+
+    <reportcell datatype = "number"  name="ittable7tfgtr" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="([ittable7rtr]+[ittable7wtr])" />
+
+
+	<reportcell datatype = "number" name="ittable7wtrcf_pfd" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_FORTHNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([394.6]+[394.7])" />
+	
+	<!-- Wheat Distributed through PFDS TR: Previous Fortnight available data -->
+	<reportcell datatype = "number"  name="ittable7wtrpf_pfd" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_OF_LAST_FORTHNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([394.6]+[394.7])" />
+	<!-- Wheat Distributed through PFDS TR: Latest Fortnight -->
+	<reportcell datatype = "number"  name="ittable7wtr_pfd" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="DIST_AVAILABLE_IN_PREVIOUS_FORTNIGHT" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wtrcf_pfd]-[ittable7wtrpf_pfd])/1000)" />
+	
+	
+	
+	
+	<!-- Rice Distributed through PFDS VGF: Latest Fortnight available date for current fiscal year -->
+	
+	<!-- Rice Distributed through PFDS VGF: Latest Fortnight available data -->
+	<reportcell datatype = "number" name="ittable7rvgfcf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[414.6])+(0.65*[414.7])+[380.6]+[380.7])" />
+	<!-- Rice Distributed through PFDS VGF: Previous Fortnight available data -->
+	<reportcell datatype = "number"  name="ittable7rvgfpf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_PREVIOUS_FORTNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[414.6])+(0.65*[414.7])+[380.6]+[380.7])" />
+	<!-- Rice Distributed through PFDS VGF: Latest Fortnight -->
+	<reportcell datatype = "number"  name="ittable7rvgf" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7rvgfcf]-[ittable7rvgfpf])/1000)" />
+
+<reportcell datatype = "number"  name="ittable7rvgfcfD" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7rvgfcf])/1000)" />
+
+<reportcell datatype = "number"  name="ittable7rvgfpfD" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7rvgfpf])/1000)" />
+
+
+
+<reportcell datatype = "number" name="ittable7rvgfcf_pfd" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_FORTHNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[414.6])+(0.65*[414.7])+[380.6]+[380.7])" />
+	<!-- Rice Distributed through PFDS VGF: Previous Fortnight available data -->
+	<reportcell datatype = "number"  name="ittable7rvgfpf_pfd" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_OF_LAST_FORTHNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[414.6])+(0.65*[414.7])+[380.6]+[380.7])" />
+	<!-- Rice Distributed through PFDS VGF: Latest Fortnight -->
+	<reportcell datatype = "number"  name="ittable7rvgf_pfd" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="DIST_AVAILABLE_IN_PREVIOUS_FORTNIGHT" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7rvgfcf_pfd]-[ittable7rvgfpf_pfd])/1000)" />
+
+
+
+
+    <!-- Wheat Distributed through PFDS VGF: Latest Fortnight available date for current fiscal year -->
+	
+	<!-- Wheat Distributed through PFDS VGF: Latest Fortnight available data -->
+	<reportcell datatype = "number" name="ittable7wvgfcf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([396.6]+[396.7])" />
+	<!-- Wheat Distributed through PFDS VGF: Previous Fortnight available data -->
+	<reportcell datatype = "number"  name="ittable7wvgfpf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_PREVIOUS_FORTNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([396.6]+[396.7])" />
+	<!-- Wheat Distributed through PFDS VGF: Latest Fortnight -->
+	<reportcell datatype = "number"  name="ittable7wvgf" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wvgfcf]-[ittable7wvgfpf])/1000)" />
+
+<reportcell datatype = "number"  name="ittable7wvgfcfD" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wvgfcf])/1000)" />
+
+<reportcell datatype = "number"  name="ittable7wvgfpfD" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wvgfpf])/1000)" />
+
+
+
+    <reportcell datatype = "number"  name="ittable7tfgvgf" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="([ittable7rvgf]+[ittable7wvgf])" />
+
+
+	<reportcell datatype = "number" name="ittable7wvgfcf_pfd" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_FORTHNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([396.6]+[396.7])" />
+	<!-- Wheat Distributed through PFDS VGF: Previous Fortnight available data -->
+	<reportcell datatype = "number"  name="ittable7wvgfpf_pfd" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_OF_LAST_FORTHNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([396.6]+[396.7])" />
+	<!-- Wheat Distributed through PFDS VGF: Latest Fortnight -->
+	<reportcell datatype = "number"  name="ittable7wvgf_pfd" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="DIST_AVAILABLE_IN_PREVIOUS_FORTNIGHT" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wvgfcf_pfd]-[ittable7wvgfpf_pfd])/1000)" />
+
+
+
+	
+	<!-- Rice Distributed through PFDS VGD: Latest Fortnight available date for current fiscal year -->
+	
+	<!-- Rice Distributed through PFDS VGD: Latest Fortnight available data -->
+	<reportcell datatype = "number" name="ittable7rvgdcf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[413.6])+(0.65*[413.7])+[379.6]+[379.7])" />
+	<!-- Rice Distributed through PFDS VGD: Previous Fortnight available data -->
+	<reportcell datatype = "number"  name="ittable7rvgdpf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_PREVIOUS_FORTNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[413.6])+(0.65*[413.7])+[379.6]+[379.7])" />
+	<!-- Rice Distributed through PFDS VGD: Latest Fortnight -->
+	<reportcell datatype = "number"  name="ittable7rvgd" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7rvgdcf]-[ittable7rvgdpf])/1000)" />
+
+<reportcell datatype = "number"  name="ittable7rvgdcfD" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7rvgdcf])/1000)" />
+
+<reportcell datatype = "number"  name="ittable7rvgdpfD" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7rvgdpf])/1000)" />
+
+
+<reportcell datatype = "number" name="ittable7rvgdcf_pfd" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_FORTHNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[413.6])+(0.65*[413.7])+[379.6]+[379.7])" />
+	<!-- Rice Distributed through PFDS VGD: Previous Fortnight available data -->
+	<reportcell datatype = "number"  name="ittable7rvgdpf_pfd" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_OF_LAST_FORTHNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[413.6])+(0.65*[413.7])+[379.6]+[379.7])" />
+	<!-- Rice Distributed through PFDS VGD: Latest Fortnight -->
+	<reportcell datatype = "number"  name="ittable7rvgd_pfd" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="DIST_AVAILABLE_IN_PREVIOUS_FORTNIGHT" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7rvgdcf_pfd]-[ittable7rvgdpf_pfd])/1000)" />
+
+	
+	
+    <!-- Wheat Distributed through PFDS VGD: Latest Fortnight available date for current fiscal year -->
+	
+	<!-- Wheat Distributed through PFDS VGD: Latest Fortnight available data -->
+	<reportcell datatype = "number" name="ittable7wvgdcf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([395.6]+[395.7])" />
+	<!-- Wheat Distributed through PFDS VGD: Previous Fortnight available data -->
+	<reportcell datatype = "number"  name="ittable7wvgdpf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_PREVIOUS_FORTNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([395.6]+[395.7])" />
+	<!-- Wheat Distributed through PFDS VGD: Latest Fortnight -->
+	<reportcell datatype = "number"  name="ittable7wvgd" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wvgdcf]-[ittable7wvgdpf])/1000)" />
+
+<reportcell datatype = "number"  name="ittable7wvgdcfD" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wvgdcf])/1000)" />
+
+<reportcell datatype = "number"  name="ittable7wvgdpfD" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wvgdpf])/1000)" />
+
+
+    <reportcell datatype = "number"  name="ittable7tfgvgd" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="([ittable7rvgd]+[ittable7wvgd])" />
+	
+
+<reportcell datatype = "number" name="ittable7wvgdcf_pfd" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_FORTHNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([395.6]+[395.7])" />
+	<!-- Wheat Distributed through PFDS VGD: Previous Fortnight available data -->
+	<reportcell datatype = "number"  name="ittable7wvgdpf_pfd" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_OF_LAST_FORTHNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([395.6]+[395.7])" />
+	<!-- Wheat Distributed through PFDS VGD: Latest Fortnight -->
+	<reportcell datatype = "number"  name="ittable7wvgd_pfd" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="DIST_AVAILABLE_IN_PREVIOUS_FORTNIGHT" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wvgdcf_pfd]-[ittable7wvgdpf_pfd])/1000)" />
+	
+	
+	
+	<!-- Wheat Distributed through PFDS SF: Latest Fortnight available date for current fiscal year -->
+	
+	<!-- Wheat Distributed through PFDS SF: Latest Fortnight available data -->
+	<reportcell datatype = "number" name="ittable7wsfcf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([400.6]+[400.7])" />
+	<!-- Wheat Distributed through PFDS SF: Previous Fortnight available data -->
+	<reportcell datatype = "number"  name="ittable7wsfpf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_PREVIOUS_FORTNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([400.6]+[400.7])" />
+	<!-- Wheat Distributed through PFDS SF: Latest Fortnight -->
+	<reportcell datatype = "number"  name="ittable7wsf" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wsfcf]-[ittable7wsfpf])/1000)" />
+
+<reportcell datatype = "number"  name="ittable7wsfcfD" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wsfcf])/1000)" />
+
+<reportcell datatype = "number"  name="ittable7wsfpfD" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wsfpf])/1000)" />
+
+
+    <reportcell datatype = "number"  name="ittable7tfgsf" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="([ittable7wsf])" />
+	
+<reportcell datatype = "number" name="ittable7wsfcf_pfd" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_FORTHNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([400.6]+[400.7])" />
+	
+	<reportcell datatype = "number"  name="ittable7wsfpf_pfd" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_OF_LAST_FORTHNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([400.6]+[400.7])" />
+	
+	<reportcell datatype = "number"  name="ittable7wsf_pfd" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="DIST_AVAILABLE_IN_PREVIOUS_FORTNIGHT" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wsfcf_pfd]-[ittable7wsfpf_pfd])/1000)" />		
+	
+	
+	<!-- Rice Distributed through PFDS GR: Latest Fortnight available date for current fiscal year -->
+	
+	<!-- Rice Distributed through PFDS GR: Latest Fortnight available data -->
+	<reportcell datatype = "number" name="ittable7rgrcf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[415.6])+(0.65*[415.7])+[381.6]+[381.7])" />
+	<!-- Rice Distributed through PFDS GR: Previous Fortnight available data -->
+	<reportcell datatype = "number"  name="ittable7rgrpf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_PREVIOUS_FORTNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[415.6])+(0.65*[415.7])+[381.6]+[381.7])" />
+	<!-- Rice Distributed through PFDS GR: Latest Fortnight -->
+	<reportcell datatype = "number"  name="ittable7rgr" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7rgrcf]-[ittable7rgrpf])/1000)" />
+
+<reportcell datatype = "number"  name="ittable7rgrcfD" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7rgrcf])/1000)" />
+
+<reportcell datatype = "number"  name="ittable7rgrpfD" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7rgrpf])/1000)" />
+
+
+<reportcell datatype = "number" name="ittable7rgrcf_pfd" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_FORTHNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[415.6])+(0.65*[415.7])+[381.6]+[381.7])" />
+	<!-- Rice Distributed through PFDS GR: Previous Fortnight available data -->
+	<reportcell datatype = "number"  name="ittable7rgrpf_pfd" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_OF_LAST_FORTHNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[415.6])+(0.65*[415.7])+[381.6]+[381.7])" />
+	<!-- Rice Distributed through PFDS GR: Latest Fortnight -->
+	<reportcell datatype = "number"  name="ittable7rgr_pfd" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="DIST_AVAILABLE_IN_PREVIOUS_FORTNIGHT" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7rgrcf_pfd]-[ittable7rgrpf_pfd])/1000)" />
+
+	
+		
+	
+    <!-- Wheat Distributed through PFDS GR: Latest Fortnight available date for current fiscal year -->
+	
+	<!-- Wheat Distributed through PFDS GR: Latest Fortnight available data -->
+	<reportcell datatype = "number" name="ittable7wgrcf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([397.6]+[397.7])" />
+	<!-- Wheat Distributed through PFDS GR: Previous Fortnight available data -->
+	<reportcell datatype = "number"  name="ittable7wgrpf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_PREVIOUS_FORTNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([397.6]+[397.7])" />
+	<!-- Wheat Distributed through PFDS GR: Latest Fortnight -->
+	<reportcell datatype = "number"  name="ittable7wgr" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wgrcf]-[ittable7wgrpf])/1000)" />
+
+    <reportcell datatype = "number"  name="ittable7tfggr" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="([ittable7rgr]+[ittable7wgr])" />
+
+
+<reportcell datatype = "number" name="ittable7wgrcf_pfd" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_FORTHNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([397.6]+[397.7])" />
+	<!-- Wheat Distributed through PFDS GR: Previous Fortnight available data -->
+	<reportcell datatype = "number"  name="ittable7wgrpf_pfd" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_OF_LAST_FORTHNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([397.6]+[397.7])" />
+	<!-- Wheat Distributed through PFDS GR: Latest Fortnight -->
+	<reportcell datatype = "number"  name="ittable7wgr_pfd" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="DIST_AVAILABLE_IN_PREVIOUS_FORTNIGHT" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wgrcf_pfd]-[ittable7wgrpf_pfd])/1000)" />
+	
+
+<!-- Others -->
+	
+	<!-- Rice Distributed through PFDS NOTHR: Latest Fortnight available data -->
+	<reportcell datatype = "number" name="ittable7rnothrcf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[416.6])+(0.65*[416.7])+(0.65*[410.6])+(0.65*[410.7])+(0.65*[2350.6])+(0.65*[2350.7])+(0.65*[2351.6])+(0.65*[2351.7])+[382.6]+[382.7]+[376.6]+[376.7]+[2352.6]+[2352.7]+[2353.6]+[2353.7])" />
+	<!-- Rice Distributed through PFDS NOTHR: Previous Fortnight available data -->
+	<reportcell datatype = "number"  name="ittable7rnothrpf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_PREVIOUS_FORTNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[416.6])+(0.65*[416.7])+(0.65*[410.6])+(0.65*[410.7])+(0.65*[2350.6])+(0.65*[2350.7])+(0.65*[2351.6])+(0.65*[2351.7])+[382.6]+[382.7]+[376.6]+[376.7]+[2352.6]+[2352.7]+[2353.6]+[2353.7])" />
+	<!-- Rice Distributed through PFDS NOTHR: Latest Fortnight -->
+	<reportcell datatype = "number"  name="ittable7rnothr" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7rnothrcf]-[ittable7rnothrpf])/1000)" />
+
+<reportcell datatype = "number"  name="ittable7rnothrcfD" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7rnothrcf])/1000)" />
+
+<reportcell datatype = "number"  name="ittable7rnothrpfD" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7rnothrpf])/1000)" />
+
+	
+<reportcell datatype = "number" name="ittable7rnothrcf_pfd" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_FORTHNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[416.6])+(0.65*[416.7])+(0.65*[410.6])+(0.65*[410.7])+(0.65*[2350.6])+(0.65*[2350.7])+(0.65*[2351.6])+(0.65*[2351.7])+[382.6]+[382.7]+[376.6]+[376.7]+[2352.6]+[2352.7]+[2353.6]+[2353.7])" />
+	
+	<reportcell datatype = "number"  name="ittable7rnothrpf_pfd" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_OF_LAST_FORTHNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="((0.65*[416.6])+(0.65*[416.7])+(0.65*[410.6])+(0.65*[410.7])+(0.65*[2350.6])+(0.65*[2350.7])+(0.65*[2351.6])+(0.65*[2351.7])+[382.6]+[382.7]+[376.6]+[376.7]+[2352.6]+[2352.7]+[2353.6]+[2353.7])" />
+	
+	<reportcell datatype = "number"  name="ittable7rnothr_pfd" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="DIST_AVAILABLE_IN_PREVIOUS_FORTNIGHT" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7rnothrcf_pfd]-[ittable7rnothrpf_pfd])/1000)" />
+
+		
+    <!-- Wheat Distributed through PFDS NOTHR: Latest Fortnight available date for current fiscal year -->
+	
+	<!-- Wheat Distributed through PFDS NOTHR: Latest Fortnight available data -->
+	<reportcell datatype = "number" name="ittable7wnothrcf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([398.6]+[398.7]+[392.6]+[392.7])" />
+	<!-- Wheat Distributed through PFDS NOTHR: Previous Fortnight available data -->
+	<reportcell datatype = "number"  name="ittable7wnothrpf" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_PREVIOUS_FORTNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([398.6]+[398.7]+[392.6]+[392.7])" />
+	<!-- Wheat Distributed through PFDS NOTHR: Latest Fortnight -->
+	<reportcell datatype = "number"  name="ittable7wnothr" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wnothrcf]-[ittable7wnothrpf])/1000)" />
+
+<reportcell datatype = "number"  name="ittable7wnothrcfD" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wnothrcf])/1000)" />
+
+<reportcell datatype = "number"  name="ittable7wnothrpfD" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wnothrpf])/1000)" />
+
+
+<reportcell datatype = "number" name="ittable7wnothrcf_pfd" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_FORTHNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([398.6]+[398.7]+[392.6]+[392.7])" />
+	
+	<reportcell datatype = "number"  name="ittable7wnothrpf_pfd" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_OF_LAST_FORTHNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([398.6]+[398.7]+[392.6]+[392.7])" />
+	
+	<reportcell datatype = "number"  name="ittable7wnothr_pfd" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="DIST_AVAILABLE_IN_PREVIOUS_FORTNIGHT" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wnothrcf_pfd]-[ittable7wnothrpf_pfd])/1000)" />
+	
+    <reportcell datatype = "number"  name="ittable7tfgnothr" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="([ittable7rnothr]+[ittable7wnothr])" />
+	
+<!-- Rice Target/ budget --> 
+
+<reportcell datatype = "number" name="ittable7reptarget" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([744.1])" />
+
+<reportcell datatype = "number" name="ittable7romstarget" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([741.1])" />
+
+<reportcell datatype = "number" name="ittable7roptarget" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([742.1])" />
+
+<reportcell datatype = "number" name="ittable7rleitarget" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([743.1])" />
+
+<reportcell datatype = "number" name="ittable7rffwtarget" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([745.1])" />
+
+<reportcell datatype = "number" name="ittable7rvgdtarget" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([746.1])" />
+
+<reportcell datatype = "number" name="ittable7rtrtarget" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([747.1])" />
+
+<reportcell datatype = "number" name="ittable7rvgftarget" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([748.1])" />
+
+<reportcell datatype = "number" name="ittable7rgrtarget" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="TARGET_DATA_FOR_RICE" orgunit="2" dataelement="([749.1])" />
+
+<reportcell datatype = "number" name="ittable7rothertarget" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([750.1])" />
+
+
+<!-- Wheat Target/ budget -->
+
+<reportcell datatype = "number" name="ittable7weptarget" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([754.1])" />
+
+<reportcell datatype = "number" name="ittable7woptarget" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([752.1])" />
+
+<reportcell datatype = "number" name="ittable7wleitarget" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([753.1])" />
+
+<reportcell datatype = "number" name="ittable7wffwtarget" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([755.1])" />
+
+<reportcell datatype = "number" name="ittable7wvgdtarget" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([756.1])" />
+
+<reportcell datatype = "number" name="ittable7wtrtarget" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="TCUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([757.1])" />
+
+<reportcell datatype = "number" name="ittable7wvgftarget" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([758.1])" />
+
+<reportcell datatype = "number" name="ittable7womstarget" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([751.1])" />
+
+<reportcell datatype = "number" name="ittable7wsftarget" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([759.1])" />
+
+<reportcell datatype = "number" name="ittable7wothertarget" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([760.1])" />
+
+<!-- Target/Budget in percentage for the year for Rice-->
+
+<reportcell datatype = "number"  name="ittable7rep_ptg" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7repcfD]/[ittable7reptarget])*100)" />
+
+<reportcell datatype = "number"  name="ittable7rop_ptg" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7ropcfD]/[ittable7roptarget])*100)" />
+
+<reportcell datatype = "number"  name="ittable7rlei_ptg" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7rleicfD]/[ittable7rleitarget])*100)" />
+
+<reportcell datatype = "number"  name="ittable7roms_ptg" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7romscfD]/[ittable7romstarget])*100)" />
+
+<reportcell datatype = "number"  name="ittable7rffw_ptg" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7rffwcfD]/[ittable7rffwtarget])*100)" />
+
+<reportcell datatype = "number"  name="ittable7rtr_ptg" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7rtrcfD]/[ittable7rtrtarget])*100)" />
+
+<reportcell datatype = "number"  name="ittable7rvgf_ptg" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7rvgfcfD]/[ittable7rvgftarget])*100)" />
+
+<reportcell datatype = "number"  name="ittable7rvgd_ptg" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7rvgdcfD]/[ittable7rvgdtarget])*100)" />
+
+<reportcell datatype = "number"  name="ittable7rgr_ptg" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7rgrcfD]/[ittable7rgrtarget])*100)" />
+
+<reportcell datatype = "number"  name="ittable7rnothr_ptg" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7rnothrcfD]/[ittable7rothertarget])*100)" />
+
+<!-- Target/Budget for the year for Wheat-->
+
+
+<reportcell datatype = "number"  name="ittable7wep_ptg" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wepcfD]/[ittable7weptarget])*100)" />
+
+<reportcell datatype = "number"  name="ittable7wop_ptg" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wopcfD]/[ittable7woptarget])*100)" />
+
+<reportcell datatype = "number"  name="ittable7wlei_ptg" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wleicfD]/[ittable7wleitarget])*100)" />
+
+<reportcell datatype = "number"  name="ittable7woms_ptg" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7womscfD]/[ittable7womstarget])*100)" />
+
+<reportcell datatype = "number"  name="ittable7wtr_ptg" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wtrcfD]/[ittable7wtrtarget])*100)" />
+
+<reportcell datatype = "number"  name="ittable7wffw_ptg" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wffwcfD]/[ittable7wffwtarget])*100)" />
+
+<reportcell datatype = "number"  name="ittable7wvgf_ptg" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wvgfcfD]/[ittable7wvgftarget])*100)" />
+
+<reportcell datatype = "number"  name="ittable7wvgd_ptg" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wvgdcfD]/[ittable7wvgdtarget])*100)" />
+
+<reportcell datatype = "number"  name="ittable7wgr_ptg" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wgrcfD]/[ittable7wgrtarget])*100)" />
+
+<reportcell datatype = "number"  name="ittable7wsf_ptg" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wsfcfD]/[ittable7wsftarget])*100)" />
+
+<reportcell datatype = "number"  name="ittable7wnothr_ptg" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7wnothrcfD]/[ittable7wothertarget])*100)" />
+
+
+<!-- last Data update date -->
+<reportcell datatype = "text"  name="figure7date" celltype="date" aggtype="ONE_PERIOD" period="LAST_DATA_UPDATED_DATE" orgunit="NA" dataelement="307,371,373,372,368,369,367,377,379,380,381,376,382,404,405,407,402,403,401,411,413,412,414,415,410,416" />
+
+
+<reportcell datatype = "text"  name="figure8date" celltype="date" aggtype="ONE_PERIOD" period="LAST_DATA_UPDATED_DATE" orgunit="NA" dataelement="255,256,418,452,453" />
+
+<!--
+ <reportcell datatype = "text"  name="figure8bdate" celltype="date" aggtype="ONE_PERIOD" period="LAST_DATA_UPDATED_DATE" orgunit="NA" dataelement="257,258,417,450,451" />
+
+<reportcell datatype = "text"  name="figure8wdate" celltype="date" aggtype="ONE_PERIOD" period="LAST_DATA_UPDATED_DATE" orgunit="NA" dataelement="267,268,420,456,457" />
+-->
+
+<!-- Total for all Rice and wheat -->
+
+    <reportcell datatype = "number"  name="ittable7total_1r" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="([ittable7rep]+[ittable7rop]+[ittable7rlei]+[ittable7roms]+[ittable7rffw]+[ittable7rtr]+[ittable7rvgf]+[ittable7rvgd]+[ittable7rnothr]+[ittable7rgr])" />
+
+<reportcell datatype = "number"  name="ittable7total_2r" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="([ittable7rep_pfd]+[ittable7rop_pfd]+[ittable7rlei_pfd]+[ittable7roms_pfd]+[ittable7rffw_pfd]+[ittable7rtr_pfd]+[ittable7rvgf_pfd]+[ittable7rvgd_pfd]+[ittable7rnothr_pfd]+[ittable7rgr_pfd])" />
+
+    <reportcell datatype = "number"  name="ittable7total_3r" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="([ittable7repcfD]+[ittable7ropcfD]+[ittable7rleicfD]+[ittable7romscfD]+[ittable7rffwcfD]+[ittable7rtrcfD]+[ittable7rvgfcfD]+[ittable7rvgdcfD]+[ittable7rnothrcfD]+[ittable7rgrcfD])" />
+
+    <reportcell datatype = "number"  name="ittable7total_4r" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="([ittable7reppfD]+[ittable7roppfD]+[ittable7rleipfD]+[ittable7romspfD]+[ittable7rffwpfD]+[ittable7rtrpfD]+[ittable7rvgfpfD]+[ittable7rvgdpfD]+[ittable7rnothrpfD]+[ittable7rgrpfD])" />
+
+ 
+    <reportcell datatype = "number"  name="ittable7total_1w" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="([ittable7wep]+[ittable7wop]+[ittable7wlei]+[ittable7woms]+[ittable7wffw]+[ittable7wtr]+[ittable7wvgf]+[ittablewrvgd]+[ittable7wnothr]+[ittable7wgr]+[ittable7wsf])" />
+
+
+<reportcell datatype = "number"  name="ittable7total_2w" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="([ittable7wep_pfd]+[ittable7wop_pfd]+[ittable7wlei_pfd]+[ittable7roms_pfd]+[ittable7wffw_pfd]+[ittable7wtr_pfd]+[ittable7wvgf_pfd]+[ittable7wvgd_pfd]+[ittable7wnothr_pfd]+[ittable7wgr_pfd]+[ittable7wsf_pfd])" />
+
+
+ <reportcell datatype = "number"  name="ittable7total_3w" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="([ittable7wepcfD]+[ittable7wopcfD]+[ittable7wleicfD]+[ittable7womscfD]+[ittable7wffwcfD]+[ittable7wtrcfD]+[ittable7wvgfcfD]+[ittable7wvgdcfD]+[ittable7wnothrcfD]+[ittable7wgrcfD]+[ittable7wsfcfD])" />
+
+    <reportcell datatype = "number"  name="ittable7total_4w" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="([ittable7weppfD]+[ittable7woppfD]+[ittable7wleipfD]+[ittable7womspfD]+[ittable7wffwpfD]+[ittable7wtrpfD]+[ittable7wvgfpfD]+[ittable7wvgdpfD]+[ittable7wnothrpfD]+[ittable7wsfpfD])" />
+
+    <reportcell datatype = "number"  name="ittable7total_5r" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="([ittable7reptarget]+[ittable7roptarget]+[ittable7rleitarget]+[ittable7romstarget]+[ittable7rffwtarget]+[ittable7rtrtarget]+[ittable7rvgftarget]+[ittable7rvgdtarget]+[ittable7rothertarget]+[ittable7rgrtarget])" />
+
+<reportcell datatype = "number"  name="ittable7total_5w" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="([ittable7weptarget]+[ittable7woptarget]+[ittable7wleitarget]+[ittable7womstarget]+[ittable7wffwtarget]+[ittable7wtrtarget]+[ittable7wvgftarget]+[ittable7wvgdtarget]+[ttable7wothertarget]+[ittable7wsftarget])" />
+
+<reportcell datatype = "number"  name="ittable7total_6r" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7total_3r]/[ittable7total_5r])*100)" />
+
+<reportcell datatype = "number"  name="ittable7total_6w" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="(([ittable7total_3w]/[ittable7total_5w])*100)" />
+
+
+<!-- Total end -->
+
+
+    <!-- Rice PFDS Sum of all above -->
+	<reportcell datatype = "number"  name="ittable7rst" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="([ittable7rep]+[ittable7rop]+[ittable7rlei]+[ittable7roms]+[ittable7rfp]+[ittable7r4ce]+[ittable7rgt]+[ittable7rmothr]+[ittable7rffw]+[ittable7rtr]+[ittable7rvgf]+[ittable7rvgd]+[ ittable7rgr]+[ittable7rnothr])" />
+ 	
+	
+	<!-- Wheat PFDS Sum of all above -->
+	<reportcell datatype = "number"  name="ittable7wst" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="([ittable7wep]+[ittable7wop]+[ittable7wlei]+[ittable7woms]+[ittable7wfp]+[ittable7w4ce]+[ittable7wgt]+[ittable7wmothr]+[ittable7wffw]+[ittable7wtr]+[ittable7wvgf]+[ittable7wvgd]+[ ittable7wsf]+[ittable7wgr]+[ittable7wnothr])" />
+ 	
+	
+    <!-- Total of PFDS cumulative of this year's latest fortnight-->
+	
+	<reportcell datatype = "number"  name="ittable7stcumltv" celltype="formula_number" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="11,12,29,14,15,16,22,27,31,17,19,20,24,26,34,21,23,25,13,28,30,32,33,18" dataelement="([ittable7rst]+[ittable7wst])" />
+	
+	
+
+	<!-- ***************************** Table 5&6 Change  ******************  -->	
+	<!-- Amount of Govt Rice Import -->
+	
+	<reportcell datatype = "number" name="ittable56rgalfcfy" celltype="data" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([262.1]+[261.1]+0.65*([425.1]+[426.1]))" />
+
+    <reportcell datatype = "number" name="ittable56rgapfcfy" celltype="data" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_PREVIOUS_FORTNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([262.1]+[261.1]+0.65*([425.1]+[426.1]))" />
+
+    <reportcell datatype = "number" name="ittable56rgalfpfy" celltype="data" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_FORTNIGHT_FOR_PREVIOUS_FISCAL_YEAR" orgunit="2" dataelement="([262.1]+[261.1]+0.65*([425.1]+[426.1]))" />
+
+	<reportcell datatype = "number" name="ittable56rgadiff" celltype="formula_number" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([ittable56rgalfcfy]-[ittable56rgapfcfy])" />
+    
+	<reportcell datatype = "number" name="ittable56rgadiffpy" celltype="formula_number" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([ittable56rgalfcfy]-[ittable56rgalfpfy])" />
+	
+	
+	
+	<!-- Amount of Private Rice Import -->
+	<reportcell datatype = "number" name="ittable56rpalfcfy" celltype="data" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([263.1]+0.65*[427.1])" />
+
+    <reportcell datatype = "number" name="ittable56rpapfcfy" celltype="data" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_PREVIOUS_FORTNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([263.1]+0.65*[427.1])" />
+
+    <reportcell datatype = "number" name="ittable56rpalfpfy" celltype="data" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_FORTNIGHT_FOR_PREVIOUS_FISCAL_YEAR" orgunit="2" dataelement="([263.1]+0.65*[427.1])" />
+
+	<reportcell datatype = "number" name="ittable56rpadiff" celltype="formula_number" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([ittable56rpalfcfy]-[ittable56rpapfcfy])" />
+	
+	<reportcell datatype = "number" name="ittable56rpadiffpy" celltype="formula_number" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([ittable56rpalfcfy]-[ittable56rpalfpfy])" />
+	
+	
+	
+	<!-- Total Amount of Rice Import -->
+	<reportcell datatype = "number" name="ittable56tralfcfy" celltype="formula_number" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([ittable56rgalfcfy]+[ittable56rpalfcfy])" />
+
+    <reportcell datatype = "number" name="ittable56trapfcfy" celltype="formula_number" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_PREVIOUS_FORTNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([ittable56rgapfcfy]+[ittable56rpapfcfy])" />
+
+    <reportcell datatype = "number" name="ittable56tralfpfy" celltype="formula_number" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_FORTNIGHT_FOR_PREVIOUS_FISCAL_YEAR" orgunit="2" dataelement="([ittable56rgalfpfy]+[ittable56rpalfpfy])" />
+
+	<reportcell datatype = "number" name="ittable56tradiff" celltype="formula_number" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([ittable56tralfcfy]-[ittable56trapfcfy])" />
+	
+	<reportcell datatype = "number" name="ittable56tradiffpy" celltype="formula_number" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([ittable56tralfcfy]-[ittable56tralfpfy])" />
+
+
+      <!-- Percentage of total of Govt Rice Import -->
+	<reportcell datatype = "number" name="ittable56ptrglfcfy" celltype="formula_number" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="(([ittable56rgalfcfy]/[ittable56tralfcfy])*100)" />
+
+    <reportcell datatype = "number" name="ittable56ptrgpfcfy" celltype="formula_number" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_PREVIOUS_FORTNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="(([ittable56rgapfcfy]/[ittable56tralfcfy])*100)" />
+
+    <reportcell datatype = "number" name="ittable56ptrglfpfy" celltype="formula_number" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_FORTNIGHT_FOR_PREVIOUS_FISCAL_YEAR" orgunit="2" dataelement="(([ittable56rgalfpfy]/[ittable56tralfpfy])*100)" />
+
+	<reportcell datatype = "number" name="ittable56ptrgdiff" celltype="formula_number" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([ittable56ptrglfcfy]-[ittable56ptrgpfcfy])" />
+	
+	<reportcell datatype = "number" name="ittable56ptrgdiffpy" celltype="formula_number" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([ittable56ptrglfcfy]-[ittable56ptrglfpfy])" />
+
+      <!-- Percentage of total of Private Rice Import -->
+	<reportcell datatype = "number" name="ittable56ptrplfcfy" celltype="formula_number" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="(([ittable56rpalfcfy]/[ittable56tralfcfy])*100)" />
+
+    <reportcell datatype = "number" name="ittable56ptrppfcfy" celltype="formula_number" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_PREVIOUS_FORTNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="(([ittable56rpapfcfy]/[ittable56tralfcfy])*100)" />
+
+    <reportcell datatype = "number" name="ittable56ptrplfpfy" celltype="formula_number" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_FORTNIGHT_FOR_PREVIOUS_FISCAL_YEAR" orgunit="2" dataelement="(([ittable56rpalfpfy]/[ittable56tralfpfy])*100)" />
+
+	<reportcell datatype = "number" name="ittable56ptrpdiff" celltype="formula_number" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([ittable56ptrplfcfy]-[ittable56ptrppfcfy])" />
+	
+	<reportcell datatype = "number" name="ittable56ptrpdiffpy" celltype="formula_number" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([ittable56ptrplfcfy]-[ittable56ptrplfpfy])" />
+	
+	<!-- Amount of Govt Wheat Import --> 
+	
+    <reportcell datatype = "number" name="ittable56wgalfcfy" celltype="data" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([269.1]+[270.1])" />
+
+    <reportcell datatype = "number" name="ittable56wgapfcfy" celltype="data" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_PREVIOUS_FORTNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([269.1]+[270.1])" />
+
+    <reportcell datatype = "number" name="ittable56wgalfpfy" celltype="data" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_FORTNIGHT_FOR_PREVIOUS_FISCAL_YEAR" orgunit="2" dataelement="([269.1]+[270.1])" />
+	
+    <reportcell datatype = "number" name="ittable56wgadiff" celltype="formula_number" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([ittable56wgalfcfy]-[ittable56wgapfcfy])" />
+	
+	<reportcell datatype = "number" name="ittable56wgadiffpy" celltype="formula_number" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([ittable56wgalfcfy]-[ittable56wgalfpfy])" />	
+	
+	
+	<!-- Amount of Private Wheat Import -->	
+	<reportcell datatype = "number" name="ittable56wpalfcfy" celltype="data" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([271.1])" />
+
+    <reportcell datatype = "number" name="ittable56wpapfcfy" celltype="data" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_PREVIOUS_FORTNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([271.1])" />
+
+    <reportcell datatype = "number" name="ittable56wpalfpfy" celltype="data" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_FORTNIGHT_FOR_PREVIOUS_FISCAL_YEAR" orgunit="2" dataelement="([271.1])" />
+    
+	<reportcell datatype = "number" name="ittable56wpadiff" celltype="formula_number" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([ittable56wpalfcfy]-[ittable56wpapfcfy])" />
+	
+	<reportcell datatype = "number" name="ittable56wpadiffpy" celltype="formula_number" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([ittable56wpalfcfy]-[ittable56wpalfpfy])" />
+
+	
+	<!-- Total Amount of Wheat Import -->
+	<reportcell datatype = "number" name="ittable56twalfcfy" celltype="formula_number" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([ittable56wgalfcfy]+[ittable56wpalfcfy])" />
+
+    <reportcell datatype = "number" name="ittable56twapfcfy" celltype="formula_number" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_PREVIOUS_FORTNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([ittable56wgapfcfy]+[ittable56wpapfcfy])" />
+
+    <reportcell datatype = "number" name="ittable56twalfpfy" celltype="formula_number" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_FORTNIGHT_FOR_PREVIOUS_FISCAL_YEAR" orgunit="2" dataelement="([ittable56wgalfpfy]+[ittable56wpalfpfy])" />
+	
+	<reportcell datatype = "number" name="ittable56twadiff" celltype="formula_number" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([ittable56twalfcfy]-[ittable56twapfcfy])" />
+	
+	<reportcell datatype = "number" name="ittable56twadiffpy" celltype="formula_number" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([ittable56twalfcfy]-[ittable56twalfpfy])" />
+
+       <!-- Percentage of total of Govt Wheat Import -->
+	<reportcell datatype = "number" name="ittable56ptwglfcfy" celltype="formula_number" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="(([ittable56wgalfcfy]/[ittable56twalfcfy])*100)" />
+
+    <reportcell datatype = "number" name="ittable56ptwgpfcfy" celltype="formula_number" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_PREVIOUS_FORTNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="(([ittable56wgapfcfy]/[ittable56twalfcfy])*100)" />
+
+    <reportcell datatype = "number" name="ittable56ptwglfpfy" celltype="formula_number" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_FORTNIGHT_FOR_PREVIOUS_FISCAL_YEAR" orgunit="2" dataelement="(([ittable56wgalfpfy]/[ittable56twalfpfy])*100)" />
+
+	<reportcell datatype = "number" name="ittable56ptwgdiff" celltype="formula_number" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([ittable56ptwglfcfy]-[ittable56ptwgpfcfy])" />
+	
+	<reportcell datatype = "number" name="ittable56ptwgdiffpy" celltype="formula_number" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([ittable56ptwglfcfy]-[ittable56ptwglfpfy])" />
+	
+
+	
+	<!-- Percentage of total of Private Wheat Import -->
+	<reportcell datatype = "number" name="ittable56ptwplfcfy" celltype="formula_number" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="(([ittable56wpalfcfy]/[ittable56twalfcfy])*100)" />
+
+    <reportcell datatype = "number" name="ittable56ptwppfcfy" celltype="formula_number" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_PREVIOUS_FORTNIGHT_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="(([ittable56wpapfcfy]/[ittable56twalfcfy])*100)" />
+
+    <reportcell datatype = "number" name="ittable56ptwplfpfy" celltype="formula_number" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_FORTNIGHT_FOR_PREVIOUS_FISCAL_YEAR" orgunit="2" dataelement="(([ittable56wpalfpfy]/[ittable56twalfpfy])*100)" />
+
+	<reportcell datatype = "number" name="ittable56ptwpdiff" celltype="formula_number" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([ittable56ptwplfcfy]-[ittable56ptwppfcfy])" />
+	
+	<reportcell datatype = "number" name="ittable56ptwpdiffpy" celltype="formula_number" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([ittable56ptwplfcfy]-[ittable56ptwplfpfy])" />
+
+
+
+</report>

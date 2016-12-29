@@ -1,0 +1,8 @@
+<a href="index.action"><h2>$i18n.getString( "Usage Summary" )</h2></a>
+
+<ul>
+
+	<li><a href="updateSummaryForm.action">$i18n.getString( "data_update_summary" )&nbsp;</a></li>
+    <li><a href="getLoginReport.action">$i18n.getString( "last_login_report" )&nbsp;</a></li>
+			
+</ul>

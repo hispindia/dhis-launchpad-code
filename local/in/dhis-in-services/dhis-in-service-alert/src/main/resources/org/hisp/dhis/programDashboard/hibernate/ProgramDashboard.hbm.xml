@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+<class name="org.hisp.dhis.programDashboard.ProgramDashboard" table="programdashboard">
+
+	<cache usage="read-write" />
+
+    <id name="id" column="programdashboardid">
+      <generator class="native" />
+    </id>
+    
+    <many-to-one name="organisationUnit" class="org.hisp.dhis.organisationunit.OrganisationUnit" column="organisationunitid"
+      foreign-key="fk_patient_organisationunitid" />
+     
+    <many-to-one name="program" class="org.hisp.dhis.program.Program" column="programid"
+      foreign-key="fk_programdashboard_programid" />
+      
+     
+    <property name="name" column="name" not-null="true" length="50" />  
+    <property name="type" column="type" not-null="true" length="50" />
+    <property name="chartType" column="charttype" not-null="true" length="50" />
+    <property name="timetype" column="timetype" not-null="true" length="50" />
+    <property name="time" column="time" />
+    <property name="pos" column="position" not-null="false" />
+    
+    <set name="indicators" cascade="all" table="programdashboard_indicators">
+      <key column="programdashboardid" foreign-key="fk_programdashboard_indicators_programdashboardid" />
+      <many-to-many class="org.hisp.dhis.indicator.Indicator" column="indicatorid" foreign-key="fk_programdashboard_indicatorid" />
+    </set> 
+
+  </class> 
+</hibernate-mapping>

@@ -1,0 +1,781 @@
+<?xml version="1.0"?>
+
+<!-- Daily Food Situation Report -->
+
+<report>
+
+
+<!-- ************** Table 1: Public Stock Situation ******************  -->	
+		
+	<!-- Public Stock: Available date for current fiscal year -->
+	<reportcell datatype = "text" name="table1date1" celltype="date_multipledes" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="261,262,425,426,269,270,263,427,271,253,421,265,264,272,428,257,255,858,856,267" />
+	<!-- Public Stock: Available date for last fiscal year -->
+	<reportcell datatype = "text" name="table1date2" celltype="date_multipledes" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_PREVIOUS_FISCAL_YEAR" orgunit="2" dataelement="261,262,425,426,269,270,263,427,271,253,421,265,264,272,428,257,255,858,856,267" />
+	
+	<!-- Public Stock: RICE for Available date for current fiscal year -->
+	<!--<reportcell datatype = "number"   name="table1rice1" celltype="data" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([253.1]/1000)+(([421.1]*0.65)/1000)" />-->
+	<reportcell datatype = "number"   name="table1rice1" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="table1date1--table1date1--([253.1]/1000)+(([421.1]*0.65)/1000)" />
+	
+	<!-- Public Stock: WHEAT for Available date for current fiscal year -->
+	<!--<reportcell datatype = "number"   name="table1wheat1" celltype="data" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([265.1]/1000)" />-->
+	<reportcell datatype = "number"   name="table1wheat1" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="table1date1--table1date1--([265.1]/1000)" />
+	
+	<!-- Public Stock: TOTAL (RICE + WHEAT) for Available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table1total1" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="[table1rice1]+[table1wheat1]" />
+	<!--<reportcell datatype = "number"   name="table1total1" celltype="data" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="(([253.1]/1000)+(([421.1]*0.65)/1000))+([265.1]/1000)" />-->
+	
+	<!-- Public Stock: RICE for Available date for last fiscal year -->
+	<reportcell datatype = "number"   name="table1rice2" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_PREVIOUS_FISCAL_YEAR" orgunit="2" dataelement="table1date2--table1date2--([253.1]/1000)+(([421.1]*0.65)/1000)" />
+	<!-- Public Stock: WHEAT for Available date for last fiscal year -->
+	<reportcell datatype = "number"   name="table1wheat2" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_PREVIOUS_FISCAL_YEAR" orgunit="2" dataelement="table1date2--table1date2--([265.1]/1000)" />
+	<!-- Public Stock: TOTAL (RICE + WHEAT) for Available date for last fiscal year -->
+	<reportcell datatype = "number"   name="table1total2" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="[table1rice2]+[table1wheat2]" />
+	<!--<reportcell datatype = "number"   name="table1total2" celltype="data" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_PREVIOUS_FISCAL_YEAR" orgunit="2" dataelement="(([253.1]/1000)+(([421.1]*0.65)/1000))+([265.1]/1000)" />-->
+	
+	<!-- An additional Food grain: Stock in Floating Vessel Available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table1foodgrain" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="table1date1--table1date1--(([264.1]+[272.1]+[428.1])/100000)"  />
+	
+
+
+
+
+<!-- ************** Table 2: Market Price Situation of Dhaka ******************  -->
+
+	<!-- Market Price: Available date for current fiscal year -->
+	<reportcell datatype = "text"   name="table2date1" celltype="date_multipledes" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="199,200,203,204,197,198,245,246,243,244,137,138,245,246,81,82,247,248,506,507,133,134,131,132,129,130,217,218,151,152,183,184,215,216,177,178" />
+	<reportcell datatype = "text"   name="table2date2" celltype="date_multipledes" aggtype="ONE_PERIOD" period="LAST_WEEK_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="199,200,203,204,197,198,245,246,243,244,137,138,245,246,81,82,247,248,506,507,133,134,131,132,129,130,217,218,151,152,183,184,215,216,177,178" />
+
+	<!-- Market Price: Rice (fine) Wholesale Low Price for Available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table2rice1" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="table2date1--table2date1--([199.3]/100)" />
+	<!-- Market Price: Rice (fine) Wholesale High Price for Available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table2rice2" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="table2date1--table2date1--([199.2]/100)" />	
+	<!-- Market Price: Rice (fine) Retail Low Price for Available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table2rice3" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="table2date1--table2date1--([200.3])" />
+	<!-- Market Price: Rice (fine) Retail High Price for Available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table2rice4" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="table2date1--table2date1--([200.2])" />
+
+	<!-- Market Price: Rice (fine) Wholesale Low Price for Last Week Available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table2ricelw1" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="table2date2--table2date2--([199.3]/100)" />
+	<!-- Market Price: Rice (fine) Wholesale High Price for Last Week Available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table2ricelw2" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="table2date2--table2date2--([199.2]/100)" />
+	<!-- Market Price: Rice (fine) Retail Low Price for Last Week Available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table2ricelw3" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="table2date2--table2date2--([200.3])" />
+	<!-- Market Price: Rice (fine) Retail High Price for Last Week Available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table2ricelw4" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="table2date2--table2date2--([200.2])" />
+
+	
+	<!-- Market Price: Rice (medium) Wholesale Low Price for Available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table2rice5" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="table2date1--table2date1--[203.3]/100" />
+	<!-- Market Price: Rice (medium) Wholesale High Price for Available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table2rice6" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="table2date1--table2date1--[203.2]/100" />
+	<!-- Market Price: Rice (medium) Retail Low Price for Available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table2rice7" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="table2date1--table2date1--[204.3]" />
+	<!-- Market Price: Rice (medium) Retail High Price for Available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table2rice8" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="table2date1--table2date1--[204.2]" />
+
+	<!-- Market Price: Rice (medium) Wholesale Low Price for Last Week Available date for current fiscal year -->
+	<reportcell datatype = "number"  name="table2ricelw5" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="table2date2--table2date2--[203.3]/100" />
+	<!-- Market Price: Rice (medium) Wholesale High Price for Last Week Available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table2ricelw6" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="table2date2--table2date2--[203.2]/100" />
+	<!-- Market Price: Rice (medium) Retail Low Price for Last Week Available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table2ricelw7" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="table2date2--table2date2--[204.3]" />
+	<!-- Market Price: Rice (medium) Retail High Price for Last Week Available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table2ricelw8" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="table2date2--table2date2--[204.2]" />
+
+	<!-- Market Price: Rice (Coarse) Wholesale Low Price for Available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table2rice9" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="table2date1--table2date1--[197.3]/100" />
+	<!-- Market Price: Rice (Coarse) Wholesale High Price for Available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table2rice10" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="table2date1--table2date1--[197.2]/100" />
+	<!-- Market Price: Rice (Coarse) Retail Low Price for Available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table2rice11" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="table2date1--table2date1--[198.3]" />
+	<!-- Market Price: Rice (Coarse) Retail High Price for Available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table2rice12" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="table2date1--table2date1--[198.2]" />
+
+	<!-- Market Price: Rice (Coarse) Wholesale Low Price for Last Week Available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table2ricelw9" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="table2date2--table2date2--[197.3]/100" />
+	<!-- Market Price: Rice (Coarse) Wholesale High Price for Last Week Available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table2ricelw10" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="table2date2--table2date2--[197.2]/100" />
+	<!-- Market Price: Rice (Coarse) Retail Low Price for Last Week Available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table2ricelw11" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="table2date2--table2date2--[198.3]" />
+	<!-- Market Price: Rice (Coarse) Retail High Price for Last Week Available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table2ricelw12" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="table2date2--table2date2--[198.2]" />
+	
+	<!-- Market Price: Atta (losse) Wholesale Low Price for Available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table2atta1" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="table2date1--table2date1--[245.3]/100" />
+	<!-- Market Price: Atta (losse) Wholesale High Price for Available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table2atta2" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="table2date1--table2date1--[245.2]/100" />
+	<!-- Market Price: Atta (losse) Retail Low Price for Available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table2atta3" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="table2date1--table2date1--[246.3]" />
+	<!-- Market Price: Atta (losse) Retail High Price for Available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table2atta4" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="table2date1--table2date1--[246.2]" />
+
+	<!-- Market Price: Atta (losse) Wholesale Low Price for Last Week Available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table2attalw1" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="table2date2--table2date2--[245.3]/100" />
+	<!-- Market Price: Atta (losse) Wholesale High Price for Last Week Available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table2attalw2" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="table2date2--table2date2--[245.2]/100" />
+	<!-- Market Price: Atta (losse) Retail Low Price for Last Week Available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table2attalw3" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="table2date2--table2date2--[246.3]" />
+	<!-- Market Price: Atta (losse) Retail High Price for Last Week Available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table2attalw4" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="table2date2--table2date2--[246.2]" />
+
+
+
+
+
+
+
+
+
+<!-- ************** Table 3: Import Situation of Bagladesh ******************  -->
+
+	<!-- Import: LastAvailable date for current fiscal year-->
+	<!--<reportcell datatype = "text"   name="table3date1" celltype="date" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="270.1" />-->
+	<reportcell datatype = "text"  name="table3date1" celltype="date_multipledes" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="261,262,425,426,269,270,263,427,271,253,421,265,264,272,428,257,255,858,856,267" />
+	<!-- Import: LastAvailable date for current fiscal year-->
+	<reportcell datatype = "text"   name="table3date2" celltype="formula_text" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="[table3date1]" />
+	<!-- Import: Last Fiscal Year date based on reporting date -->
+	<reportcell datatype = "text"   name="table3date3" celltype="lastficalyeardate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="10" dataelement="269.1" />
+
+	<!-- Import: Public Import - Rice for Last Available date for current fiscal year -->
+	<!--<reportcell datatype = "number"   name="table3data1" celltype="data" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="(([261.1]+[262.1])/1000)+((([425.1]+[426.1])*0.65)/1000)" />-->	
+	<reportcell datatype = "number"   name="table3data1" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="table3date1--table3date1--(([261.1]+[262.1])/1000)+((([425.1]+[426.1])*0.65)/1000)" />
+	<!-- Import: Public Import - Wheat for Last Available date for current fiscal year -->
+	<!--<reportcell datatype = "number"   name="table3data2" celltype="data" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="(([269.1]+[270.1])/1000)" />-->
+	<reportcell datatype = "number"   name="table3data2" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="table3date1--table3date1--(([269.1]+[270.1])/1000)" />
+	<!-- Import: Private Import - Rice for Last Available date for current fiscal year -->
+	<!--<reportcell datatype = "number"   name="table3data3" celltype="data" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([263.1]/1000)+(([427.1]*0.65)/1000)" />-->
+	<reportcell datatype = "number"   name="table3data3" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="table3date1--table3date1--([263.1]/1000)+(([427.1]*0.65)/1000)" />
+	<!-- Import: Private Import - Wheat for Last Available date for current fiscal year -->
+	<!--<reportcell datatype = "number"   name="table3data4" celltype="data" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([271.1]/1000)" />-->
+	<reportcell datatype = "number"   name="table3data4" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="table3date1--table3date1--([271.1]/1000)" />
+
+	<!-- Import: Public Import - Rice for Cumulative upto Last Available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table3datacla1" celltype="data" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="(([261.1]+[262.1])/1000)+((([425.1]+[426.1])*0.65)/1000)" />
+	<!-- Import: Public Import - Wheat for Cumulative upto Available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table3datacla2" celltype="data" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="(([269.1]+[270.1])/1000)" />
+	<!-- Import: Private Import - Rice for Cumulative upto Available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table3datacla3" celltype="data" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([263.1]/1000)+(([427.1]*0.65)/1000)" />
+	<!-- Import: Private Import - Wheat for Cumulative upto Available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table3datacla4" celltype="data" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([271.1]/1000)" />
+
+	<!-- Import: Public Import - Rice for Cumulative of Last fiscal year -->
+	<reportcell datatype = "number"   name="table3datac1" celltype="data" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_FOR_LAST_FISCAL_YEAR" orgunit="2" dataelement="(([261.1]+[262.1])/1000)+((([425.1]+[426.1])*0.65)/1000)" />
+	<!-- Import: Public Import - Wheat for Cumulative of Last fiscal year -->
+	<reportcell datatype = "number"   name="table3datac2" celltype="data" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_FOR_LAST_FISCAL_YEAR" orgunit="2" dataelement="(([269.1]+[270.1])/1000)" />
+	<!-- Import: Private Import - Rice for Cumulative of Last fiscal year -->
+	<reportcell datatype = "number"   name="table3datac3" celltype="data" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_FOR_LAST_FISCAL_YEAR" orgunit="2" dataelement="([263.1]/1000)+(([427.1]*0.65)/1000)" />
+	<!-- Import: Private Import - Wheat for Cumulative of Last fiscal year -->
+	<reportcell datatype = "number"   name="table3datac4" celltype="data" aggtype="PERIOD_AGGREGATION" period="CUMULATIVE_FOR_LAST_FISCAL_YEAR" orgunit="2" dataelement="([271.1]/1000)" />
+
+
+
+
+
+
+
+
+<!-- ************** Table 4: Internal Procurement of Bagladesh ******************  -->
+<reportcell datatype = "text" name="table4date1" celltype="date_multipledes" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="261,262,425,426,269,270,263,427,271,253,421,265,264,272,428,257,255,858,856,267" />
+
+  <!-- RICE BORO -->
+	<!-- Rice Boro Target Start Date based on last available date for current fiscal year -->
+	<reportcell datatype = "text"   name="table4riceb1" celltype="targetdatedata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="[450.1]" />
+	<!-- Rice Boro Target End Date based on last available date for current fiscal year -->
+	<reportcell datatype = "text"   name="table4riceb2" celltype="targetdatedata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="[451.1]" />
+	<!-- Rice Boro Target Data for last available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table4riceb3" celltype="targetdata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="[417.1]/1000" />
+	<!-- Rice Boro Data for last available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table4riceb4" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_PREVIOUS_FISCAL_YEAR" orgunit="2" dataelement="table4date1--table4date1--[257.1]/1000" />
+	<!-- Rice Boro Data for last fiscal year season -->
+	<reportcell datatype = "number"   name="table4riceb5" celltype="formula_use_for_startdate" aggtype="PERIOD_AGGREGATION" period="LAST_FISCAL_YEAR_SEASON_BASED_ON_LAST_AVAILABLE_DATE" orgunit="2" dataelement="table4riceb1--[257.1]/1000" />
+	<!-- Rice Boro Data for current fiscal year season -->
+	<reportcell datatype = "number"   name="table4riceb6" celltype="formula_use_for_enddate" aggtype="PERIOD_AGGREGATION" period="LAST_FISCAL_YEAR_SEASON_BASED_ON_LAST_AVAILABLE_DATE" orgunit="2" dataelement="table4riceb2--[257.1]/1000" />
+
+	<!-- Rice Boro Last fiscal year season period -->
+	<reportcell datatype = "text"  name="table4riceb7" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_FISCAL_YEAR_SEASON_BASED_ON_LAST_AVAILABLE_DATE" orgunit="2" dataelement="table4riceb1--table4riceb2--[257.1]" />
+	<!-- Rice Boro Current fiscal year season period -->
+	<reportcell datatype = "text"  name="table4riceb8" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="CURRENT_FISCAL_YEAR_SEASON_BASED_ON_LAST_AVAILABLE_DATE" orgunit="2" dataelement="table4riceb1--table4riceb2--[257.1]" />
+	<!-- Rice Boro Last fiscal year season data -->
+	<reportcell datatype = "number"  name="table4riceb9" celltype="formula_use_for_startdate_and_enddate" aggtype="PERIOD_AGGREGATION" period="SEASON_BASED_ON_LAST_AVAILABLE_DATE" orgunit="2" dataelement="table4riceb7--[257.1]/1000" />
+	<!-- Rice Boro Current fiscal year season data -->
+	<reportcell datatype = "number"  name="table4riceb10" celltype="formula_use_for_startdate_and_enddate" aggtype="PERIOD_AGGREGATION" period="SEASON_BASED_ON_LAST_AVAILABLE_DATE" orgunit="2" dataelement="table4riceb8--[257.1]/1000" />
+
+  <!-- RICE AMAN -->
+	<!-- Rice Aman Target Start Date based on last available date for current fiscal year -->
+	<reportcell datatype = "text"   name="table4ricea1" celltype="targetdatedata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="[452.1]" />
+	<!-- Rice Aman Target End Date based on last available date for current fiscal year -->
+	<reportcell datatype = "text"   name="table4ricea2" celltype="targetdatedata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="[453.1]" />
+	<!-- Rice Aman Target Data for last available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table4ricea3" celltype="targetdata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="[418.1]/1000" />
+	<!-- Rice Aman Data for last available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table4ricea4" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_PREVIOUS_FISCAL_YEAR" orgunit="2" dataelement="table4date1--table4date1--[255.1]/1000" />
+	<!-- Rice Aman Data for last fiscal year season -->
+	<reportcell datatype = "number"   name="table4ricea5" celltype="formula_use_for_startdate" aggtype="PERIOD_AGGREGATION" period="LAST_FISCAL_YEAR_SEASON_BASED_ON_LAST_AVAILABLE_DATE" orgunit="2" dataelement="table4ricea1--[255.1]/1000" />
+	<!-- Rice Aman Data for current fiscal year season -->
+	<reportcell datatype = "number"   name="table4ricea6" celltype="formula_use_for_enddate" aggtype="PERIOD_AGGREGATION" period="LAST_FISCAL_YEAR_SEASON_BASED_ON_LAST_AVAILABLE_DATE" orgunit="2" dataelement="table4ricea2--[255.1]/1000" />
+
+	<!-- Rice Aman Last fiscal year season period -->
+	<reportcell datatype = "text"  name="table4ricea7" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_FISCAL_YEAR_SEASON_BASED_ON_LAST_AVAILABLE_DATE" orgunit="2" dataelement="table4ricea1--table4ricea2--[255.1]" />
+	<!-- Rice Aman Current fiscal year season period -->
+	<reportcell datatype = "text"  name="table4ricea8" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="CURRENT_FISCAL_YEAR_SEASON_BASED_ON_LAST_AVAILABLE_DATE" orgunit="2" dataelement="table4ricea1--table4ricea2--[255.1]" />
+	<!-- Rice Aman Last fiscal year season data -->
+	<reportcell datatype = "number"  name="table4ricea9" celltype="formula_use_for_startdate_and_enddate" aggtype="PERIOD_AGGREGATION" period="SEASON_BASED_ON_LAST_AVAILABLE_DATE" orgunit="2" dataelement="table4ricea7--[255.1]/1000" />
+	<!-- Rice Aman Current fiscal year season data -->
+	<reportcell datatype = "number"  name="table4ricea10" celltype="formula_use_for_startdate_and_enddate" aggtype="PERIOD_AGGREGATION" period="SEASON_BASED_ON_LAST_AVAILABLE_DATE" orgunit="2" dataelement="table4ricea8--[255.1]/1000" />
+
+  <!-- PADDY BORO -->
+	<!-- Paddy Boro Target Start Date based on last available date for current fiscal year -->
+	<reportcell datatype = "text"   name="table4paddyb1" celltype="targetdatedata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="[864.1]" />
+	<!-- Paddy Boro Target End Date based on last available date for current fiscal year -->
+	<reportcell datatype = "text"   name="table4paddyb2" celltype="targetdatedata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="[865.1]" />
+	<!-- Paddy Boro Target Data for last available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table4paddyb3" celltype="targetdata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="[860.1]/1000" />
+	<!-- Paddy Boro Data for last available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table4paddyb4" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_PREVIOUS_FISCAL_YEAR" orgunit="2" dataelement="table4date1--table4date1--[858.1]/1000" />
+	<!-- Paddy Boro Data for last fiscal year season -->
+	<reportcell datatype = "number"   name="table4paddyb5" celltype="formula_use_for_startdate" aggtype="PERIOD_AGGREGATION" period="LAST_FISCAL_YEAR_SEASON_BASED_ON_LAST_AVAILABLE_DATE" orgunit="2" dataelement="table4paddyb1--[858.1]/1000" />
+	<!-- Paddy Boro Data for current fiscal year season -->
+	<reportcell datatype = "number"   name="table4paddyb6" celltype="formula_use_for_enddate" aggtype="PERIOD_AGGREGATION" period="LAST_FISCAL_YEAR_SEASON_BASED_ON_LAST_AVAILABLE_DATE" orgunit="2" dataelement="table4paddyb2--[858.1]/1000" />
+
+	<!-- Paddy Boro Last fiscal year season period -->
+	<reportcell datatype = "text"  name="table4paddyb7" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_FISCAL_YEAR_SEASON_BASED_ON_LAST_AVAILABLE_DATE" orgunit="2" dataelement="table4paddyb1--table4paddyb2--[858.1]" />
+	<!-- Paddy Boro Current fiscal year season period -->
+	<reportcell datatype = "text"  name="table4paddyb8" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="CURRENT_FISCAL_YEAR_SEASON_BASED_ON_LAST_AVAILABLE_DATE" orgunit="2" dataelement="table4paddyb1--table4paddyb2--[858.1]" />
+	<!-- Paddy Boro Last fiscal year season data -->
+	<reportcell datatype = "number"  name="table4paddyb9" celltype="formula_use_for_startdate_and_enddate" aggtype="PERIOD_AGGREGATION" period="SEASON_BASED_ON_LAST_AVAILABLE_DATE" orgunit="2" dataelement="table4paddyb7--[858.1]/1000" />
+	<!-- Paddy Boro Current fiscal year season data -->
+	<reportcell datatype = "number"  name="table4paddyb10" celltype="formula_use_for_startdate_and_enddate" aggtype="PERIOD_AGGREGATION" period="SEASON_BASED_ON_LAST_AVAILABLE_DATE" orgunit="2" dataelement="table4paddyb8--[858.1]/1000" />
+
+ <!-- PADDY AMAN -->
+	<!-- Paddy Aman Target Start Date based on last available date for current fiscal year -->
+	<reportcell datatype = "text"   name="table4paddya1" celltype="targetdatedata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="[862.1]" />
+	<!-- Paddy Aman Target End Date based on last available date for current fiscal year -->
+	<reportcell datatype = "text"   name="table4paddya2" celltype="targetdatedata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="[863.1]" />
+	<!-- Paddy Aman Target Data for last available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table4paddya3" celltype="targetdata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="[859.1]/1000" />
+	<!-- Paddy Aman Data for last available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table4paddya4" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_PREVIOUS_FISCAL_YEAR" orgunit="2" dataelement="table4date1--table4date1--[856.1]/1000" />
+	<!-- Paddy Aman Data for last fiscal year season -->
+	<reportcell datatype = "number"   name="table4paddya5" celltype="formula_use_for_startdate" aggtype="PERIOD_AGGREGATION" period="LAST_FISCAL_YEAR_SEASON_BASED_ON_LAST_AVAILABLE_DATE" orgunit="2" dataelement="table4paddya1--[856.1]/1000" />
+	<!-- Paddy Aman Data for current fiscal year season -->
+	<reportcell datatype = "number"   name="table4paddya6" celltype="formula_use_for_enddate" aggtype="PERIOD_AGGREGATION" period="LAST_FISCAL_YEAR_SEASON_BASED_ON_LAST_AVAILABLE_DATE" orgunit="2" dataelement="table4paddya2--[856.1]/1000" />
+
+	<!-- Paddy Aman Last fiscal year season period -->
+	<reportcell datatype = "text"  name="table4paddya7" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_FISCAL_YEAR_SEASON_BASED_ON_LAST_AVAILABLE_DATE" orgunit="2" dataelement="table4paddya1--table4paddya2--[856.1]" />
+	<!-- Paddy Aman Current fiscal year season period -->
+	<reportcell datatype = "text"  name="table4paddya8" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="CURRENT_FISCAL_YEAR_SEASON_BASED_ON_LAST_AVAILABLE_DATE" orgunit="2" dataelement="table4paddya1--table4paddya2--[856.1]" />
+	<!-- Paddy Aman Last fiscal year season data -->
+	<reportcell datatype = "number"  name="table4paddya9" celltype="formula_use_for_startdate_and_enddate" aggtype="PERIOD_AGGREGATION" period="SEASON_BASED_ON_LAST_AVAILABLE_DATE" orgunit="2" dataelement="table4paddya7--[856.1]/1000" />
+	<!-- Paddy Aman Current fiscal year season data -->
+	<reportcell datatype = "number"  name="table4paddya10" celltype="formula_use_for_startdate_and_enddate" aggtype="PERIOD_AGGREGATION" period="SEASON_BASED_ON_LAST_AVAILABLE_DATE" orgunit="2" dataelement="table4paddya8--[856.1]/1000" />
+
+	
+	
+  <!-- WHEAT -->
+	<!-- Wheat Target Start Date based on last available date for current fiscal year -->
+	<reportcell datatype = "text"   name="table4wheat1" celltype="targetdatedata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="[456.1]" />
+	<!-- Wheat Target End Date based on last available date for current fiscal year -->
+	<reportcell datatype = "text"   name="table4wheat2" celltype="targetdatedata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="[457.1]" />
+	<!-- Wheat Target Data for last available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table4wheat3" celltype="targetdata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="[420.1]/1000" />
+	<!-- Wheat Data for last available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table4wheat4" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_PREVIOUS_FISCAL_YEAR" orgunit="2" dataelement="table4date1--table4date1--[267.1]/1000" />
+	<!-- Wheat Data for last fiscal year season -->
+	<reportcell datatype = "number"   name="table4wheat5" celltype="formula_use_for_startdate" aggtype="PERIOD_AGGREGATION" period="LAST_FISCAL_YEAR_SEASON_BASED_ON_LAST_AVAILABLE_DATE" orgunit="2" dataelement="table4wheat1--[267.1]/1000" />
+	<!-- Wheat Data for current fiscal year season -->
+	<reportcell datatype = "number"   name="table4wheat6" celltype="formula_use_for_enddate" aggtype="PERIOD_AGGREGATION" period="LAST_FISCAL_YEAR_SEASON_BASED_ON_LAST_AVAILABLE_DATE" orgunit="2" dataelement="table4wheat2--[267.1]/1000" />
+	
+	<!-- Wheat Last fiscal year season period -->
+	<reportcell datatype = "text"  name="table4wheat7" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_FISCAL_YEAR_SEASON_BASED_ON_LAST_AVAILABLE_DATE" orgunit="2" dataelement="table4wheat1--table4wheat2--[267.1]" />
+	<!-- Wheat Current fiscal year season period -->
+	<reportcell datatype = "text"  name="table4wheat8" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="CURRENT_FISCAL_YEAR_SEASON_BASED_ON_LAST_AVAILABLE_DATE" orgunit="2" dataelement="table4wheat1--table4wheat2--[267.1]" />
+	<!-- Wheat Last fiscal year season data -->
+	<reportcell datatype = "number"  name="table4wheat9" celltype="formula_use_for_startdate_and_enddate" aggtype="PERIOD_AGGREGATION" period="SEASON_BASED_ON_LAST_AVAILABLE_DATE" orgunit="2" dataelement="table4wheat7--[267.1]/1000" />
+	<!-- Wheat Current fiscal year season data -->
+	<reportcell datatype = "number"  name="table4wheat10" celltype="formula_use_for_startdate_and_enddate" aggtype="PERIOD_AGGREGATION" period="SEASON_BASED_ON_LAST_AVAILABLE_DATE" orgunit="2" dataelement="table4wheat8--[267.1]/1000" />	
+
+
+
+
+
+
+	
+	
+<!-- ************** Table 5: Movement of Food Grain by River Route of Bagladesh ******************  -->
+	<!-- Movement of FoodGrain by River for each port datewise data based on Last Available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table5data1" celltype="linelistingdata" aggtype="ONE_PERIOD" period="DAYWISE_FOR_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="1--430:431:432:433:434:435:436:437" />
+
+
+
+
+
+
+
+
+
+<!-- ************** Table 6: International Market Price of Food Grain of Bagladesh ******************  -->
+        <reportcell datatype = "text"   name="table6date1.1" celltype="date_multipledes" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="287,286" />
+        <reportcell datatype = "text"   name="table6date1.2" celltype="date_multipledes" aggtype="ONE_PERIOD" period="LAST_WEEK_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="287,286" />
+        <reportcell datatype = "text" name="table6date1.3" celltype="date_multipledes" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_PREVIOUS_FISCAL_YEAR" orgunit="1" dataelement="287,286" />
+	<!-- 5% Broken Parboil Rice India Price FOB Price of Current week -->
+	<reportcell datatype = "number"   name="table6prindia2" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date1.1--table6date1.1--([287.2]+[287.3])/2" />
+	<!-- 5% Broken Parboil Rice India Price FOB Price of Last week -->
+	<reportcell datatype = "number"   name="table6prindia4" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date1.2--table6date1.2--([287.2]+[287.3])/2" />
+	<!-- 5% Broken Parboil Rice India Price FOB Price of Last Year -->
+	<reportcell datatype = "number"   name="table6prindia5" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date1.3--table6date1.3--([287.2]+[287.3])/2" />	
+	<!-- 5% Broken Parboil Rice Pakistan Price FOB Price of Current week -->
+	<reportcell datatype = "number"   name="table6prpak2" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date1.1--table6date1.1--([286.2]+[286.3])/2" />
+	<!-- 5% Broken Parboil Rice Pakistan Price FOB Price of Last week -->
+	<reportcell datatype = "number"   name="table6prpak4" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date1.2--table6date1.2--([286.2]+[286.3])/2" />
+	<!-- 5% Broken Parboil Rice Pakistan Price FOB Price of Last Year -->
+	<reportcell datatype = "number"   name="table6prpak5" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date1.3--table6date1.3--([286.2]+[286.3])/2" />
+
+
+
+	<reportcell datatype = "text"   name="table6date2.1" celltype="date_multipledes" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="329,335,341,347,337" />
+        <reportcell datatype = "text"   name="table6date2.2" celltype="date_multipledes" aggtype="ONE_PERIOD" period="LAST_WEEK_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="329,335,341,347,337" />
+        <reportcell datatype = "text" name="table6date2.3" celltype="date_multipledes" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_PREVIOUS_FISCAL_YEAR" orgunit="1" dataelement="329,335,341,347,337" />
+	<!-- 5% Broken White Rice Thailand Price FOB Price of Current week -->
+	<reportcell datatype = "number"   name="table6wrthai2" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date2.1--table6date2.1--[329.1]" />
+	<!-- 5% Broken White Rice Thailand Price FOB Price of Last week -->
+	<reportcell datatype = "number"   name="table6wrthai4" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date2.2--table6date2.2--[329.1]" />
+	<!-- 5% Broken White Rice Thailand Price FOB Price of Last Year -->
+	<reportcell datatype = "number"   name="table6wrthai5" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date2.3--table6date2.3--[329.1]" />
+	<!-- 5% Broken White Rice Vietnam Price FOB Price of Current week -->
+	<reportcell datatype = "number"   name="table6wrviet2" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date2.1--table6date2.1--[335.1]" />
+	<!-- 5% Broken White Rice Vietnam Price FOB Price of Last week -->
+	<reportcell datatype = "number"   name="table6wrviet4" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date2.2--table6date2.2--[335.1]" />
+	<!-- 5% Broken White Rice Vietnam Price FOB Price of Last Year -->
+	<reportcell datatype = "number"   name="table6wrviet5" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date2.3--table6date2.3--[335.1]" />
+	<!-- 5% Broken White Rice India Price FOB Price of Current week -->
+	<reportcell datatype = "number"   name="table6wrindia2" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date2.1--table6date2.1--[341.1]" />
+	<!-- 5% Broken White Rice India Price FOB Price of Last week -->
+	<reportcell datatype = "number"   name="table6wrindia4" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date2.2--table6date2.2--[341.1]" />
+	<!-- 5% Broken White Rice India Price FOB Price of Last Year -->
+	<reportcell datatype = "number"   name="table6wrindia5" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date2.3--table6date2.3--[341.1]" />
+	<!-- 5% Broken White Rice Pakistan Price FOB Price of Current week -->
+	<reportcell datatype = "number"   name="table6wrpak2" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date2.1--table6date2.1--[347.1]" />
+	<!-- 5% Broken White Rice Pakistan Price FOB Price of Last week -->
+	<reportcell datatype = "number"   name="table6wrpak4" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date2.2--table6date2.2--[347.1]" />
+	<!-- 5% Broken White Rice Pakistan Price FOB Price of Last Year -->
+	<reportcell datatype = "number"   name="table6wrpak5" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date2.3--table6date2.3--[347.1]" />
+	<!-- 15% Broken White Rice Vietnam Price FOB Price of Current week -->
+	<reportcell datatype = "number"   name="table6wrvietp2" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date2.1--table6date2.1--[337.1]" />
+	<!-- 15% Broken White Rice Vietnam Price FOB Price of Last week -->
+	<reportcell datatype = "number"   name="table6wrvietp4" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date2.2--table6date2.2--[337.1]" />
+	<!-- 15% Broken White Rice Vietnam Price FOB Price of Last Year -->
+	<reportcell datatype = "number"   name="table6wrvietp5" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date2.3--table6date2.3--[337.1]" />
+
+
+
+        <reportcell datatype = "text"   name="table6date3.1" celltype="date_multipledes" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="352,354" />
+        <reportcell datatype = "text"   name="table6date3.2" celltype="date_multipledes" aggtype="ONE_PERIOD" period="LAST_WEEK_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="352,354" />
+        <reportcell datatype = "text" name="table6date3.3" celltype="date_multipledes" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_PREVIOUS_FISCAL_YEAR" orgunit="1" dataelement="352,354" />
+	<!-- Milling Wheat Russia Price FOB Price of Current week -->
+	<reportcell datatype = "number"   name="table6mwrus2" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date3.1--table6date3.1--[352.1]" />
+	<!-- Milling Wheat Russia Price FOB Price of Last week -->
+	<reportcell datatype = "number"   name="table6mwrus4" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date3.1--table6date3.2--[352.1]" />
+	<!-- Milling Wheat Russia Price FOB Price of Last Year -->
+	<reportcell datatype = "number"   name="table6mwrus5" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date3.3--table6date3.3--[352.1]" />
+	<!-- Milling Wheat Ukraine Price FOB Price of Current week -->
+	<reportcell datatype = "number"   name="table6mwukra2" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date3.1--table6date3.1--[354.1]" />
+	<!-- Milling Wheat Ukraine Price FOB Price of Last week -->
+	<reportcell datatype = "number"   name="table6mwukra4" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date3.2--table6date3.2--[354.1]" />
+	<!-- Milling Wheat Ukraine Price FOB Price of Last Year -->
+	<reportcell datatype = "number"   name="table6mwukra5" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date3.3--table6date3.3--[354.1]" />
+
+
+        <reportcell datatype = "text"   name="table6date4.1" celltype="date_multipledes" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="356" />
+        <reportcell datatype = "text"   name="table6date4.2" celltype="date_multipledes" aggtype="ONE_PERIOD" period="LAST_WEEK_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="356" />
+        <reportcell datatype = "text" name="table6date4.3" celltype="date_multipledes" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_PREVIOUS_FISCAL_YEAR" orgunit="1" dataelement="356" />
+	<!-- Wheat US Price FOB Price of Current week -->
+	<reportcell datatype = "number"   name="table6wus2" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date4.1--table6date4.1--[356.1]" />
+	<!-- Wheat US Price FOB Price of Last week -->
+	<reportcell datatype = "number"   name="table6wus4" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date4.2--table6date4.2--[356.1]" />
+	<!-- Wheat US Price FOB Price of Last Year -->
+	<reportcell datatype = "number"   name="table6wus5" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="table6date4.3--table6date4.3--[356.1]" />
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ************** Table 7: Potential Price of Importable Food Grain of Bagladesh ******************  -->
+	<!-- Exchange Rate $1= ? Tk. (Selling) -->
+	<reportcell datatype = "number"   name="table7dollar" celltype="data" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="[363.9]" />
+	<!-- Exchange Rate $1= ? Tk. (Selling) took on date -->
+	<reportcell datatype = "text"   name="table7edate" celltype="datedata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="[445.1]" />
+
+	<!-- 5% Broken Parboil Rice India Price Date CurrentWeek -->
+	<reportcell datatype = "text"   name="table7prindia1" celltype="date" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="287.2" />
+	<!-- 5% Broken Parboil Rice India Price FOB Price of Current week -->
+	<reportcell datatype = "number"   name="table7prindia2" celltype="data" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="([287.2]+[287.3])/2" />
+	<!-- 5% Broken Parboil Rice India Price Estimated Shipping & others Expenditure -->
+	<reportcell datatype = "number"   name="table7prindia3" celltype="targetdata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="[469.1]" />
+
+	<!-- 5% Broken Parboil Rice Pakistan Price Date CurrentWeek -->
+	<reportcell datatype = "text"   name="table7prpak1" celltype="date" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="286.2" />
+	<!-- 5% Broken Parboil Rice Pakistan Price FOB Price of Current week -->
+	<reportcell datatype = "number"   name="table7prpak2" celltype="data" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="([286.2]+[286.3])/2" />
+	<!-- 5% Broken Parboil Rice Pakistan Price Estimated Shipping & others Expenditure -->
+	<reportcell datatype = "number"   name="table7prpak3" celltype="targetdata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="[470.1]" />
+
+	<!-- 5% Broken White Rice Thailand Price Date CurrentWeek -->
+	<reportcell datatype = "text"   name="table7wrthai1" celltype="date" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="329.1" />
+	<!-- 5% Broken White Rice Thailand Price FOB Price of Current week -->
+	<reportcell datatype = "number"   name="table7wrthai2" celltype="data" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="[329.1]" />
+	<!-- 5% Broken White Rice Thailand Price Estimated Shipping & others Expenditure -->
+	<reportcell datatype = "number"   name="table7wrthai3" celltype="targetdata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="[467.1]" />
+
+	<!-- 5% Broken White Rice Vietnam Price Date CurrentWeek -->
+	<reportcell datatype = "text"   name="table7wrviet1" celltype="date" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="335.1" />
+	<!-- 5% Broken White Rice Vietnam Price FOB Price of Current week -->
+	<reportcell datatype = "number"   name="table7wrviet2" celltype="data" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="[335.1]" />
+	<!-- 5% Broken White Rice Vietnam Price Estimated Shipping & others Expenditure -->
+	<reportcell datatype = "number"   name="table7wrviet3" celltype="targetdata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="[468.1]" />
+	
+	<!-- 5% Broken White Rice India Price Date CurrentWeek -->
+	<reportcell datatype = "text"   name="table7wrindia1" celltype="date" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="341.1" />
+	<!-- 5% Broken White Rice India Price FOB Price of Current week -->
+	<reportcell datatype = "number"   name="table7wrindia2" celltype="data" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="[341.1]" />
+	<!-- 5% Broken White Rice India Price Estimated Shipping & others Expenditure -->
+	<reportcell datatype = "number"   name="table7wrindia3" celltype="targetdata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="[465.1]" />
+
+	<!-- 5% Broken White Rice Pakistan Price Date CurrentWeek -->
+	<reportcell datatype = "text"   name="table7wrpak1" celltype="date" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="347.1" />
+	<!-- 5% Broken White Rice Pakistan Price FOB Price of Current week -->
+	<reportcell datatype = "number"   name="table7wrpak2" celltype="data" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="[347.1]" />
+	<!-- 5% Broken White Rice Pakistan Price Estimated Shipping & others Expenditure -->
+	<reportcell datatype = "number"   name="table7wrpak3" celltype="targetdata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="[466.1]" />
+
+	<!-- 15% Broken White Rice Vietnam Price Date CurrentWeek -->
+	<reportcell datatype = "text"   name="table7wrvietp1" celltype="date" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="337.1" />
+	<!-- 15% Broken White Rice Vietnam Price FOB Price of Current week -->
+	<reportcell datatype = "number"   name="table7wrvietp2" celltype="data" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="[337.1]" />
+	<!-- 15% Broken White Rice Vietnam Price Estimated Shipping & others Expenditure -->
+	<reportcell datatype = "number"   name="table7wrvietp3" celltype="targetdata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="[463.1]" />
+
+	<!-- Milling Wheat Russia Price Date CurrentWeek -->
+	<reportcell datatype = "text"   name="table7mwrus1" celltype="date" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="352.1" />
+	<!-- Milling Wheat Russia Price FOB Price of Current week -->
+	<reportcell datatype = "number"   name="table7mwrus2" celltype="data" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="[352.1]" />
+	<!-- Milling Wheat Russia Price Estimated Shipping & others Expenditure -->
+	<reportcell datatype = "number"   name="table7mwrus3" celltype="targetdata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="[472.1]" />
+
+	<!-- Milling Wheat Ukraine Price Date CurrentWeek -->
+	<reportcell datatype = "text"   name="table7mwukra1" celltype="date" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="354.1" />
+	<!-- Milling Wheat Ukraine Price FOB Price of Current week -->
+	<reportcell datatype = "number"   name="table7mwukra2" celltype="data" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="[354.1]" />
+	<!-- Milling Wheat Ukraine Price Estimated Shipping & others Expenditure -->
+	<reportcell datatype = "number"   name="table7mwukra3" celltype="targetdata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="[473.1]" />
+
+	<!-- Wheat US Price Date CurrentWeek -->
+	<reportcell datatype = "text"   name="table7wus1" celltype="date" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="356.1" />
+	<!-- Wheat US Price FOB Price of Current week -->
+	<reportcell datatype = "number"   name="table7wus2" celltype="data" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="[356.1]" />
+	<!-- Wheat US Price Estimated Shipping & others Expenditure -->
+	<reportcell datatype = "number"   name="table7wus3" celltype="targetdata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="1" dataelement="[474.1]" />
+	
+
+
+
+
+
+
+
+<!-- ************** Table 8: LC. Price Situation of Bagladesh ******************  -->
+        <reportcell datatype = "text" name="table8date1" celltype="date_multipledes" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="357,360,358,361,359,362" />
+	
+<!-- LC Price: LC Opened - Rice for Monthwise Cumulative upto Last Available date for current fiscal year -->
+	<reportcell datatype = "number"   name="table8data1" celltype="data" aggtype="PERIOD_AGGREGATION" period="MONTHWISE_CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="[357.1]:[360.1]:[358.1]:[361.1]:[359.1]:[362.1]--[357.1]:[360.1]" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ************** Table 9: Public Distribution of Bagladesh (Divisionwise aggregation) ******************  -->
+
+	<!-- Public Distribution StartDate based on last available date's data for current fiscal year -->
+	<reportcell datatype = "text"  name="table9date1.2" celltype="date_multipledes" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3" dataelement="367,401,409,375,383,391,368,402,384,369,403,385,370,404,405,406,407,408,409,410" />
+	<!-- Public Distribution EndDate based on last available date's data for current fiscal year -->
+	<reportcell datatype = "text"   name="table9date2" celltype="datedata" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3" dataelement="[443.1]" />
+
+  <!-- EP -->
+	<!-- Channel EP: Rice Public Distribution data based on last available date's data for current fiscal year aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datar1" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="table9date1.2--table9date1.2--([367.6]+[367.7])+(([401.6]+[401.7])*0.65)+(([409.6]+[409.7])*0.65)+([375.6]+[375.7])" />
+	<!-- Channel EP: Rice Public Distribution Cumulative data from current fiscal year starting upto selected date also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datarc1" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([367.6]+[367.7])+(([401.6]+[401.7])*0.65)+(([409.6]+[409.7])*0.65)+([375.6]+[375.7])" />
+	<!-- Channel EP: Rice Public Distribution Cumulative data from last fiscal year starting upto selected date of last fiscal year also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datarcp1" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_LAST_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([367.6]+[367.7])+(([401.6]+[401.7])*0.65)+(([409.6]+[409.7])*0.65)+([375.6]+[375.7])" />
+
+	<!-- Channel EP: Wheat Public Distribution data based on last available date's data for current fiscal year aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9dataw1" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="table9date1.2--table9date1.2--([383.6]+[383.7])+([391.6]+[391.7])" />
+	<!-- Channel EP: Wheat Public Distribution Cumulative data from current fiscal year starting upto selected date also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datawc1" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([383.6]+[383.7])+([391.6]+[391.7])" />
+	<!-- Channel EP: Wheat Public Distribution Cumulative data from last fiscal year starting upto selected date of last fiscal year also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datawcp1" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_LAST_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([383.6]+[383.7])+([391.6]+[391.7])" />
+
+  <!-- OP -->		
+	<!-- Channel OP: Rice Public Distribution data based on last available date's data for current fiscal year aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datar2" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="table9date1.2--table9date1.2--([368.6]+[368.7])+(([402.6]+[402.7])*0.65)" />
+	<!-- Channel OP: Rice Public Distribution Cumulative data from current fiscal year starting upto selected date also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datarc2" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([368.6]+[368.7])+(([402.6]+[402.7])*0.65)" />
+	<!-- Channel OP: Rice Public Distribution Cumulative data from last fiscal year starting upto selected date of last fiscal year also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datarcp2" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_LAST_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([368.6]+[368.7])+(([402.6]+[402.7])*0.65)" />
+
+	<!-- Channel OP: Wheat Public Distribution data based on last available date's data for current fiscal year aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9dataw2" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="table9date1.2--table9date1.2--([384.6]+[384.7])" />
+	<!-- Channel OP: Wheat Public Distribution Cumulative data from current fiscal year starting upto selected date also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datawc2" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([384.6]+[384.7])" />
+	<!-- Channel OP: Wheat Public Distribution Cumulative data from last fiscal year starting upto selected date of last fiscal year also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datawcp2" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_LAST_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([384.6]+[384.7])" />
+
+  <!-- LE -->		
+	<!-- Channel LE: Rice Public Distribution data based on last available date's data for current fiscal year aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datar3" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="table9date1.2--table9date1.2--([369.6]+[369.7])+(([403.6]+[403.7])*0.65)" />
+	<!-- Channel LE: Rice Public Distribution Cumulative data from current fiscal year starting upto selected date also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datarc3" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([369.6]+[369.7])+(([403.6]+[403.7])*0.65)" />
+	<!-- Channel LE: Rice Public Distribution Cumulative data from last fiscal year starting upto selected date of last fiscal year also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datarcp3" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_LAST_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([369.6]+[369.7])+(([403.6]+[403.7])*0.65)" />
+
+	<!-- Channel LE: Wheat Public Distribution data based on last available date's data for current fiscal year aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9dataw3" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="table9date1.2--table9date1.2--([385.6]+[385.7])" />
+	<!-- Channel LE: Wheat Public Distribution Cumulative data from current fiscal year starting upto selected date also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datawc3" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([385.6]+[385.7])" />
+	<!-- Channel LE: Wheat Public Distribution Cumulative data from last fiscal year starting upto selected date of last fiscal year also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datawcp3" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_LAST_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([385.6]+[385.7])" />
+
+  <!-- OMS -->		
+	<!-- Channel OMS: Rice Public Distribution data based on last available date's data for current fiscal year aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datar4" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="table9date1.2--table9date1.2--([370.6]+[370.7])+(([404.6]+[404.7])*0.65)" />
+	<!-- Channel OMS: Rice Public Distribution Cumulative data from current fiscal year starting upto selected date also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datarc4" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([370.6]+[370.7])+(([404.6]+[404.7])*0.65)" />
+	<!-- Channel OMS: Rice Public Distribution Cumulative data from last fiscal year starting upto selected date of last fiscal year also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datarcp4" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_LAST_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([370.6]+[370.7])+(([404.6]+[404.7])*0.65)" />
+
+	<!-- Channel OMS: Wheat Public Distribution data based on last available date's data for current fiscal year aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9dataw4" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="table9date1.2--table9date1.2--([386.6]+[386.7])" />
+	<!-- Channel OMS: Wheat Public Distribution Cumulative data from current fiscal year starting upto selected date also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datawc4" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([386.6]+[386.7])" />
+	<!-- Channel OMS: Wheat Public Distribution Cumulative data from last fiscal year starting upto selected date of last fiscal year also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datawcp4" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_LAST_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([386.6]+[386.7])" />
+
+  <!-- FAIR PRICE -->		
+	<!-- Channel FAIR PRICE: Rice Public Distribution data based on last available date's data for current fiscal year aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datar5" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="table9date1.2--table9date1.2--([371.6]+[371.7])+(([405.6]+[405.7])*0.65)" />
+	<!-- Channel FAIR PRICE: Rice Public Distribution Cumulative data from current fiscal year starting upto selected date also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datarc5" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([371.6]+[371.7])+(([405.6]+[405.7])*0.65)" />
+	<!-- Channel FAIR PRICE: Rice Public Distribution Cumulative data from last fiscal year starting upto selected date of last fiscal year also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datarcp5" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_LAST_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([371.6]+[371.7])+(([405.6]+[405.7])*0.65)" />
+
+	<!-- Channel FAIR PRICE: Wheat Public Distribution data based on last available date's data for current fiscal year aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9dataw5" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="table9date1.2--table9date1.2--([387.6]+[387.7])" />
+	<!-- Channel FAIR PRICE: Wheat Public Distribution Cumulative data from current fiscal year starting upto selected date also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datawc5" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([387.6]+[387.7])" />
+	<!-- Channel FAIR PRICE: Wheat Public Distribution Cumulative data from last fiscal year starting upto selected date of last fiscal year also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datawcp5" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_LAST_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([387.6]+[387.7])" />
+
+  <!-- 4TH CLASS EMPLOYEE -->		
+	<!-- Channel 4TH CLASS EMPLOYEE: Rice Public Distribution data based on last available date's data for current fiscal year aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datar6" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="table9date1.2--table9date1.2--([373.6]+[373.7])+(([407.6]+[407.7])*0.65)" />
+	<!-- Channel 4TH CLASS EMPLOYEE: Rice Public Distribution Cumulative data from current fiscal year starting upto selected date also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datarc6" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([373.6]+[373.7])+(([407.6]+[407.7])*0.65)" />
+	<!-- Channel 4TH CLASS EMPLOYEE: Rice Public Distribution Cumulative data from last fiscal year starting upto selected date of last fiscal year also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datarcp6" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_LAST_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([373.6]+[373.7])+(([407.6]+[407.7])*0.65)" />
+
+	<!-- Channel 4TH CLASS EMPLOYEE: Wheat Public Distribution data based on last available date's data for current fiscal year aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9dataw6" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="table9date1.2--table9date1.2--([389.6]+[389.7])" />
+	<!-- Channel 4TH CLASS EMPLOYEE: Wheat Public Distribution Cumulative data from current fiscal year starting upto selected date also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datawc6" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([389.6]+[389.7])" />
+	<!-- Channel 4TH CLASS EMPLOYEE: Wheat Public Distribution Cumulative data from last fiscal year starting upto selected date of last fiscal year also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datawcp6" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_LAST_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([389.6]+[389.7])" />
+
+  <!-- FREEDOM FIGHTER -->		
+	<!-- Channel FREEDOM FIGHTER: Rice Public Distribution data based on last available date's data for current fiscal year aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datar7" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="table9date1.2--table9date1.2--([372.6]+[372.7])+(([406.6]+[406.7])*0.65)" />
+	<!-- Channel FREEDOM FIGHTER: Rice Public Distribution Cumulative data from current fiscal year starting upto selected date also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datarc7" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([372.6]+[372.7])+(([406.6]+[406.7])*0.65)" />
+	<!-- Channel FREEDOM FIGHTER: Rice Public Distribution Cumulative data from last fiscal year starting upto selected date of last fiscal year also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datarcp7" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_LAST_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([372.6]+[372.7])+(([406.6]+[406.7])*0.65)" />
+
+	<!-- Channel FREEDOM FIGHTER: Wheat Public Distribution data based on last available date's data for current fiscal year aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9dataw7" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="table9date1.2--table9date1.2--([388.6]+[388.7])" />
+	<!-- Channel FREEDOM FIGHTER: Wheat Public Distribution Cumulative data from current fiscal year starting upto selected date also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datawc7" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([388.6]+[388.7])" />
+	<!-- Channel FREEDOM FIGHTER: Wheat Public Distribution Cumulative data from last fiscal year starting upto selected date of last fiscal year also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datawcp7" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_LAST_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([388.6]+[388.7])" />
+
+  <!-- GARMENTS -->		
+	<!-- Channel GARMENTS: Rice Public Distribution data based on last available date's data for current fiscal year aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datar8" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="table9date1.2--table9date1.2--([374.6]+[374.7])+(([408.6]+[408.7])*0.65)" />
+	<!-- Channel GARMENTS: Rice Public Distribution Cumulative data from current fiscal year starting upto selected date also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datarc8" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([374.6]+[374.7])+(([408.6]+[408.7])*0.65)" />
+	<!-- Channel GARMENTS: Rice Public Distribution Cumulative data from last fiscal year starting upto selected date of last fiscal year also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datarcp8" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_LAST_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([374.6]+[374.7])+(([408.6]+[408.7])*0.65)" />
+
+	<!-- Channel GARMENTS: Wheat Public Distribution data based on last available date's data for current fiscal year aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9dataw8" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="table9date1.2--table9date1.2--([390.6]+[390.7])" />
+	<!-- Channel GARMENTS: Wheat Public Distribution Cumulative data from current fiscal year starting upto selected date also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datawc8" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([390.6]+[390.7])" />
+	<!-- Channel GARMENTS: Wheat Public Distribution Cumulative data from last fiscal year starting upto selected date of last fiscal year also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datawcp8" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_LAST_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([390.6]+[390.7])" />
+
+  <!-- OTHERS -->		
+	<!-- Channel OTHERS: Rice Public Distribution data based on last available date's data for current fiscal year aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datar9" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="table9date1.2--table9date1.2--([376.6]+[376.7])+(([410.6]+[410.7])*0.65)" />
+	<!-- Channel OTHERS: Rice Public Distribution Cumulative data from current fiscal year starting upto selected date also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datarc9" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([376.6]+[376.7])+(([410.6]+[410.7])*0.65)" />
+	<!-- Channel OTHERS: Rice Public Distribution Cumulative data from last fiscal year starting upto selected date of last fiscal year also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datarcp9" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_LAST_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([376.6]+[376.7])+(([410.6]+[410.7])*0.65)" />
+
+	<!-- Channel OTHERS: Wheat Public Distribution data based on last available date's data for current fiscal year aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9dataw9" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="table9date1.2--table9date1.2--([392.6]+[392.7])" />
+	<!-- Channel OTHERS: Wheat Public Distribution Cumulative data from current fiscal year starting upto selected date also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datawc9" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([392.6]+[392.7])" />
+	<!-- Channel OTHERS: Wheat Public Distribution Cumulative data from last fiscal year starting upto selected date of last fiscal year also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datawcp9" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_LAST_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([392.6]+[392.7])" />
+
+  <!-- FFW -->		
+	<!-- Channel FFW: Rice Public Distribution data based on last available date's data for current fiscal year aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datar10" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="table9date1.2--table9date1.2--([377.6]+[377.7])+(([411.6]+[411.7])*0.65)" />
+	<!-- Channel FFW: Rice Public Distribution Cumulative data from current fiscal year starting upto selected date also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datarc10" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([377.6]+[377.7])+(([411.6]+[411.7])*0.65)" />
+	<!-- Channel FFW: Rice Public Distribution Cumulative data from last fiscal year starting upto selected date of last fiscal year also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datarcp10" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_LAST_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([377.6]+[377.7])+(([411.6]+[411.7])*0.65)" />
+
+	<!-- Channel FFW: Wheat Public Distribution data based on last available date's data for current fiscal year aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9dataw10" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="table9date1.2--table9date1.2--([393.6]+[393.7])" />
+	<!-- Channel FFW: Wheat Public Distribution Cumulative data from current fiscal year starting upto selected date also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datawc10" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([393.6]+[393.7])" />
+	<!-- Channel FFW: Wheat Public Distribution Cumulative data from last fiscal year starting upto selected date of last fiscal year also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datawcp10" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_LAST_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([393.6]+[393.7])" />
+	
+  <!-- TR -->		
+	<!-- Channel TR: Rice Public Distribution data based on last available date's data for current fiscal year aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datar11" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="table9date1.2--table9date1.2--([378.6]+[378.7])+(([412.6]+[412.7])*0.65)" />
+	<!-- Channel TR: Rice Public Distribution Cumulative data from current fiscal year starting upto selected date also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datarc11" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([378.6]+[378.7])+(([412.6]+[412.7])*0.65)" />
+	<!-- Channel TR: Rice Public Distribution Cumulative data from last fiscal year starting upto selected date of last fiscal year also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datarcp11" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_LAST_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([378.6]+[378.7])+(([412.6]+[412.7])*0.65)" />
+
+	<!-- Channel TR: Wheat Public Distribution data based on last available date's data for current fiscal year aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9dataw11" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="table9date1.2--table9date1.2--([394.6]+[394.7])" />
+	<!-- Channel TR: Wheat Public Distribution Cumulative data from current fiscal year starting upto selected date also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datawc11" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([394.6]+[394.7])" />
+	<!-- Channel TR: Wheat Public Distribution Cumulative data from last fiscal year starting upto selected date of last fiscal year also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datawcp11" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_LAST_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([394.6]+[394.7])" />
+
+  <!-- VGF -->		
+	<!-- Channel VGF: Rice Public Distribution data based on last available date's data for current fiscal year aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datar12" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="table9date1.2--table9date1.2--([380.6]+[380.7])+(([414.6]+[414.7])*0.65)" />
+	<!-- Channel VGF: Rice Public Distribution Cumulative data from current fiscal year starting upto selected date also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datarc12" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([380.6]+[380.7])+(([414.6]+[414.7])*0.65)" />
+	<!-- Channel VGF: Rice Public Distribution Cumulative data from last fiscal year starting upto selected date of last fiscal year also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datarcp12" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_LAST_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([380.6]+[380.7])+(([414.6]+[414.7])*0.65)" />
+
+	<!-- Channel VGF: Wheat Public Distribution data based on last available date's data for current fiscal year aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9dataw12" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="table9date1.2--table9date1.2--([396.6]+[396.7])" />
+	<!-- Channel VGF: Wheat Public Distribution Cumulative data from current fiscal year starting upto selected date also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datawc12" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([396.6]+[396.7])" />
+	<!-- Channel VGF: Wheat Public Distribution Cumulative data from last fiscal year starting upto selected date of last fiscal year also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datawcp12" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_LAST_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([396.6]+[396.7])" />
+	
+  <!-- VGD -->		
+	<!-- Channel VGD: Rice Public Distribution data based on last available date's data for current fiscal year aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datar13" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="table9date1.2--table9date1.2--([379.6]+[379.7])+(([413.6]+[413.7])*0.65)" />
+	<!-- Channel VGD: Rice Public Distribution Cumulative data from current fiscal year starting upto selected date also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datarc13" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([379.6]+[379.7])+(([413.6]+[413.7])*0.65)" />
+	<!-- Channel VGD: Rice Public Distribution Cumulative data from last fiscal year starting upto selected date of last fiscal year also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datarcp13" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_LAST_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([379.6]+[379.7])+(([413.6]+[413.7])*0.65)" />
+
+	<!-- Channel VGD: Wheat Public Distribution data based on last available date's data for current fiscal year aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9dataw13" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="table9date1.2--table9date1.2--([395.6]+[395.7])" />
+	<!-- Channel VGD: Wheat Public Distribution Cumulative data from current fiscal year starting upto selected date also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datawc13" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([395.6]+[395.7])" />
+	<!-- Channel VGD: Wheat Public Distribution Cumulative data from last fiscal year starting upto selected date of last fiscal year also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datawcp13" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_LAST_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([395.6]+[395.7])" />
+
+  <!-- GR -->		
+	<!-- Channel GR: Rice Public Distribution data based on last available date's data for current fiscal year aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datar14" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="table9date1.2--table9date1.2--([381.6]+[381.7])+(([415.6]+[415.7])*0.65)" />
+	<!-- Channel GR: Rice Public Distribution Cumulative data from current fiscal year starting upto selected date also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datarc14" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([381.6]+[381.7])+(([415.6]+[415.7])*0.65)" />
+	<!-- Channel GR: Rice Public Distribution Cumulative data from last fiscal year starting upto selected date of last fiscal year also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datarcp14" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_LAST_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([381.6]+[381.7])+(([415.6]+[415.7])*0.65)" />
+
+	<!-- Channel GR: Wheat Public Distribution data based on last available date's data for current fiscal year aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9dataw14" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="table9date1.2--table9date1.2--([397.6]+[397.7])" />
+	<!-- Channel GR: Wheat Public Distribution Cumulative data from current fiscal year starting upto selected date also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datawc14" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([397.6]+[397.7])" />
+	<!-- Channel GR: Wheat Public Distribution Cumulative data from last fiscal year starting upto selected date of last fiscal year also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datawcp14" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_LAST_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([397.6]+[397.7])" />
+
+  <!-- Hill Tracts -->		
+	<!-- Channel Hill Tracts: Rice Public Distribution data based on last available date's data for current fiscal year aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datar17" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="table9date1.2--table9date1.2--([2352.1]+[2353.1])+(([2350.1]+[2351.1])*0.65)" />
+	<!-- Channel Hill Tracts: Rice Public Distribution Cumulative data from current fiscal year starting upto selected date also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datarc17" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([2352.1]+[2353.1])+(([2350.1]+[2351.1])*0.65)" />
+	<!-- Channel Hill Tracts: Rice Public Distribution Cumulative data from last fiscal year starting upto selected date of last fiscal year also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datarcp17" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_LAST_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([2352.1]+[2353.1])+(([2350.1]+[2351.1])*0.65)" />
+
+	<!-- Channel Hill Tracts: Wheat Public Distribution data based on last available date's data for current fiscal year aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9dataw17" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="table9date1.2--table9date1.2--([2354.1]+[2355.1])" />
+	<!-- Channel Hill Tracts: Wheat Public Distribution Cumulative data from current fiscal year starting upto selected date also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datawc17" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([2354.1]+[2355.1])" />
+	<!-- Channel Hill Tracts: Wheat Public Distribution Cumulative data from last fiscal year starting upto selected date of last fiscal year also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datawcp17" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_LAST_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([2354.1]+[2355.1])" />
+
+  <!-- NON-MONITISED OTHERS -->		
+	<!-- Channel NON-MONITISED OTHERS: Rice Public Distribution data based on last available date's data for current fiscal year aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datar15" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="table9date1.2--table9date1.2--([382.6]+[382.7])+(([416.6]+[416.7])*0.65)" />
+	<!-- Channel NON-MONITISED OTHERS: Rice Public Distribution Cumulative data from current fiscal year starting upto selected date also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datarc15" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([382.6]+[382.7])+(([416.6]+[416.7])*0.65)" />
+	<!-- Channel NON-MONITISED OTHERS: Rice Public Distribution Cumulative data from last fiscal year starting upto selected date of last fiscal year also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datarcp15" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_LAST_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([382.6]+[382.7])+(([416.6]+[416.7])*0.65)" />
+
+	<!-- Channel NON-MONITISED OTHERS: Wheat Public Distribution data based on last available date's data for current fiscal year aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9dataw15" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="table9date1.2--table9date1.2--([398.6]+[398.7])" />
+	<!-- Channel NON-MONITISED OTHERS: Wheat Public Distribution Cumulative data from current fiscal year starting upto selected date also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datawc15" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([398.6]+[398.7])" />
+	<!-- Channel NON-MONITISED OTHERS: Wheat Public Distribution Cumulative data from last fiscal year starting upto selected date of last fiscal year also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datawcp15" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_LAST_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([398.6]+[398.7])" />
+	
+	<!-- School Feeding -->		
+	<!-- Channel NON-MONITISED School Feeding: Wheat Public Distribution data based on last available date's data for current fiscal year aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9dataw16" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="table9date1.2--table9date1.2--([400.6]+[400.7])" />
+	<!-- Channel NON-MONITISED School Feeding: Wheat Public Distribution Cumulative data from current fiscal year starting upto selected date also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datawc16" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([400.6]+[400.7])" />
+	<!-- Channel NON-MONITISED School Feeding: Wheat Public Distribution Cumulative data from last fiscal year starting upto selected date of last fiscal year also aggregating by multiple facilities -->
+	<reportcell datatype = "number"   name="table9datawcp16" celltype="data" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="CUMULATIVE_UPTO_LAST_AVAILABLE_DATE_FOR_LAST_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="([400.6]+[400.7])" />
+
+
+	<!-- ************** Summary Page ******************  -->	
+	<!-- table1 rice1 -->
+	<reportcell datatype = "number"   name="stable1rice1" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table1rice1]/100)" />
+	<!-- table1 wheat1 -->
+	<reportcell datatype = "number"   name="stable1wheat1" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table1wheat1]/100)" />
+	<!-- table1 total1 -->
+	<reportcell datatype = "number"   name="stable1total1" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table1total1]/100)" />
+
+	
+</report>

@@ -1,0 +1,313 @@
+<html>
+<head>
+    <title>Data Inventory</title>
+    <style>
+
+        body {
+            font-family: georgia;
+            font-size: 12px;
+        }
+
+        table {
+            *border-collapse: collapse; /* IE7 and lower */
+            border-spacing: 0;
+            width: 100%;
+        }
+
+        .bordered {
+            border: solid #ccc 1px;
+            -moz-border-radius: 6px;
+            -webkit-border-radius: 6px;
+            border-radius: 6px;
+            -webkit-box-shadow: 0 1px 1px #ccc;
+            -moz-box-shadow: 0 1px 1px #ccc;
+            box-shadow: 0 1px 1px #ccc;
+        }
+
+        .bordered tr:hover {
+            background: #fbf8e9;
+            -o-transition: all 0.1s ease-in-out;
+            -webkit-transition: all 0.1s ease-in-out;
+            -moz-transition: all 0.1s ease-in-out;
+            -ms-transition: all 0.1s ease-in-out;
+            transition: all 0.1s ease-in-out;
+        }
+
+        .bordered td, .bordered th {
+            border-left: 1px solid #ccc;
+            border-top: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .bordered th {
+            background-color: #dce9f9;
+            background-image: -webkit-gradient(linear, left top, left bottom, from(#ebf3fc), to(#dce9f9));
+            background-image: -webkit-linear-gradient(top, #ebf3fc, #dce9f9);
+            background-image: -moz-linear-gradient(top, #ebf3fc, #dce9f9);
+            background-image: -ms-linear-gradient(top, #ebf3fc, #dce9f9);
+            background-image: -o-linear-gradient(top, #ebf3fc, #dce9f9);
+            background-image: linear-gradient(top, #ebf3fc, #dce9f9);
+            -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, .8) inset;
+            -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, .8) inset;
+            box-shadow: 0 1px 0 rgba(255, 255, 255, .8) inset;
+            border-top: none;
+            text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
+        }
+
+        .bordered td:first-child, .bordered th:first-child {
+            border-left: none;
+        }
+
+        .bordered th:first-child {
+            -moz-border-radius: 6px 0 0 0;
+            -webkit-border-radius: 6px 0 0 0;
+            border-radius: 6px 0 0 0;
+        }
+
+        .bordered th:last-child {
+            -moz-border-radius: 0 6px 0 0;
+            -webkit-border-radius: 0 6px 0 0;
+            border-radius: 0 6px 0 0;
+        }
+
+        .bordered th:only-child {
+            -moz-border-radius: 6px 6px 0 0;
+            -webkit-border-radius: 6px 6px 0 0;
+            border-radius: 6px 6px 0 0;
+        }
+
+        .bordered tr:last-child td:first-child {
+            -moz-border-radius: 0 0 0 6px;
+            -webkit-border-radius: 0 0 0 6px;
+            border-radius: 0 0 0 6px;
+        }
+
+        .bordered tr:last-child td:last-child {
+            -moz-border-radius: 0 0 6px 0;
+            -webkit-border-radius: 0 0 6px 0;
+            border-radius: 0 0 6px 0;
+        }
+
+        select {
+            padding: 3px;
+            margin: 0;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            border-radius: 4px;
+            -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+            -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+            box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+            background: #f8f8f8;
+            color: #888;
+            border: none;
+            outline: none;
+            display: inline-block;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            cursor: pointer;
+        }
+
+        .high {
+            padding: 3px;
+            margin: 0;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            border-radius: 4px;
+            -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+            -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+            box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+            background: #f8f8f8;
+            color: #888;
+            border: none;
+            outline: none;
+            display: inline-block;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            position: absolute;
+        }
+
+        button {
+            padding: 3px;
+            margin: 0;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            border-radius: 4px;
+            -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+            -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+            box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+            background: #f8f8f8;
+            color: #888;
+            border: none;
+            outline: none;
+            display: inline-block;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            position: relative;
+        }
+
+
+        .filter-table .quick { margin-left: 0.5em; font-size: 0.8em; text-decoration: none; }
+        .fitler-table .quick:hover { text-decoration: underline; }
+        td.alt { background-color: #ffc; background-color: rgba(255, 255, 0, 0.2); }
+
+        p
+        {
+            padding:4px;
+            font-size: 15px;
+            font-weight: bold;
+            color:#555555;
+        }
+
+    </style>
+
+    <script src="tablefilter/jquery.filtertable.js"></script>
+
+
+    <script>
+        $(document).ready(function () {
+                    $("#inventoryTable").tablesorter();
+                    $("#indicatorInventoryTable").tablesorter();
+                }
+        );
+    </script>
+
+    <script>
+        function exportToWorkBook() {
+            document.getElementById('htmlCode').value = document.getElementById('formResult').innerHTML;
+            return true;
+        }
+    </script>
+
+</head>
+<body>
+
+<form id="GetBackForm" method="post" action="dataInventoryFormAction.action">
+    <input name="Back to Form" type="submit" value="Back" class="high">
+</form>
+
+
+
+<form id="viewDataResult" name="viewDataResult" action="exportToWorkBook.action" method="post"
+      onsubmit="return exportToWorkBook()" target="_newtab">
+
+    <input type="hidden" name="htmlCode" id="htmlCode"/>
+
+    <br>
+    <br>
+
+    <div align="left">
+        <input type="submit" name="ExportToWorkBook" value="Export To WorkBook" class="high"/>
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+    <div id="formResult" align="left">
+
+        <table class="bordered">
+
+            <tr>
+                <th>Total Items</th>
+                <th>$totalDataElements</th>
+            </tr>
+            </thead>
+        </table>
+
+        </br>
+
+        #if($criteriaType!='allin')
+        <div id="dvDataDE">
+
+            <table id="inventoryTable" class="bordered">
+
+                <thead>
+                <tr>
+                    <th>S. No</th>
+                    <th>Group Set Name</th>
+                    <th>Group Name</th>
+                    <th>DE ID</th>
+                    <th>DataElement</th>
+                    <th>Category</th>
+                    <th>Frequency</th>
+                    <th>DataSet</th>
+                    <th>FromDate</th>
+                    <th>To Date</th>
+                    <th>Total Records</th>
+                    <th>Source</th>
+                    <th>Unit</th>
+                </tr>
+                </thead>
+                <tbody>
+                    #foreach( $dataInventoryStatusInfo in $inventoryList )
+                    <tr>
+                        <td>$dataInventoryStatusInfo.serialNumber</td>
+                        <td>$dataInventoryStatusInfo.groupSetName</td>
+                        <td>$dataInventoryStatusInfo.groupName</td>
+                        <td>$dataInventoryStatusInfo.dataElementID</td>
+                        <td>$dataInventoryStatusInfo.dataElementName</td>
+                        <td>$dataInventoryStatusInfo.category</td>
+                        <td>$dataInventoryStatusInfo.frequency</td>
+                        <td>$dataInventoryStatusInfo.dataSet</td>
+                        <td>$dataInventoryStatusInfo.fromDate</td>
+                        <td>$dataInventoryStatusInfo.toDate</td>
+                        <td>$dataInventoryStatusInfo.totalRecords</td>
+                        <td>$dataInventoryStatusInfo.source</td>
+                        <td>$dataInventoryStatusInfo.unit</td>
+                    </tr>
+                    #end
+                <tbody>
+                <tfoot>
+                </tfoot>
+            </table>
+            <script>
+                $('#inventoryTable').filterTable();
+            </script>
+        </div>
+        #end
+
+        #if($criteriaType=='allin')
+        <div id="dvDataID">
+            <table id="indicatorInventoryTable" class="bordered">
+                <thead>
+                <tr>
+                    <th>S. No</th>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Group Name</th>
+                    <th>Group Set Name</th>
+                    <th>Type</th>
+                    <th>Created By</th>
+                </tr>
+                </thead>
+                <tbody>
+                    #foreach( $dataInventoryStatusInfo in $indicatorInventoryList )
+                    <tr>
+                        <td>$dataInventoryStatusInfo.serialNumber</td>
+                        <td>$dataInventoryStatusInfo.indicatorID</td>
+                        <td>$dataInventoryStatusInfo.indicatorName</td>
+                        <td>$dataInventoryStatusInfo.indicatorGroup</td>
+                        <td>$dataInventoryStatusInfo.indicatorGroupSet</td>
+                        <td>$dataInventoryStatusInfo.indicatorType</td>
+                        <td>$dataInventoryStatusInfo.userName</td>
+                    </tr>
+                    #end
+                <tbody>
+                <tfoot>
+                </tfoot>
+            </table>
+            <script>
+                $('#indicatorInventoryTable').filterTable();
+            </script>
+        </div>
+        #end
+
+    </div>
+
+</form>
+</body>
+</html>

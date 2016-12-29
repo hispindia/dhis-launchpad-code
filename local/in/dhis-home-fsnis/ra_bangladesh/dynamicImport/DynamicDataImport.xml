@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<!-- Excel Import details like the xml mapping for import (ID) the name displayed at import (Name) the frequency (type) the the kind of report we are importing (model)
+The excel file name to be checked for verification (fileName) and finally the xml file that we use to check if we are importing the correct report (checkerFileName) -->
+
+<ImportSheets>
+                                <BDImportSheet>
+				        <rScriptName>parseDailyOffTake.R</rScriptName>
+					<displayName>MISM Weekly Offtake Report</displayName>
+                                        <mappingXML>offtakeMap.xml</mappingXML>
+				</BDImportSheet>
+
+                                <BDImportSheet>
+				        <rScriptName>parseDAM.R</rScriptName>
+					<displayName>DAM Daily</displayName>
+                                        <mappingXML>damMap.xml</mappingXML>
+				</BDImportSheet>
+
+</ImportSheets>

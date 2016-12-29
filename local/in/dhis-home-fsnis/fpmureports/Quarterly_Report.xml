@@ -1,0 +1,942 @@
+<?xml version="1.0"?>
+
+<!-- Quarterly Report -->
+
+<report>
+
+<!-- common data -->
+	<!-- current fiscal year start date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell1" celltype="date" aggtype="ONE_PERIOD" period="CURRENT_FISCAL_YEAR_START_DATE" orgunit="NA" dataelement="NA" />
+	<!-- current quarter start date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell2" celltype="date" aggtype="ONE_PERIOD" period="CURRENT_QUARTER_START_DATE" orgunit="NA" dataelement="NA" />
+	<!-- current quarter end date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell3" celltype="date" aggtype="ONE_PERIOD" period="CURRENT_QUARTER_END_DATE" orgunit="NA" dataelement="NA" />
+	<!-- last fiscal year start date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell4" celltype="date" aggtype="ONE_PERIOD" period="LAST_FISCAL_YEAR_START_DATE" orgunit="NA" dataelement="NA" />
+	<!-- last fiscal year end date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell5" celltype="date" aggtype="ONE_PERIOD" period="LAST_FISCAL_YEAR_END_DATE" orgunit="NA" dataelement="NA" />
+	<!-- current fiscal year - 2 start date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell6" celltype="date" aggtype="ONE_PERIOD" period="LAST_2ND_FISCAL_YEAR_START_DATE" orgunit="NA" dataelement="NA" />
+	<!-- current fiscal year - 2 end date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell7" celltype="date" aggtype="ONE_PERIOD" period="LAST_2ND_FISCAL_YEAR_END_DATE" orgunit="NA" dataelement="NA" />
+
+	<!-- last fiscal year first month start date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell8" celltype="date" aggtype="ONE_PERIOD" period="LAST_FISCAL_YEAR_1ST_MONTH_START_DATE" orgunit="NA" dataelement="NA" />
+	<!-- last fiscal year first month end date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell9" celltype="date" aggtype="ONE_PERIOD" period="LAST_FISCAL_YEAR_1ST_MONTH_END_DATE" orgunit="NA" dataelement="NA" />
+	<!-- last fiscal year second month start date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell10" celltype="date" aggtype="ONE_PERIOD" period="LAST_FISCAL_YEAR_2ND_MONTH_START_DATE" orgunit="NA" dataelement="NA" />
+	<!-- last fiscal year second month end date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell11" celltype="date" aggtype="ONE_PERIOD" period="LAST_FISCAL_YEAR_2ND_MONTH_END_DATE" orgunit="NA" dataelement="NA" />
+	<!-- last fiscal year third month start date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell12" celltype="date" aggtype="ONE_PERIOD" period="LAST_FISCAL_YEAR_3RD_MONTH_START_DATE" orgunit="NA" dataelement="NA" />
+	<!-- last fiscal year third month end date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell13" celltype="date" aggtype="ONE_PERIOD" period="LAST_FISCAL_YEAR_3RD_MONTH_END_DATE" orgunit="NA" dataelement="NA" />
+	<!-- last fiscal year fourth month start date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell14" celltype="date" aggtype="ONE_PERIOD" period="LAST_FISCAL_YEAR_4TH_MONTH_START_DATE" orgunit="NA" dataelement="NA" />
+	<!-- last fiscal year fourth month end date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell15" celltype="date" aggtype="ONE_PERIOD" period="LAST_FISCAL_YEAR_4TH_MONTH_END_DATE" orgunit="NA" dataelement="NA" />
+	<!-- last fiscal year fifth month start date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell16" celltype="date" aggtype="ONE_PERIOD" period="LAST_FISCAL_YEAR_5TH_MONTH_START_DATE" orgunit="NA" dataelement="NA" />
+	<!-- last fiscal year fifth month end date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell17" celltype="date" aggtype="ONE_PERIOD" period="LAST_FISCAL_YEAR_5TH_MONTH_END_DATE" orgunit="NA" dataelement="NA" />
+	<!-- last fiscal year sixth month start date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell18" celltype="date" aggtype="ONE_PERIOD" period="LAST_FISCAL_YEAR_6TH_MONTH_START_DATE" orgunit="NA" dataelement="NA" />
+	<!-- last fiscal year sixth month end date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell19a" celltype="date" aggtype="ONE_PERIOD" period="LAST_FISCAL_YEAR_6TH_MONTH_END_DATE" orgunit="NA" dataelement="NA" />
+	<!-- last fiscal year sevent month start date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell19" celltype="date" aggtype="ONE_PERIOD" period="LAST_FISCAL_YEAR_7TH_MONTH_START_DATE" orgunit="NA" dataelement="NA" />
+	<!-- last fiscal year sevent month end date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell20" celltype="date" aggtype="ONE_PERIOD" period="LAST_FISCAL_YEAR_7TH_MONTH_END_DATE" orgunit="NA" dataelement="NA" />
+	<!-- last fiscal year eighth month start date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell21" celltype="date" aggtype="ONE_PERIOD" period="LAST_FISCAL_YEAR_8TH_MONTH_START_DATE" orgunit="NA" dataelement="NA" />
+	<!-- last fiscal year eighth month end date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell22" celltype="date" aggtype="ONE_PERIOD" period="LAST_FISCAL_YEAR_8TH_MONTH_END_DATE" orgunit="NA" dataelement="NA" />
+	<!-- last fiscal year ninth month start date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell23" celltype="date" aggtype="ONE_PERIOD" period="LAST_FISCAL_YEAR_9TH_MONTH_START_DATE" orgunit="NA" dataelement="NA" />
+	<!-- last fiscal year ninth month end date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell24" celltype="date" aggtype="ONE_PERIOD" period="LAST_FISCAL_YEAR_9TH_MONTH_END_DATE" orgunit="NA" dataelement="NA" />
+	<!-- last fiscal year tenth month start date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell25" celltype="date" aggtype="ONE_PERIOD" period="LAST_FISCAL_YEAR_10TH_MONTH_START_DATE" orgunit="NA" dataelement="NA" />
+	<!-- last fiscal year tenth month end date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell26" celltype="date" aggtype="ONE_PERIOD" period="LAST_FISCAL_YEAR_10TH_MONTH_END_DATE" orgunit="NA" dataelement="NA" />
+	<!-- last fiscal year eleventh month start date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell27" celltype="date" aggtype="ONE_PERIOD" period="LAST_FISCAL_YEAR_11TH_MONTH_START_DATE" orgunit="NA" dataelement="NA" />
+	<!-- last fiscal year eleventh month end date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell28" celltype="date" aggtype="ONE_PERIOD" period="LAST_FISCAL_YEAR_11TH_MONTH_END_DATE" orgunit="NA" dataelement="NA" />
+	<!-- last fiscal year twelth month start date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell29" celltype="date" aggtype="ONE_PERIOD" period="LAST_FISCAL_YEAR_12TH_MONTH_START_DATE" orgunit="NA" dataelement="NA" />
+	<!-- last fiscal year twelth month end date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell30" celltype="date" aggtype="ONE_PERIOD" period="LAST_FISCAL_YEAR_12TH_MONTH_END_DATE" orgunit="NA" dataelement="NA" />
+	
+	<!-- current fiscal year first month start date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell31" celltype="date" aggtype="ONE_PERIOD" period="CURRENT_FISCAL_YEAR_1ST_MONTH_START_DATE" orgunit="NA" dataelement="NA" />
+	<!-- current fiscal year first month end date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell32" celltype="date" aggtype="ONE_PERIOD" period="CURRENT_FISCAL_YEAR_1ST_MONTH_END_DATE" orgunit="NA" dataelement="NA" />
+	<!-- current fiscal year second month start date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell33" celltype="date" aggtype="ONE_PERIOD" period="CURRENT_FISCAL_YEAR_2ND_MONTH_START_DATE" orgunit="NA" dataelement="NA" />
+	<!-- current fiscal year second month end date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell34" celltype="date" aggtype="ONE_PERIOD" period="CURRENT_FISCAL_YEAR_2ND_MONTH_END_DATE" orgunit="NA" dataelement="NA" />
+	<!-- current fiscal year third month start date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell35" celltype="date" aggtype="ONE_PERIOD" period="CURRENT_FISCAL_YEAR_3RD_MONTH_START_DATE" orgunit="NA" dataelement="NA" />
+	<!-- current fiscal year third month end date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell36" celltype="date" aggtype="ONE_PERIOD" period="CURRENT_FISCAL_YEAR_3RD_MONTH_END_DATE" orgunit="NA" dataelement="NA" />
+	<!-- current fiscal year fourth month start date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell37" celltype="date" aggtype="ONE_PERIOD" period="CURRENT_FISCAL_YEAR_4TH_MONTH_START_DATE" orgunit="NA" dataelement="NA" />
+	<!-- current fiscal year fourth month end date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell38" celltype="date" aggtype="ONE_PERIOD" period="CURRENT_FISCAL_YEAR_4TH_MONTH_END_DATE" orgunit="NA" dataelement="NA" />
+	<!-- current fiscal year fifth month start date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell39" celltype="date" aggtype="ONE_PERIOD" period="CURRENT_FISCAL_YEAR_5TH_MONTH_START_DATE" orgunit="NA" dataelement="NA" />
+	<!-- current fiscal year fifth month end date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell40" celltype="date" aggtype="ONE_PERIOD" period="CURRENT_FISCAL_YEAR_5TH_MONTH_END_DATE" orgunit="NA" dataelement="NA" />
+	<!-- current fiscal year sixth month start date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell41" celltype="date" aggtype="ONE_PERIOD" period="CURRENT_FISCAL_YEAR_6TH_MONTH_START_DATE" orgunit="NA" dataelement="NA" />
+	<!-- current fiscal year sixth month end date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell42" celltype="date" aggtype="ONE_PERIOD" period="CURRENT_FISCAL_YEAR_6TH_MONTH_END_DATE" orgunit="NA" dataelement="NA" />
+	<!-- current fiscal year seventh month start date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell43" celltype="date" aggtype="ONE_PERIOD" period="CURRENT_FISCAL_YEAR_7TH_MONTH_START_DATE" orgunit="NA" dataelement="NA" />
+	<!-- current fiscal year seventh month end date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell44" celltype="date" aggtype="ONE_PERIOD" period="CURRENT_FISCAL_YEAR_7TH_MONTH_END_DATE" orgunit="NA" dataelement="NA" />
+	<!-- current fiscal year eigth month start date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell45" celltype="date" aggtype="ONE_PERIOD" period="CURRENT_FISCAL_YEAR_8TH_MONTH_START_DATE" orgunit="NA" dataelement="NA" />
+	<!-- current fiscal year eigth month end date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell46" celltype="date" aggtype="ONE_PERIOD" period="CURRENT_FISCAL_YEAR_8TH_MONTH_END_DATE" orgunit="NA" dataelement="NA" />
+	<!-- current fiscal year ninth month start date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell47" celltype="date" aggtype="ONE_PERIOD" period="CURRENT_FISCAL_YEAR_9TH_MONTH_START_DATE" orgunit="NA" dataelement="NA" />
+	<!-- current fiscal year ninth month end date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell48" celltype="date" aggtype="ONE_PERIOD" period="CURRENT_FISCAL_YEAR_9TH_MONTH_END_DATE" orgunit="NA" dataelement="NA" />
+	<!-- current fiscal year tenth month start date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell49" celltype="date" aggtype="ONE_PERIOD" period="CURRENT_FISCAL_YEAR_10TH_MONTH_START_DATE" orgunit="NA" dataelement="NA" />
+	<!-- current fiscal year tenth month end date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell50" celltype="date" aggtype="ONE_PERIOD" period="CURRENT_FISCAL_YEAR_10TH_MONTH_END_DATE" orgunit="NA" dataelement="NA" />
+	<!-- current fiscal year eleventh month start date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell51" celltype="date" aggtype="ONE_PERIOD" period="CURRENT_FISCAL_YEAR_11TH_MONTH_START_DATE" orgunit="NA" dataelement="NA" />
+	<!-- current fiscal year eleventh month end date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell52" celltype="date" aggtype="ONE_PERIOD" period="CURRENT_FISCAL_YEAR_11TH_MONTH_END_DATE" orgunit="NA" dataelement="NA" />
+	<!-- current fiscal year twelth month start date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell53" celltype="date" aggtype="ONE_PERIOD" period="CURRENT_FISCAL_YEAR_12TH_MONTH_START_DATE" orgunit="NA" dataelement="NA" />
+	<!-- current fiscal year twelth month end date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell54" celltype="date" aggtype="ONE_PERIOD" period="CURRENT_FISCAL_YEAR_12TH_MONTH_END_DATE" orgunit="NA" dataelement="NA" />
+	
+	<!-- current quarter first month start date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell55" celltype="date" aggtype="ONE_PERIOD" period="CURRENT_QUARTER_1ST_MONTH_START_DATE" orgunit="NA" dataelement="NA" />
+	<!-- current quarter first month end date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell56" celltype="date" aggtype="ONE_PERIOD" period="CURRENT_QUARTER_1ST_MONTH_END_DATE" orgunit="NA" dataelement="NA" />
+	<!-- current quarter third month start date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell57" celltype="date" aggtype="ONE_PERIOD" period="CURRENT_QUARTER_3RD_MONTH_START_DATE" orgunit="NA" dataelement="NA" />
+	<!-- current quarter third month end date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell58" celltype="date" aggtype="ONE_PERIOD" period="CURRENT_QUARTER_3RD_MONTH_END_DATE" orgunit="NA" dataelement="NA" />
+	<!-- last year current quarter first month start date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell59" celltype="date" aggtype="ONE_PERIOD" period="LAST_YAEAR_CURRENT_QUARTER_1ST_MONTH_START_DATE" orgunit="NA" dataelement="NA" />
+	<!-- last year current quarter first month end date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell60" celltype="date" aggtype="ONE_PERIOD" period="LAST_YAEAR_CURRENT_QUARTER_1ST_MONTH_END_DATE" orgunit="NA" dataelement="NA" />
+	<!-- last year current quarter third month start date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell61" celltype="date" aggtype="ONE_PERIOD" period="LAST_YAEAR_CURRENT_QUARTER_3RD_MONTH_START_DATE" orgunit="NA" dataelement="NA" />
+	<!-- last year current quarter third month end date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell62" celltype="date" aggtype="ONE_PERIOD" period="LAST_YAEAR_CURRENT_QUARTER_3RD_MONTH_END_DATE" orgunit="NA" dataelement="NA" />
+
+	<!-- last year current quarter next month start date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell63" celltype="date" aggtype="ONE_PERIOD" period="LAST_YAEAR_CURRENT_QUARTER_NEXT_MONTH_START_DATE" orgunit="NA" dataelement="NA" />
+	<!-- last year current quarter next month end date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell64" celltype="date" aggtype="ONE_PERIOD" period="LAST_YAEAR_CURRENT_QUARTER_NEXT_MONTH_END_DATE" orgunit="NA" dataelement="NA" />
+	<!-- last second year current quarter next month start date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell65" celltype="date" aggtype="ONE_PERIOD" period="LAST_2ND_YAEAR_CURRENT_QUARTER_NEXT_MONTH_START_DATE" orgunit="NA" dataelement="NA" />
+	<!-- last second year current quarter next month end date in yyyy-mm-dd format -->
+	<reportcell datatype = "text" name="reportcell66" celltype="date" aggtype="ONE_PERIOD" period="LAST_2ND_YAEAR_CURRENT_QUARTER_NEXT_MONTH_END_DATE" orgunit="NA" dataelement="NA" />
+		
+<!-- ************** Table 1: Foodgrain Imports ******************  -->	
+
+<!-- ROW 1: Rice Gob Com -->
+	<!-- Rice Gob Com import Actual data for current fiscal year - 3 -->
+	<reportcell datatype = "number"  name="table1data1" celltype="data" aggtype="PERIOD_AGGREGATION" period="LAST_3RD_FISCAL_YEAR" orgunit="2" dataelement="[1541.1]/1000" />
+	<!-- Rice Gob Com import Actual data for current fiscal year - 2 -->
+	<reportcell datatype = "number"  name="table1data2" celltype="data" aggtype="PERIOD_AGGREGATION" period="LAST_2ND_FISCAL_YEAR" orgunit="2" dataelement="[1541.1]/1000" />
+	<!-- Rice Gob Com import Actual data for current fiscal year - 1 -->
+	<reportcell datatype = "number"  name="table1data3" celltype="data" aggtype="PERIOD_AGGREGATION" period="LAST_FISCAL_YEAR" orgunit="2" dataelement="[1541.1]/1000" />
+	<!-- Rice Gob Com import Actual data for current fiscal year month1 -->
+	<reportcell datatype = "number"  name="table1data4" celltype="data" aggtype="PERIOD_AGGREGATION" period="CURRENT_QUARTER_MONTH1" orgunit="2" dataelement="[1541.1]/1000" />
+	<!-- Rice Gob Com import Actual data for current fiscal year month2 -->
+	<reportcell datatype = "number"  name="table1data5" celltype="data" aggtype="PERIOD_AGGREGATION" period="CURRENT_QUARTER_MONTH2" orgunit="2" dataelement="[1541.1]/1000" />
+	<!-- Rice Gob Com import Actual data for current fiscal year month3 -->
+	<reportcell datatype = "number"  name="table1data6" celltype="data" aggtype="PERIOD_AGGREGATION" period="CURRENT_QUARTER_MONTH3" orgunit="2" dataelement="[1541.1]/1000" />
+
+	<!-- Rice Gob Com import Arrival (Actual / Projected) data for Quarter1 -->
+	<reportcell datatype = "number"  name="table1data7" celltype="formula_use_for_startdate_and_enddate_projection" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell8--reportcell13--reportcell2--reportcell3--([1541.1]/1000)--([1541.1]/1000)" />
+	<!-- Rice Gob Com import Arrival (Actual / Projected) data for Quarter2 -->
+	<reportcell datatype = "number"  name="table1data8" celltype="formula_use_for_startdate_and_enddate_projection" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell14--reportcell19a--reportcell2--reportcell3--([1541.1]/1000)--([1555.26])" />
+	<!-- Rice Gob Com import Arrival (Actual / Projected) data for Quarter3 -->
+	<reportcell datatype = "number"  name="table1data9" celltype="formula_use_for_startdate_and_enddate_projection" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell19--reportcell24--reportcell2--reportcell3--([1541.1]/1000)--([1555.25])" />
+	<!-- Rice Gob Com import Arrival (Actual / Projected) data for Quarter4 -->
+	<reportcell datatype = "number"  name="table1data10" celltype="formula_use_for_startdate_and_enddate_projection" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell25--reportcell30--reportcell2--reportcell3--([1541.1]/1000)--([1555.27])" />
+	
+	<!-- Rice Gob Com Total import (Target) data -->
+	<reportcell datatype = "number"   name="table1data11" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell3--reportcell1--[973.1]*100" />
+
+<!-- ROW 2: Rice Food Aid -->
+	<!-- Rice Food Aid import Actual data for current fiscal year - 3 -->
+	<reportcell datatype = "number"  name="table1data12" celltype="data" aggtype="PERIOD_AGGREGATION" period="LAST_3RD_FISCAL_YEAR" orgunit="2" dataelement="[1542.1]/1000" />
+	<!-- Rice Food Aid import Actual data for current fiscal year - 2 -->
+	<reportcell datatype = "number"  name="table1data13" celltype="data" aggtype="PERIOD_AGGREGATION" period="LAST_2ND_FISCAL_YEAR" orgunit="2" dataelement="[1542.1]/1000" />
+	<!-- Rice Food Aid import Actual data for current fiscal year - 1 -->
+	<reportcell datatype = "number"  name="table1data14" celltype="data" aggtype="PERIOD_AGGREGATION" period="LAST_FISCAL_YEAR" orgunit="2" dataelement="[1542.1]/1000" />
+	<!-- Rice Food Aid import Actual data for current fiscal year month1 -->
+	<reportcell datatype = "number"  name="table1data15" celltype="data" aggtype="PERIOD_AGGREGATION" period="CURRENT_QUARTER_MONTH1" orgunit="2" dataelement="[1542.1]/1000" />
+	<!-- Rice Food Aid import Actual data for current fiscal year month2 -->
+	<reportcell datatype = "number"  name="table1data16" celltype="data" aggtype="PERIOD_AGGREGATION" period="CURRENT_QUARTER_MONTH2" orgunit="2" dataelement="[1542.1]/1000" />
+	<!-- Rice Food Aid import Actual data for current fiscal year month3 -->
+	<reportcell datatype = "number"  name="table1data17" celltype="data" aggtype="PERIOD_AGGREGATION" period="CURRENT_QUARTER_MONTH3" orgunit="2" dataelement="[1542.1]/1000" />
+
+	<!-- Rice Food Aid import Arrival (Actual / Projected) data for Quarter1 -->
+	<reportcell datatype = "number"  name="table1data18" celltype="formula_use_for_startdate_and_enddate_projection" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell8--reportcell13--reportcell2--reportcell3--([1542.1]/1000)--([1542.1]/1000)" />
+	<!-- Rice Food Aid import Arrival (Actual / Projected) data for Quarter2 -->
+	<reportcell datatype = "number"  name="table1data19" celltype="formula_use_for_startdate_and_enddate_projection" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell14--reportcell19a--reportcell2--reportcell3--([1542.1]/1000)--([1554.26])" />
+	<!-- Rice Food Aid import Arrival (Actual / Projected) data for Quarter3 -->
+	<reportcell datatype = "number"  name="table1data20" celltype="formula_use_for_startdate_and_enddate_projection" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell19--reportcell24--reportcell2--reportcell3--([1542.1]/1000)--([1554.25])" />
+	<!-- Rice Food Aid import Arrival (Actual / Projected) data for Quarter4 -->
+	<reportcell datatype = "number"  name="table1data21" celltype="formula_use_for_startdate_and_enddate_projection" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell25--reportcell30--reportcell2--reportcell3--([1542.1]/1000)--([1554.27])" />
+	
+	<!-- Rice Food Aid Total import (Target) data -->
+	<reportcell datatype = "number"   name="table1data22" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell3--reportcell1--[974.1]*100" />
+	
+<!-- ROW 3: Rice Private -->
+	<!-- Rice Private import Actual data for current fiscal year - 3 -->
+	<reportcell datatype = "number"  name="table1data23" celltype="data" aggtype="PERIOD_AGGREGATION" period="LAST_3RD_FISCAL_YEAR" orgunit="2" dataelement="[263.1]/1000" />
+	<!-- Rice Private import Actual data for current fiscal year - 2 -->
+	<reportcell datatype = "number"  name="table1data24" celltype="data" aggtype="PERIOD_AGGREGATION" period="LAST_2ND_FISCAL_YEAR" orgunit="2" dataelement="[263.1]/1000" />
+	<!-- Rice Private import Actual data for current fiscal year - 1 -->
+	<reportcell datatype = "number"  name="table1data25" celltype="data" aggtype="PERIOD_AGGREGATION" period="LAST_FISCAL_YEAR" orgunit="2" dataelement="[263.1]/1000" />
+	<!-- Rice Private import Actual data for current fiscal year month1 -->
+	<reportcell datatype = "number"  name="table1data26" celltype="data" aggtype="PERIOD_AGGREGATION" period="CURRENT_QUARTER_MONTH1" orgunit="2" dataelement="[263.1]/1000" />
+	<!-- Rice Private import Actual data for current fiscal year month2 -->
+	<reportcell datatype = "number"  name="table1data27" celltype="data" aggtype="PERIOD_AGGREGATION" period="CURRENT_QUARTER_MONTH2" orgunit="2" dataelement="[263.1]/1000" />
+	<!-- Rice Private import Actual data for current fiscal year month3 -->
+	<reportcell datatype = "number"  name="table1data28" celltype="data" aggtype="PERIOD_AGGREGATION" period="CURRENT_QUARTER_MONTH3" orgunit="2" dataelement="[263.1]/1000" />
+
+	<!-- Rice Private import Arrival (Actual / Projected) data for Quarter1 -->
+	<reportcell datatype = "number"  name="table1data29" celltype="formula_use_for_startdate_and_enddate_projection" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell8--reportcell13--reportcell2--reportcell3--([263.1]/1000)--([263.1]/1000)" />
+	<!-- Rice Private import Arrival (Actual / Projected) data for Quarter2 -->
+	<reportcell datatype = "number"  name="table1data30" celltype="formula_use_for_startdate_and_enddate_projection" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell14--reportcell19a--reportcell2--reportcell3--([263.1]/1000)--([1556.26])" />
+	<!-- Rice Private import Arrival (Actual / Projected) data for Quarter3 -->
+	<reportcell datatype = "number"  name="table1data31" celltype="formula_use_for_startdate_and_enddate_projection" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell19--reportcell24--reportcell2--reportcell3--([263.1]/1000)--([1556.25])" />
+	<!-- Rice Private import Arrival (Actual / Projected) data for Quarter4 -->
+	<reportcell datatype = "number"  name="table1data32" celltype="formula_use_for_startdate_and_enddate_projection" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell25--reportcell30--reportcell2--reportcell3--([263.1]/1000)--([1556.27])" />
+	
+	<!-- Rice Private Total import (Target) data -->
+	<reportcell datatype = "number"   name="table1data33" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell3--reportcell1--[975.1]*100" />
+
+<!-- ROW 4: TOTAL -->
+
+<!-- Subtotal for current fiscal year - 3 -->
+	<reportcell datatype = "number"  name="table1subtotal1" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table1data1]+[table1data12]+[table1data23])" />	
+	<!-- Subtotalfor current fiscal year - 2 -->
+	<reportcell datatype = "number"  name="table1subtotal2" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table1data2]+[table1data13]+[table1data24])" />	
+
+	<!-- Subtotalfor current fiscal year - 1 -->
+	<reportcell datatype = "number"  name="table1subtotal3" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table1data3]+[table1data14]+[table1data25])" />	
+	<!-- Subtotal for current fiscal year month1 -->
+	<reportcell datatype = "number"  name="table1subtotal4" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table1data4]+[table1data15]+[table1data26])" />	
+	<!-- Subtotal for current fiscal year month2 -->
+	<reportcell datatype = "number"  name="table1subtotal5" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table1data5]+[table1data16]+[table1data27])" />	
+	<!-- Subtotal for current fiscal year month3 -->
+	<reportcell datatype = "number"  name="table1subtotal6" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table1data6]+[table1data17]+[table1data28])" />	
+
+	<!-- Subtotal (Actual / Projected) data for Quarter1 -->
+	<reportcell datatype = "number"  name="table1subtotal7" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table1data7]+[table1data18]+[table1data29])" />	
+	<!-- Subtotal (Actual / Projected) data for Quarter2 -->
+	<reportcell datatype = "number"  name="table1subtotal8" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table1data8]+[table1data19]+[table1data30])" />	
+	<!-- Subtotal (Actual / Projected) data for Quarter3 -->
+	<reportcell datatype = "number"  name="table1subtotal9" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table1data9]+[table1data20]+[table1data31])" />	
+	<!-- Subtotal(Actual / Projected) data for Quarter4 -->
+	<reportcell datatype = "number"  name="table1subtotal10" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table1data10]+[table1data21]+[table1data32])" />	
+	
+	<!-- Subtotal import (Target) data -->
+	<reportcell datatype = "number"  name="table1subtotal11" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table1data11]+[table1data22]+[table1data33])" />	
+
+<!-- ROW 5: Wheat Gob Com -->
+	<!-- Wheat Gob Com import Actual data for current fiscal year - 3 -->
+	<reportcell datatype = "number"  name="table1data34" celltype="data" aggtype="PERIOD_AGGREGATION" period="LAST_3RD_FISCAL_YEAR" orgunit="2" dataelement="[1543.1]/1000" />
+	<!-- Wheat Gob Com import Actual data for current fiscal year - 2 -->
+	<reportcell datatype = "number"  name="table1data35" celltype="data" aggtype="PERIOD_AGGREGATION" period="LAST_2ND_FISCAL_YEAR" orgunit="2" dataelement="[1543.1]/1000" />
+	<!-- Wheat Gob Com import Actual data for current fiscal year - 1 -->
+	<reportcell datatype = "number"  name="table1data36" celltype="data" aggtype="PERIOD_AGGREGATION" period="LAST_FISCAL_YEAR" orgunit="2" dataelement="[1543.1]/1000" />
+	<!-- Wheat Gob Com import Actual data for current fiscal year month1 -->
+	<reportcell datatype = "number"  name="table1data37" celltype="data" aggtype="PERIOD_AGGREGATION" period="CURRENT_QUARTER_MONTH1" orgunit="2" dataelement="[1543.1]/1000" />
+	<!-- Wheat Gob Com import Actual data for current fiscal year month2 -->
+	<reportcell datatype = "number"  name="table1data38" celltype="data" aggtype="PERIOD_AGGREGATION" period="CURRENT_QUARTER_MONTH2" orgunit="2" dataelement="[1543.1]/1000" />
+	<!-- Wheat Gob Com import Actual data for current fiscal year month3 -->
+	<reportcell datatype = "number"  name="table1data39" celltype="data" aggtype="PERIOD_AGGREGATION" period="CURRENT_QUARTER_MONTH3" orgunit="2" dataelement="[1543.1]/1000" />
+
+	<!-- Wheat Gob Com import Arrival (Actual / Projected) data for Quarter1 -->
+	<reportcell datatype = "number"  name="table1data40" celltype="formula_use_for_startdate_and_enddate_projection" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell8--reportcell13--reportcell2--reportcell3--([1543.1]/1000)--([1543.1]/1000)" />
+	<!-- Wheat Gob Com import Arrival (Actual / Projected) data for Quarter2 -->
+	<reportcell datatype = "number"  name="table1data41" celltype="formula_use_for_startdate_and_enddate_projection" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell14--reportcell19a--reportcell2--reportcell3--([1543.1]/1000)--([1558.26])" />
+	<!-- Wheat Gob Com import Arrival (Actual / Projected) data for Quarter3 -->
+	<reportcell datatype = "number"  name="table1data42" celltype="formula_use_for_startdate_and_enddate_projection" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell19--reportcell24--reportcell2--reportcell3--([1543.1]/1000)--([1558.25])" />
+	<!-- Wheat Gob Com import Arrival (Actual / Projected) data for Quarter4 -->
+	<reportcell datatype = "number"  name="table1data43" celltype="formula_use_for_startdate_and_enddate_projection" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell25--reportcell30--reportcell2--reportcell3--([1543.1]/1000)--([1558.27])" />
+	
+	<!-- Wheat Gob Com Total import (Target) data -->
+	<reportcell datatype = "number"   name="table1data44" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell3--reportcell1--[976.1]*100" />
+
+<!-- ROW 6: Wheat Food Aid -->
+	<!-- Wheat Food Aid import Actual data for current fiscal year - 3 -->
+	<reportcell datatype = "number"  name="table1data45" celltype="data" aggtype="PERIOD_AGGREGATION" period="LAST_3RD_FISCAL_YEAR" orgunit="2" dataelement="[1544.1]/1000" />
+	<!-- Wheat Food Aid import Actual data for current fiscal year - 2 -->
+	<reportcell datatype = "number"  name="table1data46" celltype="data" aggtype="PERIOD_AGGREGATION" period="LAST_2ND_FISCAL_YEAR" orgunit="2" dataelement="[1544.1]/1000" />
+	<!-- Wheat Food Aid import Actual data for current fiscal year - 1 -->
+	<reportcell datatype = "number"  name="table1data47" celltype="data" aggtype="PERIOD_AGGREGATION" period="LAST_FISCAL_YEAR" orgunit="2" dataelement="[1544.1]/1000" />
+	<!-- Wheat Food Aid import Actual data for current fiscal year month1 -->
+	<reportcell datatype = "number"  name="table1data48" celltype="data" aggtype="PERIOD_AGGREGATION" period="CURRENT_QUARTER_MONTH1" orgunit="2" dataelement="[1544.1]/1000" />
+	<!-- Wheat Food Aid import Actual data for current fiscal year month2 -->
+	<reportcell datatype = "number"  name="table1data49" celltype="data" aggtype="PERIOD_AGGREGATION" period="CURRENT_QUARTER_MONTH2" orgunit="2" dataelement="[1544.1]/1000" />
+	<!-- Wheat Food Aid import Actual data for current fiscal year month3 -->
+	<reportcell datatype = "number"  name="table1data50" celltype="data" aggtype="PERIOD_AGGREGATION" period="CURRENT_QUARTER_MONTH3" orgunit="2" dataelement="[1544.1]/1000" />
+
+	<!-- Wheat Food Aid import Arrival (Actual / Projected) data for Quarter1 -->
+	<reportcell datatype = "number"  name="table1data51" celltype="formula_use_for_startdate_and_enddate_projection" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell8--reportcell13--reportcell2--reportcell3--([1544.1]/1000)--([1544.1]/1000)" />
+	<!-- Wheat Food Aid import Arrival (Actual / Projected) data for Quarter2 -->
+	<reportcell datatype = "number"  name="table1data52" celltype="formula_use_for_startdate_and_enddate_projection" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell14--reportcell19a--reportcell2--reportcell3--([1544.1]/1000)--([1557.26])" />
+	<!-- Wheat Food Aid import Arrival (Actual / Projected) data for Quarter3 -->
+	<reportcell datatype = "number"  name="table1data53" celltype="formula_use_for_startdate_and_enddate_projection" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell19--reportcell24--reportcell2--reportcell3--([1544.1]/1000)--([1557.25])" />
+	<!-- Wheat Food Aid import Arrival (Actual / Projected) data for Quarter4 -->
+	<reportcell datatype = "number"  name="table1data54" celltype="formula_use_for_startdate_and_enddate_projection" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell25--reportcell30--reportcell2--reportcell3--([1544.1]/1000)--([1557.27])" />
+	
+	<!-- Wheat Food Aid Total import (Target) data -->
+	<reportcell datatype = "number"   name="table1data55" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell3--reportcell1--[977.1]*100" />
+	
+<!-- ROW 7: Wheat Private -->
+	<!-- Wheat Private import Actual data for current fiscal year - 3 -->
+	<reportcell datatype = "number"  name="table1data56" celltype="data" aggtype="PERIOD_AGGREGATION" period="LAST_3RD_FISCAL_YEAR" orgunit="2" dataelement="[271.1]/1000" />
+	<!-- Wheat Private import Actual data for current fiscal year - 2 -->
+	<reportcell datatype = "number"  name="table1data57" celltype="data" aggtype="PERIOD_AGGREGATION" period="LAST_2ND_FISCAL_YEAR" orgunit="2" dataelement="[271.1]/1000" />
+	<!-- Wheat Private import Actual data for current fiscal year - 1 -->
+	<reportcell datatype = "number"  name="table1data58" celltype="data" aggtype="PERIOD_AGGREGATION" period="LAST_FISCAL_YEAR" orgunit="2" dataelement="[271.1]/1000" />
+	<!-- Wheat Private import Actual data for current fiscal year month1 -->
+	<reportcell datatype = "number"  name="table1data59" celltype="data" aggtype="PERIOD_AGGREGATION" period="CURRENT_QUARTER_MONTH1" orgunit="2" dataelement="[271.1]/1000" />
+	<!-- Wheat Private import Actual data for current fiscal year month2 -->
+	<reportcell datatype = "number"  name="table1data60" celltype="data" aggtype="PERIOD_AGGREGATION" period="CURRENT_QUARTER_MONTH2" orgunit="2" dataelement="[271.1]/1000" />
+	<!-- Wheat Private import Actual data for current fiscal year month3 -->
+	<reportcell datatype = "number"  name="table1data61" celltype="data" aggtype="PERIOD_AGGREGATION" period="CURRENT_QUARTER_MONTH3" orgunit="2" dataelement="[271.1]/1000" />
+
+	<!-- Wheat Private import Arrival (Actual / Projected) data for Quarter1 -->
+	<reportcell datatype = "number"  name="table1data62" celltype="formula_use_for_startdate_and_enddate_projection" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell8--reportcell13--reportcell2--reportcell3--([271.1]/1000)--([271.1]/1000)" />
+	<!-- Wheat Private import Arrival (Actual / Projected) data for Quarter2 -->
+	<reportcell datatype = "number"  name="table1data63" celltype="formula_use_for_startdate_and_enddate_projection" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell14--reportcell19a--reportcell2--reportcell3--([271.1]/1000)--([1559.26])" />
+	<!-- Wheat Private import Arrival (Actual / Projected) data for Quarter3 -->
+	<reportcell datatype = "number"  name="table1data64" celltype="formula_use_for_startdate_and_enddate_projection" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell19--reportcell24--reportcell2--reportcell3--([271.1]/1000)--([1559.25])" />
+	<!-- Wheat Private import Arrival (Actual / Projected) data for Quarter4 -->
+	<reportcell datatype = "number"  name="table1data65" celltype="formula_use_for_startdate_and_enddate_projection" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell25--reportcell30--reportcell2--reportcell3--([271.1]/1000)--([1559.27])" />
+	
+	<!-- Wheat Private Total import (Target) data -->
+	<reportcell datatype = "number"   name="table1data66" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell3--reportcell1--[978.1]*100" />
+	
+	<!-- Wheat: TOTAL -->
+	<!-- Subtotal for current fiscal year - 3 -->
+	<reportcell datatype = "number"  name="table1subtotal12" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table1data34]+[table1data45]+[table1data56])" />	
+	<!-- Subtotalfor current fiscal year - 2 -->
+	<reportcell datatype = "number"  name="table1subtotal13" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table1data35]+[table1data46]+[table1data57])" />	
+
+	<!-- Subtotalfor current fiscal year - 1 -->
+	<reportcell datatype = "number"  name="table1subtotal14" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table1data36]+[table1data47]+[table1data58])" />	
+	<!-- Subtotal for current fiscal year month1 -->
+	<reportcell datatype = "number"  name="table1subtotal15" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table1data37]+[table1data48]+[table1data59])" />	
+	<!-- Subtotal for current fiscal year month2 -->
+	<reportcell datatype = "number"  name="table1subtotal16" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table1data38]+[table1data49]+[table1data60])" />	
+	<!-- Subtotal for current fiscal year month3 -->
+	<reportcell datatype = "number"  name="table1subtotal17" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table1data39]+[table1data50]+[table1data61])" />	
+
+	<!-- Subtotal (Actual / Projected) data for Quarter1 -->
+	<reportcell datatype = "number"  name="table1subtotal18" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table1data40]+[table1data51]+[table1data62])" />	
+	<!-- Subtotal (Actual / Projected) data for Quarter2 -->
+	<reportcell datatype = "number"  name="table1subtotal19" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table1data41]+[table1data52]+[table1data63])" />	
+	<!-- Subtotal (Actual / Projected) data for Quarter3 -->
+	<reportcell datatype = "number"  name="table1subtotal20" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table1data42]+[table1data53]+[table1data64])" />	
+	<!-- Subtotal(Actual / Projected) data for Quarter4 -->
+	<reportcell datatype = "number"  name="table1subtotal21" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table1data43]+[table1data54]+[table1data65])" />	
+	
+	<!-- Subtotal import (Target) data -->
+	<reportcell datatype = "number"  name="table1subtotal22" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table1data44]+[table1data55]+[table1data66])" />	
+
+	
+	<!-- Food Grain: TOTAL -->
+	
+	<!--  TOTAL for current fiscal year - 3 -->
+	<reportcell datatype = "number"  name="table1subtotal23" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table1subtotal1]+[table1subtotal12])" />	
+	<!-- TOTAL for current fiscal year - 2 -->
+	<reportcell datatype = "number"  name="table1subtotal24" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table1subtotal2]+[table1subtotal13])" />	
+
+	<!-- TOTAL for current fiscal year - 1 -->
+	<reportcell datatype = "number"  name="table1subtotal25" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table1subtotal3]+[table1subtotal14])" />	
+	<!-- TOTAL for current fiscal year month1 -->
+	<reportcell datatype = "number"  name="table1subtotal26" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table1subtotal4]+[table1subtotal15])" />	
+	<!-- TOTAL for current fiscal year month2 -->
+	<reportcell datatype = "number"  name="table1subtotal27" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table1subtotal5]+[table1subtotal16])" />	
+	<!-- TOTAL for current fiscal year month3 -->
+	<reportcell datatype = "number"  name="table1subtotal28" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table1subtotal6]+[table1subtotal17])" />	
+
+	<!-- TOTAL (Actual / Projected) data for Quarter1 -->
+	<reportcell datatype = "number"  name="table1subtotal29" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table1subtotal7]+[table1subtotal18])" />	
+	<!-- TOTAL (Actual / Projected) data for Quarter2 -->
+	<reportcell datatype = "number"  name="table1subtotal30" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table1subtotal8]+[table1subtotal19])" />	
+	<!-- TOTAL (Actual / Projected) data for Quarter3 -->
+	<reportcell datatype = "number"  name="table1subtotal31" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table1subtotal9]+[table1subtotal20])" />	
+	<!-- TOTAL(Actual / Projected) data for Quarter4 -->
+	<reportcell datatype = "number"  name="table1subtotal32" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table1subtotal10]+[table1subtotal21])" />	
+	
+	<!-- TOTAL import (Target) data -->
+	<reportcell datatype = "number"  name="table1subtotal33" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table1subtotal11]+[table1subtotal22])" />	
+	
+	
+<!-- ************** Table 2: Channel-wise distribution of Foodgrains ****************** -->
+
+<!-- ROW 1: EP (Essential Priority + Credit sales) -->
+	<!-- EP (Essential Priority + Credit sales) Rice Last 2nd financial year data -->
+	<reportcell datatype = "number" name="table2data1" celltype="formula_use_for_startdate_and_enddate" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="reportcell6--reportcell7--(([367.6]+[367.7])+(([401.6]+[401.7])*0.65)+(([409.6]+[409.7])*0.65)+([375.6]+[375.7]))/1000" />
+	<!-- EP (Essential Priority + Credit sales) Wheat Last 2nd financial year data -->
+	<reportcell datatype = "number" name="table2data2" celltype="formula_use_for_startdate_and_enddate" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="reportcell6--reportcell7--(([383.6]+[383.7])+([391.6]+[391.7]))/1000" />
+	<!-- EP (Essential Priority + Credit sales) Rice Last financial year data -->
+	<reportcell datatype = "number" name="table2data3" celltype="formula_use_for_startdate_and_enddate" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="reportcell4--reportcell5--(([367.6]+[367.7])+(([401.6]+[401.7])*0.65)+(([409.6]+[409.7])*0.65)+([375.6]+[375.7]))/1000" />
+	<!-- EP (Essential Priority + Credit sales) Wheat Last financial year data -->
+	<reportcell datatype = "number" name="table2data4" celltype="formula_use_for_startdate_and_enddate" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="reportcell4--reportcell5--(([383.6]+[383.7])+([391.6]+[391.7]))/1000" />
+	<!-- EP (Essential Priority + Credit sales) Rice Budget data for current financial year data -->
+	<reportcell datatype = "number" name="table2data5" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell3--reportcell1--[744.1]" />
+	<!-- EP (Essential Priority + Credit sales) Wheat Budget data for current financial year data -->
+	<reportcell datatype = "number" name="table2data6" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell3--reportcell1--[754.1]" />
+
+<!-- ROW 2: Other Priorities -->
+	<!-- Other Priorities Rice Last 2nd financial year data -->
+	<reportcell datatype = "number" name="table2data7" celltype="formula_use_for_startdate_and_enddate" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="reportcell6--reportcell7--(([368.6]+[368.7])+(([402.6]+[402.7])*0.65))/1000" />
+	<!-- Other Priorities Wheat Last 2nd financial year data -->
+	<reportcell datatype = "number" name="table2data8" celltype="formula_use_for_startdate_and_enddate" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="reportcell6--reportcell7--([384.6]+[384.7])/1000" />
+	<!-- Other Priorities Rice Last financial year data -->
+	<reportcell datatype = "number" name="table2data9" celltype="formula_use_for_startdate_and_enddate" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="reportcell4--reportcell5--(([368.6]+[368.7])+(([402.6]+[402.7])*0.65))/1000" />
+	<!-- Other Priorities Wheat Last financial year data -->
+	<reportcell datatype = "number" name="table2data10" celltype="formula_use_for_startdate_and_enddate" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="reportcell4--reportcell5--([384.6]+[384.7])/1000" />
+	<!-- Other Priorities Rice Budget data for current financial year data -->
+	<reportcell datatype = "number" name="table2data11" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell3--reportcell1--[742.1]" />
+	<!-- Other Priorities Wheat Budget data for current financial year data -->
+	<reportcell datatype = "number" name="table2data12" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell3--reportcell1--[752.1]" />
+	
+<!-- ROW 3: Large Employers -->
+	<!-- Large Employers Rice Last 2nd financial year data -->
+	<reportcell datatype = "number" name="table2data13" celltype="formula_use_for_startdate_and_enddate" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="reportcell6--reportcell7--(([369.6]+[369.7])+(([403.6]+[403.7])*0.65))/1000" />
+	<!-- Large Employers Wheat Last 2nd financial year data -->
+	<reportcell datatype = "number" name="table2data14" celltype="formula_use_for_startdate_and_enddate" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="reportcell6--reportcell7--([385.6]+[385.7])/1000" />
+	<!-- Large Employers Rice Last financial year data -->
+	<reportcell datatype = "number" name="table2data15" celltype="formula_use_for_startdate_and_enddate" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="reportcell4--reportcell5--(([369.6]+[369.7])+(([403.6]+[403.7])*0.65))/1000" />
+	<!-- Large Employers Wheat Last financial year data -->
+	<reportcell datatype = "number" name="table2data16" celltype="formula_use_for_startdate_and_enddate" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="reportcell4--reportcell5--([385.6]+[385.7])/1000" />
+	<!-- Large Employers Rice Budget data for current financial year data -->
+	<reportcell datatype = "number" name="table2data17" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell3--reportcell1--[743.1]" />
+	<!-- Large Employers Wheat Budget data for current financial year data -->
+	<reportcell datatype = "number" name="table2data18" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell3--reportcell1--[753.1]" />
+	
+<!-- ROW 4: Open Market Sales/FPC (Open Market Sales + Fair Price Shops+ 4th Class Employees, Freedom Fighters + Garments + Others) -->
+	<!-- Open Market Sales/FPC (Open Market Sales + Fair Price Shops+ 4th Class Employees, Freedom Fighters + Garments + Others) Rice Last 2nd financial year data -->
+	<reportcell datatype = "number" name="table2data19" celltype="formula_use_for_startdate_and_enddate" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="reportcell6--reportcell7--(([370.6]+[370.7])+(([404.6]+[404.7])*0.65)+([371.6]+[371.7])+(([405.6]+[405.7])*0.65)+([373.6]+[373.7])+(([407.6]+[407.7])*0.65)+([372.6]+[372.7])+(([406.6]+[406.7])*0.65)+([374.6]+[374.7])+(([408.6]+[408.7])*0.65)+([376.6]+[376.7])+(([410.6]+[410.7])*0.65))/1000" />
+	<!-- Open Market Sales/FPC (Open Market Sales + Fair Price Shops+ 4th Class Employees, Freedom Fighters + Garments + Others) Wheat Last 2nd financial year data -->
+	<reportcell datatype = "number" name="table2data20" celltype="formula_use_for_startdate_and_enddate" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="reportcell6--reportcell7--(([386.6]+[386.7])+([387.6]+[387.7])+([389.6]+[389.7])+([388.6]+[388.7])+([390.6]+[390.7])+([392.6]+[392.7]))/1000" />
+	<!-- Open Market Sales/FPC (Open Market Sales + Fair Price Shops+ 4th Class Employees, Freedom Fighters + Garments + Others) Rice Last financial year data -->
+	<reportcell datatype = "number" name="table2data21" celltype="formula_use_for_startdate_and_enddate" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="reportcell4--reportcell5--(([370.6]+[370.7])+(([404.6]+[404.7])*0.65)+([371.6]+[371.7])+(([405.6]+[405.7])*0.65)+([373.6]+[373.7])+(([407.6]+[407.7])*0.65)+([372.6]+[372.7])+(([406.6]+[406.7])*0.65)+([374.6]+[374.7])+(([408.6]+[408.7])*0.65)+([376.6]+[376.7])+(([410.6]+[410.7])*0.65))/1000" />
+	<!-- Open Market Sales/FPC (Open Market Sales + Fair Price Shops+ 4th Class Employees, Freedom Fighters + Garments + Others) Wheat Last financial year data -->
+	<reportcell datatype = "number" name="table2data22" celltype="formula_use_for_startdate_and_enddate" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="reportcell4--reportcell5--(([386.6]+[386.7])+([387.6]+[387.7])+([389.6]+[389.7])+([388.6]+[388.7])+([390.6]+[390.7])+([392.6]+[392.7]))/1000" />
+	<!-- Open Market Sales/FPC (Open Market Sales + Fair Price Shops+ 4th Class Employees, Freedom Fighters + Garments + Others) Rice Budget data for current financial year data -->
+	<reportcell datatype = "number" name="table2data23" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell3--reportcell1--[741.1]" />
+	<!-- Open Market Sales/FPC (Open Market Sales + Fair Price Shops+ 4th Class Employees, Freedom Fighters + Garments + Others) Wheat Budget data for current financial year data -->
+	<reportcell datatype = "number" name="table2data24" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell3--reportcell1--[751.1]" />
+
+<!-- ROW 5: Subtotal1 -->	
+	<!-- Rice Last 2nd financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal1" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2data1]+[table2data7]+[table2data13]+[table2data19])" />
+	<!-- Wheat Last 2nd financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal2" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2data2]+[table2data8]+[table2data14]+[table2data20])" />
+	<!-- Rice Last financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal3" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2data3]+[table2data9]+[table2data15]+[table2data21])" />
+	<!-- Wheat Last financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal4" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2data4]+[table2data10]+[table2data16]+[table2data22])" />
+	<!-- Rice Budget data for current financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal5" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2data5]+[table2data11]+[table2data17]+[table2data23])" />
+	<!-- Wheat Budget data for current financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal6" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2data6]+[table2data12]+[table2data18]+[table2data24])" />
+
+	
+<!-- ROW 6: Food For Works -->
+	<!-- Food For Works Rice Last 2nd financial year data -->
+	<reportcell datatype = "number" name="table2data25" celltype="formula_use_for_startdate_and_enddate" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="reportcell6--reportcell7--(([377.6]+[377.7])+(([411.6]+[411.7])*0.65))/1000" />
+	<!-- Food For Works Wheat Last 2nd financial year data -->
+	<reportcell datatype = "number" name="table2data26" celltype="formula_use_for_startdate_and_enddate" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="reportcell6--reportcell7--([393.6]+[393.7])/1000" />
+	<!-- Food For Works Rice Last financial year data -->
+	<reportcell datatype = "number" name="table2data27" celltype="formula_use_for_startdate_and_enddate" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="reportcell4--reportcell5--(([377.6]+[377.7])+(([411.6]+[411.7])*0.65))/1000" />
+	<!-- Food For Works Wheat Last financial year data -->
+	<reportcell datatype = "number" name="table2data28" celltype="formula_use_for_startdate_and_enddate" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="reportcell4--reportcell5--([393.6]+[393.7])/1000" />
+	<!-- Food For Works Rice Budget data for current financial year data -->
+	<reportcell datatype = "number" name="table2data29" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell3--reportcell1--[745.1]" />
+	<!-- Food For Works Wheat Budget data for current financial year data -->
+	<reportcell datatype = "number" name="table2data30" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell3--reportcell1--[755.1]" />
+
+<!-- ROW 7: Test Relief -->
+	<!-- Test Relief Rice Last 2nd financial year data -->
+	<reportcell datatype = "number" name="table2data31" celltype="formula_use_for_startdate_and_enddate" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="reportcell6--reportcell7--(([378.6]+[378.7])+(([412.6]+[412.7])*0.65))/1000" />
+	<!-- Test Relief Wheat Last 2nd financial year data -->
+	<reportcell datatype = "number" name="table2data32" celltype="formula_use_for_startdate_and_enddate" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="reportcell6--reportcell7--([394.6]+[394.7])/1000" />
+	<!-- Test Relief Rice Last financial year data -->
+	<reportcell datatype = "number" name="table2data33" celltype="formula_use_for_startdate_and_enddate" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="reportcell4--reportcell5--(([378.6]+[378.7])+(([412.6]+[412.7])*0.65))/1000" />
+	<!-- Test Relief Wheat Last financial year data -->
+	<reportcell datatype = "number" name="table2data34" celltype="formula_use_for_startdate_and_enddate" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="reportcell4--reportcell5--([394.6]+[394.7])/1000" />
+	<!-- Test Relief Rice Budget data for current financial year data -->
+	<reportcell datatype = "number" name="table2data35" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell3--reportcell1--[745.1]" />
+	<!-- Test Relief Wheat Budget data for current financial year data -->
+	<reportcell datatype = "number" name="table2data36" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell3--reportcell1--[757.1]" />
+
+<!-- ROW 8: VGF -->
+	<!-- VGF Rice Last 2nd financial year data -->
+	<reportcell datatype = "number" name="table2data37" celltype="formula_use_for_startdate_and_enddate" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="reportcell6--reportcell7--(([380.6]+[380.7])+(([414.6]+[414.7])*0.65))/1000" />
+	<!-- VGF Wheat Last 2nd financial year data -->
+	<reportcell datatype = "number" name="table2data38" celltype="formula_use_for_startdate_and_enddate" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="reportcell6--reportcell7--([396.6]+[396.7])/1000" />
+	<!-- VGF Rice Last financial year data -->
+	<reportcell datatype = "number" name="table2data39" celltype="formula_use_for_startdate_and_enddate" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="reportcell4--reportcell5--(([380.6]+[380.7])+(([414.6]+[414.7])*0.65))/1000" />
+	<!-- VGF Wheat Last financial year data -->
+	<reportcell datatype = "number" name="table2data40" celltype="formula_use_for_startdate_and_enddate" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="reportcell4--reportcell5--([396.6]+[396.7])/1000" />
+	<!-- VGF Rice Budget data for current financial year data -->
+	<reportcell datatype = "number" name="table2data41" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell3--reportcell1--[748.1]" />
+	<!-- VGF Wheat Budget data for current financial year data -->
+	<reportcell datatype = "number" name="table2data42" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell3--reportcell1--[758.1]" />
+
+<!-- ROW 9: VGD	-->
+	<!-- VGD Rice Last 2nd financial year data -->
+	<reportcell datatype = "number" name="table2data43" celltype="formula_use_for_startdate_and_enddate" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="reportcell6--reportcell7--(([379.6]+[379.7])+(([413.6]+[413.7])*0.65))/1000" />
+	<!-- VGD Wheat Last 2nd financial year data -->
+	<reportcell datatype = "number" name="table2data44" celltype="formula_use_for_startdate_and_enddate" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="reportcell6--reportcell7--([395.6]+[395.7])/1000" />
+	<!-- VGD Rice Last financial year data -->
+	<reportcell datatype = "number" name="table2data45" celltype="formula_use_for_startdate_and_enddate" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="reportcell4--reportcell5--(([379.6]+[379.7])+(([413.6]+[413.7])*0.65))/1000" />
+	<!-- VGD Wheat Last financial year data -->
+	<reportcell datatype = "number" name="table2data46" celltype="formula_use_for_startdate_and_enddate" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="reportcell4--reportcell5--([395.6]+[395.7])/1000" />
+	<!-- VGD Rice Budget data for current financial year data -->
+	<reportcell datatype = "number" name="table2data47" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell3--reportcell1--[746.1]" />
+	<!-- VGD Wheat Budget data for current financial year data -->
+	<reportcell datatype = "number" name="table2data48" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell3--reportcell1--[756.1]" />
+
+<!-- ROW 10: Gratuitous Relief	-->
+	<!-- Gratuitous Relief Rice Last 2nd financial year data -->
+	<reportcell datatype = "number" name="table2data49" celltype="formula_use_for_startdate_and_enddate" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="reportcell6--reportcell7--(([381.6]+[381.7])+(([415.6]+[415.7])*0.65))/1000" />
+	<!-- Gratuitous Relief Wheat Last 2nd financial year data -->
+	<reportcell datatype = "number" name="table2data50" celltype="formula_use_for_startdate_and_enddate" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="reportcell6--reportcell7--([397.6]+[397.7])/1000" />
+	<!-- Gratuitous Relief Rice Last financial year data -->
+	<reportcell datatype = "number" name="table2data51" celltype="formula_use_for_startdate_and_enddate" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="reportcell4--reportcell5--(([381.6]+[381.7])+(([415.6]+[415.7])*0.65))/1000" />
+	<!-- Gratuitous Relief Wheat Last financial year data -->
+	<reportcell datatype = "number" name="table2data52" celltype="formula_use_for_startdate_and_enddate" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="reportcell4--reportcell5--([397.6]+[397.7])/1000" />
+	<!-- Gratuitous Relief Rice Budget data for current financial year data -->
+	<reportcell datatype = "number" name="table2data53" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell3--reportcell1--[749.1]" />
+	<!-- Gratuitous Relief Wheat Budget data for current financial year data -->
+
+<!-- ROW 11: Others (School Feeding + Others) -->
+	<!-- Others (School Feeding + Others) Rice Last 2nd financial year data -->
+	<reportcell datatype = "number" name="table2data55" celltype="formula_use_for_startdate_and_enddate" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="reportcell6--reportcell7--(([382.6]+[382.7])+(([416.6]+[416.7])*0.65))/1000" />
+	<!-- Others (School Feeding + Others) Wheat Last 2nd financial year data -->
+	<reportcell datatype = "number" name="table2data56" celltype="formula_use_for_startdate_and_enddate" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="reportcell6--reportcell7--(([400.6]+[400.7])+([398.6]+[398.7]))/1000" />
+	<!-- Others (School Feeding + Others) Rice Last financial year data -->
+	<reportcell datatype = "number" name="table2data57" celltype="formula_use_for_startdate_and_enddate" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="reportcell4--reportcell5--(([379.6]+[379.7])+(([413.6]+[413.7])*0.65))/1000" />
+	<!-- Others (School Feeding + Others) Wheat Last financial year data -->
+	<reportcell datatype = "number" name="table2data58" celltype="formula_use_for_startdate_and_enddate" aggtype="MULTIPLE_PERIOD_MULTIPLE_ORGUNIT_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="3,4,5,6,7,8,9" dataelement="reportcell4--reportcell5--(([400.6]+[400.7])+([398.6]+[398.7]))/1000" />
+	<!-- Others (School Feeding + Others) Rice Budget data for current financial year data -->
+	<reportcell datatype = "number" name="table2data59" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell3--reportcell1--[750.1]" />
+	<!-- Others (School Feeding + Others) Wheat Budget data for current financial year data -->
+	<reportcell datatype = "number" name="table2data60" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell3--reportcell1--([760.1]+[759.1])" />
+
+<!-- ROW 12: Subtotal2 -->	
+	<!-- Rice Last 2nd financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal7" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2data25]+[table2data31]+[table2data37]+[table2data43]+[table2data49]+[table2data55])" />
+	<!-- Wheat Last 2nd financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal8" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2data26]+[table2data32]+[table2data38]+[table2data44]+[table2data50]+[table2data56])" />
+	<!-- Rice Last financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal9" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2data27]+[table2data33]+[table2data39]+[table2data45]+[table2data51]+[table2data57])" />
+	<!-- Wheat Last financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal10" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2data28]+[table2data34]+[table2data40]+[table2data46]+[table2data52]+[table2data58])" />
+	<!-- Rice Budget data for current financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal11" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2data29]+[table2data35]+[table2data41]+[table2data47]+[table2data53]+[table2data59])" />
+	<!-- Wheat Budget data for current financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal12" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2data30]+[table2data36]+[table2data42]+[table2data48]+[table2data60])" />
+
+<!-- COL 5: Total Rice + Wheat Last 2nd financial year Total -->
+	<!-- EP Rice + Wheat Last 2nd financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal13" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2data1]+[table2data2])" />
+	<!-- OP Rice + Wheat Last 2nd financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal14" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2data7]+[table2data8])" />
+	<!-- LE Rice + Wheat Last financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal15" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2data13]+[table2data14])" />
+	<!-- OMS Rice + Wheat Last financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal16" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2data19]+[table2data20])" />
+	<!-- Subtotal Rice + Wheat Last financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal17" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2subtotal1]+[table2subtotal2])" />
+	<!-- FFW Rice + Wheat Last 2nd financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal18" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2data25]+[table2data26])" />
+	<!-- TR Rice + Wheat Last 2nd financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal19" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2data31]+[table2data32])" />
+	<!-- VGF Rice + Wheat Last financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal20" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2data37]+[table2data38])" />
+	<!-- VGD Rice + Wheat Last financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal21" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2data43]+[table2data44])" />
+	<!-- GR Rice + Wheat Last financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal22" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2data49]+[table2data50])" />
+	<!-- Others Rice + Wheat Last financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal23" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2data55]+[table2data56])" />
+	<!-- Subtotal Rice + Wheat Last financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal24" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2subtotal7]+[table2subtotal8])" />
+
+	<!-- COL 8: Total Rice + Wheat Last financial year Total -->
+	<!-- EP Rice + Wheat Last financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal25" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2data3]+[table2data4])" />
+	<!-- OP Rice + Wheat Last financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal26" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2data9]+[table2data10])" />
+	<!-- LE Rice + Wheat Last financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal27" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2data15]+[table2data16])" />
+	<!-- OMS Rice + Wheat Last financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal28" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2data21]+[table2data22])" />
+	<!-- Subtotal Rice + Wheat Last financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal29" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2subtotal3]+[table2subtotal4])" />
+	<!-- FFW Rice + Wheat Last financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal30" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2data27]+[table2data28])" />
+	<!-- TR Rice + Wheat Last financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal31" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2data33]+[table2data34])" />
+	<!-- VGF Rice + Wheat Last financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal32" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2data39]+[table2data40])" />
+	<!-- VGD Rice + Wheat Last financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal33" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2data45]+[table2data46])" />
+	<!-- GR Rice + Wheat Last financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal34" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2data51]+[table2data52])" />
+	<!-- Others Rice + Wheat Last financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal35" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2data57]+[table2data58])" />
+	<!-- Subtotal Rice + Wheat Last financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal36" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2subtotal9]+[table2subtotal10])" />
+
+	<!-- COL 11: Total Rice + Wheat Budget financial year Total -->
+	<!-- EP Rice + Wheat Budget financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal37" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2data5]+[table2data6])" />
+	<!-- OP Rice + Wheat Budget financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal38" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2data11]+[table2data12])" />
+	<!-- LE Rice + Wheat Budget financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal39" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2data17]+[table2data18])" />
+	<!-- OMS Rice + Wheat Budget financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal40" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2data23]+[table2data24])" />
+	<!-- Subtotal Rice + Wheat Budget financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal41" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2subtotal5]+[table2subtotal6])" />
+	<!-- FFW Rice + Wheat Budget financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal42" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2data29]+[table2data30])" />
+	<!-- TR Rice + Wheat Budget financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal43" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2data35]+[table2data36])" />
+	<!-- VGF Rice + Wheat Budget financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal44" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2data41]+[table2data42])" />
+	<!-- VGD Rice + Wheat Budget financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal45" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2data47]+[table2data48])" />
+	<!-- GR Rice + Wheat Budget financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal46" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2data53])" />
+	<!-- Others Rice + Wheat Budget financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal47" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2data59]+[table2data60])" />
+	<!-- Subtotal Rice + Wheat Budget financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal48" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2subtotal11]+[table2subtotal12])" />
+	
+<!-- ROW 13: Grand Total -->
+	<!-- Grand total Rice Last 2nd financial year  -->
+	<reportcell datatype = "number"  name="table2subtotal49" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2subtotal1]+[table2subtotal7])" />
+	<!-- Grand total Wheat Last 2nd financial year  -->
+	<reportcell datatype = "number"  name="table2subtotal50" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2subtotal2]+[table2subtotal8])" />
+	<!-- Grand total of 2nd financial year subtotal  -->
+	<reportcell datatype = "number"  name="table2subtotal51" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2subtotal17]+[table2subtotal24])" />
+	<!-- Grand total Rice of Last financial year -->
+	<reportcell datatype = "number"  name="table2subtotal52" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2subtotal3]+[table2subtotal9])" />
+	<!-- Grand total Wheat of Last financial year -->
+	<reportcell datatype = "number"  name="table2subtotal53" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2subtotal4]+[table2subtotal10])" />
+	<!-- Grand total of Last financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal54" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2subtotal29]+[table2subtotal36])" />
+	<!-- Grand total Rice of Budget financial year -->
+	<reportcell datatype = "number"  name="table2subtotal55" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2subtotal5]+[table2subtotal11])" />
+	<!-- Grand total Wheat of Budget financial year -->
+	<reportcell datatype = "number"  name="table2subtotal56" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2subtotal6]+[table2subtotal12])" />
+	<!-- Grand total of Budget financial year subtotal -->
+	<reportcell datatype = "number"  name="table2subtotal57" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table2subtotal41]+[table2subtotal48])" />
+	
+	
+<!-- ************** Table 3: Commodity-wise closing public stock ****************** -->
+
+<!-- ***** Rice **************-->
+	<!-- Rice closing public stock for last fiscal year month 1 -->
+	<reportcell datatype = "number"  name="table3data1" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell9t3--reportcell8t3--([1560.1]+[1561.1]+[1562.1]+[1563.1]+[1564.1]-[1565.1]-[1566.1]-[1567.1]-[1568.1]-[1569.1])/1000" />
+	<!-- Rice closing public stock for current fiscal year month 1 -->
+	<reportcell datatype = "number"  name="table3data2" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell32t3--reportcell31t3--([1560.1]+[1561.1]+[1562.1]+[1563.1]+[1564.1]-[1565.1]-[1566.1]-[1567.1]-[1568.1]-[1569.1])/1000" />
+	
+	<!-- Rice closing public stock for last fiscal year month 2 -->
+	<reportcell datatype = "number"  name="table3data3" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell11t3--reportcell10t3--([1560.1]+[1561.1]+[1562.1]+[1563.1]+[1564.1]-[1565.1]-[1566.1]-[1567.1]-[1568.1]-[1569.1])/1000" />
+	<!-- Rice closing public stock for current fiscal year month 2 -->
+	<reportcell datatype = "number"  name="table3data4" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell34t3--reportcell33t3--([1560.1]+[1561.1]+[1562.1]+[1563.1]+[1564.1]-[1565.1]-[1566.1]-[1567.1]-[1568.1]-[1569.1])/1000" />
+	
+	<!-- Rice closing public stock for last fiscal year month 3 -->
+	<reportcell datatype = "number"  name="table3data5" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell13t3--reportcell12t3--([1560.1]+[1561.1]+[1562.1]+[1563.1]+[1564.1]-[1565.1]-[1566.1]-[1567.1]-[1568.1]-[1569.1])/1000" />
+	<!-- Rice closing public stock for current fiscal year month 3 -->
+	<reportcell datatype = "number"  name="table3data6" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell36t3--reportcell35t3--([1560.1]+[1561.1]+[1562.1]+[1563.1]+[1564.1]-[1565.1]-[1566.1]-[1567.1]-[1568.1]-[1569.1])/1000" />
+	
+	<!-- Rice closing public stock for last fiscal year month 4 -->
+	<reportcell datatype = "number"  name="table3data7" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell15t3--reportcell14t3--([1560.1]+[1561.1]+[1562.1]+[1563.1]+[1564.1]-[1565.1]-[1566.1]-[1567.1]-[1568.1]-[1569.1])/1000" />
+	<!-- Rice closing public stock for current fiscal year month 4 -->
+	<reportcell datatype = "number"  name="table3data8" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell38t3--reportcell37t3--([1560.1]+[1561.1]+[1562.1]+[1563.1]+[1564.1]-[1565.1]-[1566.1]-[1567.1]-[1568.1]-[1569.1])/1000" />
+	
+	<!-- Rice closing public stock for last fiscal year month 5 -->
+	<reportcell datatype = "number"  name="table3data9" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell17t3--reportcell16t3--([1560.1]+[1561.1]+[1562.1]+[1563.1]+[1564.1]-[1565.1]-[1566.1]-[1567.1]-[1568.1]-[1569.1])/1000" />
+	<!-- Rice closing public stock for current fiscal year month 5 -->
+	<reportcell datatype = "number"  name="table3data10" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell40t3--reportcell39t3--([1560.1]+[1561.1]+[1562.1]+[1563.1]+[1564.1]-[1565.1]-[1566.1]-[1567.1]-[1568.1]-[1569.1])/1000" />
+	
+	<!-- Rice closing public stock for last fiscal year month 6 -->
+	<reportcell datatype = "number"  name="table3data11" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell19at3--reportcell18t3--([1560.1]+[1561.1]+[1562.1]+[1563.1]+[1564.1]-[1565.1]-[1566.1]-[1567.1]-[1568.1]-[1569.1])/1000" />
+	<!-- Rice closing public stock for current fiscal year month 6 -->
+	<reportcell datatype = "number"  name="table3data12" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell42t3--reportcell41t3--([1560.1]+[1561.1]+[1562.1]+[1563.1]+[1564.1]-[1565.1]-[1566.1]-[1567.1]-[1568.1]-[1569.1])/1000" />
+	
+	<!-- Rice closing public stock for last fiscal year month 7 -->
+	<reportcell datatype = "number"  name="table3data13" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell20t3--reportcell19t3--([1560.1]+[1561.1]+[1562.1]+[1563.1]+[1564.1]-[1565.1]-[1566.1]-[1567.1]-[1568.1]-[1569.1])/1000" />
+	<!-- Rice closing public stock for current fiscal year month 7 -->
+	<reportcell datatype = "number"  name="table3data14" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell44t3--reportcell43t3--([1560.1]+[1561.1]+[1562.1]+[1563.1]+[1564.1]-[1565.1]-[1566.1]-[1567.1]-[1568.1]-[1569.1])/1000" />
+	
+	<!-- Rice closing public stock for last fiscal year month 8 -->
+	<reportcell datatype = "number"  name="table3data15" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell22t3--reportcell21t3--([1560.1]+[1561.1]+[1562.1]+[1563.1]+[1564.1]-[1565.1]-[1566.1]-[1567.1]-[1568.1]-[1569.1])/1000" />
+	<!-- Rice closing public stock for current fiscal year month 8 -->
+	<reportcell datatype = "number"  name="table3data16" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell46t3--reportcell45t3--([1560.1]+[1561.1]+[1562.1]+[1563.1]+[1564.1]-[1565.1]-[1566.1]-[1567.1]-[1568.1]-[1569.1])/1000" />
+	
+	<!-- Rice closing public stock for last fiscal year month 9 -->
+	<reportcell datatype = "number"  name="table3data17" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell24t3--reportcell23t3--([1560.1]+[1561.1]+[1562.1]+[1563.1]+[1564.1]-[1565.1]-[1566.1]-[1567.1]-[1568.1]-[1569.1])/1000" />
+	<!-- Rice closing public stock for current fiscal year month 9 -->
+	<reportcell datatype = "number"  name="table3data18" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell48t3--reportcell47t3--([1560.1]+[1561.1]+[1562.1]+[1563.1]+[1564.1]-[1565.1]-[1566.1]-[1567.1]-[1568.1]-[1569.1])/1000" />
+	
+	<!-- Rice closing public stock for last fiscal year month 10 -->
+	<reportcell datatype = "number"  name="table3data19" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell26t3--reportcell25t3--([1560.1]+[1561.1]+[1562.1]+[1563.1]+[1564.1]-[1565.1]-[1566.1]-[1567.1]-[1568.1]-[1569.1])/1000" />
+	<!-- Rice closing public stock for current fiscal year month 10 -->
+	<reportcell datatype = "number"  name="table3data20" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell50t3--reportcell49t3--([1560.1]+[1561.1]+[1562.1]+[1563.1]+[1564.1]-[1565.1]-[1566.1]-[1567.1]-[1568.1]-[1569.1])/1000" />
+	
+	<!-- Rice closing public stock for last fiscal year month 11 -->
+	<reportcell datatype = "number"  name="table3data21" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell28t3--reportcell27t3--([1560.1]+[1561.1]+[1562.1]+[1563.1]+[1564.1]-[1565.1]-[1566.1]-[1567.1]-[1568.1]-[1569.1])/1000" />
+	<!-- Rice closing public stock for current fiscal year month 11 -->
+	<reportcell datatype = "number"  name="table3data22" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell52t3--reportcell51t3--([1560.1]+[1561.1]+[1562.1]+[1563.1]+[1564.1]-[1565.1]-[1566.1]-[1567.1]-[1568.1]-[1569.1])/1000" />
+	
+	<!-- Rice closing public stock for last fiscal year month 12 -->
+	<reportcell datatype = "number"  name="table3data23" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell30t3--reportcell29t3--([1560.1]+[1561.1]+[1562.1]+[1563.1]+[1564.1]-[1565.1]-[1566.1]-[1567.1]-[1568.1]-[1569.1])/1000" />
+	<!-- Rice closing public stock for current fiscal year month 12 -->
+	<reportcell datatype = "number"  name="table3data24" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell54t3--reportcell53t3--([1560.1]+[1561.1]+[1562.1]+[1563.1]+[1564.1]-[1565.1]-[1566.1]-[1567.1]-[1568.1]-[1569.1])/1000" />
+
+<!-- ***** Wheat **************-->
+	<!-- Wheat closing public stock for last fiscal year month 1 -->
+	<reportcell datatype = "number"  name="table3data25" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell9t3--reportcell8t3--([1570.1]+[1571.1]+[1572.1]+[1575.1]+[1576.1]-[1573.1]-[1574.1]-[1577.1]-[1578.1]-[1579.1])/1000" />
+	<!-- Wheat closing public stock for current fiscal year month 1 -->
+	<reportcell datatype = "number"  name="table3data26" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell32t3--reportcell31t3--([1570.1]+[1571.1]+[1572.1]+[1575.1]+[1576.1]-[1573.1]-[1574.1]-[1577.1]-[1578.1]-[1579.1])/1000" />
+	
+	<!-- Wheat closing public stock for last fiscal year month 2 -->
+	<reportcell datatype = "number"  name="table3data27" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell11t3--reportcell10t3--([1570.1]+[1571.1]+[1572.1]+[1575.1]+[1576.1]-[1573.1]-[1574.1]-[1577.1]-[1578.1]-[1579.1])/1000" />
+	<!-- Wheat closing public stock for current fiscal year month 2 -->
+	<reportcell datatype = "number"  name="table3data28" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell34t3--reportcell33t3--([1570.1]+[1571.1]+[1572.1]+[1575.1]+[1576.1]-[1573.1]-[1574.1]-[1577.1]-[1578.1]-[1579.1])/1000" />
+	
+	<!-- Wheat closing public stock for last fiscal year month 3 -->
+	<reportcell datatype = "number"  name="table3data29" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell13t3--reportcell12t3--([1570.1]+[1571.1]+[1572.1]+[1575.1]+[1576.1]-[1573.1]-[1574.1]-[1577.1]-[1578.1]-[1579.1])/1000" />
+	<!-- Wheat closing public stock for current fiscal year month 3 -->
+	<reportcell datatype = "number"  name="table3data30" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell36t3--reportcell35t3--([1570.1]+[1571.1]+[1572.1]+[1575.1]+[1576.1]-[1573.1]-[1574.1]-[1577.1]-[1578.1]-[1579.1])/1000" />
+	
+	<!-- Wheat closing public stock for last fiscal year month 4 -->
+	<reportcell datatype = "number"  name="table3data31" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell15t3--reportcell14t3--([1570.1]+[1571.1]+[1572.1]+[1575.1]+[1576.1]-[1573.1]-[1574.1]-[1577.1]-[1578.1]-[1579.1])/1000" />
+	<!-- Wheat closing public stock for current fiscal year month 4 -->
+	<reportcell datatype = "number"  name="table3data32" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell38t3--reportcell37t3--([1570.1]+[1571.1]+[1572.1]+[1575.1]+[1576.1]-[1573.1]-[1574.1]-[1577.1]-[1578.1]-[1579.1])/1000" />
+	
+	<!-- Wheat closing public stock for last fiscal year month 5 -->
+	<reportcell datatype = "number"  name="table3data33" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell17t3--reportcell16t3--([1570.1]+[1571.1]+[1572.1]+[1575.1]+[1576.1]-[1573.1]-[1574.1]-[1577.1]-[1578.1]-[1579.1])/1000" />
+	<!-- Wheat closing public stock for current fiscal year month 5 -->
+	<reportcell datatype = "number"  name="table3data34" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell40t3--reportcell39t3--([1570.1]+[1571.1]+[1572.1]+[1575.1]+[1576.1]-[1573.1]-[1574.1]-[1577.1]-[1578.1]-[1579.1])/1000" />
+	
+	<!-- Wheat closing public stock for last fiscal year month 6 -->
+	<reportcell datatype = "number"  name="table3data35" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell19at3--reportcell18t3--([1570.1]+[1571.1]+[1572.1]+[1575.1]+[1576.1]-[1573.1]-[1574.1]-[1577.1]-[1578.1]-[1579.1])/1000" />
+	<!-- Wheat closing public stock for current fiscal year month 6 -->
+	<reportcell datatype = "number"  name="table3data36" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell42t3--reportcell41t3--([1570.1]+[1571.1]+[1572.1]+[1575.1]+[1576.1]-[1573.1]-[1574.1]-[1577.1]-[1578.1]-[1579.1])/1000" />
+	
+	<!-- Wheat closing public stock for last fiscal year month 7 -->
+	<reportcell datatype = "number"  name="table3data37" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell20t3--reportcell19t3--([1570.1]+[1571.1]+[1572.1]+[1575.1]+[1576.1]-[1573.1]-[1574.1]-[1577.1]-[1578.1]-[1579.1])/1000" />
+	<!-- Wheat closing public stock for current fiscal year month 7 -->
+	<reportcell datatype = "number"  name="table3data38" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell44t3--reportcell43t3--([1570.1]+[1571.1]+[1572.1]+[1575.1]+[1576.1]-[1573.1]-[1574.1]-[1577.1]-[1578.1]-[1579.1])/1000" />
+	
+	<!-- Wheat closing public stock for last fiscal year month 8 -->
+	<reportcell datatype = "number"  name="table3data39" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell22t3--reportcell21t3--([1570.1]+[1571.1]+[1572.1]+[1575.1]+[1576.1]-[1573.1]-[1574.1]-[1577.1]-[1578.1]-[1579.1])/1000" />
+	<!-- Wheat closing public stock for current fiscal year month 8 -->
+	<reportcell datatype = "number"  name="table3data40" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell46t3--reportcell45t3--([1570.1]+[1571.1]+[1572.1]+[1575.1]+[1576.1]-[1573.1]-[1574.1]-[1577.1]-[1578.1]-[1579.1])/1000" />
+	
+	<!-- Wheat closing public stock for last fiscal year month 9 -->
+	<reportcell datatype = "number"  name="table3data41" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell24t3--reportcell23t3--([1570.1]+[1571.1]+[1572.1]+[1575.1]+[1576.1]-[1573.1]-[1574.1]-[1577.1]-[1578.1]-[1579.1])/1000" />
+	<!-- Wheat closing public stock for current fiscal year month 9 -->
+	<reportcell datatype = "number"  name="table3data42" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell48t3--reportcell47t3--([1570.1]+[1571.1]+[1572.1]+[1575.1]+[1576.1]-[1573.1]-[1574.1]-[1577.1]-[1578.1]-[1579.1])/1000" />
+	
+	<!-- Wheat closing public stock for last fiscal year month 10 -->
+	<reportcell datatype = "number"  name="table3data43" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell26t3--reportcell25t3--([1570.1]+[1571.1]+[1572.1]+[1575.1]+[1576.1]-[1573.1]-[1574.1]-[1577.1]-[1578.1]-[1579.1])/1000" />
+	<!-- Wheat closing public stock for current fiscal year month 10 -->
+	<reportcell datatype = "number"  name="table3data44" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell50t3--reportcell49t3--([1570.1]+[1571.1]+[1572.1]+[1575.1]+[1576.1]-[1573.1]-[1574.1]-[1577.1]-[1578.1]-[1579.1])/1000" />
+	
+	<!-- Wheat closing public stock for last fiscal year month 11 -->
+	<reportcell datatype = "number"  name="table3data45" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell28t3--reportcell27t3--([1570.1]+[1571.1]+[1572.1]+[1575.1]+[1576.1]-[1573.1]-[1574.1]-[1577.1]-[1578.1]-[1579.1])/1000" />
+	<!-- Wheat closing public stock for current fiscal year month 11 -->
+	<reportcell datatype = "number"  name="table3data46" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell52t3--reportcell51t3--([1570.1]+[1571.1]+[1572.1]+[1575.1]+[1576.1]-[1573.1]-[1574.1]-[1577.1]-[1578.1]-[1579.1])/1000" />
+	
+	<!-- Wheat closing public stock for last fiscal year month 12 -->
+	<reportcell datatype = "number"  name="table3data47" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell30t3--reportcell29t3--([1570.1]+[1571.1]+[1572.1]+[1575.1]+[1576.1]-[1573.1]-[1574.1]-[1577.1]-[1578.1]-[1579.1])/1000" />
+	<!-- Wheat closing public stock for current fiscal year month 12 -->
+	<reportcell datatype = "number"  name="table3data48" celltype="formula_use_for_startdate_and_enddate" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell54t3--reportcell53t3--([1570.1]+[1571.1]+[1572.1]+[1575.1]+[1576.1]-[1573.1]-[1574.1]-[1577.1]-[1578.1]-[1579.1])/1000" />
+
+<!-- Total (Rice + Wheat) closing public stock for last fiscal year -->
+	<reportcell datatype = "number"  name="table3totaldata1" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table3data1]+[table3data25])" />	
+	<reportcell datatype = "number"  name="table3totaldata2" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table3data3]+[table3data27])" />	
+	<reportcell datatype = "number"  name="table3totaldata3" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table3data5]+[table3data29])" />	
+	<reportcell datatype = "number"  name="table3totaldata4" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table3data7]+[table3data31])" />	
+	<reportcell datatype = "number"  name="table3totaldata5" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table3data9]+[table3data33])" />	
+	<reportcell datatype = "number"  name="table3totaldata6" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table3data11]+[table3data35])" />	
+	<reportcell datatype = "number"  name="table3totaldata7" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table3data13]+[table3data37])" />	
+	<reportcell datatype = "number"  name="table3totaldata8" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table3data15]+[table3data39])" />	
+	<reportcell datatype = "number"  name="table3totaldata9" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table3data17]+[table3data41])" />	
+	<reportcell datatype = "number"  name="table3totaldata10" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table3data19]+[table3data43])" />	
+	<reportcell datatype = "number"  name="table3totaldata11" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table3data21]+[table3data45])" />	
+	<reportcell datatype = "number"  name="table3totaldata12" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table3data23]+[table3data47])" />	
+
+<!-- Total (Rice + Wheat) closing public stock for current fiscal year -->
+	<reportcell datatype = "number"  name="table3totaldata13" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table3data2]+[table3data26])" />	
+	<reportcell datatype = "number"  name="table3totaldata14" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table3data4]+[table3data28])" />	
+	<reportcell datatype = "number"  name="table3totaldata15" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table3data6]+[table3data30])" />	
+	<reportcell datatype = "number"  name="table3totaldata16" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table3data8]+[table3data32])" />	
+	<reportcell datatype = "number"  name="table3totaldata17" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table3data10]+[table3data34])" />	
+	<reportcell datatype = "number"  name="table3totaldata18" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table3data12]+[table3data36])" />	
+	<reportcell datatype = "number"  name="table3totaldata19" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table3data14]+[table3data38])" />	
+	<reportcell datatype = "number"  name="table3totaldata20" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table3data16]+[table3data40])" />	
+	<reportcell datatype = "number"  name="table3totaldata21" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table3data18]+[table3data42])" />	
+	<reportcell datatype = "number"  name="table3totaldata22" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table3data20]+[table3data44])" />	
+	<reportcell datatype = "number"  name="table3totaldata23" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table3data22]+[table3data46])" />	
+	<reportcell datatype = "number"  name="table3totaldata24" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="([table3data24]+[table3data48])" />	
+	
+	
+<!-- ************** Table 4: Change of rice and wheat prices ****************** -->
+
+<!-- ***** ROW 1 ***********-->
+	<!-- Rice Nominal Price -->
+	<!-- Rice Price for first month of current quarter -->
+	<reportcell datatype = "number"  name="table4data1" celltype="formula_use_for_startdate_and_enddate" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell55--reportcell56--[1000.1]" />
+	<!-- Rice Price for last month of current quarter -->
+	<reportcell datatype = "number"  name="table4data2" celltype="formula_use_for_startdate_and_enddate" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell57--reportcell58--[1000.1]" />	
+	<!-- Rice Nominal Price for Row1 -->
+	<reportcell datatype = "number"  name="table4data3" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="( ([table4data2]/[table4data1]) - 1 ) * 100" />
+		
+	<!-- Wheat Nominal Price -->
+	<!-- Wheat Price for first month of current quarter -->
+	<reportcell datatype = "number"  name="table4data4" celltype="formula_use_for_startdate_and_enddate" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell55--reportcell56--[1001.1]" />
+	<!-- Wheat Price for last month of current quarter -->
+	<reportcell datatype = "number"  name="table4data5" celltype="formula_use_for_startdate_and_enddate" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell57--reportcell58--[1001.1]" />
+	<!-- Wheat Nominal Price for Row1 -->
+	<reportcell datatype = "number"  name="table4data6" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="( ([table4data5]/[table4data4]) - 1 ) * 100" />
+	
+	<!-- Rice Real Price -->
+	<!-- CPI for first month of current quarter -->
+	<reportcell datatype = "number"  name="table4data7" celltype="formula_use_for_startdate_and_enddate" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell55--reportcell56--[983.1]" />
+	<!-- CPI for last month of current quarter -->
+	<reportcell datatype = "number"  name="table4data8" celltype="formula_use_for_startdate_and_enddate" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell57--reportcell58--[983.1]" />
+	<!-- Rice Real Price for first month of current quarter -->
+	<reportcell datatype = "number"  name="table4data9" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="( ([table4data1]/[table4data7]) * [table4data8] )" />
+	<!-- Rice Real Price for last month of current quarter -->
+	<reportcell datatype = "number"  name="table4data10" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="( ([table4data2]/[table4data8]) * [table4data8] )" />
+	<!-- Rice Real Price for Row1 -->
+	<reportcell datatype = "number"  name="table4data11" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="( ([table4data10]/[table4data9]) -1 ) * 100" />
+	
+	<!-- Wheat Real Price for Row1 -->
+	<!-- Wheat Real Price for first month of current quarter -->
+	<reportcell datatype = "number"  name="table4data12" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="( ([table4data4]/[table4data7]) * [table4data8] )" />
+	<!-- Wheat Real Price for last month of current quarter -->
+	<reportcell datatype = "number"  name="table4data13" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="( ([table4data5]/[table4data8]) * [table4data8] )" />
+	<!-- Wheat Real Price for Row1 -->
+	<reportcell datatype = "number"  name="table4data14" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="( ([table4data13]/[table4data12]) -1 ) * 100" />
+	
+<!-- ***** ROW 2 ***********-->
+	<!-- Rice Nominal Price -->
+	<!-- Rice Price for first month of last year current quarter -->
+	<reportcell datatype = "number"  name="table4data15" celltype="formula_use_for_startdate_and_enddate" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell59--reportcell60--[1000.1]" />
+	<!-- Rice Price for last month of last year current quarter -->
+	<reportcell datatype = "number"  name="table4data16" celltype="formula_use_for_startdate_and_enddate" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell61--reportcell62--[1000.1]" />	
+	<!-- Rice Nominal Price for Row2 -->
+	<reportcell datatype = "number"  name="table4data17" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="( ([table4data16]/[table4data15]) - 1 ) * 100" />
+		
+	<!-- Wheat Nominal Price -->
+	<!-- Wheat Price for first month of last year current quarter -->
+	<reportcell datatype = "number"  name="table4data18" celltype="formula_use_for_startdate_and_enddate" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell59--reportcell60--[1001.1]" />
+	<!-- Wheat Price for last month of last year current quarter -->
+	<reportcell datatype = "number"  name="table4data19" celltype="formula_use_for_startdate_and_enddate" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell61--reportcell62--[1001.1]" />
+	<!-- Wheat Nominal Price for Row2 -->
+	<reportcell datatype = "number"  name="table4data20" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="( ([table4data19]/[table4data18]) - 1 ) * 100" />
+	
+	<!-- Rice Real Price -->
+	<!-- CPI for first month of last year current quarter -->
+	<reportcell datatype = "number"  name="table4data21" celltype="formula_use_for_startdate_and_enddate" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell59--reportcell60--[983.1]" />
+	<!-- CPI for last month of last year current quarter -->
+	<reportcell datatype = "number"  name="table4data22" celltype="formula_use_for_startdate_and_enddate" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell61--reportcell62--[983.1]" />
+	<!-- Rice Real Price for first month of last year current quarter -->
+	<reportcell datatype = "number"  name="table4data23" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="( ([table4data15]/[table4data21]) * [table4data8] )" />
+	<!-- Rice Real Price for last month of last year current quarter -->
+	<reportcell datatype = "number"  name="table4data24" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="( ([table4data16]/[table4data22]) * [table4data8] )" />
+	<!-- Rice Real Price for Row2 -->
+	<reportcell datatype = "number"  name="table4data25" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="( ([table4data24]/[table4data23]) -1 ) * 100" />
+
+	<!-- Wheat Real Price -->
+	<!-- Wheat Real Price for first month of last year current quarter -->
+	<reportcell datatype = "number"  name="table4data26" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="( ([table4data18]/[table4data21]) * [table4data8] )" />
+	<!-- Wheat Real Price for last month of last year current quarter -->
+	<reportcell datatype = "number"  name="table4data27" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="( ([table4data19]/[table4data22]) * [table4data8] )" />
+	<!-- Wheat Real Price for Row2 -->
+	<reportcell datatype = "number"  name="table4data28" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="( ([table4data27]/[table4data26]) -1 ) * 100" />
+
+<!-- ***** ROW 3 ***********-->
+	<!-- Rice Nominal Price -->
+	<!-- Rice Price for last year current quarter next month -->
+	<reportcell datatype = "number"  name="table4data29" celltype="formula_use_for_startdate_and_enddate" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell63--reportcell64--[1000.1]" />
+	<!-- Rice Nominal Price for Row3 -->
+	<reportcell datatype = "number"  name="table4data30" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="( ([table4data2]/[table4data29]) - 1 ) * 100" />
+
+	<!-- Wheat Nominal Price -->
+	<!-- Wheat Price for last year current quarter next month -->
+	<reportcell datatype = "number"  name="table4data31" celltype="formula_use_for_startdate_and_enddate" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell63--reportcell64--[1001.1]" />
+	<!-- Wheat Nominal Price for Row3 -->
+	<reportcell datatype = "number"  name="table4data32" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="( ([table4data5]/[table4data31]) - 1 ) * 100" />
+
+	<!-- Rice Real Price -->
+	<!-- CPI for last year current quarter next month -->
+	<reportcell datatype = "number"  name="table4data33" celltype="formula_use_for_startdate_and_enddate" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell63--reportcell64--[983.1]" />
+	<!-- Rice Real Price for last year current quarter next month -->
+	<reportcell datatype = "number"  name="table4data34" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="( ([table4data29]/[table4data33]) * [table4data8] )" />
+	<!-- Rice Real Price for Row3 -->
+	<reportcell datatype = "number"  name="table4data35" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="( ([table4data10]/[table4data34]) -1 ) * 100" />
+
+	<!-- Wheat Real Price -->
+	<!-- Wheat Real Price for last year current quarter next month -->
+	<reportcell datatype = "number"  name="table4data36" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="( ([table4data31]/[table4data33]) * [table4data8] )" />
+	<!-- Wheat Real Price for Row3 -->
+	<reportcell datatype = "number"  name="table4data37" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="( ([table4data13]/[table4data36]) -1 ) * 100" />
+
+<!-- ***** ROW 4 ***********-->
+	<!-- Rice Nominal Price -->
+	<!-- Rice Price for last second year current quarter next month -->
+	<reportcell datatype = "number"  name="table4data38" celltype="formula_use_for_startdate_and_enddate" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell65--reportcell66--[1000.1]" />
+	<!-- Rice Nominal Price for Row4 -->
+	<reportcell datatype = "number"  name="table4data39" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="( ([table4data16]/[table4data38]) - 1 ) * 100" />
+
+	<!-- Wheat Nominal Price -->
+	<!-- Wheat Price for last second year current quarter next month -->
+	<reportcell datatype = "number"  name="table4data40" celltype="formula_use_for_startdate_and_enddate" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell65--reportcell66--[1001.1]" />
+	<!-- Wheat Nominal Price for Row4 -->
+	<reportcell datatype = "number"  name="table4data41" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="( ([table4data19]/[table4data40]) - 1 ) * 100" />
+
+	<!-- Rice Real Price -->
+	<!-- CPI for last second year current quarter next month -->
+	<reportcell datatype = "number"  name="table4data42" celltype="formula_use_for_startdate_and_enddate" aggtype="PERIOD_AGGREGATION" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="reportcell65--reportcell66--[983.1]" />
+	<!-- Rice Real Price for last second year current quarter next month -->
+	<reportcell datatype = "number"  name="table4data43" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="( ([table4data38]/[table4data42]) * [table4data8] )" />
+	<!-- Rice Real Price for Row4 -->
+	<reportcell datatype = "number"  name="table4data44" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="( ([table4data24]/[table4data43]) -1 ) * 100" />
+
+	<!-- Wheat Real Price -->
+	<!-- Wheat Real Price for last second year current quarter next month -->
+	<reportcell datatype = "number"  name="table4data45" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="( ([table4data40]/[table4data42]) * [table4data8] )" />
+	<!-- Wheat Real Price for Row4 -->
+	<reportcell datatype = "number"  name="table4data46" celltype="formula_number" aggtype="ONE_PERIOD" period="LAST_AVAILABLE_DATE_FOR_CURRENT_FISCAL_YEAR" orgunit="2" dataelement="( ([table4data27]/[table4data45]) -1 ) * 100" />
+
+</report>

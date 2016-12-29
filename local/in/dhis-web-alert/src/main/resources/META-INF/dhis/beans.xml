@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+	<!-- Service  -->
+	
+	<bean id="org.hisp.dhis.alert.util.AlertUtility"
+		class="org.hisp.dhis.alert.util.AlertUtility" scope="prototype">
+		<property name="reportService" ref="org.hisp.dhis.reports.ReportService"/>
+		<property name="jdbcTemplate" ref="jdbcTemplate"/>
+		<property name="organisationUnitService"
+			ref="org.hisp.dhis.organisationunit.OrganisationUnitService"/>
+		
+	</bean>
+	
+	<!-- Common Action  -->
+	
+	<bean id="org.hisp.dhis.alert.action.HomePageAction"
+        class="org.hisp.dhis.alert.action.HomePageAction"
+        scope="prototype">
+    </bean>
+    
+	<bean id="org.hisp.dhis.alert.action.ExportToExcelAction"
+        class="org.hisp.dhis.alert.action.ExportToExcelAction"
+        scope="prototype">		
+    </bean>
+
+<!-- View Data Selecting for BanglaDesh -->	
+	
+	<bean
+        id="org.hisp.dhis.alert.viewdata.action.GenerateViewDataReportFormAction"
+        class="org.hisp.dhis.alert.viewdata.action.GenerateViewDataReportFormAction"
+        scope="prototype">
+		<property name="dataSetService" ref="org.hisp.dhis.dataset.DataSetService" />
+			    <property name="organisationUnitService" ref="org.hisp.dhis.organisationunit.OrganisationUnitService" />
+		          	<property name="selectionTreeManager" ref="org.hisp.dhis.oust.manager.SelectionTreeManager" />
+    </bean>
+    
+    <bean 
+    	id="org.hisp.dhis.alert.viewdata.action.GetDataSetAction" class="org.hisp.dhis.alert.viewdata.action.GetDataSetAction"
+    	scope="prototype">
+    	<property name="dataSetService" ref="org.hisp.dhis.dataset.DataSetService" />
+    	<property name="dataValueService" ref="org.hisp.dhis.datavalue.DataValueService" />
+    	<property name="selectionTreeManager" ref="org.hisp.dhis.oust.manager.SelectionTreeManager" />
+    	<property name="statementManager" ref="statementManager" />    	
+    </bean>
+	
+	<bean
+        id="org.hisp.dhis.alert.viewdata.action.GenerateViewDataReportResultAction"
+        class="org.hisp.dhis.alert.viewdata.action.GenerateViewDataReportResultAction"
+        scope="prototype">
+		<property name="dataSetService" ref="org.hisp.dhis.dataset.DataSetService" />  
+		<property name="fpmuReportManager" ref="org.hisp.dhis.alert.util.FPMUReportManager" />   
+		<property name="periodService" ref="org.hisp.dhis.period.PeriodService" />
+		<property name="selectionTreeManager" ref="org.hisp.dhis.oust.manager.SelectionTreeManager" />
+   </bean>
+    <bean
+        id="org.hisp.dhis.alert.viewdata.action.VerifyDataFormAction"
+        class="org.hisp.dhis.alert.viewdata.action.VerifyDataFormAction"
+        scope="prototype">
+    </bean>	
+	
+   <bean
+        id="org.hisp.dhis.alert.util.FPMUReportManager"
+        class="org.hisp.dhis.alert.util.FPMUReportManager" >    
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+    </bean>
+	
+   <bean
+        id="org.hisp.dhis.alert.viewdata.action.SaveDataVerificationAction"
+        class="org.hisp.dhis.alert.viewdata.action.SaveDataVerificationAction" >    
+		<property name="currentUserService" ref="org.hisp.dhis.user.CurrentUserService" />
+		<property name="dataVerificationService" ref="org.hisp.dhis.dataverify.DataVerificationService" />
+	    <property name="dataSetService" ref="org.hisp.dhis.dataset.DataSetService" />
+	    <property name="organisationUnitService" ref="org.hisp.dhis.organisationunit.OrganisationUnitService" />
+    </bean>	
+
+	<!--Data Inventory Status Action-->
+
+    <bean id="org.hisp.dhis.alert.action.DataInventoryStatusAction"
+          class="org.hisp.dhis.alert.action.DataInventoryStatusAction"
+          scope="prototype">
+        <property name="dataSetService" ref="org.hisp.dhis.dataset.DataSetService" />
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+
+
+    <bean id="org.hisp.dhis.alert.action.DataInventoryStatusFormAction"
+          class="org.hisp.dhis.alert.action.DataInventoryStatusFormAction"
+          scope="prototype">
+        <property name="dataSetService" ref="org.hisp.dhis.dataset.DataSetService" />
+        <property name="dataElementService" ref="org.hisp.dhis.dataelement.DataElementService"/>
+    </bean>
+
+
+    <!--Data Search Action-->
+
+    <bean id="org.hisp.dhis.alert.action.SearchByDataelements"
+          class="org.hisp.dhis.alert.action.SearchByDataelements"
+          scope="prototype">
+        <property name="dataElementService" ref="org.hisp.dhis.dataelement.DataElementService" />
+    </bean>
+
+    <bean id="org.hisp.dhis.alert.action.SearchStartEndDateAction"
+          class="org.hisp.dhis.alert.action.SearchStartEndDateAction"
+          scope="prototype">
+        <property name="dataElementService" ref="org.hisp.dhis.dataelement.DataElementService" />
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+        <property name="dataValueService" ref="org.hisp.dhis.datavalue.DataValueService"/>
+    </bean>
+
+
+    <bean id="org.hisp.dhis.alert.action.GetSearchDataResultAction"
+          class="org.hisp.dhis.alert.action.GetSearchDataResultAction"
+          scope="prototype">
+        <property name="dataElementService" ref="org.hisp.dhis.dataelement.DataElementService" />
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+
+    <bean id="org.hisp.dhis.alert.action.GetDataValuesFormAction"
+          class="org.hisp.dhis.alert.action.GetDataValuesFormAction"
+          scope="prototype">
+        <property name="dataElementService" ref="org.hisp.dhis.dataelement.DataElementService" />
+    </bean>
+
+    <bean id="org.hisp.dhis.alert.action.GetDataValuesAction"
+          class="org.hisp.dhis.alert.action.GetDataValuesAction"
+          scope="prototype">
+        <property name="dataElementService" ref="org.hisp.dhis.dataelement.DataElementService" />
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+	
+</beans>

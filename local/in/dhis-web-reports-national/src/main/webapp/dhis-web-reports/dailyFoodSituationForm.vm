@@ -1,0 +1,74 @@
+
+<script type="text/javascript">
+		jQuery( function(){
+			datePicker( "reportDate",{"dateFormat":"dd/MM/yyyy"});
+	    }); 
+ 
+	 jQuery(window).load(function() {
+	   	getOutputType();		
+	}); 
+	function getOutputType()
+	{
+		if(document.getElementById("fontName").checked == true)
+	   	{
+	   		$("#outputType option").remove();
+	   		$("#outputType").append(" <option value='rtf' id='rtf'>$i18n.getString( 'rtf' )</option>")
+	   }
+	   	else
+	   	{
+	   		$("#outputType option").remove();
+	   		$("#outputType").append(" <option value='rtf' id='rtf' selected='selected'>$i18n.getString( 'rtf' )</option>")
+
+
+	   	}
+	}
+     
+    function onSubmitFunction( reportoutputmode )
+	{
+		document.getElementById("reportOutputMode").value = reportoutputmode;
+	}
+     
+</script>
+
+<form id="dailyFoodForm" name="dailyFoodForm" action="generateDailyFoodReport.action" method="post" target="_blank">          
+	<table>
+		<tr>
+			<td class="NormalB">
+				<b><label for="reportDate">$i18n.getString( 'report_date' )</label></b><br/>
+                <input type="text" id="reportDate" name="reportDate" style="width:12em" class="{validate:{required:true,dateISO:true}}" />                                
+			</td>
+		</tr>
+          
+        <tr>
+			<td> 
+				<br/>          	
+
+				<!--<b><label for="reportDate">$i18n.getString( 'output_type' )</label> </b><br/>-->
+				<select name="outputType" id="outputType" style="width:150px;display:none">
+					<option value='rtf' id='rtf'>$i18n.getString( 'rtf' )</option>
+				</select>
+			</td> 
+		</tr>
+	    
+		<tr>
+			<td>
+				Bangla Language <input type="checkbox" value="Bangla" name="fontName" id="fontName" onclick="javascript:getOutputType()"/>
+            </td>
+       	</tr>
+
+        <tr>
+            <td>
+                Include write-up in report <input type="checkbox" name="writeupStatus" id="writeupStatus" checked />
+
+            </td>
+        </tr>
+	    
+		<tr>
+			<td>
+				<br/><br/> <input type="submit" name="generate" value="Generate Report" onclick="javascript:onSubmitFunction( 'REPORTOUTPUT' )" />
+				<input type="submit" name="generate" value="Write Comments" onclick="javascript:onSubmitFunction( 'COMMENTOUTPUT' )" />
+				<input type="hidden" id="reportOutputMode" name="reportOutputMode" value="REPORTOUTPUT" />				
+			</td>
+       	</tr>
+	</table>
+</form>

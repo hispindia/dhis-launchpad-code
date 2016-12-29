@@ -1,0 +1,75 @@
+<script type="text/javascript">
+	jQuery(document).ready(function(){	
+		tableSorter( 'listTable' );	
+	});
+
+	var confirm_to_delete_data = '$encoder.jsEscape( $i18n.getString( "Confirm to delete Dashboard Item" ) , "'" )';
+</script>
+
+<script type="text/javascript">
+function chartDelete(Id,Name)
+{
+	removeItem( Id, Name, confirm_to_delete_data, 'deletechartdata.action' );
+}
+</script>
+
+
+<h3>$i18n.getString( "Program_DashBoard_Management" )</h3>
+
+
+<table class="mainPageTable">
+	<tr>
+		<td style="vertical-align:top">
+			
+			<table width="100%">
+				<tr>
+					<td>#filterDiv( "showdeleteform" )</td>
+					<td colspan="3" style="text-align:right"><input type="button" value="$i18n.getString( 'add_new' )" style="width: 6em;" onclick="window.location.href='showaddform.action'"/></td>
+				</tr>
+			</table>
+			<table class="listTable" id="listTable">
+				<col width="20%"/>
+				<col width="15%"/>
+				<col width="15%"/>
+				<col width="15%"/>	
+				<col width="15%"/>				
+				<col width="10%"/>	
+				<col width="10%"/>							
+                <thead>				
+				<tr>
+					<th>$i18n.getString( "Title" )</th>
+					<th>$i18n.getString( "Program" )</th>
+					<th>$i18n.getString( "Type" )</th>
+					<th>$i18n.getString( "Display_Type" )</th>
+					<th>$i18n.getString( "Period" )</th>
+					<th>$i18n.getString( "Position" )</th>				
+					<th>$i18n.getString( "Operations" )</th>
+					
+				</tr>
+                </thead>
+                
+                
+				<tbody id="list">
+				#foreach( $programDashboard in $programDashboards )
+				<tr id="tr${programDashboard.id}">
+					<td>$encoder.htmlEncode( $programDashboard.getName() )</td>
+					<td>$encoder.htmlEncode( $programDashboard.getProgram().getDisplayName() )</td>
+					<td>$encoder.htmlEncode( $programDashboard.getType())</td>
+					<td>$encoder.htmlEncode( $programDashboard.getChartType() )</td>
+					<td>$encoder.htmlEncode( $programDashboard.getTime())  $encoder.htmlEncode( $programDashboard.getTimetype())</td>
+					<td>$encoder.htmlEncode( $programDashboard.getPos() )</td>
+					<td style="text-align:left">
+						<a href="showupdateform.action?id=$programDashboard.id" title="$i18n.getString( 'edit' )"><img src="../images/edit.png" alt="$i18n.getString( 'edit' )"/></a>
+						<a href="javascript:chartInfo('$encoder.jsEscape( $i18n.getString( $indicators_string.get($programDashboard) ) , "'" )')" title="$i18n.getString( 'Indicators' )"><img src="../images/information.png" /></a>
+						<a href="javascript:chartDelete($programDashboard.getId(), '$encoder.jsEncode( "")' )" title="$i18n.getString( 'Remove' )"><img src="../images/delete.png" alt="$i18n.getString( 'Remove' )"/></a>
+					</td>
+				
+				</tr>
+				#end
+				</tbody>
+			</table>
+			
+		</td>
+		
+	</tr>
+</table>

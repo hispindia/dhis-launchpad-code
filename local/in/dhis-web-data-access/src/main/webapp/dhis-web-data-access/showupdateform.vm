@@ -1,0 +1,197 @@
+<script language="javascript"> 
+function setOptions(o) 
+{ 
+	var select2 = document.addchartdataForm.chartType; 
+	chartType.options.length = 0; 
+	if (o == "chart") 
+	{ 
+		chartType.options[chartType.options.length] = new Option('period_wise');
+		chartType.options[chartType.options.length] = new Option('facility_wise');
+		chartType.options[chartType.options.length] = new Option('service_wise'); 
+	} 
+	if (o == "table") 
+	{ 
+		chartType.options[chartType.options.length] = new Option('period_wise');
+		chartType.options[chartType.options.length] = new Option('facility_wise');
+	} 
+ 
+} 
+</script> 
+
+
+
+
+
+
+
+<h3>$i18n.getString( "Program DashBoard Engine" )</h3>
+
+<form id="updatechartdataForm" name="updatechartdataForm" action="updatechartdata.action" method="post">
+	<table style=" border-collapse: collapse; margin-top: 0;" cellpadding="0" cellspacing="0" border=0>
+	
+	<tr>
+    				<td><label for="id">$i18n.getString( "Id")</label></td>
+    </tr>
+    
+    <tr>
+					<td><input type="int" id="id" name="id" value="$encoder.htmlEncode( $programDashboard.getId() )"style="width:325px"/></td>
+	</tr>			
+	
+	<tr>
+		<td class="NormalB">&nbsp;</td>
+		<td class="NormalB">&nbsp;</td>
+		<td class="NormalB">&nbsp;</td>
+    </tr> 
+	
+	
+	<tr>
+                    <td class="NormalB"><label for="name">$i18n.getString( "Title")</label></td>
+    </tr>
+    <tr>
+					<td><input type="text" id="name" name="name" value="$encoder.htmlEncode( $programDashboard.getName() )" style="width:325px"/></td>
+	</tr>			
+	
+	<tr>
+		<td class="NormalB">&nbsp;</td>
+		<td class="NormalB">&nbsp;</td>
+		<td class="NormalB">&nbsp;</td>
+    </tr> 
+	<tr>
+		<td class="NormalB">$i18n.getString( "Program" )<br>
+			<select id="programId" name="programId" style="width:325px" onChange="getPrograms()" >
+				<option value="$ALL">[ Select Program ]</option>
+				#foreach ( $program in $programs )
+				<option value="$program.id" #if( $programDashboard.getProgram().getId() == $program.id ) selected="selected" #end title="$program.name">$program.name</option>
+				#end
+			</select>
+		</td>
+		<td class="NormalB">&nbsp;</td>       
+		<td class="NormalB">&nbsp;</td>
+    </tr>
+    <tr>
+		<td class="NormalB">&nbsp;</td>
+		<td class="NormalB">&nbsp;</td>
+		<td class="NormalB">&nbsp;</td>
+    </tr>    
+    <tr>
+		<td class="NormalB">$i18n.getString( "Type" )<br>
+			<select id="type" name="type" style="width:325px" onchange="setOptions(document.addchartdataForm.type.options[document.addchartdataForm.type.selectedIndex].value);" >
+				<option value="chart" #if( $programDashboard.getType().contentEquals( "chart" ) ) selected="selected" #end title="type">Chart</option>
+				<option value="table" #if( $programDashboard.getType().contentEquals( "table" ) ) selected="selected" #end title="type">Table</option>
+			</select>
+		</td>
+		<td class="NormalB">&nbsp;</td>       
+		<td class="NormalB">&nbsp;</td>
+    </tr>
+    <tr>
+		<td class="NormalB">&nbsp;</td>
+		<td class="NormalB">&nbsp;</td>
+		<td class="NormalB">&nbsp;</td>
+    </tr>
+    <tr>
+		<td class="NormalB">$i18n.getString( "View_By" )<br>
+			<select id="chartType" name="chartType" style="width:325px" >
+				<option value="period_wise" title="type" #if( $programDashboard.getChartType().contentEquals( "period_wise" ) ) selected="selected" #end >Period Wise</option>
+				<option value="facility_wise" title="type" #if( $programDashboard.getChartType().contentEquals( "facility_wise" ) ) selected="selected" #end >Facility Wise</option>
+				<option value="service_wise" title="type" #if( $programDashboard.getChartType().contentEquals( "service_wise" )) selected="selected" #end >Service Wise</option>
+			</select>
+		</td>
+		<td class="NormalB">&nbsp;</td>       
+		<td class="NormalB">&nbsp;</td>
+    </tr>
+    <tr>
+		<td class="NormalB">&nbsp;</td>
+		<td class="NormalB">&nbsp;</td>
+		<td class="NormalB">&nbsp;</td>
+    </tr>        
+    
+    <tr>
+		<td class="NormalB">$i18n.getString( "Available_Indicator_List" )<br>
+			<select multiple size="7" id="availableIndicators" name="availableIndicators"  style="width:325px; height:100px" ondblclick="moveSelectedById( 'availableIndicators', 'selectedIndicators' )">
+				#foreach ( $element in $indicators )
+					<option value="$element.id" title="$element.name">$element.name</option>
+				#end
+			</select>
+		</td>
+		<td class="NormalB" align="center">
+			&nbsp;&nbsp;<input type="button" value="&gt;" style="width:40px" onClick="moveSelectedById( 'availableIndicators', 'selectedIndicators' )">&nbsp;&nbsp;<br>
+			&nbsp;&nbsp;<input type="button" value="&lt;" style="width:40px" onClick="moveSelectedById( 'selectedIndicators', 'availableIndicators' )">&nbsp;&nbsp;<br>
+			&nbsp;&nbsp;<input type="button" value="&gt;&gt;" style="width:40px" onClick="moveAllById( 'availableIndicators', 'selectedIndicators' )">&nbsp;&nbsp;<br>
+			&nbsp;&nbsp;<input type="button" value="&lt;&lt;" style="width:40px" onClick="moveAllById( 'selectedIndicators', 'availableIndicators' )">&nbsp;&nbsp;
+		</td>
+		<td class="NormalB"> $i18n.getString( "Selected _Indicator_List" )<br />
+			<select multiple size="7" id="selectedIndicators" name="selectedIndicators"  style="width:350px; height:100px" ondblclick="moveSelectedById( 'selectedIndicators', 'availableIndicators' )">
+				#foreach ( $element in $programDashboardIndicators )
+					<option value="$element.getIndicator().getId()" title="$element.getIndicator().getDisplayName()" selected="selected">$element.getIndicator().getDisplayName()</option>
+				#end
+			</select>
+		</td>
+    </tr>
+    
+    <tr>
+      <td class="NormalB">&nbsp;<br/></td>
+      <td class="NormalB">&nbsp;<br/></td>
+      <td class="NormalB">&nbsp;<br/></td>
+    </tr>
+    <tr>
+        <td class="NormalB">
+            <table>
+                <tr>
+                    <td><label for="time">$i18n.getString( "Period")</label></td>
+                </tr>
+                <tr>
+					<td><input type="int" id="time" name="time" value="$encoder.htmlEncode( $programDashboard.getTime() )"style="width:325px"/></td>
+				</tr>
+				<tr>
+			      <td class="NormalB">&nbsp;<br/></td>
+			      <td class="NormalB">&nbsp;<br/></td>
+			      <td class="NormalB">&nbsp;<br/></td>
+			    </tr>
+				<tr>	
+                    <td class="NormalB">$i18n.getString( "Period Type" )<br>
+						<select id="timetype" name="timetype" style="width:325px" >
+							<option value="days" title="type" #if( $programDashboard.getTimetype().contentEquals( "days" ) ) selected="selected" #end>Days</option>
+							<option value="weeks" title="type" #if( $programDashboard.getTimetype().contentEquals( "weeks" ) ) selected="selected" #end>Weeks</option>
+							<option value="months" title="type" #if( $programDashboard.getTimetype().contentEquals( "months" ) ) selected="selected" #end>Months</option>
+						</select>
+					</td>
+                </tr>
+                <tr>
+			      <td class="NormalB">&nbsp;<br/></td>
+			      <td class="NormalB">&nbsp;<br/></td>
+			      <td class="NormalB">&nbsp;<br/></td>
+			    </tr>
+			    <tr>
+                    <td><label for="time">$i18n.getString( "Position")</label></td>
+                </tr>
+                <tr>
+					<td><input type="int" id="pos" name="pos" value="$encoder.htmlEncode( $programDashboard.getPos() )" style="width:325px"/></td>
+				</tr>
+            </table>
+        </td>
+    </tr>   
+    <tr>
+        <td class="NormalB">&nbsp;</td>
+        <td class="NormalB" >&nbsp;</td>
+        <td class="NormalB">
+        </td>
+    </tr>               
+  </table>
+  <p>
+	<input type="submit" name="save" value="$i18n.getString( 'update' )" style="width: 10em;" />
+	<input type="button" value="$i18n.getString( 'cancel' )" onclick="window.location.href='showdeleteform.action'" style="width: 10em;" />
+  </p>
+</form>
+
+<script type="text/javascript">
+
+	var availableIndicators = new Object();	
+    #foreach ( $availableIndicator in $indicators )
+    	availableIndicators['$availableIndicator.id'] = '$encoder.jsEscape( $availableIndicator.name, "'" )';
+    #end
+
+</script>
+
+
+
+

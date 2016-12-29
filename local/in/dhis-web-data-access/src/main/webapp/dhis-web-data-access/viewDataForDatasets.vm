@@ -1,0 +1,122 @@
+<script type="text/javascript">
+	
+	jQuery( function(){
+	datePicker("startDate")
+	});
+        
+	jQuery( function(){
+	datePicker("endDate")
+	});
+    
+	function formValidations()
+	{
+		var datasetIdIndex = document.viewData.datasetId.selectedIndex;
+		var startDateValue = document.viewData.startDate.value;
+		var endDateValue = document.viewData.endDate.value;				
+			               			            
+		if(datasetIdIndex < 0 || document.viewData.datasetId.options[datasetIdIndex].value == "NA") {alert("Please Select Dataset"); return false;}
+		else if(startDateValue == null || startDateValue== "" ) {alert("Please Select Start Date"); return false;}
+		else if(endDateValue == null || endDateValue=="") {alert("Please Select End Date"); return false;}
+		else if(startDateValue > endDateValue) {alert("Start Date is Greater than End Date"); return false;}				
+
+		return true;
+	}
+
+    function sortList()
+    {
+        var cl = document.getElementById('datasetId');
+        var clTexts = new Array();
+
+        for(i = 1; i < cl.length; i++)
+        {
+            clTexts[i-1] =
+                    cl.options[i].text.toUpperCase() + "," +
+                            cl.options[i].text + "," +
+                            cl.options[i].value;
+        }
+
+        clTexts.sort();
+
+        for(i = 1; i < cl.length; i++)
+        {
+            var parts = clTexts[i-1].split(',');
+
+            cl.options[i].text = parts[1];
+            cl.options[i].value = parts[2];
+        }
+    }
+
+	
+</script>
+
+<form id="viewData" name="viewData" method="post" onsubmit="return formValidations()" onmouseover="sortList()" action="viewDataResultAction.action" >
+	
+<h4>$i18n.getString( "view_data" )</h4>
+	
+<table align="left" style=" border-collapse: collapse; margin-top: 0;" cellpadding="0" cellspacing="0"  border=0>                      
+	<tr>				
+		<th style="min-width: 35px">$i18n.getString( "dataset_selection" )</th>
+		<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>	
+		<th style="min-width: 25px">Start Date</th>
+		<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+		<th style="min-width: 25px">End Date</th>	   	
+	</tr>
+	<tr>
+		<td>
+			<select id="datasetId" name="datasetId" style="width:15em">
+				<option value="NA">[ $i18n.getString( "select_dataset" ) ]</option>
+			    #foreach ( $dataset in $datasets )
+					<option value="$dataset.id">$dataset.name</option>
+				#end
+			</select>
+		</td>
+		<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+		<td class="NormalB">
+			<input type="text" id="startDate" name="startDate" style="width:10em" />
+        </td>
+		<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+		<td class="NormalB">
+			<input type="text" id="endDate" name="endDate" style="width:10em" />
+		</td>
+	</tr>
+    <tr>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    </tr>
+	<tr>
+		<td colspan="5">
+			<table id="selectionTable">
+				<tr>
+	  				<td>
+						#organisationUnitSelectionTree( false, true, false )
+	 				</td>
+    			</tr>
+    		</table>	
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<input type="submit" id= "viewData" name="viewData" value="View Data" style="float:left; width:13em;" />
+		</td>
+	</tr>
+	<!--
+    <tr>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    </tr>
+	-->
+</table>	
+
+<!--
+<br/>
+#organisationUnitSelectionTree( false, true, false )
+
+<input type="submit" id= "viewData" name="viewData" value="View Data" style="float:left; width:13em;" />
+-->
+</form>

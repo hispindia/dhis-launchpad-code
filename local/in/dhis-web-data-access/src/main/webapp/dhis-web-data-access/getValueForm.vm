@@ -1,0 +1,39 @@
+<script src="chosen/chosen.jquery.js" type="text/javascript"></script>
+<link rel="stylesheet" href="chosen/chosen.css">
+<style type="text/css" media="all">
+        /* fix rtl for demo */
+    .chzn-rtl .chzn-drop {
+        left: -9000px;
+    }
+</style>
+
+<h3 id="moduleHeader">$i18n.getString("serach_data_multiple")</h3>
+
+<form id="searchFunctionForm" method="post" action="getValueResultAction.action">
+
+   <div id="selectionBox" class="inputCriteria" style="height: auto;width: 830px;">
+    <table>
+
+        <tr>
+            <td>Select Dataelements</td>
+            <td>
+            <select multiple="multiple" class="chzn-select" name="dataElementID" id="dataElementID" style="width:700px;" tabindex="2">
+                #foreach( $dataelement in $allDataElements )
+                    <option value=$dataelement.getId()>$dataelement.getName()</option>
+                #end
+            </select>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input name="Get Data" type="submit" value="Get Data"></td>
+        </tr>
+
+    </table>
+   </div>
+
+    <script>
+        $(".chzn-select").chosen();
+    </script>
+
+</form>

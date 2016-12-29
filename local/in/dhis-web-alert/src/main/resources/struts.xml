@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<include file="dhis-web-commons.xml"/>
+	
+	<package name="dhis-web-alert" extends="dhis-web-commons"
+		namespace="/dhis-web-alert">
+		
+		<!-- Index action -->
+
+		<action name="index" class="org.hisp.dhis.alert.action.DataInventoryStatusFormAction">
+        <result name="success" type="velocity">/main.vm</result>
+        <param name="page">/dhis-web-alert/DisplayInventoryStatusForm.vm</param>
+        <param name="hideMenu">true</param>
+		</action>
+
+		<!-- View Data Selecting for Bangladesh -->
+
+		<action name="viewDataForDataSets"
+            class="org.hisp.dhis.alert.viewdata.action.GenerateViewDataReportFormAction">
+            <result name="success" type="velocity">/main.vm</result>
+			<param name="page">/dhis-web-alert/viewDataForDatasets.vm</param>
+			<param name="menu">/dhis-web-alert/menuForViewData.vm</param>				
+			<param name="javascripts">../dhis-web-commons/calendar/calendar.js,../dhis-web-commons/calendar/calendar-lang.js,../dhis-web-commons/calendar/calendar-setup.js,../dhis-web-commons/ouwt/ouwt.js,../dhis-web-commons/lists/lists.js,javascript/hashtable.js</param>				
+        </action>
+        
+        <action name="defineDataSetAssociationsForm" class="org.hisp.dhis.alert.viewdata.action.GetDataSetAction">
+      		<result name="success" type="velocity">/main.vm</result>
+      		<param name="page">/dhis-web-alert/viewDataForDatasets.vm</param>
+			<param name="menu">/dhis-web-alert/menuForViewData.vm</param>				
+			<param name="javascripts">../dhis-web-commons/calendar/calendar.js,../dhis-web-commons/calendar/calendar-lang.js,../dhis-web-commons/calendar/calendar-setup.js,../dhis-web-commons/ouwt/ouwt.js,../dhis-web-commons/lists/lists.js,javascript/hashtable.js</param>				
+        </action>
+		
+		<action name="viewDataResultAction"
+            class="org.hisp.dhis.alert.viewdata.action.GenerateViewDataReportResultAction">
+            <result name="success" type="velocity">/main.vm</result>
+			<param name="page">/dhis-web-alert/viewDataResultForm.vm</param>
+			<param name="menu">/dhis-web-alert/menuForViewData.vm</param>
+        </action>
+
+        <action name="saveDataVerification"
+            class="org.hisp.dhis.alert.viewdata.action.SaveDataVerificationAction">
+            <result name="success" type="velocity">/main.vm</result>
+            <param name="page">/dhis-web-alert/DataVerificationStatus.vm</param>
+            <param name="menu">/dhis-web-alert/menuForViewData.vm</param>
+        </action>
+
+        <action name="verifyDataForm"
+            class="org.hisp.dhis.alert.viewdata.action.VerifyDataFormAction">
+            <result name="success" type="velocity">/content.vm</result>
+            <param name="page">/dhis-web-alert/verifyDataForm.vm</param>
+        </action>
+		
+		<action name="exportToWorkBook" class="org.hisp.dhis.alert.action.ExportToExcelAction">
+            <result name="success" type="stream">
+                <param name="contentType">application/vnd.ms-excel</param>
+                <param name="inputName">inputStream</param>
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+                <param name="bufferSize">1024</param>
+            </result>
+        </action>
+
+        <!--Data Inventory Status Action-->
+
+        <action name="dataInventoryAction" class="org.hisp.dhis.alert.action.DataInventoryStatusAction">
+            <result name="success" type="velocity">/main.vm</result>
+            <param name="page">/dhis-web-alert/DisplayInventoryStatus.vm</param>
+            <param name="hideMenu">true</param>
+        </action>
+
+        <!--Data Inventory Form Action-->
+
+        <action name="dataInventoryFormAction" class="org.hisp.dhis.alert.action.DataInventoryStatusFormAction">
+            <result name="success" type="velocity">/main.vm</result>
+            <param name="page">/dhis-web-alert/DisplayInventoryStatusForm.vm</param>
+            <param name="hideMenu">true</param>
+        </action>
+
+        <!--Data Search Form Action-->
+
+        <action name="searchFormAction" class="org.hisp.dhis.alert.action.SearchByDataelements">
+            <result name="success" type="velocity">/main.vm</result>
+            <param name="page">/dhis-web-alert/searchForm.vm</param>
+            <param name="menu">/dhis-web-alert/menuForViewData.vm</param>
+        </action>
+
+        <action name="getStartEndDate" class="org.hisp.dhis.alert.action.SearchStartEndDateAction">
+            <result name="success" type="velocity">/main.vm</result>
+            <param name="page">/dhis-web-alert/searchDateForm.vm</param>
+            <param name="menu">/dhis-web-alert/menuForViewData.vm</param>
+        </action>
+
+        <action name="getResultTable" class="org.hisp.dhis.alert.action.GetSearchDataResultAction">
+            <result name="success" type="velocity">/main.vm</result>
+            <param name="page">/dhis-web-alert/searchResult.vm</param>
+            <param name="hideMenu">true</param>
+        </action>
+
+
+        <action name="getValueFormAction" class="org.hisp.dhis.alert.action.GetDataValuesFormAction">
+            <result name="success" type="velocity">/main.vm</result>
+            <param name="page">/dhis-web-alert/getValueForm.vm</param>
+            <param name="menu">/dhis-web-alert/menuForViewData.vm</param>
+        </action>
+
+        <action name="getValueResultAction" class="org.hisp.dhis.alert.action.GetDataValuesAction">
+            <result name="success" type="velocity">/main.vm</result>
+            <param name="page">/dhis-web-alert/getValueResult.vm</param>
+            <param name="hideMenu">true</param>
+        </action>
+		
+	</package>
+	
+</struts>

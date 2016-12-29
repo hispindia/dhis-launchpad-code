@@ -1,0 +1,27 @@
+<script src="chosen/chosen.jquery.js" type="text/javascript"></script>
+<link rel="stylesheet" href="chosen/chosen.css">
+<style type="text/css" media="all">
+        /* fix rtl for demo */
+    .chzn-rtl .chzn-drop {
+        left: -9000px;
+    }
+</style>
+
+<h3>Data Search Functionality</h3>
+
+<form id="searchFunctionForm" method="post" action="getStartEndDate.action">
+
+    Dataelement
+    <br>
+    <select class="chzn-select" name="dataElementID" id="dataElementID" style="width:350px;" tabindex="2"
+            onchange="this.form.submit()">
+        #foreach( $dataelement in $allDataElements )
+            <option value=$dataelement.getId()>$dataelement.getName()</option>
+        #end
+    </select>
+
+    <script>
+        $(".chzn-select").chosen();
+    </script>
+
+</form>

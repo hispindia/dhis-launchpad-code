@@ -1,0 +1,6 @@
+
+#parse( "dhis-web-reporting/renderDataSetReportHeader.vm" )
+
+<div>
+#parse( "dhis-web-commons/ajax/htmlGrid.vm" )
+</div>

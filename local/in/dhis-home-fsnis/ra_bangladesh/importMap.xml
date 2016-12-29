@@ -1,0 +1,7 @@
+
+<name-maps>
+   <name-map filter="Daily Reports" template="Daily Reports.xls"/>
+   <name-map filter="wrp" template="dhaka_wrp.xls"/>
+   <name-map filter="MonthlyConsolidated" template="MonthlyConsolidated.xls"/>
+   <name-map filter="Off.T" template="Off.T.31(Ka).xls"/>
+</name-maps>

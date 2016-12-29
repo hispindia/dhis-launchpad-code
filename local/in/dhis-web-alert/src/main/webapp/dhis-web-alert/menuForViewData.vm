@@ -1,0 +1,8 @@
+
+<a href="index.action"><h2>Access Data</h2></a>
+
+<ul>
+    <li><a href = "../dhis-web-alert/viewDataForDataSets.action">View Dataset Tables</a></li>
+    <li><a href = "searchFormAction.action">Single Dataelement Search</a></li>
+    <li><a href = "getValueFormAction.action">Multiple Dataelement Search</a></li>
+</ul>

@@ -1,0 +1,127 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script>
+        var startDate = $startDate;
+        var endDate = $endDate;
+        $(function() {
+            $( "#StartDatePicker" ).datepicker({
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: "yy-mm-dd",
+                minDate:startDate,
+                maxDate:endDate,
+                defaultDate:startDate
+            });
+        });
+        $(function() {
+            $( "#EndDatePicker" ).datepicker({
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: "yy-mm-dd",
+                minDate:startDate,
+                maxDate:endDate,
+                defaultDate:endDate
+            });
+        });
+
+        $(function callUpdateAction() {
+            $.ajax({
+                type: "POST",
+                url: 'getStartEndDate.action'
+            });
+        });
+
+        $(".chosen-select").chosen({});
+
+
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            $('.masterTooltip').hover(function(){
+                // Hover over code
+                var title = $(this).attr('title');
+                $(this).data('tipText', title).removeAttr('title');
+                $('<p class="tooltip"></p>')
+                        .text(title)
+                        .appendTo('body')
+                        .fadeIn('slow');
+            }, function() {
+                // Hover out code
+                $(this).attr('title', $(this).data('tipText'));
+                $('.tooltip').remove();
+            }).mousemove(function(e) {
+                        var mousex = e.pageX + 20; //Get X coordinates
+                        var mousey = e.pageY + 10; //Get Y coordinates
+                        $('.tooltip')
+                                .css({ top: mousey, left: mousex })
+                    });
+        });
+    </script>
+
+
+    <style>
+        .tooltip {
+            display:none;
+            position:absolute;
+            border:1px solid;
+            background-color: #d3d3d3;
+            border-radius:5px;
+            padding:10px;
+            color:#000000;
+            font-size:12px;
+            font: Arial;
+        }
+
+    </style>
+</head>
+<body>
+<h3>DHIS Search Functionality</h3>
+<form id="searchFunctionForm" method="post" action="getResultTable.action">
+
+    Dataelement
+    <br>
+    <select disabled="disabled" class="chosen-select" name="dataElementIDSelect" id="dataElementIDSelect" style="width:350px;" tabindex="2" onchange="callUpdateAction();">
+        #foreach( $dataelement in $allDataElements )
+            <option value=$dataelement.getId()
+            #if($dataelement.getId() == $dataElementID)
+             selected="selected"
+            #end
+            >$dataelement.getName()</option>
+        #end
+    </select>
+
+    <input type="hidden" id="dataElementID" name="dataElementID" value=$dataElementID>
+
+    <br>
+    <br>
+
+    From
+    <br>
+    <input type="text" id="StartDatePicker" class="masterTooltip" title="Earliest data entry date pre-selected. Click to change." name="StartDatePicker" value=$startDate/>
+
+    <br>
+    <br>
+
+    To
+    <br>
+    <input type="text" id="EndDatePicker" class="masterTooltip" title="Latest data entry date pre-selected. Click to change." name="EndDatePicker" value=$endDate/>
+
+    <br>
+    <br>
+
+    <input type="hidden" id="periodType" name="periodType" value=$periodType>
+    <br>
+
+    <input name="Get Data" type="submit" value="Get Data">
+
+</form>
+
+
+
+</body>
+</html>

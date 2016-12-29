@@ -1,0 +1,90 @@
+<!DOCTYPE HTML> 
+<html>
+    <head>
+        <title>FSNIS</title>
+        <script type="text/javascript" src="../javascripts/jQuery/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#j_username').focus();
+
+                $('#loginForm').bind('submit', function() {
+                    $('#submit').attr('disabled', 'disabled');
+                    $('#reset').attr('disabled', 'disabled');
+
+                    sessionStorage.removeItem( 'orgUnitSelected' );
+                });
+            });
+        </script>
+        <link type="text/css" rel="stylesheet" href="../css/login.css">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <div>          
+            <img class="topLeftImage" src="design/TopLeftImage.png" width="150px" height="150px"/>
+            <div class="myCenter">
+                <table border="0" class="headerTextArea" cellspacing="10">
+                        <tr class="firstRow" >
+                            <td>
+                                Food Security and Nutrition Information System
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <font color="red">FPMU </font> <font color="#41A62C">Data Management System </font>
+                            </td>
+                        </tr>
+                </table>
+                <div class="headerImageArea">
+                    <img class="logo1" src="design/logo1.png" />
+                    <img class="logo2" src="design/logo2.png" />
+                    <img class="logo3" src="design/logo3.gif" />
+                </div>
+				
+				<div id="loginField">	            
+					<form id="loginForm" action="../../dhis-web-commons-security/login.action" method="post">
+						<table>
+							<tr>
+								<td><label for="j_username">Username</label></td>
+								<td><input type="text" id="j_username" name="j_username"></td>
+							</tr>
+							<tr>
+								<td><label for="j_password">Password</label></td>
+								<td><input type="password" id="j_password" name="j_password" autocomplete="off"></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>
+									<input id="submit" class="button" type="submit" value="Login">
+									<input id="reset" class="button" type="reset" value="Clear">
+								</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td style="padding-top:8px">
+									<span id="loginFormFooter">
+									#if( $keyAccountRecovery )
+									<a href="recovery.action">Forgot password?</a>&nbsp;
+									#end
+									#if( $keyConfig.selfRegistrationAllowed() )
+									<a href="account.action">Create an account</a>	
+									#end
+									</span>
+								</td>
+							</tr>
+						</table>
+					</form>
+					#if( $failed == true )
+						<span id="loginMessage">Wrong username or password</span>
+					#end
+				</div>
+            </div>
+        </div>
+            <span class="footerTextArea"> The NFPCSP is financially supported by the United States Agency for International Development (USAID) and the European Union (EU)
+            </span>
+            <span class="footerImageArea">
+                <img src="design/logo4.jpg" />
+                <img src="design/logo5.jpg" />
+            </span>
+        </div>
+	</body>
+</html>

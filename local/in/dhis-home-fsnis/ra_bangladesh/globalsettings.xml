@@ -1,0 +1,1823 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<globalSettings>
+<gconfig commonid="169" de-name="NA(NA)" dhisid="5187.1"/>
+<gconfig commonid="1215" de-name="NA(NA)" dhisid="5599.10"/>
+<gconfig commonid="1456" de-name="A.2.5 - Infant and Young Child Feeding/IYCF - FMR" dhisid="1299.1"/>
+<gconfig commonid="1275" de-name="NA(NA)" dhisid="5623.1"/>
+<gconfig commonid="291" de-name="NA(NA)" dhisid="5283.9"/>
+<gconfig commonid="1467" de-name="A.3.2.2 - IUD services at health facilities  - FMR" dhisid="1310.1"/>
+<gconfig commonid="132" de-name="NA(NA)" dhisid="5150.1"/>
+<gconfig commonid="1743" de-name="Maternal death at age of the women 19 to 35 years" dhisid="531.1"/>
+<gconfig commonid="630" de-name="IP admissions Adults Female" dhisid="126.1"/>
+<gconfig commonid="1680" de-name="NA(NA)" dhisid="5423.9"/>
+<gconfig commonid="1461" de-name="A.3.1.2 - Female Sterilisation camps - FMR" dhisid="1304.1"/>
+<gconfig commonid="1369" de-name="NA(NA)" dhisid="5678.1"/>
+<gconfig commonid="1381" de-name="NA(NA)" dhisid="5511.1"/>
+<gconfig commonid="960" de-name="State Finance Manager [ In-Position ]" dhisid="229.9"/>
+<gconfig commonid="1585" de-name="B14.3 - PHNs at PHC level - FMR" dhisid="1428.1"/>
+<gconfig commonid="1760" de-name="LLMD- Nature Of Assistance" dhisid="1037.1"/>
+<gconfig commonid="1579" de-name="B11 - Mobile Medical Units (Including recurring expenditures) - FMR" dhisid="1422.1"/>
+<gconfig commonid="1471" de-name="A.3.3 - Other strategies/activities - FMR" dhisid="1314.1"/>
+<gconfig commonid="920" de-name="ASHAs in-positions as of 1st April of the year" dhisid="198.1"/>
+<gconfig commonid="935" de-name="Sub District Hospital functioning in Govt. Buildings" dhisid="215.1"/>
+<gconfig commonid="1283" de-name="NA(NA)" dhisid="5627.1"/>
+<gconfig commonid="192" de-name="NA(NA)" dhisid="5210.1"/>
+<gconfig commonid="983" de-name="PHCs Accountant [ Sanctioned ]" dhisid="241.10"/>
+<gconfig commonid="525" de-name="NSV/Conventional Vasectomy conducted Sub-divisional hospital/District Hospital" dhisid="1265.1"/>
+<gconfig commonid="1452" de-name="A.2.1 - IMNCI - FMR" dhisid="1295.1"/>
+<gconfig commonid="1081" de-name="PHC facilities having Progessional uality Accrediation (ISO, QCI, etc)" dhisid="295.1"/>
+<gconfig commonid="853" de-name="Heart disease and hypertension over 55 years [ Female ]" dhisid="1227.7"/>
+<gconfig commonid="1694" de-name="NA(NA)" dhisid="5434.1"/>
+<gconfig commonid="1771" de-name="NA(NA)" dhisid="1512.1"/>
+<gconfig commonid="165" de-name="NA(NA)" dhisid="5183.1"/>
+<gconfig commonid="1168" de-name="Institutions identified to provide QA services for family planning" dhisid="164.1"/>
+<gconfig commonid="1308" de-name="NA(NA)" dhisid="5638.1"/>
+<gconfig commonid="635" de-name="Operation Major (General and spinal anesthesia)" dhisid="131.1"/>
+<gconfig commonid="200" de-name="NA(NA)" dhisid="5218.1"/>
+<gconfig commonid="1448" de-name="A.1.3.2 - Monthly Village Health and Nutrition Days - FMR" dhisid="1291.1"/>
+<gconfig commonid="483" de-name="JSY Incentive paid to ASHAs" dhisid="21.1"/>
+<gconfig commonid="1260" de-name="NA(NA)" dhisid="5465.1"/>
+<gconfig commonid="597" de-name="Immunisation sessions held" dhisid="93.1"/>
+<gconfig commonid="854" de-name="Heart disease and hypertension over 55 years [ Male ]" dhisid="1227.8"/>
+<gconfig commonid="9" de-name="NA(NA)" dhisid="5004.1"/>
+<gconfig commonid="1554" de-name="B3.1.5 - Others - FMR" dhisid="1397.1"/>
+<gconfig commonid="290" de-name="NA(NA)" dhisid="5283.10"/>
+<gconfig commonid="99" de-name="NA(NA)" dhisid="5117.1"/>
+<gconfig commonid="181" de-name="NA(NA)" dhisid="5199.1"/>
+<gconfig commonid="1015" de-name="CHC Staff Nurse [ Sanctioned ]" dhisid="255.10"/>
+<gconfig commonid="1189" de-name="NA(NA)" dhisid="5583.1"/>
+<gconfig commonid="1751" de-name="Maternal death assisted by  Trained personnel" dhisid="539.1"/>
+<gconfig commonid="945" de-name="Fuctional SC with ANM available and residing" dhisid="299.1"/>
+<gconfig commonid="1706" de-name="NA(NA)" dhisid="5516.1"/>
+<gconfig commonid="897" de-name="Other known Acute disease (any  known cause- sick for less than 3 weeks- no fever) over 55 years [ Male ]" dhisid="1223.8"/>
+<gconfig commonid="1501" de-name="A.11.3.5 - RTI / STI Training - FMR" dhisid="1344.1"/>
+<gconfig commonid="1687" de-name="NA(NA)" dhisid="5427.1"/>
+<gconfig commonid="1756" de-name="LLMD- Village" dhisid="1033.1"/>
+<gconfig commonid="626" de-name="working condition laproscopes" dhisid="160.1"/>
+<gconfig commonid="896" de-name="Other known Acute disease (any  known cause- sick for less than 3 weeks- no fever) over 55 years [ Female ]" dhisid="1223.7"/>
+<gconfig commonid="1076" de-name="Functional PHC as per IPHS" dhisid="290.1"/>
+<gconfig commonid="411" de-name="NA(NA)" dhisid="5547.1"/>
+<gconfig commonid="141" de-name="NA(NA)" dhisid="5159.1"/>
+<gconfig commonid="355" de-name="NA(NA)" dhisid="5352.1"/>
+<gconfig commonid="1123" de-name="SIHFW Faculty Scantioned" dhisid="342.1"/>
+<gconfig commonid="1612" de-name="B21 - PNDT Activities - FMR" dhisid="1456.1"/>
+<gconfig commonid="1400" de-name="Doctor Trained in  Obstetric Care &amp; Management including Caesarian Section" dhisid="1153.1"/>
+<gconfig commonid="576" de-name="OPV Booster" dhisid="82.1"/>
+<gconfig commonid="334" de-name="NA(NA)" dhisid="5303.10"/>
+<gconfig commonid="189" de-name="NA(NA)" dhisid="5207.1"/>
+<gconfig commonid="1045" de-name="PHC Staff Nurse IMNCI trained  [ Sanctioned ]" dhisid="271.10"/>
+<gconfig commonid="375" de-name="NA(NA)" dhisid="5334.1"/>
+<gconfig commonid="952" de-name="Private facilities accredited for Family Planning Services" dhisid="225.1"/>
+<gconfig commonid="582" de-name="Tetanus Toxiod given to 16 year old" dhisid="89.1"/>
+<gconfig commonid="475" de-name="Delivery at institutional" dhisid="18.1"/>
+<gconfig commonid="273" de-name="NA(NA)" dhisid="5272.9"/>
+<gconfig commonid="1736" de-name="Maternal death during first trimester" dhisid="524.1"/>
+<gconfig commonid="1811" de-name="NA(NA)" dhisid="5297.9"/>
+<gconfig commonid="1785" de-name="NA(NA)" dhisid="5024.1"/>
+<gconfig commonid="578" de-name="Fully immunised Male between 12 and 23 months" dhisid="85.1"/>
+<gconfig commonid="1704" de-name="NA(NA)" dhisid="5505.1"/>
+<gconfig commonid="1740" de-name="Maternal death after delivery within 42 days" dhisid="528.1"/>
+<gconfig commonid="1482" de-name="A.9.1.2 - Laboratory Technicians - FMR" dhisid="1325.1"/>
+<gconfig commonid="1475" de-name="A.6 - TRIBAL RCH - FMR" dhisid="1318.1"/>
+<gconfig commonid="471" de-name="Delivery home by SBA (Doctor/Nurse/ANM) " dhisid="14.1"/>
+<gconfig commonid="1574" de-name="B8.3 - Others - FMR" dhisid="1417.1"/>
+<gconfig commonid="943" de-name="SCs" dhisid="221.1"/>
+<gconfig commonid="814" de-name="Respiratory Infections and Disease – other than tuberculosis 6-14 years [ Male ]" dhisid="1146.8"/>
+<gconfig commonid="33" de-name="NA(NA)" dhisid="5045.1"/>
+<gconfig commonid="185" de-name="NA(NA)" dhisid="5203.1"/>
+<gconfig commonid="813" de-name="Respiratory Infections and Disease – other than tuberculosis 6-14 years [ Female ]" dhisid="1146.7"/>
+<gconfig commonid="934" de-name="Sub District hospital having 30 or more beds" dhisid="1492.1"/>
+<gconfig commonid="1201" de-name="NA(NA)" dhisid="5422.10"/>
+<gconfig commonid="1164" de-name="Dy. CMO trained" dhisid="1192.1"/>
+<gconfig commonid="639" de-name="Adolescent counseling services" dhisid="1486.1"/>
+<gconfig commonid="71" de-name="NA(NA)" dhisid="5086.1"/>
+<gconfig commonid="802" de-name="Diarrhoeal disease 1 year to 5 years  [ Male ]" dhisid="1128.8"/>
+<gconfig commonid="267" de-name="NA(NA)" dhisid="5261.9"/>
+<gconfig commonid="502" de-name="Female live birth with less than 1.8 kgs" dhisid="520.1"/>
+<gconfig commonid="766" de-name="Sepsis under one day [ Male ]" dhisid="1231.8"/>
+<gconfig commonid="765" de-name="Sepsis under one day [ Female ]" dhisid="1231.7"/>
+<gconfig commonid="1110" de-name="MPW Faculty In Position" dhisid="329.1"/>
+<gconfig commonid="1435" de-name="Number of meeting of District Health Mission held" dhisid="169.1"/>
+<gconfig commonid="664" de-name="Condoms Stock [ Balance from Previous month ]" dhisid="353.2"/>
+<gconfig commonid="745" de-name="Condoms Stock [ Stock Distributed ]" dhisid="353.4"/>
+<gconfig commonid="718" de-name="Condoms Stock [ Unusable ]" dhisid="353.6"/>
+<gconfig commonid="812" de-name="Tuberculosis 6-14 years [ Male ]" dhisid="1134.8"/>
+<gconfig commonid="691" de-name="Condoms Stock [ Stock received ]" dhisid="353.5"/>
+<gconfig commonid="811" de-name="Tuberculosis 6-14 years [ Female ]" dhisid="1134.7"/>
+<gconfig commonid="1008" de-name="Staffs in CHC GDMO [ In-Position ]" dhisid="1501.9"/>
+<gconfig commonid="1315" de-name="NA(NA)" dhisid="5486.1"/>
+<gconfig commonid="1200" de-name="NA(NA)" dhisid="5591.9"/>
+<gconfig commonid="801" de-name="Diarrhoeal disease 1 year to 5 years  [ Female ]" dhisid="1128.7"/>
+<gconfig commonid="25" de-name="NA(NA)" dhisid="5034.1"/>
+<gconfig commonid="1673" de-name="NA(NA)" dhisid="5412.1"/>
+<gconfig commonid="673" de-name="Gluteraldehyde 2% Stock [ Balance from Previous month ]" dhisid="362.2"/>
+<gconfig commonid="105" de-name="NA(NA)" dhisid="5123.1"/>
+<gconfig commonid="893" de-name="Other known Chronic disease( sick for more than 3 weeks, no fever) 15-55 years [ Male ]" dhisid="1212.8"/>
+<gconfig commonid="727" de-name="Gluteraldehyde 2% Stock [ Unusable ]" dhisid="362.6"/>
+<gconfig commonid="892" de-name="Other known Chronic disease( sick for more than 3 weeks, no fever) 15-55 years [ Female ]" dhisid="1212.7"/>
+<gconfig commonid="700" de-name="Gluteraldehyde 2% Stock [ Stock received ]" dhisid="362.5"/>
+<gconfig commonid="754" de-name="Gluteraldehyde 2% Stock [ Stock Distributed ]" dhisid="362.4"/>
+<gconfig commonid="870" de-name="Animal Bites or stings 6-14 years [ Female ]" dhisid="1142.7"/>
+<gconfig commonid="963" de-name="State Data Manager [ Sanctioned ]" dhisid="230.10"/>
+<gconfig commonid="203" de-name="NA(NA)" dhisid="5221.1"/>
+<gconfig commonid="501" de-name="Male live births with less than 1.8 kgs" dhisid="519.1"/>
+<gconfig commonid="344" de-name="NA(NA)" dhisid="5309.10"/>
+<gconfig commonid="749" de-name="Injection Oxytocin Stock [ Stock Distributed ]" dhisid="357.4"/>
+<gconfig commonid="21" de-name="NA(NA)" dhisid="5030.1"/>
+<gconfig commonid="871" de-name="Animal Bites or stings 6-14 years [ Male ]" dhisid="1142.8"/>
+<gconfig commonid="668" de-name="Injection Oxytocin Stock [ Balance from Previous month ]" dhisid="357.2"/>
+<gconfig commonid="1419" de-name="GNM/ ANM/ LHV  trained in Facility Based Newborn Care (FBNC)" dhisid="1172.1"/>
+<gconfig commonid="695" de-name="Injection Oxytocin Stock [ Stock received ]" dhisid="357.5"/>
+<gconfig commonid="722" de-name="Injection Oxytocin Stock [ Unusable ]" dhisid="357.6"/>
+<gconfig commonid="1651" de-name="NA(NA)" dhisid="5385.1"/>
+<gconfig commonid="240" de-name="NA(NA)" dhisid="5253.10"/>
+<gconfig commonid="311" de-name="NA(NA)" dhisid="5293.9"/>
+<gconfig commonid="488" de-name="Caesarean (C-Section) deliveries performed at  PHC" dhisid="1505.1"/>
+<gconfig commonid="110" de-name="NA(NA)" dhisid="5128.1"/>
+<gconfig commonid="948" de-name="Other Public Hospital/Health Facilities having 30 or more beds" dhisid="1496.1"/>
+<gconfig commonid="1180" de-name="NA(NA)" dhisid="5576.1"/>
+<gconfig commonid="280" de-name="NA(NA)" dhisid="5278.10"/>
+<gconfig commonid="1654" de-name="NA(NA)" dhisid="5389.1"/>
+<gconfig commonid="1267" de-name="NA(NA)" dhisid="5616.1"/>
+<gconfig commonid="561" de-name="BCG dose under 1 year" dhisid="68.1"/>
+<gconfig commonid="1128" de-name="Mini-Laparoscopic conducted" dhisid="53.1"/>
+<gconfig commonid="352" de-name="NA(NA)" dhisid="5313.1"/>
+<gconfig commonid="458" de-name="NA(NA)" dhisid="5572.1"/>
+<gconfig commonid="1720" de-name="Mini-Laparoscopic conducted [ Stock received ]" dhisid="53.5"/>
+<gconfig commonid="1558" de-name="B4.3 - Sub Centers - FMR" dhisid="1401.1"/>
+<gconfig commonid="1225" de-name="NA(NA)" dhisid="5603.10"/>
+<gconfig commonid="637" de-name="Other services AYUSH" dhisid="1485.1"/>
+<gconfig commonid="1037" de-name="PHC Allopathic Medical Officer [ Sanctioned ]" dhisid="267.10"/>
+<gconfig commonid="1543" de-name="B1.3 - Performance related incentives to ASHAs - FMR" dhisid="1386.1"/>
+<gconfig commonid="548" de-name="IUD Inserted at private facilities" dhisid="58.1"/>
+<gconfig commonid="18" de-name="NA(NA)" dhisid="5013.1"/>
+<gconfig commonid="1230" de-name="NA(NA)" dhisid="5605.9"/>
+<gconfig commonid="1666" de-name="NA(NA)" dhisid="5401.1"/>
+<gconfig commonid="1598" de-name="B16.3.4 - Other Training - FMR" dhisid="1441.1"/>
+<gconfig commonid="154" de-name="NA(NA)" dhisid="5172.1"/>
+<gconfig commonid="969" de-name="District Accounts Manager [ Sanctioned ]" dhisid="234.10"/>
+<gconfig commonid="63" de-name="NA(NA)" dhisid="5075.1"/>
+<gconfig commonid="321" de-name="NA(NA)" dhisid="5345.9"/>
+<gconfig commonid="341" de-name="NA(NA)" dhisid="5306.9"/>
+<gconfig commonid="1636" de-name="C.2 - Cold chain maintenance  - FMR" dhisid="1479.1"/>
+<gconfig commonid="1441" de-name="A.1.1.1 - Operationalise FRUs - FMR" dhisid="1284.1"/>
+<gconfig commonid="1325" de-name="NA(NA)" dhisid="5494.1"/>
+<gconfig commonid="397" de-name="NA(NA)" dhisid="5537.1"/>
+<gconfig commonid="922" de-name="PPP Institutions approved for providing MTP services" dhisid="200.1"/>
+<gconfig commonid="484" de-name="JSY Incentive paid to ANM or AWW (Only for HPS)" dhisid="25.1"/>
+<gconfig commonid="124" de-name="NA(NA)" dhisid="5142.1"/>
+<gconfig commonid="1357" de-name="NA(NA)" dhisid="5667.1"/>
+<gconfig commonid="1408" de-name="Doctor Trained in  IMNCI" dhisid="1161.1"/>
+<gconfig commonid="1116" de-name="HFWTCs held trainings during previous Financial Year" dhisid="335.1"/>
+<gconfig commonid="225" de-name="NA(NA)" dhisid="5243.1"/>
+<gconfig commonid="256" de-name="NA(NA)" dhisid="5262.10"/>
+<gconfig commonid="826" de-name="Diarrhoeal disease 15 to 55 years [ Male ]" dhisid="1205.8"/>
+<gconfig commonid="441" de-name="NA(NA)" dhisid="5475.1"/>
+<gconfig commonid="1031" de-name="CHC Doctors trained in SNCU (Sick Neonatal Child care Unit) [ Sanctioned ]" dhisid="263.10"/>
+<gconfig commonid="219" de-name="NA(NA)" dhisid="5237.1"/>
+<gconfig commonid="266" de-name="NA(NA)" dhisid="5261.10"/>
+<gconfig commonid="333" de-name="NA(NA)" dhisid="5302.9"/>
+<gconfig commonid="1507" de-name="A.11.5.3 - Home Based Newborn Care - FMR" dhisid="1350.1"/>
+<gconfig commonid="487" de-name="Delivery private institutional JSY incentive paid to ANM/AWW (Only for HPS)" dhisid="29.1"/>
+<gconfig commonid="560" de-name="Institution having trained NSV doctor" dhisid="158.1"/>
+<gconfig commonid="158" de-name="NA(NA)" dhisid="5176.1"/>
+<gconfig commonid="1632" de-name="B28.8 - Other Management Cost - FMR" dhisid="1475.1"/>
+<gconfig commonid="1431" de-name="AWW Trained" dhisid="1181.1"/>
+<gconfig commonid="825" de-name="Diarrhoeal disease 15 to 55 years [ Female ]" dhisid="1205.7"/>
+<gconfig commonid="425" de-name="NA(NA)" dhisid="5558.1"/>
+<gconfig commonid="1445" de-name="A.1.1.5 - Operationalise Sub-centres - FMR" dhisid="1288.1"/>
+<gconfig commonid="1722" de-name="New RTI/STI cases treatment initiated female [ Stock received ]" dhisid="47.5"/>
+<gconfig commonid="444" de-name="NA(NA)" dhisid="5565.1"/>
+<gconfig commonid="1330" de-name="NA(NA)" dhisid="5686.9"/>
+<gconfig commonid="1728" de-name="LLB- Sex" dhisid="1022.1"/>
+<gconfig commonid="1183" de-name="NA(NA)" dhisid="5370.1"/>
+<gconfig commonid="1678" de-name="NA(NA)" dhisid="5419.9"/>
+<gconfig commonid="491" de-name="Caesarean (C-Section) deliveries performed at  Other State Owned Public Institutions" dhisid="1258.1"/>
+<gconfig commonid="1105" de-name="Existing MPW Training Centres" dhisid="324.1"/>
+<gconfig commonid="521" de-name="New RTI/STI cases treatment initiated female" dhisid="47.1"/>
+<gconfig commonid="454" de-name="NA(NA)" dhisid="5711.1"/>
+<gconfig commonid="864" de-name="Possible cause of death High fever after delivery" dhisid="550.1"/>
+<gconfig commonid="1053" de-name="PHC Health Assistant Female (LHV) [ Sanctioned ]" dhisid="275.10"/>
+<gconfig commonid="1690" de-name="NA(NA)" dhisid="5430.1"/>
+<gconfig commonid="1147" de-name="Female death 5 to 15 years total" dhisid="554.1"/>
+<gconfig commonid="860" de-name="Possible cause of death Severs hypertension" dhisid="546.1"/>
+<gconfig commonid="930" de-name="AYUSH Medical Colleges" dhisid="209.1"/>
+<gconfig commonid="909" de-name="Estimated rural male population (000s)" dhisid="184.1"/>
+<gconfig commonid="1178" de-name="NA(NA)" dhisid="5715.1"/>
+<gconfig commonid="1716" de-name="NA(NA)" dhisid="5361.10"/>
+<gconfig commonid="1095" de-name="Private centre Students admitted during previous Financial Year" dhisid="314.1"/>
+<gconfig commonid="1645" de-name="NA(NA)" dhisid="5374.1"/>
+<gconfig commonid="1101" de-name="LHV Faculty Sanctioned" dhisid="320.1"/>
+<gconfig commonid="974" de-name="Others (IEC Consultants) [ In-Position ]" dhisid="236.9"/>
+<gconfig commonid="1490" de-name="A.9.4 - Operationalise Infection Management &amp; Environment Plan at health facilities - FMR" dhisid="1333.1"/>
+<gconfig commonid="1280" de-name="NA(NA)" dhisid="5700.1"/>
+<gconfig commonid="966" de-name="Others Consultants [ In-Position ]" dhisid="232.9"/>
+<gconfig commonid="989" de-name="DHEIO [ Sanctioned ]" dhisid="244.10"/>
+<gconfig commonid="318" de-name="NA(NA)" dhisid="5339.10"/>
+<gconfig commonid="279" de-name="NA(NA)" dhisid="5277.9"/>
+<gconfig commonid="1296" de-name="NA(NA)" dhisid="5708.1"/>
+<gconfig commonid="380" de-name="NA(NA)" dhisid="5379.1"/>
+<gconfig commonid="1274" de-name="NA(NA)" dhisid="5697.1"/>
+<gconfig commonid="645" de-name="HIV tested Male positive" dhisid="137.1"/>
+<gconfig commonid="462" de-name="New women registrered under JSY" dhisid="5.1"/>
+<gconfig commonid="505" de-name="pregnant women with Obstetric Complications and attended at  PHCs" dhisid="1259.1"/>
+<gconfig commonid="1219" de-name="NA(NA)" dhisid="5601.10"/>
+<gconfig commonid="1016" de-name="CHC Staff Nurse [ In-Position ]" dhisid="255.9"/>
+<gconfig commonid="621" de-name="Does the facility has Rogi Kalyan Samiti" dhisid="153.1"/>
+<gconfig commonid="1043" de-name="PHC Staff Nurse SBA trained [ Sanctioned ]" dhisid="270.10"/>
+<gconfig commonid="648" de-name="Widals test conducted" dhisid="142.1"/>
+<gconfig commonid="544" de-name="IUD Insertions PHCs" dhisid="1280.1"/>
+<gconfig commonid="495" de-name="Still birth" dhisid="32.1"/>
+<gconfig commonid="143" de-name="NA(NA)" dhisid="5161.1"/>
+<gconfig commonid="1251" de-name="NA(NA)" dhisid="5454.1"/>
+<gconfig commonid="1799" de-name="NA(NA)" dhisid="5248.9"/>
+<gconfig commonid="1681" de-name="NA(NA)" dhisid="5419.10"/>
+<gconfig commonid="41" de-name="NA(NA)" dhisid="5053.1"/>
+<gconfig commonid="1522" de-name="A.12.3.1 - BCC/IEC activities for MH - FMR" dhisid="1365.1"/>
+<gconfig commonid="1670" de-name="NA(NA)" dhisid="5408.1"/>
+<gconfig commonid="1145" de-name="Female child death below 5 year" dhisid="557.1"/>
+<gconfig commonid="1516" de-name="A.11.7 - ARSH Training - FMR" dhisid="1359.1"/>
+<gconfig commonid="1747" de-name="Maternal death at PHC" dhisid="535.1"/>
+<gconfig commonid="642" de-name="HIV tested Male" dhisid="136.1"/>
+<gconfig commonid="136" de-name="NA(NA)" dhisid="5154.1"/>
+<gconfig commonid="6" de-name="NA(NA)" dhisid="5103.1"/>
+<gconfig commonid="1028" de-name="CHC Doctors trained in Anesthesiad [ In-Position ]" dhisid="261.9"/>
+<gconfig commonid="1505" de-name="A.11.5.1 - IMNCI  - FMR" dhisid="1348.1"/>
+<gconfig commonid="83" de-name="NA(NA)" dhisid="5098.1"/>
+<gconfig commonid="1061" de-name="SC MPW (Male) [ Sanctioned ]" dhisid="280.10"/>
+<gconfig commonid="1411" de-name="Doctor Trained in  ARSH" dhisid="1164.1"/>
+<gconfig commonid="705" de-name="ORS (New WHO) Stock [ Stock received ]" dhisid="367.5"/>
+<gconfig commonid="1213" de-name="NA(NA)" dhisid="5598.10"/>
+<gconfig commonid="759" de-name="ORS (New WHO) Stock [ Stock Distributed ]" dhisid="367.4"/>
+<gconfig commonid="678" de-name="ORS (New WHO) Stock [ Balance from Previous month ]" dhisid="367.2"/>
+<gconfig commonid="1311" de-name="NA(NA)" dhisid="5641.1"/>
+<gconfig commonid="1250" de-name="NA(NA)" dhisid="5453.1"/>
+<gconfig commonid="732" de-name="ORS (New WHO) Stock [ Unusable ]" dhisid="367.6"/>
+<gconfig commonid="1017" de-name="CHC Staff Nurse-SBA Trained [ Sanctioned ]" dhisid="256.10"/>
+<gconfig commonid="299" de-name="NA(NA)" dhisid="5287.9"/>
+<gconfig commonid="79" de-name="NA(NA)" dhisid="5094.1"/>
+<gconfig commonid="1638" de-name="NA(NA)" dhisid="5363.1"/>
+<gconfig commonid="1329" de-name="NA(NA)" dhisid="5686.10"/>
+<gconfig commonid="1065" de-name="SC MPW (Female) / ANM- Contractual [ Sanctioned ]" dhisid="282.10"/>
+<gconfig commonid="1314" de-name="NA(NA)" dhisid="5645.1"/>
+<gconfig commonid="379" de-name="NA(NA)" dhisid="5378.1"/>
+<gconfig commonid="1013" de-name="CHC Radiologist/Radiographer [ Sanctioned ]" dhisid="254.10"/>
+<gconfig commonid="1775" de-name="NA(NA)" dhisid="5346.10"/>
+<gconfig commonid="539" de-name="Post-Partum sterilizations conducted  CHCs" dhisid="1276.1"/>
+<gconfig commonid="13" de-name="NA(NA)" dhisid="5008.1"/>
+<gconfig commonid="336" de-name="NA(NA)" dhisid="5304.10"/>
+<gconfig commonid="530" de-name="Laparoscopic sterilizations conducted Sub-divisional hospital/District Hospital" dhisid="1269.1"/>
+<gconfig commonid="1642" de-name="NA(NA)" dhisid="5368.1"/>
+<gconfig commonid="91" de-name="NA(NA)" dhisid="5107.1"/>
+<gconfig commonid="265" de-name="NA(NA)" dhisid="5266.9"/>
+<gconfig commonid="1134" de-name="leprosy cases deleted others" dhisid="116.1"/>
+<gconfig commonid="1240" de-name="NA(NA)" dhisid="5438.1"/>
+<gconfig commonid="1415" de-name="GNM/ ANM/ LHV  trained in Skill Birth Attendants" dhisid="1168.1"/>
+<gconfig commonid="1770" de-name="NA(NA)" dhisid="1516.1"/>
+<gconfig commonid="94" de-name="NA(NA)" dhisid="5112.1"/>
+<gconfig commonid="1304" de-name="NA(NA)" dhisid="5722.1"/>
+<gconfig commonid="1512" de-name="A.11.6.3 - NSV Training - FMR" dhisid="1355.1"/>
+<gconfig commonid="319" de-name="NA(NA)" dhisid="5339.9"/>
+<gconfig commonid="979" de-name="Block Data Assistant [ Sanctioned ]" dhisid="239.10"/>
+<gconfig commonid="932" de-name="District / Govt. Hospital more than 30 beds" dhisid="211.1"/>
+<gconfig commonid="1297" de-name="NA(NA)" dhisid="5634.1"/>
+<gconfig commonid="1365" de-name="NA(NA)" dhisid="5674.1"/>
+<gconfig commonid="971" de-name="District Data Manager [ Sanctioned ]" dhisid="235.10"/>
+<gconfig commonid="1624" de-name="B27.6 - Other Support Programmes - FMR" dhisid="1467.1"/>
+<gconfig commonid="45" de-name="NA(NA)" dhisid="5057.1"/>
+<gconfig commonid="1620" de-name="B27.2 - Support Strengthening Midwifery Services under medical services - FMR" dhisid="1463.1"/>
+<gconfig commonid="1497" de-name="A.11.3.1 - Skilled Birth Attendance / SBA - FMR" dhisid="1340.1"/>
+<gconfig commonid="1804" de-name="NA(NA)" dhisid="5270.10"/>
+<gconfig commonid="507" de-name="pregnant women with Obstetric Complications and attended at  Sub-divisional hospital/District Hospital" dhisid="1261.1"/>
+<gconfig commonid="376" de-name="NA(NA)" dhisid="5335.1"/>
+<gconfig commonid="177" de-name="NA(NA)" dhisid="5195.1"/>
+<gconfig commonid="20" de-name="NA(NA)" dhisid="5029.1"/>
+<gconfig commonid="601" de-name="Vitamin A 5th dose " dhisid="97.1"/>
+<gconfig commonid="1246" de-name="NA(NA)" dhisid="5612.1"/>
+<gconfig commonid="511" de-name="Delivery complicated treated with IV antihypertensive" dhisid="37.1"/>
+<gconfig commonid="208" de-name="NA(NA)" dhisid="5226.1"/>
+<gconfig commonid="840" de-name="Stroke and Neurological disease 15-55 years [ Male ]" dhisid="1216.8"/>
+<gconfig commonid="839" de-name="Stroke and Neurological disease 15-55 years [ Female ]" dhisid="1216.7"/>
+<gconfig commonid="237" de-name="NA(NA)" dhisid="5251.9"/>
+<gconfig commonid="445" de-name="NA(NA)" dhisid="5482.1"/>
+<gconfig commonid="836" de-name="HIV/AIDS 15-55 years [ Male ]" dhisid="1206.8"/>
+<gconfig commonid="835" de-name="HIV/AIDS 15-55 years [ Female ]" dhisid="1206.7"/>
+<gconfig commonid="803" de-name="Other Fever related under 5 years  [ Female ]" dhisid="1130.7"/>
+<gconfig commonid="804" de-name="Other Fever related under 5 years  [ Male ]" dhisid="1130.8"/>
+<gconfig commonid="550" de-name="Oral contraceptive pill cycles (packets) issued " dhisid="60.1"/>
+<gconfig commonid="1050" de-name="PHC Lab Technician / Assistant [ In-Position ]" dhisid="273.9"/>
+<gconfig commonid="1792" de-name="NA(NA)" dhisid="5041.1"/>
+<gconfig commonid="1208" de-name="NA(NA)" dhisid="5595.9"/>f
+<gconfig commonid="1407" de-name="Doctor Trained in  RTI/STI" dhisid="1160.1"/>
+<gconfig commonid="1388" de-name="NA(NA)" dhisid="5357.1"/>
+<gconfig commonid="245" de-name="NA(NA)" dhisid="5255.9"/>
+<gconfig commonid="1060" de-name="PHC Statistical Assistant [ In-Position ]" dhisid="278.9"/>
+<gconfig commonid="1343" de-name="NA(NA)" dhisid="5501.1"/>
+<gconfig commonid="1022" de-name="CHC Lab Technician [ In-Position ]" dhisid="258.9"/>
+<gconfig commonid="1238" de-name="NA(NA)" dhisid="5719.1"/>
+<gconfig commonid="1138" de-name="Male child death below 1 week" dhisid="562.1"/>
+<gconfig commonid="1563" de-name="B5.4 - Setting up Infrastructure wing for Civil works - FMR" dhisid="1406.1"/>
+<gconfig commonid="917" de-name="Eligible women (15-49 yrs) with two child" dhisid="195.1"/>
+<gconfig commonid="1628" de-name="B28.4 - Audit Fees - FMR" dhisid="1471.1"/>
+<gconfig commonid="1098" de-name="Functional LHV Training Centres" dhisid="317.1"/>
+<gconfig commonid="1478" de-name="A.8.2 - Public Private Partnerships - FMR" dhisid="1321.1"/>
+<gconfig commonid="1379" de-name="NA(NA)" dhisid="5509.1"/>
+<gconfig commonid="1697" de-name="NA(NA)" dhisid="5448.1"/>
+<gconfig commonid="1550" de-name="B3.1.1 - District Hospitals  - FMR" dhisid="1393.1"/>
+<gconfig commonid="534" de-name="Mini-lap sterilizations conducted  CHCs" dhisid="1272.1"/>
+<gconfig commonid="433" de-name="NA(NA)" dhisid="5444.1"/>
+<gconfig commonid="1150" de-name="Male death over 55 years" dhisid="1197.1"/>
+<gconfig commonid="1569" de-name="B6.3 - PHCs - FMR" dhisid="1412.1"/>
+<gconfig commonid="1662" de-name="NA(NA)" dhisid="5397.1"/>
+<gconfig commonid="1404" de-name="Doctor Trained in  Laprocsopic Sterlization (for Specialists)" dhisid="1157.1"/>
+<gconfig commonid="1609" de-name="B19.1 - Drugs - FMR" dhisid="1452.1"/>
+<gconfig commonid="1559" de-name="B4.4 - Others - FMR" dhisid="1402.1"/>
+<gconfig commonid="1677" de-name="NA(NA)" dhisid="5416.1"/>
+<gconfig commonid="406" de-name="NA(NA)" dhisid="5543.1"/>
+<gconfig commonid="1319" de-name="NA(NA)" dhisid="5648.1"/>
+<gconfig commonid="565" de-name="OPV 0 (Birth Dose)" dhisid="69.1"/>
+<gconfig commonid="684" de-name="TT Stock [ Stock received ]" dhisid="346.5"/>
+<gconfig commonid="711" de-name="TT Stock [ Unusable ]" dhisid="346.6"/>
+<gconfig commonid="738" de-name="TT Stock [ Stock Distributed ]" dhisid="346.4"/>
+<gconfig commonid="1796" de-name="NA(NA)" dhisid="5109.1"/>
+<gconfig commonid="657" de-name="TT Stock [ Balance from Previous month ]" dhisid="346.2"/>
+<gconfig commonid="768" de-name="Sepsis under one week [ Male ]" dhisid="1237.8"/>
+<gconfig commonid="767" de-name="Sepsis under one week [ Female ]" dhisid="1237.7"/>
+<gconfig commonid="1075" de-name="Functional CHC as per IPHS" dhisid="289.1"/>
+<gconfig commonid="1227" de-name="NA(NA)" dhisid="5604.10"/>
+<gconfig commonid="421" de-name="NA(NA)" dhisid="5554.1"/>
+<gconfig commonid="827" de-name="Tuberculosis 15-55 years [ Female ]" dhisid="1201.7"/>
+<gconfig commonid="828" de-name="Tuberculosis 15-55 years [ Male ]" dhisid="1201.8"/>
+<gconfig commonid="996" de-name="CHC Anesthetists [ In-Position ]" dhisid="247.9"/>
+<gconfig commonid="566" de-name="OPV 1 dose given under 1year" dhisid="70.1"/>
+<gconfig commonid="404" de-name="NA(NA)" dhisid="5405.1"/>
+<gconfig commonid="728" de-name="IFA tablets Stock [ Unusable ]" dhisid="363.6"/>
+<gconfig commonid="1418" de-name="GNM/ ANM/ LHV  trained in  Integrated Management of Neonatal and Childhood Illness  (IMNCI)" dhisid="1171.1"/>
+<gconfig commonid="121" de-name="NA(NA)" dhisid="5139.1"/>
+<gconfig commonid="674" de-name="IFA tablets Stock [ Balance from Previous month ]" dhisid="363.2"/>
+<gconfig commonid="1070" de-name="SCs with at least two ANM [ In-Position ]" dhisid="284.9"/>
+<gconfig commonid="755" de-name="IFA tablets Stock [ Stock Distributed ]" dhisid="363.4"/>
+<gconfig commonid="127" de-name="NA(NA)" dhisid="5145.1"/>
+<gconfig commonid="701" de-name="IFA tablets Stock [ Stock received ]" dhisid="363.5"/>
+<gconfig commonid="1062" de-name="SC MPW (Male) [ In-Position ]" dhisid="280.9"/>
+<gconfig commonid="1353" de-name="NA(NA)" dhisid="5663.1"/>
+<gconfig commonid="1112" de-name="MPW Support staff In Position" dhisid="331.1"/>
+<gconfig commonid="593" de-name="Immunization reactions under one day [ Female ]" dhisid="1233.7"/>
+<gconfig commonid="592" de-name="Immunization reactions under one day [ Male ]" dhisid="1233.8"/>
+<gconfig commonid="957" de-name="State Programme Manager [ Sanctioned ]" dhisid="228.10"/>
+<gconfig commonid="784" de-name="Diarrhoeal disease one month to one year [ Male ]" dhisid="1243.8"/>
+<gconfig commonid="1464" de-name="A.3.1.5 - Compensation for male sterilisation - FMR" dhisid="1307.1"/>
+<gconfig commonid="783" de-name="Diarrhoeal disease one month to one year [ Female ]" dhisid="1243.7"/>
+<gconfig commonid="112" de-name="NA(NA)" dhisid="5130.1"/>
+<gconfig commonid="1171" de-name="District covered by MNGO" dhisid="176.1"/>
+<gconfig commonid="1702" de-name="NA(NA)" dhisid="5498.1"/>
+<gconfig commonid="324" de-name="NA(NA)" dhisid="5300.10"/>
+<gconfig commonid="1120" de-name="HFWTCs Support staff In Position" dhisid="339.1"/>
+<gconfig commonid="214" de-name="NA(NA)" dhisid="5232.1"/>
+<gconfig commonid="1741" de-name="Maternal death at age of the women Below 16" dhisid="529.1"/>
+<gconfig commonid="65" de-name="NA(NA)" dhisid="5079.1"/>
+<gconfig commonid="925" de-name="Urban Health Posts" dhisid="204.1"/>
+<gconfig commonid="1539" de-name="A.14.4 - Other activities (please specify) - FMR" dhisid="1382.1"/>
+<gconfig commonid="393" de-name="NA(NA)" dhisid="5533.1"/>
+<gconfig commonid="1321" de-name="NA(NA)" dhisid="5490.1"/>
+<gconfig commonid="329" de-name="NA(NA)" dhisid="5340.9"/>
+<gconfig commonid="308" de-name="NA(NA)" dhisid="5292.10"/>
+<gconfig commonid="1595" de-name="B16.3.1 - Promotional Trg of health workers females to lady health visitor - FMR" dhisid="1438.1"/>
+<gconfig commonid="1602" de-name="B18.1.1 - State level - FMR" dhisid="1445.1"/>
+<gconfig commonid="1266" de-name="NA(NA)" dhisid="5471.1"/>
+<gconfig commonid="1438" de-name="ASHAs having regular supply of drug kits" dhisid="172.1"/>
+<gconfig commonid="250" de-name="NA(NA)" dhisid="5258.10"/>
+<gconfig commonid="282" de-name="NA(NA)" dhisid="5279.10"/>
+<gconfig commonid="1372" de-name="NA(NA)" dhisid="5681.1"/>
+<gconfig commonid="555" de-name="Sterilization complications Female" dhisid="64.1"/>
+<gconfig commonid="359" de-name="NA(NA)" dhisid="5317.1"/>
+<gconfig commonid="735" de-name="5.0 ml (Disposable) Stock [ Unusable ]" dhisid="374.6"/>
+<gconfig commonid="1220" de-name="NA(NA)" dhisid="5601.9"/>
+<gconfig commonid="708" de-name="5.0 ml (Disposable) Stock [ Stock received ]" dhisid="374.5"/>
+<gconfig commonid="762" de-name="5.0 ml (Disposable) Stock [ Stock Distributed ]" dhisid="374.4"/>
+<gconfig commonid="681" de-name="5.0 ml (Disposable) Stock [ Balance from Previous month ]" dhisid="374.2"/>
+<gconfig commonid="48" de-name="NA(NA)" dhisid="5060.1"/>
+<gconfig commonid="1529" de-name="A.13.1.3 - Procurement of equipment: FP - FMR" dhisid="1372.1"/>
+<gconfig commonid="1712" de-name="NA(NA)" dhisid="5522.1"/>
+<gconfig commonid="1349" de-name="NA(NA)" dhisid="5659.1"/>
+<gconfig commonid="116" de-name="NA(NA)" dhisid="5134.1"/>
+<gconfig commonid="1523" de-name="A.12.3.2 - BCC/IEC activities for CH - FMR" dhisid="1366.1"/>
+<gconfig commonid="366" de-name="NA(NA)" dhisid="5324.1"/>
+<gconfig commonid="1088" de-name="Faculty scantioned post" dhisid="306.1"/>
+<gconfig commonid="479" de-name="Deliveries conducted at Sub-divisional hospital/District Hospital" dhisid="1254.1"/>
+<gconfig commonid="383" de-name="NA(NA)" dhisid="5382.1"/>
+<gconfig commonid="1131" de-name="PB (Adult)" dhisid="109.1"/>
+<gconfig commonid="785" de-name="Other Fever related one month to one year [ Female ]" dhisid="1248.7"/>
+<gconfig commonid="786" de-name="Other Fever related one month to one year [ Male ]" dhisid="1248.8"/>
+<gconfig commonid="436" de-name="NA(NA)" dhisid="5455.1"/>
+<gconfig commonid="1158" de-name="Accounts/ Finance (Including PHC) SPMU" dhisid="1186.1"/>
+<gconfig commonid="1255" de-name="NA(NA)" dhisid="5460.1"/>
+<gconfig commonid="8" de-name="NA(NA)" dhisid="5003.1"/>
+<gconfig commonid="961" de-name="State Accounts Manager [ Sanctioned ]" dhisid="231.10"/>
+<gconfig commonid="1084" de-name="Centres recognized by State Nursing Council" dhisid="302.1"/>
+<gconfig commonid="68" de-name="NA(NA)" dhisid="5083.1"/>
+<gconfig commonid="904" de-name="Village with less than 500 population" dhisid="180.1"/>
+<gconfig commonid="1254" de-name="NA(NA)" dhisid="5459.1"/>
+<gconfig commonid="1091" de-name="Support staff In Position" dhisid="310.1"/>
+<gconfig commonid="1657" de-name="NA(NA)" dhisid="5392.1"/>
+<gconfig commonid="230" de-name="NA(NA)" dhisid="5295.10"/>
+<gconfig commonid="1259" de-name="NA(NA)" dhisid="5464.1"/>
+<gconfig commonid="1754" de-name="Maternal death assisted by  Doctor" dhisid="542.1"/>
+<gconfig commonid="1533" de-name="A.13.2.3 - Drugs &amp; supplies for FP - FMR" dhisid="1376.1"/>
+<gconfig commonid="52" de-name="NA(NA)" dhisid="5064.1"/>
+<gconfig commonid="796" de-name="Low Birth Weight under one  month [ Male ]" dhisid="1123.8"/>
+<gconfig commonid="1393" de-name="VDRL tested Female non ANC positive" dhisid="147.1"/>
+<gconfig commonid="795" de-name="Low Birth Weight under one  month [ Female ]" dhisid="1123.7"/>
+<gconfig commonid="1221" de-name="NA(NA)" dhisid="5421.10"/>
+<gconfig commonid="1769" de-name="NA(NA)" dhisid="1511.1"/>
+<gconfig commonid="369" de-name="NA(NA)" dhisid="5328.1"/>
+<gconfig commonid="1002" de-name="CHC General Physician [ In-Position ]" dhisid="250.9"/>
+<gconfig commonid="1494" de-name="A.10.3 - Monitoring &amp; Evaluation / HMIS - FMR" dhisid="1337.1"/>
+<gconfig commonid="1429" de-name="Assistants Trained" dhisid="1179.1"/>
+<gconfig commonid="1779" de-name="NA(NA)" dhisid="5018.1"/>
+<gconfig commonid="1587" de-name="B14.5 - Additional Allowances to MOs PHC - FMR" dhisid="1430.1"/>
+<gconfig commonid="1205" de-name="NA(NA)" dhisid="5594.10"/>
+<gconfig commonid="609" de-name="Diarrhoea and dehydration cases" dhisid="105.1"/>
+<gconfig commonid="1724" de-name="Diarrhoea and dehydration cases [ Stock received ]" dhisid="105.5"/>
+<gconfig commonid="516" de-name="PNC maternal complication referred" dhisid="42.1"/>
+<gconfig commonid="572" de-name="Measles 1st dose at 9-12 months" dhisid="79.1"/>
+<gconfig commonid="1346" de-name="NA(NA)" dhisid="5656.1"/>
+<gconfig commonid="386" de-name="NA(NA)" dhisid="5527.1"/>
+<gconfig commonid="56" de-name="NA(NA)" dhisid="5068.1"/>
+<gconfig commonid="911" de-name="Urban eligible women in 15-49 age group" dhisid="187.1"/>
+<gconfig commonid="1460" de-name="A.3.1.1 - Dissemination of manuals on sterilisation standards &amp; quality assurance of sterilisation services - FMR" dhisid="1303.1"/>
+<gconfig commonid="993" de-name="CHC Surgeon [ Sanctioned ]" dhisid="246.10"/>
+<gconfig commonid="1518" de-name="A.11.8.2 - DPMU Training - FMR" dhisid="1361.1"/>
+<gconfig commonid="1338" de-name="NA(NA)" dhisid="5652.1"/>
+<gconfig commonid="570" de-name="Hepatitis B 2 dose given under 1year" dhisid="75.1"/>
+<gconfig commonid="1591" de-name="B15.2 - Grant in Aid to NGOs - FMR" dhisid="1434.1"/>
+<gconfig commonid="1422" de-name="GNM/ ANM/ LHV  trained in Infection Management and Environment Plan (IMEP)" dhisid="1175.1"/>
+<gconfig commonid="605" de-name="Tetanus Neonatorum cases" dhisid="101.1"/>
+<gconfig commonid="147" de-name="NA(NA)" dhisid="5165.1"/>
+<gconfig commonid="211" de-name="NA(NA)" dhisid="5229.1"/>
+<gconfig commonid="370" de-name="NA(NA)" dhisid="5329.1"/>
+<gconfig commonid="356" de-name="NA(NA)" dhisid="5353.1"/>
+<gconfig commonid="791" de-name="Sepsis under one  month [ Female ]" dhisid="1122.7"/>
+<gconfig commonid="792" de-name="Sepsis under one  month [ Male ]" dhisid="1122.8"/>
+<gconfig commonid="1806" de-name="NA(NA)" dhisid="5275.10"/>
+<gconfig commonid="1744" de-name="Maternal death at age of the women Above 35 years" dhisid="532.1"/>
+<gconfig commonid="977" de-name="Block Accountant [ Sanctioned ]" dhisid="238.10"/>
+<gconfig commonid="320" de-name="NA(NA)" dhisid="5345.10"/>
+<gconfig commonid="1658" de-name="NA(NA)" dhisid="5393.1"/>
+<gconfig commonid="1761" de-name="LLMD- Cause of Death" dhisid="1038.1"/>
+<gconfig commonid="1584" de-name="B14.2 - Additional ANM, ,LHV, MPW for Sub-Center  - FMR" dhisid="1427.1"/>
+<gconfig commonid="1481" de-name="A.9.1.1 - ANMs - FMR" dhisid="1324.1"/>
+<gconfig commonid="958" de-name="State Programme Manager [ In-Position ]" dhisid="228.9"/>
+<gconfig commonid="579" de-name="Fully immunised Female between 12 and 23 months" dhisid="86.1"/>
+<gconfig commonid="1102" de-name="LHV Faculty In Position" dhisid="321.1"/>
+<gconfig commonid="382" de-name="NA(NA)" dhisid="5381.1"/>
+<gconfig commonid="1368" de-name="NA(NA)" dhisid="5677.1"/>
+<gconfig commonid="941" de-name="PHCs functioning in Govt. Buldings" dhisid="220.1"/>
+<gconfig commonid="1790" de-name="NA(NA)" dhisid="5039.1"/>
+<gconfig commonid="921" de-name="Public Institutions approved for providing MTP services" dhisid="199.1"/>
+<gconfig commonid="5" de-name="NA(NA)" dhisid="5348.1"/>
+<gconfig commonid="1693" de-name="NA(NA)" dhisid="5433.1"/>
+<gconfig commonid="1809" de-name="NA(NA)" dhisid="5276.9"/>
+<gconfig commonid="70" de-name="NA(NA)" dhisid="5085.1"/>
+<gconfig commonid="1773" de-name="NA(NA)" dhisid="1513.1"/>
+<gconfig commonid="1165" de-name="BMO trained" dhisid="1193.1"/>
+<gconfig commonid="805" de-name="Measles 1 year to 5 years [ Female ]" dhisid="1129.7"/>
+<gconfig commonid="806" de-name="Measles 1 year to 5 years [ Male ]" dhisid="1129.8"/>
+<gconfig commonid="1434" de-name="Are MMUs operational in the district? (Y/N)" dhisid="168.1"/>
+<gconfig commonid="1496" de-name="A.11.2 - Development of training packages - FMR" dhisid="1339.1"/>
+<gconfig commonid="193" de-name="NA(NA)" dhisid="5211.1"/>
+<gconfig commonid="1080" de-name="CHC facilities having Progessional uality Accrediation (ISO, QCI, etc)" dhisid="294.1"/>
+<gconfig commonid="75" de-name="NA(NA)" dhisid="5090.1"/>
+<gconfig commonid="1033" de-name="CHC Ayush doctors  [ Sanctioned ]" dhisid="264.10"/>
+<gconfig commonid="10" de-name="NA(NA)" dhisid="5005.1"/>
+<gconfig commonid="254" de-name="NA(NA)" dhisid="5260.10"/>
+<gconfig commonid="665" de-name="Oral Contraceptive Stock [ Balance from Previous month ]" dhisid="354.2"/>
+<gconfig commonid="232" de-name="NA(NA)" dhisid="5249.10"/>
+<gconfig commonid="1136" de-name="Births Total" dhisid="22.1"/>
+<gconfig commonid="746" de-name="Oral Contraceptive Stock [ Stock Distributed ]" dhisid="354.4"/>
+<gconfig commonid="1307" de-name="NA(NA)" dhisid="5637.1"/>
+<gconfig commonid="692" de-name="Oral Contraceptive Stock [ Stock received ]" dhisid="354.5"/>
+<gconfig commonid="719" de-name="Oral Contraceptive Stock [ Unusable ]" dhisid="354.6"/>
+<gconfig commonid="1010" de-name="Staffs in CHC Public Health Manager [ In-Position ]" dhisid="1502.9"/>
+<gconfig commonid="1167" de-name="Quality Assurance (QA) committee has met for family planning" dhisid="163.1"/>
+<gconfig commonid="890" de-name="Other known Acute disease (any  known cause- sick for less than 3 weeks- no fever) 15-55 years [ Female ]" dhisid="1211.7"/>
+<gconfig commonid="891" de-name="Other known Acute disease (any  known cause- sick for less than 3 weeks- no fever) 15-55 years [ Male ]" dhisid="1211.8"/>
+<gconfig commonid="448" de-name="NA(NA)" dhisid="5485.1"/>
+<gconfig commonid="723" de-name="Gloves Stock [ Unusable ]" dhisid="358.6"/>
+<gconfig commonid="696" de-name="Gloves Stock [ Stock received ]" dhisid="358.5"/>
+<gconfig commonid="750" de-name="Gloves Stock [ Stock Distributed ]" dhisid="358.4"/>
+<gconfig commonid="669" de-name="Gloves Stock [ Balance from Previous month ]" dhisid="358.2"/>
+<gconfig commonid="1757" de-name="LLMD- Age at Death" dhisid="1034.1"/>
+<gconfig commonid="1397" de-name="Number of PHCs that are IPHS compliant Quarterly" dhisid="1506.1"/>
+<gconfig commonid="947" de-name="Other Public Hospital/Health Facilities having less then 30 beds" dhisid="1495.1"/>
+<gconfig commonid="346" de-name="NA(NA)" dhisid="5310.10"/>
+<gconfig commonid="1502" de-name="A.11.3.6 - Dai Training - FMR" dhisid="1345.1"/>
+<gconfig commonid="374" de-name="NA(NA)" dhisid="5333.1"/>
+<gconfig commonid="574" de-name="Fully immunised Female under 12 months" dhisid="81.1"/>
+<gconfig commonid="170" de-name="NA(NA)" dhisid="5188.1"/>
+<gconfig commonid="188" de-name="NA(NA)" dhisid="5206.1"/>
+<gconfig commonid="140" de-name="NA(NA)" dhisid="5158.1"/>
+<gconfig commonid="1077" de-name="Functional SC as per IPHS" dhisid="291.1"/>
+<gconfig commonid="410" de-name="NA(NA)" dhisid="5546.1"/>
+<gconfig commonid="1124" de-name="SIHFW Faculty In Position" dhisid="343.1"/>
+<gconfig commonid="1784" de-name="NA(NA)" dhisid="5023.1"/>
+<gconfig commonid="1719" de-name="Laparoscopic sterilization conducted at Private facilities [ Stock received ]" dhisid="52.5"/>
+<gconfig commonid="353" de-name="NA(NA)" dhisid="5314.1"/>
+<gconfig commonid="532" de-name="Laparoscopic sterilization conducted at Private facilities" dhisid="52.1"/>
+<gconfig commonid="473" de-name="New borns visisted within 24 hours of home delivery" dhisid="17.1"/>
+<gconfig commonid="631" de-name="IP deaths Male" dhisid="127.1"/>
+<gconfig commonid="1476" de-name="A.7 - VULNERABLE GROUPS - FMR" dhisid="1319.1"/>
+<gconfig commonid="470" de-name="Sever anaemia (Hb&lt;7) treated at institution" dhisid="13.1"/>
+<gconfig commonid="26" de-name="NA(NA)" dhisid="5035.1"/>
+<gconfig commonid="1382" de-name="NA(NA)" dhisid="5512.1"/>
+<gconfig commonid="1358" de-name="NA(NA)" dhisid="5504.1"/>
+<gconfig commonid="347" de-name="NA(NA)" dhisid="5310.9"/>
+<gconfig commonid="1196" de-name="NA(NA)" dhisid="5590.1"/>
+<gconfig commonid="1207" de-name="NA(NA)" dhisid="5595.10"/>
+<gconfig commonid="315" de-name="NA(NA)" dhisid="5296.9"/>
+<gconfig commonid="184" de-name="NA(NA)" dhisid="5202.1"/>
+<gconfig commonid="1155" de-name="LLD- Age Category" dhisid="1030.1"/>
+<gconfig commonid="933" de-name="Sub District hospital having less then 30 beds" dhisid="1491.1"/>
+<gconfig commonid="1580" de-name="B12.1 - Ambulance - FMR" dhisid="1423.1"/>
+<gconfig commonid="821" de-name="Heart disease and hypertension 6-14 years [ Female ]" dhisid="1147.7"/>
+<gconfig commonid="822" de-name="Heart disease and hypertension 6-14 years [ Male ]" dhisid="1147.8"/>
+<gconfig commonid="524" de-name="NSV/Conventional Vasectomy conducted CHCs" dhisid="1264.1"/>
+<gconfig commonid="1573" de-name="B8.2 - Orientation Workshops of PRI at State/Dist. Health Societies, CHC,PHC - FMR" dhisid="1416.1"/>
+<gconfig commonid="1470" de-name="A.3.2.5 - Contraceptive Update seminars - FMR" dhisid="1313.1"/>
+<gconfig commonid="1289" de-name="NA(NA)" dhisid="5630.1"/>
+<gconfig commonid="1453" de-name="A.2.2 - Facility Based Newborn Care/FBNC  - FMR" dhisid="1296.1"/>
+<gconfig commonid="1709" de-name="NA(NA)" dhisid="5519.1"/>
+<gconfig commonid="1" de-name="Total Population" dhisid="1118.1"/>
+<gconfig commonid="774" de-name="Low Birth Weight under one day [ Male ]" dhisid="1232.8"/>
+<gconfig commonid="360" de-name="NA(NA)" dhisid="5318.1"/>
+<gconfig commonid="773" de-name="Low Birth Weight under one day [ Female ]" dhisid="1232.7"/>
+<gconfig commonid="914" de-name="Rural estimated pregnancies during the year" dhisid="190.1"/>
+<gconfig commonid="845" de-name="Respiratory Infections and Disease – other than tuberculosis over 55 years [ Female ]" dhisid="1226.7"/>
+<gconfig commonid="846" de-name="Respiratory Infections and Disease – other than tuberculosis over 55 years [ Male ]" dhisid="1226.8"/>
+<gconfig commonid="257" de-name="NA(NA)" dhisid="5262.9"/>
+<gconfig commonid="1186" de-name="NA(NA)" dhisid="5579.1"/>
+<gconfig commonid="199" de-name="NA(NA)" dhisid="5217.1"/>
+<gconfig commonid="634" de-name="OPD attendance (All)" dhisid="130.1"/>
+<gconfig commonid="596" de-name="Immunisation sessions Planned" dhisid="92.1"/>
+<gconfig commonid="166" de-name="NA(NA)" dhisid="5184.1"/>
+<gconfig commonid="810" de-name="Diarrhoeal disease 6-14 years [ Male ]" dhisid="1133.8"/>
+<gconfig commonid="1038" de-name="PHC Allopathic Medical Officer [ In-Position ]" dhisid="267.9"/>
+<gconfig commonid="809" de-name="Diarrhoeal disease 6-14 years [ Female ]" dhisid="1133.7"/>
+<gconfig commonid="1447" de-name="A.1.3.1 - RCH Outreach Camps - FMR" dhisid="1290.1"/>
+<gconfig commonid="204" de-name="NA(NA)" dhisid="5222.1"/>
+<gconfig commonid="500" de-name="Female live births with less than 2500 grms" dhisid="518.1"/>
+<gconfig commonid="1326" de-name="NA(NA)" dhisid="5495.1"/>
+<gconfig commonid="1555" de-name="B3.2 - Strengthening of District and Su-divisional Hospitals - FMR" dhisid="1398.1"/>
+<gconfig commonid="102" de-name="NA(NA)" dhisid="5120.1"/>
+<gconfig commonid="22" de-name="NA(NA)" dhisid="5031.1"/>
+<gconfig commonid="885" de-name="Other known Acute disease (any known cause- sick for less than 3 weeks- no fever) 6-14 years [ Male ]" dhisid="1143.8"/>
+<gconfig commonid="884" de-name="Other known Acute disease (any known cause- sick for less than 3 weeks- no fever) 6-14 years [ Female ]" dhisid="1143.7"/>
+<gconfig commonid="726" de-name="Blood Transfusion sets Stock [ Unusable ]" dhisid="361.6"/>
+<gconfig commonid="699" de-name="Blood Transfusion sets Stock [ Stock received ]" dhisid="361.5"/>
+<gconfig commonid="753" de-name="Blood Transfusion sets Stock [ Stock Distributed ]" dhisid="361.4"/>
+<gconfig commonid="180" de-name="NA(NA)" dhisid="5198.1"/>
+<gconfig commonid="162" de-name="NA(NA)" dhisid="5180.1"/>
+<gconfig commonid="672" de-name="Blood Transfusion sets Stock [ Balance from Previous month ]" dhisid="361.2"/>
+<gconfig commonid="106" de-name="NA(NA)" dhisid="5124.1"/>
+<gconfig commonid="1322" de-name="NA(NA)" dhisid="5491.1"/>
+<gconfig commonid="1073" de-name="Functional DH as per IPHS" dhisid="287.1"/>
+<gconfig commonid="1190" de-name="NA(NA)" dhisid="5584.1"/>
+<gconfig commonid="1132" de-name="PB (Child)" dhisid="110.1"/>
+<gconfig commonid="1179" de-name="NA(NA)" dhisid="5575.1"/>
+<gconfig commonid="883" de-name="Animal Bites or stings over 55 years [ Male ]" dhisid="1222.8"/>
+<gconfig commonid="1216" de-name="NA(NA)" dhisid="5599.9"/>
+<gconfig commonid="882" de-name="Animal Bites or stings over 55 years [ Female ]" dhisid="1222.7"/>
+<gconfig commonid="1385" de-name="NA(NA)" dhisid="5515.1"/>
+<gconfig commonid="309" de-name="NA(NA)" dhisid="5292.9"/>
+<gconfig commonid="490" de-name="Caesarean (C-Section) deliveries performed at  Sub-divisional hospital/District Hospital" dhisid="1257.1"/>
+<gconfig commonid="1229" de-name="NA(NA)" dhisid="5605.10"/>
+<gconfig commonid="638" de-name="Dental Procedures" dhisid="1484.1"/>
+<gconfig commonid="443" de-name="NA(NA)" dhisid="5564.1"/>
+<gconfig commonid="1729" de-name="LLB- DateOfBirth" dhisid="1023.1"/>
+<gconfig commonid="1637" de-name="C.3 - Pulse Polio operating costs - FMR" dhisid="1480.1"/>
+<gconfig commonid="459" de-name="NA(NA)" dhisid="5573.1"/>
+<gconfig commonid="1737" de-name="Maternal death during second trimester" dhisid="525.1"/>
+<gconfig commonid="1557" de-name="B4.2 - PHCs - FMR" dhisid="1400.1"/>
+<gconfig commonid="556" de-name="Sterilization Male failure" dhisid="67.1"/>
+<gconfig commonid="34" de-name="NA(NA)" dhisid="5046.1"/>
+<gconfig commonid="1401" de-name="Doctor Trained in  Skilled Birth Attendant" dhisid="1154.1"/>
+<gconfig commonid="1615" de-name="B20 - New Strategic interventions under state health policy - FMR" dhisid="1455.1"/>
+<gconfig commonid="1665" de-name="NA(NA)" dhisid="5400.1"/>
+<gconfig commonid="1597" de-name="B16.3.3 - Other training and capacity building programmes - FMR" dhisid="1440.1"/>
+<gconfig commonid="420" de-name="NA(NA)" dhisid="5553.10"/>
+<gconfig commonid="440" de-name="NA(NA)" dhisid="5474.1"/>
+<gconfig commonid="1228" de-name="NA(NA)" dhisid="5604.9"/>
+<gconfig commonid="455" de-name="NA(NA)" dhisid="5712.1"/>
+<gconfig commonid="1733" de-name="IUD Inserted" dhisid="57.1"/>
+<gconfig commonid="1041" de-name="PHC Staff Nurse Total [ Sanctioned ]" dhisid="269.10"/>
+<gconfig commonid="30" de-name="NA(NA)" dhisid="5042.1"/>
+<gconfig commonid="1544" de-name="B1.4 - Other ASHA - FMR" dhisid="1387.1"/>
+<gconfig commonid="1566" de-name="B5.7 - Others- FMR " dhisid="1409.1"/>
+<gconfig commonid="1146" de-name="Male death 5 to 15 years total" dhisid="553.1"/>
+<gconfig commonid="390" de-name="NA(NA)" dhisid="5530.1"/>
+<gconfig commonid="270" de-name="NA(NA)" dhisid="5271.10"/>
+<gconfig commonid="1234" de-name="NA(NA)" dhisid="5716.1"/>
+<gconfig commonid="155" de-name="NA(NA)" dhisid="5173.1"/>
+<gconfig commonid="1616" de-name="B24 - Health Insurance Scheme - FMR" dhisid="1459.1"/>
+<gconfig commonid="343" de-name="NA(NA)" dhisid="5307.9"/>
+<gconfig commonid="453" de-name="NA(NA)" dhisid="5568.1"/>
+<gconfig commonid="331" de-name="NA(NA)" dhisid="5344.9"/>
+<gconfig commonid="959" de-name="State Finance Manager [ Sanctioned ]" dhisid="229.10"/>
+<gconfig commonid="1245" de-name="NA(NA)" dhisid="5611.1"/>
+<gconfig commonid="151" de-name="NA(NA)" dhisid="5169.1"/>
+<gconfig commonid="62" de-name="NA(NA)" dhisid="5074.1"/>
+<gconfig commonid="907" de-name="Estimated urban male population (000s)" dhisid="183.1"/>
+<gconfig commonid="1606" de-name="B18.2 - Quality Assurance - FMR" dhisid="1449.1"/>
+<gconfig commonid="923" de-name="Other private Institutions approved for providing MTP services" dhisid="201.1"/>
+<gconfig commonid="985" de-name="CMOs/Civil Surgeon or equivalent [ Sanctioned ]" dhisid="242.10"/>
+<gconfig commonid="1405" de-name="Doctor Trained in  IUDs" dhisid="1158.1"/>
+<gconfig commonid="1676" de-name="NA(NA)" dhisid="5415.1"/>
+<gconfig commonid="616" de-name="Eyes collected" dhisid="121.1"/>
+<gconfig commonid="1608" de-name="B18.3.3 - Other M &amp; E - FMR" dhisid="1451.1"/>
+<gconfig commonid="1056" de-name="PHC Pharmacist [ In-Position ]" dhisid="276.9"/>
+<gconfig commonid="1442" de-name="A.1.1.2 - Operationalise 24x7 PHCs - FMR" dhisid="1285.1"/>
+<gconfig commonid="1235" de-name="NA(NA)" dhisid="5717.1"/>
+<gconfig commonid="398" de-name="NA(NA)" dhisid="5538.1"/>
+<gconfig commonid="1007" de-name="Staffs in CHC GDMO [ Sanctioned ]" dhisid="1501.10"/>
+<gconfig commonid="1152" de-name="LLD- Name of Child" dhisid="1027.1"/>
+<gconfig commonid="1117" de-name="HFWTCs Faculty Sanctioned" dhisid="336.1"/>
+<gconfig commonid="1294" de-name="NA(NA)" dhisid="5707.1"/>
+<gconfig commonid="1276" de-name="NA(NA)" dhisid="5698.1"/>
+<gconfig commonid="1270" de-name="NA(NA)" dhisid="5619.1"/>
+<gconfig commonid="1109" de-name="MPW Faculty Sanctioned" dhisid="328.1"/>
+<gconfig commonid="111" de-name="NA(NA)" dhisid="5129.1"/>
+<gconfig commonid="335" de-name="NA(NA)" dhisid="5303.9"/>
+<gconfig commonid="387" de-name="NA(NA)" dhisid="5386.1"/>
+<gconfig commonid="647" de-name="ANC HIV tested positive" dhisid="141.1"/>
+<gconfig commonid="17" de-name="NA(NA)" dhisid="5012.1"/>
+<gconfig commonid="220" de-name="NA(NA)" dhisid="5238.1"/>
+<gconfig commonid="1018" de-name="CHC Staff Nurse-SBA Trained [ In-Position ]" dhisid="256.9"/>
+<gconfig commonid="1446" de-name="A.1.2 - Referral Transport - FMR" dhisid="1289.1"/>
+<gconfig commonid="1633" de-name="B29 - Other expenses - FMR" dhisid="1476.1"/>
+<gconfig commonid="1672" de-name="NA(NA)" dhisid="5411.1"/>
+<gconfig commonid="248" de-name="NA(NA)" dhisid="5257.10"/>
+<gconfig commonid="1142" de-name="Male child death below 12 months" dhisid="558.1"/>
+<gconfig commonid="159" de-name="NA(NA)" dhisid="5177.1"/>
+<gconfig commonid="1197" de-name="NA(NA)" dhisid="5417.10"/>
+<gconfig commonid="520" de-name="New RTI/STI cases treatment initiated male" dhisid="46.1"/>
+<gconfig commonid="1047" de-name="PHC Nurse Mid-wife [ Sanctioned ]" dhisid="272.10"/>
+<gconfig commonid="1416" de-name="GNM/ ANM/ LHV  trained in IUDs" dhisid="1169.1"/>
+<gconfig commonid="1333" de-name="NA(NA)" dhisid="5687.9"/>
+<gconfig commonid="1184" de-name="NA(NA)" dhisid="5371.1"/>
+<gconfig commonid="1721" de-name="New RTI/STI cases treatment initiated male [ Stock received ]" dhisid="46.5"/>
+<gconfig commonid="980" de-name="Block Data Assistant [ In-Position ]" dhisid="239.9"/>
+<gconfig commonid="1281" de-name="NA(NA)" dhisid="5626.1"/>
+<gconfig commonid="929" de-name="Private Medical Colleges" dhisid="208.1"/>
+<gconfig commonid="861" de-name="Possible cause of death Bleeding before child delivery" dhisid="547.1"/>
+<gconfig commonid="1223" de-name="NA(NA)" dhisid="5602.10"/>
+<gconfig commonid="1202" de-name="NA(NA)" dhisid="5422.9"/>
+<gconfig commonid="1646" de-name="NA(NA)" dhisid="5375.1"/>
+<gconfig commonid="84" de-name="NA(NA)" dhisid="5099.1"/>
+<gconfig commonid="962" de-name="State Accounts Manager [ In-Position ]" dhisid="231.9"/>
+<gconfig commonid="1282" de-name="NA(NA)" dhisid="5701.1"/>
+<gconfig commonid="1491" de-name="A.9.5 - Other activities (pl. specify) - FMR" dhisid="1334.1"/>
+<gconfig commonid="96" de-name="NA(NA)" dhisid="5114.1"/>
+<gconfig commonid="123" de-name="NA(NA)" dhisid="5141.1"/>
+<gconfig commonid="1356" de-name="NA(NA)" dhisid="5666.1"/>
+<gconfig commonid="493" de-name="Live birth male" dhisid="24.1"/>
+<gconfig commonid="1619" de-name="B27.1 - Support Strengthening NPCB - FMR" dhisid="1462.1"/>
+<gconfig commonid="1802" de-name="NA(NA)" dhisid="5268.10"/>
+<gconfig commonid="226" de-name="NA(NA)" dhisid="5244.1"/>
+<gconfig commonid="496" de-name="Abortions spontaneous / Induced" dhisid="33.1"/>
+<gconfig commonid="144" de-name="NA(NA)" dhisid="5162.1"/>
+<gconfig commonid="654" de-name="Malaria Plasmodum Falciparum test positive" dhisid="152.1"/>
+<gconfig commonid="461" de-name="ANC registration within first trimester" dhisid="4.1"/>
+<gconfig commonid="643" de-name="HIV tested Female-Non ANC" dhisid="138.1"/>
+<gconfig commonid="486" de-name="Delivery private institutional JSY incentive paid to ASHAs" dhisid="28.1"/>
+<gconfig commonid="222" de-name="NA(NA)" dhisid="5240.1"/>
+<gconfig commonid="312" de-name="NA(NA)" dhisid="5294.10"/>
+<gconfig commonid="625" de-name="Whether facility has operational sick new born and child care unit?" dhisid="157.1"/>
+<gconfig commonid="972" de-name="District Data Manager [ In-Position ]" dhisid="235.9"/>
+<gconfig commonid="407" de-name="NA(NA)" dhisid="5409.1"/>
+<gconfig commonid="982" de-name="Others (FP Counslers) [ In-Position ]" dhisid="240.9"/>
+<gconfig commonid="86" de-name="NA(NA)" dhisid="5101.1"/>
+<gconfig commonid="100" de-name="NA(NA)" dhisid="5118.1"/>
+<gconfig commonid="424" de-name="NA(NA)" dhisid="5557.1"/>
+<gconfig commonid="233" de-name="NA(NA)" dhisid="5249.9"/>
+<gconfig commonid="1425" de-name="Programme Managers BPMU" dhisid="1182.1"/>
+<gconfig commonid="1094" de-name="Private centres closed" dhisid="313.1"/>
+<gconfig commonid="1030" de-name="CHC Doctors trained in CEmOC Skills [ In-Position ]" dhisid="262.9"/>
+<gconfig commonid="1506" de-name="A.11.5.2 - Facility Based Newborn Care - FMR" dhisid="1349.1"/>
+<gconfig commonid="1795" de-name="NA(NA)" dhisid="5080.1"/>
+<gconfig commonid="1748" de-name="Maternal death at CHC" dhisid="536.1"/>
+<gconfig commonid="87" de-name="NA(NA)" dhisid="5102.1"/>
+<gconfig commonid="641" de-name="HB Tested &lt; 7" dhisid="135.1"/>
+<gconfig commonid="1639" de-name="NA(NA)" dhisid="5364.1"/>
+<gconfig commonid="44" de-name="NA(NA)" dhisid="5056.1"/>
+<gconfig commonid="838" de-name="Heart disease and hypertension 15-55 years [ Male ]" dhisid="1215.8"/>
+<gconfig commonid="837" de-name="Heart disease and hypertension 15-55 years [ Female ]" dhisid="1215.7"/>
+<gconfig commonid="1701" de-name="NA(NA)" dhisid="5481.1"/>
+<gconfig commonid="367" de-name="NA(NA)" dhisid="5325.1"/>
+<gconfig commonid="1715" de-name="NA(NA)" dhisid="5360.9"/>
+<gconfig commonid="1137" de-name="Pregnant women identified with obstetric complication and treated at institution" dhisid="34.1"/>
+<gconfig commonid="1310" de-name="NA(NA)" dhisid="5640.1"/>
+<gconfig commonid="538" de-name="Post-Partum sterilizations conducted  PHCs" dhisid="1275.1"/>
+<gconfig commonid="14" de-name="NA(NA)" dhisid="5009.1"/>
+<gconfig commonid="1313" de-name="NA(NA)" dhisid="5644.1"/>
+<gconfig commonid="1389" de-name="NA(NA)" dhisid="5358.1"/>
+<gconfig commonid="69" de-name="NA(NA)" dhisid="5084.1"/>
+<gconfig commonid="263" de-name="NA(NA)" dhisid="5265.9"/>
+<gconfig commonid="1239" de-name="NA(NA)" dhisid="5437.1"/>
+<gconfig commonid="1772" de-name="NA(NA)" dhisid="1517.1"/>
+<gconfig commonid="95" de-name="NA(NA)" dhisid="5113.1"/>
+<gconfig commonid="1106" de-name="Functional MPW Training Centres" dhisid="325.1"/>
+<gconfig commonid="90" de-name="NA(NA)" dhisid="5106.1"/>
+<gconfig commonid="2" de-name="NA(NA)" dhisid="5000.1"/>
+<gconfig commonid="964" de-name="State Data Manager [ In-Position ]" dhisid="230.9"/>
+<gconfig commonid="40" de-name="NA(NA)" dhisid="5052.1"/>
+<gconfig commonid="1521" de-name="A.12.2 - Development of State BCC/IEC strategy - FMR" dhisid="1364.1"/>
+<gconfig commonid="1295" de-name="NA(NA)" dhisid="5633.1"/>
+<gconfig commonid="515" de-name="Post partum check up between 48hrs and 14 weeks" dhisid="41.1"/>
+<gconfig commonid="1517" de-name="A.11.8.1 - SPMU Training - FMR" dhisid="1360.1"/>
+<gconfig commonid="418" de-name="NA(NA)" dhisid="5418.10"/>
+<gconfig commonid="967" de-name="District Programme Manager [ Sanctioned ]" dhisid="233.10"/>
+<gconfig commonid="74" de-name="NA(NA)" dhisid="5089.1"/>
+<gconfig commonid="1477" de-name="A.8.1 - PNDT and Sex Ratio - FMR" dhisid="1320.1"/>
+<gconfig commonid="342" de-name="NA(NA)" dhisid="5307.10"/>
+<gconfig commonid="1364" de-name="NA(NA)" dhisid="5673.1"/>
+<gconfig commonid="1249" de-name="NA(NA)" dhisid="5452.1"/>
+<gconfig commonid="1498" de-name="A.11.3.2 - EmOC Training - FMR" dhisid="1341.1"/>
+<gconfig commonid="1781" de-name="NA(NA)" dhisid="5020.1"/>
+<gconfig commonid="533" de-name="Mini-lap sterilizations conducted  PHCs" dhisid="1271.1"/>
+<gconfig commonid="1568" de-name="B6.2 - CHCs - FMR" dhisid="1411.1"/>
+<gconfig commonid="1151" de-name="Female death over 55 years" dhisid="1198.1"/>
+<gconfig commonid="37" de-name="NA(NA)" dhisid="5049.1"/>
+<gconfig commonid="543" de-name="IUD Insertions Sub Centre" dhisid="1279.1"/>
+<gconfig commonid="1734" de-name="NA(NA)" dhisid="1561."/>
+<gconfig commonid="519" de-name="MTP conducted at private facilities" dhisid="45.1"/>
+<gconfig commonid="377" de-name="NA(NA)" dhisid="5336.1"/>
+<gconfig commonid="987" de-name="District Program Officers (Including doctors in CMO office) [ Sanctioned ]" dhisid="243.10"/>
+<gconfig commonid="1068" de-name="SCs with at least one ANM received SBA,IMNCI &amp; FP related Skills [ In-Position ]" dhisid="283.9"/>
+<gconfig commonid="1133" de-name="MB (Adult)" dhisid="111.1"/>
+<gconfig commonid="1714" de-name="NA(NA)" dhisid="5360.10"/>
+<gconfig commonid="300" de-name="NA(NA)" dhisid="5288.10"/>
+<gconfig commonid="1551" de-name="B3.1.2 - CHCs - FMR" dhisid="1394.1"/>
+<gconfig commonid="235" de-name="NA(NA)" dhisid="5250.9"/>
+<gconfig commonid="1206" de-name="NA(NA)" dhisid="5594.9"/>
+<gconfig commonid="529" de-name="Laparoscopic sterilizations conducted CHCs" dhisid="1268.1"/>
+<gconfig commonid="243" de-name="NA(NA)" dhisid="5254.9"/>
+<gconfig commonid="1182" de-name="NA(NA)" dhisid="5369.1"/>
+<gconfig commonid="253" de-name="NA(NA)" dhisid="5259.9"/>
+<gconfig commonid="288" de-name="NA(NA)" dhisid="5282.10"/>
+<gconfig commonid="1035" de-name="CHC Ayush Pharmacist [ Sanctioned ]" dhisid="265.10"/>
+<gconfig commonid="1236" de-name="NA(NA)" dhisid="5718.1"/>
+<gconfig commonid="615" de-name="children provided free glasses" dhisid="120.1"/>
+<gconfig commonid="1342" de-name="NA(NA)" dhisid="5500.1"/>
+<gconfig commonid="1513" de-name="A.11.6.4 - IUD Insertion Training - FMR" dhisid="1356.1"/>
+<gconfig commonid="268" de-name="NA(NA)" dhisid="5269.10"/>
+<gconfig commonid="1058" de-name="PHC BHEIO [ In-Position ]" dhisid="277.9"/>
+<gconfig commonid="817" de-name="Other Fever related 6-14 years [ Female ]" dhisid="1137.7"/>
+<gconfig commonid="818" de-name="Other Fever related 6-14 years [ Male ]" dhisid="1137.8"/>
+<gconfig commonid="1698" de-name="NA(NA)" dhisid="5449.1"/>
+<gconfig commonid="310" de-name="NA(NA)" dhisid="5293.10"/>
+<gconfig commonid="1465" de-name="A.3.1.6 - Accreditation of private providers for sterilisation services - FMR" dhisid="1308.1"/>
+<gconfig commonid="1378" de-name="NA(NA)" dhisid="5508.1"/>
+<gconfig commonid="916" de-name="Eligible women (15-49 yrs) with one child" dhisid="194.1"/>
+<gconfig commonid="1629" de-name="B28.5 - Concurrent Audit system - FMR" dhisid="1472.1"/>
+<gconfig commonid="614" de-name="School Children detected with refractive errors" dhisid="119.1"/>
+<gconfig commonid="542" de-name="Post-Partum sterilization conducted at Private facilities" dhisid="56.1"/>
+<gconfig commonid="434" de-name="NA(NA)" dhisid="5445.1"/>
+<gconfig commonid="658" de-name="DT Stock [ Balance from Previous month ]" dhisid="347.2"/>
+<gconfig commonid="1486" de-name="A.9.2.1 - Major civil works for operationalisation of FRUS - FMR" dhisid="1329.1"/>
+<gconfig commonid="712" de-name="DT Stock [ Unusable ]" dhisid="347.6"/>
+<gconfig commonid="1199" de-name="NA(NA)" dhisid="5591.10"/>
+<gconfig commonid="739" de-name="DT Stock [ Stock Distributed ]" dhisid="347.4"/>
+<gconfig commonid="685" de-name="DT Stock [ Stock received ]" dhisid="347.5"/>
+<gconfig commonid="506" de-name="pregnant women with Obstetric Complications and attended at  CHCs" dhisid="1260.1"/>
+<gconfig commonid="176" de-name="NA(NA)" dhisid="5194.1"/>
+<gconfig commonid="1789" de-name="NA(NA)" dhisid="5028.1"/>
+<gconfig commonid="1331" de-name="NA(NA)" dhisid="5649.1"/>
+<gconfig commonid="600" de-name="Vitamin A 1st dose" dhisid="96.1"/>
+<gconfig commonid="402" de-name="NA(NA)" dhisid="5542.1"/>
+<gconfig commonid="92" de-name="NA(NA)" dhisid="5108.1"/>
+<gconfig commonid="562" de-name="DPT 1 dose given under 1year" dhisid="71.1"/>
+<gconfig commonid="405" de-name="NA(NA)" dhisid="5404.1"/>
+<gconfig commonid="1713" de-name="NA(NA)" dhisid="5523.1"/>
+<gconfig commonid="117" de-name="NA(NA)" dhisid="5135.1"/>
+<gconfig commonid="1175" de-name="NA(NA)" dhisid="5574.1"/>
+<gconfig commonid="1524" de-name="A.12.3.3 - BCC/IEC activities for FP - FMR" dhisid="1367.1"/>
+<gconfig commonid="847" de-name="Malaria Over 55 years [ Female ]" dhisid="1200.7"/>
+<gconfig commonid="848" de-name="Malaria Over 55 years [ Male ]" dhisid="1200.8"/>
+<gconfig commonid="775" de-name="Low Birth Weight under one week [ Female ]" dhisid="1238.7"/>
+<gconfig commonid="1074" de-name="Functional SDH as per IPHS" dhisid="288.1"/>
+<gconfig commonid="512" de-name="Delivery Complicated  IV Oxytocics" dhisid="38.1"/>
+<gconfig commonid="1798" de-name="NA(NA)" dhisid="5248.10"/>
+<gconfig commonid="478" de-name="Deliveries conducted at CHCs" dhisid="1253.1"/>
+<gconfig commonid="776" de-name="Low Birth Weight under one week [ Male ]" dhisid="1238.8"/>
+<gconfig commonid="107" de-name="NA(NA)" dhisid="5125.1"/>
+<gconfig commonid="209" de-name="NA(NA)" dhisid="5227.1"/>
+<gconfig commonid="437" de-name="NA(NA)" dhisid="5456.1"/>
+<gconfig commonid="330" de-name="NA(NA)" dhisid="5344.10"/>
+<gconfig commonid="1020" de-name="CHC Public Health Nurse (PHN) [ In-Position ]" dhisid="257.9"/>
+<gconfig commonid="1063" de-name="SC MPW (Female) /ANM - Regular [ Sanctioned ]" dhisid="281.10"/>
+<gconfig commonid="1417" de-name="GNM/ ANM/ LHV  trained in Contraceptive update training" dhisid="1170.1"/>
+<gconfig commonid="618" de-name="Is the faciliy functioning as an FRU?" dhisid="1.1"/>
+<gconfig commonid="275" de-name="NA(NA)" dhisid="5273.9"/>
+<gconfig commonid="499" de-name="Male live births with less than 2500 grms  " dhisid="517.1"/>
+<gconfig commonid="1794" de-name="NA(NA)" dhisid="5078.1"/>
+<gconfig commonid="1113" de-name="Existing HFWTCs Training Centres" dhisid="332.1"/>
+<gconfig commonid="205" de-name="NA(NA)" dhisid="5223.1"/>
+<gconfig commonid="1211" de-name="NA(NA)" dhisid="5597.10"/>
+<gconfig commonid="1048" de-name="PHC Nurse Mid-wife [ In-Position ]" dhisid="272.9"/>
+<gconfig commonid="215" de-name="NA(NA)" dhisid="5233.1"/>
+<gconfig commonid="1305" de-name="NA(NA)" dhisid="5479.1"/>
+<gconfig commonid="777" de-name="Others under one day [ Female ]" dhisid="1234.7"/>
+<gconfig commonid="875" de-name="Suicides 15-55 years [ Male ]" dhisid="1209.8"/>
+<gconfig commonid="778" de-name="Others under one day [ Male ]" dhisid="1234.8"/>
+<gconfig commonid="874" de-name="Suicides 15-55 years [ Female ]" dhisid="1209.7"/>
+<gconfig commonid="1099" de-name="LHV students admitted during previous Financial Year" dhisid="318.1"/>
+<gconfig commonid="7" de-name="NA(NA)" dhisid="5017.1"/>
+<gconfig commonid="113" de-name="NA(NA)" dhisid="5131.1"/>
+<gconfig commonid="1341" de-name="NA(NA)" dhisid="5499.1"/>
+<gconfig commonid="781" de-name="Pneumonia one month to one year [ Female ]" dhisid="1242.7"/>
+<gconfig commonid="782" de-name="Pneumonia one month to one year [ Male ]" dhisid="1242.8"/>
+<gconfig commonid="1139" de-name="Female child death below 1 week" dhisid="563.1"/>
+<gconfig commonid="1562" de-name="B5.3 - SHCs/Sub Centers - FMR" dhisid="1405.1"/>
+<gconfig commonid="238" de-name="NA(NA)" dhisid="5252.10"/>
+<gconfig commonid="385" de-name="NA(NA)" dhisid="5526.1"/>
+<gconfig commonid="394" de-name="NA(NA)" dhisid="5534.1"/>
+<gconfig commonid="1039" de-name="PHC AYUSH Medical Officer [ Sanctioned ]" dhisid="268.10"/>
+<gconfig commonid="1243" de-name="NA(NA)" dhisid="5609.1"/>
+<gconfig commonid="1025" de-name="CHC Statistical Assistant [ Sanctioned ]" dhisid="260.10"/>
+<gconfig commonid="926" de-name="Allopathic Municipal/ Govt. Dispensaries" dhisid="205.1"/>
+<gconfig commonid="912" de-name="Rural eligible women in 15-49 age group" dhisid="188.1"/>
+<gconfig commonid="1345" de-name="NA(NA)" dhisid="5655.1"/>
+<gconfig commonid="1011" de-name="CHC Pharmacist [ Sanctioned ]" dhisid="253.10"/>
+<gconfig commonid="1265" de-name="NA(NA)" dhisid="5470.1"/>
+<gconfig commonid="1601" de-name="B17.3 - Other Incentives Schemes - FMR" dhisid="1444.1"/>
+<gconfig commonid="1337" de-name="NA(NA)" dhisid="5651.1"/>
+<gconfig commonid="1540" de-name="A.15 - Fund Recieved under RCH Flexipool - FMR" dhisid="1383.1"/>
+<gconfig commonid="995" de-name="CHC Anesthetists [ Sanctioned ]" dhisid="247.10"/>
+<gconfig commonid="503" de-name="Male live birth Breastfeeding in first hour" dhisid="521.1"/>
+<gconfig commonid="553" de-name="Emergency contraceptive pills issued" dhisid="63.1"/>
+<gconfig commonid="994" de-name="CHC Surgeon [ In-Position ]" dhisid="246.9"/>
+<gconfig commonid="1661" de-name="NA(NA)" dhisid="5396.1"/>
+<gconfig commonid="373" de-name="NA(NA)" dhisid="5332.1"/>
+<gconfig commonid="1218" de-name="NA(NA)" dhisid="5600.9"/>
+<gconfig commonid="210" de-name="NA(NA)" dhisid="5228.1"/>
+<gconfig commonid="264" de-name="NA(NA)" dhisid="5266.10"/>
+<gconfig commonid="1055" de-name="PHC Pharmacist [ Sanctioned ]" dhisid="276.10"/>
+<gconfig commonid="417" de-name="NA(NA)" dhisid="5553.9"/>
+<gconfig commonid="301" de-name="NA(NA)" dhisid="5288.9"/>
+<gconfig commonid="758" de-name="Vitamin A solution Stock [ Stock Distributed ]" dhisid="366.4"/>
+<gconfig commonid="704" de-name="Vitamin A solution Stock [ Stock received ]" dhisid="366.5"/>
+<gconfig commonid="731" de-name="Vitamin A solution Stock [ Unusable ]" dhisid="366.6"/>
+<gconfig commonid="80" de-name="NA(NA)" dhisid="5095.1"/>
+<gconfig commonid="790" de-name="Others one month to one year [ Male ]" dhisid="1249.8"/>
+<gconfig commonid="677" de-name="Vitamin A solution Stock [ Balance from Previous month ]" dhisid="366.2"/>
+<gconfig commonid="1159" de-name="MIS/ Data SPMU" dhisid="1187.1"/>
+<gconfig commonid="137" de-name="NA(NA)" dhisid="5155.1"/>
+<gconfig commonid="1130" de-name="New leprosy cases detected" dhisid="108.1"/>
+<gconfig commonid="789" de-name="Others one month to one year [ Female ]" dhisid="1249.7"/>
+<gconfig commonid="128" de-name="NA(NA)" dhisid="5146.1"/>
+<gconfig commonid="1412" de-name="Doctor Trained in  IMEP" dhisid="1165.1"/>
+<gconfig commonid="1089" de-name="Faculty In Position" dhisid="307.1"/>
+<gconfig commonid="1258" de-name="NA(NA)" dhisid="5463.1"/>
+<gconfig commonid="1352" de-name="NA(NA)" dhisid="5662.1"/>
+<gconfig commonid="133" de-name="NA(NA)" dhisid="5151.1"/>
+<gconfig commonid="316" de-name="NA(NA)" dhisid="5342.10"/>
+<gconfig commonid="494" de-name="Live birth female" dhisid="23.1"/>
+<gconfig commonid="1085" de-name="Centres closed" dhisid="303.1"/>
+<gconfig commonid="1495" de-name="A.11.1 - Strengthening of Training Institutions - FMR" dhisid="1338.1"/>
+<gconfig commonid="1004" de-name="CHC Eye Surgeon [ In-Position ]" dhisid="251.9"/>
+<gconfig commonid="650" de-name="VDRL tested Female non ANC" dhisid="146.1"/>
+<gconfig commonid="76" de-name="NA(NA)" dhisid="5091.1"/>
+<gconfig commonid="194" de-name="NA(NA)" dhisid="5212.1"/>
+<gconfig commonid="1273" de-name="NA(NA)" dhisid="5622.1"/>
+<gconfig commonid="293" de-name="NA(NA)" dhisid="5284.9"/>
+<gconfig commonid="51" de-name="NA(NA)" dhisid="5063.1"/>
+<gconfig commonid="857" de-name="Possible cause of death Abortion" dhisid="543.1"/>
+<gconfig commonid="466" de-name="ANC given 100 IFA tablets" dhisid="9.1"/>
+<gconfig commonid="1532" de-name="A.13.2.2 - Drugs &amp; supplies for CH - FMR" dhisid="1375.1"/>
+<gconfig commonid="608" de-name="Measles cases" dhisid="104.1"/>
+<gconfig commonid="1172" de-name="Number of Districts where health soceities have merged to District Health Missions?" dhisid="177.1"/>
+<gconfig commonid="1686" de-name="NA(NA)" dhisid="5426.1"/>
+<gconfig commonid="1623" de-name="B27.5 - Mobility Support to BMO/MO/Others - FMR" dhisid="1466.1"/>
+<gconfig commonid="29" de-name="NA(NA)" dhisid="5038.1"/>
+<gconfig commonid="571" de-name="Hepatitis B 3 dose given under 1year" dhisid="78.1"/>
+<gconfig commonid="1459" de-name="A.2.8 - Other strategies/activities - FMR" dhisid="1302.1"/>
+<gconfig commonid="931" de-name="District / Govt. Hospital less than 30 beds" dhisid="212.1"/>
+<gconfig commonid="1800" de-name="NA(NA)" dhisid="5267.10"/>
+<gconfig commonid="1487" de-name="A.9.2.2 - Major civil works for operationalisation of 24 hour services at PHCs - FMR" dhisid="1330.1"/>
+<gconfig commonid="258" de-name="NA(NA)" dhisid="5263.10"/>
+<gconfig commonid="563" de-name="DPT 2 dose given under 1year" dhisid="74.1"/>
+<gconfig commonid="1596" de-name="B16.3.2 - Training of AMNs,Staff nurses,AWW,Anganbadi - FMR" dhisid="1439.1"/>
+<gconfig commonid="1373" de-name="NA(NA)" dhisid="5682.1"/>
+<gconfig commonid="285" de-name="NA(NA)" dhisid="5280.9"/>
+<gconfig commonid="55" de-name="NA(NA)" dhisid="5067.1"/>
+<gconfig commonid="1439" de-name="VHSCs received funds during the quarter" dhisid="173.1"/>
+<gconfig commonid="148" de-name="NA(NA)" dhisid="5166.1"/>
+<gconfig commonid="1528" de-name="A.13.1.2 - Procurement of equipment: CH - FMR" dhisid="1371.1"/>
+<gconfig commonid="604" de-name="Pertussis cases" dhisid="100.1"/>
+<gconfig commonid="1590" de-name="B15.1 - Non governmental providers of health care RMPs/TBAs - FMR" dhisid="1433.1"/>
+<gconfig commonid="1423" de-name="GNM/ ANM/ LHV  trained in Adolescent Reproductive and Sexual Health (ARSH)" dhisid="1176.1"/>
+<gconfig commonid="1421" de-name="GNM/ ANM/ LHV  trained in RTI/STI" dhisid="1174.1"/>
+<gconfig commonid="1718" de-name="Laparoscopic sterilization conducted [ Stock received ]" dhisid="51.5"/>
+<gconfig commonid="1527" de-name="A.13.1.1 - Procurement of equipment: MH - FMR" dhisid="1370.1"/>
+<gconfig commonid="354" de-name="NA(NA)" dhisid="5315.1"/>
+<gconfig commonid="1226" de-name="NA(NA)" dhisid="5603.9"/>
+<gconfig commonid="304" de-name="NA(NA)" dhisid="5290.10"/>
+<gconfig commonid="1051" de-name="PHC Health Assistant Male [ Sanctioned ]" dhisid="274.10"/>
+<gconfig commonid="1437" de-name="ASHAs fully trained (5 modules- 23 days)" dhisid="171.1"/>
+<gconfig commonid="965" de-name="Others Consultants [ Sanctioned ]" dhisid="232.10"/>
+<gconfig commonid="287" de-name="NA(NA)" dhisid="5281.9"/>
+<gconfig commonid="1819" de-name="NA(NA)" dhisid="5308.9"/>
+<gconfig commonid="1594" de-name="B16.2 - New Training Institutions/School - FMR" dhisid="1437.1"/>
+<gconfig commonid="1668" de-name="NA(NA)" dhisid="5403.1"/>
+<gconfig commonid="1547" de-name="B2.3 - Untied Fund for Sub Centers - FMR" dhisid="1390.1"/>
+<gconfig commonid="1777" de-name="NA(NA)" dhisid="5015.1"/>
+<gconfig commonid="949" de-name="AYUSH Hospital" dhisid="213.1"/>
+<gconfig commonid="1454" de-name="A.2.3 - Home Based Newborn Care/HBNC - FMR" dhisid="1297.1"/>
+<gconfig commonid="171" de-name="NA(NA)" dhisid="5189.1"/>
+<gconfig commonid="1263" de-name="NA(NA)" dhisid="5468.1"/>
+<gconfig commonid="349" de-name="NA(NA)" dhisid="5311.9"/>
+<gconfig commonid="212" de-name="NA(NA)" dhisid="5230.1"/>
+<gconfig commonid="1583" de-name="B14.1 - Additional Staff/ Supervisory Nurses PHC,CHC (Including Ayush Stream)  - FMR" dhisid="1426.1"/>
+<gconfig commonid="362" de-name="NA(NA)" dhisid="5320.1"/>
+<gconfig commonid="1127" de-name="Laparoscopic sterilization conducted" dhisid="51.1"/>
+<gconfig commonid="1232" de-name="NA(NA)" dhisid="5607.1"/>
+<gconfig commonid="1762" de-name="LLMD- Is Audited" dhisid="1039.1"/>
+<gconfig commonid="1753" de-name="Maternal death assisted by  Nurse" dhisid="541.1"/>
+<gconfig commonid="1426" de-name="Accounts/ Finance (Including PHC) BPMU" dhisid="1183.1"/>
+<gconfig commonid="1634" de-name="B30 - Fund Received under Mission Flexipool  - FMR" dhisid="1477.1"/>
+<gconfig commonid="1327" de-name="NA(NA)" dhisid="5496.1"/>
+<gconfig commonid="1079" de-name="SDH facilities having Progessional uality Accrediation (ISO, QCI, etc)" dhisid="293.1"/>
+<gconfig commonid="1040" de-name="PHC AYUSH Medical Officer [ In-Position ]" dhisid="268.9"/>
+<gconfig commonid="595" de-name="Untoward reactions – Other complications" dhisid="91.1"/>
+<gconfig commonid="1262" de-name="NA(NA)" dhisid="5467.1"/>
+<gconfig commonid="1432" de-name="link workers other than ASHA selected" dhisid="166.1"/>
+<gconfig commonid="167" de-name="NA(NA)" dhisid="5185.1"/>
+<gconfig commonid="198" de-name="NA(NA)" dhisid="5216.1"/>
+<gconfig commonid="901" de-name="Cause Not Known, over 55 years [ Male ]" dhisid="1225.8"/>
+<gconfig commonid="223" de-name="NA(NA)" dhisid="5241.1"/>
+<gconfig commonid="900" de-name="Cause Not Known, over 55 years [ Female ]" dhisid="1225.7"/>
+<gconfig commonid="485" de-name="Delivery private institutional JSY incentive paid to Mothers" dhisid="27.1"/>
+<gconfig commonid="1156" de-name="LLD- CauseOfDeath" dhisid="1031.1"/>
+<gconfig commonid="361" de-name="NA(NA)" dhisid="5319.1"/>
+<gconfig commonid="1191" de-name="NA(NA)" dhisid="5585.1"/>
+<gconfig commonid="1023" de-name="CHC Lab Assistant [ Sanctioned ]" dhisid="259.10"/>
+<gconfig commonid="1187" de-name="NA(NA)" dhisid="5581.1"/>
+<gconfig commonid="217" de-name="NA(NA)" dhisid="5235.1"/>
+<gconfig commonid="1708" de-name="NA(NA)" dhisid="5518.1"/>
+<gconfig commonid="1362" de-name="NA(NA)" dhisid="5671.1"/>
+<gconfig commonid="1384" de-name="NA(NA)" dhisid="5514.1"/>
+<gconfig commonid="1758" de-name="LLMD- Duration of Pregnancy" dhisid="1035.1"/>
+<gconfig commonid="119" de-name="NA(NA)" dhisid="5137.1"/>
+<gconfig commonid="880" de-name="Suicides over 55 years [ Female ]" dhisid="1221.7"/>
+<gconfig commonid="325" de-name="NA(NA)" dhisid="5300.9"/>
+<gconfig commonid="881" de-name="Suicides over 55 years [ Male ]" dhisid="1221.8"/>
+<gconfig commonid="1214" de-name="NA(NA)" dhisid="5598.9"/>
+<gconfig commonid="942" de-name="PHCs equipped to provide Basic Obstretic and Sick child care services" dhisid="297.1"/>
+<gconfig commonid="221" de-name="NA(NA)" dhisid="5239.1"/>
+<gconfig commonid="1749" de-name="Maternal death at Medical College" dhisid="537.1"/>
+<gconfig commonid="451" de-name="NA(NA)" dhisid="5492.1"/>
+<gconfig commonid="179" de-name="NA(NA)" dhisid="5197.1"/>
+<gconfig commonid="163" de-name="NA(NA)" dhisid="5181.1"/>
+<gconfig commonid="620" de-name="Anganwadi centres which reported to have conducted VHNDs" dhisid="162.1"/>
+<gconfig commonid="1556" de-name="B4.1 - CHCs - FMR" dhisid="1399.1"/>
+<gconfig commonid="1659" de-name="NA(NA)" dhisid="5394.1"/>
+<gconfig commonid="1244" de-name="NA(NA)" dhisid="5610.1"/>
+<gconfig commonid="1726" de-name="LLB- Name of Child" dhisid="1020.1"/>
+<gconfig commonid="474" de-name="Delivery home receiving JSY incentive" dhisid="16.1"/>
+<gconfig commonid="1336" de-name="NA(NA)" dhisid="5688.9"/>
+<gconfig commonid="858" de-name="Possible cause of death Obstructed or prolonged labour" dhisid="544.1"/>
+<gconfig commonid="1614" de-name="B23 - New Initiatives/ Innovation as per need (Block/ District Action Plans) - FMR" dhisid="1458.1"/>
+<gconfig commonid="409" de-name="NA(NA)" dhisid="5545.1"/>
+<gconfig commonid="139" de-name="NA(NA)" dhisid="5157.1"/>
+<gconfig commonid="54" de-name="NA(NA)" dhisid="5066.1"/>
+<gconfig commonid="1535" de-name="A.13.2.5 - General drugs &amp; supplies for health facilities - FMR" dhisid="1378.1"/>
+<gconfig commonid="348" de-name="NA(NA)" dhisid="5311.10"/>
+<gconfig commonid="903" de-name="Total Town above 1 lakh population" dhisid="179.1"/>
+<gconfig commonid="862" de-name="Possible cause of death Bleeding after child delivery" dhisid="548.1"/>
+<gconfig commonid="456" de-name="NA(NA)" dhisid="5713.1"/>
+<gconfig commonid="1375" de-name="NA(NA)" dhisid="5684.1"/>
+<gconfig commonid="469" de-name="ANC having Hb level &lt; 11 (tested cases)" dhisid="12.1"/>
+<gconfig commonid="183" de-name="NA(NA)" dhisid="5201.1"/>
+<gconfig commonid="1787" de-name="NA(NA)" dhisid="5026.1"/>
+<gconfig commonid="381" de-name="NA(NA)" dhisid="5380.1"/>
+<gconfig commonid="580" de-name="DT given to 5 years" dhisid="87.1"/>
+<gconfig commonid="1103" de-name="LHV Support staff Sanctioned" dhisid="322.1"/>
+<gconfig commonid="1480" de-name="A.8.4 - Other innovations( if any) - FMR" dhisid="1323.1"/>
+<gconfig commonid="160" de-name="NA(NA)" dhisid="5178.1"/>
+<gconfig commonid="955" de-name="Blood storage centres Public" dhisid="227.1"/>
+<gconfig commonid="1143" de-name="Female child death below 12 months" dhisid="559.1"/>
+<gconfig commonid="234" de-name="NA(NA)" dhisid="5250.10"/>
+<gconfig commonid="252" de-name="NA(NA)" dhisid="5259.10"/>
+<gconfig commonid="103" de-name="NA(NA)" dhisid="5121.1"/>
+<gconfig commonid="1284" de-name="NA(NA)" dhisid="5702.1"/>
+<gconfig commonid="58" de-name="NA(NA)" dhisid="5070.1"/>
+<gconfig commonid="1125" de-name="SIHFW Position of Support Staff number of sancioned post" dhisid="1503.1"/>
+<gconfig commonid="594" de-name="Adverse Event Following Immunisation Death" dhisid="1488.1"/>
+<gconfig commonid="915" de-name="Eligible women (15-49 yrs) with no child" dhisid="193.1"/>
+<gconfig commonid="1166" de-name="Number of meetings of State Health Mission" dhisid="1194.1"/>
+<gconfig commonid="464" de-name="ANC TT1 dose" dhisid="7.1"/>
+<gconfig commonid="1278" de-name="NA(NA)" dhisid="5699.1"/>
+<gconfig commonid="653" de-name="Malaria Plasmodium Vivax test positive" dhisid="151.1"/>
+<gconfig commonid="357" de-name="NA(NA)" dhisid="5354.1"/>
+<gconfig commonid="460" de-name="ANC Registration" dhisid="3.1"/>
+<gconfig commonid="1153" de-name="LLD- Village" dhisid="1028.1"/>
+<gconfig commonid="1652" de-name="NA(NA)" dhisid="5387.1"/>
+<gconfig commonid="1269" de-name="NA(NA)" dhisid="5618.1"/>
+<gconfig commonid="108" de-name="NA(NA)" dhisid="5126.1"/>
+<gconfig commonid="1185" de-name="NA(NA)" dhisid="5578.1"/>
+<gconfig commonid="1649" de-name="NA(NA)" dhisid="5383.1"/>
+<gconfig commonid="1334" de-name="NA(NA)" dhisid="5650.1"/>
+<gconfig commonid="937" de-name="CHCs with 30 or more beds" dhisid="1507.1"/>
+<gconfig commonid="403" de-name="NA(NA)" dhisid="5406.1"/>
+<gconfig commonid="1812" de-name="NA(NA)" dhisid="5298.10"/>
+<gconfig commonid="269" de-name="NA(NA)" dhisid="5269.9"/>
+<gconfig commonid="1348" de-name="NA(NA)" dhisid="5658.1"/>
+<gconfig commonid="752" de-name="Tab. Fluconazole Stock [ Stock Distributed ]" dhisid="360.4"/>
+<gconfig commonid="671" de-name="Tab. Fluconazole Stock [ Balance from Previous month ]" dhisid="360.2"/>
+<gconfig commonid="1350" de-name="NA(NA)" dhisid="5660.1"/>
+<gconfig commonid="1607" de-name="B18.3.1 - Computerization HMIS and e-governance, e-health - FMR" dhisid="1450.1"/>
+<gconfig commonid="698" de-name="Tab. Fluconazole Stock [ Stock received ]" dhisid="360.5"/>
+<gconfig commonid="1675" de-name="NA(NA)" dhisid="5414.1"/>
+<gconfig commonid="725" de-name="Tab. Fluconazole Stock [ Unusable ]" dhisid="360.6"/>
+<gconfig commonid="439" de-name="NA(NA)" dhisid="5473.1"/>
+<gconfig commonid="602" de-name="Vitamin A 9th dose " dhisid="98.1"/>
+<gconfig commonid="1469" de-name="A.3.2.4 - Social Marketing of contraceptives - FMR" dhisid="1312.1"/>
+<gconfig commonid="1541" de-name="B1.1 - Selection &amp; Training of ASHA - FMR" dhisid="1384.1"/>
+<gconfig commonid="298" de-name="NA(NA)" dhisid="5287.10"/>
+<gconfig commonid="1510" de-name="A.11.6.1 - Laparoscopic Sterilisation Training - FMR" dhisid="1353.1"/>
+<gconfig commonid="613" de-name="IOL Implantations" dhisid="118.1"/>
+<gconfig commonid="629" de-name="IP admissions children Female" dhisid="124.1"/>
+<gconfig commonid="632" de-name="IP deaths Female" dhisid="128.1"/>
+<gconfig commonid="61" de-name="NA(NA)" dhisid="5073.1"/>
+<gconfig commonid="1626" de-name="B28.2 - District level - FMR" dhisid="1469.1"/>
+<gconfig commonid="1222" de-name="NA(NA)" dhisid="5421.9"/>
+<gconfig commonid="1279" de-name="NA(NA)" dhisid="5625.1"/>
+<gconfig commonid="430" de-name="NA(NA)" dhisid="5441.1"/>
+<gconfig commonid="1797" de-name="NA(NA)" dhisid="5110.1"/>
+<gconfig commonid="1577" de-name="B10.2 - Creating awareness on declining sex ratio issue - FMR" dhisid="1420.1"/>
+<gconfig commonid="152" de-name="NA(NA)" dhisid="5170.1"/>
+<gconfig commonid="1237" de-name="NA(NA)" dhisid="5436.1"/>
+<gconfig commonid="1114" de-name="Functional HFWTCs Training Centres" dhisid="333.1"/>
+<gconfig commonid="1499" de-name="A.11.3.3 - Life saving Anesthesia skills training - FMR" dhisid="1342.1"/>
+<gconfig commonid="1618" de-name="B26 - State level health resources center(SHSRC) - FMR" dhisid="1461.1"/>
+<gconfig commonid="1005" de-name="CHC Dental Surgeon [ Sanctioned ]" dhisid="252.10"/>
+<gconfig commonid="251" de-name="NA(NA)" dhisid="5258.9"/>
+<gconfig commonid="1689" de-name="NA(NA)" dhisid="5429.1"/>
+<gconfig commonid="122" de-name="NA(NA)" dhisid="5140.1"/>
+<gconfig commonid="1355" de-name="NA(NA)" dhisid="5665.1"/>
+<gconfig commonid="97" de-name="NA(NA)" dhisid="5115.1"/>
+<gconfig commonid="541" de-name="Post-Partum sterilizations conducted  Other State Owned Public Institutions" dhisid="1278.1"/>
+<gconfig commonid="260" de-name="NA(NA)" dhisid="5264.10"/>
+<gconfig commonid="85" de-name="NA(NA)" dhisid="5100.1"/>
+<gconfig commonid="1640" de-name="NA(NA)" dhisid="5365.1"/>
+<gconfig commonid="1647" de-name="NA(NA)" dhisid="5376.1"/>
+<gconfig commonid="1443" de-name="A.1.1.3 - MTP services at health facilities - FMR" dhisid="1286.1"/>
+<gconfig commonid="101" de-name="NA(NA)" dhisid="5119.1"/>
+<gconfig commonid="1301" de-name="NA(NA)" dhisid="5636.1"/>
+<gconfig commonid="984" de-name="PHCs Accountant [ In-Position ]" dhisid="241.9"/>
+<gconfig commonid="546" de-name="IUD Insertions Sub-divisional hospital/District Hospital" dhisid="1282.1"/>
+<gconfig commonid="322" de-name="NA(NA)" dhisid="5341.10"/>
+<gconfig commonid="624" de-name="Number of time ambulance services (assured referral services) were used for transporting patients" dhisid="156.1"/>
+<gconfig commonid="156" de-name="NA(NA)" dhisid="5174.1"/>
+<gconfig commonid="1335" de-name="NA(NA)" dhisid="5688.10"/>
+<gconfig commonid="1503" de-name="A.11.3.7 - Other MH Training (pl. specify) - FMR" dhisid="1346.1"/>
+<gconfig commonid="1509" de-name="A.11.5.5 - Other CH Training (pl. specify) - FMR" dhisid="1352.1"/>
+<gconfig commonid="1692" de-name="NA(NA)" dhisid="5432.1"/>
+<gconfig commonid="244" de-name="NA(NA)" dhisid="5255.10"/>
+<gconfig commonid="1161" de-name="Accounts/ Finance (Including PHC) DPMU" dhisid="1189.1"/>
+<gconfig commonid="286" de-name="NA(NA)" dhisid="5281.10"/>
+<gconfig commonid="31" de-name="NA(NA)" dhisid="5043.1"/>
+<gconfig commonid="823" de-name="Stroke and Neurological disease 6-14 years [ Female ]" dhisid="1148.7"/>
+<gconfig commonid="824" de-name="Stroke and Neurological disease 6-14 years [ Male ]" dhisid="1148.8"/>
+<gconfig commonid="736" de-name="DPT Stock [ Stock Distributed ]" dhisid="344.4"/>
+<gconfig commonid="682" de-name="DPT Stock [ Stock received ]" dhisid="344.5"/>
+<gconfig commonid="709" de-name="DPT Stock [ Unusable ]" dhisid="344.6"/>
+<gconfig commonid="655" de-name="DPT Stock [ Balance from Previous month ]" dhisid="344.2"/>
+<gconfig commonid="1402" de-name="Doctor Trained in  NSV" dhisid="1155.1"/>
+<gconfig commonid="35" de-name="NA(NA)" dhisid="5047.1"/>
+<gconfig commonid="1572" de-name="B8.1 - Constitution and Orientation of Community leader &amp; of VHSC,SHC,PHC,CHC etc - FMR" dhisid="1415.1"/>
+<gconfig commonid="1057" de-name="PHC BHEIO [ Sanctioned ]" dhisid="277.10"/>
+<gconfig commonid="1738" de-name="Maternal death during third trimester" dhisid="526.1"/>
+<gconfig commonid="1815" de-name="NA(NA)" dhisid="5299.9"/>
+<gconfig commonid="1129" de-name="NSV/Conventional vasectomy conducted" dhisid="49.1"/>
+<gconfig commonid="1643" de-name="NA(NA)" dhisid="5372.1"/>
+<gconfig commonid="1703" de-name="NA(NA)" dhisid="5503.1"/>
+<gconfig commonid="489" de-name="Caesarean (C-Section) deliveries performed at  CHCs" dhisid="1256.1"/>
+<gconfig commonid="1705" de-name="NA(NA)" dhisid="5507.1"/>
+<gconfig commonid="1605" de-name="B18.1.4 - Other  - FMR" dhisid="1448.1"/>
+<gconfig commonid="906" de-name="Reference year of BPL survey" dhisid="182.1"/>
+<gconfig commonid="452" de-name="NA(NA)" dhisid="5567.1"/>
+<gconfig commonid="1805" de-name="NA(NA)" dhisid="5270.9"/>
+<gconfig commonid="187" de-name="NA(NA)" dhisid="5205.1"/>
+<gconfig commonid="332" de-name="NA(NA)" dhisid="5302.10"/>
+<gconfig commonid="981" de-name="Others (FP Counslers) [ Sanctioned ]" dhisid="240.10"/>
+<gconfig commonid="794" de-name="Birth Asphyxia under one  month [ Male ]" dhisid="1121.8"/>
+<gconfig commonid="793" de-name="Birth Asphyxia under one  month [ Female ]" dhisid="1121.7"/>
+<gconfig commonid="573" de-name="Fully immunised Male under 12 months" dhisid="80.1"/>
+<gconfig commonid="1576" de-name="B10.1 - Health Mela - FMR" dhisid="1419.1"/>
+<gconfig commonid="1565" de-name="B5.6 - Construction of BHO, Facility improvement civil work BemOC and CemOC centers - FMR" dhisid="1408.1"/>
+<gconfig commonid="1121" de-name="SIHFW trained health personnel during pervious Financial Year" dhisid="340.1"/>
+<gconfig commonid="1291" de-name="NA(NA)" dhisid="5631.1"/>
+<gconfig commonid="283" de-name="NA(NA)" dhisid="5279.9"/>
+<gconfig commonid="1292" de-name="NA(NA)" dhisid="5706.1"/>
+<gconfig commonid="514" de-name="Post partum checkup within 48 hours after delivery" dhisid="40.1"/>
+<gconfig commonid="940" de-name="PHC having 30 or more beds" dhisid="1494.1"/>
+<gconfig commonid="659" de-name="BCG Stock [ Balance from Previous month ]" dhisid="348.2"/>
+<gconfig commonid="740" de-name="BCG Stock [ Stock Distributed ]" dhisid="348.4"/>
+<gconfig commonid="970" de-name="District Accounts Manager [ In-Position ]" dhisid="234.9"/>
+<gconfig commonid="713" de-name="BCG Stock [ Unusable ]" dhisid="348.6"/>
+<gconfig commonid="686" de-name="BCG Stock [ Stock received ]" dhisid="348.5"/>
+<gconfig commonid="23" de-name="NA(NA)" dhisid="5032.1"/>
+<gconfig commonid="617" de-name="Eyes utilised" dhisid="122.1"/>
+<gconfig commonid="236" de-name="NA(NA)" dhisid="5251.10"/>
+<gconfig commonid="978" de-name="Block Accountant [ In-Position ]" dhisid="238.9"/>
+<gconfig commonid="877" de-name="Animal Bites or stings 15-55 years [ Male ]" dhisid="1210.8"/>
+<gconfig commonid="1406" de-name="Doctor Trained in  Blood Storage" dhisid="1159.1"/>
+<gconfig commonid="1488" de-name="A.9.3.1 - Minor civil works for operationalisation of FRUs - FMR" dhisid="1331.1"/>
+<gconfig commonid="130" de-name="NA(NA)" dhisid="5148.1"/>
+<gconfig commonid="876" de-name="Animal Bites or stings 15-55 years [ Female ]" dhisid="1210.7"/>
+<gconfig commonid="1054" de-name="PHC Health Assistant Female (LHV) [ In-Position ]" dhisid="275.9"/>
+<gconfig commonid="747" de-name="Emergency Contraceptive Pills Stock [ Stock Distributed ]" dhisid="355.4"/>
+<gconfig commonid="720" de-name="Emergency Contraceptive Pills Stock [ Unusable ]" dhisid="355.6"/>
+<gconfig commonid="693" de-name="Emergency Contraceptive Pills Stock [ Stock received ]" dhisid="355.5"/>
+<gconfig commonid="849" de-name="Other Fever related over 55 years [ Female ]" dhisid="1219.7"/>
+<gconfig commonid="228" de-name="NA(NA)" dhisid="5246.1"/>
+<gconfig commonid="850" de-name="Other Fever related over 55 years [ Male ]" dhisid="1219.8"/>
+<gconfig commonid="829" de-name="Respiratory Infections and Disease – other than tuberculosis 15-55 years [ Female ]" dhisid="1214.7"/>
+<gconfig commonid="830" de-name="Respiratory Infections and Disease – other than tuberculosis 15-55 years [ Male ]" dhisid="1214.8"/>
+<gconfig commonid="867" de-name="Accidents or injuries 6-14 years [ Male ]" dhisid="1140.8"/>
+<gconfig commonid="666" de-name="Emergency Contraceptive Pills Stock [ Balance from Previous month ]" dhisid="355.2"/>
+<gconfig commonid="866" de-name="Accidents or injuries 6-14 years [ Female ]" dhisid="1140.7"/>
+<gconfig commonid="16" de-name="NA(NA)" dhisid="5011.1"/>
+<gconfig commonid="307" de-name="NA(NA)" dhisid="5291.9"/>
+<gconfig commonid="646" de-name="HIV tested Female-Non ANC positive" dhisid="139.1"/>
+<gconfig commonid="1664" de-name="NA(NA)" dhisid="5399.1"/>
+<gconfig commonid="423" de-name="NA(NA)" dhisid="5556.1"/>
+<gconfig commonid="295" de-name="NA(NA)" dhisid="5285.9"/>
+<gconfig commonid="1552" de-name="B3.1.3 - PHCs - FMR" dhisid="1395.1"/>
+<gconfig commonid="337" de-name="NA(NA)" dhisid="5304.9"/>
+<gconfig commonid="640" de-name="Total test for Hb" dhisid="134.1"/>
+<gconfig commonid="134" de-name="NA(NA)" dhisid="5152.1"/>
+<gconfig commonid="1745" de-name="Maternal death at Home" dhisid="533.1"/>
+<gconfig commonid="1032" de-name="CHC Doctors trained in SNCU (Sick Neonatal Child care Unit) [ In-Position ]" dhisid="263.9"/>
+<gconfig commonid="227" de-name="NA(NA)" dhisid="5245.1"/>
+<gconfig commonid="129" de-name="NA(NA)" dhisid="5147.1"/>
+<gconfig commonid="1413" de-name="Doctor Trained in  Professional Development (CMO/ Dy. CMO/ SMO)" dhisid="1166.1"/>
+<gconfig commonid="125" de-name="NA(NA)" dhisid="5143.1"/>
+<gconfig commonid="1409" de-name="Doctor Trained in  SNCU training" dhisid="1162.1"/>
+<gconfig commonid="1000" de-name="CHC Pediatricians [ In-Position ]" dhisid="249.9"/>
+<gconfig commonid="416" de-name="NA(NA)" dhisid="5552.9"/>
+<gconfig commonid="936" de-name="CHCs with less than 30 beds" dhisid="217.1"/>
+<gconfig commonid="1290" de-name="NA(NA)" dhisid="5705.1"/>
+<gconfig commonid="1312" de-name="NA(NA)" dhisid="5643.1"/>
+<gconfig commonid="1367" de-name="NA(NA)" dhisid="5676.1"/>
+<gconfig commonid="114" de-name="NA(NA)" dhisid="5132.1"/>
+<gconfig commonid="47" de-name="NA(NA)" dhisid="5059.1"/>
+<gconfig commonid="1630" de-name="B28.6 - Printing Exp. - FMR" dhisid="1473.1"/>
+<gconfig commonid="391" de-name="NA(NA)" dhisid="5531.1"/>
+<gconfig commonid="599" de-name="JE dose given" dhisid="95.1"/>
+<gconfig commonid="429" de-name="NA(NA)" dhisid="5562.1"/>
+<gconfig commonid="1604" de-name="B18.1.3 - Block level - FMR" dhisid="1447.1"/>
+<gconfig commonid="1600" de-name="B17.2 - Incentives to Medical Officers (PHCs) - FMR" dhisid="1443.1"/>
+<gconfig commonid="395" de-name="NA(NA)" dhisid="5535.1"/>
+<gconfig commonid="175" de-name="NA(NA)" dhisid="5193.1"/>
+<gconfig commonid="1323" de-name="NA(NA)" dhisid="5720.1"/>
+<gconfig commonid="1027" de-name="CHC Doctors trained in Anesthesiad [ Sanctioned ]" dhisid="261.10"/>
+<gconfig commonid="1732" de-name="Post-Partum sterilization conducted" dhisid="55.1"/>
+<gconfig commonid="1782" de-name="NA(NA)" dhisid="5021.1"/>
+<gconfig commonid="557" de-name="Sterilization Female failure" dhisid="66.1"/>
+<gconfig commonid="992" de-name="District Nursing Administrators if any [ In-Position ]" dhisid="245.9"/>
+<gconfig commonid="413" de-name="NA(NA)" dhisid="5549.1"/>
+<gconfig commonid="1392" de-name="VDRL  tested Male positive" dhisid="145.1"/>
+<gconfig commonid="509" de-name="Pregnant women identified with obstetric complication and treated at private institution" dhisid="35.1"/>
+<gconfig commonid="1006" de-name="CHC Dental Surgeon [ In-Position ]" dhisid="252.9"/>
+<gconfig commonid="1531" de-name="A.13.2.1 - Drugs &amp; supplies for MH - FMR" dhisid="1374.1"/>
+<gconfig commonid="50" de-name="NA(NA)" dhisid="5062.1"/>
+<gconfig commonid="241" de-name="NA(NA)" dhisid="5253.9"/>
+<gconfig commonid="1671" de-name="NA(NA)" dhisid="5410.1"/>
+<gconfig commonid="1683" de-name="NA(NA)" dhisid="5423.10"/>
+<gconfig commonid="43" de-name="NA(NA)" dhisid="5055.1"/>
+<gconfig commonid="986" de-name="CMOs/Civil Surgeon or equivalent [ In-Position ]" dhisid="242.9"/>
+<gconfig commonid="1093" de-name="Private centres recognized by State Nursing Council" dhisid="312.1"/>
+<gconfig commonid="206" de-name="NA(NA)" dhisid="5224.1"/>
+<gconfig commonid="545" de-name="IUD Insertions CHCs" dhisid="1281.1"/>
+<gconfig commonid="1655" de-name="NA(NA)" dhisid="5390.1"/>
+<gconfig commonid="644" de-name="ANC HIV tested" dhisid="140.1"/>
+<gconfig commonid="623" de-name="IS ambulance services (Assured referral services) available (Y/N)" dhisid="155.1"/>
+<gconfig commonid="292" de-name="NA(NA)" dhisid="5284.10"/>
+<gconfig commonid="1248" de-name="NA(NA)" dhisid="5614.1"/>
+<gconfig commonid="340" de-name="NA(NA)" dhisid="5306.10"/>
+<gconfig commonid="1107" de-name="MPW students admitted during previous Financial Year" dhisid="326.1"/>
+<gconfig commonid="1257" de-name="NA(NA)" dhisid="5462.1"/>
+<gconfig commonid="1162" de-name="MIS/ Data DPMU" dhisid="1190.1"/>
+<gconfig commonid="249" de-name="NA(NA)" dhisid="5257.9"/>
+<gconfig commonid="552" de-name="Centrchroman (Weekly) pills issused" dhisid="62.1"/>
+<gconfig commonid="1394" de-name="ANC VDRL tested positive" dhisid="149.1"/>
+<gconfig commonid="1695" de-name="NA(NA)" dhisid="5446.1"/>
+<gconfig commonid="145" de-name="NA(NA)" dhisid="5163.1"/>
+<gconfig commonid="1096" de-name="Private centre Students passed out during previous Financial Year" dhisid="315.1"/>
+<gconfig commonid="149" de-name="NA(NA)" dhisid="5167.1"/>
+<gconfig commonid="820" de-name="HIV/AIDS 6-14 years [ Male ]" dhisid="1136.8"/>
+<gconfig commonid="919" de-name="Villages selected for ASHA intervention (Only for HPS)" dhisid="197.1"/>
+<gconfig commonid="819" de-name="HIV/AIDS 6-14 years [ Female ]" dhisid="1136.7"/>
+<gconfig commonid="389" de-name="NA(NA)" dhisid="5529.1"/>
+<gconfig commonid="908" de-name="Estimated urban female population (000s)" dhisid="185.1"/>
+<gconfig commonid="1140" de-name="Male child death below 1 month" dhisid="560.1"/>
+<gconfig commonid="1520" de-name="A.12.1 - Strengthening of BCC/IEC Bureaus (state and district levels) - FMR" dhisid="1363.1"/>
+<gconfig commonid="39" de-name="NA(NA)" dhisid="5051.1"/>
+<gconfig commonid="913" de-name="Urban estimated pregnancies during the year" dhisid="189.1"/>
+<gconfig commonid="1485" de-name="A.9.1.5 - Others (specify)  - FMR" dhisid="1328.1"/>
+<gconfig commonid="1316" de-name="NA(NA)" dhisid="5646.1"/>
+<gconfig commonid="1340" de-name="NA(NA)" dhisid="5654.1"/>
+<gconfig commonid="3" de-name="NA(NA)" dhisid="5350.1"/>
+<gconfig commonid="1209" de-name="NA(NA)" dhisid="5596.10"/>
+<gconfig commonid="763" de-name="Male child death below 1 day" dhisid="564.1"/>
+<gconfig commonid="1611" de-name="B19.3 - Others - FMR" dhisid="1454.1"/>
+<gconfig commonid="401" de-name="NA(NA)" dhisid="5541.1"/>
+<gconfig commonid="1203" de-name="NA(NA)" dhisid="5592.10"/>
+<gconfig commonid="531" de-name="Laparoscopic sterilizations conducted Other State Owned Public Institutions" dhisid="1270.1"/>
+<gconfig commonid="431" de-name="NA(NA)" dhisid="5442.1"/>
+<gconfig commonid="1424" de-name="GNM/ ANM/ LHV  trained in Immunisation" dhisid="1177.1"/>
+<gconfig commonid="831" de-name="Malaria 15-55 years [ Female ]" dhisid="1199.7"/>
+<gconfig commonid="832" de-name="Malaria 15-55 years [ Male ]" dhisid="1199.8"/>
+<gconfig commonid="435" de-name="NA(NA)" dhisid="5451.1"/>
+<gconfig commonid="415" de-name="NA(NA)" dhisid="5418.9"/>
+<gconfig commonid="1100" de-name="LHV students passed out during previous Financial Year" dhisid="319.1"/>
+<gconfig commonid="1730" de-name="LLB- Weight" dhisid="1024.1"/>
+<gconfig commonid="1774" de-name="NA(NA)" dhisid="1518.1"/>
+<gconfig commonid="1069" de-name="SCs with at least two ANM [ Sanctioned ]" dhisid="284.10"/>
+<gconfig commonid="1351" de-name="NA(NA)" dhisid="5661.1"/>
+<gconfig commonid="1514" de-name="A.11.6.5 - Contraceptive Update/ISD Training - FMR" dhisid="1357.1"/>
+<gconfig commonid="586" de-name="Immunization reactions under one week [ Male ]" dhisid="1239.8"/>
+<gconfig commonid="587" de-name="Immunization reactions under one week [ Female ]" dhisid="1239.7"/>
+<gconfig commonid="1803" de-name="NA(NA)" dhisid="5268.9"/>
+<gconfig commonid="1072" de-name="Functional Eye banks" dhisid="286.1"/>
+<gconfig commonid="528" de-name="Laparoscopic sterilizations conducted PHCs" dhisid="1267.1"/>
+<gconfig commonid="81" de-name="NA(NA)" dhisid="5096.1"/>
+<gconfig commonid="676" de-name="Paediatrics Antibiotics (Cotrimaxozole and Injectable Gentamicin) Stock [ Balance from Previous month ]" dhisid="365.2"/>
+<gconfig commonid="757" de-name="Paediatrics Antibiotics (Cotrimaxozole and Injectable Gentamicin) Stock [ Stock Distributed ]" dhisid="365.4"/>
+<gconfig commonid="703" de-name="Paediatrics Antibiotics (Cotrimaxozole and Injectable Gentamicin) Stock [ Stock received ]" dhisid="365.5"/>
+<gconfig commonid="730" de-name="Paediatrics Antibiotics (Cotrimaxozole and Injectable Gentamicin) Stock [ Unusable ]" dhisid="365.6"/>
+<gconfig commonid="1545" de-name="B2.1 - Untied Fund for CHCs - FMR" dhisid="1388.1"/>
+<gconfig commonid="536" de-name="Mini-lap sterilizations conducted  Other State Owned Public Institutions" dhisid="1274.1"/>
+<gconfig commonid="11" de-name="NA(NA)" dhisid="5006.1"/>
+<gconfig commonid="1148" de-name="Male death 15 to 55 years" dhisid="1195.1"/>
+<gconfig commonid="1272" de-name="NA(NA)" dhisid="5621.1"/>
+<gconfig commonid="465" de-name="ANC TT2/Booster dose" dhisid="8.1"/>
+<gconfig commonid="1303" de-name="NA(NA)" dhisid="5478.1"/>
+<gconfig commonid="195" de-name="NA(NA)" dhisid="5213.1"/>
+<gconfig commonid="77" de-name="NA(NA)" dhisid="5092.1"/>
+<gconfig commonid="1717" de-name="NA(NA)" dhisid="5361.9"/>
+<gconfig commonid="1793" de-name="NA(NA)" dhisid="5077.1"/>
+<gconfig commonid="261" de-name="NA(NA)" dhisid="5264.9"/>
+<gconfig commonid="1766" de-name="NA(NA)" dhisid="1514.1"/>
+<gconfig commonid="1066" de-name="SC MPW (Female) / ANM- Contractual [ In-Position ]" dhisid="282.9"/>
+<gconfig commonid="1763" de-name="NA(NA)" dhisid="1520.1"/>
+<gconfig commonid="89" de-name="NA(NA)" dhisid="5105.1"/>
+<gconfig commonid="1451" de-name="A.1.5 - Other strategies/activities - FMR" dhisid="1294.1"/>
+<gconfig commonid="1537" de-name="A.14.2 - Strengthening of District society/District Programme Management Support Unit - FMR" dhisid="1380.1"/>
+<gconfig commonid="1788" de-name="NA(NA)" dhisid="5027.1"/>
+<gconfig commonid="523" de-name="NSV/Conventional Vasectomy conducted PHCs" dhisid="1263.1"/>
+<gconfig commonid="262" de-name="NA(NA)" dhisid="5265.10"/>
+<gconfig commonid="999" de-name="CHC Pediatricians [ Sanctioned ]" dhisid="249.10"/>
+<gconfig commonid="1287" de-name="NA(NA)" dhisid="5629.1"/>
+<gconfig commonid="927" de-name="AYUSH Municipal/ Govt. Dispensaries" dhisid="206.1"/>
+<gconfig commonid="1685" de-name="NA(NA)" dhisid="5425.1"/>
+<gconfig commonid="1622" de-name="B27.4 - Contingency support to Govt. dispensaries - FMR" dhisid="1465.1"/>
+<gconfig commonid="28" de-name="NA(NA)" dhisid="5037.1"/>
+<gconfig commonid="1474" de-name="A.5 - URBAN RCH - FMR" dhisid="1317.1"/>
+<gconfig commonid="1118" de-name="HFWTCs Faculty In Position" dhisid="337.1"/>
+<gconfig commonid="902" de-name="District Total" dhisid="178.1"/>
+<gconfig commonid="1360" de-name="NA(NA)" dhisid="5669.1"/>
+<gconfig commonid="1462" de-name="A.3.1.3 - NSV camps  - FMR" dhisid="1305.1"/>
+<gconfig commonid="733" de-name="0.1 ml (AD) Stock [ Unusable ]" dhisid="372.6"/>
+<gconfig commonid="246" de-name="NA(NA)" dhisid="5256.10"/>
+<gconfig commonid="760" de-name="0.1 ml (AD) Stock [ Stock Distributed ]" dhisid="372.4"/>
+<gconfig commonid="706" de-name="0.1 ml (AD) Stock [ Stock received ]" dhisid="372.5"/>
+<gconfig commonid="679" de-name="0.1 ml (AD) Stock [ Balance from Previous month ]" dhisid="372.2"/>
+<gconfig commonid="1194" de-name="NA(NA)" dhisid="5588.1"/>
+<gconfig commonid="1466" de-name="A.3.2.1 - IUD camps - FMR" dhisid="1309.1"/>
+<gconfig commonid="1440" de-name="VHSCs submitted statement of expenditure (SOE)" dhisid="174.1"/>
+<gconfig commonid="1083" de-name="Centres recognized by India Nursing Council" dhisid="301.1"/>
+<gconfig commonid="306" de-name="NA(NA)" dhisid="5291.10"/>
+<gconfig commonid="1374" de-name="NA(NA)" dhisid="5683.1"/>
+<gconfig commonid="317" de-name="NA(NA)" dhisid="5342.9"/>
+<gconfig commonid="378" de-name="NA(NA)" dhisid="5337.1"/>
+<gconfig commonid="1173" de-name="NA(NA)" dhisid="5001.1"/>
+<gconfig commonid="1252" de-name="NA(NA)" dhisid="5457.1"/>
+<gconfig commonid="419" de-name="NA(NA)" dhisid="5552.10"/>
+<gconfig commonid="611" de-name="Pneumonia cases / Respiratory infection admited" dhisid="107.1"/>
+<gconfig commonid="1808" de-name="NA(NA)" dhisid="5276.10"/>
+<gconfig commonid="513" de-name="Delivery complicated -Blood Transfusion  performed " dhisid="39.1"/>
+<gconfig commonid="477" de-name="Deliveries conducted at PHCs" dhisid="1252.1"/>
+<gconfig commonid="231" de-name="NA(NA)" dhisid="5295.9"/>
+<gconfig commonid="887" de-name="Other known Chronic disease (sick for more than 3 weeks, no fever) 6-14 years [ Male ]" dhisid="1144.8"/>
+<gconfig commonid="364" de-name="NA(NA)" dhisid="5322.1"/>
+<gconfig commonid="886" de-name="Other known Chronic disease (sick for more than 3 weeks, no fever) 6-14 years [ Female ]" dhisid="1144.7"/>
+<gconfig commonid="670" de-name="MVA Syringes Stock [ Balance from Previous month ]" dhisid="359.2"/>
+<gconfig commonid="751" de-name="MVA Syringes Stock [ Stock Distributed ]" dhisid="359.4"/>
+<gconfig commonid="697" de-name="MVA Syringes Stock [ Stock received ]" dhisid="359.5"/>
+<gconfig commonid="724" de-name="MVA Syringes Stock [ Unusable ]" dhisid="359.6"/>
+<gconfig commonid="1363" de-name="NA(NA)" dhisid="5672.1"/>
+<gconfig commonid="447" de-name="NA(NA)" dhisid="5484.1"/>
+<gconfig commonid="1386" de-name="NA(NA)" dhisid="5524.1"/>
+<gconfig commonid="372" de-name="NA(NA)" dhisid="5331.1"/>
+<gconfig commonid="118" de-name="NA(NA)" dhisid="5136.1"/>
+<gconfig commonid="1525" de-name="A.12.3.4 - BCC/IEC activities for ARSH - FMR" dhisid="1368.1"/>
+<gconfig commonid="1212" de-name="NA(NA)" dhisid="5597.9"/>
+<gconfig commonid="873" de-name="Accidents or injuries 15-55 years [ Male ]" dhisid="1208.8"/>
+<gconfig commonid="872" de-name="Accidents or injuries 15-55 years [ Female ]" dhisid="1208.7"/>
+<gconfig commonid="1046" de-name="PHC Staff Nurse IMNCI trained  [ In-Position ]" dhisid="271.9"/>
+<gconfig commonid="577" de-name="Measles Rubella Vaccine" dhisid="84.1"/>
+<gconfig commonid="1820" de-name="NA(NA)" dhisid="5326.1"/>
+<gconfig commonid="216" de-name="NA(NA)" dhisid="5234.1"/>
+<gconfig commonid="797" de-name="Others under one  month [ Female ]" dhisid="1125.7"/>
+<gconfig commonid="798" de-name="Others under one  month [ Male ]" dhisid="1125.8"/>
+<gconfig commonid="1492" de-name="A.10.1 - Human Resources Development - FMR" dhisid="1335.1"/>
+<gconfig commonid="191" de-name="NA(NA)" dhisid="5209.1"/>
+<gconfig commonid="1710" de-name="NA(NA)" dhisid="5520.1"/>
+<gconfig commonid="1306" de-name="NA(NA)" dhisid="5480.1"/>
+<gconfig commonid="1192" de-name="NA(NA)" dhisid="5586.1"/>
+<gconfig commonid="66" de-name="NA(NA)" dhisid="5081.1"/>
+<gconfig commonid="1320" de-name="NA(NA)" dhisid="5489.1"/>
+<gconfig commonid="1433" de-name="SCs with Joint Account has been operationalised" dhisid="167.1"/>
+<gconfig commonid="661" de-name="JE Stock [ Balance from Previous month ]" dhisid="350.2"/>
+<gconfig commonid="1427" de-name="MIS/ Data BPMU" dhisid="1184.1"/>
+<gconfig commonid="715" de-name="JE Stock [ Unusable ]" dhisid="350.6"/>
+<gconfig commonid="498" de-name="Female live births weighed" dhisid="516.1"/>
+<gconfig commonid="277" de-name="NA(NA)" dhisid="5274.9"/>
+<gconfig commonid="742" de-name="JE Stock [ Stock Distributed ]" dhisid="350.4"/>
+<gconfig commonid="173" de-name="NA(NA)" dhisid="5191.1"/>
+<gconfig commonid="1086" de-name="Students admitted during previous Financial Year" dhisid="304.1"/>
+<gconfig commonid="688" de-name="JE Stock [ Stock received ]" dhisid="350.5"/>
+<gconfig commonid="954" de-name="Blood Bank Private" dhisid="1499.1"/>
+<gconfig commonid="518" de-name="MTP conducted at institutions more 12 weeks of pregnancy" dhisid="44.1"/>
+<gconfig commonid="1233" de-name="NA(NA)" dhisid="5608.1"/>
+<gconfig commonid="564" de-name="DPT 3 dose given under 1year" dhisid="77.1"/>
+<gconfig commonid="1814" de-name="NA(NA)" dhisid="5299.10"/>
+<gconfig commonid="1561" de-name="B5.2 - PHCs - FMR" dhisid="1404.1"/>
+<gconfig commonid="1458" de-name="A.2.7 - Management of Diarrohea, ARI and Micronutrient Malnutrition - FMR" dhisid="1301.1"/>
+<gconfig commonid="567" de-name="OPV 2 dose given under 1year" dhisid="73.1"/>
+<gconfig commonid="1778" de-name="NA(NA)" dhisid="5016.1"/>
+<gconfig commonid="1589" de-name="B14.7 - Others Additional Contractual Staff (Selection, Training, Remuneration) - FMR" dhisid="1432.1"/>
+<gconfig commonid="326" de-name="NA(NA)" dhisid="5338.10"/>
+<gconfig commonid="1548" de-name="B2.4 - Untied fund for VHSC - FMR" dhisid="1391.1"/>
+<gconfig commonid="607" de-name="Polio cases" dhisid="103.1"/>
+<gconfig commonid="951" de-name="Private Hospital/Health Facilities having 30 or more beds" dhisid="1498.1"/>
+<gconfig commonid="975" de-name="Block Programme Manager [ Sanctioned ]" dhisid="237.10"/>
+<gconfig commonid="504" de-name="Female live birth breastfeeding in first hour" dhisid="522.1"/>
+<gconfig commonid="1593" de-name="B16.1 - Strengthening of Existing Training Institutions/Nursing School - FMR" dhisid="1436.1"/>
+<gconfig commonid="73" de-name="NA(NA)" dhisid="5088.1"/>
+<gconfig commonid="1810" de-name="NA(NA)" dhisid="5297.10"/>
+<gconfig commonid="363" de-name="NA(NA)" dhisid="5321.1"/>
+<gconfig commonid="272" de-name="NA(NA)" dhisid="5272.10"/>
+<gconfig commonid="1660" de-name="NA(NA)" dhisid="5395.1"/>
+<gconfig commonid="1224" de-name="NA(NA)" dhisid="5602.9"/>
+<gconfig commonid="1742" de-name="Maternal death at age of the women 16 to 19 years" dhisid="530.1"/>
+<gconfig commonid="1586" de-name="B14.4 - Medical Officers at PHCs (Including AYUSH stream) - FMR" dhisid="1429.1"/>
+<gconfig commonid="1613" de-name="B22 - Regional drugs warehouses - FMR" dhisid="1457.1"/>
+<gconfig commonid="345" de-name="NA(NA)" dhisid="5309.9"/>
+<gconfig commonid="1217" de-name="NA(NA)" dhisid="5600.10"/>
+<gconfig commonid="549" de-name="IUD Removed" dhisid="59.1"/>
+<gconfig commonid="865" de-name="Possible cause of death Not known" dhisid="551.1"/>
+<gconfig commonid="384" de-name="NA(NA)" dhisid="5525.1"/>
+<gconfig commonid="1667" de-name="NA(NA)" dhisid="5402.1"/>
+<gconfig commonid="19" de-name="NA(NA)" dhisid="5014.1"/>
+<gconfig commonid="278" de-name="NA(NA)" dhisid="5277.10"/>
+<gconfig commonid="1328" de-name="NA(NA)" dhisid="5497.1"/>
+<gconfig commonid="1370" de-name="NA(NA)" dhisid="5679.1"/>
+<gconfig commonid="1231" de-name="NA(NA)" dhisid="5606.1"/>
+<gconfig commonid="1104" de-name="LHV Support staff In Position" dhisid="323.1"/>
+<gconfig commonid="1582" de-name="B13 - School Health Programme - FMR" dhisid="1425.1"/>
+<gconfig commonid="1780" de-name="NA(NA)" dhisid="5019.1"/>
+<gconfig commonid="213" de-name="NA(NA)" dhisid="5231.1"/>
+<gconfig commonid="450" de-name="NA(NA)" dhisid="5566.1"/>
+<gconfig commonid="1042" de-name="PHC Staff Nurse Total [ In-Position ]" dhisid="269.9"/>
+<gconfig commonid="799" de-name="Pneumonia 1 year to 5 years [ Female ]" dhisid="1127.7"/>
+<gconfig commonid="800" de-name="Pneumonia 1 year to 5 years [ Male ]" dhisid="1127.8"/>
+<gconfig commonid="482" de-name="JSY Incentive paid to Mothers" dhisid="20.1"/>
+<gconfig commonid="717" de-name="IUD 380 A Stock [ Unusable ]" dhisid="352.6"/>
+<gconfig commonid="1169" de-name="Institutions identified to the prescribed QA norms" dhisid="165.1"/>
+<gconfig commonid="449" de-name="NA(NA)" dhisid="5487.1"/>
+<gconfig commonid="663" de-name="IUD 380 A Stock [ Balance from Previous month ]" dhisid="352.2"/>
+<gconfig commonid="690" de-name="IUD 380 A Stock [ Stock received ]" dhisid="352.5"/>
+<gconfig commonid="1078" de-name="DH facilities having Progessional uality Accrediation (ISO, QCI, etc)" dhisid="292.1"/>
+<gconfig commonid="744" de-name="IUD 380 A Stock [ Stock Distributed ]" dhisid="352.4"/>
+<gconfig commonid="1021" de-name="CHC Lab Technician [ Sanctioned ]" dhisid="258.10"/>
+<gconfig commonid="284" de-name="NA(NA)" dhisid="5280.10"/>
+<gconfig commonid="1752" de-name="Maternal death assisted by  ANM" dhisid="540.1"/>
+<gconfig commonid="1635" de-name="C.1 - RI strengthening project (Review meeting, Mobility support, Outreach services etc) - FMR" dhisid="1478.1"/>
+<gconfig commonid="590" de-name="Immunization reactions under five years [ Male ]" dhisid="1229.8"/>
+<gconfig commonid="218" de-name="NA(NA)" dhisid="5236.1"/>
+<gconfig commonid="591" de-name="Immunization reactions under five years [ Female ]" dhisid="1229.7"/>
+<gconfig commonid="1536" de-name="A.14.1 - Strengthening of State society/State Programme Management Support Unit - FMR" dhisid="1379.1"/>
+<gconfig commonid="1755" de-name="LLMD- Name of Mother" dhisid="1032.1"/>
+<gconfig commonid="939" de-name="PHC having less then 30 bed" dhisid="1493.1"/>
+<gconfig commonid="72" de-name="NA(NA)" dhisid="5087.1"/>
+<gconfig commonid="1019" de-name="CHC Public Health Nurse (PHN) [ Sanctioned ]" dhisid="257.10"/>
+<gconfig commonid="1750" de-name="Maternal death assisted by  Untrained personnel" dhisid="538.1"/>
+<gconfig commonid="788" de-name="Measles one month to one year [ Male ]" dhisid="1244.8"/>
+<gconfig commonid="1298" de-name="NA(NA)" dhisid="5709.1"/>
+<gconfig commonid="1653" de-name="NA(NA)" dhisid="5388.1"/>
+<gconfig commonid="787" de-name="Measles one month to one year [ Female ]" dhisid="1244.7"/>
+<gconfig commonid="1268" de-name="NA(NA)" dhisid="5617.1"/>
+<gconfig commonid="1082" de-name="SC facilities having Progessional uality Accrediation (ISO, QCI, etc)" dhisid="296.1"/>
+<gconfig commonid="15" de-name="NA(NA)" dhisid="5010.1"/>
+<gconfig commonid="1003" de-name="CHC Eye Surgeon [ Sanctioned ]" dhisid="251.10"/>
+<gconfig commonid="1817" de-name="NA(NA)" dhisid="5301.9"/>
+<gconfig commonid="109" de-name="NA(NA)" dhisid="5127.1"/>
+<gconfig commonid="1398" de-name="Anganwadi centres in the district" dhisid="161.1"/>
+<gconfig commonid="950" de-name="Private Hospital/Health Facilities having less then 30 beds" dhisid="1497.1"/>
+<gconfig commonid="1026" de-name="CHC Statistical Assistant [ In-Position ]" dhisid="260.9"/>
+<gconfig commonid="1759" de-name="LLMD- Delivery At" dhisid="1036.1"/>
+<gconfig commonid="1650" de-name="NA(NA)" dhisid="5384.1"/>
+<gconfig commonid="120" de-name="NA(NA)" dhisid="5138.1"/>
+<gconfig commonid="1361" de-name="NA(NA)" dhisid="5670.1"/>
+<gconfig commonid="721" de-name="Tubal rings Stock [ Unusable ]" dhisid="356.6"/>
+<gconfig commonid="748" de-name="Tubal rings Stock [ Stock Distributed ]" dhisid="356.4"/>
+<gconfig commonid="694" de-name="Tubal rings Stock [ Stock received ]" dhisid="356.5"/>
+<gconfig commonid="667" de-name="Tubal rings Stock [ Balance from Previous month ]" dhisid="356.2"/>
+<gconfig commonid="1420" de-name="GNM/ ANM/ LHV  trained in Home Based Newborn Care (HBNC)" dhisid="1173.1"/>
+<gconfig commonid="1674" de-name="NA(NA)" dhisid="5413.1"/>
+<gconfig commonid="895" de-name="Cause Not Known, 15-55 years [ Male ]" dhisid="1213.8"/>
+<gconfig commonid="894" de-name="Cause Not Known, 15-55 years [ Female ]" dhisid="1213.7"/>
+<gconfig commonid="628" de-name="IP admissions Adults Male" dhisid="125.1"/>
+<gconfig commonid="1390" de-name="NA(NA)" dhisid="5316.1"/>
+<gconfig commonid="472" de-name="Delivery home by Non SBA (Trained TBA / Relatives/etc) " dhisid="15.1"/>
+<gconfig commonid="603" de-name="Diphtheria cases" dhisid="99.1"/>
+<gconfig commonid="408" de-name="NA(NA)" dhisid="5544.1"/>
+<gconfig commonid="289" de-name="NA(NA)" dhisid="5282.9"/>
+<gconfig commonid="1468" de-name="A.3.2.3 - Accreditation of private providers for IUD insertion services - FMR" dhisid="1311.1"/>
+<gconfig commonid="294" de-name="NA(NA)" dhisid="5285.10"/>
+<gconfig commonid="1534" de-name="A.13.2.4 - Supplies for IMEP - FMR" dhisid="1377.1"/>
+<gconfig commonid="53" de-name="NA(NA)" dhisid="5065.1"/>
+<gconfig commonid="138" de-name="NA(NA)" dhisid="5156.1"/>
+<gconfig commonid="859" de-name="Possible cause of death Fits" dhisid="545.1"/>
+<gconfig commonid="338" de-name="NA(NA)" dhisid="5305.10"/>
+<gconfig commonid="526" de-name="NSV/Conventional Vasectomy conducted Other State Owned Public Institutions" dhisid="1266.1"/>
+<gconfig commonid="863" de-name="Possible cause of death High fever before delivery" dhisid="549.1"/>
+<gconfig commonid="1472" de-name="A.4.1 - Adolescent services at health facilities. - FMR" dhisid="1315.1"/>
+<gconfig commonid="1578" de-name="B10.3 - Other IEC activities - FMR" dhisid="1421.1"/>
+<gconfig commonid="527" de-name="NSV/Conventional vasectomy conducted at Private facilities" dhisid="50.1"/>
+<gconfig commonid="1380" de-name="NA(NA)" dhisid="5510.1"/>
+<gconfig commonid="1786" de-name="NA(NA)" dhisid="5025.1"/>
+<gconfig commonid="351" de-name="NA(NA)" dhisid="5312.9"/>
+<gconfig commonid="182" de-name="NA(NA)" dhisid="5200.1"/>
+<gconfig commonid="468" de-name="Eclampsia cases managed" dhisid="11.1"/>
+<gconfig commonid="1376" de-name="NA(NA)" dhisid="5685.1"/>
+<gconfig commonid="807" de-name="Others under five years [ Female ]" dhisid="1131.7"/>
+<gconfig commonid="1449" de-name="A.1.4.1 - Home Deliveries - FMR" dhisid="1292.1"/>
+<gconfig commonid="104" de-name="NA(NA)" dhisid="5122.1"/>
+<gconfig commonid="1261" de-name="NA(NA)" dhisid="5466.1"/>
+<gconfig commonid="1286" de-name="NA(NA)" dhisid="5703.1"/>
+<gconfig commonid="808" de-name="Others under five years [ Male ]" dhisid="1131.8"/>
+<gconfig commonid="481" de-name="Delivery institutional discharged under 48 hours of delivery" dhisid="19.1"/>
+<gconfig commonid="770" de-name="Birth Asphyxia under one day [ Male ]" dhisid="1230.8"/>
+<gconfig commonid="463" de-name="ANC third visit" dhisid="6.1"/>
+<gconfig commonid="59" de-name="NA(NA)" dhisid="5071.1"/>
+<gconfig commonid="492" de-name="Delivery complicated -Caesarean Section performed at private facility" dhisid="31.1"/>
+<gconfig commonid="1354" de-name="NA(NA)" dhisid="5664.1"/>
+<gconfig commonid="769" de-name="Birth Asphyxia under one day [ Female ]" dhisid="1230.7"/>
+<gconfig commonid="442" de-name="NA(NA)" dhisid="5476.1"/>
+<gconfig commonid="1181" de-name="NA(NA)" dhisid="5577.1"/>
+<gconfig commonid="619" de-name="Is the PHC functioning 24x7 (3 Staff Nurses)?" dhisid="2.1"/>
+<gconfig commonid="1359" de-name="NA(NA)" dhisid="5668.1"/>
+<gconfig commonid="358" de-name="NA(NA)" dhisid="5355.1"/>
+<gconfig commonid="652" de-name="Malaria blood smears examined " dhisid="150.1"/>
+<gconfig commonid="1324" de-name="NA(NA)" dhisid="5493.1"/>
+<gconfig commonid="202" de-name="NA(NA)" dhisid="5220.1"/>
+<gconfig commonid="1669" de-name="NA(NA)" dhisid="5407.1"/>
+<gconfig commonid="303" de-name="NA(NA)" dhisid="5289.9"/>
+<gconfig commonid="1818" de-name="NA(NA)" dhisid="5308.10"/>
+<gconfig commonid="1542" de-name="B1.2 - Procurement of ASHA Drug Kit - FMR" dhisid="1385.1"/>
+<gconfig commonid="32" de-name="NA(NA)" dhisid="5044.1"/>
+<gconfig commonid="36" de-name="NA(NA)" dhisid="5048.1"/>
+<gconfig commonid="1300" de-name="NA(NA)" dhisid="5710.1"/>
+<gconfig commonid="944" de-name="SCs functioning in Govt. Buldings" dhisid="222.1"/>
+<gconfig commonid="438" de-name="NA(NA)" dhisid="5472.1"/>
+<gconfig commonid="1403" de-name="Doctor Trained in  Minilap" dhisid="1156.1"/>
+<gconfig commonid="457" de-name="NA(NA)" dhisid="5571.1"/>
+<gconfig commonid="1241" de-name="NA(NA)" dhisid="5439.1"/>
+<gconfig commonid="1739" de-name="Maternal death during delivery" dhisid="527.1"/>
+<gconfig commonid="1567" de-name="B6.1 - District Hospitals - FMR" dhisid="1410.1"/>
+<gconfig commonid="1483" de-name="A.9.1.3 - Staff Nurses  - FMR" dhisid="1326.1"/>
+<gconfig commonid="1727" de-name="LLB- Village" dhisid="1021.1"/>
+<gconfig commonid="161" de-name="NA(NA)" dhisid="5179.1"/>
+<gconfig commonid="271" de-name="NA(NA)" dhisid="5271.9"/>
+<gconfig commonid="1479" de-name="A.8.3 - NGO Programme - FMR" dhisid="1322.1"/>
+<gconfig commonid="1776" de-name="NA(NA)" dhisid="5346.9"/>
+<gconfig commonid="581" de-name="Tetanus Toxiod given to 10 year old" dhisid="88.1"/>
+<gconfig commonid="242" de-name="NA(NA)" dhisid="5254.10"/>
+<gconfig commonid="60" de-name="NA(NA)" dhisid="5072.1"/>
+<gconfig commonid="153" de-name="NA(NA)" dhisid="5171.1"/>
+<gconfig commonid="1177" de-name="NA(NA)" dhisid="5714.1"/>
+<gconfig commonid="1399" de-name="Doctor Trained in  Life saving Anesthesia skills for EmOC" dhisid="1152.1"/>
+<gconfig commonid="1564" de-name="B5.5 - Govt. Dispensaries/ others renovations - FMR" dhisid="1407.1"/>
+<gconfig commonid="281" de-name="NA(NA)" dhisid="5278.9"/>
+<gconfig commonid="1731" de-name="LLB- BreastFeeding in FirstHour" dhisid="1025.1"/>
+<gconfig commonid="428" de-name="NA(NA)" dhisid="5435.1"/>
+<gconfig commonid="1500" de-name="A.11.3.4 - MTP training  - FMR" dhisid="1343.1"/>
+<gconfig commonid="1126" de-name="SIHFW Position of Support Staff in position" dhisid="1504.1"/>
+<gconfig commonid="1115" de-name="Health Personnel Trained during previous Financial Year" dhisid="334.1"/>
+<gconfig commonid="1641" de-name="NA(NA)" dhisid="5366.1"/>
+<gconfig commonid="1309" de-name="NA(NA)" dhisid="5639.1"/>
+<gconfig commonid="1791" de-name="NA(NA)" dhisid="5040.1"/>
+<gconfig commonid="924" de-name="Urban Health Centres/ Maternity Centres" dhisid="203.1"/>
+<gconfig commonid="540" de-name="Post-Partum sterilizations conducted  Sub-divisional hospital/District Hospital" dhisid="1277.1"/>
+<gconfig commonid="1052" de-name="PHC Health Assistant Male [ In-Position ]" dhisid="274.9"/>
+<gconfig commonid="627" de-name="IP admissions children Male" dhisid="123.1"/>
+<gconfig commonid="157" de-name="NA(NA)" dhisid="5175.1"/>
+<gconfig commonid="547" de-name="IUD Insertions Other State Owned Public Institutions" dhisid="1283.1"/>
+<gconfig commonid="1144" de-name="Male child death below 5 year" dhisid="556.1"/>
+<gconfig commonid="843" de-name="Tuberculosis Over 55 years [ Female ]" dhisid="1202.7"/>
+<gconfig commonid="844" de-name="Tuberculosis Over 55 years [ Male ]" dhisid="1202.8"/>
+<gconfig commonid="1049" de-name="PHC Lab Technician / Assistant [ Sanctioned ]" dhisid="273.10"/>
+<gconfig commonid="1299" de-name="NA(NA)" dhisid="5635.1"/>
+<gconfig commonid="1444" de-name="A.1.1.4 - RTI/STI services at health facilities - FMR" dhisid="1287.1"/>
+<gconfig commonid="1160" de-name="Programme Managers DPMU" dhisid="1188.1"/>
+<gconfig commonid="1154" de-name="LLD- Sex" dhisid="1029.1"/>
+<gconfig commonid="1504" de-name="A.11.4 - IMEP Training - FMR" dhisid="1347.1"/>
+<gconfig commonid="1391" de-name="Widals test positive" dhisid="143.1"/>
+<gconfig commonid="1014" de-name="CHC Radiologist/Radiographer [ In-Position ]" dhisid="254.9"/>
+<gconfig commonid="1242" de-name="NA(NA)" dhisid="5440.1"/>
+<gconfig commonid="1691" de-name="NA(NA)" dhisid="5431.1"/>
+<gconfig commonid="1571" de-name="B7 - District Action Plans (Including Block, Village) - FMR" dhisid="1414.1"/>
+<gconfig commonid="656" de-name="OPV Stock [ Balance from Previous month ]" dhisid="345.2"/>
+<gconfig commonid="737" de-name="OPV Stock [ Stock Distributed ]" dhisid="345.4"/>
+<gconfig commonid="683" de-name="OPV Stock [ Stock received ]" dhisid="345.5"/>
+<gconfig commonid="710" de-name="OPV Stock [ Unusable ]" dhisid="345.6"/>
+<gconfig commonid="305" de-name="NA(NA)" dhisid="5290.9"/>
+<gconfig commonid="1644" de-name="NA(NA)" dhisid="5373.1"/>
+<gconfig commonid="1344" de-name="NA(NA)" dhisid="5502.1"/>
+<gconfig commonid="1723" de-name="Wet mount tests conducted [ Stock received ]" dhisid="48.5"/>
+<gconfig commonid="1813" de-name="NA(NA)" dhisid="5298.9"/>
+<gconfig commonid="522" de-name="Wet mount tests conducted" dhisid="48.1"/>
+<gconfig commonid="714" de-name="Measles Stock [ Unusable ]" dhisid="349.6"/>
+<gconfig commonid="1679" de-name="NA(NA)" dhisid="5420.9"/>
+<gconfig commonid="1625" de-name="B28.1 - Block Level PMU - FMR" dhisid="1468.1"/>
+<gconfig commonid="1377" de-name="NA(NA)" dhisid="5506.1"/>
+<gconfig commonid="1122" de-name="SIHFW held trainings during perivous Financial Year" dhisid="341.1"/>
+<gconfig commonid="1293" de-name="NA(NA)" dhisid="5632.1"/>
+<gconfig commonid="1455" de-name="A.2.4 - School Health Programme - FMR" dhisid="1298.1"/>
+<gconfig commonid="1277" de-name="NA(NA)" dhisid="5624.1"/>
+<gconfig commonid="1575" de-name="B9 - Mainstreaming of AYUSH - FMR" dhisid="1418.1"/>
+<gconfig commonid="186" de-name="NA(NA)" dhisid="5204.1"/>
+<gconfig commonid="93" de-name="NA(NA)" dhisid="5111.1"/>
+<gconfig commonid="1264" de-name="NA(NA)" dhisid="5469.1"/>
+<gconfig commonid="414" de-name="NA(NA)" dhisid="5550.1"/>
+<gconfig commonid="1617" de-name="B25 - Research Studies, Analysis - FMR" dhisid="1460.1"/>
+<gconfig commonid="899" de-name="Other known Chronic disease( sick for more than 3 weeks, no fever) over 55 years [ Male ]" dhisid="1224.8"/>
+<gconfig commonid="1302" de-name="NA(NA)" dhisid="5721.1"/>
+<gconfig commonid="224" de-name="NA(NA)" dhisid="5242.1"/>
+<gconfig commonid="898" de-name="Other known Chronic disease( sick for more than 3 weeks, no fever) over 55 years [ Female ]" dhisid="1224.7"/>
+<gconfig commonid="1707" de-name="NA(NA)" dhisid="5517.1"/>
+<gconfig commonid="1688" de-name="NA(NA)" dhisid="5428.1"/>
+<gconfig commonid="1135" de-name="Deliveries at accredited Private Institutions" dhisid="26.1"/>
+<gconfig commonid="1188" de-name="NA(NA)" dhisid="5582.1"/>
+<gconfig commonid="98" de-name="NA(NA)" dhisid="5116.1"/>
+<gconfig commonid="131" de-name="NA(NA)" dhisid="5149.1"/>
+<gconfig commonid="976" de-name="Block Programme Manager [ In-Position ]" dhisid="237.9"/>
+<gconfig commonid="1489" de-name="A.9.3.2 - Minor civil works for operationalisation of 24 hour services at PHCs - FMR" dhisid="1332.1"/>
+<gconfig commonid="24" de-name="NA(NA)" dhisid="5033.1"/>
+<gconfig commonid="1648" de-name="NA(NA)" dhisid="5377.1"/>
+<gconfig commonid="660" de-name="Measles Stock [ Balance from Previous month ]" dhisid="349.2"/>
+<gconfig commonid="197" de-name="NA(NA)" dhisid="5215.1"/>
+<gconfig commonid="302" de-name="NA(NA)" dhisid="5289.10"/>
+<gconfig commonid="687" de-name="Measles Stock [ Stock received ]" dhisid="349.5"/>
+<gconfig commonid="968" de-name="District Programme Manager [ In-Position ]" dhisid="233.9"/>
+<gconfig commonid="741" de-name="Measles Stock [ Stock Distributed ]" dhisid="349.4"/>
+<gconfig commonid="583" de-name="Untoward reactions – Abscesses" dhisid="90.1"/>
+<gconfig commonid="868" de-name="Suicides 6-14 years [ Female ]" dhisid="1141.7"/>
+<gconfig commonid="1430" de-name="CDPO Trained" dhisid="1180.1"/>
+<gconfig commonid="1682" de-name="NA(NA)" dhisid="5420.10"/>
+<gconfig commonid="869" de-name="Suicides 6-14 years [ Male ]" dhisid="1141.8"/>
+<gconfig commonid="426" de-name="NA(NA)" dhisid="5559.1"/>
+<gconfig commonid="201" de-name="NA(NA)" dhisid="5219.1"/>
+<gconfig commonid="636" de-name="Operation minor (No or local anesthesia)" dhisid="132.1"/>
+<gconfig commonid="598" de-name="Immunisation sessions atteneded by ASHAs" dhisid="94.1"/>
+<gconfig commonid="851" de-name="HIV/AIDS over 55 years [ Female ]" dhisid="1218.7"/>
+<gconfig commonid="229" de-name="NA(NA)" dhisid="5247.1"/>
+<gconfig commonid="852" de-name="HIV/AIDS over 55 years [ Male ]" dhisid="1218.8"/>
+<gconfig commonid="164" de-name="NA(NA)" dhisid="5182.1"/>
+<gconfig commonid="1036" de-name="CHC Ayush Pharmacist [ In-Position ]" dhisid="265.9"/>
+<gconfig commonid="1395" dhisid="1124.1.1"/>
+<gconfig commonid="1508" de-name="A.11.5.4 - Care of Sick Children and severe malnutrition - FMR" dhisid="1351.1"/>
+<gconfig commonid="1059" de-name="PHC Statistical Assistant [ Sanctioned ]" dhisid="278.10"/>
+<gconfig commonid="350" de-name="NA(NA)" dhisid="5312.10"/>
+<gconfig commonid="510" de-name="Delivery complicated treated with IV antibiotics" dhisid="36.1"/>
+<gconfig commonid="1526" de-name="A.12.4 - Other activities (please specify) - FMR" dhisid="1369.1"/>
+<gconfig commonid="446" de-name="NA(NA)" dhisid="5483.1"/>
+<gconfig commonid="42" de-name="NA(NA)" dhisid="5054.1"/>
+<gconfig commonid="1663" de-name="NA(NA)" dhisid="5398.1"/>
+<gconfig commonid="1656" de-name="NA(NA)" dhisid="5391.1"/>
+<gconfig commonid="842" de-name="Diarrhoeal disease over 55 years [ Male ]" dhisid="1217.8"/>
+<gconfig commonid="841" de-name="Diarrhoeal disease over 55 years [ Female ]" dhisid="1217.7"/>
+<gconfig commonid="1034" de-name="CHC Ayush doctors  [ In-Position ]" dhisid="264.9"/>
+<gconfig commonid="1092" de-name="Private centres recognized by India Nursing Council" dhisid="311.1"/>
+<gconfig commonid="1253" de-name="NA(NA)" dhisid="5458.1"/>
+<gconfig commonid="1746" de-name="Maternal death at Sub-Center" dhisid="534.1"/>
+<gconfig commonid="207" de-name="NA(NA)" dhisid="5225.1"/>
+<gconfig commonid="476" de-name="Deliveries conducted at Sub Centre" dhisid="1251.1"/>
+<gconfig commonid="905" de-name="Percent of states population Below Poverty Line (BPL)" dhisid="181.1"/>
+<gconfig commonid="1332" de-name="NA(NA)" dhisid="5687.10"/>
+<gconfig commonid="339" de-name="NA(NA)" dhisid="5305.9"/>
+<gconfig commonid="1247" de-name="NA(NA)" dhisid="5613.1"/>
+<gconfig commonid="1108" de-name="MPW students passed out during previous Financial Year" dhisid="327.1"/>
+<gconfig commonid="1024" de-name="CHC Lab Assistant [ In-Position ]" dhisid="259.9"/>
+<gconfig commonid="480" de-name="Deliveries conducted at Other State Owned Public Institutions" dhisid="1255.1"/>
+<gconfig commonid="328" de-name="NA(NA)" dhisid="5340.10"/>
+<gconfig commonid="1627" de-name="B28.3 - State level  - FMR" dhisid="1470.1"/>
+<gconfig commonid="1288" de-name="NA(NA)" dhisid="5704.1"/>
+<gconfig commonid="551" de-name="Condoms units distributed" dhisid="61.1"/>
+<gconfig commonid="1711" de-name="NA(NA)" dhisid="5521.1"/>
+<gconfig commonid="115" de-name="NA(NA)" dhisid="5133.1"/>
+<gconfig commonid="46" de-name="NA(NA)" dhisid="5058.1"/>
+<gconfig commonid="1725" de-name="Condoms units distributed [ Stock received ]" dhisid="61.5"/>
+<gconfig commonid="1366" de-name="NA(NA)" dhisid="5675.1"/>
+<gconfig commonid="314" de-name="NA(NA)" dhisid="5296.10"/>
+<gconfig commonid="274" de-name="NA(NA)" dhisid="5273.10"/>
+<gconfig commonid="1097" de-name="Existing LHV Training Centres" dhisid="316.1"/>
+<gconfig commonid="1603" de-name="B18.1.2 - District level - FMR" dhisid="1446.1"/>
+<gconfig commonid="1519" de-name="A.11.9 - Other training (pl. specify) - FMR" dhisid="1362.1"/>
+<gconfig commonid="38" de-name="NA(NA)" dhisid="5050.1"/>
+<gconfig commonid="392" de-name="NA(NA)" dhisid="5532.1"/>
+<gconfig commonid="1631" de-name="B28.7 - Telephone and Mobile phone expenses - FMR" dhisid="1474.1"/>
+<gconfig commonid="1141" de-name="Female child death below 1 month" dhisid="561.1"/>
+<gconfig commonid="973" de-name="Others (IEC Consultants) [ Sanctioned ]" dhisid="236.10"/>
+<gconfig commonid="764" de-name="Female child death below 1 day" dhisid="565.1"/>
+<gconfig commonid="1610" de-name="B19.2 - Equipments - FMR" dhisid="1453.1"/>
+<gconfig commonid="396" de-name="NA(NA)" dhisid="5536.1"/>
+<gconfig commonid="1599" de-name="B17.1 - Incentives to Specialists (CHCs) - FMR" dhisid="1442.1"/>
+<gconfig commonid="554" de-name="Sterilization complications Mmale" dhisid="65.1"/>
+<gconfig commonid="990" de-name="DHEIO [ In-Position ]" dhisid="244.9"/>
+<gconfig commonid="1783" de-name="NA(NA)" dhisid="5022.1"/>
+<gconfig commonid="779" de-name="Others under one week [ Female ]" dhisid="1240.7"/>
+<gconfig commonid="276" de-name="NA(NA)" dhisid="5274.10"/>
+<gconfig commonid="780" de-name="Others under one week [ Male ]" dhisid="1240.8"/>
+<gconfig commonid="1198" de-name="NA(NA)" dhisid="5417.9"/>
+<gconfig commonid="1699" de-name="NA(NA)" dhisid="5450.1"/>
+<gconfig commonid="1570" de-name="B6.4 - Other or if not bifurcated as above - FMR" dhisid="1413.1"/>
+<gconfig commonid="297" de-name="NA(NA)" dhisid="5286.9"/>
+<gconfig commonid="412" de-name="NA(NA)" dhisid="5548.1"/>
+<gconfig commonid="49" de-name="NA(NA)" dhisid="5061.1"/>
+<gconfig commonid="239" de-name="NA(NA)" dhisid="5252.9"/>
+<gconfig commonid="1530" de-name="A.13.1.4 - Procurement of equipment: IMEP - FMR" dhisid="1373.1"/>
+<gconfig commonid="1012" de-name="CHC Pharmacist [ In-Position ]" dhisid="253.9"/>
+<gconfig commonid="649" de-name="VDRL  tested Male" dhisid="144.1"/>
+<gconfig commonid="1410" de-name="Doctor Trained in  Safe Abortion Services" dhisid="1163.1"/>
+<gconfig commonid="633" de-name="In Patient head count at mid night" dhisid="129.1"/>
+<gconfig commonid="142" de-name="NA(NA)" dhisid="5160.1"/>
+<gconfig commonid="988" de-name="District Program Officers (Including doctors in CMO office) [ In-Position ]" dhisid="243.9"/>
+<gconfig commonid="622" de-name="Rogi Kalyan Samiti meetings held" dhisid="154.1"/>
+<gconfig commonid="588" de-name="Immunization reactions one month to one year [ Male ]" dhisid="1247.8"/>
+<gconfig commonid="135" de-name="NA(NA)" dhisid="5153.1"/>
+<gconfig commonid="1515" de-name="A.11.6.6 - Other FP Training (pl. specify) - FMR" dhisid="1358.1"/>
+<gconfig commonid="589" de-name="Immunization reactions one month to one year [ Female ]" dhisid="1247.7"/>
+<gconfig commonid="1816" de-name="NA(NA)" dhisid="5301.10"/>
+<gconfig commonid="1001" de-name="CHC General Physician [ Sanctioned ]" dhisid="250.10"/>
+<gconfig commonid="1511" de-name="A.11.6.2 - Minilap Training - FMR" dhisid="1354.1"/>
+<gconfig commonid="1256" de-name="NA(NA)" dhisid="5461.1"/>
+<gconfig commonid="1414" de-name="Doctor Trained in  Others (Specify)" dhisid="1167.1"/>
+<gconfig commonid="612" de-name="Patients operated for cataract" dhisid="117.1"/>
+<gconfig commonid="1176" de-name="NA(NA)" dhisid="5367.1"/>
+<gconfig commonid="651" de-name="ANC VDRL tested" dhisid="148.1"/>
+<gconfig commonid="998" de-name="CHC Gynecologists [ In-Position ]" dhisid="248.9"/>
+<gconfig commonid="427" de-name="NA(NA)" dhisid="5560.1"/>
+<gconfig commonid="247" de-name="NA(NA)" dhisid="5256.9"/>
+<gconfig commonid="938" de-name="CHCs functioning in Govt. Buldings" dhisid="218.1"/>
+<gconfig commonid="399" de-name="NA(NA)" dhisid="5539.1"/>
+<gconfig commonid="150" de-name="NA(NA)" dhisid="5168.1"/>
+<gconfig commonid="1696" de-name="NA(NA)" dhisid="5447.1"/>
+<gconfig commonid="146" de-name="NA(NA)" dhisid="5164.1"/>
+<gconfig commonid="508" de-name="pregnant women with Obstetric Complications and attended at  Other State Owned Public Institutions" dhisid="1262.1"/>
+<gconfig commonid="815" de-name="Malaria 6-14 years [ Female ]" dhisid="1135.7"/>
+<gconfig commonid="57" de-name="NA(NA)" dhisid="5069.1"/>
+<gconfig commonid="816" de-name="Malaria 6-14 years [ Male ]" dhisid="1135.8"/>
+<gconfig commonid="400" de-name="NA(NA)" dhisid="5540.1"/>
+<gconfig commonid="918" de-name="Eligible women (15-49 yrs) with three or more child" dhisid="196.1"/>
+<gconfig commonid="1317" de-name="NA(NA)" dhisid="5647.1"/>
+<gconfig commonid="1484" de-name="A.9.1.4 - Specialists (Anesthetists, Pediatricians, Ob/Gyn, Surgeons, Physicians)  - FMR" dhisid="1327.1"/>
+<gconfig commonid="1428" de-name="Statistical Officers Trained" dhisid="1178.1"/>
+<gconfig commonid="1170" de-name="Districts implementing IMNCI" dhisid="175.1"/>
+<gconfig commonid="537" de-name="Mini-Laparoscopic conducted at Private facilities" dhisid="54.1"/>
+<gconfig commonid="432" de-name="NA(NA)" dhisid="5443.1"/>
+<gconfig commonid="1801" de-name="NA(NA)" dhisid="5267.9"/>
+<gconfig commonid="1546" de-name="B2.2 - Untied Fund for PHCs - FMR" dhisid="1389.1"/>
+<gconfig commonid="365" de-name="NA(NA)" dhisid="5323.1"/>
+<gconfig commonid="1387" de-name="NA(NA)" dhisid="5356.1"/>
+<gconfig commonid="991" de-name="District Nursing Administrators if any [ Sanctioned ]" dhisid="245.10"/>
+<gconfig commonid="1765" de-name="Hepatitis B 0 dose given under 1year" dhisid="1509.1"/>
+<gconfig commonid="584" de-name="Immunization reactions under one  month [ Male ]" dhisid="1124.8"/>
+<gconfig commonid="368" de-name="NA(NA)" dhisid="5327.1"/>
+<gconfig commonid="585" de-name="Immunization reactions under one  month [ Female ]" dhisid="1124.7"/>
+<gconfig commonid="771" de-name="Birth Asphyxia under one week [ Female ]" dhisid="1236.7"/>
+<gconfig commonid="834" de-name="Other Fever related 15-55 years [ Male ]" dhisid="1207.8"/>
+<gconfig commonid="1700" de-name="NA(NA)" dhisid="5477.1"/>
+<gconfig commonid="1767" de-name="Measles 2nd Dose" dhisid="1510.1"/>
+<gconfig commonid="772" de-name="Birth Asphyxia under one week [ Male ]" dhisid="1236.8"/>
+<gconfig commonid="833" de-name="Other Fever related 15-55 years [ Female ]" dhisid="1207.7"/>
+<gconfig commonid="1044" de-name="PHC Staff Nurse SBA trained [ In-Position ]" dhisid="270.9"/>
+<gconfig commonid="535" de-name="Mini-lap sterilizations conducted  Sub-divisional hospital/District Hospital" dhisid="1273.1"/>
+<gconfig commonid="12" de-name="NA(NA)" dhisid="5007.1"/>
+<gconfig commonid="1450" de-name="A.1.4.2 - Institutional Deliveries - FMR" dhisid="1293.1"/>
+<gconfig commonid="956" de-name="Blood storage centres Private" dhisid="1500.1"/>
+<gconfig commonid="88" de-name="NA(NA)" dhisid="5104.1"/>
+<gconfig commonid="497" de-name="Male Live births weighed" dhisid="515.1"/>
+<gconfig commonid="1163" de-name="CMO trained" dhisid="1191.1"/>
+<gconfig commonid="1174" de-name="NA(NA)" dhisid="5002.1"/>
+<gconfig commonid="1768" de-name="NA(NA)" dhisid="1515.1"/>
+<gconfig commonid="172" de-name="NA(NA)" dhisid="5190.1"/>
+<gconfig commonid="67" de-name="NA(NA)" dhisid="5082.1"/>
+<gconfig commonid="1111" de-name="MPW Support staff Sanctioned" dhisid="330.1"/>
+<gconfig commonid="1807" de-name="NA(NA)" dhisid="5275.9"/>
+<gconfig commonid="259" de-name="NA(NA)" dhisid="5263.9"/>
+<gconfig commonid="64" de-name="NA(NA)" dhisid="5076.1"/>
+<gconfig commonid="388" de-name="NA(NA)" dhisid="5528.1"/>
+<gconfig commonid="910" de-name="Estimated rural female population (000s)" dhisid="186.1"/>
+<gconfig commonid="467" de-name="ANC Hypertension (BP&gt;140/90) - new case detected" dhisid="10.1"/>
+<gconfig commonid="928" de-name="Public Medical Colleges" dhisid="207.1"/>
+<gconfig commonid="1347" de-name="NA(NA)" dhisid="5657.1"/>
+<gconfig commonid="517" de-name="MTP conducted at institutions up to 12 weeks of pregnancy" dhisid="43.1"/>
+<gconfig commonid="1560" de-name="B5.1 - CHCs - FMR" dhisid="1403.1"/>
+<gconfig commonid="1538" de-name="A.14.3 - Strengthening of Financial Management systems - FMR" dhisid="1381.1"/>
+<gconfig commonid="1119" de-name="HFWTCs Support staff Sanctioned" dhisid="338.1"/>
+<gconfig commonid="1149" de-name="Female death 15 to 55 years" dhisid="1196.1"/>
+<gconfig commonid="1473" de-name="A.4.2 - Other strategies/activities - FMR" dhisid="1316.1"/>
+<gconfig commonid="1396" de-name="Number of PHCs functioning as 24X7 (With 3 Staff Nurses)" dhisid="1508.1"/>
+<gconfig commonid="1735" de-name="Maternal death during pregnancy" dhisid="523.1"/>
+<gconfig commonid="1195" de-name="NA(NA)" dhisid="5589.1"/>
+<gconfig commonid="946" de-name="SCs submitted Statement of Expenditure" dhisid="300.1"/>
+<gconfig commonid="997" de-name="CHC Gynecologists [ Sanctioned ]" dhisid="248.10"/>
+<gconfig commonid="1009" de-name="Staffs in CHC Public Health Manager [ Sanctioned ]" dhisid="1502.10"/>
+<gconfig commonid="1371" de-name="NA(NA)" dhisid="5680.1"/>
+<gconfig commonid="953" de-name="Blood banks Public" dhisid="226.1"/>
+<gconfig commonid="1339" de-name="NA(NA)" dhisid="5653.1"/>
+<gconfig commonid="1029" de-name="CHC Doctors trained in CEmOC Skills [ Sanctioned ]" dhisid="262.10"/>
+<gconfig commonid="327" de-name="NA(NA)" dhisid="5338.9"/>
+<gconfig commonid="4" de-name="NA(NA)" dhisid="5351.1"/>
+<gconfig commonid="1090" de-name="Support staff scantioned" dhisid="309.1"/>
+<gconfig commonid="313" de-name="NA(NA)" dhisid="5294.9"/>
+<gconfig commonid="610" de-name="Malaria" dhisid="106.1"/>
+<gconfig commonid="1071" de-name="IS the integrated District Health Action Plan completed (Prepared &amp; Approved for the comming year?" dhisid="285.1"/>
+<gconfig commonid="1157" de-name="Programme Managers SPMU" dhisid="1185.1"/>
+<gconfig commonid="675" de-name="IFA Syrup (Paediatric) Stock [ Balance from Previous month ]" dhisid="364.2"/>
+<gconfig commonid="371" de-name="NA(NA)" dhisid="5330.1"/>
+<gconfig commonid="296" de-name="NA(NA)" dhisid="5286.10"/>
+<gconfig commonid="756" de-name="IFA Syrup (Paediatric) Stock [ Stock Distributed ]" dhisid="364.4"/>
+<gconfig commonid="1210" de-name="NA(NA)" dhisid="5596.9"/>
+<gconfig commonid="82" de-name="NA(NA)" dhisid="5097.1"/>
+<gconfig commonid="422" de-name="NA(NA)" dhisid="5555.1"/>
+<gconfig commonid="1553" de-name="B3.1.4 - Sub Centers - FMR" dhisid="1396.1"/>
+<gconfig commonid="729" de-name="IFA Syrup (Paediatric) Stock [ Unusable ]" dhisid="364.6"/>
+<gconfig commonid="889" de-name="Cause Not Known 6-14 years [ Male ]" dhisid="1145.8"/>
+<gconfig commonid="702" de-name="IFA Syrup (Paediatric) Stock [ Stock received ]" dhisid="364.5"/>
+<gconfig commonid="888" de-name="Cause Not Known 6-14 years [ Female ]" dhisid="1145.7"/>
+<gconfig commonid="78" de-name="NA(NA)" dhisid="5093.1"/>
+<gconfig commonid="1436" de-name="Total Numberof ASHS recruited" dhisid="170.1"/>
+<gconfig commonid="1193" de-name="NA(NA)" dhisid="5587.1"/>
+<gconfig commonid="1271" de-name="NA(NA)" dhisid="5620.1"/>
+<gconfig commonid="190" de-name="NA(NA)" dhisid="5208.1"/>
+<gconfig commonid="856" de-name="Stroke and Neurological disease over 55 years [ Male ]" dhisid="1228.8"/>
+<gconfig commonid="575" de-name="DPT Booster" dhisid="83.1"/>
+<gconfig commonid="855" de-name="Stroke and Neurological disease over 55 years [ Female ]" dhisid="1228.7"/>
+<gconfig commonid="1067" de-name="SCs with at least one ANM received SBA,IMNCI &amp; FP related Skills [ Sanctioned ]" dhisid="283.10"/>
+<gconfig commonid="1493" de-name="A.10.2 - Logistics management/ improvement - FMR" dhisid="1336.1"/>
+<gconfig commonid="196" de-name="NA(NA)" dhisid="5214.1"/>
+<gconfig commonid="1204" de-name="NA(NA)" dhisid="5592.9"/>
+<gconfig commonid="689" de-name="Hepatitis B Stock [ Stock received ]" dhisid="351.5"/>
+<gconfig commonid="716" de-name="Hepatitis B Stock [ Unusable ]" dhisid="351.6"/>
+<gconfig commonid="743" de-name="Hepatitis B Stock [ Stock Distributed ]" dhisid="351.4"/>
+<gconfig commonid="1087" de-name="Students passed out during previous Financial Year" dhisid="305.1"/>
+<gconfig commonid="662" de-name="Hepatitis B Stock [ Balance from Previous month ]" dhisid="351.2"/>
+<gconfig commonid="1064" de-name="SC MPW (Female) /ANM - Regular [ In-Position ]" dhisid="281.9"/>
+<gconfig commonid="1764" de-name="NA(NA)" dhisid="1521.1"/>
+<gconfig commonid="126" de-name="NA(NA)" dhisid="5144.1"/>
+<gconfig commonid="1318" de-name="NA(NA)" dhisid="5488.1"/>
+<gconfig commonid="1581" de-name="B12.2 - Operating Cost (POL) - FMR" dhisid="1424.1"/>
+<gconfig commonid="558" de-name="Sterialisation related deaths [ Male ]" dhisid="1139.8"/>
+<gconfig commonid="178" de-name="NA(NA)" dhisid="5196.1"/>
+<gconfig commonid="569" de-name="Hepatitis B 1 dose given under 1year" dhisid="72.1"/>
+<gconfig commonid="1457" de-name="A.2.6 - Care of Sick Children and Severe Malnutrition - FMR" dhisid="1300.1"/>
+<gconfig commonid="1285" de-name="NA(NA)" dhisid="5628.1"/>
+<gconfig commonid="568" de-name="OPV 3 dose given under 1year" dhisid="76.1"/>
+<gconfig commonid="1684" de-name="NA(NA)" dhisid="5424.1"/>
+<gconfig commonid="1621" de-name="B27.3 - Support Strengthening RNTCP - FMR" dhisid="1464.1"/>
+<gconfig commonid="27" de-name="NA(NA)" dhisid="5036.1"/>
+<gconfig commonid="1383" de-name="NA(NA)" dhisid="5513.1"/>
+<gconfig commonid="606" de-name="Tetanus others cases" dhisid="102.1"/>
+<gconfig commonid="1549" de-name="B2.5 - Other Untied Funds - FMR" dhisid="1392.1"/>
+<gconfig commonid="1588" de-name="B14.6 - Lab technicians, Gynecologists, Anesthetists, Pedisterian, Specialist CHC, Radiologist, Sonologist, Pathologist, Dental Surgeons.  - FMR" dhisid="1431.1"/>
+<gconfig commonid="878" de-name="Accidents or injuries over 55 years [ Female ]" dhisid="1220.7"/>
+<gconfig commonid="879" de-name="Accidents or injuries over 55 years [ Male ]" dhisid="1220.8"/>
+<gconfig commonid="1463" de-name="A.3.1.4 - Compensation for female sterilisation - FMR" dhisid="1306.1"/>
+<gconfig commonid="559" de-name="Sterialisation related deaths [ Female ]" dhisid="1139.7"/>
+<gconfig commonid="680" de-name="0.5 ml (AD) Stock [ Balance from Previous month ]" dhisid="373.2"/>
+<gconfig commonid="734" de-name="0.5 ml (AD) Stock [ Unusable ]" dhisid="373.6"/>
+<gconfig commonid="707" de-name="0.5 ml (AD) Stock [ Stock received ]" dhisid="373.5"/>
+<gconfig commonid="761" de-name="0.5 ml (AD) Stock [ Stock Distributed ]" dhisid="373.4"/>
+<gconfig commonid="255" de-name="NA(NA)" dhisid="5260.9"/>
+<gconfig commonid="1592" de-name="B15.3 - Other PPP/ NGOs - FMR" dhisid="1435.1"/>
+<gconfig commonid="174" de-name="NA(NA)" dhisid="5192.1"/>
+<gconfig commonid="168" de-name="NA(NA)" dhisid="5186.1"/>
+<gconfig commonid="323" de-name="NA(NA)" dhisid="5341.9"/>
+</globalSettings>

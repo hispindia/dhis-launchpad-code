@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<!-- Meta data Report Details like Report Name (To display in Combo Box), Report Type (organisation Unit,Data Element,Indicator),  -->
+
+<reports>
+     <!-- Reports Type   -->
+     <report id="ORGUNIT">Organisation Unit</report>
+	 <report id="ORGUNITGRP">Organisation Unit Group</report>
+	 <report id="DATAELEMENTS">Data Elements</report>
+	 <report id="DATAELEMENTSGRP">Data Elements Group</report>
+	 <report id="INDICATORS">Indicators</report>
+	 <report id="INDICATORGRP">Indicator Group</report>
+	 <report id="DATASETS">Data Sets</report>
+	 <report id="VALIDATIONRULE">Validation Rule</report>
+	 <report id="VALIDATIONRULEGRP">Validation Rule Group</report>
+	 <report id="USER">User</report>
+	 <report id="ORGUNIT_USER">OrgUnitTree along with User</report>
+	
+</reports>
