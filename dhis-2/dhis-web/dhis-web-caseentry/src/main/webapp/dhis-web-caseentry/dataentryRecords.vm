@@ -1,0 +1,80 @@
+
+<table class="mainPageTable">
+    <tr>
+        <td>    
+        <table class="listTable" id="patientList">
+			<col>
+            #if( $sortPatientAttribute )
+				<col>
+			#end
+            #foreach( $programStage in $program.programStages )
+                <col>
+            #end 
+			<thead>
+				<tr>
+					<th>#</th>
+					#if( $sortPatientAttribute )
+						<th>$encoder.htmlEncode( $sortPatientAttribute.name )</th>
+					#end
+					<th>$i18n.getString( "full_name" )</th>
+					#foreach( $programStage in $program.programStages )
+						<th class="{sorter: false}">$encoder.htmlEncode( $programStage.name )</th>
+					#end                
+				</tr>
+			</thead>
+            <tbody id="list">
+                #set( $mark = false )                 
+                #foreach( $patient in $patientListByOrgUnit )
+					#set( $programInstance = $programInstanceMap.get( $patient ) )
+					<tr #alternate( $mark )>
+						<td>
+							#set( $nr = ( ( $paging.getCurrentPage() - 1  ) * $paging.pageSize ) + $velocityCount )
+							$nr
+						</td>
+						#if( $sortPatientAttribute )
+							<td>$!patientAttributeValueMap.get( $patient.id ).value</td>
+						#end
+                        <td><a href="javascript:showPatientDetails( '$patient.id' )" title="$i18n.getString( 'show_details' )">$patient.getFullName()</a></td>                    
+                        #foreach( $programStageInstance in $programStageInstanceMap.get( $programInstance ) )
+                            #if( $programStageInstance.executionDate )
+                                <td class="cent" bgcolor="$colorMap.get( $programStageInstance.id )">
+                                    <a href="javascript:viewPrgramStageRecords( $programStageInstance.id );">$format.formatDate( $programStageInstance.executionDate )</a>
+                                </td>
+                            #else
+                                <td class="cent" bgcolor="$colorMap.get( $programStageInstance.id )">
+									<a href="javascript:viewPrgramStageRecords( $programStageInstance.id );">$format.formatDate( $programStageInstance.dueDate )</a>
+								</td>
+                            #end
+                        #end
+                    </tr>
+                    #if( $mark )
+                        #set( $mark = false )
+                    #else
+                        #set( $mark = true )
+                    #end 
+                #end    
+            </tbody>
+			<tr>
+				#set( $size=$program.programStages.size() + 2 )
+				<td colspan="$size">
+					<p></p>
+					<div class="paging-container">
+						#parse( "/dhis-web-commons/paging/paging.vm" )
+					</div>
+				</td>
+				<td></td>
+			</tr>
+        </table>
+        </td>
+    </tr>
+</table>
+
+<div id="detailsInfo">
+</div>
+
+<script>
+	jQuery(document).ready(function(){	
+		tableSorter( 'patientList' );
+	});
+	var i18n_patient_details = '$encoder.jsEscape( $i18n.getString( "patient_details" ) , "'" )';
+</script>

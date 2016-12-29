@@ -1,0 +1,115 @@
+
+/*----------------------------------------------------------------------------*/
+/* Dashboard                                                                  */
+/*----------------------------------------------------------------------------*/
+
+.contentProviderTable
+{
+  width:305px;
+}
+
+.contentProviderTable td
+{
+  padding-top:3px;
+  padding-bottom:3px;
+  border-bottom:1px solid #cad5e5;
+}
+
+.linkArea
+{
+  border:1px solid #d0d0d0;
+  padding:1px;
+  height:196px;
+  width:305px;
+  overflow:hidden;
+  margin-bottom:15px;
+}
+
+.linkArea div
+{
+  position:absolute;
+}
+
+.chartArea
+{
+  border:1px solid #d0d0d0;
+  padding:1px;
+  height:310px;
+  width:310px;
+  overflow:hidden;
+  margin-bottom:15px;
+}
+
+.chartArea div
+{
+  position:absolute;
+}
+
+.buttonArea
+{
+  margin-bottom:2px;
+}
+
+.labelText
+{
+  color:#808080;
+}
+
+/*----------------------------------------------------------------------------*/
+/* Message                                                                    */
+/*----------------------------------------------------------------------------*/
+
+.plainList
+{
+  border-collapse:collapse;
+}
+
+.plainList td
+{
+  border-bottom:1px solid #c0c0c0;
+  cursor:pointer;
+}
+
+.unread td
+{
+  background-color:#ebf0f6;
+}
+
+.messageDiv
+{
+  width:50%;
+  border-bottom:1px solid #cccccc; 
+  margin-bottom:15px;
+  padding-bottom:15px;
+}
+
+.messageBottomDiv
+{
+  width:50%;
+  border-top:1px solid #cccccc; 
+  margin-top:20px;
+  padding-top:15px;
+  margin-bottom:20px;
+  padding-bottom:15px;
+}
+
+a
+{
+  text-decoration:none;
+  color:#3567cd;
+}
+
+a:hover
+{
+  text-decoration:underline;
+}
+
+a:visited
+{
+  color:#3567cd;
+}
+
+div#selectionTree 
+{
+  height:200px;
+}

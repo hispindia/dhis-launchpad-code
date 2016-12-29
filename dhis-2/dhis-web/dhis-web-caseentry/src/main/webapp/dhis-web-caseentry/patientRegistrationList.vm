@@ -1,0 +1,130 @@
+
+<table>
+	
+	<tr>
+		<td class='text-column' >$i18n.getString( "search_result_matching_the_search_criteria" ):</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>
+		#if($!listAll)
+			$i18n.getString( "list_all_patients" )
+		#else
+			$i18n.getString( "search_patients_by_attributes" )
+		#end
+		</td>
+	</tr>	
+	
+	<tr>
+		<td class='text-column' >$i18n.getString( "total_result" )</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>$!total</td>
+	</tr>
+</table>
+#if( $patients.size() > 0 )
+<table class="mainPageTable">
+	<tr>
+    <td>    
+      <table class="listTable" id="patientList" width='100%'>               
+          <col width="30"/>
+			#foreach( $attribute in $patientAttributes )
+				<col/>
+			#end
+          <col/>
+          <col/>
+          <col/>
+          <col/>
+		  #if($mapPatientOrgunit.size()!=0)
+          <col/>
+		  #end
+          <col width="200"/>    
+		  
+		  <thead>
+			<tr>
+				<th>#</th>
+				#foreach( $attribute in $patientAttributes )
+					<th id="patientAttributeName">$attribute.name</th>
+				#end
+				<th>$i18n.getString( "full_name" )</th>          
+				<th>$i18n.getString( "gender" )</th>
+				<th>$i18n.getString( "date_of_birth" )</th> 
+				<th class="{sorter: false}">$i18n.getString( "age" )</th>
+				#if($mapPatientOrgunit.size()!=0)
+				<th>$i18n.getString( "hierachy_orgunit" )</th>
+				#end
+				<th style="text-align:center" class="{sorter: false}">$i18n.getString( "operations" )</th>
+			  </tr>
+          </thead>
+		  
+          <tbody id="list">	
+		  #set( $mark = false )
+          #foreach( $patient in $patients )
+          	<tr id="tr${patient.id}" #alternate($mark) >
+				
+				<td>
+					#set( $nr = ( ( $paging.getCurrentPage() - 1  ) * $paging.pageSize ) + $velocityCount )
+					$nr
+				</td>
+				
+				#foreach( $attribute in $patientAttributes )
+					#set ( $key = $patient.id + '-' + $attribute.id )
+					<td>
+						#if( $attribute.valueType == 'YES/NO')
+							$i18n.getString( $mapPatientPatientAttr.get($key) )
+						#else
+							$mapPatientPatientAttr.get($key)
+						#end
+					</td>
+				#end
+					
+				<td>$!patient.getFullName()</td>
+				
+				<td>$i18n.getString($!patient.gender)</td>
+				
+				<td>$format.formatDate( $!patient.birthDate)</td>
+				
+				<td>$!patient.getAge()</td>
+				
+				#if($mapPatientOrgunit.size()!=0)
+				
+					<td>$!mapPatientOrgunit.get($patient.id)</td>
+				
+				#end
+				<td>
+				  <a href="javascript:showProgramEnrollmentSelectForm( '$patient.id' )" title='$i18n.getString( "program_enrollment_management" )'><img src="../images/enroll.png" alt='$i18n.getString( "program_enrollment" )'></a>                  
+				  <a href="javascript:showUnenrollmentSelectForm('$patient.id')" title='$i18n.getString( "program_unenrollment_management" )'><img src="../images/unenroll.png" alt='$i18n.getString( "program_unenrollment_management" )'></a>
+				  <a href="javascript:showUpdatePatientForm( '$patient.id' )" title='$i18n.getString( "edit_profile" )'><img src="../images/edit.png" alt='$i18n.getString( "edit_profile" )'></a>
+				  <a href="javascript:setFieldValue( 'isShowPatientList', false ); showRelationshipList('$patient.id')" title='$i18n.getString( "manage_relationship" )'><img src="../images/relationship.png" alt='$i18n.getString( "manage_relationship" )'></a>
+				  <a href="javascript:showAddRelationshipPatient( '$patient.id', true )" title='$i18n.getString( "add_dependent" )'><img src="../images/add.png" alt='$i18n.getString( "add_dependent" )'></a>
+				  <a href="javascript:removePatient( '$patient.id', '$encoder.jsEncode( $patient.getFullName() )' )" title='$i18n.getString( "remove" )'><img src="../images/delete.png" alt='$i18n.getString( "remove" )'></a>
+				  <a href="javascript:showPatientDetails( '$patient.id' )" title='$i18n.getString( "show_details" )'><img src="../images/information.png" alt='$i18n.getString( "show_details" )'></a>
+				</td>
+				
+			</tr>
+			#set( $mark = !$mark)
+    	#end
+    	</tbody>
+    
+	 </table>
+    </td>
+  </tr>
+  <tr>
+  	<td colspan="6">
+		<p></p>
+  		<div class="paging-container">
+				#parse( "/dhis-web-commons/paging/paging.vm" )
+		</div>
+	</td>
+  	<td></td>
+  </tr>
+</table>
+
+<div id="detailsInfo">
+</div>
+#end
+<script type="text/javascript">
+	jQuery(document).ready(function(){	
+		tableSorter( 'patientList' );
+	});
+	var i18n_patient_details = '$encoder.jsEscape( $i18n.getString( "patient_details" ) , "'" )';
+</script>

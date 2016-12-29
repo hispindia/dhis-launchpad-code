@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+  <bean id="org.hisp.dhis.mobile.action.MobileHomePageAction" class="org.hisp.dhis.mobile.action.MobileHomePageAction"
+    scope="prototype" />
+
+  <bean id="org.hisp.dhis.mobile.action.SendSMSAction" class="org.hisp.dhis.mobile.action.SendSMSAction" scope="prototype">
+    <property name="outboundSmsService" ref="org.hisp.dhis.sms.outbound.OutboundSmsService" />
+  </bean>
+
+ <!-- Patient Mobile Settings -->
+
+  <bean id="org.hisp.dhis.mobile.action.ShowMobileSettingFormAction" class="org.hisp.dhis.mobile.action.ShowMobileSettingFormAction"
+    scope="prototype">
+    <property name="patientMobileSettingService" ref="org.hisp.dhis.mobile.service.PatientMobileSettingService" />
+    <property name="patientAttributeService" ref="org.hisp.dhis.patient.PatientAttributeService" />
+  </bean>
+
+  <bean id="org.hisp.dhis.mobile.action.UpdateMobileSettingAction" class="org.hisp.dhis.mobile.action.UpdateMobileSettingAction"
+    scope="prototype">
+    <property name="patientMobileSettingService" ref="org.hisp.dhis.mobile.service.PatientMobileSettingService" />
+    <property name="patientAttributeService" ref="org.hisp.dhis.patient.PatientAttributeService" />
+  </bean>
+	
+ <!-- Mobile DataSet -->
+  <bean id="org.hisp.dhis.mobile.action.MobileDataSetListAction" class="org.hisp.dhis.mobile.action.MobileDataSetListAction"
+    scope="prototype">
+    <property name="dataSetService">
+      <ref bean="org.hisp.dhis.dataset.DataSetService" />
+    </property>
+  </bean>
+
+  <bean id="org.hisp.dhis.mobile.action.UpdateMobileDataSetAction" class="org.hisp.dhis.mobile.action.UpdateMobileDataSetAction"
+    scope="prototype">
+    <property name="dataSetService">
+      <ref bean="org.hisp.dhis.dataset.DataSetService" />
+    </property>
+  </bean>
+
+  <!-- SMS Service Configuration -->	
+	 <bean id="org.hisp.dhis.mobile.action.ShowMobileConfigurationFormAction" class="org.hisp.dhis.mobile.action.ShowMobileConfigurationFormAction"
+    scope="prototype"/>
+	
+	<bean id="org.hisp.dhis.mobile.action.AddGateWayConfigAction" class="org.hisp.dhis.mobile.action.AddGateWayConfigAction" scope="prototype"/>
+
+</beans>

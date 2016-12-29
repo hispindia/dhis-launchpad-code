@@ -1,0 +1,72 @@
+
+<script language="javascript">
+	
+	leftBar.hideAnimated();
+	 
+	function exportDataStatusResultToWorkBook()
+	{
+	    document.getElementById('htmlCode').value = document.getElementById('formResult').innerHTML;
+	    return true;
+	}
+	
+	function goBack()
+	{
+		leftBar.showAnimated();
+		window.location.href = "dataElementAnalysisForm.action";		
+	}
+	
+</script>
+
+
+<form id="form1" name="form1" action="exportDataStatusToExcel.action" method="post" onsubmit="return exportDataStatusResultToWorkBook()" target="_newtab">
+    
+	<input type="hidden" name="htmlCode" id="htmlCode" />
+	
+	<div align="right" class="NormalB">
+		<input type="button" name="Back" value="Back" onclick="javascript:goBack()" style="width: 160; height: 25; font-family:Arial; font-weight:bold; color:#000000">
+		<input type="submit" name="ExportToWorkBook" value="Export To WorkBook" style="width: 160; height: 25; font-family:Arial; font-weight:bold; color:#000000">
+	</div>	
+	
+	<br/>
+
+	<div id="formResult">	
+		<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; border-style: dotted" bordercolor="#111111" width="100%">   
+			<tr bgcolor="#CBDDEB">
+				<td class="TableHeadingCellStyles" align="center" rowspan="2" style="border-style: dotted; border-width: 1" >$i18n.getString( "sl_no" )</td>
+				<td class="TableHeadingCellStyles" align="center" rowspan="2" style="border-style: dotted; border-width: 1">$i18n.getString( "org_unit_hiery" )</td>
+				<td class="TableHeadingCellStyles"  align="center" rowspan="2" style="border-style: dotted; border-width: 1">$i18n.getString( "org_unit_name" )</td>
+				#foreach( $dataElementName in $dataElementNameList )
+					<td class="TableHeadingCellStyles" colspan="$optionNameList.size()" align="center" style="border-style: dotted; border-width: 1">$dataElementName</td>
+				#end
+			</tr>
+			<tr bgcolor="#CBDDEB">
+				#foreach( $dataElementName in $dataElementNameList )
+					#foreach( $option in $optionNameList )
+						<td class="TableHeadingCellStyles" align="center" style="border-style: dotted; border-width: 1">$option</td>	
+					#end
+				#end
+			</tr>
+			#set($count1 = 1)
+			#foreach( $orgUnit in $orgUnitList )
+				<tr>
+					<td align="center" >$count1</td>
+					#if( $orgunitHierarchyMap.size()!=0 )
+						<td style="border-style: dotted; border-width: 1">$!orgunitHierarchyMap.get( $orgUnit.id )</td>
+					#end
+					<td style="border-style: dotted; border-width: 1">$orgUnit.name</td>
+					#set( $deResultList = $ouMapDataElementValue.get( $orgUnit ) )
+					#foreach( $result in $deResultList )
+						#if( $result == 0 )
+							<td  align="center" bgcolor="white">$result</td>
+						 #elseif( $result == 1 )
+							<td align="center" bgcolor="green"><font color="#000000">$result</font></td>
+						#elseif( $result == -1 )
+							<td align="center" bgcolor="red"><font color="#000000">$result</font></td>	
+						#end
+					#end
+				</tr>
+			#set( $count1 = $count1 + 1 )
+			#end
+		</table>
+	</div>
+</form>

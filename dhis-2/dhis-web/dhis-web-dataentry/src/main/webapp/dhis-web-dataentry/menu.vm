@@ -1,0 +1,8 @@
+<script type="text/javascript">
+	jQuery(document).ready(function() {
+		selection.setListenerFunction( organisationUnitSelected );
+	});
+</script>
+
+<br>
+#parse( "/dhis-web-commons/ouwt/orgunittreesearch.vm" )

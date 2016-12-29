@@ -1,0 +1,1 @@
+#set( $size = $indicators.size() ){"indicators":[#foreach( $indicator in $indicators ){"id":$!{indicator.id},"s":"$!encoder.jsonEncode( ${indicator.displayShortName} )"}#if( $velocityCount < $size ),#end#end]}

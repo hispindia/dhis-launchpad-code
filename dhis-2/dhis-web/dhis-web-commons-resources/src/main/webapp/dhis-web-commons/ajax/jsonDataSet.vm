@@ -1,0 +1,12 @@
+{ "dataSet": 
+  {
+    "id": $!{dataSet.id},
+    "name": "$!encoder.jsonEncode( ${dataSet.displayName} )",
+    "shortName": "$!encoder.jsonEncode( ${dataSet.displayShortName} )",
+    "periodTypeId": "$!{dataSet.periodTypeId}",
+	"frequency": "$i18n.getString( $!{dataSet.periodType.name} )",
+    "dataElementCount": "$!{dataSet.dataElements.size()}",
+    "expiryDays": "$!encoder.jsonEncode( ${dataSet.expiryDays} )"
+    #if( $!{dataSet.dataEntryForm} ),"dataentryform": "$!encoder.jsonEncode( ${dataSet.dataEntryForm.name} )"#end
+  }
+}

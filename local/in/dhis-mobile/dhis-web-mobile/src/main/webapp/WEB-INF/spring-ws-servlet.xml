@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:oxm="http://www.springframework.org/schema/oxm"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+		http://www.springframework.org/schema/oxm 
+    http://www.springframework.org/schema/oxm/spring-oxm-1.5.xsd">
+
+  <bean id="dataService" class="org.hisp.dhis.ws.service.DataServiceImpl" init-method="initialize"/>
+
+  <bean id="Data" class="org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition">
+    <property name="schema" ref="schema" />
+    <property name="portTypeName" value="Data" />
+    <property name="locationUri" value="/services" />
+    <property name="targetNamespace" value="http://dhis2.org/data" />
+  </bean>
+
+  <bean id="schema" class="org.springframework.xml.xsd.SimpleXsdSchema">
+    <property name="xsd" value="/WEB-INF/data.xsd" />
+  </bean>
+
+  <bean id="validatingInterceptor" class="org.springframework.ws.soap.server.endpoint.interceptor.PayloadValidatingInterceptor">
+    <property name="xsdSchema" ref="schema" />
+    <property name="validateRequest" value="true" />
+    <property name="validateResponse" value="true" />
+  </bean>
+
+  <bean id="loggingInterceptor" class="org.springframework.ws.server.endpoint.interceptor.PayloadLoggingInterceptor" />
+
+  <oxm:jaxb2-marshaller id="marshaller" contextPath="org.hisp.dhis.ws" />
+  <oxm:jaxb2-marshaller id="unmarshaller" contextPath="org.hisp.dhis.ws" />
+
+  <bean id="sendDataEndpoint" class="org.hisp.dhis.ws.endpoint.SendDataEndpoint" autowire="byName" />
+  
+
+  
+  <bean name="endpointMapping" class="org.springframework.ws.server.endpoint.mapping.PayloadRootQNameEndpointMapping">
+    <property name="interceptors">
+      <list>
+        <ref local="loggingInterceptor" />
+        <ref local="validatingInterceptor" />
+      </list>
+    </property>
+    <property name="mappings">
+      <props>
+        <prop key="{http://dhis2.org/data}SendDataRequest">sendDataEndpoint</prop>
+      </props>
+    </property>
+  </bean>
+  
+  <bean id="exceptionResolver" class="org.springframework.ws.soap.server.endpoint.SoapFaultMappingExceptionResolver">
+    <property name="defaultFault" value="SERVER" />
+    <property name="exceptionMappings">
+      <props>
+        <prop key="org.springframework.oxm.ValidationFailureException">CLIENT,Invalid request</prop>
+        <prop key="org.hisp.dhis.ws.service.DataException">SERVER</prop>
+      </props>
+    </property>
+  </bean>
+  
+    <!-- The security -->
+	<!-- not apply here -->
+  	<!-- end the security -->
+</beans>

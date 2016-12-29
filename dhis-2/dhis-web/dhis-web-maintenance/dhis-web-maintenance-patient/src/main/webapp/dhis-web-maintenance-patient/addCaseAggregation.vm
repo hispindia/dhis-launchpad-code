@@ -1,0 +1,292 @@
+<script>
+	jQuery(document).ready(	function(){
+		validation( 'addCaseAggregationForm', function(form){
+			form.submit();
+		}); 
+		
+		checkValueIsExist( "aggregationDataElementId", "validateCaseAggregation.action");
+	});		
+</script>
+															
+<h3>$i18n.getString( "create_new_case_aggregation_condition" )</h3>
+
+<form id="addCaseAggregationForm" action="addCaseAggregation.action" method="post" >
+
+<table> 
+	<thead>
+      <tr>
+        <th colspan="2">$i18n.getString( "case_aggregation_condition_detail" )</th>
+      </tr>
+    </thead>
+	
+    <tbody>
+	
+    <tr>
+        <td><label>$i18n.getString( "description" ) <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+        <td><input type="text" id="description" name="description" style="width:30em" class="{validate:{required:true,minlength:2}}"></td>
+    </tr>
+    
+    <tr>
+		<td><label for="dataElementGroup">$i18n.getString( "dataelement_group" )</label></td>
+		<td>
+			<select id="dataElementGroup" name="dataElementGroup" style="width:30.5em" onchange="getAggDataElements();">
+				<option value="">[$i18n.getString('please_select')]</option>
+				#foreach( $dataElementGroup in $dataElementGroups)
+					<option value="$dataElementGroup.id" >$dataElementGroup.name</option>
+				#end
+				<option value="0">$i18n.getString('others')</option>
+			</select>
+		</td>				
+	</tr>
+    
+    <tr>
+		<td><label for="dataElement">$i18n.getString( "dataelement" )<em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+		<td>
+			<select id="aggregationDataElementId" name="aggregationDataElementId" style="width:30.5em" class="{validate:{required:true}}" >
+			</select>
+		</td>				
+	</tr>
+	
+	<tr>
+		<td><label for="operator">$i18n.getString( "operator" )</label></td>
+		<td>
+			<input type="radio" id="operator" name="operator" value="COUNT" checked >$i18n.getString('count')
+			<input type="radio" id="operator" name="operator" value="SUM"> $i18n.getString('sum')
+		</td>
+	</tr>
+	<tr>
+        <td colspan="2"><p></p></td>
+    </tr>
+	
+    </tbody>
+</table>
+
+<div id="tabs">
+	<ul>
+		<li><a href="#tab-1">$i18n.getString("dataelement")</a></li>
+		<li><a href="#tab-2">$i18n.getString("case_attributes")</a></li>
+		<li><a href="#tab-3">$i18n.getString("program")</a></li>
+	</ul>	
+	
+	<div id="tab-1">
+		<table>
+			<tr>
+				<td>
+				<fieldset style="border: 1px solid #3f5d8e; ">
+				<legend>$i18n.getString( "data_element" )</legend>
+				<table>
+					<tr>
+						<td>
+							<label for="program">$i18n.getString( "program_properties" )</label>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<select id="program" name="program" style="width:20em" onChange="getProgramStages();">
+								<option value="0">[$i18n.getString('please_select')]</option>
+								#foreach( $program in $programs )
+									<option value="$program.id" title='$program.name'>$encoder.htmlEncode( $program.name )</option>
+								#end
+							</select>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>
+							<label for="programStage">$i18n.getString( "program_stage" )</label>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<select id="programStage" name="programStage" style="width:20em" onchange="getPrgramStageDataElements();" ondblclick="insertProgramStage(this);">
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="dataelement">$i18n.getString( "dataelement" )</label>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type='text' style="min-width:19.8em" onkeyup="filterDE(event, this.value, 'programstageDE');"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<select id="programstageDE" name="programstageDE" size="5" style="width:20em; height: 6em" ondblclick="insertInfo(this);" onclick="getSuggestedValues(this.id, 'suggestedDEValues' )">
+							</select>
+						</td>
+					</tr>
+				</table>
+				</fieldset>
+			</td>
+			<td>
+				<fieldset style="border: 1px solid #3f5d8e; ">
+				<legend>$i18n.getString( "suggested_values" )</legend>
+				<select multiple size="10" id='suggestedDEValues' style="width:20em; height: 17em" ondblclick="insertInfo(this);" >
+				</select>
+			</td>
+		</tr>
+		</table>
+	</div>
+	
+	<div id="tab-2">
+		<table>
+			<tr>
+				<td>
+					<fieldset style="border: 1px solid #3f5d8e; ">
+					<legend>$i18n.getString( "attribute" )</legend>
+				
+					<table>
+						<tr>
+							<td>
+								<select id="caseProperty" name="caseProperty" size="8" ondblclick="insertInfo(this);" style="width:18em; height:16.5em" onclick="getSuggestedValues(this.id, 'caSuggestedValues' )">
+									<option value="[PT:count]" suggestedValues=''>$i18n.getString( "patients_registered" )</option>
+									<option value="[CP:gender]" suggestedValues='F, M' title='$i18n.getString( "gender" )'>$i18n.getString( "gender" )</option>
+									<option value="[CP:dobType]" suggestedValues='V, D, A' title='$i18n.getString( "dob_type" )'>$i18n.getString( "dob_type" )</option>
+									<option value="[CP:age]" title='$i18n.getString( "age_month" )'>$i18n.getString( "age_month" )</option>
+									
+									#foreach( $patientAttribute in $patientAttributes )
+									<option value="[CA:$patientAttribute.id]" suggestedValues='$patientAttribute.attributeOptions' title='$patientAttribute.name'>$encoder.htmlEncode( $patientAttribute.name )</option>
+									#end
+								</select>
+							</td>
+						</tr>
+					</table>
+					</fieldset>
+				</td>
+				</td>
+				<td>
+					<fieldset style="border: 1px solid #3f5d8e; ">
+						<legend>$i18n.getString( "suggested_values" )</legend>
+						<select multiple size="10" id='caSuggestedValues' style="width:20em; height: 17em" ondblclick="insertInfo(this);">
+						</select>
+					</fieldset>
+				</td>
+				
+			</tr>
+		</table>
+	</div>
+	
+	<div id="tab-3">
+		<table>
+			<tr>
+				<td>
+					<fieldset style="border: 1px solid #3f5d8e; ">
+					<legend>$i18n.getString( "program_properties" )</legend>
+					<table>
+						<tr>
+							<td>
+								<select id="programProperty" name="programProperty" size="4" ondblclick="insertInfo(this);" style="width:18em; height:16.5em" >
+									#foreach( $program in $programs )
+										<option value="[PG:$program.id]" title='$program.name'>$i18n.getString('program'): $encoder.htmlEncode( $program.name )</option>
+									#end
+									<option value="[PP:enrollmentdate - dateofincident]">$i18n.getString( "enrolldate_minus_incidentdate" )</option>
+									<option value="[PP:enrollmentdate]">$i18n.getString( "date_of_enrollment" )</option>
+									<option value="[PP:incidentdate]">$i18n.getString( "date_of_incident" )</option>
+								</select>
+							</td>
+						</tr>
+					</table>
+					</fieldset>
+				</td>
+				<td>
+					<fieldset style="border: 1px solid #3f5d8e; ">
+					<legend>$i18n.getString( "program" )</legend>
+					<table>
+						<tr>
+							<td>
+								<select id="programFormula" name="programFormula" style="width:20em" onChange="getProgramStagesForFormula();">
+									<option value="0">[$i18n.getString('please_select')]</option>
+									#foreach( $program in $programs )
+										<option value="$program.id" title='$program.name'>$encoder.htmlEncode( $program.name )</option>
+									#end
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label for="programStageFormula">$i18n.getString( "program_stage" )</label>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<select multiple id="programStageFormula" name="programStageFormula" style="width:20em; height:12.5em" ondblclick="insertInfo(this);">
+								</select>
+							</td>
+						</tr>
+					</table>
+					</fieldset>
+				</td>
+			</tr>
+		</table>
+	</div>
+	
+</div>
+
+<p></p>
+
+<table>
+	<tr>
+		<td>
+			<img src="../images/less.png" alt="$i18n.getString( 'less' )" onclick='insertOperator( "<" );' style="cursor:pointer;">
+			<img src="../images/less_or_equal.png" alt="$i18n.getString( 'less_or_equal' )" onclick='insertOperator( "<=" );' style="cursor:pointer;">
+			<img src="../images/greater.png" alt="$i18n.getString( 'greater' )" onclick='insertOperator( ">" );' style="cursor:pointer;">
+			<img src="../images/greater_or_equal.png" alt="$i18n.getString( 'greater_or_equal' )" onclick='insertOperator( ">=" );' style="cursor:pointer;">
+			<img src="../images/equal.png" alt="$i18n.getString( 'equal' )" onclick='insertOperator( "=" );' style="cursor:pointer;"/>
+			<img src="../images/diff.png" alt="$i18n.getString( 'diff' )" onclick='insertOperator( "!=" );' style="cursor:pointer;"/>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<img src="../images/plus.png" alt="$i18n.getString( 'plus' )" onclick='insertOperator( "+" );' style="cursor:pointer;"/>
+			<img src="../images/left_parent.png" alt="$i18n.getString( 'left_parent' )" onclick='insertOperator( "(" );' style="cursor:pointer;"/>
+			<img src="../images/right_parent.png" alt="$i18n.getString( 'right_parent' )" onclick='insertOperator( ")" );' style="cursor:pointer;"/>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<img src="images/yes.png" alt="$i18n.getString( 'yes' )" onclick='insertOperator( "true" );' style="cursor:pointer;"/>
+			<img src="images/no.png" alt="$i18n.getString( 'no' )" onclick='insertOperator( "false" );' style="cursor:pointer;"/>
+			<img src="../images/is_null.png" alt="$i18n.getString( 'is_null' )" onclick='insertOperator( "is null" );' style="cursor:pointer;"/>
+			<img src="../images/not_null.png" alt="$i18n.getString( 'not_null' )" onclick='insertOperator( "is not null" );' style="cursor:pointer;"/>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<img src="../images/and.png" alt="$i18n.getString( 'and' )" onclick='insertOperator( "AND" );' style="cursor:pointer;"/>
+			<img src="../images/or.png" alt="$i18n.getString( 'or' )" onclick='insertOperator( "OR" );' style="cursor:pointer;"/>
+			<img src="../images/in.png" alt="$i18n.getString( 'in' )" onclick='insertOperator( "IN" );' style="cursor:pointer;"/>
+			
+			<img src="../images/clear.png" align="right" alt="$i18n.getString( 'clear' )" onclick="byId('aggregationCondition').value='';" style="cursor:pointer;"/>
+		</td>
+	</tr>
+		
+	<tr>
+		<td>
+			<fieldset style="border: 1px solid #3f5d8e;">
+				<legend>$i18n.getString( "condition" )</legend>
+				<textarea id="aggregationCondition" name="aggregationCondition" style="width:80.5em; height:10em" class="{validate:{required:true}}" onkeyup='getConditionDescription();'></textarea>
+			</fieldset>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<fieldset style="border: 1px solid #3f5d8e; ">
+				<legend>$i18n.getString( "description" )</legend>
+				<div id='aggregationDescription'></div>
+			</fieldset>
+		</td>
+	</tr>
+	
+	<tr>
+		<td>
+			<input type="submit" value="$i18n.getString( 'add' )" style="width:10em"/>
+			<input type="button" value="$i18n.getString( 'test_condition' )" style="width:10em" onclick='testCaseAggregationCondition();'/>
+			<input type="button" value="$i18n.getString( 'cancel' )" onclick="window.location.href='caseAggregation.action'" style="width:10em"/>
+		</td>
+	</tr>
+</table>
+
+</form>
+
+<script>
+	byId('description').focus();
+	getAggDataElements();
+	getProgramStages();
+	var i18n_run_success = '$encoder.jsEscape( $i18n.getString( "run_success" ) , "'" )';
+	var i18n_run_fail = '$encoder.jsEscape( $i18n.getString( "run_fail" ) , "'" )';
+	jQuery("#tabs").tabs();
+</script>

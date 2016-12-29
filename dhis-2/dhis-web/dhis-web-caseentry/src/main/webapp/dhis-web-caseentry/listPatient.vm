@@ -1,0 +1,98 @@
+
+<table>
+	<tr>
+		<td>$i18n.getString( "search_result_matching_the_search_criteria" ):</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>$i18n.getString( $searchText )</td>
+	</tr>	
+</table>
+
+<br>
+<table class="entryScreen">
+  <tr>
+    <td>    
+      <table class="listTable">                   
+          <col width="40">
+          <col>
+          <col width="60">
+          <col width="90">
+          <col width="60">
+		  #if($mapPatientOrgunit.size()!=0)
+		  <col>
+		  #end
+		  <col width="90">
+          <tr>
+			<th>#</th>
+            <th>$i18n.getString( "full_name" )</th>        
+            <th>$i18n.getString( "gender" )</th>
+            <th>$i18n.getString( "date_of_birth" )</th>
+            <th>$i18n.getString( "age" )</th>   
+			#if($mapPatientOrgunit.size()!=0)
+			<th>$i18n.getString( "hierachy_orgunit" )</th>
+			#end			
+            <th>$i18n.getString( "operations" )</th>
+          </tr>
+          
+          <tbody id="list">	
+          #set( $mark = false )
+          
+          #foreach( $patient in $patients )
+          	<tr #alternate( $mark )>
+				<td>
+					#set( $nr = ( ( $paging.getCurrentPage() - 1  ) * $paging.pageSize ) + $velocityCount )
+					$nr
+                </td>
+				<td>			
+					$encoder.htmlEncode( $patient.getFullName() )
+				</td>			
+				<td>			
+					$i18n.getString( $patient.gender )
+				</td>
+				<td>			
+					$format.formatDate( $patient.birthDate )
+				</td>
+				<td>            
+                    $encoder.htmlEncode( $patient.getAge() )
+                </td>	
+				#if($mapPatientOrgunit.size()!=0)
+				<td>$!mapPatientOrgunit.get($patient.id)</td>
+				#end
+								
+				<td>
+                  <a href="javascript:showSelectedDataRecoding('$patient.id');" title="$i18n.getString( 'data_entry' )"><img src="images/data_entry.png" alt="$i18n.getString( 'data_entry' )"></a>   
+                  <a href="javascript:patientChartList( '$patient.id' )" title="$i18n.getString( 'data_entry' )"><img src="../images/add_to_dashboard.png" alt="$i18n.getString( 'view_patient_chart' )"></a> 
+                  <a href="javascript:showPatientDetails( $patient.id )" title="$i18n.getString( 'show_details' )"><img src="../images/information.png" alt="$i18n.getString( 'show_details' )"></a>
+                </td>               				
+			</tr>
+			#if( $mark )
+				#set( $mark = false )
+			#else
+				#set( $mark = true )
+			#end
+    	#end
+    	</tbody>
+		<tr>
+		<td colspan="8">
+			<p></p>
+			<div class="paging-container">
+					#parse( "/dhis-web-commons/paging/paging.vm" )
+			</div>
+		</td>
+		<td></td>
+	  </tr>
+	  </table>
+    </td>
+  </tr>
+</table>
+
+<div id="detailsInfo"></div>
+<div id="patientChartListDiv"></div>
+<div id="chartView" class="hidden">
+	<img id="chartImage" src="" class="padding-chart"></img>
+</div>
+
+<span id="message"></span>
+<script>
+	var i18n_patient_details = '$encoder.jsEscape( $i18n.getString( "patient_details" ) , "'" )';
+</script>

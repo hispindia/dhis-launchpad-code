@@ -1,0 +1,25 @@
+<style type="text/css">
+    .statusBar{
+        color: white;
+        padding: 5px 5px;
+        margin: -16px 0 20px -20px;
+        font-weight: bold;
+        background-color: #8FABC7;
+    }
+</style>
+
+<h3>Send SMS</h3>
+    #if ($smsServiceStatus)
+<div>
+    <form method="post">
+        <table>
+            <tr><td>Phone #:</td><td><input name="recipient" type="text"/></td></tr>
+            <tr><td></td><td><textarea name="msg" cols="50" rows="10"></textarea></td></tr>
+            <tr><td></td><td><input type="submit" name="send" value="Send SMS"/></td>
+        </table>
+    </form>
+<span id="message" style="display:#if($message.trim().equals(""))none #else block #end">$message</span>
+</div>
+    #else
+	<p>No Sms service available</p>
+    #end
