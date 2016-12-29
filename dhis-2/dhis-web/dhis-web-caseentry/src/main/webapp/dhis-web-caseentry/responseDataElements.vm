@@ -1,0 +1,17 @@
+#set( $size = $psDataElements.size() )
+{ "dataElements": [
+#foreach( $psDataElement in $psDataElements )
+  {
+    "id": "de_$!{psDataElement.dataElement.id}",
+	"uid": "$!{psDataElement.dataElement.uid}",
+    "name": "$encoder.xmlEncode(${psDataElement.dataElement.getFormNameFallback()} )",
+	"compulsory": "${psDataElement.compulsory}",
+	"displayInReports": "$psDataElement.displayInReports",
+	"valueType": #if( $psDataElement.dataElement.optionSet )
+					"list"
+				 #else
+					"${psDataElement.dataElement.type}"
+				 #end
+  }#if( $velocityCount < $size ),#end
+	#end]
+}

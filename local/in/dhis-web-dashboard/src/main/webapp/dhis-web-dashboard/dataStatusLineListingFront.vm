@@ -1,0 +1,87 @@
+<style type='text/css'>
+    .hidden{ display: none; }
+</style>
+
+<script>
+    // Global Variables
+    var selCategory = "";
+    var selFacility = "";
+    var ouName = "";
+    var dsName = "";
+    var sDateIndex = 0;
+    var eDateIndex = 0;
+    var sDate = "";
+    var eDate = "";
+    var curPeriodType = "";
+</script>
+
+<h3>$i18n.getString( "ds_line_listing" )&nbsp;</h3>
+<hr />
+<br/>
+<form id="lineListingFormDataStatusForm" name="lineListingFormDataStatusForm">
+    <table align="center" style="border-collapse: collapse; margin-top: 0;" cellpadding="0" cellspacing="0" width="80%" border="0">
+        <tr>
+            <td class="NormalB">
+                1. $i18n.getString( "ds_dataset_list" ) : <br/>
+                <select id="selectedDataSets" name="selectedDataSets" onchange="getdSetPeriods()" style="width:200px">
+                    #foreach ( $dataSet in $dataSetList )
+                        <option value='$dataSet.id' title='$dataSet.name'>$dataSet.name</option>
+                    #end
+                </select>
+			</td>	
+			<td class="NormalB">                            
+                2. $i18n.getString( "organisationunit" ) :<br />
+                <input type="text" name="ouNameTB" id="ouNameTB" style="width:200px" disabled>
+				<input type="hidden" name="orgUntId" id="orgUntId">	
+        	</td>
+        </tr>
+		<tr>
+			<td class="NormalB">&nbsp;</td>
+			<td class="NormalB">&nbsp;</td>
+		</tr>
+
+		<tr>
+			<td class="NormalB">&nbsp;</td>
+			<td class="NormalB">&nbsp;</td>
+		</tr>		
+		<tr>
+            <td class="NormalB">
+                3. $i18n.getString( "period_from" ) :<br />
+                <select id="startPeriodId" name="startPeriodId" style="width:200px">
+					#foreach ( $mperiod in $monthlyPeriods )
+						<option value="$mperiod.id">$simpleDateFormat.format( $mperiod.startDate )</option>
+                    #end
+				</select>
+            </td>
+            <td class="NormalB">
+                4. $i18n.getString( "period_to" ) :<br />
+                <select id="endPeriodId" name="endPeriodId" style="width:200px">
+					#foreach ( $mperiod in $monthlyPeriods )
+						<option value="$mperiod.id">$simpleDateFormat.format( $mperiod.startDate )</option>
+                    #end
+				</select>
+            </td>
+        </tr>
+		<tr>
+			<td class="NormalB">&nbsp;</td>
+			<td class="NormalB">&nbsp;</td>
+		</tr>
+		<tr>
+			<td class="NormalB">&nbsp;</td>
+			<td class="NormalB">&nbsp;</td>
+		</tr>		
+		<tr>
+            <td class="NormalB">
+               <input type="button" name="ViewLineListingDataStatus" value="View LineListing DataStatus" style="width:200px;height:30px;font-family: Arial; font-weight: bold; color: rgb(0, 0, 0);" onclick="generateLineListingDataStatus()"/><br/><br/>
+            </td>
+            <td class="NormalB">&nbsp;</td>
+        </tr>
+    </table>
+</form>
+<!--<div id="contentDiv"></div>-->
+
+#parse( "/dhis-web-commons/loader/loader.vm" )
+
+<script>
+    
+</script>

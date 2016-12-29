@@ -1,0 +1,97 @@
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+		selectionTree.clearSelectedOrganisationUnits();
+		selectionTree.buildSelectionTree();
+		selectionTreeSelection.setMultipleSelectionAllowed( false );
+		selectionTreeSelection.setListenerFunction( organisationUnitSelected );
+		
+	});
+	
+	var i18n_aggregate_data_info = '$encoder.jsEscape( $i18n.getString( "aggregate_data_info" ) , "'")';
+	var i18n_captured_data_info = '$encoder.jsEscape( $i18n.getString( "captured_data_info" ) , "'")';
+	var i18n_analysing_please_wait = '$encoder.jsEscape( $i18n.getString( "analysing_please_wait" ) , "'")';
+	var i18n_select_period = '$encoder.jsEscape( $i18n.getString( "select_period" ), "'")';
+</script>
+
+<h3>$encoder.htmlEncode( $i18n.getString( "run_validation" ) ) #openHelp( "validationRuleAnalysis" )</h3>
+
+<div id="analysisInput">
+
+<table>
+	<tr>
+		<th colspan="2">$i18n.getString( 'select_parameters' )</th>
+	</tr>
+    <tr>
+	    <td>
+	        <label>$i18n.getString( "periodtype" )</label><br>
+	    </td>
+	    <td>
+	    	<select id="periodType" name="periodType" style="width:30em" onchange="displayPeriods()">
+		  	<option value="">[ $i18n.getString( "select_period_type" ) ]</option>
+				  #foreach ( $type in $periodTypes )
+				  <option value="$type.name">$i18n.getString( $type.name )</option>
+				  #end
+			</select>		
+	    </td>
+    </tr>
+    <tr>
+    	<td>
+	        <label>$i18n.getString( "from_date" )</label><br>
+	    </td>
+    	<td>
+    		<input id="previous" type="button" style="width:100px" value="$i18n.getString( 'Previous' )" disabled="disabled" onclick="displayPreviousPeriodsS()" />
+			<input id="next" type="button" style="width:85px" value="$i18n.getString( 'Next' )" disabled="disabled" onclick="displayNextPeriodsS()" /><br>		
+    		<select id="selectedStartPeriodId" name="selectedStartPeriodId" style="width:30em" disabled="disabled">
+			</select>
+    	</td>
+    </tr>
+    <tr>
+    	<td>
+	        <label>$i18n.getString( "to_date" )</label><br>
+	    </td>
+    	<td>
+    		<input id="previous" type="button" style="width:100px" value="$i18n.getString( 'Previous' )" disabled="disabled" onclick="displayPreviousPeriodsE()" />
+			<input id="next" type="button" style="width:85px" value="$i18n.getString( 'Next' )" disabled="disabled" onclick="displayNextPeriodsE()" /><br>		
+    		<select id="selectedEndPeriodId" name="selectedEndPeriodId" style="width:30em" disabled="disabled">
+			</select>
+    	</td>
+    </tr>
+    <tr>
+    	<td>
+    		<label for="validationRuleGroup">$i18n.getString( "validation_rule_group" )</label>
+	    </td>
+	    <td>
+	    	<select id="validationRuleGroupId" name="validationRuleGroupId" style="width:30em">
+	    		<option value="-1">[ $i18n.getString( "all_validation_rules" ) ]</option>
+	    		#foreach( $group in $validationRuleGroups )
+	    			<option value="$group.id">$group.name</option>
+		    	#end
+            </select>
+    	</td>
+    </tr>
+    <tr>
+    	<td colspan="2" style="height:20px"></td>
+    </tr>
+    <tr>
+        <th colspan="2">$i18n.getString( "select_parent_organisation_unit" )</th>
+    </tr>
+    <tr>
+        <td colspan="2">
+    		<div id="selectionTree" style="width:500px;height:260px;overflow:auto;border:1px solid #cccccc"></div>
+    	</td>
+    </tr>
+    <tr>
+    	<td>
+    		<input id="validateButton" type="button" value="$i18n.getString( 'validate' )" style="width:10em" onclick="validateRunValidation()">    		
+    		<input type="hidden" id="selectedStartPeriodId" name="selectedStartPeriodId">
+    		<input type="hidden" id="selectedEndPeriodId" name="selectedEndPeriodId">
+    	</td>
+    	<td></td>
+    </tr>
+</table>
+	
+<span id="message"></span>
+
+</div>
+
+<div id="analysisResult"></div>

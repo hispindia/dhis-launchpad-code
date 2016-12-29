@@ -1,0 +1,74 @@
+<html>
+<head>
+<title>LineListing DataStatus Result</title>
+<script type="text/javascript">
+
+	function exportDataStatusLineListingResultToWorkBook()
+    {
+        document.getElementById('htmlCode').value = document.getElementById('formResult').innerHTML;
+        return true;
+    }
+</script>
+</head>
+<body>
+
+<form id="form1" name="form1" action="exportDataStatusLineListingToExcel.action" method="post" onsubmit="return exportDataStatusLineListingResultToWorkBook()" target="_newtab">
+<div id='lineListingDataStatusReportDiv'>	
+	<input type="hidden" name="htmlCode" id="htmlCode" />
+    
+    <div align="right" class="NormalB">
+        <input type="submit" name="ExportToWorkBook" value="Export To WorkBook" style="width: 160; height: 25; font-family:Arial; font-weight:bold; color:#000000">
+    </div>
+	<div id="formResult">
+        <div align="left" class="NormalB">LineListing DataEntry Status Result of DataSet : $dataSet.name</div>
+        <div align="left" class="NormalB">Selected Organisation Unit : $selectedOrgUnit.name</div>
+        <div align="left" class="NormalB">From : $simpleDateFormat.format( $startPeriod.startDate ) To : $simpleDateFormat.format( $endPeriod.startDate )</div>
+		<hr />
+        <div align="right">
+            <table width="30%">
+                <tr class="TableDataCellStyles" >
+                    <td bgcolor="#a0c0a0">&nbsp;</td>
+                    <td align="left">&nbsp;Entered</td>
+        			<td bgcolor="#ff0000">&nbsp;</td>
+                    <td align="left">&nbsp;Not Entered</td>
+                </tr>                       
+            </table>
+        </div>
+        
+        <table>
+        	<tr>
+        		<th style="text-align: center;">$i18n.getString( "SlNo." )</th>
+        		<th style="text-align: center;">$i18n.getString( "Orgunit Hierarchy" )</th>
+        		<th style="text-align: center;">$i18n.getString( "OrgUnit" )</th>
+        		#foreach( $period in $periodList )
+        			<th style="text-align: center;">$simpleDateFormat.format( $period.startDate )</th>
+        		#end	
+        	</tr>
+        	
+        	#set( $slNo = 1 )
+        	#foreach($orgUnit in $orgUnitList )
+        		<tr>
+        			<td><label>$slNo</label></td>
+        			<td><label>$!maporgUnitHierarchy.get( $orgUnit.id )</label></td>
+        			<td><label>$orgUnit.name</label></td>
+        			
+        			#foreach( $period in $periodList )
+        				#set( $valueMapId =  $orgUnit.id + ':' + $period.id )
+        				#set( $result = "-1" )
+        				#set( $result = $lineListingDataStatusMap.get( $valueMapId ) )
+        				
+        				#if( $result == 1 )
+        					<td align="center" bgcolor="#a0c0a0"><font color="#000000">1</font></td>
+                        #else
+        					<td align="center" bgcolor="#ff0000"><font color="#000000">0</font></td>
+        				#end
+        			#end
+        		</tr>
+        		#set( $slNo = $slNo + 1 )
+        	#end
+        </table>
+    </div>
+</div>
+</form>
+</body>
+</html>	
