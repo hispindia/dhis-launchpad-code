@@ -1,0 +1,28 @@
+
+
+#parse( "/dhis-web-dataentry-national-haryana/select.vm" )
+
+#if($selDSName.equals($llbirth))
+	#parse( "/dhis-web-dataentry-national-haryana/llbirthForm.vm" )
+#elseif($selDSName.equals($lldeath))
+	#parse( "/dhis-web-dataentry-national-haryana/lldeathForm.vm" )
+#elseif($selDSName.equals($llmdeath))
+	#parse( "/dhis-web-dataentry-national-haryana/llmdeathForm.vm" )
+#elseif($selDSName.equals($lluuidspe))
+	#parse( "/dhis-web-dataentry-national-haryana/lluidspe.vm" )
+#elseif($selDSName.equals($lluuidspep))
+	#parse( "/dhis-web-dataentry-national-haryana/lluuidspep.vm" )
+#elseif($selDSName.equals($lldidsp))
+	#parse( "/dhis-web-dataentry-national-haryana/lldidsp.vm" )
+#elseif($selDSName.equals($llidspl))
+	#parse( "/dhis-web-dataentry-national-haryana/llidspl.vm" )
+#elseif($selDSName.equals($llcoldchain))
+    #parse( "/dhis-web-dataentry-national-haryana/llcoldchain.vm" )	
+#elseif($selDSName.equals($llFamilyPlaning))
+    #parse( "/dhis-web-dataentry-national-haryana/llFamilyPlaning.vm" )
+#elseif($selDSName.equals($llYuktiStatus))
+    #parse( "/dhis-web-dataentry-national-haryana/llYuktiStatus.vm" )	    
+	
+#else
+  <h3>No Dataentry form available for selected DataSet/DataSet not assign to selected Organisation Unit</h3>
+#end
