@@ -1,0 +1,208 @@
+
+	<!-- MENU BAR -->
+	<div id="logo"></div>
+	<div id="buttonsHolder">
+		<div class="selButton active" onclick = "window.location.assign('#manage-templates')"> Manage Templates </div>
+		<div class="selButton" onclick = "window.location.assign('#data-import')"> Import Data </div>
+		<div class="selButton" onclick = "window.location.assign('#logs')"> Logs and Statistics </div>
+		<div class="selButton" onclick = "window.location.assign('#settings')"> Settings </div>
+	</div>
+	<!-- END OF MENU BAR -->
+	
+	<!-- MAIN CONTENT -->
+	<div id="content">
+		<!-- MANAGE TEMPLATE DIV - SELECTION -->
+		<div  id = "manageTempDiv">
+			<div class="contentPart">				
+				<div class="form-group input-group">
+					<span class="input-group-addon" style='font-size:12px'>Data Set</span>
+					<select class="form-control" style='width:347px;' id="dataSetSelect" 
+							ng-model="selectedDataSet"
+							ng-change="validateSelection()">
+						<option value="">{{'please_select'| translate}}</option>
+					</select>
+				</div>				
+				<div class="form-group input-group">
+					<span class="input-group-addon" style='font-size:12px'>Organisation Unit Group</span>
+					<select class="form-control" style='width:347px;' id="orgUnitGroupSelect" 
+							ng-model="selectedOULevel"
+							ng-change="validateSelection()">
+						<option value="">{{'please_select'| translate}}</option>
+					</select>
+				</div>				
+			</div>
+			
+			</br>
+			
+			<div class="contentPart disabled" id="templatesDiv" style="text-align:center">	
+				<div id="tempGrp">
+					<div class="form-group input-group">
+						<span class="input-group-addon">Template</span>
+						<select class="form-control" style='width:347px;' id="templateSelect">
+							<option value=""> Select a data set and orgUnit group</option>
+						</select>
+					</div>	
+					<input type="button" class="btn btn-success" value="Add" onclick="addTemp()" style="font-family:verdana;width:100px" />
+					<input type="button" class="btn btn-info" id="editTem" ng-click="viewTemp()" value="View" style="font-family:verdana;width:100px" />
+					<input type="button" class="btn btn-danger" id="delTem"  ng-click="deleteTemp()" value="Delete" style="font-family:verdana;width:100px" />
+				</div>
+				<div id="addTempOption" style="display:none">
+					<h4 style="margin-top : -10px"> Select the type of the template that is to be added</h4>
+					<div class="form-group input-group">
+						<span class="input-group-addon">Template type</span>
+						<select class="form-control" style='width:347px;' id="addTempType">
+							<option value="1"> Multiple OU - Multiple DE </option>
+							<option value="2"> Single OU - Multiple DE </option>
+						</select>
+					</div>					
+					<input type="button" class="btn btn-success" value="Next" ng-click="addTemplateForm()" style="font-family:verdana;width:100px" />
+					<input type="button" class="btn btn-warning" onclick="cancelAdd()" value="Cancel" style="font-family:verdana;width:100px" />
+				</div>
+			</div>
+			<br>
+			<button class="btn btn-primary btn-sm" style="float: right;" ng-click="advConfig()">
+				<span class="glyphicon glyphicon-cog"></span>
+				&nbsp;Advance &nbsp;
+				<span id="advConfigIcon" class="glyphicon glyphicon-chevron-down"></span></button>
+			<br><br><br>
+			<div class="contentPart" id="uploadJSONDiv" hidden="hidden" style="text-align: left;">
+				<span class="header" style="font-weight: bold;">Upload template using JSON Format</span>
+				<br><br>
+				<input id="fileUpload" type="file" style="display: none"/>
+				<button class="btn btn-primary" style="width:150px;display:inline-block;float:left" ng-click="uploadFile()">
+					<span class="glyphicon glyphicon-cloud-upload"></span>&nbsp;
+					Upload
+				</button>
+				<button class="btn btn-success" style="width: 150px; display: inline-block; float: left; margin:0px 5px;" ng-click="getJSON()">
+					<span class="glyphicon glyphicon-saved"></span>&nbsp;
+					Save
+				</button>
+			</div>
+			<br><br><br><br>
+		</div>
+		<!-- END OF MANAGE TEMPLATE DIV - SELECTION -->
+	</div>
+	<!-- END OF MAIN CONTENT -->
+	
+	
+	<!--  VIew modal -->
+	<div id="viewModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+		<!-- Modal content-->
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title" id="sth"></h4>
+		  </div>
+		  <div class="modal-body" style="max-height:300px;overflow-y:auto" id="stb">
+			<table id="tblView" class="table table-hover">
+				
+			</table>
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-info"  style="width:100px" data-dismiss="modal">Ok</button>
+		  </div>
+		</div>
+
+	  </div>
+	</div>
+	
+	<div id="loader"> <image class="loadImageBig" src="images/loader.gif"/> <h4 class="loadMsg" id = "templateProgress"></h4></div>
+	
+	<div id="footer" > </div>
+
+	<div id="errorModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div id="modalHeader" class="alert alert-warning" class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">
+						<span id="msgIcon" class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
+						<span id="msgTitle" style="color: darkgoldenrod;">&nbsp;&nbsp;Warning Message</span>
+					</h4>
+				</div>
+				<div id="errorContent" class="modal-body" style="max-height:300px;overflow-y:auto">
+					<table id="contentTable" border="1" cellspacing="6" cellpadding="4">
+					</table>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary"  style="width:100px" data-dismiss="modal">OK</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div id="updateCompletedModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<!--Modal content-->
+			<div class="modal-content">
+				<div id="ucModalHeader" class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">
+						<span id="ucMsgTitle">Upload Complete</span>
+					</h4>
+				</div>
+				<div id="ucContent" class="modal-body" style="max-height:300px;overflow-y:auto">
+					<p id="ucStored" class="alert alert-success"></p>
+					<p id="ucUpdated" class="alert alert-info"></p>
+					<p id="ucIgnored" class="alert alert-danger"></p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary"  style="width:100px" data-dismiss="modal">OK</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+		  <script type="text/javascript">
+    var config = {
+      '.chosen-select'           : {},
+      '.chosen-select-deselect'  : {allow_single_deselect:true},
+      '.chosen-select-no-single' : {disable_search_threshold:10},
+      '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+      '.chosen-select-width'     : {width:"95%"}
+    }
+    for (var selector in config) {
+      $(selector).chosen(config[selector]);
+    }
+  </script>
+
+	
+	<script type="text/javascript">
+		var xlf = document.getElementById('tempImport');
+		if(xlf) xlf.addEventListener('change', handleFile, false);
+		
+		var xld = document.getElementById('dataImport');
+		if(xld) xld.addEventListener('change', handleFile, false);
+
+		$(document).ready(function(){
+			$("#logo").animate({'left': '0px','margin-left':'50px','width' : '300px','height' : '300px', 'margin-top' : '-270px'});			
+			$("#buttonsHolder").animate	({'width' : '300px','left': '50px','top' : '650px','padding-top' : '20px', 'height' : '280px'});			
+			$(".selButton").animate({'width' : '250px','margin-top' : '10px','margin-bottom' : '20px','box-shadow': '0 0 3px #ccc','height' : '30px','font-size' : '13px', 'padding-top' : '5px'});
+			$("#content").fadeIn();
+
+			$("#logo").click(function(){
+				window.location.assign("#home");
+			});
+		});
+		
+		function addTemp()
+		{
+			$("#tempGrp").hide();
+			$("#addTempOption").show();
+			$("#dataSetSelect").attr("disabled" , "true");
+			$("#orgUnitGroupSelect").attr("disabled" , "true");
+		}
+		
+		function cancelAdd()
+		{
+			$("#addTempOption").hide();
+			$("#tempGrp").show();
+			$("#dataSetSelect").removeAttr("disabled");
+			$("#orgUnitGroupSelect").removeAttr("disabled");
+		}
+	</script>
