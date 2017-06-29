@@ -9,6 +9,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -42,6 +44,10 @@ import jxl.write.WritableWorkbook;
 
 import org.amplecode.quick.StatementManager;
 import org.hisp.dhis.config.Configuration_IN;
+import org.hisp.dhis.dataelement.DataElement;
+import org.hisp.dhis.dataelement.DataElementCategoryOptionCombo;
+import org.hisp.dhis.dataelement.DataElementCategoryService;
+import org.hisp.dhis.dataelement.DataElementService;
 import org.hisp.dhis.i18n.I18nFormat;
 import org.hisp.dhis.organisationunit.OrganisationUnit;
 import org.hisp.dhis.organisationunit.OrganisationUnitGroup;
@@ -104,7 +110,7 @@ public class GenerateLLBulkReportAnalyserResultAction implements Action
     {
         this.jdbcTemplate = jdbcTemplate;
     }
-/*    
+   
     private DataElementService dataElementService;
 
     public void setDataElementService( DataElementService dataElementService )
@@ -119,7 +125,7 @@ public class GenerateLLBulkReportAnalyserResultAction implements Action
     {
         this.dataElementCategoryOptionComboService = dataElementCategoryOptionComboService;
     }
-*/    
+   
     // -------------------------------------------------------------------------
     // Properties
     // -------------------------------------------------------------------------
@@ -186,6 +192,9 @@ public class GenerateLLBulkReportAnalyserResultAction implements Action
     private Map<String, String> resMap;
 
     private Map<String, String> resMapForDeath;
+    
+    private SimpleDateFormat simpleDateMonthYearFormat;
+    
     // -------------------------------------------------------------------------
     // Action Implementation
     // -------------------------------------------------------------------------
@@ -200,6 +209,7 @@ public class GenerateLLBulkReportAnalyserResultAction implements Action
         monthFormat = new SimpleDateFormat( "MMMM" );
         yearFormat = new SimpleDateFormat( "yyyy" );
         simpleMonthFormat = new SimpleDateFormat( "MMM" );
+        simpleDateMonthYearFormat = new SimpleDateFormat( "dd/MM/yyyy" );
         String parentUnit = "";
         
         Report_in selReportObj =  reportService.getReport( Integer.parseInt( reportList ) );
@@ -384,6 +394,30 @@ public class GenerateLLBulkReportAnalyserResultAction implements Action
                     else if ( sType.equalsIgnoreCase( "dataelement-boolean" ) )
                     {
                         tempStr = reportService.getBooleanDataValue(deCodeString, tempStartDate.getTime(), tempEndDate.getTime(), currentOrgUnit, reportModelTB);
+                    }
+                    // for added new dataElement in GOI Report
+                    else if ( sType.equalsIgnoreCase( "dataelement-date" ) )
+                    {
+                        String tempDateString = getStringDataFromDataValue( deCodeString, selectedPeriod.getId(),currentOrgUnit.getId() );
+                        
+                        Date tempDate = format.parseDate( tempDateString );
+                        tempStr = simpleDateMonthYearFormat.format(tempDate);
+                        
+                    }
+                    else if ( sType.equalsIgnoreCase( "dataelement-string" ) )
+                    {
+                        tempStr = getStringDataFromDataValue( deCodeString, selectedPeriod.getId(),currentOrgUnit.getId() );
+                        if( tempStr.equalsIgnoreCase( "0.0" ) )
+                        {
+                            tempStr = ""+ "Adequate";
+                        }
+                        else if ( tempStr.equalsIgnoreCase( "1.0" ) )
+                        {
+                            tempStr = ""+ "Inadequate";;
+                        }
+                        else
+                        {
+                        }
                     }
                     else
                     {
@@ -1298,5 +1332,100 @@ public class GenerateLLBulkReportAnalyserResultAction implements Action
         
         return recordNoByComma;
     }
+    
+    // get capture data for which dataType String or date
+    public String getStringDataFromDataValue( String formula, Integer periodId, Integer organisationUnitId )
+    {
+        Statement st1 = null;
+        ResultSet rs1 = null;
+        // System.out.println( "Inside String/Date Data Value Method" );
+        String query = "";
+        try
+        {
+    
+            // int deFlag1 = 0;
+            // int deFlag2 = 0;
+            Pattern pattern = Pattern.compile( "(\\[\\d+\\.\\d+\\])" );
+    
+            Matcher matcher = pattern.matcher( formula );
+            StringBuffer buffer = new StringBuffer();
+    
+            while ( matcher.find() )
+            {
+                String replaceString = matcher.group();
+    
+                replaceString = replaceString.replaceAll( "[\\[\\]]", "" );
+                String optionComboIdStr = replaceString.substring( replaceString.indexOf( '.' ) + 1, replaceString
+                    .length() );
+    
+                replaceString = replaceString.substring( 0, replaceString.indexOf( '.' ) );
+    
+                int dataElementId = Integer.parseInt( replaceString );
+                int optionComboId = Integer.parseInt( optionComboIdStr );
+    
+                DataElement dataElement = dataElementService.getDataElement( dataElementId );
+                DataElementCategoryOptionCombo optionCombo = dataElementCategoryOptionComboService
+                    .getDataElementCategoryOptionCombo( optionComboId );
+    
+                if ( dataElement == null || optionCombo == null )
+                {
+                    replaceString = "";
+                    matcher.appendReplacement( buffer, replaceString );
+                    continue;
+                }
+                query = "SELECT value FROM datavalue WHERE sourceid = " + organisationUnitId
+                    + " AND periodid = " + periodId + " AND dataelementid = " + dataElement.getId();
+                    
+                // rs1 = st1.executeQuery( query );
+                
+                //System.out.println( "Query - " + query);
+                SqlRowSet sqlResultSet = jdbcTemplate.queryForRowSet( query );
+    
+                String tempStr = "";
+    
+                if ( sqlResultSet.next() )
+                {
+                    tempStr = sqlResultSet.getString( 1 );
+                }
+    
+                replaceString = tempStr;
+    
+                matcher.appendReplacement( buffer, replaceString );
+            }
+    
+            matcher.appendTail( buffer );
+    
+            String resultValue = "";
+    
+            resultValue = buffer.toString();
+            //System.out.println( "resultValue - " + resultValue);
+            return resultValue;
+        }
+        catch ( NumberFormatException ex )
+        {
+            throw new RuntimeException( "Illegal DataElement id", ex );
+        }
+        catch ( Exception e )
+        {
+            System.out.println( "SQL Exception : " + e.getMessage() );
+            return null;
+        }
+        finally
+        {
+            try
+            {
+                if ( st1 != null )
+                    st1.close();
+    
+                if ( rs1 != null )
+                    rs1.close();
+            }
+            catch ( Exception e )
+            {
+                System.out.println( "SQL Exception : " + e.getMessage() );
+                return null;
+            }
+        }// finally block end
+    }        
 
 }

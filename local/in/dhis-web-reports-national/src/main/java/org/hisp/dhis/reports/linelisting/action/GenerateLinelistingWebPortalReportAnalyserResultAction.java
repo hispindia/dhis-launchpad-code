@@ -350,6 +350,8 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
     private String raFolderName;
 
     private SimpleDateFormat simpleMonthFormat;
+    
+    private SimpleDateFormat simpleDateMonthYearFormat;
 
     // -------------------------------------------------------------------------
     // Action implementation
@@ -377,6 +379,7 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
         monthFormat = new SimpleDateFormat( "MMMM" );
         yearFormat = new SimpleDateFormat( "yyyy" );
         simpleMonthFormat = new SimpleDateFormat( "MMM" );
+        simpleDateMonthYearFormat = new SimpleDateFormat( "dd/MM/yyyy" );
         // deCodesXMLFileName = reportList + "DECodes.xml";
 
         initializeResultMap();
@@ -578,6 +581,29 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
                     {
                         tempStr = reportService.getBooleanDataValue( deCodeString, tempStartDate.getTime(), tempEndDate
                             .getTime(), currentOrgUnit, reportModelTB );
+                    }
+                    else if ( sType.equalsIgnoreCase( "dataelement-date" ) )
+                    {
+                        String tempDateString = getStringDataFromDataValue( deCodeString, selectedPeriod.getId(),currentOrgUnit.getId() );
+                        
+                        Date tempDate = format.parseDate( tempDateString );
+                        tempStr = simpleDateMonthYearFormat.format(tempDate);
+                        
+                    }
+                    else if ( sType.equalsIgnoreCase( "dataelement-string" ) )
+                    {
+                        tempStr = getStringDataFromDataValue( deCodeString, selectedPeriod.getId(),currentOrgUnit.getId() );
+                        if( tempStr.equalsIgnoreCase( "0.0" ) )
+                        {
+                            tempStr = ""+ "Adequate";
+                        }
+                        else if ( tempStr.equalsIgnoreCase( "1.0" ) )
+                        {
+                            tempStr = ""+ "Inadequate";;
+                        }
+                        else
+                        {
+                        }
                     }
                     else
                     {
@@ -1554,5 +1580,100 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
 
         return recordNosList;
     }   
-  */  
+  */
+    
+    // get capture data for which dataType String or date
+    public String getStringDataFromDataValue( String formula, Integer periodId, Integer organisationUnitId )
+    {
+        Statement st1 = null;
+        ResultSet rs1 = null;
+        // System.out.println( "Inside String/Date Data Value Method" );
+        String query = "";
+        try
+        {
+    
+            // int deFlag1 = 0;
+            // int deFlag2 = 0;
+            Pattern pattern = Pattern.compile( "(\\[\\d+\\.\\d+\\])" );
+    
+            Matcher matcher = pattern.matcher( formula );
+            StringBuffer buffer = new StringBuffer();
+    
+            while ( matcher.find() )
+            {
+                String replaceString = matcher.group();
+    
+                replaceString = replaceString.replaceAll( "[\\[\\]]", "" );
+                String optionComboIdStr = replaceString.substring( replaceString.indexOf( '.' ) + 1, replaceString
+                    .length() );
+    
+                replaceString = replaceString.substring( 0, replaceString.indexOf( '.' ) );
+    
+                int dataElementId = Integer.parseInt( replaceString );
+                int optionComboId = Integer.parseInt( optionComboIdStr );
+    
+                DataElement dataElement = dataElementService.getDataElement( dataElementId );
+                DataElementCategoryOptionCombo optionCombo = dataElementCategoryOptionComboService
+                    .getDataElementCategoryOptionCombo( optionComboId );
+    
+                if ( dataElement == null || optionCombo == null )
+                {
+                    replaceString = "";
+                    matcher.appendReplacement( buffer, replaceString );
+                    continue;
+                }
+                query = "SELECT value FROM datavalue WHERE sourceid = " + organisationUnitId
+                    + " AND periodid = " + periodId + " AND dataelementid = " + dataElement.getId();
+                    
+                // rs1 = st1.executeQuery( query );
+                
+                //System.out.println( "Query - " + query);
+                SqlRowSet sqlResultSet = jdbcTemplate.queryForRowSet( query );
+    
+                String tempStr = "";
+    
+                if ( sqlResultSet.next() )
+                {
+                    tempStr = sqlResultSet.getString( 1 );
+                }
+    
+                replaceString = tempStr;
+    
+                matcher.appendReplacement( buffer, replaceString );
+            }
+    
+            matcher.appendTail( buffer );
+    
+            String resultValue = "";
+    
+            resultValue = buffer.toString();
+            //System.out.println( "resultValue - " + resultValue);
+            return resultValue;
+        }
+        catch ( NumberFormatException ex )
+        {
+            throw new RuntimeException( "Illegal DataElement id", ex );
+        }
+        catch ( Exception e )
+        {
+            System.out.println( "SQL Exception : " + e.getMessage() );
+            return null;
+        }
+        finally
+        {
+            try
+            {
+                if ( st1 != null )
+                    st1.close();
+    
+                if ( rs1 != null )
+                    rs1.close();
+            }
+            catch ( Exception e )
+            {
+                System.out.println( "SQL Exception : " + e.getMessage() );
+                return null;
+            }
+        }// finally block end
+    }    
 }
