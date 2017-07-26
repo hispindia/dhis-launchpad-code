@@ -25,21 +25,14 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import jxl.CellType;
-import jxl.Workbook;
-import jxl.format.Alignment;
-import jxl.format.Border;
-import jxl.format.BorderLineStyle;
-import jxl.format.CellFormat;
-import jxl.format.VerticalAlignment;
-import jxl.write.Blank;
-import jxl.write.Label;
-import jxl.write.Number;
-import jxl.write.WritableCell;
-import jxl.write.WritableCellFormat;
-import jxl.write.WritableSheet;
-import jxl.write.WritableWorkbook;
+//import jxl.format.Alignment;
+//import jxl.format.Border;
+//import jxl.format.BorderLineStyle;
+//import jxl.format.VerticalAlignment;
+//import jxl.write.WritableCellFormat;
 
+import org.apache.poi.hssf.usermodel.HSSFCell;
+//import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -276,7 +269,8 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
     // Action implementation
     // -------------------------------------------------------------------------
     
-    public String execute()
+    @SuppressWarnings("static-access")
+	public String execute()
         throws Exception
     {
     
@@ -455,7 +449,9 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
                 String sType = report_inDesign.getStype();
                 String deCodeString = report_inDesign.getExpression();
                 String tempStr = "";
-    
+                String tempadeInAdeStr = "";
+                String tempStr1 = "";
+                
                 Calendar tempStartDate = Calendar.getInstance();
                 Calendar tempEndDate = Calendar.getInstance();
                 List<Calendar> calendarList = new ArrayList<Calendar>( reportService.getStartingEndingPeriods( deType,
@@ -532,6 +528,7 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
                 else if ( deCodeString.equalsIgnoreCase( "NA" ) )
                 {
                     tempStr = " ";
+                    tempadeInAdeStr = " ";
                 }
                 else
                 {
@@ -629,26 +626,34 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
                     	if( aggData.equalsIgnoreCase( USECAPTUREDDATA ) ) 
                         {
                             String tempDateString = getStringDataFromDataValue( deCodeString, selectedPeriod.getId(),currentOrgUnit.getId() );
-                            
-                            Date tempDate = format.parseDate( tempDateString );
-                            tempStr = simpleDateMonthYearFormat.format(tempDate);
-                            //System.out.println( " USECAPTUREDDATA  SType : " + sType + " DECode : " + deCodeString + "   TempStr : " + tempStr );
+                            if( tempDateString != null && !tempDateString.equalsIgnoreCase(""))
+                            {
+                            	Date tempDate = format.parseDate( tempDateString );
+                                tempStr = simpleDateMonthYearFormat.format(tempDate);
+                            }
+                            System.out.println( " USECAPTUREDDATA  SType : " + sType + " DECode : " + deCodeString + "   TempStr : " + tempStr );
                         }
                     }
                     else if ( sType.equalsIgnoreCase( "dataelement-string" ) )
                     {
                     	if( aggData.equalsIgnoreCase( USECAPTUREDDATA ) ) 
                         {
-                            tempStr = getStringDataFromDataValue( deCodeString, selectedPeriod.getId(),currentOrgUnit.getId() );
+                    		tempadeInAdeStr = getStringDataFromDataValue( deCodeString, selectedPeriod.getId(),currentOrgUnit.getId() );
                             //System.out.println( " USECAPTUREDDATA  SType : " + sType + " DECode : " + deCodeString + "   TempStr : " + tempStr );
-                            
                         }
+                    }
+                    else
+                    {
+                        tempStr = reportService.getResultIndicatorValue( deCodeString, tempStartDate.getTime(),tempEndDate.getTime(), currentOrgUnit );
                     }
                 }
     
                 int tempRowNo = report_inDesign.getRowno();
                 int tempColNo = report_inDesign.getColno();
                 int sheetNo = report_inDesign.getSheetno();
+                
+                
+                //System.out.println( " row - No : " + tempRowNo + " col - No : " + tempColNo );
                 
                 //WritableSheet sheet0 = outputReportWorkbook.getSheet( sheetNo );
                 Sheet sheet0 = apachePOIWorkbook.getSheetAt( sheetNo );
@@ -676,7 +681,7 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
                         if ( deCodeString.equalsIgnoreCase( "FACILITYP" )
                             || deCodeString.equalsIgnoreCase( "FACILITYPP" )
                             || deCodeString.equalsIgnoreCase( "FACILITYPPP" )
-                            || deCodeString.equalsIgnoreCase( "FACILITYPPPP" ) )
+                            || deCodeString.equalsIgnoreCase( "FACILITYPPPP" ))
                         {
                         }
                         else if ( deCodeString.equalsIgnoreCase( "PERIOD" )
@@ -771,46 +776,125 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
                         }
                     }
                     */
-                    try
-                    {
-                        //sheet0.addCell( new Number( tempColNo, tempRowNo, Double.parseDouble( tempStr ), wCellformat ) );
-                        Row row = sheet0.getRow( tempRowNo );
-                        Cell cell = row.getCell( tempColNo );
-                        cell.setCellValue( Double.parseDouble( tempStr ) );
-                        
-                    }
-                    catch ( Exception e )
-                    {
-                        //sheet0.addCell( new Label( tempColNo, tempRowNo, tempStr, wCellformat ) );
-                        Row row = sheet0.getRow( tempRowNo );
-                        Cell cell = row.getCell( tempColNo );
-                        cell.setCellValue( tempStr );
-                        
-                    }
                     
-                    /*
+                    //try
+                    //{
+//                    	Row row = sheet0.getRow( tempRowNo );
+//                        Cell cell = row.getCell( tempColNo );
+//                        cell.setCellValue( Double.parseDouble( tempStr ) );
+//                        
+//                        HSSFRow row = (HSSFRow) sheet0.getRow(tempRowNo);
+//                        if (row == null)
+//                        	row = (HSSFRow) sheet0.createRow(tempRowNo);
+//                        HSSFCell cell = row.getCell(tempColNo);
+//                        cell.setCellValue( Double.parseDouble( tempStr ) );
+//                        
+                        
+                        
+                    //}
+                    //catch ( Exception e )
+                    //{
+                       // sheet0.addCell( new Label( tempColNo, tempRowNo, tempStr, wCellformat ) );
+                    	
+//                        Row row = sheet0.getRow( tempRowNo );
+//                        Cell cell = row.getCell( tempColNo );
+//                        cell.setCellValue( tempStr );
+                        
+//                        HSSFRow row = (HSSFRow) sheet0.getRow(tempRowNo);
+//                        if (row == null){
+//                        	row = (HSSFRow) sheet0.createRow(tempRowNo);
+//                        HSSFCell cell = row.getCell(tempColNo);
+//                        cell.setCellValue( tempStr );
+//                        
+//                        }
+                        /*
+                        if( row != null )
+                    	 {
+                    		
+                        	if ((cell == null) || (cell.equals("")) || (cell.getCellType() == cell.CELL_TYPE_BLANK))
+                        	{
+                        		
+                        	}
+                    	 }
+                    	 */
+                        //Cell cell = row.getCell( tempColNo );
+                        //cell.setCellValue( tempStr );
+                        //System.out.println( " row - catch : " + tempRowNo + " col - catch : " + tempColNo + "   TempStr : " + tempStr );
+                        
+                    //}
                     
+                   
                     if ( sType.equalsIgnoreCase( "dataelement" ) )
                     {
-                    	
+                    	 try
+                         {
+                    		 Row row = sheet0.getRow( tempRowNo );
+                             Cell cell = row.getCell( tempColNo );
+//                             if (cell.getCellType() == Cell.CELL_TYPE_BLANK){
+//                            	    cell.setCellType(Cell.CELL_TYPE_NUMERIC);
+//                            }  
+                             cell.setCellValue( Double.parseDouble( tempStr ) );
+                             
+                         }
+                         catch ( Exception e )
+                         {
+                             //sheet0.addCell( new Label( tempColNo, tempRowNo, tempStr, wCellformat ) );
+                         	
+                             Row row = sheet0.getRow( tempRowNo );
+                             Cell cell = row.getCell( tempColNo );
+                             cell.setCellValue( tempStr );
+                         }
+                         
                     }
-                    
-                    else if ( sType.equalsIgnoreCase( "dataelement-date" ) || sType.equalsIgnoreCase( "dataelement-string" ) )
+                   
+                    else if ( sType.equalsIgnoreCase( "dataelement-date" ) )
                     {
                         try
                         {
                             Row row = sheet0.getRow( tempRowNo );
                             Cell cell = row.getCell( tempColNo );
-                            cell.setCellValue( Integer.parseInt( tempStr ) );
+                            cell.setCellValue( tempStr );
+                            
                         }
                         catch ( Exception e )
                         {
-                            Row row = sheet0.getRow( tempRowNo );
-                            Cell cell = row.getCell( tempColNo );
-                            cell.setCellValue( tempStr );
+                        	//System.out.println( " Exception : " + e.getMessage() );
+                        	Row row = sheet0.getRow( tempRowNo );
+                        	Cell cell = row.getCell( tempColNo );
+                        	cell.setCellValue( tempStr );
                         }
                     }
-                    */
+                    
+                    else if ( sType.equalsIgnoreCase( "dataelement-string" ) )
+                    {
+                        
+                    	if ( tempadeInAdeStr != null && tempadeInAdeStr.equalsIgnoreCase("Adequate") )
+                        {
+                            tempStr1 = "59";
+                        }
+                    	else if ( tempadeInAdeStr != null && tempadeInAdeStr.equalsIgnoreCase("Inadequate") )
+                        {
+                            tempStr1 = "60";
+                        }
+                       
+                    	try
+                        {
+                            Row row = sheet0.getRow( tempRowNo );
+                            
+                            Cell cell_1 = row.getCell( tempColNo - 1 );
+                            cell_1.setCellValue( tempStr1 );
+                            
+                            Cell cell_2 = row.getCell( tempColNo );
+                            cell_2.setCellValue( tempadeInAdeStr );
+                        }
+                        catch ( Exception e )
+                        {
+                            //sheet0.addCell( new Label( tempColNo, tempRowNo, tempStr, wCellformat ) );
+                            Row row = sheet0.getRow( tempRowNo );
+                            Cell cell = row.getCell( tempColNo );
+                            cell.setCellValue( tempadeInAdeStr );
+                        }
+                    }                    
                 }
     
                 count1++;
@@ -983,12 +1067,12 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
     
                         // CellFormat cellFormat = cell.getCellFormat();
     
-                        WritableCellFormat wCellformat = new WritableCellFormat();
-    
-                        wCellformat.setBorder( Border.ALL, BorderLineStyle.THIN );
-                        wCellformat.setWrap( true );
-                        wCellformat.setAlignment( Alignment.CENTRE );
-                        wCellformat.setVerticalAlignment( VerticalAlignment.CENTRE );
+//                        WritableCellFormat wCellformat = new WritableCellFormat();
+//    
+//                        wCellformat.setBorder( Border.ALL, BorderLineStyle.THIN );
+//                        wCellformat.setWrap( true );
+//                        wCellformat.setAlignment( Alignment.CENTRE );
+//                        wCellformat.setVerticalAlignment( VerticalAlignment.CENTRE );
                         
                         if ( sType.equalsIgnoreCase( "lldeathdataelementage" ) )
                         {
@@ -1342,12 +1426,12 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
     
                         // CellFormat cellFormat = cell.getCellFormat();
     
-                        WritableCellFormat wCellformat = new WritableCellFormat();
-    
-                        wCellformat.setBorder( Border.ALL, BorderLineStyle.THIN );
-                        wCellformat.setWrap( true );
-                        wCellformat.setAlignment( Alignment.CENTRE );
-                        wCellformat.setVerticalAlignment( VerticalAlignment.CENTRE );
+//                        WritableCellFormat wCellformat = new WritableCellFormat();
+//    
+//                        wCellformat.setBorder( Border.ALL, BorderLineStyle.THIN );
+//                        wCellformat.setWrap( true );
+//                        wCellformat.setAlignment( Alignment.CENTRE );
+//                        wCellformat.setVerticalAlignment( VerticalAlignment.CENTRE );
     
                         /*
                          * if ( cell.getType() == CellType.LABEL ) { Label l =
@@ -1644,6 +1728,7 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
         resMapForDeath.put( "O55YEAR", "Years:60" );
     }
     
+    /*
     public WritableCellFormat getCellFormat1()
         throws Exception
     {
@@ -1667,7 +1752,7 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
     
         return wCellformat;
     }
-    
+    */
     public String getLLDataValue( String formula, Period period, OrganisationUnit organisationUnit, Integer recordNo )
     {
         Statement st1 = null;
@@ -1989,6 +2074,7 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
         ResultSet rs1 = null;
         // System.out.println( "Inside LL Data Value Method" );
         String query = "";
+        String resultValue = "";
         try
         {
     
@@ -2010,68 +2096,36 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
                 replaceString = replaceString.substring( 0, replaceString.indexOf( '.' ) );
     
                 int dataElementId = Integer.parseInt( replaceString );
-                int optionComboId = Integer.parseInt( optionComboIdStr );
+                int categoryOptionComboId = Integer.parseInt( optionComboIdStr );
     
-                DataElement dataElement = dataElementService.getDataElement( dataElementId );
-                DataElementCategoryOptionCombo optionCombo = dataElementCategoryOptionComboService
-                    .getDataElementCategoryOptionCombo( optionComboId );
-    
-                if ( dataElement == null || optionCombo == null )
-                {
-                    replaceString = "";
-                    matcher.appendReplacement( buffer, replaceString );
-                    continue;
-                }
-    
-                // DataValue dataValue = dataValueService.getDataValue(
-                // organisationUnit, dataElement, period,
-                // optionCombo );
-                // st1 = con.createStatement();
-    
-                // System.out.println(
-                // "Before getting value : OrganisationUnit Name : " +
-                // organisationUnit.getName() + ", Period is : " +
-                // period.getId() + ", DataElement Name : " +
-                // dataElement.getName() + ", Record No: " + recordNo );
+//                DataElement dataElement = dataElementService.getDataElement( dataElementId );
+//                DataElementCategoryOptionCombo optionCombo = dataElementCategoryOptionComboService
+//                    .getDataElementCategoryOptionCombo( categoryOptionComboId );
+//    
+//                if ( dataElement == null || optionCombo == null )
+//                {
+//                    replaceString = "";
+//                    matcher.appendReplacement( buffer, replaceString );
+//                    continue;
+//                }
+//
+//                query = "SELECT value FROM datavalue WHERE sourceid = " + organisationUnitId
+//                    + " AND periodid = " + periodId + " AND dataelementid = " + dataElement.getId();
                 
                 query = "SELECT value FROM datavalue WHERE sourceid = " + organisationUnitId
-                    + " AND periodid = " + periodId + " AND dataelementid = " + dataElement.getId();
-                    
-                // rs1 = st1.executeQuery( query );
+                        + " AND periodid = " + periodId + " AND dataelementid = " + dataElementId + " AND categoryoptioncomboid = " + categoryOptionComboId;
                 
-                //System.out.println( "Query - " + query);
                 SqlRowSet sqlResultSet = jdbcTemplate.queryForRowSet( query );
-    
-                String tempStr = "";
     
                 if ( sqlResultSet.next() )
                 {
-                    tempStr = sqlResultSet.getString( 1 );
+                	resultValue = sqlResultSet.getString( 1 );
                 }
     
-                replaceString = tempStr;
-    
-                matcher.appendReplacement( buffer, replaceString );
             }
     
-            matcher.appendTail( buffer );
-    
-            String resultValue = "";
-            /*
-             * if ( deFlag1 == 0 ) { double d = 0.0; try { d =
-             * MathUtils.calculateExpression( buffer.toString() ); } catch (
-             * Exception e ) { d = 0.0; } if ( d == -1 ) d = 0.0; else { d =
-             * Math.round( d Math.pow( 10, 1 ) ) / Math.pow( 10, 1 );
-             * resultValue = "" + (int) d; }
-             * 
-             * if ( deFlag2 == 0 ) { resultValue = " "; }
-             * 
-             * } else { resultValue = buffer.toString(); }
-             */
-    
-            resultValue = buffer.toString();
             //System.out.println( "resultValue - " + resultValue);
-            return resultValue;
+            
         }
         catch ( NumberFormatException ex )
         {
@@ -2082,22 +2136,8 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
             System.out.println( "SQL Exception : " + e.getMessage() );
             return null;
         }
-        finally
-        {
-            try
-            {
-                if ( st1 != null )
-                    st1.close();
-    
-                if ( rs1 != null )
-                    rs1.close();
-            }
-            catch ( Exception e )
-            {
-                System.out.println( "SQL Exception : " + e.getMessage() );
-                return null;
-            }
-        }// finally block end
+        
+        return resultValue;
     }    
     
     

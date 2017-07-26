@@ -345,6 +345,8 @@ public class GenerateLLBulkReportAnalyserResultAction implements Action
                 String sType = report_inDesign.getStype();
                 String deCodeString = report_inDesign.getExpression();
                 String tempStr = "";
+                String tempadeInAdeStr = "";
+                String tempStr1 = "";
 
                 Calendar tempStartDate = Calendar.getInstance();
                 Calendar tempEndDate = Calendar.getInstance();
@@ -425,6 +427,7 @@ public class GenerateLLBulkReportAnalyserResultAction implements Action
                 else if( deCodeString.equalsIgnoreCase( "NA" ) )
                 {
                     tempStr = " ";
+                    tempadeInAdeStr = " ";
                 } 
                 else
                 {
@@ -530,7 +533,7 @@ public class GenerateLLBulkReportAnalyserResultAction implements Action
                     {
                     	if( aggData.equalsIgnoreCase( USECAPTUREDDATA ) ) 
                         {
-                            tempStr = getStringDataFromDataValue( deCodeString, selectedPeriod.getId(),currentOrgUnit.getId() );
+                    		tempadeInAdeStr = getStringDataFromDataValue( deCodeString, selectedPeriod.getId(),currentOrgUnit.getId() );
                             //System.out.println( " USECAPTUREDDATA  SType : " + sType + " DECode : " + deCodeString + "   TempStr : " + tempStr );
                             
                         }
@@ -618,6 +621,7 @@ public class GenerateLLBulkReportAnalyserResultAction implements Action
                     }
                     */
                     
+                    /*
                     try
                     {
                         //sheet0.addCell( new Number( tempColNo, tempRowNo, Double.parseDouble( tempStr ), wCellformat ) );
@@ -629,9 +633,81 @@ public class GenerateLLBulkReportAnalyserResultAction implements Action
                     {
                         //sheet0.addCell( new Label( tempColNo, tempRowNo, tempStr, wCellformat ) );
                         Row row = sheet0.getRow( tempRowNo );
-                        Cell cell = row.getCell( tempColNo );
-                        cell.setCellValue( tempStr );
+                        if( row != null )
+                    	 {
+                    		Cell cell = row.getCell( tempColNo );
+                        	if ((cell == null) || (cell.equals("")) || (cell.getCellType() == cell.CELL_TYPE_BLANK))
+                        	{
+                        		cell.setCellValue( tempStr );
+                        	}
+                    	 }
                     }
+                    */
+                    
+                    if ( sType.equalsIgnoreCase( "dataelement" ) )
+                    {
+                    	 try
+                         {
+                    		 Row row = sheet0.getRow( tempRowNo );
+                             Cell cell = row.getCell( tempColNo );
+                             cell.setCellValue( Double.parseDouble( tempStr ) );
+                         }
+                         catch ( Exception e )
+                         {
+                             //sheet0.addCell( new Label( tempColNo, tempRowNo, tempStr, wCellformat ) );
+                             Row row = sheet0.getRow( tempRowNo );
+                             Cell cell = row.getCell( tempColNo );
+                             cell.setCellValue( tempStr );
+                         }
+                         
+                    }
+                    else if ( sType.equalsIgnoreCase( "dataelement-date" ) )
+                    {
+                        try
+                        {
+                            Row row = sheet0.getRow( tempRowNo );
+                            Cell cell = row.getCell( tempColNo );
+                            cell.setCellValue( tempStr );
+                            
+                        }
+                        catch ( Exception e )
+                        {
+                        	//System.out.println( " Exception : " + e.getMessage() );
+                        	Row row = sheet0.getRow( tempRowNo );
+                        	Cell cell = row.getCell( tempColNo );
+                        	cell.setCellValue( tempStr );
+                        }
+                    }
+                    else if ( sType.equalsIgnoreCase( "dataelement-string" ) )
+                    {
+                        
+                    	if ( tempadeInAdeStr != null && tempadeInAdeStr.equalsIgnoreCase("Adequate") )
+                        {
+                            tempStr1 = "59";
+                        }
+                    	else if ( tempadeInAdeStr != null && tempadeInAdeStr.equalsIgnoreCase("Inadequate") )
+                        {
+                            tempStr1 = "60";
+                        }
+                       
+                    	try
+                        {
+                            Row row = sheet0.getRow( tempRowNo );
+                            
+                            Cell cell_1 = row.getCell( tempColNo - 1 );
+                            cell_1.setCellValue( tempStr1 );
+                            
+                            Cell cell_2 = row.getCell( tempColNo );
+                            cell_2.setCellValue( tempadeInAdeStr );
+                        }
+                        catch ( Exception e )
+                        {
+                            //sheet0.addCell( new Label( tempColNo, tempRowNo, tempStr, wCellformat ) );
+                            Row row = sheet0.getRow( tempRowNo );
+                            Cell cell = row.getCell( tempColNo );
+                            cell.setCellValue( tempadeInAdeStr );
+                        }
+                    }           
                 }
                 
                 count1++;
