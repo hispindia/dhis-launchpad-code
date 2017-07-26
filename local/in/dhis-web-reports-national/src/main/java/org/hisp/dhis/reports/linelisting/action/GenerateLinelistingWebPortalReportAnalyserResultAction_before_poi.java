@@ -3,7 +3,6 @@ package org.hisp.dhis.reports.linelisting.action;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -21,16 +20,22 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import jxl.CellType;
+import jxl.Workbook;
 import jxl.format.Alignment;
 import jxl.format.Border;
 import jxl.format.BorderLineStyle;
+import jxl.format.CellFormat;
+import jxl.format.VerticalAlignment;
+import jxl.write.Blank;
+import jxl.write.Label;
+import jxl.write.Number;
+import jxl.write.WritableCell;
 import jxl.write.WritableCellFormat;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
 
 import org.amplecode.quick.StatementManager;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.velocity.tools.generic.MathTool;
 import org.hisp.dhis.common.comparator.IdentifiableObjectNameComparator;
 import org.hisp.dhis.config.Configuration_IN;
@@ -51,7 +56,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 import com.opensymphony.xwork2.Action;
 
-public class GenerateLinelistingWebPortalReportAnalyserResultAction
+public class GenerateLinelistingWebPortalReportAnalyserResultAction_before_poi
     implements Action
 {
     // private static final String NULL_REPLACEMENT = "0";
@@ -264,13 +269,22 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
         return yearFormat;
     }
 
+    // private List<String> deCodeType;
+
+    // private List<String> serviceType;
 
     private String reportFileNameTB;
 
- 
+    /*
+     * public void setReportFileNameTB( String reportFileNameTB ) {
+     * this.reportFileNameTB = reportFileNameTB; }
+     */
     private String reportModelTB;
 
- 
+    /*
+     * public void setReportModelTB( String reportModelTB ) { this.reportModelTB
+     * = reportModelTB; }
+     */
     private String reportList;
 
     public void setReportList( String reportList )
@@ -278,6 +292,21 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
         this.reportList = reportList;
     }
 
+    /*
+     * private String startDate;
+     * 
+     * public void setStartDate( String startDate ) { this.startDate =
+     * startDate; }
+     * 
+     * private String endDate;
+     * 
+     * public void setEndDate( String endDate ) { this.endDate = endDate; }
+     * 
+     * private List<String> orgUnitListCB;
+     * 
+     * public void setOrgUnitListCB( List<String> orgUnitListCB ) {
+     * this.orgUnitListCB = orgUnitListCB; }
+     */
     private int ouIDTB;
 
     public void setOuIDTB( int ouIDTB )
@@ -292,12 +321,23 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
         this.availablePeriods = availablePeriods;
     }
 
-
+    // private Hashtable<String, String> serviceList;
+    /*
+     * private List<Integer> sheetList;
+     * 
+     * private List<Integer> rowList;
+     * 
+     * private List<Integer> colList;
+     * 
+     * private List<Integer> rowMergeList;
+     * 
+     * private List<Integer> colMergeList;
+     */
     private Date sDate;
 
     private Date eDate;
 
-
+    // private List<Integer> totalOrgUnitsCountList;
 
     private OrganisationUnit currentOrgUnit;
 
@@ -311,7 +351,6 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
 
     private SimpleDateFormat simpleMonthFormat;
 
-    private SimpleDateFormat simpleDateMonthYearFormat;
     // -------------------------------------------------------------------------
     // Action implementation
     // -------------------------------------------------------------------------
@@ -321,20 +360,24 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
     {
 
         System.out.println( "OrgUnit  is : " + ouIDTB );
-        //statementManager.initialise();
-       
+        statementManager.initialise();
+        // con = dbConnection.openConnection();
+
         // Initialization
         raFolderName = reportService.getRAFolderName();
 
         mathTool = new MathTool();
         services = new ArrayList<String>();
         slNos = new ArrayList<String>();
-
+        // deCodeType = new ArrayList<String>();
+        // serviceType = new ArrayList<String>();
+        // totalOrgUnitsCountList = new ArrayList<Integer>();
+        // String deCodesXMLFileName = "";
         simpleDateFormat = new SimpleDateFormat( "MMM-yyyy" );
         monthFormat = new SimpleDateFormat( "MMMM" );
         yearFormat = new SimpleDateFormat( "yyyy" );
         simpleMonthFormat = new SimpleDateFormat( "MMM" );
-        simpleDateMonthYearFormat = new SimpleDateFormat( "dd/MM/yyyy" );
+        // deCodesXMLFileName = reportList + "DECodes.xml";
 
         initializeResultMap();
 
@@ -382,29 +425,30 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
         System.out.println( "Report Generation Start Time is : \t" + new Date() );
         System.out.println( "Size of OrgUnit List is : " + orgUnitList.size() );
 
-
+        /*
+         * sheetList = new ArrayList<Integer>(); rowList = new
+         * ArrayList<Integer>(); colList = new ArrayList<Integer>();
+         * rowMergeList = new ArrayList<Integer>();
+         * 
+         * colMergeList = new ArrayList<Integer>();
+         */
         String inputTemplatePath = System.getenv( "DHIS2_HOME" ) + File.separator + raFolderName + File.separator
             + "template" + File.separator + reportFileNameTB;
-      
+        //String outputReportPath = System.getenv( "DHIS2_HOME" ) + File.separator + raFolderName + File.separator
+        //    + "output" + File.separator + UUID.randomUUID().toString() + ".xls";
         String outputReportPath = System.getenv( "DHIS2_HOME" ) + File.separator +  Configuration_IN.DEFAULT_TEMPFOLDER;
-        
         File newdir = new File( outputReportPath );
         if( !newdir.exists() )
         {
             newdir.mkdirs();
         }
-        
         outputReportPath += File.separator + UUID.randomUUID().toString() + ".xls";
-        
-        /*
+
         Workbook templateWorkbook = Workbook.getWorkbook( new File( inputTemplatePath ) );
-        WritableWorkbook outputReportWorkbook = Workbook.createWorkbook( new File( outputReportPath ), templateWorkbook );
-        */
-        
-        FileInputStream tempFile = new FileInputStream( new File( inputTemplatePath ) );
-        HSSFWorkbook apachePOIWorkbook = new HSSFWorkbook( tempFile );
-        
-        
+
+        WritableWorkbook outputReportWorkbook = Workbook
+            .createWorkbook( new File( outputReportPath ), templateWorkbook );
+
         // Period Info
         selectedPeriod = periodService.getPeriod( availablePeriods );
         sDate = format.parseDate( String.valueOf( selectedPeriod.getStartDate() ) );
@@ -445,8 +489,6 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
                 String sType = report_inDesign.getStype();
                 String deCodeString = report_inDesign.getExpression();
                 String tempStr = "";
-                String tempadeInAdeStr = "";
-                String tempStr1 = "";
 
                 Calendar tempStartDate = Calendar.getInstance();
                 Calendar tempEndDate = Calendar.getInstance();
@@ -524,7 +566,6 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
                 else if ( deCodeString.equalsIgnoreCase( "NA" ) )
                 {
                     tempStr = " ";
-                    tempadeInAdeStr = " ";
                 }
                 else
                 {
@@ -533,35 +574,10 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
                         tempStr = reportService.getResultDataValue( deCodeString, tempStartDate.getTime(), tempEndDate
                             .getTime(), currentOrgUnit, reportModelTB );
                     }
-                    
-                    
                     else if ( sType.equalsIgnoreCase( "dataelement-boolean" ) )
                     {
                         tempStr = reportService.getBooleanDataValue( deCodeString, tempStartDate.getTime(), tempEndDate
                             .getTime(), currentOrgUnit, reportModelTB );
-                    }
-                    
-                    // for added new dataElement in GOI Report
-                    else if ( sType.equalsIgnoreCase( "dataelement-date" ) )
-                    {
-                    	//if( aggData.equalsIgnoreCase( USECAPTUREDDATA ) ) 
-                        //{
-                            String tempDateString = getStringDataFromDataValue( deCodeString, selectedPeriod.getId(),currentOrgUnit.getId() );
-                            if( tempDateString != null && !tempDateString.equalsIgnoreCase(""))
-                            {
-                            	Date tempDate = format.parseDate( tempDateString );
-                                tempStr = simpleDateMonthYearFormat.format(tempDate);
-                            }
-                            System.out.println( " USECAPTUREDDATA  SType : " + sType + " DECode : " + deCodeString + "   TempStr : " + tempStr );
-                        //}
-                    }
-                    else if ( sType.equalsIgnoreCase( "dataelement-string" ) )
-                    {
-                    	//if( aggData.equalsIgnoreCase( USECAPTUREDDATA ) ) 
-                        //{
-                    		tempadeInAdeStr = getStringDataFromDataValue( deCodeString, selectedPeriod.getId(),currentOrgUnit.getId() );
-                            //System.out.println( " USECAPTUREDDATA  SType : " + sType + " DECode : " + deCodeString + "   TempStr : " + tempStr );
-                        //}
                     }
                     else
                     {
@@ -573,8 +589,7 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
                 int tempRowNo = report_inDesign.getRowno();
                 int tempColNo = report_inDesign.getColno();
                 int sheetNo = report_inDesign.getSheetno();
-                //WritableSheet sheet0 = outputReportWorkbook.getSheet( sheetNo );
-                Sheet sheet0 = apachePOIWorkbook.getSheetAt( sheetNo );
+                WritableSheet sheet0 = outputReportWorkbook.getSheet( sheetNo );
 
                 // System.out.println( ",Temp Row no is : " + tempRowNo +
                 // ", Temp Col No is : " + tempColNo );
@@ -582,14 +597,13 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
                 if ( tempStr == null || tempStr.equals( " " ) )
                 {
                     tempColNo += orgUnitCount;
-                    /*
+
                     WritableCellFormat wCellformat = new WritableCellFormat();
                     wCellformat.setBorder( Border.ALL, BorderLineStyle.THIN );
                     wCellformat.setWrap( true );
                     wCellformat.setAlignment( Alignment.CENTRE );
 
                     sheet0.addCell( new Blank( tempColNo, tempRowNo, wCellformat ) );
-                    */
                 }
 
                 else
@@ -666,78 +680,38 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
                         }
                     }
 
-                    
-                    if ( sType.equalsIgnoreCase( "dataelement" ) )
+                    // System.out.println( ",Temp Row no is : " + tempRowNo +
+                    // ", Temp Col No is : " + tempColNo + ", Data Value is : "
+                    // + tempStr );
+                    WritableCell cell = sheet0.getWritableCell( tempColNo, tempRowNo );
+
+                    CellFormat cellFormat = cell.getCellFormat();
+                    WritableCellFormat wCellformat = new WritableCellFormat();
+                    wCellformat.setBorder( Border.ALL, BorderLineStyle.THIN );
+                    wCellformat.setWrap( true );
+                    wCellformat.setAlignment( Alignment.CENTRE );
+
+                    // System.out.println( ",Temp Row no is : " + tempRowNo +
+                    // ", Temp Col No is : " + tempColNo );
+
+                    if ( cell.getType() == CellType.LABEL )
                     {
-                    	 try
-                         {
-                    		 Row row = sheet0.getRow( tempRowNo );
-                             Cell cell = row.getCell( tempColNo );
-//                             if (cell.getCellType() == Cell.CELL_TYPE_BLANK){
-//                            	    cell.setCellType(Cell.CELL_TYPE_NUMERIC);
-//                            }  
-                             cell.setCellValue( Double.parseDouble( tempStr ) );
-                             
-                         }
-                         catch ( Exception e )
-                         {
-                             //sheet0.addCell( new Label( tempColNo, tempRowNo, tempStr, wCellformat ) );
-                         	
-                             Row row = sheet0.getRow( tempRowNo );
-                             Cell cell = row.getCell( tempColNo );
-                             cell.setCellValue( tempStr );
-                         }
-                         
+                        Label l = (Label) cell;
+                        l.setString( tempStr );
+                        l.setCellFormat( cellFormat );
                     }
-                   
-                    else if ( sType.equalsIgnoreCase( "dataelement-date" ) )
+                    else
                     {
                         try
                         {
-                            Row row = sheet0.getRow( tempRowNo );
-                            Cell cell = row.getCell( tempColNo );
-                            cell.setCellValue( tempStr );
-                            
+                            sheet0.addCell( new Number( tempColNo, tempRowNo, Double.parseDouble( tempStr ),
+                                wCellformat ) );
                         }
                         catch ( Exception e )
                         {
-                        	//System.out.println( " Exception : " + e.getMessage() );
-                        	Row row = sheet0.getRow( tempRowNo );
-                        	Cell cell = row.getCell( tempColNo );
-                        	cell.setCellValue( tempStr );
+                            sheet0.addCell( new Label( tempColNo, tempRowNo, tempStr, wCellformat ) );
                         }
                     }
-                    
-                    else if ( sType.equalsIgnoreCase( "dataelement-string" ) )
-                    {
-                        
-                    	if ( tempadeInAdeStr != null && tempadeInAdeStr.equalsIgnoreCase("Adequate") )
-                        {
-                            tempStr1 = "59";
-                        }
-                    	else if ( tempadeInAdeStr != null && tempadeInAdeStr.equalsIgnoreCase("Inadequate") )
-                        {
-                            tempStr1 = "60";
-                        }
-                       
-                    	try
-                        {
-                            Row row = sheet0.getRow( tempRowNo );
-                            
-                            Cell cell_1 = row.getCell( tempColNo - 1 );
-                            cell_1.setCellValue( tempStr1 );
-                            
-                            Cell cell_2 = row.getCell( tempColNo );
-                            cell_2.setCellValue( tempadeInAdeStr );
-                        }
-                        catch ( Exception e )
-                        {
-                            //sheet0.addCell( new Label( tempColNo, tempRowNo, tempStr, wCellformat ) );
-                            Row row = sheet0.getRow( tempRowNo );
-                            Cell cell = row.getCell( tempColNo );
-                            cell.setCellValue( tempadeInAdeStr );
-                        }
-                    } 
                 }
 
                 count1++;
@@ -836,7 +810,7 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
                 int tempColNo = report_inDesign.getColno();
                 int sheetNo = report_inDesign.getSheetno();
                 // System.out.println( ",Temp Row no is : " + tempRowNo );
-                Sheet sheet0 = apachePOIWorkbook.getSheetAt( sheetNo );
+                WritableSheet sheet0 = outputReportWorkbook.getSheet( sheetNo );
                 if ( tempStr == null || tempStr.equals( " " ) )
                 {
 
@@ -904,13 +878,13 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
                         // tempColNo, tempRowNo );
 
                         // CellFormat cellFormat = cell.getCellFormat();
-//
-//                        WritableCellFormat wCellformat = new WritableCellFormat();
-//
-//                        wCellformat.setBorder( Border.ALL, BorderLineStyle.THIN );
-//                        wCellformat.setWrap( true );
-//                        wCellformat.setAlignment( Alignment.CENTRE );
-//                        wCellformat.setVerticalAlignment( VerticalAlignment.CENTRE );
+
+                        WritableCellFormat wCellformat = new WritableCellFormat();
+
+                        wCellformat.setBorder( Border.ALL, BorderLineStyle.THIN );
+                        wCellformat.setWrap( true );
+                        wCellformat.setAlignment( Alignment.CENTRE );
+                        wCellformat.setVerticalAlignment( VerticalAlignment.CENTRE );
                         /*
                          * if ( cell.getType() == CellType.LABEL ) { Label l =
                          * (Label) cell; l.setString( tempStr );
@@ -943,7 +917,7 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
                                 // System.out.println( "tempStr1 is : " +
                                 // tempStr1 + ", tempStr2 is : " + tempStr2 );
                             }
-                           /* try
+                            try
                             {
                                 sheet0.addCell( new Label( tempColNo - 1, tempRowNo, tempStr1, getCellFormat1() ) );
                                 sheet0.addCell( new Label( tempColNo, tempRowNo, tempStr2, getCellFormat1() ) );
@@ -953,19 +927,18 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
                                 // System.out.println(
                                 // "In Side lldeathdataelementage Exception" );
                                 sheet0.addCell( new Label( tempColNo, tempRowNo, tempStr1, getCellFormat1() ) );
-                            }*/
+                            }
                         }
                         else if ( sType.equalsIgnoreCase( "lldeathdataelement" ) )
                         {
                             try
                             {
-                                //sheet0.addCell( new Number( tempColNo, tempRowNo, Integer.parseInt( tempStr ),
-                                   // getCellFormat1() ) );
+                                sheet0.addCell( new Number( tempColNo, tempRowNo, Integer.parseInt( tempStr ),
+                                    getCellFormat1() ) );
                             }
                             catch ( Exception e )
                             {
-                               // sheet0.addCell( new Label( tempColNo, tempRowNo, tempStr, getCellFormat1() ) );
-                                
+                                sheet0.addCell( new Label( tempColNo, tempRowNo, tempStr, getCellFormat1() ) );
                             }
                         }
 
@@ -1083,8 +1056,7 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
                 // int tempRowNo1 = 136;
                 int tempColNo = report_inDesign.getColno();
                 int sheetNo = report_inDesign.getSheetno();
-                Sheet sheet0 = apachePOIWorkbook.getSheetAt( sheetNo );
-                //WritableSheet sheet0 = outputReportWorkbook.getSheet( sheetNo );
+                WritableSheet sheet0 = outputReportWorkbook.getSheet( sheetNo );
                 if ( tempStr == null || tempStr.equals( " " ) )
                 {
 
@@ -1147,15 +1119,13 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
                         // tempColNo, tempRowNo1 );
 
                         // CellFormat cellFormat = cell.getCellFormat();
-                        
-                        /*
+
                         WritableCellFormat wCellformat = new WritableCellFormat();
 
                         wCellformat.setBorder( Border.ALL, BorderLineStyle.THIN );
                         wCellformat.setWrap( true );
                         wCellformat.setAlignment( Alignment.CENTRE );
                         wCellformat.setVerticalAlignment( VerticalAlignment.CENTRE );
-                        */
 
                         /*
                          * if ( cell.getType() == CellType.LABEL ) { Label l =
@@ -1176,7 +1146,7 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
                         // {
                         if ( sType.equalsIgnoreCase( "llmaternaldeathdataelement" ) )
                         {
-                           /* try
+                            try
                             {
                                 sheet0.addCell( new Number( tempColNo, tempRowNo1, Integer.parseInt( tempStr ),
                                     getCellFormat1() ) );
@@ -1184,19 +1154,7 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
                             catch ( Exception e )
                             {
                                 sheet0.addCell( new Label( tempColNo, tempRowNo1, tempStr, getCellFormat1() ) );
-                            }*/
-                        	  try
-                              {
-                                  Row row = sheet0.getRow( tempRowNo1 );
-                                  Cell cell = row.getCell( tempColNo );
-                                  cell.setCellValue( Integer.parseInt( tempStr ) );
-                              }
-                              catch ( Exception e )
-                              {
-                                  Row row = sheet0.getRow( tempRowNo1 );
-                                  Cell cell = row.getCell( tempColNo );
-                                  cell.setCellValue( tempStr );
-                              }
+                            }
                         }
                         // }
                     }
@@ -1213,39 +1171,29 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
         System.out.println( "Current org unit id : " + currentOrgUnit.getId() + ": Selected Period is : "
             + selectedPeriod.getId() + ": No of Record :" + noOfRecords + ": Report List : " + reportList );
 
-       // outputReportWorkbook.write();
-       // outputReportWorkbook.close();
+        outputReportWorkbook.write();
+        outputReportWorkbook.close();
 
         fileName = reportFileNameTB.replace( ".xls", "" );
         fileName += "_" + currentOrgUnit.getShortName() + "_";
         fileName += "_" + simpleDateFormat.format( selectedPeriod.getStartDate() ) + ".xls";
-        
-        tempFile.close(); //Close the InputStream
-        
-        FileOutputStream output_file = new FileOutputStream( new File(  outputReportPath ) );  //Open FileOutputStream to write updates
-        
-        apachePOIWorkbook.write( output_file ); //write changes
-          
-        output_file.close();  //close the stream   
-        
         File outputReportFile = new File( outputReportPath );
         inputStream = new BufferedInputStream( new FileInputStream( outputReportFile ) );
-        
+
         outputReportFile.deleteOnExit();
-       
+
         try
         {
-    
+
         }
         finally
         {
             if ( con != null )
                 con.close();
         }
-    
-        //statementManager.destroy();
+
+        statementManager.destroy();
         System.out.println( "Report Generation End Time is : \t" + new Date() );
-    
 
         return SUCCESS;
     }
@@ -1606,82 +1554,5 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
 
         return recordNosList;
     }   
-  */
-    
-    
-    // get capture data for which dataType String or date
-    public String getStringDataFromDataValue( String formula, Integer periodId, Integer organisationUnitId )
-    {
-        Statement st1 = null;
-        ResultSet rs1 = null;
-        // System.out.println( "Inside LL Data Value Method" );
-        String query = "";
-        String resultValue = "";
-        try
-        {
-            // int deFlag1 = 0;
-            // int deFlag2 = 0;
-            Pattern pattern = Pattern.compile( "(\\[\\d+\\.\\d+\\])" );
-    
-            Matcher matcher = pattern.matcher( formula );
-            StringBuffer buffer = new StringBuffer();
-    
-            while ( matcher.find() )
-            {
-                String replaceString = matcher.group();
-    
-                replaceString = replaceString.replaceAll( "[\\[\\]]", "" );
-                String optionComboIdStr = replaceString.substring( replaceString.indexOf( '.' ) + 1, replaceString
-                    .length() );
-    
-                replaceString = replaceString.substring( 0, replaceString.indexOf( '.' ) );
-    
-                int dataElementId = Integer.parseInt( replaceString );
-                int categoryOptionComboId = Integer.parseInt( optionComboIdStr );
-    
-//                DataElement dataElement = dataElementService.getDataElement( dataElementId );
-//                DataElementCategoryOptionCombo optionCombo = dataElementCategoryOptionComboService
-//                    .getDataElementCategoryOptionCombo( categoryOptionComboId );
-//    
-//                if ( dataElement == null || optionCombo == null )
-//                {
-//                    replaceString = "";
-//                    matcher.appendReplacement( buffer, replaceString );
-//                    continue;
-//                }
-//
-//                query = "SELECT value FROM datavalue WHERE sourceid = " + organisationUnitId
-//                    + " AND periodid = " + periodId + " AND dataelementid = " + dataElement.getId();
-                
-                query = "SELECT value FROM datavalue WHERE sourceid = " + organisationUnitId
-                        + " AND periodid = " + periodId + " AND dataelementid = " + dataElementId + " AND categoryoptioncomboid = " + categoryOptionComboId;
-                
-                SqlRowSet sqlResultSet = jdbcTemplate.queryForRowSet( query );
-    
-                if ( sqlResultSet.next() )
-                {
-                	resultValue = sqlResultSet.getString( 1 );
-                }
-    
-            }
-    
-            //System.out.println( "resultValue - " + resultValue);
-            
-        }
-        catch ( NumberFormatException ex )
-        {
-            throw new RuntimeException( "Illegal DataElement id", ex );
-        }
-        catch ( Exception e )
-        {
-            System.out.println( "SQL Exception : " + e.getMessage() );
-            return null;
-        }
-        
-        return resultValue;
-    }    
-    
-       
-    
-    
+  */  
 }

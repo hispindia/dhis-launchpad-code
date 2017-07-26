@@ -330,7 +330,7 @@ public class GenerateOuWiseProgressReportResultAction
         sDate = format.parseDate( startDate );
         eDate = format.parseDate( endDate );
         */
-        
+       
         // Period Info
         selectedPeriod = periodService.getPeriod( availablePeriods );
         selectedEndPeriod = periodService.getPeriod( availablePeriodsto );
@@ -341,6 +341,8 @@ public class GenerateOuWiseProgressReportResultAction
         List<Period> periodList = new ArrayList<Period>();
         
         PeriodType periodType = periodService.getPeriodTypeByName( periodTypeId );
+        
+        periodList = new ArrayList<Period>( periodService.getPeriodsBetweenDates( periodType, sDate, eDate ) );
         
         periodList = new ArrayList<Period>( periodService.getPeriodsBetweenDates( periodType, sDate, eDate ) );
         
@@ -400,7 +402,38 @@ public class GenerateOuWiseProgressReportResultAction
             periodIdsByComma = getCommaDelimitedString( periodIds );
         }
         
-        //System.out.println( "-- periodIdsByComma is --" + periodIdsByComma  );
+        System.out.println( "-- periodIdsByComma Period Between Dates is --" + periodIdsByComma  );
+        
+        
+        List<Period> periodListInter = new ArrayList<Period>();
+        
+        periodListInter = new ArrayList<Period>( periodService.getIntersectingPeriods( sDate, eDate ) );
+        /*
+        Iterator<Period> tempPeriod = periodListInter.iterator();
+        while ( tempPeriod.hasNext() )
+        {
+            Period currentPeriod = (Period) tempPeriod.next();
+            
+            if ( currentPeriod.getPeriodType().getName().equalsIgnoreCase("Monthly")  || currentPeriod.getPeriodType().getName().equalsIgnoreCase("yearly") )
+            {
+            }
+            else
+            {
+                tempPeriod.remove();
+            }
+            
+        }
+        */   
+
+        String periodIdsByCommaIntersecting = "-1";
+        if( periodListInter != null && periodListInter.size() > 0 )
+        {
+            Collection<Integer> periodIds = new ArrayList<Integer>( getIdentifiers( Period.class, periodListInter ) );        
+            periodIdsByCommaIntersecting = getCommaDelimitedString( periodIds );
+        }
+        
+        System.out.println( "-- periodIdsByComma Intersecting Periods is --" + periodIdsByCommaIntersecting  );
+        
         
         
         /*
@@ -437,7 +470,8 @@ public class GenerateOuWiseProgressReportResultAction
                 List<Integer> childOrgUnitTreeIds = new ArrayList<Integer>( getIdentifiers( OrganisationUnit.class, childOrgUnitTree ) );
                 String childOrgUnitsByComma = getCommaDelimitedString( childOrgUnitTreeIds );
 
-                aggDeMap.putAll( reportService.getAggDataFromDataValueTable( childOrgUnitsByComma, dataElmentIdsByComma, periodIdsByComma ) );
+                //aggDeMap.putAll( reportService.getAggDataFromDataValueTable( childOrgUnitsByComma, dataElmentIdsByComma, periodIdsByComma ) );
+                aggDeMap.putAll( reportService.getAggDataFromDataValueTable( childOrgUnitsByComma, dataElmentIdsByComma, periodIdsByCommaIntersecting ) );
             }
             else if( aggData.equalsIgnoreCase( USECAPTUREDDATA ) )
             {

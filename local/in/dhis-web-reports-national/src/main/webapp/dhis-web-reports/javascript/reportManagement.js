@@ -398,7 +398,6 @@ function getPeriodsForPeriodWiseProgressReportReceived(xmlObject)
 }
 
 
-
 //----------------------------------------------------------------------
 //Get Periods For OrgUnit WiseProgress Report
 //----------------------------------------------------------------------
@@ -457,3 +456,7 @@ function getPeriodsForOrgUnitWiseProgressReportReceived(xmlObject)
 		$("#availablePeriodsto").append("<option value='"+ id +"'>" + periodName + "</option>");
 	}
 }
+
+
+
+
