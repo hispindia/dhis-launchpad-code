@@ -17,23 +17,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
-import jxl.CellType;
-import jxl.Workbook;
-import jxl.format.Alignment;
-import jxl.format.Border;
-import jxl.format.BorderLineStyle;
-import jxl.format.CellFormat;
-import jxl.write.Blank;
-import jxl.write.Label;
-import jxl.write.Number;
-import jxl.write.WritableCell;
-import jxl.write.WritableCellFormat;
-import jxl.write.WritableSheet;
-import jxl.write.WritableWorkbook;
-
 import org.amplecode.quick.StatementManager;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.hisp.dhis.common.comparator.IdentifiableObjectNameComparator;
 import org.hisp.dhis.config.Configuration_IN;
@@ -47,7 +34,7 @@ import org.hisp.dhis.reports.ReportService;
 import org.hisp.dhis.reports.Report_in;
 import org.hisp.dhis.reports.Report_inDesign;
 
-import com.lowagie.text.Row;
+
 import com.opensymphony.xwork2.Action;
 
 public class GenerateUpwardReportAnalyserResultAction
@@ -525,23 +512,23 @@ public class GenerateUpwardReportAnalyserResultAction
                     }*/
                   //  else
                     //{
+                        
                         try
                         {
-                          //  sheet0.addCell( new Number( tempColNo, tempRowNo, Double.parseDouble( tempStr ),
-                              //  wCellformat ) );
-                            Row row = (Row) sheet0.getRow( tempRowNo );
-                            Cell cell = (Cell) row.getCell( tempColNo );
+                            //sheet0.addCell( new Number( tempColNo, tempRowNo, Double.parseDouble( tempStr ), wCellformat ) );
+                        	Row row = sheet0.getRow( tempRowNo );
+                            Cell cell = row.getCell( tempColNo );
                             cell.setCellValue( Double.parseDouble( tempStr ) );
-                            
                         }
-                        catch ( Exception e )
+                        catch( Exception e )
                         {
-                            /*sheet0.addCell( new Label( tempColNo, tempRowNo, tempStr, wCellformat ) );
-                            e.printStackTrace();*/
-                        	Row row = (Row) sheet0.getRow( tempRowNo );
-                            Cell cell = (Cell) row.getCell( tempColNo );
+                            //sheet0.addCell( new Label( tempColNo, tempRowNo, tempStr, wCellformat ) );
+                        	Row row = sheet0.getRow( tempRowNo );
+                            Cell cell = row.getCell( tempColNo );
                             cell.setCellValue( tempStr );
                         }
+                        
+                        
                     }
                 }
 

@@ -711,15 +711,19 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
                     else if ( sType.equalsIgnoreCase( "dataelement-string" ) )
                     {
                         
-                    	if ( tempadeInAdeStr != null && tempadeInAdeStr.equalsIgnoreCase("Adequate") )
+                    	if ( tempadeInAdeStr != null && tempadeInAdeStr.equalsIgnoreCase("0") )
                         {
                             tempStr1 = "59";
+                            tempadeInAdeStr = "Adequate";
                         }
-                    	else if ( tempadeInAdeStr != null && tempadeInAdeStr.equalsIgnoreCase("Inadequate") )
+                    	else if ( tempadeInAdeStr != null && tempadeInAdeStr.equalsIgnoreCase("1") )
                         {
                             tempStr1 = "60";
+                            tempadeInAdeStr = "Inadequate";
                         }
-                       
+                        else
+                        {
+                        }
                     	try
                         {
                             Row row = sheet0.getRow( tempRowNo );
@@ -734,6 +738,10 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
                         {
                             //sheet0.addCell( new Label( tempColNo, tempRowNo, tempStr, wCellformat ) );
                             Row row = sheet0.getRow( tempRowNo );
+                            
+                            Cell cell_1 = row.getCell( tempColNo - 1 );
+                            cell_1.setCellValue( tempStr1 );
+                            
                             Cell cell = row.getCell( tempColNo );
                             cell.setCellValue( tempadeInAdeStr );
                         }
