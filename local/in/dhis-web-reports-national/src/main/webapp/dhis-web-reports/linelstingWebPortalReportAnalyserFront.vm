@@ -56,8 +56,9 @@
 				$i18n.getString( "generated_data_type" ) :<br />
 				<select id="aggData" name="aggData" style="width:200px">
                     <option value="usecaptureddata" >$i18n.getString( "use_captured_data" )</option>
-                    <option value="generateaggdata">$i18n.getString( "generate_agg_data" )</option>
+                    <!--<option value="generateaggdata">$i18n.getString( "generate_agg_data" )</option>
                     <option value="useexistingaggdata">$i18n.getString( "use_existing_agg_data" )</option>
+					-->
                 </select>				
          	</td>
 		</tr>

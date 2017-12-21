@@ -31,7 +31,7 @@
 		
 		<!-- for Maharashtra -->
 		
-		
+		<!--
 		#if( $auth.hasAccess( "dhis-web-reports", "upwardReportAnalyser") )
 			<li><a href = "upwardReportAnalyser.action">GOI Reports</a></li>
 		#end
@@ -76,9 +76,11 @@
 			<li><a href = "linelistingReportAnalyser.action">Linelisting Reports</a></li>
 		#end		
 		
-		#if( $auth.hasAccess( "dhis-web-reports", "populateMultipleUsersForm") )
-			<li><a href = "populateMultipleUsersForm.action">Populate Users From Excel</a></li>
+		#if( $auth.hasAccess( "dhis-web-reports", "populateMultipleUsers") )
+			<li><a href = "populateMultipleUsers.action">Populate Users From Excel</a></li>
 		#end
+		-->
+				
 		
 		<!-- for Bihar 
 		#if( $auth.hasAccess( "dhis-web-reports", "upwardReportAnalyser") )
@@ -132,18 +134,15 @@
 		
 		<!-- for Haryana -->
 		<!-- from LineListing -->
-		
-		<!--
 		#if( $auth.hasAccess( "dhis-web-reports", "linelistingWebPortalReportAnalyserFromLineListing") )
- 			<li><a href = "linelistingWebPortalReportAnalyserFromLineListing.action">GOI Reports(Public Institution)(From Linelisting)</a></li>
+ 			<li><a href = "linelistingWebPortalReportAnalyserFromLineListing.action">GOI Reports(Public Institution)</a></li>
 		#end
 	   
 		#if( $auth.hasAccess( "dhis-web-reports", "linelistingWebPortalReportAnalyserFromLineListingPrivate") )
- 			<li><a href = "linelistingWebPortalReportAnalyserFromLineListingPrivate.action">GOI Reports(Private Institution)(From Linelisting)</a></li>
+ 			<li><a href = "linelistingWebPortalReportAnalyserFromLineListingPrivate.action">GOI Reports(Private Institution)</a></li>
 		#end
-		-->
-		<!-- from Event Capture -->
-		<!--
+		
+		<!-- from Event Capture 
 		#if( $auth.hasAccess( "dhis-web-reports", "linelistingWebPortalReportAnalyser") )
 			<li><a href = "linelistingWebPortalReportAnalyser.action">GOI Reports(Public Institution)(From Event Capture)</a></li>
 		#end
@@ -151,11 +150,6 @@
 		#if( $auth.hasAccess( "dhis-web-reports", "linelistingWebPortalReportAnalyserPrivate") )
 			<li><a href = "linelistingWebPortalReportAnalyserPrivate.action">GOI Reports(Private Institution)(From Event Capture)</a></li>
 		#end
-		
-		#if( $auth.hasAccess( "dhis-web-reports", "metaDataReportAnalyser") )
-			<li><a href = "metaDataReportAnalyser.action">Meta Data Reports</a></li>
-		#end
-		
 		-->
 		
 		<!--
@@ -173,7 +167,9 @@
 		#end
 		-->
 		
-		
+		#if( $auth.hasAccess( "dhis-web-reports", "metaDataReportAnalyser") )
+			<li><a href = "metaDataReportAnalyser.action">Meta Data Reports</a></li>
+		#end
 		
 		<!--
 		#if( $auth.hasAccess( "dhis-web-reports", "routineReportAnalyser") )
