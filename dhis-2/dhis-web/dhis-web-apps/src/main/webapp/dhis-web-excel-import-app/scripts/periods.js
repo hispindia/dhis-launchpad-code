@@ -123,3 +123,12 @@
 		
 		return dateString;
 	}
+
+    //period type : quartly
+    function quartly(sD , eD)
+    {
+
+        var dateString = "2014Q1;2014Q2;2014Q3;2014Q4;2015Q1;2015Q2;2015Q3;2015Q4;2016Q1;2016Q2;2016Q3;2016Q4";
+        
+        return dateString;
+    }

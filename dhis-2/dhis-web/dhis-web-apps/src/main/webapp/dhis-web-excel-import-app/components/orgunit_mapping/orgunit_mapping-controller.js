@@ -75,107 +75,11 @@ excelUpload.controller('OrgUnitMappingController',
 					
 					$("#errMsg").html("");
 					$("#errMsg").slideUp();
-					$("#infoMsg").html("");
-					$("#infoMsg").slideUp();
 				}
 			} 
 		, 500 );
 	};
-
-	$scope.uploadJSON = function () {
-		$("#fileUpload").click();
-		$("#errMsg").html("");
-		$("#errMsg").slideUp();
-		$("#infoMsg").html("");
-		$("#infoMsg").slideUp();
-		$("#fileUpload").change(function(event){
-			var uploadedFile = event.target.files[0];
-			console.info(event.target.files[0]);
-			if(uploadedFile.type != "text/javascript" && uploadedFile.type != "application/x-javascript" && uploadedFile.type != "application/javascript") {
-				$('#modalHeader').removeClass().addClass('alert alert-danger').addClass('modal-header');
-				$("#msgIcon").removeClass().addClass('glyphicon glyphicon glyphicon-exclamation-sign');
-				$("#msgTitle").html("&nbsp;&nbsp;Error Message");
-				$("#msgTitle").css('color','darkred');
-				$("#errorContent").html("");
-				$("#errorContent").append("Wrong file type " + uploadedFile.type + ".</br>" + " Please select .js format file.");
-				var fileUpload = $("#fileUpload");
-				fileUpload.replaceWith( fileUpload.val('').clone( true ) );
-				$("#errorModal").modal("show");
-				return false;
-			}
-
-			if (uploadedFile) {
-				try {
-					var readFile = new FileReader();
-					readFile.onload = function (e) {
-						var contents = e.target.result;
-						var json = JSON.parse(contents);
-						var alreadyMappedOrgUnits = [];
-						var hasAlreadyMappedOrgUnits = false;
-
-						$.each(json.omapping, function(i,item){
-							var found = $scope.isMappingFound(item.label);
-							if( !found )
-							{
-								var newMapping = {};
-								newMapping.label = item.label;
-								newMapping.orgUnit = item.orgUnit;
-								$scope.orgMappings.omapping.push( newMapping );
-								$scope.saveMapping();
-							}
-							else
-							{
-								alreadyMappedOrgUnits.push([found,item.label]);
-								hasAlreadyMappedOrgUnits = true;
-							}
-						});
-
-						if(hasAlreadyMappedOrgUnits) {
-							var errorStr = "";
-							errorStr += "Upload completed with following issues:" + "</br>";
-							errorStr += "Following organisation unit's mapping was already done" + "</br></br>";
-							errorStr += "<center><table cellspacing='6' cellpadding='4'>";
-							errorStr += "<tr style='text-align: center;'><td><strong>Organisation Unit</strong></td><td><strong>Label</strong></td></tr>";
-							$.each(alreadyMappedOrgUnits, function (i) {
-								errorStr += "<tr style='text-align: center;'><td>" + alreadyMappedOrgUnits[i][0] + "</td><td>" + alreadyMappedOrgUnits[i][1] + "</td></tr>";
-							});
-							errorStr += "</table></center>";
-
-							$('#modalHeader').removeClass().addClass('alert alert-warning').addClass('modal-header');
-							$("#msgIcon").removeClass().addClass('glyphicon glyphicon-exclamation-sign');
-							$("#msgTitle").html("&nbsp;&nbsp;Warning Message");
-							$("#msgTitle").css('color','darkgoldenrod');
-							$("#errorContent").html("");
-							$("#errorContent").append(errorStr);
-							$("#errorModal").modal("show");
-							$scope.printLabels();
-						}
-						else{
-							$('#modalHeader').removeClass().addClass('alert alert-success').addClass('modal-header');
-							$("#msgIcon").removeClass().addClass('glyphicon glyphicon-ok-circle');
-							$("#msgTitle").html("&nbsp;&nbsp;Message");
-							$("#msgTitle").css('color','darkgreen');
-							$("#errorContent").html("");
-							$("#errorContent").append('Upload Successful');
-							$("#errorModal").modal("show");
-							$scope.printLabels();
-						}
-						var fileUpload = $("#fileUpload");
-						fileUpload.replaceWith( fileUpload.val('').clone( true ) );
-					};
-					readFile.readAsText(uploadedFile);
-				}
-				catch(err){
-					$("#errMsg").html(err.message);
-					$("#errMsg").slideDown();
-				}
-			} else {
-				$("#errMsg").html("Failed to load file");
-				$("#errMsg").slideDown();
-			}
-		});
-	}
-
+	
 	$scope.addMapping = function(){
 		var found = $scope.isMappingFound($("#newLabel").val());
 		
@@ -191,8 +95,6 @@ excelUpload.controller('OrgUnitMappingController',
 			newMapping.orgUnit = $("#selOrgId").val();
 			$("#errMsg").html("");
 			$("#errMsg").slideUp();
-			$("#infoMsg").html("");
-			$("#infoMsg").slideUp();
 			$("#newLabel").val("");
 			
 			$scope.orgMappings.omapping.push( newMapping );

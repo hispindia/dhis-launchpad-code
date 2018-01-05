@@ -195,6 +195,7 @@ dhis2.period.PeriodGenerator = function( calendar, format ) {
     format: format
   });
 
+  this.registerGenerator(dhis2.period.ForteenGenerator);
   this.registerGenerator(dhis2.period.DailyGenerator);
   this.registerGenerator(dhis2.period.WeeklyGenerator);
   this.registerGenerator(dhis2.period.MonthlyGenerator);
@@ -206,6 +207,7 @@ dhis2.period.PeriodGenerator = function( calendar, format ) {
   this.registerGenerator(dhis2.period.FinancialAprilGenerator);
   this.registerGenerator(dhis2.period.FinancialJulyGenerator);
   this.registerGenerator(dhis2.period.FinancialOctoberGenerator);
+
 };
 
 /**
@@ -291,6 +293,13 @@ dhis2.period.PeriodGenerator.prototype.filterOpenPeriods = function( generator, 
   });
 
   return array;
+};
+
+/**
+ * Convenience method to get Forteen generator
+ */
+dhis2.period.PeriodGenerator.prototype.forteen = function( offset ) {
+    return this.get('Forteen').generatePeriods(offset);
 };
 
 /**
@@ -475,6 +484,163 @@ $.extend(dhis2.period.BaseGenerator.prototype, {
   }
 });
 
+
+// for ForteenPeriod Start
+function daysInMonth(iMonth, iYear)
+{
+    return 32 - new Date(iYear, iMonth, 32).getDate();
+}
+
+/**
+ * Implementation of dhis2.period.BaseGenerator that generates Forteen periods
+ *
+ * @param {$.calendars.baseCalendar} calendar Calendar to use, this must come from $.calendars.instance(chronology).
+ * @param {String} format Date format to use for formatting, will default to ISO 8601
+ * @constructor
+ * @augments dhis2.period.BaseGenerator
+ * @see dhis2.period.BaseGenerator
+ */
+dhis2.period.ForteenGenerator = function( calendar, format ) {
+    dhis2.period.BaseGenerator.call(this, 'Forteen', calendar, format);
+};
+
+dhis2.period.ForteenGenerator.prototype = Object.create(dhis2.period.BaseGenerator.prototype);
+
+$.extend(dhis2.period.ForteenGenerator.prototype, {
+    $generate: function( offset ) {
+
+        var periods = [];
+        var date = new Date();
+        var year = date.getFullYear() + offset;
+        var month = date.getMonth() + 1;
+        if( date.getFullYear() >= year  )
+        {
+            month = "12";
+        }
+        var day = date.getDate();
+        var i = 0;
+
+        var date = "";
+        if( day <=15){
+            date = "1";
+            var tempDay = "15";
+            //var endDate = $.date( year + '-' + month + '-15', dateFormat );
+            var endDate = this.calendar.newDate(year, month, 15);
+        }
+        else
+        {
+            date = "16";
+            //var endDate = $.date( year + '-' + month + '-' + daysInMonth(month-1,year), dateFormat );
+            var endDate = this.calendar.newDate(year, month, daysInMonth(month-1,year) );
+        }
+
+        //var startDate = $.date( year + '-' + month + '-' + date , dateFormat );
+
+        var startDate = this.calendar.newDate(year, month, date);
+
+
+        //var startDate =  new Date( year + '-' + month + '-' + date).formatDate("yyyy-mm-dd");
+
+        while ( startDate.year() == year && month >=1 )
+        {
+            var period = [];
+            period['startDate'] = startDate.formatDate(this.format);
+            period['endDate'] = endDate.formatDate(this.format);
+            period['name'] = startDate.formatDate(this.format) + " - " + endDate.formatDate(this.format);
+            period['id'] = 'Forteen_' + period['startDate'] + "_" + period['endDate'];
+            period['iso'] = year + 'D' + ( i + 1 );
+            //period['iso'] = startDate.formatDate("yyyymmdd");
+            periods[i] = period;
+
+            period['_startDate'] = this.calendar.newDate(startDate);
+            period['_endDate'] = this.calendar.newDate(endDate);
+
+            periods.push(period);
+
+            periods[i] = period;
+            month = parseInt(startDate.month());
+            if( startDate.day() == 1 ){
+                month--;
+                if(month >=1 )
+                {
+                    //startDate = $.date( year + '-' + month + '-16' , dateFormat );
+                    //endDate = $.date( year + '-' + month + '-' + daysInMonth(month-1,year), dateFormat );
+
+                    var tempDay = '16';
+
+                    var startDate = this.calendar.newDate(year, month, 16);
+                    var endDate = this.calendar.newDate(year, month, daysInMonth(month-1,year) );
+
+
+                }
+            }
+            else{
+                    //startDate = $.date( year + '-' + month + '-1' , dateFormat );
+                    //endDate = $.date( year + '-' + month + '-15', dateFormat );
+                var tempDay1 = "1";
+                var tempDay2 = "15";
+                startDate = this.calendar.newDate(year, month, 1 );
+                endDate = this.calendar.newDate(year, month, 15 );
+            }
+            i++;
+        }
+
+        /*
+        var resultPeriod  = [];
+        var index = 0;
+        for( i = periods.length - 1; i>=0; i-- )
+        {
+            resultPeriod[index] = periods[i];
+            index++;
+        }
+        return resultPeriod;
+        */
+
+       return periods;
+    },
+
+
+    $todayPlusPeriods: function( n ) {
+        return this.calendar.today().add(n, 'w');
+    }
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
  * Implementation of dhis2.period.BaseGenerator that generates Daily periods
  *
@@ -519,6 +685,10 @@ $.extend(dhis2.period.DailyGenerator.prototype, {
     return this.calendar.today().add(n, 'd');
   }
 });
+
+
+
+
 
 /**
  * Implementation of dhis2.period.BaseGenerator that generates Weekly periods

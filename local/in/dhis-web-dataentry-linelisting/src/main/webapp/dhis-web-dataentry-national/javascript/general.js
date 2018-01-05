@@ -3017,7 +3017,7 @@ function isLLDSexFieldEntered( recordNo )
 
 function isLLDAgeTypeFieldEntered( recordNo )
 {
-    var dataElementId = 6826;
+    var dataElementId = 91478;
     var field = document.getElementById( 'value[' + dataElementId + '].value:value[' + recordNo + '].value' );
     var resVal = field.selectedIndex;
   
@@ -3033,7 +3033,7 @@ function isLLDAgeTypeFieldEntered( recordNo )
 
 function isLLDAgeFieldEntered( recordNo )
 {
-    var dataElementId = 6826;
+    var dataElementId = 91478;
     var field = document.getElementById( 'value[' + dataElementId + '].value:value[' + recordNo + '].value' );
     var resVal = field.value;
 
@@ -3304,7 +3304,7 @@ function validateLLDAgeField( dataElementId, recordNo )
             //document.getElementById(recordNo).style.display = 'block';
             //document.getElementById('actions').style.display = 'block';
 			
-			var ageTypeField = document.getElementById( 'value[6826].value:value[' + recordNo + '].value' );
+			var ageTypeField = document.getElementById( 'value[91478].value:value[' + recordNo + '].value' );
 			var ageTypeSelIndex = ageTypeField.selectedIndex;
         
 			var ageTypeVal = ageTypeField.options[ ageTypeSelIndex ].value;
@@ -3366,7 +3366,7 @@ function validateLLDAgeField( dataElementId, recordNo )
 			{
 				if( parseInt(resVal) == 0 )
 				{
-					alert("Please enter the valid range between 1 to 30");
+					alert("Please enter the valid range between 1 to 6");
 					field.value = "";
 					setTimeout(function(){
 					field.focus();field.select();
@@ -4096,7 +4096,8 @@ function isLLMDAuditedFieldEntered(  )
   
     if(resVal <= 0)
     {
-        alert("Please enter IS AUDITED");
+        //alert("Please enter IS AUDITED");
+        alert("Please enter IS AUDITED in Previous Row");
     	field.focus();field.select();
         return false
     }
@@ -4369,9 +4370,18 @@ function validateLLMDCauseField( dataElementId, recordNo )
     var field = document.getElementById( 'value[' + dataElementId + '].value:value[' + recordNo + '].value' );
     var resVal = field.selectedIndex;
     
-    if(isLLMDDeliveryByFieldEntered( recordNo ))
-    {
-        if(resVal <= 0)
+	
+	var deathDuringDataElementId = 1035;
+	//var deathAtDataElementId = 1036;
+	
+    var deathDuringField = document.getElementById( 'value[' + deathDuringDataElementId + '].value:value[' + recordNo + '].value' );
+    var deathDuringVal = deathDuringField.selectedIndex;
+	
+	var selDeathDuringVal = deathDuringField.options[ deathDuringVal ].value;
+	
+	if( selDeathDuringVal == "FTP" || selDeathDuringVal == "STP" || selDeathDuringVal == "TTP" )
+	{
+		if(resVal <= 0)
         {
             alert("Please Enter Cuase for Death");
             field.options[0].selected = true;
@@ -4388,17 +4398,51 @@ function validateLLMDCauseField( dataElementId, recordNo )
         }
         else
         {
-            saveLLbirthValue( dataElementId, recordNo );
+            var valueSaver1 = new ValueSaver( "1036:"+recordNo, "OTHER", '#ccffcc' );
+            valueSaver1.save();
+			var valueSaver2 = new ValueSaver( "1037:"+recordNo, "OTHER", '#ccffcc' );
+            valueSaver2.save();
+			
+			saveLLbirthValue( dataElementId, recordNo );
             document.getElementById(recordNo).style.display = 'block';
             document.getElementById('actions').style.display = 'block';
         }
-    }
-    else
-    {
-        field.options[0].selected = true;
+	}
+	else
+	{
+		if(isLLMDDeliveryByFieldEntered( recordNo ))
+		{
+			if(resVal <= 0)
+			{
+				alert("Please Enter Cuase for Death");
+				field.options[0].selected = true;
+				// change for HP Save OTHER or Cause Not Know
+				
+				saveLLbirthValue( dataElementId, recordNo );
+				document.getElementById(recordNo).style.display = 'block';
+				document.getElementById('actions').style.display = 'block';
+				// field.focus();
+				setTimeout(function(){
+					field.focus();field.select();
+				},2);
+				return false;
+			}
+			else
+			{
+				saveLLbirthValue( dataElementId, recordNo );
+				document.getElementById(recordNo).style.display = 'block';
+				document.getElementById('actions').style.display = 'block';
+			}
+		}
+		else
+		{
+			field.options[0].selected = true;
     
-        return false;
-    }
+			return false;
+		}
+		
+	}
+    
 }
 
 function validateLLMDAuditedField( dataElementId, recordNo )
@@ -4605,7 +4649,7 @@ function saveLLbirthValue( dataElementId, recordNo )
     		dataElementId == 1035 || dataElementId == 1036 || dataElementId == 1037 || dataElementId == 1038 || 
     		dataElementId == 1039 || dataElementId == 1040 || dataElementId == 1043 || dataElementId == 1046 || 
     		dataElementId == 1050 || dataElementId == 1051 || dataElementId == 1052 || dataElementId == 1054 || 
-    		dataElementId == 5786 || dataElementId == 5788 || dataElementId == 3120 || dataElementId == 6826
+    		dataElementId == 5786 || dataElementId == 5788 || dataElementId == 3120 || dataElementId == 91478
     		)
     {
         resVal = field.options[field.selectedIndex].value;

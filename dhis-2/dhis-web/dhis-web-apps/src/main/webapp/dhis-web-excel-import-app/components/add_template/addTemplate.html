@@ -20,7 +20,7 @@
 					<input class="form-control am" id="tempName"/>
 				</div>
 				
-				<div class="form-group input-group">
+				<div class="form-group input-group forMouMde">
 					<span class="input-group-addon" style='font-size:12px'>Rows</span>
 					<select class="form-control am" id="rowData">
 						<option value="d"> Data Elements </option>
@@ -28,25 +28,43 @@
 					</select>
 				</div>
 				
-				<div class="form-group input-group">
+				<div class="form-group input-group forSouMde">
+					<span class="input-group-addon" style='font-size:12px'>Organisation Unit Cell</span>
+					<input class="form-control am" id="orgCellRow" type="number" placeholder="Row Number" style="border-radius:0 5px 5px 0;margin-bottom:5px"/>
+					<input class="form-control am" id="orgCellCol" type="number" placeholder="Column Number"/>
+				</div>
+				
+				<div class="form-group input-group forSouMde">
+					<span class="input-group-addon" style='font-size:12px'>Data Starting Cell</span>
+					<input class="form-control am" id="dStartCellRow" type="number" placeholder="Row Number" style="border-radius:0 5px 5px 0;margin-bottom:5px"/>
+					<input class="form-control am" id="dStartCellCol" type="number" placeholder="Column Number"/>
+				</div>
+				
+				<div class="form-group input-group forSouMde">
+					<span class="input-group-addon" style='font-size:12px'>Data Ending Cell</span>
+					<input class="form-control am" id="dEndCellRow" type="number" placeholder="Row Number" style="border-radius:0 5px 5px 0;margin-bottom:5px"/>
+					<input class="form-control am" id="dEndCellCol" type="number" placeholder="Column Number"/>
+				</div>
+				
+				<div class="form-group input-group forMouMde">
 					<span class="input-group-addon" style='font-size:12px'>Row Starting Cell</span>
 					<input class="form-control am" id="rowStartRNum" type="number" placeholder="Row Number" style="border-radius:0 5px 5px 0;margin-bottom:5px"/>
 					<input class="form-control am" id="rowStartCNum" ng-model="rsn"  value="{{rsn}}" type="number" placeholder="Column Number"/>
 				</div>
 				
-				<div class="form-group input-group">
+				<div class="form-group input-group forMouMde">
 					<span class="input-group-addon" style='font-size:12px'>Row Ending Cell</span>
 					<input class="form-control am"  id="rowEndRNum" type="number" placeholder="Row Number" style="border-radius:0 5px 5px 0;margin-bottom:5px"/>
 					<input class="form-control am"  id="rowEndCNum" ng-model="rsn" value="{{rsn}}" type="number" placeholder="Column Number"/>
 				</div>
 				
-				<div class="form-group input-group">
+				<div class="form-group input-group forMouMde">
 					<span class="input-group-addon" style='font-size:12px'>Column Starting Cell</span>
 					<input class="form-control am"  id="columnStartRNum"  ng-model="csn"  value="{{csn}}" type="number" placeholder="Row Number" style="border-radius:0 5px 5px 0;margin-bottom:5px"/>
 					<input class="form-control am"  id="columnStartCNum" type="number" placeholder="Column Number"/>
 				</div>
 				
-				<div class="form-group input-group">
+				<div class="form-group input-group forMouMde">
 					<span class="input-group-addon" style='font-size:12px'>Column Ending Cell</span>
 					<input class="form-control am"  id="columnEndRNum"  ng-model="csn"  value="{{csn}}" type="number" placeholder="Row Number" style="border-radius:0 5px 5px 0;margin-bottom:5px"/>
 					<input class="form-control am"  id="columnEndCNum" type="number" placeholder="Column Number"/>

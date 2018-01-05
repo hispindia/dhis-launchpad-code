@@ -121,7 +121,7 @@ var excelUploadServices = angular.module('excelUploadServices', ['ngResource'])
     return {
         save: function(key, value){
             value = JSON.stringify(value); 
-			//console.info(value);
+			//console.log(value);
             var url = '../api/systemSettings/' + key ;           
             var promise = $http.post( url, value , {headers: {'Content-Type': 'text/plain;charset=utf-8'}}).then(function(response){
                 return response.data;

@@ -130,7 +130,8 @@ excelUpload.controller('ImportController',
 				//printing periods ------------------
 				var periodType = d.periodType;	
 				var today = new Date();
-				var stDate = "01/01/" + today.getFullYear();
+				//var stDate = "01/01/" + today.getFullYear();
+                var stDate = "01/01/" + "2014";
 				var endDate = "01/01/" + (today.getFullYear()+1);
 				
 				var periods = "";
@@ -143,6 +144,8 @@ excelUpload.controller('ImportController',
 					periods = monthly( stDate , endDate );
 				else if(periodType == "Yearly")
 					periods = yearly( stDate , endDate );
+                else if(periodType == "Quarterly")
+                    periods = quartly( stDate , endDate );
 				
 				$("#importPeriod").html("");
 				periods.split(";").forEach(function(p){
@@ -272,10 +275,11 @@ excelUpload.controller('ImportController',
 			}
 			else if ( selectedTemp.typeId == 2 ) //SOU - MDE
 			{
-				if( selectedTemp.columnMetaData == "o" )
-					$scope.isOrgUnitAvailable( $scope.getImportData( selectedTemp.columnStart.rn , selectedTemp.columnStart.cn ) );
-				else
-					$scope.isOrgUnitAvailable( $scope.getImportData( selectedTemp.rowStart.rn , selectedTemp.rowStart.cn ) );
+				//if( selectedTemp.columnMetaData == "o" )
+					console.log(selectedTemp.orgUnitCell.rn + " " +  selectedTemp.orgUnitCell.cn );
+					$scope.isOrgUnitAvailable( $scope.getImportData( selectedTemp.orgUnitCell.rn , selectedTemp.orgUnitCell.cn ) );
+				//else
+					//$scope.isOrgUnitAvailable( $scope.getImportData( selectedTemp.rowStart.rn , selectedTemp.rowStart.cn ) );
 			}
 		}
 		
@@ -438,7 +442,7 @@ excelUpload.controller('ImportController',
 							var ouLabel = $scope.getImportData( y, selectedTemp.rowStart.cn );
 							dataValue.orgUnit = $scope.getOrgUnitByLabel( ouLabel );
 							dataValue.value = $scope.getImportData( y, colNum );
-							
+					
 							if( $("#importEmpty").val() == 1 )
 								dataValue.value = dataValue.value == "" ? "omit" : dataValue.value;
 							else
@@ -463,7 +467,7 @@ excelUpload.controller('ImportController',
 						dataValue.period = $("#importPeriod").val();
 						dataValue.dataElement = selectedTemp.DEMappings[x].metadata.split("-")[0];
 						dataValue.categoryOptionCombo = selectedTemp.DEMappings[x].metadata.split("-")[1];
-						var ouLabel = $scope.getImportData( selectedTemp.columnStart.rn , selectedTemp.columnStart.cn );
+						var ouLabel = $scope.getImportData( selectedTemp.orgUnitCell.rn , selectedTemp.orgUnitCell.cn );
 						dataValue.orgUnit = $scope.getOrgUnitByLabel( ouLabel );
 						dataValue.value = $scope.getImportDataByAddress( cellAddress );
 						

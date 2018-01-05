@@ -14,7 +14,8 @@ function PeriodType()
     periodTypes['FinancialOct'] = new FinancialOctoberPeriodType( dateFormat );
     periodTypes['FinancialJuly'] = new FinancialJulyPeriodType( dateFormat );
     periodTypes['FinancialApril'] = new FinancialAprilPeriodType( dateFormat );
-
+    periodTypes['Forteen'] = new ForteenPeriodType( dateFormat );// for ForteenPeriod
+    
     this.get = function( key )
     {
         return periodTypes[key];
@@ -69,6 +70,76 @@ function PeriodType()
         return array;
     };
 }
+// for ForteenPeriod Start
+function daysInMonth(iMonth, iYear)
+{
+	return 32 - new Date(iYear, iMonth, 32).getDate();
+}
+
+function ForteenPeriodType( dateFormat )
+{
+    this.generatePeriods = function( offset )
+    {
+        var periods = [];
+		var date = new Date();
+        var year = date.getFullYear() + offset;
+		var month = date.getMonth() + 1;
+		if( date.getFullYear() >= year  )
+		{
+			month = "12";
+		}
+        var day = date.getDate();
+        var i = 0;
+		
+		var date = "";
+        if( day <=15){
+			date = "1";
+			var endDate = $.date( year + '-' + month + '-15', dateFormat );
+		}
+		else
+        {
+            date = "16";
+			var endDate = $.date( year + '-' + month + '-' + daysInMonth(month-1,year), dateFormat );
+        }
+		var startDate = $.date( year + '-' + month + '-' + date , dateFormat );
+		
+		while ( startDate.date().getFullYear() == year && month >=1 )
+		{
+			var period = [];
+			period['startDate'] = startDate.format( dateFormat );
+			period['endDate'] = endDate.format( dateFormat );
+			period['name'] = startDate.format( dateFormat ) + " - " + endDate.format( dateFormat );
+			period['id'] = 'Forteen_' + period['startDate'] + "_" + period['endDate'];
+			period['iso'] = year + 'D' + ( i + 1 );
+			periods[i] = period;
+
+			month = startDate.date().getMonth() + 1;
+			if( startDate.date().getDate() == 1 ){
+				month--;
+				if(month >=1 )
+				{
+					startDate = $.date( year + '-' + month + '-16' , dateFormat );
+					endDate = $.date( year + '-' + month + '-' + daysInMonth(month-1,year), dateFormat );
+				}
+			}
+			else{
+				startDate = $.date( year + '-' + month + '-1' , dateFormat );
+				endDate = $.date( year + '-' + month + '-15', dateFormat );
+			}
+			i++;
+		}
+
+		var resultPeriod  = [];
+		var index = 0;
+		for( i = periods.length - 1; i>=0; i-- )
+		{
+			resultPeriod[index] = periods[i];
+			index++;
+		}
+        return resultPeriod;
+    };
+}
+// for ForteenPeriod End
 
 function DailyPeriodType( dateFormat )
 {

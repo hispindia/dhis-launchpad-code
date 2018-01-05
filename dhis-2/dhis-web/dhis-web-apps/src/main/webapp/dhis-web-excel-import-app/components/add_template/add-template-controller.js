@@ -27,6 +27,26 @@ excelUpload.controller('AddTemplateController',
 	$scope.tempCells = [];
 	$scope.selectedDataSetInfo = {};
 	
+	//showing and hiding input by temp type 
+	if( $rootScope.selectedTemplateType == 1 )
+	{
+		$(".forSouMde").hide();
+		$(".forMouMde").show();
+		$(".contentPart").css("height", "620px");
+	}
+	else if( $rootScope.selectedTemplateType == 2 )
+	{
+		$(".forSouMde").show();
+		$(".forMouMde").hide();
+		$(".contentPart").css("height", "500px");
+	}
+	else
+	{
+		window.location.assign("#home");
+	}
+		
+	
+	
 	//retrieving all the needed things
 	//**************************************************************************************************************
 	
@@ -106,32 +126,47 @@ excelUpload.controller('AddTemplateController',
 			$scope.newTemplate.typeId = $rootScope.selectedTemplateType;
 			$scope.newTemplate.type = $rootScope.selectedTemplateType == "1" ? "Multiple OU - Multiple DE" : "Single OU - Multiple DE";
 			$scope.newTemplate.orgUnitGroup = $rootScope.selectedOrgGroup;
-			$scope.newTemplate.dataSet = $rootScope.selectedDataSet;
-			$scope.newTemplate.rowMetaData = $("#rowData").val();
-			$scope.newTemplate.columnMetaData = $("#rowData").val() == "d" ? "o" : "d"; // d : DE , o: org unit
+			$scope.newTemplate.dataSet = $rootScope.selectedDataSet;		
 			
-			$scope.newTemplate.rowStart = {};
-			$scope.newTemplate.rowStart.rn = parseInt($("#rowStartRNum").val());
-			$scope.newTemplate.rowStart.cn = parseInt($("#rowStartCNum").val());
-			
-			$scope.newTemplate.rowEnd = {};
-			$scope.newTemplate.rowEnd.rn = parseInt($("#rowEndRNum").val());
-			$scope.newTemplate.rowEnd.cn = parseInt($("#rowEndCNum").val());
-			
-			$scope.newTemplate.columnStart = {};
-			$scope.newTemplate.columnStart.rn = parseInt($("#columnStartRNum").val());
-			$scope.newTemplate.columnStart.cn = parseInt($("#columnStartCNum").val());
-			
-			$scope.newTemplate.columnEnd = {};
-			$scope.newTemplate.columnEnd.rn = parseInt($("#columnEndRNum").val());
-			$scope.newTemplate.columnEnd.cn = parseInt($("#columnEndCNum").val());
 			
 			$scope.newTemplate.DEMappings = [];
 			
 			if( $rootScope.selectedTemplateType == 1 )
+			{
+				$scope.newTemplate.rowMetaData = $("#rowData").val();
+				$scope.newTemplate.columnMetaData = $("#rowData").val() == "d" ? "o" : "d"; // d : DE , o: org unit
+				$scope.newTemplate.rowStart = {};
+				$scope.newTemplate.rowStart.rn = parseInt($("#rowStartRNum").val());
+				$scope.newTemplate.rowStart.cn = parseInt($("#rowStartCNum").val());
+				
+				$scope.newTemplate.rowEnd = {};
+				$scope.newTemplate.rowEnd.rn = parseInt($("#rowEndRNum").val());
+				$scope.newTemplate.rowEnd.cn = parseInt($("#rowEndCNum").val());
+				
+				$scope.newTemplate.columnStart = {};
+				$scope.newTemplate.columnStart.rn = parseInt($("#columnStartRNum").val());
+				$scope.newTemplate.columnStart.cn = parseInt($("#columnStartCNum").val());
+				
+				$scope.newTemplate.columnEnd = {};
+				$scope.newTemplate.columnEnd.rn = parseInt($("#columnEndRNum").val());
+				$scope.newTemplate.columnEnd.cn = parseInt($("#columnEndCNum").val());
 				$scope.showMappingFormFor_MOU_MDE(); //Multiple De Multiple OU
+			}
 			else
+			{
+				$scope.newTemplate.dataStart = {};
+				$scope.newTemplate.dataStart.rn = parseInt($("#dStartCellRow").val());
+				$scope.newTemplate.dataStart.cn = parseInt($("#dStartCellCol").val());
+				
+				$scope.newTemplate.dataEnd = {};
+				$scope.newTemplate.dataEnd.rn = parseInt($("#dEndCellRow").val());
+				$scope.newTemplate.dataEnd.cn = parseInt($("#dEndCellCol").val());
+				
+				$scope.newTemplate.orgUnitCell = {};
+				$scope.newTemplate.orgUnitCell.rn = parseInt($("#orgCellRow").val());
+				$scope.newTemplate.orgUnitCell.cn = parseInt($("#orgCellCol").val());
 				$scope.showMappingFormFor_SOU_MDE(); // special
+			}
 		}
 	};
 
@@ -143,10 +178,10 @@ excelUpload.controller('AddTemplateController',
 		
 		var htmlString = "<tr><th>Cell Address </th><th> Respective Data Element - COC combination</th></tr>";
 		
-		var s = parseInt($scope.newTemplate.rowStart.rn);
-		var f = parseInt($scope.newTemplate.rowEnd.rn);
-		var cs = parseInt($scope.newTemplate.columnStart.cn);
-		var cf = parseInt($scope.newTemplate.columnEnd.cn);
+		var s = parseInt($scope.newTemplate.dataStart.rn);
+		var f = parseInt($scope.newTemplate.dataEnd.rn);
+		var cs = parseInt($scope.newTemplate.dataStart.cn);
+		var cf = parseInt($scope.newTemplate.dataEnd.cn);
 		
 		for( var x = s ; x <= f ; x++ )
 		{
@@ -235,13 +270,14 @@ excelUpload.controller('AddTemplateController',
 	};
 	
 	$scope.saveTemplate = function(){
-		var s = parseInt($scope.newTemplate.rowStart.rn);
-		var f = parseInt($scope.newTemplate.rowEnd.rn);
-		var cs = parseInt($scope.newTemplate.columnStart.cn);
-		var cf = parseInt($scope.newTemplate.columnEnd.cn);
 		
 		if( $rootScope.selectedTemplateType == 1 )
 		{
+			var s = parseInt($scope.newTemplate.rowStart.rn);
+			var f = parseInt($scope.newTemplate.rowEnd.rn);
+			var cs = parseInt($scope.newTemplate.columnStart.cn);
+			var cf = parseInt($scope.newTemplate.columnEnd.cn);
+		
 			if( $scope.newTemplate.rowMetaData == "d" )
 			{
 				for( var x = s ; x <= f ; x++ )
@@ -266,7 +302,8 @@ excelUpload.controller('AddTemplateController',
 					var newMapping = {};
 					newMapping.colNumber = x;
 					newMapping.label = $scope.getData( $scope.newTemplate.columnStart.rn , x );
-					var ca = "col_" + $scope.newTemplate.columnStart.rn + "_"  + x ;
+					//var ca = "col_" + $scope.newTemplate.columnStart.rn + "_"  + x ;
+                    var ca = "row_" + $scope.newTemplate.columnStart.rn + "_"  + x ;
 					newMapping.metadata = $("#" + ca ).val();
 					
 					if($("#" + ca ).val() != "-1" )
@@ -280,13 +317,18 @@ excelUpload.controller('AddTemplateController',
 		}
 		else
 		{
+			var s = parseInt($scope.newTemplate.dataStart.rn);
+			var f = parseInt($scope.newTemplate.dataEnd.rn);
+			var cs = parseInt($scope.newTemplate.dataStart.cn);
+			var cf = parseInt($scope.newTemplate.dataEnd.cn);
+		
 			for( var x = s ; x <= f ; x++ )
 			{
 				for( var y = cs ; y <= cf ; y++ )
 				{
 					var newMapping = {};
 					newMapping.cellAddress = $scope.engAddress[y] + "" + x;
-					newMapping.label = $scope.getData( x, $scope.newTemplate.rowStart.cn);
+					newMapping.label = $scope.getData( x, $scope.newTemplate.dataStart.cn);
 					var ca = "row_" + x + "_" + y;
 					newMapping.metadata = $("#" + ca ).val();
 					

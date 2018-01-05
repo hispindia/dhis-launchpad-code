@@ -13,10 +13,23 @@
     <param-value>databaseAdmin</param-value>
   </context-param>
 
+  <!--
   <session-config>
     <tracking-mode>COOKIE</tracking-mode>
+	<cookie-config>
+		<secure>true</secure>
+	</cookie-config>
   </session-config>
-  
+ -->
+
+	<session-config>
+	  <cookie-config>
+		<!--<secure>true</secure>-->
+		<http-only>true</http-only>
+		<tracking-mode>COOKIE</tracking-mode>
+	  </cookie-config>
+	</session-config>
+	
   <!-- Prior to Servlet 3.0 define either an error-code or an exception-type but not both -->
 
 	<error-page>

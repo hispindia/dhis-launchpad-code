@@ -48,10 +48,10 @@
     	oCell.innerHTML = "<select name='entryfield' id='value[1029].value:value["+nextRecordNo+"].value' onchange='validateLLDSexField(1029,"+nextRecordNo+")' onkeypress='return keyPress(event, this)' style='width:100% text-align:center'><option value='NONE' selected>---</option><option value='M'>Male</option><option value='F'>Female</option></select>";    	
 
     	oCell = newRow.insertCell(4);
-    	oCell.innerHTML = "<select name='entryfield' id='value[6826].value:value["+nextRecordNo+"].value' onchange='validateLLDAgeTypeField(6826,"+nextRecordNo+")' onkeypress='return keyPress(event, this)' style='width:100% text-align:center'><option value='NONE' selected>---</option><option value='HOUR'>Hour</option><option value='DAY'>Day</option><option value='WEEK'>Week</option><option value='MONTH'>Month</option><option value='YEAR'>Year</option></select>";    	
+    	oCell.innerHTML = "<select name='entryfield' id='value[91478].value:value["+nextRecordNo+"].value' onchange='validateLLDAgeTypeField(91478,"+nextRecordNo+")' onkeypress='return keyPress(event, this)' style='width:100% text-align:center'><option value='NONE' selected>---</option><option value='HOUR'>Hour</option><option value='DAY'>Day</option><option value='WEEK'>Week</option><option value='MONTH'>Month</option><option value='YEAR'>Year</option></select>";    	
 		
 		oCell = newRow.insertCell(5);
-		oCell.innerHTML = "<input name='entryfield' id='value[6827].value:value["+nextRecordNo+"].value' type='text' value='' onchange='validateLLDAgeField(6827,"+nextRecordNo+")' onkeypress='return keyPress(event, this)' style='width:100% text-align:center'>";
+		oCell.innerHTML = "<input name='entryfield' id='value[91479].value:value["+nextRecordNo+"].value' type='text' value='' onchange='validateLLDAgeField(91479,"+nextRecordNo+")' onkeypress='return keyPress(event, this)' style='width:100% text-align:center'>";
     			
     	oCell = newRow.insertCell(6);
 		oCell.style.display = 'none';
@@ -66,14 +66,15 @@
 	}
 </script>
 
-
-
 <div align="center"><h3><u>Linelisting : Deaths</u></h3></div>
 
-
+#if( $locked ) 
+	<h3>DataSet is Locked</h3>
+#else
+	
 <table id="tblGrid" width="100%">
 	<tr>
-		<th width="3%">Sl. No.</th>
+		<th width="3%">Sl.No.</th>
 		<th width="25%">Name of the Person</th>
 		<th width="25%">Village</th>
 		<th width="7%">Sex</th>
@@ -287,7 +288,7 @@
 	</td>
 	<!-- Age Type -->
 	<td>
-		<select name="entryfield" id="value[6826].value:value[$recordNo].value"  onchange="validateLLDAgeTypeField(6826,$recordNo)" onkeypress="return keyPress(event, this)" style="width:100% text-align:center">
+		<select name="entryfield" id="value[91478].value:value[$recordNo].value"  onchange="validateLLDAgeTypeField(91478,$recordNo)" onkeypress="return keyPress(event, this)" style="width:100% text-align:center">
 			<option value="NONE" selected>---</option>
 			<option value="HOUR">Hour</option>
 			<option value="DAY">Day</option>
@@ -297,7 +298,7 @@
 		</select>		
 	</td>
 	<!-- Age -->
-	<td><input name="entryfield" id="value[6827].value:value[$recordNo].value" type="text" value="" onchange="validateLLDAgeField(6827,$recordNo )" onkeypress="return keyPress(event, this)" style="width:100% text-align:center"></td>
+	<td><input name="entryfield" id="value[91479].value:value[$recordNo].value" type="text" value="" onchange="validateLLDAgeField(91479,$recordNo )" onkeypress="return keyPress(event, this)" style="width:100% text-align:center"></td>
 	
 	<td style="display:none">
 		<select name="entryfield" id="value[1030].value:value[$recordNo].value" onchange="validateLLDAgeCategoryField(1030,$recordNo)" onkeypress="return keyPress(event, this)" style="width:1px;text-align:center">
@@ -394,6 +395,7 @@
 	
 </tr>		
 </table>
+#end
 
 <script type="text/javascript">
     lastRecordNo = $lastRecord;

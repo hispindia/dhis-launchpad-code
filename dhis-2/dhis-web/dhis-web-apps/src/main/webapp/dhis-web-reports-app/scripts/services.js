@@ -153,20 +153,6 @@ var reportsAppServices = angular.module('reportsAppServices',[])
             }
         };
     })
-	
-	
-		    .service('sqlviewservice',  function ($http){
-        return {
-            getAll: function () {
-                var promise = $http.get('../api/sqlViews.json?fields=[id,name]&paging=false').then(function (response) {
-		
-                    return response.data ;
-                });
-                return promise;
-            }
-         
-        };
-    })
 
     //http://127.0.0.1:8090/dhis/api/dataSets.json?fields=id,name&paging=false
     //http://127.0.0.1:8090/dhis/api/dataSets.json?filter=id:eq:qNNFDcWTNc6&&fields=id,name,periodType,organisationUnits[id,name]&paging=false

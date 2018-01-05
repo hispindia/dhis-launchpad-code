@@ -9362,7 +9362,7 @@ function parse_workbook(blob, options) {
 					if(!opts.enc) blob.l = 0;
 					opts.enc = val;
 					if(opts.WTF) console.error(val);
-					//if(!options.password) throw new Error("File is password-protected");
+					if(!options.password) throw new Error("File is password-protected");
 					if(val.Type !== 0) throw new Error("Encryption scheme unsupported");
 					if(!val.valid) throw new Error("Password is incorrect");
 					break;

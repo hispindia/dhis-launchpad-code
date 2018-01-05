@@ -15,17 +15,16 @@ reportsApp.controller('DataStatusController',
 		//Links
 		$scope.basicUrl = "../api/sqlViews/";
 		//Sql Views ID
-
+		
 		$scope.dataStatusSV = "wDF06I0SurY";
 		$scope.dataStatusExZeroSV = "y00FsRQnIaV"; // UID of DATA STATUS query that exclude zero
-		$scope.dataSummarySV = "aOLO8CmT8Dr";
-		$scope.dataSummaryExZeroSV = "c9EMNDXjO6b";
+		$scope.dataSummarySV = "aOLO8CmT8Dr";		
+		$scope.dataSummaryExZeroSV = "c9EMNDXjO6b";		
 		$scope.userDetailsSV = "GQo5qTSAfh9";
 		$scope.userDetailsExZeroSV = "NOb6bsEgoAZ";
-		$scope.commentsSV = "GKqUIOeRz3H";
+		$scope.commentsSV = "GKqUIOeRz3H";		
 		$scope.commentsExZeroSV = "HrDi1FJJNOa";
-		//$scope.periodsSV = "JT7ZRK7atS6";
-        $scope.periodsSV = "TbqU3RBJ8Up";
+		$scope.periodsSV = "JT7ZRK7atS6";
 		
 		//$scope.dataStatusSV = "";
 		//$scope.dataStatusSV = "";
@@ -35,76 +34,6 @@ reportsApp.controller('DataStatusController',
 		$scope.dataSummarySV = "QGLvQLUeYRP";
 		$scope.userDetailsSV = "Q75nGmjmbnH";
 		$scope.commentsSV = "JQrrf2m6vj1";*/
-
-        $scope.basicUrl = "../api/sqlViews/";
-        //Sql Views ID
-
-
-
-    /*    sqlviewservice.getAll().then(function(data){
-            $scope.sqlViews = data.sqlViews;
-
-            for(var i=0;i<data.sqlViews.length;i++)
-            {
-                if($scope.sqlViews[i].name=="DS App Comments")
-                {$scope.commentsSV=$scope.sqlViews[i].id;
-
-
-                }
-                if($scope.sqlViews[i].name=="DS App Comments without Zero")
-                {$scope.commentsExZeroSV=$scope.sqlViews[i].id;
-
-                }
-
-
-                if($scope.sqlViews[i].name=="DS App Data Status")
-                {$scope.dataStatusSV=$scope.sqlViews[i].id;
-
-
-
-                }
-
-                if($scope.sqlViews[i].name=="DS App Data Status without Zero")
-                {$scope.dataStatusExZeroSV=$scope.sqlViews[i].id;
-
-
-                }
-
-                if($scope.sqlViews[i].name=="DS App Data Summary")
-                {$scope.dataSummarySV=$scope.sqlViews[i].id;
-
-
-
-                }
-                if($scope.sqlViews[i].name=="DS App Data Summary without Zero")
-                {$scope.dataSummaryExZeroSV=$scope.sqlViews[i].id;
-
-
-
-                }
-
-                if($scope.sqlViews[i].name=="DS App User Details")
-                {$scope.userDetailsSV=$scope.sqlViews[i].id;
-
-
-                }
-
-
-                if($scope.sqlViews[i].name=="DS App User Details without Zero")
-                {$scope.userDetailsExZeroSV=$scope.sqlViews[i].id;
-
-                }
-
-
-                if($scope.sqlViews[i].name=="DS App Periods")
-                {$scope.periodsSV=$scope.sqlViews[i].id;
-
-                }
-
-            }
-
-
-        });*/
 		
         ReportConfigurationService.getAllReportConfiguration($scope.REPORT_APP_CONFIGURATION_KEY).then(function(conf){
             for (var count in conf.parameters){
