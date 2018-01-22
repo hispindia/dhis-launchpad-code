@@ -417,6 +417,22 @@ public class GenerateLinelistingWebPortalReportAnalyserResultLineListingAction
 
         List<Integer> llrecordNos = new ArrayList<Integer>();
 
+        OrganisationUnit selectedOrg = organisationUnitService.getOrganisationUnit( ouIDTB ); //use uid
+        System.out.println( " aggData 1 " + selectedOrg.getLevel() );
+        Integer selectedOrgUnitLevel = organisationUnitService.getLevelOfOrganisationUnit( selectedOrg.getId() );
+        if( selectedOrgUnitLevel == 6 )
+        {
+            aggData = "generateaggdata";
+            System.out.println( " aggData 2 " + selectedOrg.getLevel() );
+        }
+        else
+        {
+            aggData = "usecaptureddata";
+            System.out.println( " aggData 3 " + selectedOrg.getLevel() );
+        }
+        
+        System.out.println( " Final aggData  " + aggData );
+        
         // String parentUnit = "";
 
         // Getting Report Details
@@ -579,13 +595,14 @@ public class GenerateLinelistingWebPortalReportAnalyserResultLineListingAction
                 List<Integer> childOrgUnitTreeIds = new ArrayList<Integer>( getIdentifiers( OrganisationUnit.class, childOrgUnitTree ) );
                 String childOrgUnitsByComma = getCommaDelimitedString( childOrgUnitTreeIds );
 
+                System.out.println( " GENERATEAGGDATA  " + childOrgUnitsByComma );
+                
                 aggDeMap.putAll( reportService.getAggDataFromDataValueTable( childOrgUnitsByComma, dataElmentIdsByComma, periodIdsByComma ) );
             }
             else if( aggData.equalsIgnoreCase( USECAPTUREDDATA ) )
             {
                 aggDeMap.putAll( reportService.getAggDataFromDataValueTable( ""+currentOrgUnit.getId(), dataElmentIdsByComma, periodIdsByComma ) );
             }
-            
             
             int count1 = 0;
             Iterator<Report_inDesign> reportDesignIterator = reportDesignList.iterator();
@@ -823,7 +840,7 @@ public class GenerateLinelistingWebPortalReportAnalyserResultLineListingAction
                     // for added new dataElement in GOI Report
                     else if ( sType.equalsIgnoreCase( "dataelement-date" ) )
                     {
-                    	if( aggData.equalsIgnoreCase( USECAPTUREDDATA ) ) 
+                    	if( (aggData.equalsIgnoreCase( USECAPTUREDDATA ) ) || ( aggData.equalsIgnoreCase( GENERATEAGGDATA ) && selectedOrgUnitLevel == 6 ) ) 
                         {
                             String tempDateString = getStringDataFromDataValue( deCodeString, selectedPeriod.getId(),currentOrgUnit.getId() );
                             if( tempDateString != null && !tempDateString.equalsIgnoreCase(""))
@@ -831,17 +848,17 @@ public class GenerateLinelistingWebPortalReportAnalyserResultLineListingAction
                             	Date tempDate = format.parseDate( tempDateString );
                                 tempStr = simpleDateMonthYearFormat.format(tempDate);
                             }
-                            System.out.println( " USECAPTUREDDATA  SType : " + sType + " DECode : " + deCodeString + "   TempStr : " + tempStr );
+                            //System.out.println( " USECAPTUREDDATA  SType : " + sType + " DECode : " + deCodeString + "   TempStr : " + tempStr );
                         }
                     }
                     else if ( sType.equalsIgnoreCase( "dataelement-string" ) )
                     {
-                    	if( aggData.equalsIgnoreCase( USECAPTUREDDATA ) ) 
+                    	if( (aggData.equalsIgnoreCase( USECAPTUREDDATA ) ) || ( aggData.equalsIgnoreCase( GENERATEAGGDATA ) && selectedOrgUnitLevel == 6 ) ) 
                         {
-                    		tempadeInAdeStr = getStringDataFromDataValue( deCodeString, selectedPeriod.getId(),currentOrgUnit.getId() );
+                    	    tempadeInAdeStr = getStringDataFromDataValue( deCodeString, selectedPeriod.getId(),currentOrgUnit.getId() );
                             //System.out.println( " USECAPTUREDDATA  SType : " + sType + " DECode : " + deCodeString + "   TempStr : " + tempStr );
                         }
-                    }                    
+                    }
                     
                     else
                     {

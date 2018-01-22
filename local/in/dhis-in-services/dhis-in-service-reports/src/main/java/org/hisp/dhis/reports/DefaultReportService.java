@@ -2926,6 +2926,8 @@ GROUP BY sag.parent, sag1.dataelementid,sag1.categoryoptioncomboid ORDER BY sag.
 
             }
 
+            System.out.println( " query  " + query );
+            
             SqlRowSet rs = jdbcTemplate.queryForRowSet( query );
 
             while ( rs.next() )
