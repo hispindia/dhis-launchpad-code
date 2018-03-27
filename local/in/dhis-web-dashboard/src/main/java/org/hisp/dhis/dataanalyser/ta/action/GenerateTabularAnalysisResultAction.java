@@ -436,6 +436,7 @@ public class GenerateTabularAnalysisResultAction
                     pCount++;
                     
                     periodNames.add( simpleDateFormat.format( format.parseDate( startD ) ) );
+                    System.out.println( "Financial April - " + startD + " *** " + endD );
                 }
             }
 
@@ -494,6 +495,8 @@ public class GenerateTabularAnalysisResultAction
                         List<Integer> periodIds = new ArrayList<Integer>( getIdentifiers(Period.class, periodList ) );
                         periodMap.put( pCount, periodIds );
                         pCount++;
+                        
+                        System.out.println( "Monthly - " + startD + " *** " + endD );
                         
                         periodNames.add( simpleDateFormat.format( format.parseDate( startD ) ) );
                     }
@@ -2580,6 +2583,7 @@ public class GenerateTabularAnalysisResultAction
                             {
                                 PeriodType periodType = periodService.getPeriodTypeByName( periodTypeLB );
                                 Period tempPeriod = periodService.getPeriod( sDate, eDate, periodType );
+                                
                                 if ( tempPeriod != null )
                                 {
                                     DataValue dataValue = dataValueService.getDataValue( ou, selDataElement, tempPeriod, selDecoc );
@@ -2630,6 +2634,13 @@ public class GenerateTabularAnalysisResultAction
 
                                     PeriodType periodType = periodService.getPeriodTypeByName( periodTypeLB );
                                     Period tempPeriod = periodService.getPeriod( sDate, eDate, periodType );
+                                    // chnnge financial april period type to montly
+                                    if ( aggData.equalsIgnoreCase( USECAPTUREDDATA ) && aggPeriodCB == null && periodTypeLB.equalsIgnoreCase( FinancialAprilPeriodType.NAME ) )
+                                    {
+                                    	periodType = periodService.getPeriodTypeByName( MonthlyPeriodType.NAME );
+                                    	tempPeriod = periodService.getPeriod( sDate, eDate, periodType );
+                                    }
+                                    
                                     if( tempPeriod != null )
                                     {
                                         DataValue dataValue = dataValueService.getDataValue( ou, selDataElement, tempPeriod, decoc1 );
@@ -4069,7 +4080,9 @@ public class GenerateTabularAnalysisResultAction
             //String endDate = standardDateFormat.format( eDate );
         	List<Integer> periodIds = new ArrayList<Integer>( periodMap.get( pCount++ ) );
             periodIdsByComma = getCommaDelimitedString( periodIds );
-        	
+            
+            System.out.println( " Selected Period Type  --" + periodTypeLB + " periodIdsByComma : " + periodIdsByComma );
+            
             Map<String, String> tempAggDataMap = reportService.getAggDataFromDataValueTableByDeAndOrgUnitwise( orgUnitIdsByComma, dataElementIdsByComma, periodIdsByComma );
             if( tempAggDataMap == null )
             {
