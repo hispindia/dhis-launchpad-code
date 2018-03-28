@@ -140,8 +140,8 @@
   <classpathentry kind="var" path="M2_REPO/org/aspectj/aspectjweaver/1.6.4/aspectjweaver-1.6.4.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/apache/commons/commons-email/1.3.3/commons-email-1.3.3.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/apache/ant/ant-compress/1.2/ant-compress-1.2.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/apache/ant/ant/1.10.1/ant-1.10.1.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/apache/ant/ant-launcher/1.10.1/ant-launcher-1.10.1.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/apache/ant/ant/1.10.3/ant-1.10.3.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/apache/ant/ant-launcher/1.10.3/ant-launcher-1.10.3.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/apache/commons/commons-compress/1.4/commons-compress-1.4.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/tukaani/xz/1.0/xz-1.0.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/apache/poi/poi/3.10.1/poi-3.10.1.jar"/>

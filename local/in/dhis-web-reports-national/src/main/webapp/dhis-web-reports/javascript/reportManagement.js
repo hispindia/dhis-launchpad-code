@@ -377,11 +377,11 @@ function getReportsReceived(xmlObject)
 	document.reportForm.generate.disabled=false;
 	
 	//alert( " ouLavel " + ouLavel );
-	
+	/*
     if ( ouLavel == 6 )
     {
     	//document.getElementById('aggData').value = "";
-    	document.getElementById('aggData').value = "generateaggdata";
+    	//document.getElementById('aggData').value = "generateaggdata";
     	showById('generatedDataTypeAggregated');
     	hideById('generatedDataTypeCaptured');
     }
@@ -389,12 +389,11 @@ function getReportsReceived(xmlObject)
    else
    {
 	   //document.getElementById('aggData').value = "";
-	   document.getElementById('aggData').value = "usecaptureddata";
+	   //document.getElementById('aggData').value = "usecaptureddata";
        showById('generatedDataTypeCaptured');
        hideById('generatedDataTypeAggregated');
    }
-	
-	
+  */	
 	
 	if ( ouLavel == 2 )
 	{

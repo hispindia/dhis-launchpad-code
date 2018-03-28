@@ -420,6 +420,8 @@ public class GenerateLinelistingWebPortalReportAnalyserResultLineListingAction
         OrganisationUnit selectedOrg = organisationUnitService.getOrganisationUnit( ouIDTB ); //use uid
         System.out.println( " aggData 1 " + selectedOrg.getLevel() );
         Integer selectedOrgUnitLevel = organisationUnitService.getLevelOfOrganisationUnit( selectedOrg.getId() );
+        
+        /*
         if( selectedOrgUnitLevel == 6 )
         {
             aggData = "generateaggdata";
@@ -430,8 +432,9 @@ public class GenerateLinelistingWebPortalReportAnalyserResultLineListingAction
             aggData = "usecaptureddata";
             System.out.println( " aggData 3 " + selectedOrg.getLevel() );
         }
+        */
         
-        System.out.println( " Final aggData  " + aggData );
+        System.out.println( " Final select Type  " + aggData );
         
         // String parentUnit = "";
 
@@ -595,12 +598,13 @@ public class GenerateLinelistingWebPortalReportAnalyserResultLineListingAction
                 List<Integer> childOrgUnitTreeIds = new ArrayList<Integer>( getIdentifiers( OrganisationUnit.class, childOrgUnitTree ) );
                 String childOrgUnitsByComma = getCommaDelimitedString( childOrgUnitTreeIds );
 
-                System.out.println( " GENERATEAGGDATA  " + childOrgUnitsByComma );
+                //System.out.println( " GENERATEAGGDATA  " + currentOrgUnit.getName() + " -- "+ childOrgUnitsByComma );
                 
                 aggDeMap.putAll( reportService.getAggDataFromDataValueTable( childOrgUnitsByComma, dataElmentIdsByComma, periodIdsByComma ) );
             }
             else if( aggData.equalsIgnoreCase( USECAPTUREDDATA ) )
             {
+                //System.out.println( " USECAPTUREDDATA  " + currentOrgUnit.getName() );
                 aggDeMap.putAll( reportService.getAggDataFromDataValueTable( ""+currentOrgUnit.getId(), dataElmentIdsByComma, periodIdsByComma ) );
             }
             
@@ -848,6 +852,7 @@ public class GenerateLinelistingWebPortalReportAnalyserResultLineListingAction
                             	Date tempDate = format.parseDate( tempDateString );
                                 tempStr = simpleDateMonthYearFormat.format(tempDate);
                             }
+                            //System.out.println( aggData + " date : " + selectedOrgUnitLevel );
                             //System.out.println( " USECAPTUREDDATA  SType : " + sType + " DECode : " + deCodeString + "   TempStr : " + tempStr );
                         }
                     }
@@ -858,6 +863,7 @@ public class GenerateLinelistingWebPortalReportAnalyserResultLineListingAction
                     	    tempadeInAdeStr = getStringDataFromDataValue( deCodeString, selectedPeriod.getId(),currentOrgUnit.getId() );
                             //System.out.println( " USECAPTUREDDATA  SType : " + sType + " DECode : " + deCodeString + "   TempStr : " + tempStr );
                         }
+                    	//System.out.println( aggData + " String : " + selectedOrgUnitLevel );
                     }
                     
                     else
@@ -1046,16 +1052,16 @@ public class GenerateLinelistingWebPortalReportAnalyserResultLineListingAction
                         else if ( sType.equalsIgnoreCase( "dataelement-string" ) )
                         {
                             
-                        	if ( tempadeInAdeStr != null && tempadeInAdeStr.equalsIgnoreCase("Adequate") )
+                            if ( tempadeInAdeStr != null && tempadeInAdeStr.equalsIgnoreCase("Adequate") )
                             {
                                 tempStr1 = "59";
                             }
-                        	else if ( tempadeInAdeStr != null && tempadeInAdeStr.equalsIgnoreCase("Inadequate") )
+                            else if ( tempadeInAdeStr != null && tempadeInAdeStr.equalsIgnoreCase("Inadequate") )
                             {
                                 tempStr1 = "60";
                             }
                            
-                        	try
+                            try
                             {
                                 Row row = sheet0.getRow( tempRowNo );
                                 
