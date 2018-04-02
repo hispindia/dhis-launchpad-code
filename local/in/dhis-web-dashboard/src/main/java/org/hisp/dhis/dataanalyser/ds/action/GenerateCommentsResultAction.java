@@ -246,7 +246,7 @@ public class GenerateCommentsResultAction implements Action
     // ---------------------------------------------------------------
     // Action Implementation
     // ---------------------------------------------------------------
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "unchecked", "unused" })
     public String execute()
         throws Exception
     {

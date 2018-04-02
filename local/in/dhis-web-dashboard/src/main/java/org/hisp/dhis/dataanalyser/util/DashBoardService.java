@@ -36,6 +36,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -64,6 +65,7 @@ import org.hisp.dhis.period.Period;
 import org.hisp.dhis.period.PeriodService;
 import org.hisp.dhis.period.PeriodType;
 import org.hisp.dhis.period.WeeklyPeriodType;
+import org.hisp.dhis.period.comparator.PeriodComparator;
 import org.hisp.dhis.reports.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -623,8 +625,9 @@ public class DashBoardService
         SimpleDateFormat simpleDateFormat1;
 
         SimpleDateFormat simpleDateFormat2;
-
+        
         List<String> periodNameList = new ArrayList<String>();
+        //List<Period> periods = new ArrayList<Period>( temPeriods );
 
         if ( periodType.getName().equalsIgnoreCase( "monthly" ) )
         {

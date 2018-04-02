@@ -27,6 +27,7 @@ import org.hisp.dhis.organisationunit.OrganisationUnitService;
 import org.hisp.dhis.period.Period;
 import org.hisp.dhis.period.PeriodService;
 import org.hisp.dhis.period.PeriodType;
+import org.hisp.dhis.period.comparator.PeriodComparator;
 import org.hisp.dhis.system.database.DatabaseInfo;
 import org.hisp.dhis.system.database.DatabaseInfoProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -132,13 +133,20 @@ public class GenerateSummaryDataStatusResultAction
         return ouMapSummaryStatusResult;
     }
 
+    private List<Period> periodList;
+    
+    public List<Period> getPeriodList()
+    {
+        return periodList;
+    }    
+    /*
     private Collection<Period> periodList;
 
     public Collection<Period> getPeriodList()
     {
         return periodList;
     }
-
+    */
     private List<OrganisationUnit> orgUnitList;
 
     public List<OrganisationUnit> getOrgUnitList()
@@ -466,6 +474,9 @@ public class GenerateSummaryDataStatusResultAction
         
         PeriodType dataSetPeriodType = selDataSet.getPeriodType();       
         periodList = periodService.getPeriodsBetweenDates( dataSetPeriodType, startPeriod.getStartDate(), endPeriod.getEndDate() );
+        
+        Collections.sort( periodList, new PeriodComparator() );
+        Collections.reverse( periodList );
 
         periodInfo = "-1";
         for ( Period p : periodList )
@@ -748,6 +759,13 @@ public class GenerateSummaryDataStatusResultAction
         }// finally block end
 
         periodNameList = dashBoardService.getPeriodNamesByPeriodType( dataSetPeriodType, periodList );
+        
+        /*
+        for( String periodName : periodNameList)
+        {
+            System.out.println( " periodName : " + periodName );
+        }
+        */
         
         return SUCCESS;
     }

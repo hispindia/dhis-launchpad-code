@@ -52,6 +52,7 @@ import org.hisp.dhis.organisationunit.OrganisationUnitService;
 import org.hisp.dhis.period.Period;
 import org.hisp.dhis.period.PeriodService;
 import org.hisp.dhis.period.PeriodType;
+import org.hisp.dhis.period.comparator.PeriodComparator;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.opensymphony.xwork2.Action;
@@ -126,13 +127,22 @@ public class GenerateValidationStatusResultAction
         return ouMapValidationPassStatusResult;
     }
 
+    /*
     private Collection<Period> periodList;
 
     public Collection<Period> getPeriodList()
     {
         return periodList;
     }
-
+    */
+    
+    private List<Period> periodList;
+    
+    public List<Period> getPeriodList()
+    {
+        return periodList;
+    }    
+    
     private List<OrganisationUnit> orgUnitList;
 
     public List<OrganisationUnit> getOrgUnitList()
@@ -446,9 +456,11 @@ public class GenerateValidationStatusResultAction
         Period endPeriod = periodService.getPeriod( Integer.parseInt( eDateLB ));
 
         PeriodType dataSetPeriodType = selDataSet.getPeriodType();       
-        periodList = periodService.getPeriodsBetweenDates( dataSetPeriodType, startPeriod.getStartDate(),
-            endPeriod.getEndDate() );
+        periodList = periodService.getPeriodsBetweenDates( dataSetPeriodType, startPeriod.getStartDate(), endPeriod.getEndDate() );
 
+        Collections.sort( periodList, new PeriodComparator() );
+        Collections.reverse( periodList );
+        
         periodInfo = "-1";
         for ( Period p : periodList )
             periodInfo += "," + p.getId();

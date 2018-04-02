@@ -23,6 +23,7 @@ import org.hisp.dhis.organisationunit.OrganisationUnitService;
 import org.hisp.dhis.period.Period;
 import org.hisp.dhis.period.PeriodService;
 import org.hisp.dhis.period.PeriodType;
+import org.hisp.dhis.period.comparator.PeriodComparator;
 import org.hisp.dhis.system.database.DatabaseInfo;
 import org.hisp.dhis.system.database.DatabaseInfoProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -136,13 +137,22 @@ public class GenerateDataStatusResultAction
         return ouMapDataElementCount;
     }
 
+    private List<Period> periodList;
+    
+    public List<Period> getPeriodList()
+    {
+        return periodList;
+    }
+
+    /*
     private Collection<Period> periodList;
 
     public Collection<Period> getPeriodList()
     {
         return periodList;
     }
-
+    */
+    
     private List<OrganisationUnit> orgUnitList;
 
     public List<OrganisationUnit> getOrgUnitList()
@@ -524,9 +534,11 @@ public class GenerateDataStatusResultAction
         Period endPeriod = periodService.getPeriod( Integer.parseInt( eDateLB ));
         
         PeriodType dataSetPeriodType = selDataSet.getPeriodType();
-        periodList = new ArrayList<Period>( periodService.getPeriodsBetweenDates( dataSetPeriodType, startPeriod
-            .getStartDate(), endPeriod.getEndDate() ) );
+        periodList = new ArrayList<Period>( periodService.getPeriodsBetweenDates( dataSetPeriodType, startPeriod.getStartDate(), endPeriod.getEndDate() ) );
 
+        Collections.sort( periodList, new PeriodComparator() );
+        Collections.reverse( periodList );
+        
         periodInfo = "-1";
         for ( Period p : periodList )
             periodInfo += "," + p.getId();
@@ -545,8 +557,6 @@ public class GenerateDataStatusResultAction
         {
             dataSetMemberCount1 += de1.getCategoryCombo().getOptionCombos().size();
         }
-
-        
 
         deInfo = getDEInfo( dataElements );
 

@@ -27,6 +27,7 @@ import org.hisp.dhis.organisationunit.OrganisationUnitService;
 import org.hisp.dhis.period.Period;
 import org.hisp.dhis.period.PeriodService;
 import org.hisp.dhis.period.PeriodType;
+import org.hisp.dhis.period.comparator.PeriodComparator;
 import org.hisp.dhis.system.database.DatabaseInfo;
 import org.hisp.dhis.system.database.DatabaseInfoProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -135,8 +136,22 @@ public class GenerateGroupWiseDataStatusResultAction
 
     private Map<OrganisationUnit, List<Integer>> ouMapDataStatusResult;
 
+    /*
     private Collection<Period> periodList;
-
+    
+    public Collection<Period> getPeriodList()
+    {
+        return periodList;
+    }
+    */
+    
+    private List<Period> periodList;
+    
+    public List<Period> getPeriodList()
+    {
+        return periodList;
+    }
+    
     private List<OrganisationUnit> orgUnitList;
 
     public List<OrganisationUnit> getOrgUnitList()
@@ -546,7 +561,7 @@ public class GenerateGroupWiseDataStatusResultAction
         
         selectedPeriodList = new ArrayList<Period>( periodService.getIntersectingPeriods( startPeriod.getStartDate(),
             endPeriod.getEndDate() ) );
-
+        
         periodInfo = "-1";
         for ( Period p : selectedPeriodList )
             periodInfo += "," + p.getId();
@@ -614,6 +629,9 @@ public class GenerateGroupWiseDataStatusResultAction
         periodList = periodService.getPeriodsBetweenDates( dataSetPeriodType, startPeriod.getStartDate(),
             endPeriod.getEndDate() );
 
+        Collections.sort( periodList, new PeriodComparator() );
+        Collections.reverse( periodList );    
+        
         dataSetPeriods = new HashMap<DataSet, Collection<Period>>();
         //Iterator<DataElementGroup> dataElementGroupIterator = dataElementGroups.iterator();
         
@@ -649,6 +667,9 @@ public class GenerateGroupWiseDataStatusResultAction
             periodList = periodService.getPeriodsBetweenDates( dataSetPeriodType, startPeriod.getStartDate(),
                 endPeriod.getEndDate() );
            
+            Collections.sort( periodList, new PeriodComparator() );
+            Collections.reverse( periodList );    
+            
             dataSetPeriods.put( ds, periodList );
 
             Iterator<OrganisationUnit> orgUnitListIterator = orgUnitList.iterator();
@@ -1004,10 +1025,6 @@ public class GenerateGroupWiseDataStatusResultAction
         return ouMapDataStatusResult;
     }
 
-    public Collection<Period> getPeriodList()
-    {
-        return periodList;
-    }
 
     @SuppressWarnings("unchecked")
     public List<DataElementGroup> getApplicableDataElementGroups( DataSet selectedDataSet )

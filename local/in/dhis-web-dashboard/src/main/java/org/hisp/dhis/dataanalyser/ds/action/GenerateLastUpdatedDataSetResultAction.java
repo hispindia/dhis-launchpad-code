@@ -50,6 +50,7 @@ import org.hisp.dhis.organisationunit.OrganisationUnitService;
 import org.hisp.dhis.period.Period;
 import org.hisp.dhis.period.PeriodService;
 import org.hisp.dhis.period.PeriodType;
+import org.hisp.dhis.period.comparator.PeriodComparator;
 import org.hisp.dhis.user.User;
 import org.hisp.dhis.user.UserCredentials;
 import org.hisp.dhis.user.UserService;
@@ -168,13 +169,22 @@ public class GenerateLastUpdatedDataSetResultAction
         return ouMapDataStatusResult;
     }
 
+    private List<Period> periodList;
+    
+    public List<Period> getPeriodList()
+    {
+        return periodList;
+    }
+    
+    /*
     private Collection<Period> periodList;
 
     public Collection<Period> getPeriodList()
     {
         return periodList;
     }
-
+    */
+    
     private List<OrganisationUnit> orgUnitList;
 
     public List<OrganisationUnit> getOrgUnitList()
@@ -510,6 +520,9 @@ public class GenerateLastUpdatedDataSetResultAction
         periodList = periodService.getPeriodsBetweenDates( dataSetPeriodType, startPeriod.getStartDate(),
             endPeriod.getEndDate() );
 
+        Collections.sort( periodList, new PeriodComparator() );
+        Collections.reverse( periodList );
+        
         periodInfo = "-1";
         for ( Period p : periodList )
             periodInfo += "," + p.getId();
