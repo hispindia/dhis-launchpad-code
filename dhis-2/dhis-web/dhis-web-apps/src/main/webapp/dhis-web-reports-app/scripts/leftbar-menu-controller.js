@@ -39,16 +39,40 @@ reportsApp.controller('LeftBarMenuController',
                     userService.getCurrentUser().then(function (responseUser){
                         $scope.currentUser = responseUser;
                         //$scope.currentUserName = responseUser.userCredentials.username;
-                        $scope.currentUserName = responseUser.userCredentials.code;// for 2.20
+                     //   $scope.currentUserName = responseUser.userCredentials.code;// for 2.20
+					   $scope.currentUserName = responseUser.userCredentials.username;
+                        console.log("Current User Uid  --" + $scope.currentUser.id + "  Current User Name  --" + $scope.currentUserName);
+						$scope.tempAccessAuthority = userService.isUserInUserGroup($scope.currentUser.id,$scope.users);
+                        $scope.currentUserRoles = responseUser.userCredentials.userRoles[0].description;
+                       
+                        $scope.superUserAuthority = "";
+                        $scope.currentUserRoleAuthorities="";
+                        $scope.currentUserAutorities = "";
+                     
+                            $scope.currentUserRoleAuthorities = responseUser.userCredentials.userRoles[0];
+                        
+
+
+
+                            for(var j = 0 ; j < $scope.currentUserRoleAuthorities.authorities.length; j++)
+                            {
+                                if(  $scope.currentUserRoleAuthorities.authorities[j] == "ALL")
+                                {
+                                    //$scope.accessAuthority = true;
+                                    $scope.superUserAuthority = "YES";
+                                    break;
+                                }
+                            }
+							
+							
                         console.log("Current User Uid  --" + $scope.currentUser.id + "  Current User Name  --" + $scope.currentUserName);
 
-                        $scope.tempAccessAuthority = userService.isUserInUserGroup($scope.currentUser.id,$scope.users);
+                       
 
-                        if( $scope.tempAccessAuthority || $scope.currentUserName === 'admin')
+                         if(  $scope.currentUserName === 'admin'|| $scope.superUserAuthority ==="YES")
                         {
                             $scope.accessAuthority = true;
                         }
-
                         //console.log("accessAuthority --" + $scope.accessAuthority);
                     });
 
