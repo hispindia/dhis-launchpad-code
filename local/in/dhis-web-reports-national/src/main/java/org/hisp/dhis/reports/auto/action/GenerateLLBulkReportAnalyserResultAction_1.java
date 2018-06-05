@@ -61,7 +61,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 import com.opensymphony.xwork2.Action;
 
-public class GenerateLLBulkReportAnalyserResultAction implements Action
+public class GenerateLLBulkReportAnalyserResultAction_1 implements Action
 {
    
     private final String GENERATEAGGDATA = "generateaggdata";
@@ -157,12 +157,21 @@ public class GenerateLLBulkReportAnalyserResultAction implements Action
         this.reportList = reportList;
     }
     
+    /*
     private int ouIDTB;
 
     public void setOuIDTB( int ouIDTB )
     {
         this.ouIDTB = ouIDTB;
     }
+    */
+    
+    private String ouIDTB;
+    
+    public void setOuIDTB( String ouIDTB )
+    {
+        this.ouIDTB = ouIDTB;
+    }    
     
     private int availablePeriods;
 

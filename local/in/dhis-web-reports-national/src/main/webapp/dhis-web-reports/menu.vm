@@ -67,11 +67,7 @@
 		#if( $auth.hasAccess( "dhis-web-reports", "metaDataReportAnalyser") )
 			<li><a href = "metaDataReportAnalyser.action">Meta Data Reports</a></li>
 		#end
-		
-		#if( $auth.hasAccess( "dhis-web-reports", "lineListingBulkReportAnalyser") )
-			<li><a href = "lineListingBulkReportAnalyser.action">Linelisting Bulk Report</a></li>
-		#end
-		
+				
 		#if( $auth.hasAccess( "dhis-web-reports", "linelistingReportAnalyser") )
 			<li><a href = "linelistingReportAnalyser.action">Linelisting Reports</a></li>
 		#end		
@@ -141,7 +137,10 @@
 		#if( $auth.hasAccess( "dhis-web-reports", "linelistingWebPortalReportAnalyserFromLineListingPrivate") )
  			<li><a href = "linelistingWebPortalReportAnalyserFromLineListingPrivate.action">GOI Reports(Private Institution)</a></li>
 		#end
-		
+
+		#if( $auth.hasAccess( "dhis-web-reports", "lineListingBulkReportAnalyser") )
+			<li><a href = "lineListingBulkReportAnalyser.action">Linelisting Bulk Report</a></li>
+		#end
 		<!-- from Event Capture 
 		#if( $auth.hasAccess( "dhis-web-reports", "linelistingWebPortalReportAnalyser") )
 			<li><a href = "linelistingWebPortalReportAnalyser.action">GOI Reports(Public Institution)(From Event Capture)</a></li>
