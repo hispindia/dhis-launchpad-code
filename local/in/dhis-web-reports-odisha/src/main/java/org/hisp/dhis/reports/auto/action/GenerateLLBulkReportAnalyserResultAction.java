@@ -1700,7 +1700,12 @@ public class GenerateLLBulkReportAnalyserResultAction implements Action
             }
             
             resultValue = "" + (double) d;
-
+            
+            if ( resultValue.equalsIgnoreCase( "0.0" ) )
+            {
+                resultValue = "";
+            }
+            
             return resultValue;
         }
         catch ( NumberFormatException ex )

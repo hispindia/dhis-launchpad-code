@@ -31,6 +31,9 @@ import java.util.regex.Pattern;
 //import jxl.format.VerticalAlignment;
 //import jxl.write.WritableCellFormat;
 
+
+
+
 import org.apache.poi.hssf.usermodel.HSSFCell;
 //import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -46,6 +49,8 @@ import org.hisp.dhis.dataelement.DataElementCategoryService;
 import org.hisp.dhis.dataelement.DataElementService;
 import org.hisp.dhis.i18n.I18nFormat;
 import org.hisp.dhis.organisationunit.OrganisationUnit;
+import org.hisp.dhis.organisationunit.OrganisationUnitGroup;
+import org.hisp.dhis.organisationunit.OrganisationUnitGroupService;
 import org.hisp.dhis.organisationunit.OrganisationUnitService;
 import org.hisp.dhis.period.Period;
 import org.hisp.dhis.period.PeriodService;
@@ -125,7 +130,13 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
         this.jdbcTemplate = jdbcTemplate;
     }
     
+    private OrganisationUnitGroupService organisationUnitGroupService;
 
+    public void setOrganisationUnitGroupService( OrganisationUnitGroupService organisationUnitGroupService )
+    {
+        this.organisationUnitGroupService = organisationUnitGroupService;
+    }
+    
     private I18nFormat format;
     
     public void setFormat( I18nFormat format )
@@ -265,6 +276,13 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
         this.aggData = aggData;
     }
     
+    private Integer orgUnitGroup;
+    
+    public void setOrgUnitGroup( Integer orgUnitGroup )
+    {
+        this.orgUnitGroup = orgUnitGroup;
+    }
+    
     // -------------------------------------------------------------------------
     // Action implementation
     // -------------------------------------------------------------------------
@@ -384,8 +402,9 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
 
         // OrgUnit Info
         currentOrgUnit = organisationUnitService.getOrganisationUnit( ouIDTB );
-        System.out.println( "orgunit" + currentOrgUnit.getName() + ",Start Date " + sDate + ",End Date " + eDate
-            + " XML File : " + deCodesXMLFileName + ",selected period is " + selectedPeriod.getId() );
+        
+        System.out.println( "Report Generation Start Time is : \t" + new Date() );
+        System.out.println( "orgunit" + currentOrgUnit.getName() + " XML File : " + deCodesXMLFileName + ",selected period is " + selectedPeriod.getId() );
         //llrecordNos = reportService.getLinelistingRecordNos( currentOrgUnit, selectedPeriod, deCodesXMLFileName );
         
         llrecordNos = getLinelistingDeathRecordNos( currentOrgUnit, selectedPeriod );
@@ -428,6 +447,20 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
             else if( aggData.equalsIgnoreCase( GENERATEAGGDATA ) )
             {
                 List<OrganisationUnit> childOrgUnitTree = new ArrayList<OrganisationUnit>( organisationUnitService.getOrganisationUnitWithChildren( currentOrgUnit.getId() ) );
+                
+                // implementing filter orgUnit group Member and selected orgUnit children
+                if( orgUnitGroup != 0 )
+                {
+                    OrganisationUnitGroup ouGroup = organisationUnitGroupService.getOrganisationUnitGroup( orgUnitGroup );
+                    
+                    if( ouGroup != null )
+                    {
+                        System.out.println( "-- groupMember Size --" + ouGroup.getMembers().size() );
+                        childOrgUnitTree.retainAll( ouGroup.getMembers() );
+                    }
+                }
+                System.out.println( "-- childOrgUnitTree Size --" + childOrgUnitTree.size() );
+                
                 List<Integer> childOrgUnitTreeIds = new ArrayList<Integer>( getIdentifiers( OrganisationUnit.class, childOrgUnitTree ) );
                 String childOrgUnitsByComma = getCommaDelimitedString( childOrgUnitTreeIds );
     
@@ -2011,6 +2044,11 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
             
             resultValue = "" + (double) d;
     
+            if ( resultValue.equalsIgnoreCase( "0.0" ) )
+            {
+                resultValue = "";
+            }
+            
             return resultValue;
         }
         catch ( NumberFormatException ex )
