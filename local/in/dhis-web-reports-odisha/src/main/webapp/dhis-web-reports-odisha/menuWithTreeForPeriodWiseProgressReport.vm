@@ -8,7 +8,8 @@
     </ul>
 </ul>
 
-#parse( "/dhis-web-commons/ouwt/orgunittreesearch.vm" )
+##parse( "/dhis-web-commons/ouwt/orgunittreesearch.vm" )
+#parse( "/dhis-web-commons/ouwt/orgunittree.vm" )
 
 <script type="text/javascript">
 

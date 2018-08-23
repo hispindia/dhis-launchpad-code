@@ -19,11 +19,11 @@
 		#if( $auth.hasAccess( "dhis-web-reports-odisha", "upwardReportAnalyser") )
 			<li><a href = "upwardReportAnalyser.action">GOI Reports</a></li>
 		#end
-		
-		#if( $auth.hasAccess( "dhis-web-reports-odisha", "goiMonthlyReportAnalyser") )
-			<li><a href = "goiMonthlyReportAnalyser.action">GOI Monthly Report(Captured Data)</a></li>
-		#end	
-		
+
+		#if( $auth.hasAccess( "dhis-web-reports-odisha", "linelistingWebPortalReportAnalyser") )
+			<li><a href = "linelistingWebPortalReportAnalyser.action">Web Portal GOI Reports</a></li>
+		#end
+
 		#if( $auth.hasAccess( "dhis-web-reports-odisha", "routineReportAnalyser") )
 			<li><a href = "routineReportAnalyser.action">Routine Reports</a></li>
 		#end
@@ -43,23 +43,22 @@
 		#if( $auth.hasAccess( "dhis-web-reports-odisha", "metaDataReportAnalyser") )
 			<li><a href = "metaDataReportAnalyser.action">Meta Data Reports</a></li>
 		#end
-		
+		<!--
 		#if( $auth.hasAccess( "dhis-web-reports-odisha", "quarterlyPhysicalReport") )
 			<li><a href = "quarterlyPhysicalReport.action ">Quarterly Physical Output Reports</a></li>
 		#end
-		
+		-->
+		<!--
 		#if( $auth.hasAccess( "dhis-web-reports-odisha", "csReviewReportForm") )
 			<li><a href = "csReviewReportForm.action">CS Review Reports</a></li>
 		#end
-		
+		-->
+		<!--
 		#if( $auth.hasAccess( "dhis-web-reports-odisha", "autoReportAnalyser") )
 			<li><a href = "autoReportAnalyser.action">Bulk Reports</a></li>
 		#end
-		
-		#if( $auth.hasAccess( "dhis-web-reports-odisha", "linelistingWebPortalReportAnalyser") )
-			<li><a href = "linelistingWebPortalReportAnalyser.action">Linelisting WebPortal Reports</a></li>
-		#end
-		
+		-->
+				
 		#if( $auth.hasAccess( "dhis-web-reports-odisha", "idspReportAnalyser") )
             <li><a href = "idspReportAnalyser.action">IDSP Reports</a></li>
 		#end	
@@ -69,20 +68,21 @@
 		#end
 		
 		#if( $auth.hasAccess( "dhis-web-reports-odisha", "lineListingBulkReportAnalyser") )
-			<li><a href = "lineListingBulkReportAnalyser.action">Linelisting Bulk Report</a></li>
+			<li><a href = "lineListingBulkReportAnalyser.action">Web Portal Bulk Report</a></li>
 		#end		
 		
 		#if( $auth.hasAccess( "dhis-web-reports-odisha", "mdReportAnalyser") )
 			<li><a href = "mdReportAnalyser.action">MD Report</a></li>
+		#end		
+		
+		#if( $auth.hasAccess( "dhis-web-reports-odisha", "linelistingReportAnalyser") )
+			<li><a href = "linelistingReportAnalyser.action">Linelisting Reports</a></li>
 		#end
 		
-		
+				
 		#if( $auth.hasAccess( "dhis-web-reports-odisha", "linelistingReportAnalyserNew") )
 			<li><a href = "linelistingReportAnalyserNew.action">Linelisting Reports New</a></li>
 		#end
-		
-		
-		
 		
 		
 <!--	
@@ -92,9 +92,7 @@
 		#if( $auth.hasAccess( "dhis-web-reports-odisha", "feedbackReportAnalyser") )
 			<li><a href = "feedbackReportAnalyser.action">Feedback Reports</a></li>
 		#end
-		#if( $auth.hasAccess( "dhis-web-reports-odisha", "linelistingReportAnalyser") )
-			<li><a href = "linelistingReportAnalyser.action">Linelisting Reports</a></li>
-		#end
+		
 		#if( $auth.hasAccess( "dhis-web-reports-odisha", "programWiseOrgUnitProgressReportAnalyser") )
 			<li><a href = "programWiseOrgUnitProgressReportAnalyser.action">Programwise OrgUnitProgress Reports</a></li>
 		#end

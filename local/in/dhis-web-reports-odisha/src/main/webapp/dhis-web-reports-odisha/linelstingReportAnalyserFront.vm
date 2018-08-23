@@ -1,68 +1,285 @@
-
-<script>
-
-	function formValidations()
-	{
-		var reportListIndex = document.reportForm.reportList.selectedIndex;
-		var periodIndex = document.reportForm.availablePeriods.selectedIndex;
-		var orgunitIdValue = document.reportForm.ouIDTB.value;
-
-		if( reportListIndex < 0 || document.reportForm.reportList.options[reportListIndex].text == null ) {alert("Please Select Report"); return false;}
-		else if( document.reportForm.availablePeriods.options[periodIndex].text == null || document.reportForm.availablePeriods.options[periodIndex].text== "" ) {alert("Please Select Period"); return false;}
-		else if( orgunitIdValue == null || orgunitIdValue=="" || orgunitIdValue==" " ) {alert("Please Select OrganisationUnit"); return false;}
-
-		return true;
-	}
-
+ <script>       
+		function formValidations()
+				{	
+			        var orgunitNameValue = $( '#ouNameTB' ).val();
+			        var reportList = $( "#reportList option:selected" ).val();
+			        var availablePeriodsListSelected = $( "#availablePeriods option:selected" ).val();
+			        var orgunitGroupSelected = $( "#selectedOrgUnitGroup option:selected" ).val();	
+			        var startDateValue = $( '#startDate' ).val();
+			        var endDateValue = $( '#endDate' ).val();
+			        
+			        $( '#periodTypeId' ).removeAttr( 'disabled' );
+			        $( '#availablePeriods' ).removeAttr( 'disabled' );
+					$( '#startDate' ).removeAttr( 'disabled' );
+					$( '#endDate' ).removeAttr( 'disabled' );
+					$( '#capturedData' ).removeAttr( 'disabled' );
+					$( '#selectedOrgUnitGroup' ).removeAttr( 'disabled' );
+					$( '#reportList' ).removeAttr( 'disabled' );
+					       
+					var orgunitIdValue = $( '#ouIDTB' ).val();
+					
+					$( '#selectedOrgUnitGroupTB' ).val( orgunitGroupSelected );
+			             		
+					if( orgunitIdValue != 0 || orgunitNameValue != "" )
+					{
+						orgunitGroupSelected = 0;
+					}
+					
+					if( orgunitGroupSelected != 0 )
+					{
+						orgunitIdValue = 0 ;
+						orgunitNameValue = "" ;
+					}
+					        
+			        if(( availablePeriodsListSelected == 0 ) && ((( startDateValue == null || startDateValue == "" ) && ( endDateValue != null || endDateValue != "" )) || (( startDateValue != null || startDateValue != "" ) && ( endDateValue == null || endDateValue == "" ))))           
+					{
+			        	$( '#availablePeriods' ).attr( 'disabled', 'disabled' );       	
+			        }
+			        
+					if( reportList == null || reportList < 0 ) {alert( "Please Select OrganisationUnit" ); return false;}
+					else if( (orgunitIdValue == 0 || orgunitIdValue == "") && orgunitGroupSelected == 0 ) {alert( "Please Select OrganisationUnit Or OrganisationUnitGroup" ); return false;}
+					else if(( availablePeriodsListSelected == 0 ) && ( startDateValue == null || startDateValue == "" ) && ( endDateValue == null || endDateValue == "" )) {alert("Please Select Period (Or Start Date and End Date)"); return false;}
+					else if(( availablePeriodsListSelected == 0 ) && ( startDateValue == null || startDateValue == "" ) && ( endDateValue != null || endDateValue != "" )) {alert("Please Select Start Date"); return false;}
+					else if(( availablePeriodsListSelected == 0 ) && ( startDateValue != null || startDateValue != "" ) && ( endDateValue == null || endDateValue == "" )) {alert("Please Select End Date"); return false;}
+					else if(( availablePeriodsListSelected == 0 ) && ( startDateValue != null || startDateValue != "" ) && ( endDateValue != null || endDateValue != "" ) && (startDateValue > endDateValue)) {alert("Starte Date is Greater than End Date"); return false;}
+			        document.forms['reportForm'].submit();
+					return true;	
+				}				
 </script>
 
-<h1>Linelisting Report Analyser</h1>
-<hr /><br />
+<h1>$i18n.getString( "linelisting_report_analyser" )</h1>
+<hr/><br/>
 
-<form id="reportForm" name="reportForm" action="generateLinelistingReport.action" method="post" onsubmit="return formValidations()" target="_blank">
-	<table align="center" style=" border-collapse: collapse; margin-top: 0;" cellpadding="0" cellspacing="0" width="730" border=0>
-		<tr>
-			<td class="NormalB">
-   			    <select id="periodTypeId" name="periodTypeId" style="width:200px; display:none">
+<form id="reportForm" name="reportForm" action="generateLinelistingReport.action" method="post"  onsubmit= "return formValidations()" target="_blank">
+    <table align="center" style=" border-collapse: collapse; margin-top: 0;" cellpadding="0" cellspacing="0" width="730" border=0>                      
+        <tr>
+            <td class="NormalB">                          
+            1. $i18n.getString( "organisationunit" ) :<br />
+                <input type="text" name="ouNameTB" id="ouNameTB" size="20" style="width:200px" disabled />         
+            </td>
+            <td class="NormalB">
+   			    <select id="periodTypeId" name="periodTypeId" style="width:180px; display:none">
 					<option value="$monthlyPeriodType.name">$monthlyPeriodType.name</option>
 				</select>
-				Periods : <br />
-                <select id="availablePeriods" name="availablePeriods" style="width:200px">
+				4. $i18n.getString( "periods_or_start_date_end_date" ) : <br />
+				<script type="text/javascript"> 
+                function dissableStartEndDateSelection()
+				{
+					$( '#startDate' ).val("");
+			        $( '#endDate' ).val("");
+			        var orgunitNameValue = $( '#ouNameTB' ).val();
+			        var nameList = orgunitNameValue.split(" ");
+			        
+			        if( nameList[1] == 'SC' ) 
+			        { 	
+			        	$( '#capturedData' ).attr('checked', true);
+						$( '#capturedDataTB').val('true');
+			        	//$( '#capturedData' ).attr( 'disabled', 'disabled' );
+			        }
+			        
+			        if( nameList[1] == 'PHC(N)' ) 
+			        { 	
+			        	$( '#capturedData' ).attr('checked', true);
+						$( '#capturedDataTB' ).val('true');
+			        	//$( '#capturedData' ).attr( 'disabled', 'disabled' );
+			        }
+			        
+			        var reportList = $("#reportList option:selected").val();
+			        $( '#reportListTB' ).val(reportList);
+			        var selectedOrgUnitGroup = $( "#selectedOrgUnitGroup option:selected" ).val();
+			        $( '#selectedOrgUnitGroupTB' ).val(selectedOrgUnitGroup);
+				 	$( '#startDate' ).attr( 'disabled', 'disabled' );
+				 	$( '#endDate' ).attr( 'disabled', 'disabled' );
+				 	$( '#selectedOrgUnitGroup' ).attr( 'disabled', 'disabled' );
+				 	$( '#reportList' ).attr( 'disabled', 'disabled' );	
+				 	
+				 	if( $( '#availablePeriods option:selected' ).val() == 0 )
+				 	{
+				 		$( '#startDate' ).removeAttr( 'disabled' );
+						$( '#endDate' ).removeAttr( 'disabled' );
+				 	}			 	
+				}
+				</script>
+                <select id="availablePeriods" name="availablePeriods" style="width:180px" onChange="dissableStartEndDateSelection()">
+                	<option value="0">[Please Select Period]</option>
 					#foreach ( $mperiod in $monthlyPeriods )
 						<option value="$mperiod.id">$simpleDateFormat.format( $mperiod.startDate )</option>
                     #end
                 </select>
     		</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>           
+        <tr>
+        	<td class="NormalB">
+        	<script type="text/javascript">
+        	function clearOrgUnitSelectionTextBox() {
+					$('#ouNameTB').val("");
+					$('#ouIDTB').val("0");
+				}	
+				
+			$(':selectedOrgUnitGroup').change( function(e) {
+  					$('#ouNameTB').val("");
+					$('#ouIDTB').val("0");
+				});
+			</script>
+                2. $i18n.getString( "orgunitgroup" ) :<br />
+                <select id="selectedOrgUnitGroup" name="selectedOrgUnitGroup" style="width:200px" onChange="clearOrgUnitSelectionTextBox()">
+					<option value="0">[Please Select OrgUnit Group]</option>
+				#foreach( $orgUnitGroup in $orgUnitGroups )
+                    <option value="$orgUnitGroup.id">$orgUnitGroup.name</option>
+                #end
+                </select>
+            </td>
             <td class="NormalB">
-				Reports :<br />
-                <select id="reportList" name="reportList" style="width:200px"></select>
-           	</td>
-       	</tr>
+                <label for="startDate"> $i18n.getString( 'start_date' ) ($i18n.getString( "format.date.label" )) :</label><br/>
+                <script type="text/javascript"> 
+                function dissablePeriodSelection()
+				{	
+				    $( '#availablePeriods option:selected' ).val('0');
+					$( '#availablePeriods option:selected' ).text('[Please Select Period]');
+					var orgunitNameValue = $( '#ouNameTB' ).val();
+			        var nameList = orgunitNameValue.split(" ");
+			        if( nameList[1] == 'SC' )  
+			        { 	
+			        	$( '#capturedData' ).attr('checked', true);
+						$( '#capturedDataTB' ).val('true');
+			        	//$( '#capturedData' ).attr( 'disabled', 'disabled' );
+			        }
+			        if( nameList[1] == 'PHC(N)' ) 
+			        { 	
+			        	$( '#capturedData' ).attr('checked', true);
+						$( '#capturedDataTB' ).val('true');
+			        	//$( '#capturedData' ).attr( 'disabled', 'disabled' );
+			        }
+			        var reportList = $( "#reportList option:selected" ).val();
+			        $( '#reportListTB' ).val( reportList );
+			        var selectedOrgUnitGroup = $( "#selectedOrgUnitGroup option:selected" ).val();
+			        $( '#selectedOrgUnitGroupTB' ).val( selectedOrgUnitGroup );
+					$( '#periodTypeId' ).attr( 'disabled', 'disabled' );
+					$( '#availablePeriods' ).attr( 'disabled', 'disabled' );
+					$( '#selectedOrgUnitGroup' ).attr( 'disabled', 'disabled' );
+					$( '#reportList' ).attr( 'disabled', 'disabled' );
+					
+					if( $( '#startDate' ).val() == "" || $( '#endDate' ).val() == "" )
+					{
+						$( '#availablePeriods' ).removeAttr( 'disabled' );
+					}
+				}	
+				</script>
+                <input type="text" id="startDate" name="startDate" style="width:180px" class="{validate:{required:true,dateISO:true}}" value="" onclick="dissablePeriodSelection()">
+            </td>
+        </tr>
         <tr>
-			<td>&nbsp;</td>
+            <td>&nbsp;</td>
             <td>&nbsp;</td>
         </tr>
         <tr>
-			<td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>    
+        <tr>
+        	<td class="NormalB">
+                3. $i18n.getString( "reports" ) :<br />
+                <select id="reportList" name="reportList" style="width:200px">
+	                #foreach($report in $reportList)
+	                    <option value="$report.id">$report.name</option>
+	                #end
+                </select>
+            </td>
+            <td class="NormalB">
+                <label for="endDate"> $i18n.getString( 'end_date' ) ($i18n.getString( "format.date.label" )) :</label><br />
+                <script type="text/javascript"> 
+                function dissablePeriodSelection()
+				{	
+				    $( '#availablePeriods option:selected' ).val('0');
+					$( '#availablePeriods option:selected' ).text('[Please Select Period]');
+					var orgunitNameValue = $( '#ouNameTB' ).val();
+			        var nameList = orgunitNameValue.split(" ");
+			        if( nameList[1] == 'SC' )  
+			        { 	
+			        	$( '#capturedData' ).attr('checked', true);
+						$( '#capturedDataTB' ).val('true');
+			        	//$( '#capturedData' ).attr( 'disabled', 'disabled' );
+			        }
+			        if( nameList[1] == 'PHC(N)' ) 
+			        { 	
+			        	$( '#capturedData' ).attr('checked', true);
+						$( '#capturedDataTB' ).val('true');
+			        	//$( '#capturedData' ).attr( 'disabled', 'disabled' );
+			        }
+			        var reportList = $( "#reportList option:selected" ).val();
+			        $( '#reportListTB' ).val(reportList);
+			        var selectedOrgUnitGroup = $( "#selectedOrgUnitGroup option:selected" ).val();
+			        $( '#selectedOrgUnitGroupTB' ).val( selectedOrgUnitGroup );
+					$( '#periodTypeId' ).attr( 'disabled', 'disabled' );
+					$( '#availablePeriods' ).attr( 'disabled', 'disabled' );
+					$( '#selectedOrgUnitGroup' ).attr( 'disabled', 'disabled' );
+					$( '#reportList' ).attr( 'disabled', 'disabled' );
+														
+					if( ($( '#startDate' ).val() == "") || ($( '#endDate' ).val() == "") )
+					{
+						$( '#availablePeriods' ).removeAttr( 'disabled' );
+					}
+				}	
+				</script>
+                <input type="text" id="endDate" name="endDate" style="width:180px" class="{validate:{required:true,dateISO:true}}" value="" onclick="dissablePeriodSelection()">
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
             <td>&nbsp;</td>
         </tr>
         <tr>
-			<td class="NormalB">
-				OrganisationUnit : <br />
-                <input type="text" name="ouNameTB" id="ouNameTB" size="20" disabled>
-          	</td>
-          	<td class="NormalB">
-				<input type="submit" name="generate" value='Generate Report'/>
-         	</td>
-		</tr>
-	    <tr>
-			<td>&nbsp;</td>
-          	<td>
-          	    <input type="hidden" name="ouIDTB" id="ouIDTB">
-          	    <input type="hidden" name="ouLevelTB" id="ouLevelTB">
-          	    <input type="hidden" name="autogen" id="autogen" value="0" >
- 				<input type="hidden" name="reportTypeNameTB" id="reportTypeNameTB" value="$reportTypeName">
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>   
+        <tr>            
+            <td>&nbsp;</td>
+            <script type="text/javascript">
+        	function checkedCapturedData()
+			{	
+				if($('#capturedData').is(":checked"))
+				$('#capturedDataTB').val('true');
+				else
+				$('#capturedDataTB').val('false');
+			}
+			</script>
+            <td class="NormalB"> <input type="checkbox" checked="true" id="capturedData" onchange="checkedCapturedData()"> $i18n.getString( "captured_data" ) &nbsp;</td>           
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>   
+        <tr>
+            <td class="NormalB">&nbsp;</td>
+            <td class="NormalB">
+            <br/><br/>              
+            <input type="submit" name="generate" style="width:180px" value="$i18n.getString( 'generate_report' )" />      
+            <input type="hidden" name="ouIDTB" id="ouIDTB">
+          	<input type="hidden" name="ouLevelTB" id="ouLevelTB">
+          	<input type="hidden" name="capturedDataTB" id="capturedDataTB">
+          	<input type="hidden" name="autogen" id="autogen" value="0" >
+          	<input type="hidden" name="reportListTB" id="reportListTB" >
+          	<input type="hidden" name="selectedOrgUnitGroupTB" id="selectedOrgUnitGroupTB" >
+ 			<input type="hidden" name="reportTypeNameTB" id="reportTypeNameTB" value="$reportTypeName">
             </td>
         </tr>
     </table>
 </form>
+<script type="text/javascript">
+    jQuery( function(){
+            datePickerInRange( "startDate", "endDate", false, false );
+    });
+</script>
+
