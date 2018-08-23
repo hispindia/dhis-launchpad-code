@@ -511,19 +511,48 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
                 }
                 else if ( deCodeString.equalsIgnoreCase( "FACILITYP" ) )
                 {
-                    tempStr = currentOrgUnit.getParent().getName();
+                    if( currentOrgUnit.getParent() != null )
+                    {
+                        tempStr = currentOrgUnit.getParent().getName();
+                    }
+                    else
+                    {
+                        tempStr = "";
+                    }
                 }
                 else if ( deCodeString.equalsIgnoreCase( "FACILITYPP" ) )
                 {
-                    tempStr = currentOrgUnit.getParent().getParent().getName();
+                    if( currentOrgUnit.getParent().getParent() != null )
+                    {
+                        tempStr = currentOrgUnit.getParent().getParent().getName();
+                    }
+                    else
+                    {
+                        tempStr = "";
+                    }
                 }
                 else if ( deCodeString.equalsIgnoreCase( "FACILITYPPP" ) )
                 {
-                    tempStr = currentOrgUnit.getParent().getParent().getParent().getName();
+                    if( currentOrgUnit.getParent().getParent().getParent() != null )
+                    {
+                        tempStr = currentOrgUnit.getParent().getParent().getParent().getName();
+                    }
+                    else
+                    {
+                        tempStr = "";
+                    }
+                    
                 }
                 else if ( deCodeString.equalsIgnoreCase( "FACILITYPPPP" ) )
                 {
-                    tempStr = currentOrgUnit.getParent().getParent().getParent().getParent().getName();
+                    if( currentOrgUnit.getParent().getParent().getParent().getParent() != null )
+                    {
+                        tempStr = currentOrgUnit.getParent().getParent().getParent().getParent().getName();
+                    }
+                    else
+                    {
+                        tempStr = "";
+                    }
                 }
                 else if ( deCodeString.equalsIgnoreCase( "PERIOD" )
                     || deCodeString.equalsIgnoreCase( "PERIOD-NOREPEAT" ) )
@@ -656,7 +685,8 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
                     // for added new dataElement in GOI Report
                     else if ( sType.equalsIgnoreCase( "dataelement-date" ) )
                     {
-                    	if( aggData.equalsIgnoreCase( USECAPTUREDDATA ) ) 
+                    	
+                        if( (aggData.equalsIgnoreCase( USECAPTUREDDATA ) ) || ( aggData.equalsIgnoreCase( GENERATEAGGDATA ) && orgUnitGroup != 0 ) ) 
                         {
                             String tempDateString = getStringDataFromDataValue( deCodeString, selectedPeriod.getId(),currentOrgUnit.getId() );
                             if( tempDateString != null && !tempDateString.equalsIgnoreCase(""))
@@ -669,7 +699,7 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
                     }
                     else if ( sType.equalsIgnoreCase( "dataelement-string" ) )
                     {
-                    	if( aggData.equalsIgnoreCase( USECAPTUREDDATA ) ) 
+                        if( (aggData.equalsIgnoreCase( USECAPTUREDDATA ) ) || ( aggData.equalsIgnoreCase( GENERATEAGGDATA ) && orgUnitGroup != 0 ) ) 
                         {
                     		tempadeInAdeStr = getStringDataFromDataValue( deCodeString, selectedPeriod.getId(),currentOrgUnit.getId() );
                             //System.out.println( " USECAPTUREDDATA  SType : " + sType + " DECode : " + deCodeString + "   TempStr : " + tempStr );
