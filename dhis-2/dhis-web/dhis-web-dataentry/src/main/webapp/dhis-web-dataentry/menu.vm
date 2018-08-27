@@ -20,4 +20,5 @@ jQuery(document).ready(function() {
 </style>
 
 <br>
-#parse( "/dhis-web-commons/ouwt/orgunittreesearch.vm" )
+##parse( "/dhis-web-commons/ouwt/orgunittreesearch.vm" )
+#parse( "/dhis-web-commons/ouwt/orgunittree.vm" )
