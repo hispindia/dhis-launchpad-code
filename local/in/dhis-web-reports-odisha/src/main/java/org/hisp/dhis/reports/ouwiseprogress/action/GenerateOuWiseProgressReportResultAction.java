@@ -324,7 +324,7 @@ public class GenerateOuWiseProgressReportResultAction
         
         System.out.println( selectedOrgUnit.getName()+ " : " + selReportObj.getName()+" : Report Generation Start Time is : " + new Date() + "Size of List -- " + orgUnitList.size() );
         
-        // Period Info
+        // Period Information
         sDate = format.parseDate( startDate );
         eDate = format.parseDate( endDate );
         
