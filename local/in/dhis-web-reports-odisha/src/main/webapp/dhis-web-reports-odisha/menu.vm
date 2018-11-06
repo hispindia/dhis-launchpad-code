@@ -84,6 +84,9 @@
 			<li><a href = "linelistingReportAnalyserNew.action">Linelisting Reports New</a></li>
 		#end
 		
+		#if( $auth.hasAccess( "dhis-web-reports-odisha", "analysisReportAnalyser") )
+			<li><a href = "analysisReportAnalyser.action">Analysis Reports</a></li>
+		#end		
 		
 <!--	
 		#if( $auth.hasAccess( "dhis-web-reports-odisha", "edReportForm") )
