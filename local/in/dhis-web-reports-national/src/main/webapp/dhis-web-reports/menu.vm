@@ -170,6 +170,10 @@
 			<li><a href = "metaDataReportAnalyser.action">Meta Data Reports</a></li>
 		#end
 		
+		#if( $auth.hasAccess( "dhis-web-reports", "analysisReportAnalyser") )
+			<li><a href = "analysisReportAnalyser.action">Analysis Reports</a></li>
+		#end		
+		
 		<!--
 		#if( $auth.hasAccess( "dhis-web-reports", "routineReportAnalyser") )
 			<li><a href = "routineReportAnalyser.action">Routine Reports</a></li>
