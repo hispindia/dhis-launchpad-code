@@ -322,7 +322,7 @@ public class GenerateOuWiseProgressReportResultAction
         wCellformat.setVerticalAlignment( VerticalAlignment.CENTRE );
         wCellformat.setWrap( true );
         
-        System.out.println( selectedOrgUnit.getName()+ " : " + selReportObj.getName()+" : Report Generation Start Time is : " + new Date() + "Size of List -- " + orgUnitList.size() );
+        System.out.println( selectedOrgUnit.getName()+ " : " + selReportObj.getName()+" : Report Generation Start Time is : " + new Date() + " Size of List -- " + orgUnitList.size() );
         
         // Period Info
         sDate = format.parseDate( startDate );
