@@ -299,16 +299,15 @@ public class GenerateAnalysisReportResultAction implements Action
         
         //XSSFFormulaEvaluator.evaluateAllFormulaCells( apachePOIWorkbook );
         
-        System.out.println( selectedOrgUnit.getName()+ " : " + selReportObj.getName()+" - Generation Start Time is : " + new Date() + " -- " + apachePOIWorkbook.getNumberOfSheets() );
+        //System.out.println( selectedOrgUnit.getName()+ " : " + selReportObj.getName()+" - Generation Start Time is : " + new Date() + " -- " + apachePOIWorkbook.getNumberOfSheets() );
         
         //System.out.println( " dataElmentIdsByComma " + dataElmentIdsByComma +" - periodIdsByComma : " + periodIdsByComma + " -- " + childOrgUnitsByComma );
-        
+        /*
         for (int i = 0; i < apachePOIWorkbook.getNumberOfSheets(); i++) 
         {
-
             System.out.println("Sheet name: " + apachePOIWorkbook.getSheetName(i));
         }
-        
+        */
         
         int orgUnitCount = 0;
         Iterator<Report_inDesign> reportDesignIterator = reportDesignList.iterator();
@@ -383,8 +382,7 @@ public class GenerateAnalysisReportResultAction implements Action
                 {
                     if( aggData.equalsIgnoreCase( GENERATEAGGDATA ) )
                     {
-                        System.out.println( "inside GENERATEAGGDATA" );
-                        
+                        //System.out.println( "inside GENERATEAGGDATA" );
                         tempStr = getAggVal( deCodeString, orgUnitWiseAggDeMap );
                         //tempaGrpStr = getAggVal( deCodeString, orgUnitGroupWiseAggDeMap );
                         //System.out.println( aggData + " 1 SType : " + sType + " DECode : " + deCodeString + "   TempStr : " + tempStr + " -- " + tempaGrpStr );
@@ -543,7 +541,7 @@ public class GenerateAnalysisReportResultAction implements Action
     // supportive methods
     public String getAggVal( String expression, Map<String, String> aggDeMap )
     {
-        System.out.println( " expression -- " + expression + " aggDeMap " + aggDeMap.size() );
+        //System.out.println( " expression -- " + expression + " aggDeMap " + aggDeMap.size() );
         try
         {
             Pattern pattern = Pattern.compile( "(\\[\\d+\\.\\d+\\])" );
@@ -590,7 +588,7 @@ public class GenerateAnalysisReportResultAction implements Action
 
             resultValue = "" + (double) d;
             
-            System.out.println( " expression -- " + expression +" -- resultValue " + resultValue);
+            //System.out.println( " expression -- " + expression +" -- resultValue " + resultValue);
             return resultValue;
         }
         catch ( NumberFormatException ex )
