@@ -22,7 +22,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.FormulaEvaluator;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFFormulaEvaluator;
@@ -504,7 +503,10 @@ public class GenerateAnalysisReportResultAction implements Action
         
         FileOutputStream output_file = new FileOutputStream( new File(  outputReportPath ) );  //Open FileOutputStream to write updates
         
-        XSSFFormulaEvaluator.evaluateAllFormulaCells( apachePOIWorkbook );
+        //XSSFFormulaEvaluator.evaluateAllFormulaCells( apachePOIWorkbook );
+        //XSSFFormulaEvaluator.evaluateAllFormulaCells((XSSFWorkbook) apachePOIWorkbook );// for xlsx
+        //HSSFFormulaEvaluator.evaluateAllFormulaCells( apachePOIWorkbook );// for xls
+        apachePOIWorkbook.setForceFormulaRecalculation(true);
         apachePOIWorkbook.write( output_file ); //write changes
         
         /*
