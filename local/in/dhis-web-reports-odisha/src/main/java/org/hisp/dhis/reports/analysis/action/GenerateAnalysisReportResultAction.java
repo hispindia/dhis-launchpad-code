@@ -22,10 +22,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.FormulaEvaluator;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.xssf.usermodel.XSSFFormulaEvaluator;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.hisp.dhis.config.Configuration_IN;
 import org.hisp.dhis.i18n.I18nFormat;
@@ -119,13 +117,13 @@ public class GenerateAnalysisReportResultAction implements Action
         this.reportFileNameTB = reportFileNameTB;
     }
     
-    private String ouIDTB;
-    
-    public void setOuIDTB( String ouIDTB )
+    private int ouIDTB;
+
+    public void setOuIDTB( int ouIDTB )
     {
         this.ouIDTB = ouIDTB;
     }
-    
+
     private String reportList;
 
     public void setReportList( String reportList )
@@ -299,16 +297,16 @@ public class GenerateAnalysisReportResultAction implements Action
         
         //XSSFFormulaEvaluator.evaluateAllFormulaCells( apachePOIWorkbook );
         
-        System.out.println( selectedOrgUnit.getName()+ " : " + selReportObj.getName()+" - Generation Start Time is : " + new Date() + " -- " + apachePOIWorkbook.getNumberOfSheets() );
+        //System.out.println( selectedOrgUnit.getName()+ " : " + selReportObj.getName()+ " - Generation Start Time is : " + new Date() + " -- " + apachePOIWorkbook.getNumberOfSheets() );
         
         //System.out.println( " dataElmentIdsByComma " + dataElmentIdsByComma +" - periodIdsByComma : " + periodIdsByComma + " -- " + childOrgUnitsByComma );
         
+        /*
         for (int i = 0; i < apachePOIWorkbook.getNumberOfSheets(); i++) 
         {
-
             System.out.println("Sheet name: " + apachePOIWorkbook.getSheetName(i));
         }
-        
+        */
         
         int orgUnitCount = 0;
         Iterator<Report_inDesign> reportDesignIterator = reportDesignList.iterator();
@@ -383,7 +381,7 @@ public class GenerateAnalysisReportResultAction implements Action
                 {
                     if( aggData.equalsIgnoreCase( GENERATEAGGDATA ) )
                     {
-                        System.out.println( "inside GENERATEAGGDATA" );
+                        //System.out.println( "inside GENERATEAGGDATA" );
                         
                         tempStr = getAggVal( deCodeString, orgUnitWiseAggDeMap );
                         //tempaGrpStr = getAggVal( deCodeString, orgUnitGroupWiseAggDeMap );
@@ -506,7 +504,8 @@ public class GenerateAnalysisReportResultAction implements Action
         
         FileOutputStream output_file = new FileOutputStream( new File(  outputReportPath ) );  //Open FileOutputStream to write updates
         
-        XSSFFormulaEvaluator.evaluateAllFormulaCells( apachePOIWorkbook );
+        //XSSFFormulaEvaluator.evaluateAllFormulaCells( apachePOIWorkbook );
+        apachePOIWorkbook.setForceFormulaRecalculation(true);
         apachePOIWorkbook.write( output_file ); //write changes
         
         /*
@@ -543,7 +542,7 @@ public class GenerateAnalysisReportResultAction implements Action
     // supportive methods
     public String getAggVal( String expression, Map<String, String> aggDeMap )
     {
-        System.out.println( " expression -- " + expression + " aggDeMap " + aggDeMap.size() );
+        //System.out.println( " expression -- " + expression + " aggDeMap " + aggDeMap.size() );
         try
         {
             Pattern pattern = Pattern.compile( "(\\[\\d+\\.\\d+\\])" );
@@ -590,7 +589,7 @@ public class GenerateAnalysisReportResultAction implements Action
 
             resultValue = "" + (double) d;
             
-            System.out.println( " expression -- " + expression +" -- resultValue " + resultValue);
+            //System.out.println( " expression -- " + expression +" -- resultValue " + resultValue);
             return resultValue;
         }
         catch ( NumberFormatException ex )
