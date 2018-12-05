@@ -291,6 +291,20 @@ public class GenerateAnalysisReportResultAction implements Action
             orgUnitGroupWiseAggDeMap.putAll( reportService.getAggDataFromDataValueTable( childOrgUnitsByComma, dataElmentIdsByComma, periodIdsByComma ) );
         }
 
+        // for SC group Data
+        
+        orgUnitList = new ArrayList<OrganisationUnit>( organisationUnitService.getOrganisationUnitWithChildren( selectedOrgUnit.getId() ) );
+        OrganisationUnitGroup ouGroup = organisationUnitGroupService.getOrganisationUnitGroup( 5 );
+    
+        if( ouGroup != null )
+        {
+            orgUnitList.retainAll( ouGroup.getMembers() );
+            
+            List<Integer> orgUbnitGroupMembersIds = new ArrayList<Integer>( getIdentifiers( OrganisationUnit.class, orgUnitList ) );
+            String orgUnitGroupMembersIdsByComma = getCommaDelimitedString( orgUbnitGroupMembersIds );
+            orgUnitGroupWiseAggDeMap.putAll( reportService.getAggDataFromDataValueTable( orgUnitGroupMembersIdsByComma, dataElmentIdsByComma, periodIdsByComma ) );
+        }
+        
         
         FileInputStream tempFile = new FileInputStream( new File( inputTemplatePath ) );
         XSSFWorkbook apachePOIWorkbook = new XSSFWorkbook( tempFile );
@@ -388,6 +402,22 @@ public class GenerateAnalysisReportResultAction implements Action
                         //System.out.println( aggData + " 1 SType : " + sType + " DECode : " + deCodeString + "   TempStr : " + tempStr + " -- " + tempaGrpStr );
                     }
                 }
+                else if ( sType.equalsIgnoreCase( "dataelement_orgunit_group" ) )
+                {
+                    if( (aggData.equalsIgnoreCase( GENERATEAGGDATA ) ) ) 
+                    {
+                        tempStr = getAggVal( deCodeString, orgUnitGroupWiseAggDeMap );
+                        //System.out.println( " USECAPTUREDDATA  SType : " + sType + " DECode : " + deCodeString + "   TempStr : " + tempStr );
+                    }
+                }
+                else if ( sType.equalsIgnoreCase( "dataelement_orgunit_not_group" ) )
+                {
+                    if( (aggData.equalsIgnoreCase( GENERATEAGGDATA ) ) ) 
+                    {
+                        tempStr = getAggValExceptGroup( deCodeString, orgUnitWiseAggDeMap, orgUnitGroupWiseAggDeMap );
+                        //System.out.println( " USECAPTUREDDATA  SType : " + sType + " DECode : " + deCodeString + "   TempStr : " + tempStr );
+                    }
+                }
             }
             
             int tempRowNo = report_inDesign.getRowno();
@@ -456,6 +486,40 @@ public class GenerateAnalysisReportResultAction implements Action
                         
                     }
                 }
+                else if ( sType.equalsIgnoreCase( "dataelement_orgunit_group" ) )
+                {
+                    try
+                    {
+                        Row row = sheet0.getRow( tempRowNo );
+                        Cell cell = row.getCell( tempColNo );
+                        cell.setCellValue( tempStr );
+                        
+                    }
+                    catch ( Exception e )
+                    {
+                            //System.out.println( " Exception : " + e.getMessage() );
+                            Row row = sheet0.getRow( tempRowNo );
+                            Cell cell = row.getCell( tempColNo );
+                            cell.setCellValue( tempStr );
+                    }
+                }                
+                else if ( sType.equalsIgnoreCase( "dataelement_orgunit_not_group" ) )
+                {
+                    try
+                    {
+                        Row row = sheet0.getRow( tempRowNo );
+                        Cell cell = row.getCell( tempColNo );
+                        cell.setCellValue( tempStr );
+                        
+                    }
+                    catch ( Exception e )
+                    {
+                            //System.out.println( " Exception : " + e.getMessage() );
+                            Row row = sheet0.getRow( tempRowNo );
+                            Cell cell = row.getCell( tempColNo );
+                            cell.setCellValue( tempStr );
+                    }
+                }               
                 /*
                 else if ( sType.equalsIgnoreCase( "dataelement_popultion" )  )
                 {
@@ -596,6 +660,71 @@ public class GenerateAnalysisReportResultAction implements Action
         {
             throw new RuntimeException( "Illegal DataElement id", ex );
         }
-    }   
+    }
+    
+    // supportive methods
+    public String getAggValExceptGroup( String expression, Map<String, String> aggDeMap, Map<String, String> aggOrgUnitGroupDeMap )
+    {
+        //System.out.println( " expression -- " + expression + " aggDeMap " + aggDeMap.size() );
+        try
+        {
+            double calculatedResultValue = 0.0;
+            Pattern pattern = Pattern.compile( "(\\[\\d+\\.\\d+\\])" );
+
+            Matcher matcher = pattern.matcher( expression );
+            StringBuffer buffer = new StringBuffer();
+
+            String resultValue = "";
+
+            while ( matcher.find() )
+            {
+                String replaceString = matcher.group();
+
+                replaceString = replaceString.replaceAll( "[\\[\\]]", "" );
+
+                //replaceString = aggDeMap.get( replaceString );
+                
+                String aggTotalValue = aggDeMap.get( replaceString );
+                String aggGroupWiseTotalValue = aggOrgUnitGroupDeMap.get( replaceString );
+
+                if ( aggTotalValue == null && aggGroupWiseTotalValue == null )
+                {
+                    replaceString = "0";
+                }
+
+                calculatedResultValue = Double.parseDouble( aggTotalValue ) - Double.parseDouble( aggGroupWiseTotalValue );
+                replaceString = "" + calculatedResultValue;
+                matcher.appendReplacement( buffer, replaceString );
+
+                resultValue = replaceString;
+            }
+
+            matcher.appendTail( buffer );
+
+            double d = 0.0;
+            try
+            {
+
+                d = MathUtils.calculateExpression( buffer.toString() );
+
+                d = Math.round( d );
+
+            }
+            catch ( Exception e )
+            {
+                d = 0.0;
+                resultValue = "";
+            }
+
+            resultValue = "" + (double) d;
+            
+            //System.out.println( " expression -- " + expression +" -- resultValue " + resultValue);
+            return resultValue;
+        }
+        catch ( NumberFormatException ex )
+        {
+            throw new RuntimeException( "Illegal DataElement id", ex );
+        }
+    }
 }
 
