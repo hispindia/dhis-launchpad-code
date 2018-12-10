@@ -266,7 +266,7 @@ public class GenerateAnalysisReportResultAction implements Action
         orgUnitGroupWiseAggDeMap = new HashMap<String, String>();
         
         orgUnitWiseAggDeMap.putAll( reportService.getAggDataFromDataValueTable( childOrgUnitsByComma, dataElmentIdsByComma, periodIdsByComma ) );
-        
+        /*
         if( orgUnitGroup != 0 )
         {
             orgUnitList = new ArrayList<OrganisationUnit>( organisationUnitService.getOrganisationUnitWithChildren( selectedOrgUnit.getId() ) );
@@ -290,7 +290,7 @@ public class GenerateAnalysisReportResultAction implements Action
         {
             orgUnitGroupWiseAggDeMap.putAll( reportService.getAggDataFromDataValueTable( childOrgUnitsByComma, dataElmentIdsByComma, periodIdsByComma ) );
         }
-
+        */
         // for SC group Data
         
         orgUnitList = new ArrayList<OrganisationUnit>( organisationUnitService.getOrganisationUnitWithChildren( selectedOrgUnit.getId() ) );
@@ -333,6 +333,9 @@ public class GenerateAnalysisReportResultAction implements Action
             String deCodeString = report_inDesign.getExpression();
             String tempStr = "";
             String tempaGrpStr = "";
+            double totalDeValue = 0.0;
+            double totalDeValueGroupWise = 0.0;
+            double devalueExceptGrp = 0.0;
 
             if ( deCodeString.equalsIgnoreCase( "FACILITY" ) )
             {
@@ -414,7 +417,13 @@ public class GenerateAnalysisReportResultAction implements Action
                 {
                     if( (aggData.equalsIgnoreCase( GENERATEAGGDATA ) ) ) 
                     {
-                        tempStr = getAggValExceptGroup( deCodeString, orgUnitWiseAggDeMap, orgUnitGroupWiseAggDeMap );
+                        totalDeValue = Double.parseDouble( getAggVal( deCodeString, orgUnitWiseAggDeMap ) );
+                        totalDeValueGroupWise = Double.parseDouble( getAggVal( deCodeString, orgUnitGroupWiseAggDeMap ) );
+                        //System.out.println(  " DECode : " + deCodeString + "   totalDeValue : " + totalDeValue );
+                        //System.out.println(  " DECode : " + deCodeString + "   totalDeValueGroupWise : " + totalDeValueGroupWise );
+                        devalueExceptGrp = totalDeValue - totalDeValueGroupWise;
+                        tempStr = ""+devalueExceptGrp;
+                        //System.out.println(  " DECode : " + deCodeString + "   totalDeValueGroupWise : " + tempStr );
                         //System.out.println( " USECAPTUREDDATA  SType : " + sType + " DECode : " + deCodeString + "   TempStr : " + tempStr );
                     }
                 }
@@ -492,7 +501,7 @@ public class GenerateAnalysisReportResultAction implements Action
                     {
                         Row row = sheet0.getRow( tempRowNo );
                         Cell cell = row.getCell( tempColNo );
-                        cell.setCellValue( tempStr );
+                        cell.setCellValue( Double.parseDouble( tempStr ) );
                         
                     }
                     catch ( Exception e )
@@ -509,7 +518,7 @@ public class GenerateAnalysisReportResultAction implements Action
                     {
                         Row row = sheet0.getRow( tempRowNo );
                         Cell cell = row.getCell( tempColNo );
-                        cell.setCellValue( tempStr );
+                        cell.setCellValue( Double.parseDouble( tempStr ) );
                         
                     }
                     catch ( Exception e )
@@ -665,7 +674,7 @@ public class GenerateAnalysisReportResultAction implements Action
     // supportive methods
     public String getAggValExceptGroup( String expression, Map<String, String> aggDeMap, Map<String, String> aggOrgUnitGroupDeMap )
     {
-        //System.out.println( " expression -- " + expression + " aggDeMap " + aggDeMap.size() );
+        System.out.println( " expression -- " + expression + " aggDeMap " + aggDeMap.size() + " aggOrgUnitGroupDeMap " + aggOrgUnitGroupDeMap.size());
         try
         {
             double calculatedResultValue = 0.0;
@@ -684,16 +693,19 @@ public class GenerateAnalysisReportResultAction implements Action
 
                 //replaceString = aggDeMap.get( replaceString );
                 
-                String aggTotalValue = aggDeMap.get( replaceString );
-                String aggGroupWiseTotalValue = aggOrgUnitGroupDeMap.get( replaceString );
-
+                String aggTotalValue = getAggVal( expression, aggDeMap );
+                
+                String aggGroupWiseTotalValue = getAggVal( expression, aggOrgUnitGroupDeMap );
                 if ( aggTotalValue == null && aggGroupWiseTotalValue == null )
                 {
                     replaceString = "0";
                 }
-
+                
+                System.out.println( " expression -- " + expression + " aggTotalValue " + aggTotalValue + " aggGroupWiseTotalValue " + aggGroupWiseTotalValue );
                 calculatedResultValue = Double.parseDouble( aggTotalValue ) - Double.parseDouble( aggGroupWiseTotalValue );
+                
                 replaceString = "" + calculatedResultValue;
+                System.out.println( " expression -- " + expression + " calculatedResultValue " + calculatedResultValue );
                 matcher.appendReplacement( buffer, replaceString );
 
                 resultValue = replaceString;
@@ -718,7 +730,7 @@ public class GenerateAnalysisReportResultAction implements Action
 
             resultValue = "" + (double) d;
             
-            //System.out.println( " expression -- " + expression +" -- resultValue " + resultValue);
+            System.out.println( " expression -- " + expression +" -- resultValue " + resultValue);
             return resultValue;
         }
         catch ( NumberFormatException ex )
