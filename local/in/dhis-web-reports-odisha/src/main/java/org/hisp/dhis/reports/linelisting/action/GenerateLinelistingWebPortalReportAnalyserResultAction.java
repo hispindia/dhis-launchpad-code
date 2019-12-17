@@ -694,7 +694,7 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
                             	Date tempDate = format.parseDate( tempDateString );
                                 tempStr = simpleDateMonthYearFormat.format(tempDate);
                             }
-                            System.out.println( " USECAPTUREDDATA  SType : " + sType + " DECode : " + deCodeString + "   TempStr : " + tempStr );
+                            //System.out.println( " USECAPTUREDDATA  SType : " + sType + " DECode : " + deCodeString + "   TempStr : " + tempStr );
                         }
                     }
                     else if ( sType.equalsIgnoreCase( "dataelement-string" ) )
@@ -889,9 +889,10 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
                    
                     if ( sType.equalsIgnoreCase( "dataelement" ) )
                     {
+                        //System.out.println( " USECAPTUREDDATA  SType : " + sType + " DECode : " + deCodeString + "   TempStr : " + tempStr );
                     	 try
                          {
-                    		 Row row = sheet0.getRow( tempRowNo );
+                    	     Row row = sheet0.getRow( tempRowNo );
                              Cell cell = row.getCell( tempColNo );
 //                             if (cell.getCellType() == Cell.CELL_TYPE_BLANK){
 //                            	    cell.setCellType(Cell.CELL_TYPE_NUMERIC);
@@ -912,6 +913,8 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
                    
                     else if ( sType.equalsIgnoreCase( "dataelement-date" ) )
                     {
+                        //System.out.println( " USECAPTUREDDATA  SType : " + sType + " DECode : " + deCodeString + "   TempStr : " + tempStr );
+                        
                         try
                         {
                             Row row = sheet0.getRow( tempRowNo );
@@ -930,7 +933,7 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
                     
                     else if ( sType.equalsIgnoreCase( "dataelement-string" ) )
                     {
-                        
+                        //System.out.println( " USECAPTUREDDATA  SType : " + sType + " DECode : " + deCodeString + "   TempStr : " + tempStr );
                     	if ( tempadeInAdeStr != null && tempadeInAdeStr.equalsIgnoreCase("Adequate") )
                         {
                             tempStr1 = "59";
@@ -1562,6 +1565,7 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
         
         FileOutputStream output_file = new FileOutputStream( new File(  outputReportPath ) );  //Open FileOutputStream to write updates
         
+        //apachePOIWorkbook.setForceFormulaRecalculation(true);
         apachePOIWorkbook.write( output_file ); //write changes
           
         output_file.close();  //close the stream   
@@ -2032,6 +2036,7 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
     // getting data value using Map
     private String getAggVal( String expression, Map<String, String> aggDeMap )
     {
+        int flag = 0;
         try
         {
             Pattern pattern = Pattern.compile( "(\\[\\d+\\.\\d+\\])" );
@@ -2053,6 +2058,10 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
                 {
                     replaceString = "0";
                 }
+                else
+                {
+                    flag = 1;
+                }
                 
                 matcher.appendReplacement( buffer, replaceString );
     
@@ -2073,13 +2082,24 @@ public class GenerateLinelistingWebPortalReportAnalyserResultAction
             }
             
             resultValue = "" + (double) d;
-    
+            
+            /*
             if ( resultValue.equalsIgnoreCase( "0.0" ) )
             {
                 resultValue = "";
             }
             
             return resultValue;
+            */
+            if( flag == 0 )
+            {
+                return "";
+            }
+            else
+            {
+                //System.out.println( " expression -- " + expression +" -- resultValue " + resultValue);
+                return resultValue;
+            }
         }
         catch ( NumberFormatException ex )
         {
