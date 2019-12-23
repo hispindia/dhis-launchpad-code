@@ -621,6 +621,7 @@ public class GenerateUpwardReportAnalyserResultAction
     // getting data value using Map
     private String getAggVal( String expression, Map<String, String> aggDeMap )
     {
+        int flag = 0;
         try
         {
             Pattern pattern = Pattern.compile( "(\\[\\d+\\.\\d+\\])" );
@@ -642,7 +643,10 @@ public class GenerateUpwardReportAnalyserResultAction
                 {
                     replaceString = "0";
                 }
-                
+                else
+                {
+                    flag = 1;
+                }
                 matcher.appendReplacement( buffer, replaceString );
     
                 resultValue = replaceString;
@@ -663,13 +667,23 @@ public class GenerateUpwardReportAnalyserResultAction
             
             resultValue = "" + (double) d;
             
+            /*
             if ( resultValue.equalsIgnoreCase( "0.0" ) )
             {
                 resultValue = "";
             }
             
-            
             return resultValue;
+            */
+            if( flag == 0 )
+            {
+                return "";
+            }
+            else
+            {
+                //System.out.println( " expression -- " + expression +" -- resultValue " + resultValue);
+                return resultValue;
+            }
         }
         catch ( NumberFormatException ex )
         {

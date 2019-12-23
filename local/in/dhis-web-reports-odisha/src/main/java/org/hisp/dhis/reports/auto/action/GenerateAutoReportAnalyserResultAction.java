@@ -680,6 +680,7 @@ public class GenerateAutoReportAnalyserResultAction implements Action
     // getting data value using Map
     private String getAggVal( String expression, Map<String, String> aggDeMap )
     {
+        int flag = 0;
         try
         {
             Pattern pattern = Pattern.compile( "(\\[\\d+\\.\\d+\\])" );
@@ -700,6 +701,10 @@ public class GenerateAutoReportAnalyserResultAction implements Action
                 if( replaceString == null )
                 {
                     replaceString = "0";
+                }
+                else
+                {
+                    flag = 1;
                 }
                 
                 matcher.appendReplacement( buffer, replaceString );
@@ -722,7 +727,16 @@ public class GenerateAutoReportAnalyserResultAction implements Action
             
             resultValue = "" + (double) d;
 
-            return resultValue;
+            //return resultValue;
+            if( flag == 0 )
+            {
+                return "";
+            }
+            else
+            {
+                //System.out.println( " expression -- " + expression +" -- resultValue " + resultValue);
+                return resultValue;
+            }
         }
         catch ( NumberFormatException ex )
         {
